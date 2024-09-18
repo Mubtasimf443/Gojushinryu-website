@@ -1,0 +1,45 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+
+*{
+    
+    font-family:"Libre Franklin",sans-serif ;
+    /* font-family: "Libre Franklin", sans-serif; */
+    margin: 0px;
+    padding: 0px;
+    row-gap: 0px;
+    transition: none;
+}
+
+h1,h2 ,h3 ,b {
+    line-height: 1.2em;
+    font-weight: 500;
+}
+
+
+:root {
+    --main-cl :#ffaa1c; /* my- #ca8401 */ /*client #ffaa1c*/
+    --ft-main-cl :rgb(197, 150, 30); /*prev --#915e00*/
+    --sc-cl : #4a401d;
+    /* color */
+    --main-bg :#000000;
+    --s-bg-color :#370617;
+    --df--color : #866565;
+    /* font */
+    --first-fs : 16px;
+    --first-fw : 500;
+    /* border  */
+    --df-b-w : 2px;
+    --df-b-color : #866565 ;
+    --gradian-effect :linear-gradient( to right, #00000093, #00000081);
+}
+
+
+button ,i{
+    cursor: pointer;
+}
+
+

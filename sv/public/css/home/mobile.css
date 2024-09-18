@@ -1,0 +1,417 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+@media screen and (min-width :200px ) and (max-width :630px){
+
+
+
+
+
+
+/*-------------------- Home Progress Section -------------------------*/
+
+
+#hm_progress_section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 8em;
+    background: white;
+    padding: 1.4em 0em 1.4em 0em;
+}
+
+#hm_progress_section > div {
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+#hm_progress_section > div > b:nth-child(1) {
+    color: black;
+    font-size: 1.66em;
+    font-weight: 600;
+}
+
+#hm_progress_section > div > b:nth-child(2) {
+    font-weight: 500;
+    color: var(--main-cl);
+    font-size: 1em;
+}
+
+/*-------------------- About Us Article -------------------------*/
+
+#hm_about_us_article {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background: white;
+    padding: 3em 0em;
+    min-height: 300px;
+}
+
+#hm_about_us_article > div:nth-child(1){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 85%;
+    row-gap: 0.8em;
+    padding-bottom: 2em;
+}
+
+#hm_about_us_article > div:nth-child(1) > b {
+    color: gray;
+    font-size:.9em;
+    font-weight: 500;
+    line-height: 0.5em;
+}
+
+
+#hm_about_us_article > div:nth-child(1) > h2{
+    color: black;
+    font-size: 1.5em;
+    
+}
+
+
+#hm_about_us_article > div:nth-child(1) > p{
+    color: gray;
+    line-height: 1.5em;
+    text-transform: capitalize;
+    padding-right: 20px;
+}
+
+#hm_about_us_article > div:nth-child(1) > button{
+    width: 10.7em;
+    height: 3.3em;
+    background: inherit;
+    color:black;
+    border: var(--df-b-w) solid black;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+#hm_about_us_article > div:nth-child(2){
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#hm_about_us_article > div:nth-child(2) >img {
+    width: 24em;
+}
+
+/*-------------------- iconbox section -------------------------*/
+
+#icon_box_section{
+    min-height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1em;
+    background-color: rgb(0, 0, 0);
+    padding:2em 0em 2em 0em;
+     background-color: rgb(0, 0, 0);
+    background-image: url('/img/12345.png');
+    background-repeat: no-repeat;
+    background-position:left bottom;
+    background-size: cover;
+    border-image-slice:fill 1 ;
+     border-image-source:linear-gradient(to bottom, #0f0f0fe3,#141414e0);
+   
+}
+
+#icon_box_section > div:nth-child(1){
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 87%;
+}
+ 
+#icon_box_section > div:nth-child(1) >h4{
+   font-size: 0.86em;
+   color: var(--df-b-color);
+}
+
+#icon_box_section > div:nth-child(1) >h3{
+    font-size: 1.5em;
+    color: var(--more-red-color);
+ }
+
+#icon_box_section > div:nth-child(1) >p{
+    font-size: qem;
+    color: var(--df-b-color);
+    text-align: center;
+ }
+ 
+#icon_box_section > div:nth-child(2)  {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 75%;
+    row-gap: 2em;
+}
+
+#icon_box_section > div:nth-child(2)  > .iconbox{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: center;
+    background:#ffffff09 ;
+    width: 15em;
+    height: 15em;
+    border-radius:10px ;
+    border: 2.4px solid var(--df-b-color);
+    padding: 1em 0.8em;
+
+}
+
+#icon_box_section > div:nth-child(2)  > .iconbox > b{
+    color:var(--bright-red-cl);
+    font-size: 1.4em;
+}
+
+#icon_box_section > div:nth-child(2)  > .iconbox > p{
+    color:var(--df--color);
+    font-size: 1em;
+    text-align: center;
+}
+
+#icon_box_section > div:nth-child(2)  > .iconbox > i{
+    color:var(--df--color);
+   font-size: 2.4em;
+}
+
+/*-------------------- Heading Section -------------------------*/
+
+.heading_section{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 0.5em;
+    padding: 0em 0em 1em 0em;
+    background: #ffffff;
+}
+
+.heading_section b{
+    font-size:1em ;
+    color: var(--main-cl);
+
+}
+
+.heading_section h2{
+    font-size: 1.6em;
+    color:black;
+
+}
+
+
+/*-------------------- course Section -------------------------*/
+.courses_section{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    row-gap: 2em;
+    column-gap: 2em;
+    padding-bottom: 2em;
+}
+
+.courses_section > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    background:rgba(255, 255, 255, 0.068);
+    width: 20em;
+    min-height: 8em;
+
+}
+
+.courses_section > div >img {
+width: 100%;
+}
+
+.courses_section > div >div {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    background: #ffffff;
+    min-height: 5em;
+    border-radius:4px ;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.13);
+    }
+    
+.courses_section > div >div > b{
+    font-size: 1.2em;
+    font-weight:600;
+    text-transform: uppercase;
+    padding-left: 0.8em;
+    padding-top: 0.34em;
+    color: var(--df-b-color);
+}
+
+.courses_section > div >div > button{
+padding:12px 14px;
+background: inherit;
+border:2.3px solid black ;
+border-radius: 3px;
+color: rgb(0, 0, 0);
+position: relative;
+margin-left: 9.5em;
+margin-bottom: .8em;
+}
+
+.courses_section > div >div > hr{
+   width: 100%;
+   height: 8px;
+   background-color: #000;
+   transition: all 1s ease-in;
+   border: none;
+    }
+
+ 
+    /*-------------------- event Section -------------------------*/
+   
+    #event_section { 
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: start;
+        background: rgb(255, 255, 255);
+        padding: 3em 4em;
+
+    }
+    #event_section > h2{
+        color: rgb(0, 0, 0);
+        text-transform: uppercase;
+        font-size: 1.14em;
+    }
+    #event_section > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 2em;
+        row-gap: 2em;
+        margin-top: 2em;
+    }
+    #event_section > div > div {
+        width: 31em;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 2em 2em;
+        background: #fff;
+        border-radius:10px ;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.158);
+       
+    }
+    #event_section > div > div > img {
+        width: 100%;
+        margin-bottom: 1em;
+        height: 14em;
+        object-fit: cover;
+        object-position: bottom center;
+    }
+    #event_section > div > div >.div1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+    }
+    #event_section > div > div >hr {
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.103);
+        height: 1.6px;
+        border: none;
+        margin: .9em 0px;
+    }
+    #event_section > div > div >.div2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+    }
+    #event_section > div > div >.div1 > div:nth-child(1){
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: start;
+    }
+    #event_section > div > div >.div1 > div:nth-child(2){
+        display: flex;
+        flex-direction: row;
+        justify-content:left;
+        align-items: end;
+        column-gap: .4em;
+    }
+    #event_section > div > div >.div1 > div:nth-child(1) > b {
+        font-size: 1.35em;
+    }
+    #event_section > div > div >.div1 > div:nth-child(1) > span {
+        font-weight: 500;
+        color: rgba(0, 0, 0, 0.849);
+    }
+    #event_section > div > div >.div1 > div:nth-child(2) > b {
+        font-size: 1.6em;
+    }
+    #event_section > div > div >.div1 > div:nth-child(2) > span {
+        font-size: .8em;
+        font-weight: 500;
+    }
+    #event_section > div > div >.div2 > span {
+        font-size: .95em;
+        font-weight: 500;
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

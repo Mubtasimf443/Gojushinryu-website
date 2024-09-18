@@ -1,0 +1,121 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+:root {
+    --loading-animation-name:loadingOpacity;
+    --loading-animation-timing-function :ease;
+    --loading-animation-duration:1000ms;
+    --loading-animation-iteration-count: infinite;
+    --loading-animation-fill-mode: both;
+
+}
+
+
+
+@media screen and (min-width :631px ) and (max-width :1000px){
+
+
+#Loader{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    z-index: 1000;
+}
+
+#Loader > img {
+    width: 10em;
+    border-radius: 50%;
+    animation-name:var(--loading-animation-name) ;
+    animation-timing-function: var(--loading-animation-timing-function);
+    animation-duration: var(--loading-animation-duration);
+    animation-fill-mode: var(--loading-animation-fill-mode);
+    animation-iteration-count: var(--loading-animation-iteration-count);
+}
+}
+
+
+
+@media screen  and (min-width :100px) and (max-width :630px){
+
+#Loader{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    background: rgb(255, 255, 255);
+    z-index: 1000;
+}
+
+#Loader > img {
+    width: 10em;
+    border-radius: 50%;
+    animation-name:var(--loading-animation-name) ;
+    animation-timing-function: var(--loading-animation-timing-function);
+    animation-duration: var(--loading-animation-duration);
+    animation-fill-mode: var(--loading-animation-fill-mode);
+    animation-iteration-count: var(--loading-animation-iteration-count);
+}
+
+
+}
+
+
+@keyframes loadingOpacity {
+    from{
+        opacity:0.01;
+      }
+
+    to{
+        opacity: 1;
+      }
+}
+
+
+
+.remove_loader{
+    visibility: hidden;
+    transition:all 0.8s ease-in-out;
+}
+
+
+
+
+
+
+@media screen  and (min-width :1000px){
+    
+    #Loader{
+        position: fixed;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: black;
+        z-index: 1000;
+       
+    }
+    
+    #Loader > #main_logo {
+        width: 14em;
+        border-radius: 50%;
+        opacity: .01;
+        position: relative;
+        /* transition: all 900ms ease-in; */
+    }
+   
+
+
+    }
+    

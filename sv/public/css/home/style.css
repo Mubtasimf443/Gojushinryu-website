@@ -1,0 +1,589 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+@media screen and (min-width :1000px ) {
+
+    
+  
+    
+    /*-------------------- About Us Article -------------------------*/
+    
+    #hm_about_us_article {
+        display: flex;
+        flex-direction: row;
+        justify-content:center;
+        align-items: start;
+        background: whitesmoke;
+        padding: 4em 0em;
+        min-height: 300px;
+        column-gap: 3.5em;
+    }
+    
+    #hm_about_us_article > div:nth-child(1){
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: start;
+        width: 40%;
+        row-gap: 0.8em;
+    }
+    
+    #hm_about_us_article > div:nth-child(1) > b {
+        color: var(--main-cl);
+        font-size:1em;
+        font-weight: 500;
+        line-height: 0.7em;
+    }
+    
+    
+    #hm_about_us_article > div:nth-child(1) > h2{
+        color: black;
+        font-size: 2.15em;
+        font-weight: 500;
+        text-transform: uppercase;
+    }
+    #hm_about_us_article > div:nth-child(1) > p{
+        color: rgb(32, 30, 30);
+        text-transform: capitalize;
+        padding-right: 20px;
+        font-size: 0.95em;
+        text-align: justify;
+        line-height: 1.35em;
+    }
+    #hm_about_us_article > div:nth-child(1) > button{
+        width: 10.7em;
+        height: 3.3em;
+        background:var(--main-cl);
+        color:white;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    #hm_about_us_article > div:nth-child(2){
+        width: 35%;
+        height: 30em;
+        background: url('/img/about_us_article_image.jpg');
+        background-position:top center ;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: end;
+    }
+    #hm_about_us_article > div:nth-child(2) > img {
+        width: 100%;
+        display: none;
+    }
+    #hm_about_us_article > div:nth-child(2) > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items:  center;
+        width: 13em;
+        padding:1em 1em;
+        background: var(--main-cl);
+        color: #fff;
+        font-weight: 500;
+        font-size: 1em;
+        position: relative;
+        z-index: 1;
+        margin-bottom: -2em;
+        text-transform: capitalize;
+    }
+
+
+    /*-------------------- iconbox -------------------------*/
+    
+    #icon_box_section{
+        min-height: 700px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: end;
+        row-gap: 1em;
+        background-color: rgb(0, 0, 0);
+       background-image: url('/img/12345.png');
+       background-repeat: no-repeat;
+       background-position:right bottom;
+       background-size: cover;
+       border-image-slice:fill 1 ;
+        border-image-source:linear-gradient(to bottom, #0f0f0fab,#141414a6);
+        border-width: 1px;
+        border-style: solid;
+        border-image-repeat:stretch;
+        padding: 0.5em 0em;
+        padding-right: 4em;
+    }
+    
+    #icon_box_section > div:nth-child(1){
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: start;
+        width: 40%;
+        row-gap: 1em;
+    }
+    
+    #icon_box_section > div:nth-child(1) >hr{
+        width: 4em;
+        height: 7px;
+        background: #ffffffe0;
+        border: none;
+        outline: none;
+        opacity: .9;
+
+     }
+    
+    #icon_box_section > div:nth-child(1) >h3{
+        font-size: 1.75em;
+        color:#fffffff1;
+        text-transform: uppercase;
+        font-weight: 600;
+        opacity: .9;
+     }
+    
+    #icon_box_section > div:nth-child(1) >p{
+       color: #ffffffe7;
+        font-size: 1em;
+        opacity: .67;
+        line-height: 1.34em;
+        text-align: justify;
+     }
+     
+    #icon_box_section > div:nth-child(2)  {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 40%;
+        column-gap: 2em;
+        row-gap: 2em;
+    }
+    
+    #icon_box_section > div:nth-child(2)  > .iconbox{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        background:transparent ;
+        border-radius:10px ;  
+        column-gap: 1em;  
+    }
+
+
+
+    #icon_box_section > div:nth-child(2)  > .iconbox >  div:nth-child(1) > img{
+        color:rgb(255, 255, 255);
+        width: 3.8em;
+    }
+    
+    #icon_box_section > div:nth-child(2)  > .iconbox >  div:nth-child(1){
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 1em;
+        opacity: 0.85;
+    }
+
+
+    #icon_box_section > div:nth-child(2)  > .iconbox >  div:nth-child(2){
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: start;
+    }
+
+    
+    #icon_box_section > div:nth-child(2)  > .iconbox >  div:nth-child(2)>b{
+        color:white;
+        font-size: 1.2em;
+        text-transform: uppercase;
+        opacity: .9;
+        font-weight: 500;
+    }
+    
+    #icon_box_section > div:nth-child(2)  > .iconbox > div:nth-child(2)>p{
+        color:white;
+        opacity: .8;
+        font-size: .9em;
+        line-height: 1.3em;
+        text-align: justify;
+       word-spacing:4px;
+    }
+    
+    
+    
+    
+    
+    
+    /*-------------------- Heading Section -------------------------*/
+    
+    .heading_section{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 0em;
+        padding: 0em ;
+        padding-top: 4em;
+        background: whitesmoke;
+    }
+    
+    .heading_section b{
+        font-size:1.2em ;
+        color: var(--main-cl);
+        text-transform: uppercase;
+
+    }
+    
+    .heading_section h2{
+        font-size: 1.6em;
+        color:black;
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+    .heading_section > hr{
+      width: 20em;
+      height: 1.5px;
+      background: #0000002d;
+      border: none;
+      margin-top: 5px;
+    }
+
+     /*-------------------- Home Progress Section -------------------------*/
+    
+    
+     #hm_progress_section {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: whitesmoke;
+        padding-top: 1.4em;
+        padding-bottom: 3em;
+        padding-top: 3em;
+    }
+    
+    #hm_progress_section > div {
+        width: 19%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        column-gap: 2em;
+    }
+    
+    #hm_progress_section > div > b:nth-child(1) {
+        color: var(--more-red-color);
+        font-size: 2.3em;
+        font-weight: 600;
+    }
+    
+    #hm_progress_section > div > b:nth-child(2) {
+        font-weight: 500;
+        color: var(--main-cl);
+        font-size: .9em;
+        text-transform: uppercase;
+    }
+    
+    /*-------------------- course Section -------------------------*/
+    #hm_progress_section + section {
+        padding: 0px;
+        background-color: whitesmoke;
+    }
+
+
+    .courses_section{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        background: whitesmoke;
+        column-gap: 3em;
+        padding-top: 2.6em;
+        padding-bottom: 2em;
+    }
+    
+    
+    
+    .courses_section > div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background:rgb(255, 255, 255);
+        width: 20em;
+        min-height: 8em;
+        box-shadow: 0px 0px 10px #00000016;
+        padding-bottom: 0em;
+
+    }
+    
+    
+    .courses_section > div >img {
+    width: 100%;
+    height: 13em;
+    object-fit: cover;
+    object-position:top center;
+    margin-bottom: .65em;
+    }
+    
+    
+    .courses_section > div >div {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: inherit;
+        min-height: 5em;
+        border-radius:4px ;
+       
+
+        }
+        
+    
+    .courses_section > div >div > b{
+        font-size: 1.6em;
+        font-weight:600;
+        text-transform: uppercase;
+        color: black;
+    }
+    
+    .courses_section > div >div > button{
+    width: 10em;
+    height: 1.5em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 4px;
+    background:inherit;
+    border: none;
+    border-radius: 3px;
+    color:var(--main-cl);
+    position: relative;
+    font-weight: 600;
+font-size: 1.05em;
+margin-bottom: .65em;
+    }
+
+    .courses_section > div > div > button > i {
+        font-size: 1em;
+        display: none;
+    }
+     
+    .courses_section > div >div > hr{
+       width: 100%;
+       height: 8px;
+       background-color: #000;
+       transition: all 1s ease-in;
+       border: none;
+       display: none;
+        }
+    
+    /*-------------------- event Section -------------------------*/
+    #event_section { 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background:url("/img/kr_b_sun.jpg");
+        background-repeat: no-repeat;
+        background-position:bottom center;
+        background-size: 125%;
+        padding: 4.5em 3em;
+        border-image: fill 1 ;
+        border-image-source: linear-gradient(to right,rgba(0, 0, 0, 0.74),rgba(0, 0, 0, 0.74));
+    }
+    #event_section > h2{
+        color: rgb(240, 240, 240);
+        text-transform: uppercase;
+        font-size: 1.14em;
+        z-index: 6;
+    }
+    #event_section > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 2em;
+        row-gap: 2em;
+        margin-top: 2em;
+        color: rgb(240, 240, 240);
+    }
+    #event_section > div > div {
+        width: 31em;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 2em 2em;
+        background: #7777775b;
+        border-radius:10px ;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.178);
+       z-index: 100; 
+       filter: none;
+       border: .3px solid #7e7e7e;
+    }
+    #event_section > div > div > img {
+        width: 100%;
+        margin-bottom: 1em;
+        height: 14em;
+        object-fit: cover;
+        object-position: bottom center;
+        opacity: 1;
+    }
+    #event_section > div > div >.div1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+    }
+    #event_section > div > div >hr {
+        width: 100%;
+        background-color: rgba(255, 252, 252, 0.103);
+        height: 1.6px;
+        border: none;
+        margin: .9em 0px;
+    }
+    #event_section > div > div >.div2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+    }
+    #event_section > div > div >.div1 > div:nth-child(1){
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: start;
+    }
+    #event_section > div > div >.div1 > div:nth-child(2){
+        display: flex;
+        flex-direction: row;
+        justify-content:left;
+        align-items: end;
+        column-gap: .4em;
+    }
+    #event_section > div > div >.div1 > div:nth-child(1) > b {
+        font-size: 1.35em;
+        color: #f0f0f0;
+    }
+    #event_section > div > div >.div1 > div:nth-child(1) > span {
+        font-weight: 500;
+        color: rgb(216, 216, 216);
+        margin-top: 4px;
+    }
+    #event_section > div > div >.div1 > div:nth-child(2) > b {
+        font-size: 1.6em;
+        color: #f0f0f0;
+    }
+    #event_section > div > div >.div1 > div:nth-child(2) > span {
+        font-size: .8em;
+        font-weight: 500;
+        color: #d8d8d8;
+
+    }
+    #event_section > div > div >.div2 > span {
+        font-size: .95em;
+        font-weight: 500;
+        color: #d8d8d8;
+
+    }
+       
+    
+    
+    
+    
+    
+    
+    
+    
+    /*-----------------------------------coach article--------------------------------------- */
+       #coach_container{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding:4em 4em 4em 4em;
+        background: whitesmoke;
+       row-gap: .5em;
+    }
+    #coach_container > h5{
+        font-size: 1.05em;
+        font-weight: 600;
+        text-transform: uppercase;
+        color: var(--main-cl);
+    }
+    #coach_container > h2{
+        font-size: 1.6em;
+        font-weight: 600;
+        text-transform: uppercase;
+    }
+    #coach_container >div {
+        width: 80%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        column-gap: 3em;
+        margin-top: 1em;
+    }
+    #coach_container >div > div {
+        width: 20em;
+        background: white;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0px 0px 10px #00000016;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        row-gap: 0em;
+
+        padding: 1em .4em;
+    }
+
+    #coach_container >div > div > img {
+        width: 90%;
+        margin-bottom: 1.1em;
+    }
+
+    #coach_container >div > div > b{
+        margin-bottom: .3em;
+        font-weight: 600;
+        font-size: 1.1em;
+    }
+    #coach_container >div > div > span {
+        margin-bottom: .65em;
+        font-weight: 600;
+        font-size: .9em;
+        color: var(--main-cl);
+    }
+    #coach_container >div > div > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        column-gap: 1.15em;
+        margin-top: .4em;
+        margin-bottom: 1em;
+    }
+
+    #coach_container >div > div > div > i{
+        font-size: 1.4em;
+        color: black;
+    }
+
+}

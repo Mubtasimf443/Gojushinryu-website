@@ -1,0 +1,347 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+@media screen and (min-width :200px ) and (max-width :630px){
+
+    
+/*-------------------- Header -------------------------*/
+
+header {
+    display: flex;
+flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    min-height: 4em;
+    background: transparent;
+    position: fixed;
+    width: 100vw;
+
+}
+
+header > .hd-icon-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    width: 75%;
+    padding-left: 20px;
+}
+
+.hd-icon{
+    width: 46px;
+    border-radius:50% ;
+}
+
+
+header > nav{
+    display: none;
+    flex-direction: row;
+    justify-content: right;
+    align-items: center;
+    width: 50%;
+    column-gap: 1.4em;
+}
+
+header > nav > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+header > nav > div > a {
+    color: var(--df--color);
+    text-decoration: none;
+    font-size: var(--first-fs);
+}
+
+header > .hd-btn-div{
+    display: none;
+   
+}
+
+header > .hd-btn-div >button{
+   width: 7.7em;
+   height: 3.3em;
+   background: var(--main-bg);
+   color: var(--bright-red-cl);
+   border: var(--df-b-w) solid var(--more-red-color);
+   border-radius: 8px;
+   
+}
+header > .m_nav {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    padding: 25px;
+    position: fixed;
+    top: 15px;
+    right: -150%;
+    }
+    header > .m_nav_i{
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: center;
+        width: 20%;
+        padding-right: 2.3em;
+    }
+    
+    header > .m_nav_i > i {
+        font-size: 1.7em;
+        color: rgba(255, 255, 255, 0.849);
+       
+        
+    }
+}
+
+
+
+@media screen and (min-width :631px ) and (max-width :1000px){
+/*-------------------- Header -------------------------*/
+
+header {
+    display: flex;
+flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    min-height: 5em;
+    background: transparent;
+    position: fixed;
+    width: 100vw;
+}
+
+header > .hd-icon-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+}
+
+.hd-icon{
+    width: 50px;
+}
+
+header > nav > div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+
+header > nav > div > a {
+    color: var(--df--color);
+    text-decoration: none;
+    font-size: var(--first-fs);
+}
+
+
+header > .hd-btn-div{
+    display: none;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+}
+
+
+header > .hd-btn-div >button{
+   width: 7.7em;
+   height: 3.3em;
+   background: var(--main-bg);
+   color: var(--bright-red-cl);
+   border: var(--df-b-w) solid var(--more-red-color);
+   border-radius: 8px;
+   
+}
+header > .m_nav_i , header > .m_nav {
+    display: none;
+    }
+
+}
+
+
+
+
+
+@media screen and (min-width :1000px ) {
+    /*-------------------- Header -------------------------*/
+    header{
+        display: flex;
+        flex-direction: column;
+    }   
+    header > div {
+        width: 100%;
+    }
+
+    #top-bar{
+        height: 3em;
+        background: black;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+       
+        z-index: 6;
+    }
+    #top-bar> h3{
+        color: white;
+        width: 500;
+        /* transition: all 20s ease-in-out;  */
+        font-size: 1.05em;
+        word-spacing: .2em;
+        position: absolute;
+        text-wrap: nowrap;
+        animation-name:topBarAnime2;
+        animation-duration: 25000ms;
+        animation-fill-mode: forwards;
+        animation-iteration-count: 1;
+        animation-timing-function: ease-out;
+    }
+
+
+    
+
+    #header {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: auto;
+        background: transparent;
+        position: absolute;
+        z-index: 300;
+        padding:14px 0px;
+        top: 3.5em;
+    }
+    
+    #header > .hd-icon-div{
+        display: flex;
+        flex-direction: row;
+        justify-content: left;
+        align-items: center;
+        width: 16em;
+
+    }
+    
+    .hd-icon{
+        width: 55px;
+        border-radius: 50%;
+    }
+    
+    #header > nav{
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items: center;
+        width: 38.5em;
+        column-gap: 1.4em;
+    }
+    
+    #header > nav > div{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+     
+    #header > nav > div > a {
+        color:white;
+        text-decoration: none;
+        font-size: var(--first-fs);
+        font-weight: 500;
+    }
+    
+    #header > .hd-btn-div{
+        display: flex;
+        flex-direction: row;
+        justify-content: right;
+        align-items:center;
+        width: 16em;
+        
+    }
+     
+    #header > .hd-btn-div >button{
+       width: 8.5em;
+       height: 2.7em;
+       border: none;
+       color: white;
+       /* font-family: "Roboto Slab"; */
+       background-color: var(   --main-cl);
+       text-transform: uppercase;
+       border-radius: 8px;
+       font-weight: 500;
+       line-height: 0px;
+       font-size: .9em;
+       
+    }
+
+
+    #header > .m_nav_i , #header > .m_nav {
+        display: none;
+        }
+
+
+    #about_us_dropdown{
+        display: flex;
+        flex-direction: column;
+        justify-self: flex-start;
+        align-items: center;
+        background: white;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.103);
+        overflow: hidden;
+        width:320px;
+        position: absolute;
+        z-index: 20;
+       padding: 8px 0px;
+       top:15px;
+       left: 48.8%;
+       transition: top .4s ease,opacity .3s ease;
+       opacity: 0%;
+    }
+    #about_us_dropdown >a{
+        color: rgba(0, 0, 0, 0.822);
+        text-decoration: none;
+        border: none; 
+        width: 90%;
+       padding: 6px 0px;
+       font-weight: 500;
+    } 
+    #about_us_dropdown >hr{
+        width: 100%;
+        height: 2px ;
+        background: rgb(216, 216, 216);
+        border: none;
+    }
+
+}
+
+
+
+
+@keyframes topBarAnime1{
+    
+    from{
+    right:-50vw;
+    }
+    to{
+    right: 150vw;
+    }
+}
+
+
+
+@keyframes topBarAnime2{
+    
+    from{
+    right:-50vw;
+    }
+    to{
+    right: 150vw;
+    }
+}

@@ -1,0 +1,127 @@
+/* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ*/ 
+
+
+
+#popup {
+  width: 30em ;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2em 2em;
+  border:none;
+  outline: none;
+ 
+}
+
+
+
+#popup::backdrop{
+  background: #00000080;
+}
+
+#popup  > div > img {
+  width : 8em ;
+}
+
+#popup  > div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+
+#popup  > div > img:nth-child(2) {
+  width : 8em ;
+  border-radius:50% ;
+
+}
+
+
+
+#popup  > div > img:nth-child(1) {
+  width : 9em ;
+  border-radius:50% ;
+}
+
+
+
+.Popup_heading{
+  font-size: 2em ;
+ 
+}
+
+.Popup_heading + b {
+  font-size: 1.4em;
+  animation-delay: 3s;
+  text-align: center;
+}
+
+#popup > button {
+  background: inherit;
+  color: rgb(0, 0, 0);
+  font-weight: 500;
+  font-size: 1.3em ;
+  padding: 0.5em 1em ;
+  margin-top: 8px;
+  border-color:black ;
+}
+
+
+#popupTnxBtn{
+  border: 2.4px solid black;
+  color: black;
+  border-radius: 5px;
+}
+
+
+
+@media screen and (min-width :200px ) and (max-width :630px) {
+  #popup{
+    margin-left: 0%;
+    margin-top: 25vh;
+   }
+}
+
+
+@media screen and (min-width :631px ) and (max-width :930px) {
+  #popup{
+    margin-left: 17%;
+    margin-top: 25vh;
+   }
+}
+
+
+
+
+@media screen and (min-width :931px ) and (max-width :1300px) {
+  #popup{
+    margin-left: 25%;
+    margin-top: 25vh;
+   }
+}
+
+
+
+
+@media screen and (min-width :1301px ) and (max-width :2630px) {
+ #popup{
+  margin-left: 30%;
+  margin-top: 25vh;
+ }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
