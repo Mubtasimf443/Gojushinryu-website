@@ -13,7 +13,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sv":"nodemon index.js -h .hbs,.js"
+    "sv":"nodemon index.js -e hbs,js,env"
   },
   "keywords": [],
   "author": "",

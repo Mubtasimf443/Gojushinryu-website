@@ -14,11 +14,6 @@ InshaAllah, By his marcy I will Gain Success
     transition: none;
 }
 
-h1,h2 ,h3 ,b {
-    line-height: 1.2em;
-    font-weight: 500;
-}
-
 
 :root {
     --main-cl :#ffaa1c; /* my- #ca8401 */ /*client #ffaa1c*/
@@ -43,3 +38,6 @@ button ,i{
 }
 
 
+main{
+    min-height: 80vh;
+}

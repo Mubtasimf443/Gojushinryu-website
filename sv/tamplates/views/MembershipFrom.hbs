@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title> Membership Appication | Goju Shin Ryu </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/pages/membership.application.css'>
+    {{>Links}}
+    <script defer src="/js/Membership.page.js"></script>
+</head>
+<body>
+{{>Header}}
+
+
+<!-- main -->
+
+
+
+<main>
+
+  <section id="banner">
+    <div class="div1">
+<h1>Membeship Plans</h1>
+  <p>
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis mollitia maxime quos inventore dolor explicabo? Eum minima quisquam quod placeat, vero ipsa corporis accusantium fugiat fugit, quia rem.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis mollitia maxime quos inventore dolor explicabo? Eum minima quisquam quod placeat, vero ipsa corporis accusantium fugiat fugit, quia rem.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis mollitia maxime quos inventore dolor explicabo? Eum minima quisquam quod placeat, vero ipsa corporis accusantium fugiat fugit, quia rem.
+Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis mollitia maxime quos inventore dolor explicabo? Eum minima quisquam quod placeat, vero ipsa corporis accusantium fugiat fugit, quia rem.
+
+  </p>
+    </div>
+    
+  </section>
+  
+ <section id="heading_section">
+  <h2>Give The Membership Information</h2>
+  <div class="form_status_div">
+    <div class="i-box">
+         <i class="fa-solid fa-clipboard-list"></i>
+    </div>
+       <hr>
+   <div class="i-box">
+<i class="fa-solid fa-question"></i>
+</div>
+    <hr>
+    <div class="i-box">
+      <i class="fa-regular fa-credit-card"></i>
+    </div>
+   <hr>
+   <div class="i-box">
+     <i class="fa-solid fa-check"></i>
+   </div>
+   
+
+  </div>
+ </section>
+ 
+ 
+ <!------------------ Form Section ----------------->
+ 
+ 
+ <section id="form-section">
+   <div id="form-box">
+    
+    <div id="Applicant-info-form">
+      <h3>Applicant Information </h3>
+
+        <div class="input-box">
+          <label for="inp--f--name">First Name</label>
+          <input id="inp--f--name" type="text" placeholder="Jone">
+        </div>
+        
+       <div class="input-box">
+       <label for="inp--l--name">last name</label>
+       <input id="inp--l--name" type="text" placeholder="Doe">
+        </div>
+     
+
+     <div class="input-box">
+          <label for="inp--email">Personal Email</label>
+          <input id="inp--email" type="text" placeholder="JoneDoe@gmail.com">
+        </div>
+        <!-- Date of birth -->
+       <div class="input-box">
+       <label for="inp--dob">date of birth</label>
+       <input id="inp--dob" type="date">
+        </div>
+     
+      <div class="input-box">
+        <label for="inp--num">Personal Number</label>
+        <input id="inp--num" type="text" placeholder="746892">
+      </div>
+  
+      <div class="input-box">
+        <label for="inp--Country">Present Address - Country</label>
+        <input id="inp--Country" type="text" placeholder="India">
+      </div>
+   
+      <div class="input-box">
+        <label for="inp--City">Present Address - City</label>
+        <input id="inp--City" type="text" placeholder="London">
+      </div>
+
+      <div class="input-box">
+        <label for="inp--District">Present Address - District</label>
+        <input id="inp--District" type="text" placeholder="Chittagong">
+      </div>
+
+      
+      <div class="input-box">
+        <label for="inp--pcode"> Postal Code</label>
+        <input id="inp--pcode" type="number" placeholder="5432">
+      </div>
+
+      <div class="input-box">
+        <label for="inp--dojo-name">Dojo Name</label>
+        <input id="inp--doju-name" type="text" placeholder="Karate">
+      </div>
+      <div class="input-box">
+        <label for="inp--Instructor">Instructor</label>
+        <input id="inp--Instructor" type="text" placeholder="Varun Jettly">
+      </div>
+
+      <div id="membership-box">
+        <label>choose Your Membership</label>
+        <span>
+    <label membershipValue="Annual" default-membership="true" for="annual-membership-inp" id="annual-membership-box" class="membership">
+
+            <div>
+              <b>
+              Annual Membership
+              </b>
+              <span>
+                <sup>$</sup>
+              75
+              </span>
+             </div>
+             <hr>
+             <p>
+              Pay annually for the individual joining the association
+            </p>
+    </label>
+    <label  membershipValue="LifeTime" default-membership="false" for="lf-membership-inp" id="lifetime-membership-box"  class="membership">
+            <div>
+              <b>
+              LifeTime Membership
+              </b>
+              <span>
+                <sup>$</sup>
+                150
+              </span>
+             </div>
+             <hr>
+             <p>
+              For the individual joining the association
+             </p>
+    </label>
+        </span>
+      </div>
+ <div id="applicant-form-btn-div">
+   <button id="applicant-form-btn">
+    Coninue
+   </button> 
+ </div>
+    </div>
+  
+ 
+ <div id="question-info-form">
+  <h2>Please Answer This Qusetion</h2>
+  <div class="column_y_n_question">
+        <label >Your Gender? 
+        </label>
+        <span>
+        <div yes-no-div-for="genderValue" yes-no-div-value="Male" class="yes-no-div">
+          <div class="check-div">
+            <i class="fa-solid fa-check"></i>
+            </div>
+            <span>Male</span>
+        </div>
+        <div yes-no-div-for="genderValue" yes-no-div-value="Female" class="yes-no-div">
+          <div class="check-div">
+           
+            </div>
+            <span>Female</span>
+        </div>
+        </span>
+  </div>
+   <div  class="column_y_n_question">
+        <label for="">Are You A previous member?<sup>(if renewing)</sup> 
+        </label>
+        <span>
+       
+      <div yes-no-div-for="pre_membership_status_Value" yes-no-div-value="yes"  class="yes-no-div">
+          <div class="check-div">
+            </div>
+            <span>Yes</span>
+        </div>
+        <div yes-no-div-for="pre_membership_status_Value" yes-no-div-value="no" class="yes-no-div">
+          <div class="check-div">
+              <i class="fa-solid fa-check"></i>
+         
+            </div>
+            <span>No</span>
+        </div>
+        </span>
+  </div>
+  <div class="question-text-div" id="exp-date-box">
+    <label for="exp-date-inp">Expiring Date<sup>(if renewing)</sup> </label>
+    <input type="date" name="" id="exp-date-inp">
+  </div>
+  <div class="question-text-div" >
+    <label for="exp-date-inp">Current Grade<sup>(Kyu or Dan grade)</sup> </label>
+    <input type="text" placeholder="CGPA 4.5" id="grade-inp">
+  </div>
+  <div  class="column_y_n_question">
+        <label>Your Experience?
+        </label>
+        <span>  
+        <div yes-no-div-for="experience_value" yes-no-div-value="Junior" class="yes-no-div">
+          <div class="check-div">
+            </div>
+            <span>Junior</span>
+        </div>
+        <div yes-no-div-for="experience_value" yes-no-div-value="Senior"  class="yes-no-div">
+          <div class="check-div">
+            <i class="fa-solid fa-check"></i>           
+            </div>
+            <span>Senior</span>
+        </div>
+        </span>
+  </div>
+  <div id="violence-q-box" class="column_y_n_question">
+        <label>Have You ever been Convicted 
+        On the Charge Of Violence? 
+        </label>
+       <span>
+        <div yes-no-div-for="violance_charge_status_Value" yes-no-div-value="yes" class="yes-no-div">
+          <div class="check-div">
+            <i class="fa-solid fa-check"></i>
+            </div>
+            <span>Yes</span>
+        </div>
+        <div yes-no-div-for="violance_charge_status_Value" yes-no-div-value="no" class="yes-no-div">
+          <div class="check-div">
+           
+            </div>
+            <span>No</span>
+        </div>
+        </span>
+  </div>
+   <div id="injury-q-box" class="column_y_n_question">
+        <label>Do you Have any type of permanent Injury or Disability?
+        </label>
+       <span>
+        <div yes-no-div-for="permanent_Injury_status_Value" yes-no-div-value="yes"  class="yes-no-div">
+          <div class="check-div">
+            <i class="fa-solid fa-check"></i>
+            </div>
+            <span>Yes</span>
+        </div>
+        <div yes-no-div-for="permanent_Injury_status_Value" yes-no-div-value="no" class="yes-no-div">
+          <div class="check-div">
+           
+            </div>
+            <span>No</span>
+        </div>
+        </span>
+  </div>
+  <div class="question-text-div" >
+    <label for="exp-date-inp">Describe your Injury or Disability?<sup>(if you Have)</sup> </label>
+    <input type="text" placeholder="Tell your disabillity if you have" id="inp--pr--disabillity">
+  </div>
+  <div class="question-text-div">
+    <label for="exp-date-inp">Previous Injury or Disabilty?<sup>(if you Had)</sup> </label>
+    <input type="text" placeholder="Cancer / HIV / Heart Disorder or else..." id="inp">
+  </div>
+
+  <div id="policy-div-for-checkbox">
+    <input type="checkbox" name="" id="policy-1-inp">
+    <label for="policy-1-inp">&nbsp;
+      I clearly Understand that Practice of martial arts is entirely At my Risk  
+    </label>
+  </div>
+
+  <div id="policy-div-for-checkbox">
+    <input type="checkbox" name="" id="policy-2-inp">
+    <label for="policy-2-inp">&nbsp;
+      If accepted by the association , I undertake to abide by the rules and Article of the Goju ryo kyokai including any ammendents that maybe made during my period of membership
+    </label>
+  </div>
+  <div id="q-box-btn-div">
+    <button id="q-box-back-btn">Back</button>
+    <button id="q-box-cn-btn">Continue</button>
+  </div>
+
+
+</div>
+    <div id="payment-info-form">
+      <h2>Membership Info</h2>
+    <div class="payment-box-div">
+      <Label>Membership Type</Label>
+      <input disabled type="text" value="Annual" >
+    </div>
+     <div class="payment-box-div">
+      <Label>Cost</Label>
+      <input disabled type="text" value="75$" >
+    </div>
+     <div class="payment-box-div">
+      <Label>Tax</Label>
+      <input disabled type="text" value="0$" >
+    </div>
+    <div class="payment-box-div">
+      <Label>Total</Label>
+      <input disabled type="text" value="75$" >
+    </div>
+    <h2>Provide the Payment Details</h2>
+    <div class="payment-box-div">
+      <Label>Payment Method</Label>
+      <span>
+        <div>
+          <div class="check-div">
+          <i class="fa-solid fa-check"></i>
+          </div>
+          Credit Card
+        </div>
+        <div>
+          <div class="check-div">
+          </div>
+          Paypal
+        </div>
+      </span>
+    </div>
+    <div class="payment-box-div">
+      <Label>Name on the Credit Card</Label>
+      <input type="text" placeholder="jone due">
+    </div>
+    <div class="payment-box-div">
+      <Label> Credit Card Number</Label>
+      <input type="text" placeholder="93**********88738">
+    </div>
+    <div class="payment-box-div">
+      <Label> Credit Card Expiry Date</Label>
+      <input type="date" >
+    </div>
+    <div class="payment-box-div">
+      <Label> CVV</Label>
+      <input type="text" placeholder="*************" >
+    </div>
+<div class="paymetn-btn-div">
+      <button id="payment-back-btn">Back</button>
+      <button id="payment-Continue-btn">Place Order</button>
+    </div>
+
+
+    </div>
+    <div class="Success-massage-form" id="Success-massage-form">
+      <h3>Thanks for your Order</h3>
+      <p>
+        You have Ordered The The Membership. You will get a mail for Confirmation
+      </p>
+      <button id="successGotItBtn">Got It</button>
+    </div>
+    
+</div>
+ </section>
+
+
+
+
+
+
+
+</main>
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+{{>Footer}}
+</body>
+</html>

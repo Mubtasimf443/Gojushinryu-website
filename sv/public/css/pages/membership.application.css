@@ -1,0 +1,571 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+
+
+:root{
+  --inp-border-color:black;
+  --inp-box-hieght:2.7em;
+  --form--transition:all 1s ease;
+}
+
+
+input{
+  outline: none;
+  border: none;
+  padding-left: 7px;
+  padding-right :7px;
+}
+
+label{
+  text-transform: capitalize;
+}
+/*--------------main-----------------*/
+
+body{
+  background: whitesmoke
+}
+
+/*--------------banner-----------------*/
+
+#banner{
+    height: 30em ;
+    background: url('/img/samurai4.jpg');
+    background-position: bottom left;
+    background-size: cover;
+    background-repeat:no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-image-slice: fill 1;
+    border-image-source: linear-gradient(to right,
+     rgba(0, 0, 0, 0.474) ,
+     rgba(0, 0, 0, 0.712),
+    rgba(0, 0, 0, 0.5));
+    padding-top:80px ;
+  }
+  #banner > div {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  } 
+  #banner>div  > h1 {
+    font-size: 2.5em;
+    color: #fff;
+    position: relative;
+    top: -1em;
+  }
+  #banner >div > p {
+    color: #fff;
+    font-size: 1em;
+    position: relative;
+    top: -1.5em;
+    opacity:.85;
+    text-align: justify;
+  } 
+  /* ------------- heading section ----------- */
+  
+  #heading_section {
+    padding: 2em 0em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #heading_section > h2 {
+    font-style: 2em;
+  }
+  #heading_section >div {
+    width: 25em;
+    height: 3em;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 10px;
+  }
+  #heading_section > div > .i-box {
+    width: 30px;
+    height: 30px;
+    border-radius :50%;
+    border: 1.4px solid rgba(0, 0, 0, 0.849);
+    color: rgba(0, 0, 0, 0.849);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  #heading_section > div > .i-box:nth-child(1){
+    border: 1.4px solid var(--main-cl);
+    color: rgb(255, 255, 255);
+    background: var(--main-cl);
+  }
+
+
+
+  #heading_section > div > hr{
+    width: 20%;
+    height: 4px;
+    background: rgba(0, 0, 0, 0.849);
+  }
+  /* ------------- form section ----------- */
+  #form-section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 3em;
+  }
+  #form-box{
+    background: #fff;
+    width: 50em;
+    min-height: 10em;
+    height: fit-content;
+    box-shadow: 0px 0px 10px #00000017;
+    border-radius :20px;
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-items: center;
+    padding-top: 2em;
+    padding-bottom: 2em;
+    box-sizing: border-box;
+    overflow: hidden;
+    position: relative;
+    
+  }
+  #form-box>div{
+    position: relative;
+  }
+
+
+  /************ Applicant form  ************/
+  #Applicant-info-form{
+    width: 90%; 
+    min-height: 20em;
+    height: fit-content;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    position: relative;
+    row-gap:1em ;
+    transition: var(--form--transition);
+  }
+  #Applicant-info-form >div{
+    width: 100%;
+    height: var(--inp-box-hieght);
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center; 
+    column-gap: 8%; 
+  } 
+  #Applicant-info-form >div> label{
+    font-weight: 500;
+    color: black;
+  }
+  #Applicant-info-form > div > input {
+    width: 20em;
+    background: rgb(235, 235, 235);
+    border: none;
+    border-radius: 6px;
+    height:2.5em ;
+    width: 33em;
+  }
+
+  #Applicant-info-form > #membership-box{
+    display:flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    min-height: 6em;
+    height: fit-content;
+    row-gap: 1em;
+  }
+  #Applicant-info-form > #membership-box > span{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    column-gap: 1em;
+  }
+  #Applicant-info-form > #membership-box > span>.membership{
+    width: 45%;
+    height: 5em;
+    display:flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    border: 2px solid rgba(0, 0, 0, 0.123);
+    border-radius: 8px;
+    padding: 1em .5em;
+    cursor: pointer;
+  }
+
+  #Applicant-info-form > #membership-box > span> [default-membership="true"]{
+    border: 2px solid var(--main-cl);
+  }
+  #Applicant-info-form > #membership-box > span>.membership>div{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #Applicant-info-form > #membership-box > span>.membership>div>b{
+    color: #000;
+    font-weight: 500;
+    font-size: 1.25em;
+  }
+  #Applicant-info-form > #membership-box > span>.membership>div>span{
+    color: rgba(0, 0, 0, 0.856);
+    font-weight: 500;
+    font-size: .87em;
+    margin-right:.4em ;
+  } 
+  #Applicant-info-form > #membership-box >span >.membership>hr{
+    height: 2px;
+    background: rgba(0, 0, 0, 0.144);
+    width: 100%;
+    border: none;
+    margin: .5em 0px;
+  }
+  #Applicant-info-form > #membership-box >span >.membership>p{
+    text-transform: capitalize;
+    font-size: .9em;
+  }
+  #applicant-form-btn-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+  }
+  #applicant-form-btn {
+    background:  var(--main-cl);
+    color:white;
+    border: 2px solid var(--main-cl);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius:5px ;
+    width: 6em;
+    height: 2.5em;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+
+  /************ Question answer form   ************/
+  #question-info-form{
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:start;
+    width: 90%;
+    row-gap: 1em;
+    padding-top: 1em;
+    position: relative;
+    right: -110%;
+    transition: var(--form--transition);
+  }
+  #question-info-form > .column_y_n_question{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 3.2em;
+  }
+  #question-info-form > .column_y_n_question >label {
+    color: #000;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  #question-info-form >.column_y_n_question >span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    column-gap:1em;
+
+  }
+  #question-info-form > .column_y_n_question > span >.inp-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+
+  }
+  #question-info-form > .column_y_n_question > span >.inp-div >input{
+    width: 100%;
+  }
+  #question-info-form > .column_y_n_question > span > .yes-no-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    /* border: 2px solid rgba(0, 0, 0, 0.507); */
+    border-radius: 5px;
+    min-width: 5em;
+    width: fit-content;
+    height: 2.5em;
+    column-gap: .5em; 
+    font-weight: 500;
+  }
+  #question-info-form > .column_y_n_question > span >.yes-no-div > .check-div {
+    width:1.2em;
+    height:1.2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--main-cl);
+    border-radius: 50%;
+    margin-left: .5em;
+    font-size: 1em;
+    font-weight: 500;
+  }
+  #question-info-form > .column_y_n_question > span >.yes-no-div > .check-div >i {
+    font-size: 1em;
+    color:var(--main-cl);
+    font-weight: 600;
+  }
+  #question-info-form > .question-text-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 3.2em;
+  }
+  #question-info-form > .question-text-div>label{
+    font-weight: 500;
+    color: black;
+  }
+  #question-info-form > .question-text-div>input{
+    width: 20em;
+    background: rgb(235, 235, 235);
+    border: none;
+    border-radius: 6px;
+    height:2.5em ;
+    width: 33em;
+  }
+  #q-box-btn-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 1em;
+  }
+  #q-box-btn-div>button:nth-child(1){
+    background: white;
+    color: var(--main-cl);
+    border: 2px solid var(--main-cl);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius:5px ;
+    width: 6em;
+    height: 2.5em;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  #q-box-btn-div>button:nth-child(2){
+    background:  var(--main-cl);
+    color:white;
+    border: 2px solid var(--main-cl);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius:5px ;
+    width: 6em;
+    height: 2.5em;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  /************ payment form  ************/
+  #payment-info-form{
+    display: none;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items: start;
+    width: 90%;
+    position: relative;
+    right: -110%;
+    transition: var(--form--transition);
+  }
+  #payment-info-form> h2{
+  color: black;
+  font-size: 1.35em;
+  margin: 1em 0em;
+  }
+  #payment-info-form> .payment-box-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 3.2em;
+  }
+  #payment-info-form>.payment-box-div>label{
+    color: #000;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  #payment-info-form>.payment-box-div>input{
+    width: 20em;
+    background: rgb(235, 235, 235);
+    border: none;
+    border-radius: 6px;
+    height:2.5em ;
+    width: 33em;
+  }
+  #payment-info-form>.payment-box-div>span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    column-gap:1em;
+  }
+  #payment-info-form>.payment-box-div>span>div{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    /* border: 2px solid rgba(0, 0, 0, 0.507); */
+    border-radius: 5px;
+    min-width: 5em;
+    width: fit-content;
+    height: 2.5em;
+    column-gap: .5em; 
+    font-weight: 500;
+  }
+  #payment-info-form>.payment-box-div>span>div>.check-div{
+    width:1.2em;
+    height:1.2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--main-cl);
+    border-radius: 50%;
+    margin-left: .5em;
+    font-size: 1em;
+    font-weight: 500;
+  }
+  #payment-info-form>.payment-box-div>span>div>.check-div>i{
+    font-size: 1em;
+    color:var(--main-cl);
+    font-weight: 600;
+  }
+  #payment-info-form>.paymetn-btn-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    width: 100%;
+    height: 3.2em;
+    column-gap: 1em;
+  }
+  #payment-info-form>.paymetn-btn-div>button:nth-child(1){
+  background: white;
+  color: var(--main-cl);
+  border: 2px solid var(--main-cl);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius:5px ;
+  width: 6em;
+  height: 2.5em;
+  font-weight: 500;
+  text-transform: capitalize;
+ }
+ #payment-info-form>.paymetn-btn-div>button:nth-child(2){
+  background:  var(--main-cl);
+  color:white;
+  border: 2px solid var(--main-cl);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius:5px ;
+  width: 7.5em;
+  height: 2.5em;
+  font-weight: 500;
+  text-transform: capitalize;
+ }
+
+  #Success-massage-form {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1em;
+    height: 13em;
+    position: relative;
+    right: -110%;
+    transition: var(--form--transition);
+  };
+  
+  #Success-massage-form >p {
+    text-align: center;
+    font-size: .9em;
+    font-weight: 500;
+  }
+  #Success-massage-form >button{
+    background:  var(--main-cl);
+  color:white;
+  border: 2px solid var(--main-cl);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius:5px ;
+  width: 6em;
+  height: 2.5em;
+  font-weight: 500;
+  text-transform: capitalize;
+  }
+.main-color-border-btn{
+  background: white;
+  color: var(--main-cl);
+  border: 2px solid var(--main-cl);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius:5px ;
+  width: 6em;
+  height: 2.5em;
+  font-weight: 500;
+  text-transform: capitalize;
+}
+
+.main-color-bg-btn{
+  background:  var(--main-cl);
+  color:white;
+  border: 2px solid var(--main-cl);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius:5px ;
+  width: 6em;
+  height: 2.5em;
+  font-weight: 500;
+  text-transform: capitalize;
+}

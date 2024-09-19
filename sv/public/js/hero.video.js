@@ -9,11 +9,11 @@ let heroSection = document.getElementById('Hero_section')
 window.addEventListener('load',  e => {
     if ( window.innerWidth > 631) { 
         console.log('631');
-        video.setAttribute( 'src','/video/7463.mp4');
+        video.setAttribute( 'src','https://gojushinryu.com/video/7463.mp4');
         heroSection.style.height = video.style.height;
          return
         }
-     video.setAttribute('src','/video/mobile.mp4')
+     video.setAttribute('src','https://gojushinryu.com/video/7463.mp4')
      heroSection.style.height = video.style.height;
      return
 })
