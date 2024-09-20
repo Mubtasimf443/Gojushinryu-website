@@ -1,0 +1,151 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+InshaAllah ,  By Allahs Marcy,  I will gain Success
+*/
+
+body {
+  background: whitesmoke;
+}
+#banner{
+  min-height: 35em ;
+  background: url('/img/samurai4.jpg');
+  background-position: bottom left;
+  background-size: cover;
+  background-repeat:no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  row-gap: .65em;
+  border-image-slice: fill 1;
+  border-image-source: linear-gradient(to right,
+   rgba(0, 0, 0, 0.474) ,
+   rgba(0, 0, 0, 0.712),
+  rgba(0, 0, 0, 0.5));
+}
+
+.heading_section > h2 {
+  color: #fff;
+  font-size: 2.2em;
+  font-weight: 600;
+  margin-top: 1em;
+}
+
+.heading_section > h1 {
+  font-size: 1.4em;
+  color: rgba(255, 255, 255, 0.856);
+}
+
+
+.heading_section > p{
+  color: #fff;
+  color: rgba(255, 255, 255, 0.856);
+  width: 60%;
+  text-align: center;
+  text-transform: capitalize;
+}
+
+.heading_section > button {
+  color: white;
+  background: goldenrod;
+  border: none;
+  font-size: .9em;
+  border-radius :6px; 
+  width: 10em;
+  height: 2.8em;
+}
+.heading_section > button > a {
+  color: #fff;
+  text-decoration: none;
+  font-size: 1.1em;
+  font-weight: 600;
+}
+
+.heading-sec{
+  padding: 3em 0em 0em 0em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heading-sec>h2{
+  color: black;
+  text-transform: capitalize;
+  font-size: 2.4em;
+}
+#course_section {
+  padding: 1.4em 0em 4em 0em ;
+  min-height: 30em;
+  height: fit-content;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap : 3em;
+  row-gap: 2em;
+}
+#course_section >.course-box{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  width:350px;
+  min-height: 300px;
+  height: fit-content;
+  background: #fff;
+  box-shadow: 0px 0px 10px #00000014;
+  padding: 1em 1em 2em 1em;
+  row-gap: 0.5em;
+  border-radius: 7px;
+}
+#course_section >.course-box> img {
+  width: 100%;
+  border-radius: 4px;
+  object-fit: cover;
+  object-position: top center;
+  height: 260px;
+}
+.c-cetegory{
+  margin-top: .45em;
+  color: goldenrod;
+  font-size:.9em;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+.c-name{
+  color:black;
+  font-size :1.4em;
+  text-transform: capitalize;
+  text-align: left;
+  font-weight: 600;
+}
+.course-box >.c-enrollment{
+  color :rgba(0, 0, 0, 0.623);
+  font-weight: 500;
+  text-transform: capitalize;
+}
+.btn-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: .4em;
+}
+
+.btn-div >.btn {
+  color: #fff;
+  background: goldenrod;
+  width: 8em;
+  height: 2.3em;
+  font-size:1.14em;
+  border: none;
+  border-radius :4px;
+ 
+}
+.btn-div > span {
+  font-size:1.26em;
+  font-weight: 500;
+  color:rgba(0, 0, 0, 0.623) ;
+}

@@ -1,0 +1,427 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+Insha Allah,  By His Marcy I will Gain Success 
+*/ 
+
+body{
+  background: whitesmoke;
+}
+a {
+  color: #000;
+  text-decoration: none
+}
+#Links-container{
+  display: none;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.4);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 2000;
+transition: none;
+}
+#Links-container >div{
+  display: flex;
+  flex-direction: row;
+  justify-content:left;
+  align-items:center;
+  column-gap: 16px;
+  height: 60px;
+background: white;
+padding:15px 26px;
+
+}
+#Links-container>div > img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
+  cursor: pointer;
+}
+#Links-container>div > .copy-btn-box {
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items:center;
+  width: 50px;
+  height: 50px;
+  background: rgb(228, 235, 255);
+  border-radius: 4px;
+  cursor: pointer;
+}
+#Links-container>div > .copy-btn-box>i{
+  color: rgb(0, 0, 0);
+  font-size: 1.4em;
+}
+#Links-container>div > .Links-container-close-btn{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items:center;
+  width: 50px;
+  height: 50px;
+  background: black;
+  border-radius: 4px;
+  cursor: pointer;
+  color: rgb(255, 255, 255);
+  font-size: 1.4em;
+}
+
+.course-section{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: start;
+  padding-top: 1em;
+}
+.course-article {
+  width: 55%;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-start;
+  align-items: start;
+  min-height: 20em;
+  margin-left: 3em;
+  margin-top: 0.5em;
+  margin-bottom: 2em;
+}
+.t_heading{
+  display:flex;
+  flex-direction:row;
+  justify-content:left;
+  align-items: center;
+  column-gap: 8px;
+}
+.t_heading > a{
+  color: #000;
+  font-size:.9em;
+  font-weight: 500;
+}
+.t_heading > a > i[class="fa-solid fa-home home"]{
+  color: #000;
+  font-size: .9em;
+}
+.t_heading > a > i:not(.home){
+  color: #0000008c;
+  font-size:.9em;
+  font-weight: 400;
+}
+.name-div {
+  padding:.85em 0em;
+  
+}
+.name-div > h1 {
+  font-size: 2.1em;
+  text-transform: capitalize;
+  font-weight: 500;
+}
+.m_img_div{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+}
+.m_img_div > img {
+  width: 100%;
+  margin: 7px 0px;
+  object-fit: cover;
+  object-position:top left;
+  height: 470px;
+  border-radius :7px;
+}
+.galerry_slider_div {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  column-gap: 1em;
+  width: 100%;
+  margin: 0.5em 0px 1em 0px ;
+}
+.gly_img {
+  width: 8.3em;
+  height: 5.4em;
+  object-fit: cover;
+  object-position: top center;
+  opacity:.7;
+  border-radius:.4em;
+}
+.galerry_slider_div > img:nth-child(1) {
+  opacity: 1;
+}
+.dresciption_heading {
+  font-size: 1.8em;
+  margin: .23em 0em;
+}
+.description-div {
+  margin: 0.75em 0em .7em 0em;
+}
+.description-div > p {
+  color: rgba(0, 0, 0, 0.849);
+  font-weight: 500;
+  text-transform: capitalize;
+  text-align: justify;
+  font-size:1.15em;
+}
+.dt-h2{
+  font-weight: 600;
+  font-size: 1.95em;
+  margin-top: 25px;
+  margin-bottom: 30px;
+}
+/*------------------------------calander-------------------------------------*/
+#calendar{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  /* min-height: 28em;
+  height: fit-content; */
+  background: white;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  padding-bottom: 2em;
+}
+ .cld-header{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin-left: 35px;
+  margin-top: 1em;
+
+}
+.cld-header button{
+  border: none;
+  background: none;
+  font-size: 1.5em;
+  color: gray;
+}
+.cld-header button:hover{
+  color: black;
+}
+.cld-header>h3{
+  font-size: 1.5em;
+  margin: .25em 0px;
+  color: var(--main-cl);
+}
+.cld-header>nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  column-gap: 10px;
+}
+.cl-sec{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  width: 100%;
+  padding-top: 15px;
+  min-height: 200px;
+  height: fit-content;
+  margin-left: 30px;
+  margin-bottom: 1.6em;
+}
+.days{
+  display: grid;
+  grid-template-columns: repeat(7,0fr);
+  grid-template-rows: repeat(1,0fr);
+  column-gap: 50px;
+  width: 100%;
+}
+.dates{
+  display: grid;
+  grid-template-columns: repeat(7,0fr);
+  grid-template-rows: repeat(1,0fr);
+  column-gap: 50px;
+  width: 100%;
+  margin-top: 40px;
+  row-gap: 40px;
+}
+.days>div{
+  width:60px;
+  text-align: left;
+  font-size: 1.2em;
+  font-weight: 600;
+  text-align: center;
+
+}
+.dates>li{
+  list-style: none;
+  color: black;
+  width: 60px;
+  height: 60px;
+  text-align: left;
+  font-size: 1.2em;
+  font-weight: 600;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.dates>.inactive{
+  color: gray;
+}
+.dates >.class-day{
+  background-color: var(--main-cl);
+  color: white;
+  border-radius: 50%;
+}
+
+ .base-calender{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  column-gap: 2em;
+margin-bottom: 1em;
+margin-top: 1em;
+}
+
+.base-calender >div:nth-child(1){
+  margin-left:2em
+
+}
+.cl_time_div{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  border: 1.6px solid rgba(128, 128, 128, 0.438);
+  border-radius: 5px;
+  width: 15em;
+  height: 80px;
+
+}
+.cl_time_div>div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+}
+.cl_time_div >div:nth-child(1){
+  width: 30%;
+}
+.cl_time_div > div:nth-child(2) {
+  align-items: start;
+  width: 70%;
+}
+
+.cl_time_div > div:nth-child(2) >b{
+  font-size: 1.2em;
+}
+/*--------------- floating Div --------------*/ 
+.course-float-sec{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  position: sticky;
+  top: 1em;
+  right:2em ;
+  height: 600px;
+  width: 380px;
+  margin-bottom: 2em;
+  padding-right:2em ;
+}
+.course-float-sec >.fl-icon-box{
+  display: flex;
+  flex-direction: row;
+  justify-content: right;
+  align-items: start;
+  column-gap: 1em;
+  width: 100% ;
+  margin-bottom: .5em;
+}
+.fl-box{
+  width: 100% ;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  padding:1em 1em;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 9px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
+background-color: white;
+}
+.fl-box> .fl-heading{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+ padding-bottom: 10px;
+}
+.fl-box> .fl-heading >h3{
+  width: 95%;
+  font-size: 1.2em;
+}
+.fl-box >.input-box{
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content:flex-start;
+  row-gap: 5px;
+  width: 100%;
+  padding-left: 10px;
+  margin-bottom: 13px;;
+}
+.input-box > label{
+  color: black;
+  font-size: 1.25em;
+}
+.input-box >input{
+  width: 93%;
+  border: none;
+  background: rgb(238, 238, 238);
+  height: 2.85em;
+  border-radius: 5px;
+  padding-left: 7px;
+}
+
+.fl-icon-box >button{
+  border: none;
+  background: inherit;
+  font-size: 1.34em;
+}
+.fl-option-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap:.5em;
+  width: 100%;
+}
+.fl-option-div>button{
+  width: 96%;
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-items: center;
+  border-radius: 7px;
+  height: 2.7em;
+  font-size: 1em;
+  text-transform: capitalize;
+  font-weight: 600;
+  column-gap: 10px;
+}
+.fl-option-div>button:nth-child(1){
+  background:var(--main-cl);
+  color: white;
+  border: 2.5px solid var(--main-cl);
+}
+.fl-option-div>button:nth-child(2){
+  background-color: white;
+  color: var(--main-cl);
+  border: 2.5px solid var(--main-cl);
+}

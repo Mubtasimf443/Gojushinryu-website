@@ -167,8 +167,6 @@ header > .m_nav_i , header > .m_nav {
 
 
 
-
-
 @media screen and (min-width :1000px ) {
     /*-------------------- Header -------------------------*/
     header{
@@ -202,10 +200,6 @@ header > .m_nav_i , header > .m_nav {
         animation-iteration-count: 1;
         animation-timing-function: ease-out;
     }
-
-
-    
-
     #header {
         display: flex;
         flex-direction: row;
@@ -219,7 +213,6 @@ header > .m_nav_i , header > .m_nav {
         padding:14px 0px;
         top: 3.5em;
     }
-    
     #header > .hd-icon-div{
         display: flex;
         flex-direction: row;
@@ -228,12 +221,10 @@ header > .m_nav_i , header > .m_nav {
         width: 16em;
 
     }
-    
     .hd-icon{
         width: 55px;
         border-radius: 50%;
     }
-    
     #header > nav{
         display: flex;
         flex-direction: row;
@@ -242,19 +233,18 @@ header > .m_nav_i , header > .m_nav {
         width: 38.5em;
         column-gap: 1.4em;
     }
-    
     #header > nav > div{
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
     }
-     
     #header > nav > div > a {
         color:white;
         text-decoration: none;
         font-size: var(--first-fs);
         font-weight: 500;
+        
     }
     
     #header > .hd-btn-div{
@@ -300,7 +290,7 @@ header > .m_nav_i , header > .m_nav {
         z-index: 20;
        padding: 8px 0px;
        top:15px;
-       left: 48.8%;
+       left: 57%;
        transition: top .4s ease,opacity .3s ease;
        opacity: 0%;
     }
@@ -333,9 +323,6 @@ header > .m_nav_i , header > .m_nav {
     right: 150vw;
     }
 }
-
-
-
 @keyframes topBarAnime2{
     
     from{

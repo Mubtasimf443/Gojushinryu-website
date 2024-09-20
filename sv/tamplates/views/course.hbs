@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+  <!--  
+  بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+  InshaAllah, Allah is Marcyfull and He will gove me success
+  -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    Course - Martial Art Courses 
+  </title>
+  {{>Links}}
+   <script defer src="/js/calender.js"></script>
+   <script defer src="/js/course.selling.js"></script>
+    <link rel="stylesheet" href="/css/pages/couse.selling.page.css">
+<style>
+  #header{
+    position: static;
+    background: white;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.007) , 0px 0px 0px rgba(0, 0, 0, 0.007) ,0px 0px 10px rgba(0, 0, 0, 0.07) ,0px 0px 0px rgba(0, 0, 0, 0.007) ;
+  }
+   #header > nav > div > a {
+    color: black;
+   }
+</style>
+</head>
+
+<body>
+
+  {{!-- Links popup --}}
+  <div id="Links-container">
+    <div class="link-popup">
+      <img src="/icon/facebook.png" alt="facebook icon">
+      <img src="/icon/instragram.png" alt="instagram icon">
+      <img src="/icon/twitter.png" alt=" twitter (X) icon"> 
+      <img src="/icon/linkedin.png" alt="linkedin icon">
+      <div  class="copy-btn-box">
+        <i class="fa-solid fa-copy"></i>
+      </div>
+      <div class="Links-container-close-btn">
+        <i class="fa-solid fa-close"></i>
+      </div>
+    </div>
+  </div>
+
+
+  <main>
+    {{>Header}}
+
+    <!-- course Section -->
+    
+<section class="course-section">
+  
+
+    <article class="course-article">
+{{!--    
+      <div class="t_heading">
+       <a><i class="fa-solid fa-home home"></i></a>
+       <a><i>>></i></a>
+       <a>Course</a>
+       <a><i>>></i></a>
+       <a>
+         Martial Art Course
+       </a>
+      </div> --}}
+      
+      <div class="m_img_div">
+        <img src="/img/2150753727.jpg" id="----m-image" alt="first Thumbnail Of the Course">
+      </div>
+      <div class="galerry_slider_div">
+        <img 
+        class="gly_img" 
+        src="/img/2150753727.jpg" 
+        alt="first Thumbnail Of the Course">
+        <img 
+        class="gly_img" 
+        src="/img/abs-slide/5577253_orig.jpg"
+        alt="Second Thumbnail Of the Course"
+        >
+        <img 
+        class="gly_img" 
+        src="/img/karate_img.png"
+        alt="third Thumbnail Of the Course"
+        >
+      
+      </div>
+<div class="name-div">
+        <h1>
+          Martial Art  course -Online Classes
+        </h1>
+      </div>
+      <h2 class="dresciption_heading">
+        Description 
+        </h2>
+      <div class="description-div">
+        <p>
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium possimus omnis totam qui soluta? Numquam cumque incidunt mollitia earum molestiae quidem dolore rem ad tenetur, cupiditate, quisquam sunt libero in?
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At animi inventore illo sapiente quia cum debitis ex dignissimos! Est ut quidem illo provident deleniti ipsum, quam omnis sed consequatur nisi!
+ <br>
+ <br>
+ Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consequuntur neque hic sapiente dolores iusto consectetur quasi ut corporis nostrum eligendi illo asperiores, voluptatem animi et assumenda nisi numquam dolor?
+ Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat sint, nam nemo quos veritatis porro vero molestiae labore sequi unde ea ipsam vel laboriosam assumenda dolores, id corrupti cum blanditiis.
+</p>
+      </div>
+  <h2 class="dt-h2">Classes Dates</h2>
+ <div id="calendar" class="calendar">
+      <div class="cld-header">
+        <h3></h3>
+        <nav class="cl-nav">
+          <button id="prev"><</button>
+          <button id="next">></button>
+        </nav>
+      </div>
+      <div class="cl-sec">
+        <div class="days">
+          <div class="day-list">Sun</div>
+          <div class="day-list">Mon</div>
+          <div class="day-list">Tue</div>
+          <div class="day-list">Wed</div>
+          <div class="day-list">Thu</div>
+          <div class="day-list">Fri</div>
+          <div class="day-list">Sat</div>
+        </div>
+        <div class="dates"></div>
+      </div>
+      <div class="base-calender">
+        <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Seniur</b>
+            <span>7:00PM - 9:00PM </span>
+          </div>
+
+        </div>
+         <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Joniur</b>
+            <span>5:00PM - 6:00PM </span>
+          </div>
+
+        </div>
+      </div>
+ </div>    
+      <div class="similar_course_div">
+     
+      </div>
+    </article>
+    <!-- div course float option -->
+    <div class="course-float-sec">
+    <div class="fl-icon-box">
+       <button class="add-to-fev">
+        <i class="fa-regular fa-heart"></i>
+      </button>
+      <button title="share" class="add-to-fev">
+        <i class="fa-solid fa-link"></i>
+      </button>
+     
+    </div>
+   <div class="fl-box">
+      <div class="fl-heading">
+        <h3>Apply For The Course </h3>
+      </div>
+      <div class="input-box">
+        <label for="--inp-name">Name </label>
+        <input type="text" name="" placeholder="Student Name" id="--inp-name">
+      </div>
+      <div class="input-box">
+        <label for="--inp-name">Email</label>
+        <input type="text" name="" placeholder="Student Email" id="--inp-name">
+      </div>
+      <div class="input-box">
+        <label for="--inp-name">Phone </label>
+        <input type="text" name="" placeholder="Student Number" id="--inp-name">
+      </div> 
+      <div class="input-box">
+        <label for="--inp-name">Date Of Birth</label>
+        <input type="Date" name="" placeholder="23 A.K road" id="--inp-name">
+      </div>
+  <div class="input-box">
+        <label for="--inp-name">Country</label>
+        <input type="text" name="" placeholder="Canada" id="--inp-name">
+      </div>
+      <div class="input-box">
+        <label for="--inp-name">City</label>
+        <input type="text" name="" placeholder="London" id="--inp-name">
+      </div>
+       {{!-- <div class="input-box">
+        <label for="--inp-name">Road/Street/Village</label>
+        <input type="text" name="" placeholder="23 A.K road" id="--inp-name">
+      </div>
+      --}}
+      <div class="fl-option-div">
+        <button>
+          <i class="fa-regular fa-credit-card"></i>
+          Purchase Course</button>
+        <button>Contact Us </button>
+      </div>
+    </div>
+    
+    </div>
+</section>
+    
+  </main>
+
+
+  {{>Footer}}
+</body>
+
+</html>

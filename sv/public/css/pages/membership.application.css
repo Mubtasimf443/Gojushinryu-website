@@ -12,6 +12,7 @@ InshaAllah, By his marcy I will Gain Success
 }
 
 
+
 input{
   outline: none;
   border: none;
@@ -19,7 +20,7 @@ input{
   padding-right :7px;
 }
 
-label{
+label,legend{
   text-transform: capitalize;
 }
 /*--------------main-----------------*/
@@ -101,15 +102,11 @@ body{
     align-items: center;
     cursor: pointer;
   }
-
   #heading_section > div > .i-box:nth-child(1){
     border: 1.4px solid var(--main-cl);
     color: rgb(255, 255, 255);
     background: var(--main-cl);
   }
-
-
-
   #heading_section > div > hr{
     width: 20%;
     height: 4px;
@@ -144,8 +141,6 @@ body{
   #form-box>div{
     position: relative;
   }
-
-
   /************ Applicant form  ************/
   #Applicant-info-form{
     width: 90%; 
@@ -201,7 +196,8 @@ body{
   }
   #Applicant-info-form > #membership-box > span>.membership{
     width: 45%;
-    height: 5em;
+    min-height: 5em;
+    height: fit-content;
     display:flex;
     flex-direction: column;
     align-items: start;
@@ -211,7 +207,6 @@ body{
     padding: 1em .5em;
     cursor: pointer;
   }
-
   #Applicant-info-form > #membership-box > span> [default-membership="true"]{
     border: 2px solid var(--main-cl);
   }
@@ -221,6 +216,7 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    margin-top: -10px;
   }
   #Applicant-info-form > #membership-box > span>.membership>div>b{
     color: #000;
