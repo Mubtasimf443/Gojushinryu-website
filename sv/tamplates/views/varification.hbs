@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title> OTP Varification | Goju Shin Ryu </title>
+  <script defer src="./js/Varifation.page.js">
+  </script>
+    {{>Links}}
+
+  <link rel="stylesheet" href="/css/pages/Varification.page.css">
+</head>
+
+<body>
+
+    {{>whiteHeader}}
+
+  <main>
+
+    <section class="form-sec">
+
+      <h1> Opt Varification  </h1>
+      <p>
+        Varify Your Account Under 60 Second's. Remaining Time For Varification is 
+        <span class="vf-time">60</span> Second
+      </p>
+
+      <form>
+
+
+      <div class="input-box">
+        <label for="---inp--otp">
+          Varification OTP
+        </label>
+        <input 
+        id="---inp--otp"
+        placeholder="******"
+        type="number"
+        >
+      </div>
+        <div class="action-box">
+          <a class="vf-timer-anchor">Remaining Time
+          <span class="vf-time">60</span> Second's </a>
+          <div class="btn-box">
+            <button>
+              Varify
+            </button>
+            <button>
+              Register Again
+            </button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </main>
+  {{>Footer}}
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

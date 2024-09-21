@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sign Up | Goju Shin Ryu </title>
+    {{>Links}}
+
+  <link rel="stylesheet" href="/css/pages/sign-up.page.css">
+  <script defer src="/js/Signup.page.js"></script>
+</head>
+
+<body>
+  {{>whiteHeader}}
+
+
+  <main>
+    
+    <section class="form-sec">
+      
+      <h1> Sign Up </h1>
+      <h2>And Join Goju Shin Ryu</h2>
+
+    <form>
+
+      <div class="input-box">
+        <label for="---inp--fn">First Name</label>
+        <input
+        id="---inp--fn"
+        placeholder="Jone"
+        type="text">
+      </div>
+      <div class="input-box">
+        <label for="---inp--ln">last Name</label>
+        <input
+        id="---inp--ln"
+        placeholder="Due"
+        type="text">
+      </div>
+      <div class="input-box">
+        <label for="---inp--em">Email Address</label>
+        <input 
+        id="---inp--em"
+        placeholder="JoneDue***JoneDue@gmail.com"
+        type="text">
+      </div>
+      <div class="input-box">
+        <label for="---inp--num">Phone Number</label>
+        <input 
+        id="---inp--num"
+        placeholder="+968****7"
+        type="Number">
+      </div>
+       <div class="input-box">
+         <label for="---inp--ps">
+           Password
+         </label>
+         <input 
+         id="---inp--ps"
+         placeholder="******"
+         type="password">
+       </div>
+       <div class="input-box">
+         <label for="---inp--cps">
+          Confirm  Password
+         </label>
+         <input 
+         id="---inp--cps"
+         placeholder="******"
+         type="password">
+       </div>       
+       <div class="action-box">
+         <a href="">I have Forgot Password</a>
+         <div class="btn-box">
+           <button>Join</button>
+          <button >Login</button>
+         </div>
+       </div>
+    </form>
+   </section>
+  </main>
+    {{>Footer}}
+
+</body>
+
+</html>
