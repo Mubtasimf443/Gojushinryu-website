@@ -7,6 +7,10 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     {{>Links}}
+    <link rel="stylesheet" href="/css/pages/Calender.page.css">
+     <link rel="stylesheet" href="/css/about_us/Banner.for.about-us.css"> 
+     <script defer src="/js/Calender.Page.js"></script>
+     
    <style>
   #header{
     position: static;
@@ -15,17 +19,319 @@
   }
    #header > nav > div > a {
     color: black;
-   }
+   } 
+#banner{
+  min-height: 25em ;
+  background: url('/img/samurai4.jpg');
+  background-position: center left;
+  background-size: cover;
+  background-repeat:no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-image-slice: fill 1;
+  border-image-source: linear-gradient(to right,
+   rgba(0, 0, 0, 0.474) ,
+   rgba(0, 0, 0, 0.712),
+  rgba(0, 0, 0, 0.5));
+}
+#banner > h1 {
+  font-size: 2.5em;
+  color: #fff;
+  position: relative;
+  /* top: -1em*/
+}
+#banner > h2 {
+  color: #fff;
+  font-size: 1.25em;
+  position: relative;
+  opacity:.85;
+}
 </style>
 </head>
 <body>
     {{>Header}}
     <main>
-    <section style="padding-top: 100px;">
-        <h1>
-            Under Contruction
-        </h1>
-        <h2>This page is for Students</h2>
+    <section class="banner" id="banner">
+        <h1>See the Dates Of Classes</h1>  
+      <h2>This Month - Next Month</h2>
+    </section>
+    <section class="dt_heading_sec">
+      <h2>Dates of Reqular Classes</h2>
+    </section>
+    <section class="dt-calander-section">
+      <div id="calendar" class="calendar" >
+      <div class="cld-header">
+        <h3></h3>
+        <nav class="cl-nav">
+          <button id="prev"><</button>
+          <button id="next">></button>
+        </nav>
+      </div>
+      <div class="cl-sec">
+        <div class="days">
+          <div class="day-list">Sun</div>
+          <div class="day-list">Mon</div>
+          <div class="day-list">Tue</div>
+          <div class="day-list">Wed</div>
+          <div class="day-list">Thu</div>
+          <div class="day-list">Fri</div>
+          <div class="day-list">Sat</div>
+        </div>
+        <div class="dates"></div>
+      </div>
+      <div class="base-calender">
+        <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Seniur</b>
+            <span>7:00PM - 9:00PM </span>
+          </div>
+
+        </div>
+         <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Joniur</b>
+            <span>5:00PM - 6:00PM </span>
+          </div>
+
+        </div>
+      </div>
+ </div> 
+
+ <div id="calendar" class="calendar">
+      <div class="cld-header">
+        <h3></h3>
+        <nav class="cl-nav">
+          <button id="prev"><</button>
+          <button id="next">></button>
+        </nav>
+      </div>
+      <div class="cl-sec">
+        <div class="days">
+          <div class="day-list">Sun</div>
+          <div class="day-list">Mon</div>
+          <div class="day-list">Tue</div>
+          <div class="day-list">Wed</div>
+          <div class="day-list">Thu</div>
+          <div class="day-list">Fri</div>
+          <div class="day-list">Sat</div>
+        </div>
+        <div class="dates"></div>
+      </div>
+      <div class="base-calender">
+        <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Seniur</b>
+            <span>7:00PM - 9:00PM </span>
+          </div>
+
+        </div>
+         <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Joniur</b>
+            <span>5:00PM - 6:00PM </span>
+          </div>
+
+        </div>
+      </div>
+ </div> 
+    </section>
+<section class="dt_heading_sec">
+      <h2>Dates of Online Classes</h2>
+    </section>
+    <section class="dt-calander-section">
+      <div id="calendar" class="calendar" >
+      <div class="cld-header">
+        <h3></h3>
+        <nav class="cl-nav">
+          <button id="prev"><</button>
+          <button id="next">></button>
+        </nav>
+      </div>
+      <div class="cl-sec">
+        <div class="days">
+          <div class="day-list">Sun</div>
+          <div class="day-list">Mon</div>
+          <div class="day-list">Tue</div>
+          <div class="day-list">Wed</div>
+          <div class="day-list">Thu</div>
+          <div class="day-list">Fri</div>
+          <div class="day-list">Sat</div>
+        </div>
+        <div class="dates"></div>
+      </div>
+      <div class="base-calender">
+        <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Seniur</b>
+            <span>7:00PM - 9:00PM </span>
+          </div>
+
+        </div>
+         <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Joniur</b>
+            <span>5:00PM - 6:00PM </span>
+          </div>
+
+        </div>
+      </div>
+ </div> 
+ 
+ <div id="calendar" class="calendar">
+      <div class="cld-header">
+        <h3></h3>
+        <nav class="cl-nav">
+          <button id="prev"><</button>
+          <button id="next">></button>
+        </nav>
+      </div>
+      <div class="cl-sec">
+        <div class="days">
+          <div class="day-list">Sun</div>
+          <div class="day-list">Mon</div>
+          <div class="day-list">Tue</div>
+          <div class="day-list">Wed</div>
+          <div class="day-list">Thu</div>
+          <div class="day-list">Fri</div>
+          <div class="day-list">Sat</div>
+        </div>
+        <div class="dates"></div>
+      </div>
+      <div class="base-calender">
+        <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Seniur</b>
+            <span>7:00PM - 9:00PM </span>
+          </div>
+
+        </div>
+         <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Joniur</b>
+            <span>5:00PM - 6:00PM </span>
+          </div>
+
+        </div>
+      </div>
+ </div> 
+    </section>
+<section class="dt_heading_sec">
+      <h2>Dates of Women Self Defence Classes</h2>
+    </section>
+    <section class="dt-calander-section">
+      <div id="calendar" class="calendar" >
+      <div class="cld-header">
+        <h3></h3>
+        <nav class="cl-nav">
+          <button id="prev"><</button>
+          <button id="next">></button>
+        </nav>
+      </div>
+      <div class="cl-sec">
+        <div class="days">
+          <div class="day-list">Sun</div>
+          <div class="day-list">Mon</div>
+          <div class="day-list">Tue</div>
+          <div class="day-list">Wed</div>
+          <div class="day-list">Thu</div>
+          <div class="day-list">Fri</div>
+          <div class="day-list">Sat</div>
+        </div>
+        <div class="dates"></div>
+      </div>
+      <div class="base-calender">
+        <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Seniur</b>
+            <span>7:00PM - 9:00PM </span>
+          </div>
+
+        </div>
+         <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Joniur</b>
+            <span>5:00PM - 6:00PM </span>
+          </div>
+
+        </div>
+      </div>
+ </div> 
+ 
+ <div id="calendar" class="calendar">
+      <div class="cld-header">
+        <h3></h3>
+        <nav class="cl-nav">
+          <button id="prev"><</button>
+          <button id="next">></button>
+        </nav>
+      </div>
+      <div class="cl-sec">
+        <div class="days">
+          <div class="day-list">Sun</div>
+          <div class="day-list">Mon</div>
+          <div class="day-list">Tue</div>
+          <div class="day-list">Wed</div>
+          <div class="day-list">Thu</div>
+          <div class="day-list">Fri</div>
+          <div class="day-list">Sat</div>
+        </div>
+        <div class="dates"></div>
+      </div>
+      <div class="base-calender">
+        <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Seniur</b>
+            <span>7:00PM - 9:00PM </span>
+          </div>
+
+        </div>
+         <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Joniur</b>
+            <span>5:00PM - 6:00PM </span>
+          </div>
+
+        </div>
+      </div>
+ </div> 
     </section>
     </main>
     {{>Footer}}

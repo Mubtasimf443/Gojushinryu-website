@@ -1,0 +1,175 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+Insha Allah,  By His Marcy I will Gain Success 
+*/ 
+
+.dt_heading_sec{
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    /* padding-left: 4em; */
+    padding-top: 2em;
+    /* padding-bottom: 2em; */
+}
+
+main >.dt-calander-section:last-child{
+    margin-bottom: 4.5em;
+}
+
+.dt-calander-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 50px;
+    margin: 2em 0em;
+}
+
+
+/*------------------------------calander-------------------------------------*/
+.calendar{
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    /* min-height: 28em;
+    height: fit-content; */
+    background: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding-bottom: 2em;
+  }
+   .cld-header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin-left: 35px;
+    margin-top: 1em;
+  
+  }
+  .cld-header button{
+    border: none;
+    background: none;
+    font-size: 1.5em;
+    color: gray;
+    display:none ;
+  }
+  .cld-header button:hover{
+    color: black;
+  }
+  .cld-header>h3{
+    font-size: 1.5em;
+    margin: .25em 0px;
+    color: var(--main-cl);
+  }
+  .cld-header>nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 10px;
+  }
+  .cl-sec{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    width: 100%;
+    padding-top: 15px;
+    min-height: 200px;
+    height: fit-content;
+    margin-left: 30px;
+    margin-bottom: 1.6em;
+  }
+  .days{
+    display: grid;
+    grid-template-columns: repeat(7,0fr);
+    grid-template-rows: repeat(1,0fr);
+    column-gap: 30px;
+    width: 100%;
+  }
+  .dates{
+    display: grid;
+    grid-template-columns: repeat(7,0fr);
+    grid-template-rows: repeat(1,0fr);
+    column-gap: 30px;
+    width: 100%;
+    margin-top: 30px;
+    row-gap: 30px;
+  }
+  .days>div{
+    width:48.5px;
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: 600;
+    text-align: center;
+  
+  }
+  .dates>li{
+    list-style: none;
+    color: black;
+    width: 48.5px;
+    height: 48.5px;
+    text-align: left;
+    font-size: 1.2em;
+    font-weight: 600;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .dates>.inactive{
+    color: gray;
+  }
+  .dates >.class-day{
+    background-color: var(--main-cl);
+    color: white;
+    border-radius: 50%;
+  }
+  .base-calender{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 2em;
+  margin-bottom: 1em;
+  margin-top: 1em;
+  }
+  .base-calender >div:nth-child(1){
+    margin-left:2em
+  
+  }
+  .cl_time_div{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    border: 1.6px solid rgba(128, 128, 128, 0.438);
+    border-radius: 5px;
+    width: 15em;
+    height: 80px;
+  
+  }
+  .cl_time_div>div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+  }
+  .cl_time_div >div:nth-child(1){
+    width: 30%;
+  }
+  .cl_time_div > div:nth-child(2) {
+    align-items: start;
+    width: 70%;
+  }
+  
+  .cl_time_div > div:nth-child(2) >b{
+    font-size: 1.2em;
+  }

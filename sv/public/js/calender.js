@@ -51,7 +51,7 @@ function renderCalendar() {
 
   for (let i = 1; i <= endDate; i++) {
     let checkDate = classDates.findIndex(el => el === i);
-    let className = checkDate=== -1 ? 'class="class-day"':''
+    let className = checkDate!== -1 ? 'class="class-day"':''
     datesHtml += `<li ${className} >${i}</li>`;
   }
  

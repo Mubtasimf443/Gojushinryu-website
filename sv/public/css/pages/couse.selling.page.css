@@ -10,6 +10,9 @@ a {
   color: #000;
   text-decoration: none
 }
+input{
+  outline: none;
+}
 #Links-container{
   display: none;
   flex-direction: row;
@@ -69,7 +72,6 @@ padding:15px 26px;
   color: rgb(255, 255, 255);
   font-size: 1.4em;
 }
-
 .course-section{
   display: flex;
   flex-direction: row;
@@ -175,7 +177,7 @@ padding:15px 26px;
 }
 /*------------------------------calander-------------------------------------*/
 #calendar{
-  width: 100%;
+  width: 700px;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -234,17 +236,17 @@ padding:15px 26px;
   display: grid;
   grid-template-columns: repeat(7,0fr);
   grid-template-rows: repeat(1,0fr);
-  column-gap: 50px;
+  column-gap: 30px;
   width: 100%;
 }
 .dates{
   display: grid;
   grid-template-columns: repeat(7,0fr);
   grid-template-rows: repeat(1,0fr);
-  column-gap: 50px;
+  column-gap: 30px;
   width: 100%;
-  margin-top: 40px;
-  row-gap: 40px;
+  margin-top: 30px;
+  row-gap: 30px;
 }
 .days>div{
   width:60px;
@@ -275,8 +277,7 @@ padding:15px 26px;
   color: white;
   border-radius: 50%;
 }
-
- .base-calender{
+.base-calender{
   display: flex;
   flex-direction: row;
   justify-content: left;
@@ -285,7 +286,6 @@ padding:15px 26px;
 margin-bottom: 1em;
 margin-top: 1em;
 }
-
 .base-calender >div:nth-child(1){
   margin-left:2em
 
@@ -388,7 +388,6 @@ background-color: white;
   border-radius: 5px;
   padding-left: 7px;
 }
-
 .fl-icon-box >button{
   border: none;
   background: inherit;
