@@ -8,11 +8,7 @@ Insha Allah,  By your Marcy Ya Allah
     --main-cl: goldenrod;
     --f-massage-bg:rgba(159, 141, 118, 1);
   }
-  *{
-    margin: 0px;
-    padding: 0px;
-    font-family: sans-serif;
-  }
+  
   body{
     background:whitesmoke;
   }
@@ -138,12 +134,12 @@ Insha Allah,  By your Marcy Ya Allah
     justify-content: flex-start;
   }
   
-  .t-massage{
+  /* .t-massage{
    
   }
   .f-massage{
     
-  }
+  } */
   .sender-name{
     color: #000;
   }
