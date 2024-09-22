@@ -23,6 +23,11 @@ pageRouter.get('/auth/:name',(req,res)=> {
     if (req.params.name === 'reset-password') return res.render('reset-password');
     return res.render('login');
 });
+pageRouter.get('/shop/:name',(req,res)=> {
+   
+    return res.render('shop');
+})
+
 pageRouter.get('*', (req, res) => res.render('404'));
 
 

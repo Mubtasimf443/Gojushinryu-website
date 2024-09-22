@@ -48,6 +48,20 @@ fileRouter.get('/css/pages/:name',(req, res) => {
 
 
 
+fileRouter.get('/css/shop/:name',(req, res) => {
+    try {
+       return res.status(200).sendFile(path.resolve(dirName, '../public/css/shop/' + req.params.name))
+    } catch (error) {
+        log(error)
+        return res.sendStatus(404)
+    }
+})
+
+
+
+
+
+
 fileRouter.get('/css/:name', (req, res) => {
     try {
        return res.status(200).sendFile(path.resolve(dirName, '../public/css/' + req.params.name))

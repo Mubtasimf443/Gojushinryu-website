@@ -1,0 +1,115 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+
+
+body {
+    background-color: #f5f5f5;
+    color: #333;
+}
+
+#header_2  {
+    color: white;
+    background: var(--main-cl);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    height: 60px;
+}
+
+#header_2> h1 {
+    font-size: 1.8em;
+    margin-left: 20px;
+    text-wrap: nowrap;
+    font-weight: 500;
+}
+
+#header_2> .icons {
+    width: 80px;
+    column-gap: 16px;
+}
+#header_2 > .icons > i{
+    
+    font-size: 22px;
+    cursor: pointer;
+}
+#header_2 > .icons > img {
+    width: 30px;
+    cursor: pointer;
+}
+
+.product-container {
+    display: flex;
+    justify-content: space-around;
+    padding: 40px;
+    flex-wrap: wrap;
+}
+
+.product-card {
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    row-gap: 7px;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px;
+    width: 250px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 430px;
+}
+
+.product_img {
+    width: 250px;
+    height: 280px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    object-fit: cover;
+    object-position: top left;
+    overflow: hidden;
+}
+
+.product-card>h2 {
+    max-width: 100%;
+    font-size: 1.3em;
+   padding: 0px; 
+   min-height: 30px;
+   height: auto;
+   max-height: 80px;
+   
+}
+
+.product-card>p{
+    min-height: 30px;
+height: auto;
+    max-height: 80px;
+    font-weight: 500; 
+    margin-top: 10px; 
+}
+.price {
+    font-size: 1.6em;
+    color: var(--main-cl);
+    margin: 12px 0;
+}
+
+.add-to-cart {
+    background-color: var(--main-cl);
+    border: none;
+    padding: 12px 24px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    transition: background-color 0.3s;
+}
+.add-to-cart:hover {
+    background-color: #e6d200;
+}
+

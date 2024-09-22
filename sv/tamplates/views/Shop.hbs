@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Page</title>
+    <link rel="stylesheet" href="/css/shop/shop.css">
+    {{>Links}}
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header id="header_2">
+        <h1>My Shop</h1>
+        <div class="icons">
+            <i class="fa fa-search"></i> <!-- Example icon for search -->
+            <img src="cart-icon.png" alt="Cart"> <!-- Example cart icon -->
+        </div>
+    </header>
+
+    <!-- Shop Page Content -->
+    <section class="product-container">
+        <!-- Product 1 -->
+        <div class="product-card">
+            <img src="/img/product1.jpg" alt="Product 1" class="product_img">
+            <h2>Product Name 1</h2>
+            <p>Product description goes here.</p>
+            <div class="price">$29.99</div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Product 2 -->
+        <div class="product-card">
+            <img src="/img/product2.jpg" alt="Product 2" class="product_img">
+            <h2>Product Name 2</h2>
+            <p>Product description goes here.</p>
+            <div class="price">$39.99</div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+  <!-- Product 3 -->
+        <div class="product-card">
+            <img src="/img/product3.jpg" alt="Product 1" class="product_img">
+            <h2>Product Name 1</h2>
+            <p>Product description goes here.</p>
+            <div class="price">$29.99</div>
+            <button class="add-to-cart">Add to Cart</button>
+        </div>
+
+        <!-- Additional products can be added here -->
+    </section>
+
+
+{{>Footer}}
+</body>
+</html>
