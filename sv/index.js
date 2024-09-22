@@ -43,7 +43,8 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
     unlinkSync(path.resolve(dirName,'./index.js'))
 })
 app.use(pageRouter);
-app.get('*', (req, res) => res.render('404'))
+app.get('/', (req, res) => res.render('home'))
+app.get('*', (req, res) => res.status(404).render('404'))
 
 
 

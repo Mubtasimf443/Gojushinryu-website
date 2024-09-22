@@ -9,12 +9,15 @@ Insha Allah,  By Your Marcy Ya Allah
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  {{>Links}}
   <title>
     Grand Master Counchil - Goju Shin Ryu
   </title>
   <link rel="stylesheet" href="/css/Grand-master-counchil/grand-master-couchil.css">
   <link rel="stylesheet" href="/css/Grand-master-counchil/gm-event-box.css">
+<link rel="stylesheet" href="/css/Grand-master-counchil/gm-note.css">
+  <link rel="stylesheet" href="/css/Grand-master-counchil/gm-settings.css">
+    {{>Links}}
+<script defer src="/js/grand-master-couchil.js"></script>
 </head>
 
 <body>
@@ -37,16 +40,16 @@ Insha Allah,  By Your Marcy Ya Allah
   <div class="gm-nav-main">
     <h2>Counchil</h2>
     <nav class="sidebar_nav">
-      <a href="">
+      <a id="massage_href" href="">
         Massage
       </a>
-      <a href="">
+      <a  id="events_href"  href="">
         Events
       </a>
-      <a href="">
+      <a  id="notes_href"  href="">
         Notes
       </a>
-      <a href="">
+      <a  id="settings_href"  href="">
         Settings
       </a>
     </nav>
@@ -62,7 +65,7 @@ Insha Allah,  By Your Marcy Ya Allah
     </span>
 
   </div>
-  <div  style="display: none;"  class="chat-box-container">
+  <div gm_section style="display: none;"  class="chat-box-container">
   <h2>Chat's</h2>
   <div class="chat-box">
     <div class="chat-massage-cobtainer">
@@ -94,10 +97,7 @@ Insha Allah,  By Your Marcy Ya Allah
   </div>
   
   </div>
-
-
-
- <div class="gm-event-box">
+  <div gm_section class="gm-event-box">
    <div class="env-box-header">
      <h3>Events</h3>
    </div>
@@ -126,6 +126,73 @@ Insha Allah,  By Your Marcy Ya Allah
      </div>
 
 </div>
+<div gm_section class="notes-section">
+    <h2>Notes</h2>
+    <div class="notes-container">
+    
+    
+      <div class="notes">
+        <div class="notes-div-1">
+          <h2>
+            Developing the Ui
+    
+          </h2>
+          <div class="notes-icon">
+            <button>
+              <i class="fa-solid fa-pen"></i>
+            </button>
+            <button>
+              <i class="fa-solid fa-trash"></i>
+            </button>
+            <button>
+              <i class="fa-solid fa-eye"></i>
+            </button>
+          </div>
+        </div>
+        <p>
+          Hi buddy can you make this chart I need 7 in 1 line and 1 in bottom this one I can use in alliance
+        </p>
+      </div>
+    </div>
+  </div>
+<div gm_section style="display: none;" class="settings-section">
+   <h2>Info</h2>
+   <div class="img-inp-box">
+     <label for="s-sec-profile-input">
+       <input id="s-sec-profile-input" style="display: none" type="file">
+     </label>
+     <b>Profile Image</b>
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Name</label>
+     <input type="Text" name="" id="s-sec-name-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-bio-inp">bio</label>
+     <input type="Text" name="" id="s-sec-bio-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-country-inp">Country</label>
+     <input type="Text" name="" id="s-sec-country-inp">
+   </div>
+
+   <h2>Credentials</h2>
+   <div class="s-sec-input-box">
+     <label for="s-sec-user-id-inp">User Id</label>
+     <input type="Text" name="" id="s-sec-user-id-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-country-inp">
+       Password
+     </label>
+     <input type="password" name="" id="s-sec-country-inp">
+   </div>
+   <div class="s-sec-btn-box">
+     <button>Cancel</button>
+     <button> Save</button>
+   </div>
+ </div>
+ 
 
 
 
