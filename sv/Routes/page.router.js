@@ -3,10 +3,6 @@
 import { Router } from "express";
 
 let pageRouter = Router();
-
-
-
-pageRouter.get('/', (req, res) => res.render('home'))
 pageRouter.get('/home', (req, res) => res.render('home'))
 pageRouter.get('/course', (req, res) => res.render('course-selling-page'))
 pageRouter.get('/course/:name',(req,res)=>res.render('course'));
@@ -31,7 +27,6 @@ pageRouter.get('/grand-master-couchil',(req,res)=> {
 })
 
 
-pageRouter.get('*', (req, res) => res.render('404'));
 
 
 

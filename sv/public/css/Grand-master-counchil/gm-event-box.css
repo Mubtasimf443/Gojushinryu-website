@@ -1,0 +1,141 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+.gm-event-box{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius :7px;
+  overflow: hidden;
+  background: #fff;
+  height: fit-content;
+  box-shadow: 0px;
+}
+.gm-event-box >.env-box-header {
+  width: 100%;
+  background: var(--main-cl);
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+
+}
+.gm-event-box>.env-box-header>h3 {
+     color: #fff;
+ 
+}
+.gm-event-box > .events {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  
+  width: 100%;
+  min-height: 60px;
+  height: fit-content;
+}
+.gm-event-box > .events >.event {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+  padding: 5px 8px ;
+  height: 45px;
+  column-gap: 15px;
+}
+.gm-event-box > .events >.event >.eventBoxf{
+  display: flex;
+  flex-direction: row;
+  justify-content:left;
+  align-items: center;
+
+}
+.gm-event-box > .events >.event >.eventBoxf > .event-img {
+
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.gm-event-box > .events >.event >.eventBoxf > h4{
+  text-wrap: wrap; 
+  width: fit-content;
+}
+
+.gm-event-box > .events >.event > .icons {
+  width: 20%;
+  display: flex;
+  flex-direction: row;
+  justify-content:right;
+  align-items: center;
+  column-gap:15px;
+}
+
+.gm-event-box > .events >.event > .icons > button{
+  border: none;
+  background: none;
+}
+
+
+@media screen and (min-width :300px) and (max-width :650px) {
+ .gm-event-box{
+   min-height: 260px;
+ }
+ .gm-event-box >.env-box-header {
+    height: 45px;
+    padding:8px 20px;
+  }
+  .gm-event-box > .events{
+    min-height: 200px;
+    height: fit-content;
+  }
+ .gm-event-box > .events >.event {
+   padding: 5px 8px ;
+   align-items: center;
+   height: 60px;
+   border:none ;
+   border-bottom: 2px solid black;
+ }
+.gm-event-box > .events > .event > .eventBoxf{
+  width: 80%;
+  column-gap: 15px;
+}
+.gm-event-box > .events >.event >.eventBoxf > h4{
+  width: 270px;
+}
+
+}
+
+
+
+@media screen and (min-width :651px) and (max-width :900px)  {
+}
+@media screen and (min-width :901px)   {
+  .gm-event-box >.env-box-header {
+    padding: 9px 14px;
+  }
+  .gm-event-box > .events{
+    padding: 0px 0px 0px 0px ;
+    min-height: 500px;
+    height: fit-content;
+  }
+  .gm-event-box > .events >.event{
+    padding: 0px 10px 0px 10px ;
+    min-height: 70px;
+  border:none ;
+    border-bottom: 2px solid black;
+  }
+  .gm-event-box > .events > .event > .eventBoxf{
+    column-gap: 15px;
+    width: 75%;
+  }
+
+
+
+
+}
