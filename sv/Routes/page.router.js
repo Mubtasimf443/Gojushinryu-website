@@ -24,9 +24,12 @@ pageRouter.get('/auth/:name',(req,res)=> {
     return res.render('login');
 });
 pageRouter.get('/shop/:name',(req,res)=> {
-   
     return res.render('shop');
 })
+pageRouter.get('/grand-master-couchil',(req,res)=> {
+    return res.render('grand-master-couchil');
+})
+
 
 pageRouter.get('*', (req, res) => res.render('404'));
 

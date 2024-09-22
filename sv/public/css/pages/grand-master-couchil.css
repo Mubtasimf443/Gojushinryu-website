@@ -1,0 +1,261 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+:root {
+    --mob--width-box : 430px;
+    --main-cl: goldenrod;
+    --f-massage-bg:rgba(159, 141, 118, 1);
+  }
+  *{
+    margin: 0px;
+    padding: 0px;
+    font-family: sans-serif;
+  }
+  body{
+    background:whitesmoke;
+  }
+  #grand-master-counchil{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    column-gap: 34px;
+    padding:3em 0px 4em 0px ;
+    row-gap: 25px;
+  }
+  div, button{
+    box-sizing: border-box;
+  }
+  .gm-bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: var(--mob--width-box) ; 
+    height: 300px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+    border-radius :8px;
+    
+  }
+  .gm-bio > img {
+    width: 140px;
+    height:140px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  .gm-bio > h2{
+    font-weight: 500;
+    font-style: 20px;
+    max-width: 350px;
+  }
+  .gm-bio > p {
+    font-weight: 500;
+    color: black;
+    font-style: 15px;
+    max-width: 350px;
+  }
+  .gm-bio >.icons {
+    display: flex;flex-direction: row;
+    justify-content: center;
+    align-items: center;
+  }
+  .gm-bio >.icons > i{
+    background: #000;
+    color: #fff;
+    font-style: 14px;
+  }
+  .gm-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    row-gap: 35px;
+    
+  }
+  .gm_main_heading {
+    display: flex;
+    flex-direction:row ;
+    justify-content: space-between;
+    align-items: center;
+    width: 95%;
+    padding:0px 2%;
+  }
+  .gm_main_heading > h2 {
+    font-weight: 500;
+  }
+  .gm_main_heading > button{
+    padding: 7px 16px;
+    background:goldenrod;
+    font-weight: 500;
+    color: #fff;
+    border: none;
+  }
+  .chat-box-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+    border-radius :8px ;
+    
+    box-sizing: border-box;
+  }
+  .chat-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    box-sizing: border-box;
+  }
+  .chat-massage-cobtainer {
+    display: flex ;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    position: relative;
+   border-radius :8px;
+    background: #F2F0F0;
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+  .chat-massage-cobtainer > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  
+  }
+  .chat-massage-cobtainer > div > div {
+    height: fit-content;
+    
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+  }
+  
+  .t-massage{
+   
+  }
+  .f-massage{
+    
+  }
+  .sender-name{
+    color: #000;
+  }
+  .sender-p{
+    text-align: left;
+    color: #fff;
+  }
+  .t-massage > div{
+    background: var(--main-cl);
+    min-height: 20px;
+    
+  }
+  .f-massage > div {
+    background: var(--f-massage-bg);
+  }
+  .send-chat-massage-containar{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap:6px;
+  }
+  .send-chat-massage-containar > textarea {
+    padding:4px 5px;
+    box-sizing:border-box;
+    outline: none;
+    border-radius :4px;
+    border:0.5px solid rgba(0, 0, 0, 0.349);
+    background:rgba(255, 252, 249, 1);
+    text-wrap: wrap;
+  }
+  .send-chat-massage-containar-btn{
+    background:var(--main-cl);
+    font-weight: 500;
+    font-style: 16px;
+    border: none;
+    border-radius: 6.5px 6.5px 6.5px 0px;
+    color:white;
+    align-items: center;
+    box-sizing :border-box;
+  }
+  @media screen and (min-width :300px) and (max-width :650px) {
+   .gm-main {
+     width: var(--mob--width-box);
+   }
+   h2 {
+    font-size: 21px;
+    font-weight: 500;
+  }
+  .chat-box-container {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 24px;
+  }
+  .chat-box{
+    width: 100%;
+    padding:7px 0px;
+    row-gap: 20px;
+  }
+  .chat-massage-cobtainer{
+    width: 380px;
+    height:400px;
+    padding: 9px 9px;
+    row-gap:8px;
+  }
+  .chat-massage-cobtainer > div {
+    row-gap: 5px;
+    width: 100%;
+  }
+  .chat-massage-cobtainer > div > div{
+    width: 320px;
+    padding: 7.5px;
+    
+  }
+  .t-massage{
+    padding-left: 0px;
+    align-items: start;
+    
+  }
+  .f-massage{
+    padding-right: 0px;
+    align-items: end;
+  }
+  .t-massage > div{
+    border-radius: 0px 7px 7px 7px
+  }
+  .f-massage > div {
+    border-radius: 7px 7px 0px 7px
+  }
+  .send-chat-massage-containar {
+    justify-content: space-between;
+    width: 380px;
+  }
+  .send-chat-massage-containar > textarea{
+    height: 35px;
+    font-size:14px;
+    width: 320px;
+    resize: vertical;
+    
+  }
+  .send-chat-massage-containar-btn{
+    height: 35px;
+    width:60px;
+    
+    
+  }
+  
+  }
+  @media screen and (min-width :651px) and (max-width :900px)  {
+  }
+  @media screen and (min-width :901)   {
+  }
+  
+  
+  
