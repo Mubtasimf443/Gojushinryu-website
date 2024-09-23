@@ -5,6 +5,9 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
 *{
     box-sizing: border-box;
 }
+:root{
+    --color--of--line:rgba(218, 165, 32, 0.5);
+}
 #banner{
     min-height: 16em ;
     background: url('/img/samurai4.jpg');
@@ -22,64 +25,180 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
     rgba(0, 0, 0, 0.5));
     padding-top: 87px;
     box-sizing: content-box;
-  }
+}
 #banner > h1 {
     font-size: 2.5em;
     color: #fff;
     position: relative;
     top: -1em;
-  }
-  #banner > h2 {
+}
+#banner > h2 {
     color: #fff;
     font-size: 1.4em;
     position: relative;
     top: -1.5em;
     opacity:.85;
-  }
+}
 #alliance-chart{
-    padding: 2em 3em;
+    padding: 3em 0em;
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
+
 }
 #alliance-chart > div {
     display: flex;
     flex-direction: column;
-    align-items: start;
-    width: 500px;
-    row-gap: 3em;
-}
-#alliance-chart > div:nth-child(1){
-    justify-content: center;
-}
-#alliance-chart > div:nth-child(2){
-    justify-content: flex-start;
-    align-items: end;
+    align-items: center;
+    width: 343.5px;
+    height: fit-content;
 }
 #alliance-chart > div> div{
     display: flex;
     flex-direction: row;
     width: 100%;
+    position: relative;
+    justify-content: space-between;
+    height: 400px;
+}
+/*-------------------------------------- container 1 ------------------------------------------*/
+#alliance-chart > div:nth-child(1){
+    justify-content: center;
+}
+#alliance-chart > div:nth-child(1)> div{
+    /* justify-content: left; */
+    align-items: center;
+}
+#alliance-chart > div:nth-child(1)> div:after{
+    content: "";
+    height: 100%;
+    width: 0px;
+    border: none;
+    border-right: 2.4px solid var(--color--of--line);
+}
+#alliance-chart > div:nth-child(1)> div:first-child:after{
+    right: 0px;
+}
+#alliance-chart > div:nth-child(1)> div:last-child:after{ 
+    height: 50%;
+    width: 125px;
+    border-bottom: 2.4px solid var(--color--of--line);
+    position: relative;
+    top: -50%;
+}
+#alliance-chart > div:nth-child(1)> div:last-child{
+    height: 375px;
+    align-items: end;
+}
+#alliance-chart > div:nth-child(1)> div:last-child:after{
+    right: 0px;
 }
 #alliance-chart > div:nth-child(1)> div:first-child{
-  
-    justify-content: left;
-    align-items: center;
+    height: 375px;
+    align-items: start;
+}
+#alliance-chart > div:nth-child(1)> div:first-child:after{
+    height: 104%;
+    width: 125px;
+    border-top: 2.4px solid var(--color--of--line);
+    position: relative;
+    bottom: -50%;
+}
+#alliance-chart > div:nth-child(1)> div:nth-child(2):after{
+    width:120px;
+    border-top: 2.3px solid var(--color--of--line);
+    position: relative;
+    bottom: -50%;
+    height: 100%;
+}
+#alliance-chart > div:nth-child(1)> div:nth-child(3):after{
+    height: 50%;
+    width:120px;
+   position: relative;
+    bottom: -25%;
+    border-top: 2.4px solid var(--color--of--line);
+    
+}
+/*-------------------------------------------------- container 2 ----------------------------------------------*/
+#alliance-chart > div:nth-child(2){
+    justify-content: center;
+    width: 437px;
+}
+#alliance-chart > div:nth-child(2)> div::before , #alliance-chart > div:nth-child(2)> div::after{
+    content: "";
+    width: 93.8px;
+    height: 0%;
+    border-top: 2.4px solid var(--color--of--line);
 
 }
-#alliance-chart > div:nth-child(2)> div{
-    justify-content: right;
+#alliance-chart > div:nth-child(2)> div:first-child{
+    /* justify-content: center; */
     align-items: center;
 }
-.ali_box::before::after{
-    display:none;
+/*------------------------------------------------- container 3 ------------------------------------------------*/
+#alliance-chart > div:nth-child(3){
+    justify-content:center;
+}
+#alliance-chart > div:nth-child(3)> div:before{
+    content: "";
+    height: 100%;
+    width: 0px;
+    border: none;
+    border-left: 2.4px solid var(--color--of--line);
+    position: relative;
+}
+#alliance-chart > div:nth-child(3)> div:after {
+/* #alliance-chart > div:nth-child(1)> div:before  */
+    display: none;
+ }
+#alliance-chart > div:nth-child(3)> div{
+    /* justify-content: right; */
+    align-items: center;
+}
+#alliance-chart > div:nth-child(3)> div:last-child{
+    height: 375px;
+    align-items: end;
+}
+#alliance-chart > div:nth-child(3)> div:last-child:before{
+    height: 50%;
+    width: 125px;
+    border-bottom: 2.4px solid var(--color--of--line);
+    position: relative;
+    top: -50%;
+}
+#alliance-chart > div:nth-child(3)> div:last-child:before{
+    left: 0px;
+}
+#alliance-chart > div:nth-child(3)> div:first-child{
+    height: 375px;
+    align-items: start;
+}
+#alliance-chart > div:nth-child(3)> div:first-child:before{
+    height: 103%;
+    width: 125px;
+    border-top: 2.4px solid var(--color--of--line);
+    position: relative;
+    bottom: -50%;
+}
+#alliance-chart > div:nth-child(3)> div:first-child:before{
+    left: 0px;
+}
+#alliance-chart > div:nth-child(3)> div:nth-child(2) {
+    align-items: center;
+}
+#alliance-chart > div:nth-child(3)> div:nth-child(2):before{
+    height:50%;
+    border-top: 2.4px solid var(--color--of--line);
+    width: 125px;
+    position: relative;
+    bottom: -25%;
 }
 .ali_box{
     width: 250px;
     background: white;
     color: black;
-    height: fit-content;
+    height: 350px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -121,8 +240,11 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
     text-align: center;
     text-transform: uppercase;
 
-    font-size:16px;
-    font-weight: 600;
+    font-size:15px;
+    font-weight: 500;
     color: var(--main-cl);
 
+}
+.ali_box::before ,.ali_box::after{
+    display:none;
 }
