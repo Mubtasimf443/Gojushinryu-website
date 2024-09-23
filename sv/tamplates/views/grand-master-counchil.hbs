@@ -16,6 +16,7 @@ Insha Allah,  By Your Marcy Ya Allah
   <link rel="stylesheet" href="/css/Grand-master-counchil/gm-event-box.css">
 <link rel="stylesheet" href="/css/Grand-master-counchil/gm-note.css">
   <link rel="stylesheet" href="/css/Grand-master-counchil/gm-settings.css">
+  <link rel="stylesheet" href="/css/Grand-master-counchil/event_upload.css">
     {{>Links}}
 <script defer src="/js/grand-master-couchil.js"></script>
 </head>
@@ -60,8 +61,8 @@ Insha Allah,  By Your Marcy Ya Allah
   <div class="gm_main_heading">
     <h2> Grand Master Counchil </h2>
     <span>
-    <button> <i></i> Upload Event</button>
-    <button><i class="fa-solid fa-pen"></i> Create A Note</button>
+    <button id="upload-event-button">  Upload Event</button>
+    <button>Create A Note</button>
     </span>
 
   </div>
@@ -193,7 +194,53 @@ Insha Allah,  By Your Marcy Ya Allah
    </div>
  </div>
  
+<div gm_section style="display: none;" class="event_upload_sec">
 
+  <div class="event-upload-input-box">
+    <label for="event-upload-input-box-title--inp">Title</label>
+    <input type="text" placeholder="Write the event Title"
+    id="event-upload-input-box-title--inp">
+
+  </div>
+  <div class="event-upload-input-box">
+    <label for="event-upload-input-box-Description--inp">Description</label>
+    <input 
+     type="text" placeholder="Write the event Description"
+    id="event-upload-input-box-Description--inp">
+
+  </div>
+  <div class="upload_sec_event_tumb_img_inp_box">
+     <h4>
+       Thumnail
+     </h4>
+    <label for="upload_sec_event_tumb_img_inp">
+      <b>Click To Upload <br>
+      Thumbnail
+      </b>
+    </label>
+    <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp">
+   
+  </div>
+  <b>Upload Image</b>
+  <div class="upload_sec_env_img_inp_box">
+    
+    <label for="upload_sec_env_img_inp">
+      Upload Images
+    </label>
+    <input 
+    style="display: none" 
+    type="file"
+    id="upload_sec_env_img_inp">
+    
+  </div>
+
+  
+  <div class="upload_event_btn_box">
+    <button>Cencel</button>
+    <button>Upload</button>
+  </div>
+  
+</div>
 
 
 </section>

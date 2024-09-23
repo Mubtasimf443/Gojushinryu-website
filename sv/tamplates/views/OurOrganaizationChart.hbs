@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<!-- 
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+-->
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="/css/pages/OurOrganaizationChart.css">
+
+  <title>
+    Organisation Chart | Goju Shin Ryu
+  </title>
+  {{>Links}}
+</head>
+<body>
+
+{{>whiteHeader}}
+
+
+ <main>
+   <section id="org-chart-sec-1">
+     <div id="org-chart-sec-1-img-div">
+       <img id="---main--chart-img" src="/img/chart1.jpg" alt="">
+     </div>
+     <div id="org-chart-sec-1-info-action-div">
+       <h1>
+         Our Organisation Charts and Graphs
+       </h1>
+       <p>
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quod praesentium eveniet, laborum recusandae libero quam quas architecto voluptatibus et commodi cumque, inventore cum sit temporibus dolore labore perspiciatis similique.
+       </p>
+       <div id="org-chart-sec-1-action-div-list-div">
+         <div class="icon-box ">
+           <i class="fa-solid fa-chart"></i>&nbsp;
+           <b>7 Charts of Our Organisation</b>
+         </div>
+         <div class="icon-box ">
+           <i class="fa-solid fa-chart"></i>&nbsp;
+           <b>Relation With lots of Organisation</b>
+         </div>
+       </div>       
+       <button id="view-add-the-charts-btn">
+         <a href="#org-chart-sec-3">
+
+ View All the Charts
+     
+         </a>
+        
+       </button>
+
+     </div>
+   </section>
+   <section id="org-chart-sec-2">
+   <h2>Our Charts</h2>
+   <div id="org-chart-sec-2-chart-list-div">
+     <img class="chart-list-img" 
+     src="/img/chart1.jpg" alt="chart Image" />
+      <img class="chart-list-img" 
+     src="/img/chart2.jpg" alt="chart Image" />
+      <img class="chart-list-img" 
+     src="/img/chart1.jpg" alt="chart image" />
+      <img class="chart-list-img" 
+     src="/img/chart2.jpg" alt="chart Image" />
+      <img class="chart-list-img" 
+     src="/img/chart1.jpg" alt="chart Image" />
+      <img class="chart-list-img" 
+     src="/img/chart2.jpg" alt="chart Image" />
+   </div>
+   <div id="dots_div">
+     <div class="dots"></div>
+       <div class="dots"></div>
+        <div class="dots"></div>
+        <div class="dots"></div>
+       <div class="dots"></div>
+        <div class="dots"></div>
+      
+   </div>
+   </section>
+   <section id="org-chart-sec-3">
+    <h2>
+      All Charts 
+    </h2>
+    <img 
+    src="/img/chart1.jpg" 
+    alt="chart Image" />
+    <img 
+    src="/img/chart2.jpg"
+    alt="chart Image" />
+    <img 
+    src="/img/chart1.jpg" 
+    alt="chart Image" />
+    <img 
+    src="/img/chart2.jpg"
+    alt="chart Image" />
+    <img 
+    src="/img/chart1.jpg" 
+    alt="chart Image" />
+    <img 
+    src="/img/chart2.jpg"
+    alt="chart Image" />
+   </section>
+ </main>
+
+ {{>Footer}}
+ 
+<script>
+
+  let btn= document.querySelector('#view-add-the-charts-btn');
+  btn.addEventListener('click', function Open(e) {
+    try {
+    let section= document.getElementById("org-chart-sec-3");
+    section.setAttribute('style','display :flex');
+    console.log(section)
+      } catch (error) {
+        alert('eror');
+      }
+      }) ;
+
+
+  document.querySelectorAll('.chart-list-img').forEach(e => {
+    e.addEventListener('click',()=>{
+      document.getElementById('---main--chart-img').src = e.src;
+    })
+  })
+  
+</script>
+</body>
+
+</html>

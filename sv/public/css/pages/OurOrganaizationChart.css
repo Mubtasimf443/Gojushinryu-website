@@ -1,0 +1,241 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+*{
+  box-sizing :border-box;
+  
+}
+body{
+  background: whitesmoke;
+}
+main{
+  padding-bottom: 2em;
+}
+h1{
+  font-size: 24px;
+  font-weight: 500;
+}
+h2 {
+  font-size : 20px;
+  font-weight: 500;
+}
+#org-chart-sec-1 {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  column-gap: 30px;
+  row-gap: 20px;
+  padding:2.5em 0px 1.5em 0px;
+}
+#org-chart-sec-1-img-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  width: 380px;
+}
+#org-chart-sec-1-img-div > img {
+  min-width: 420px;
+  width:fit-content ;
+  min-height:280px;
+  height: fit-content;
+  border: none;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, .07);
+  object-fit: contain;
+  object-position: center center;
+}
+#org-chart-sec-1-info-action-div {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: start;
+  width: 420px;
+  row-gap: 10px;
+}
+#org-chart-sec-1-info-action-div  > button{
+  background: var(--main-cl);
+  padding: 7px 16px;
+  
+  font-weight: 500;
+  color: #fff;
+  border: none;
+}
+#org-chart-sec-1-info-action-div  > button > a {
+  text-decoration: none;
+  color: inherit;
+  font-weight: inherit;
+  font-size: inherit;
+}
+#org-chart-sec-1-info-action-div p {
+  color:#000000C7;
+  font-weight: 500;
+}
+#org-chart-sec-1-action-div-list-div {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: start;
+  row-gap: 6px;
+}
+#org-chart-sec-1-action-div-list-div >.icon-box {
+  display: flex;
+  flex-direction: row;
+  justify-content:left;
+  align-items: center;
+  column-gap: 5px;
+}
+#org-chart-sec-1-action-div-list-div  >.icon-box > i{
+    font-size: 14px;
+    color: #000000DE;
+} 
+#org-chart-sec-1-action-div-list-div  >.icon-box > b{
+  font-weight: 500;
+  font-size: 14px;
+  color: #000000DE;
+}
+#org-chart-sec-2 {
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: center;
+  row-gap: 9px;
+  padding-bottom: 1.6em;
+}
+#org-chart-sec-2 > h2 {
+  width: 420px;
+  display: flex;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: start;
+  text-align: left;
+}
+#org-chart-sec-2-chart-list-div {
+  display: flex;
+  flex-direction: row;
+  justify-content:left;
+  align-items: center;
+  column-gap: 10px;
+  width: 420px;
+  overflow-x:scroll ;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+.chart-list-img{
+  width: 205px;
+  height: 200px;
+}
+#dots_div {
+  display: flex;
+  flex-direction: row;
+  justify-content:left;
+  align-items: center;
+  width: 200px;
+  column-gap: 11px;
+  height: 60px;
+}
+.dots{
+  background: #D7C191;
+  border-radius :50%;
+  width:15px;
+  height: 15px;
+}
+.dots.active{
+  background: #C39226;
+}
+#org-chart-sec-3 {
+  display: none;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap:16px;
+  padding-bottom:1.5em;
+}
+#org-chart-sec-3 > img {
+  
+  min-height:280px;
+  height: fit-content;
+  border: none;
+  object-fit: contain;
+  object-position: center center;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, .07);
+}
+@media screen and (max-width: 650px) {
+  #org-chart-sec-3 > img {
+    max-width: 420px;
+
+  }
+}
+#dots_div {
+display: none;
+}
+
+@media screen and (min-width : 651px ) and (max-width:799px) { 
+  h1{
+  font-size: 28px;
+  font-weight: 600;
+  }
+  h2 {
+  font-size : 23px;
+  font-weight: 600;
+}
+#org-chart-sec-2-chart-list-div {
+ width: 90vw;
+}
+}
+@media screen and (min-width : 800px) {
+  #org-chart-sec-1 {
+    column-gap: 50px;
+    flex-direction: row;
+  }
+
+  #org-chart-sec-1-img-div {
+    width: 600px;
+  }
+  #org-chart-sec-1-img-div > img {
+    min-width:40vw;
+    max-width: 40vw;
+  }
+  #org-chart-sec-1-info-action-div {
+    width: 500px;
+  }
+  h1{
+    font-size: 28px;
+    font-weight: 500;
+    }
+    h2 {
+    font-size : 23px;
+    font-weight: 500;
+  }
+  #org-chart-sec-2-chart-list-div {
+  width: 80vw;
+ }
+ #org-chart-sec-2 > h2 {
+  width: 80vw;
+ }
+
+
+  #dots_div {
+    column-gap: 14px;
+  }
+ .dots {
+     width:15px;
+     height: 15px;
+ }
+ #org-chart-sec-3{
+  display: none;
+  flex-direction: column;
+
+  row-gap: 2em;
+  padding-bottom: 2em;
+ }
+ #org-chart-sec-3 > img {
+  width:700px; 
+  opacity: 1;
+  object-fit: cover;
+  object-position: center center;
+}
+
+}
