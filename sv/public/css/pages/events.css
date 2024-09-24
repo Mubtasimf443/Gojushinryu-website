@@ -1,0 +1,177 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+Insha Allah,  By His Marcy I will Gain Success 
+*/
+*{
+    box-sizing: border-box;
+}
+#banner{
+    min-height: 20em ;
+    background: url('/img/samurai4.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat:no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-image-slice: fill 1;
+    border-image-source: linear-gradient(to right,
+     rgba(0, 0, 0, 0.474) ,
+     rgba(0, 0, 0, 0.712),
+    rgba(0, 0, 0, 0.5));
+    box-sizing: content-box;
+    position: relative;;
+  }
+#banner > h1 {
+    font-size: 28px;
+    color: #fff;
+    position: relative;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+#events_sec{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    padding:3em;
+}
+.event{
+    width: 450px;
+    height: 400px;
+    display:flex;
+    flex-direction: column;
+    justify-content:flex-start;
+    align-items:start;
+    border-radius: 10px;
+    background: white;
+    box-shadow: var(--fev-box-shadow);overflow: hidden;
+}
+.event >div:first-child{
+    width: 100%;
+    position: relative;
+    height: 240px;
+    background: url('/img/join.jpg');
+    background-size: cover;
+    background-position: top center;
+    background-repeat: no-repeat;
+    /* border-image-slice: fill 1;
+    border-image-source: linear-gradient(to left ,rgba(0, 0, 0, 0.123) ,rgba(0, 0, 0, 0.122)); */
+}
+
+.event >div:first-child>div {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width:75px;
+}
+.event>div:first-child>div>a{
+    background:rgba(255, 255, 255, 0.37);
+    color: white;
+    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.048);
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: none;
+    text-decoration:none;
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.event>div:first-child>div>a>i{
+    color: white;
+    font-size: 18px;
+}
+
+
+.event>div:last-child{
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    padding: 14px;
+
+}
+.event>div:last-child>div{
+    padding:auto;
+}
+.event>div:last-child>div:first-child{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    left: 14px;
+    row-gap: 3px;
+    width: 80px;
+}
+.event>div:last-child>div:first-child>b{
+    font-weight: 500;
+    font-size: 25px;
+    position: relative;
+    left: -15px;
+    
+}
+
+
+.event>div:last-child>div:first-child>span{
+    font-weight: 500;
+    font-size: 14px;
+    position: relative;
+    right: -15px;
+    color: var(--main-cl);
+}
+
+.event>div:last-child>div:last-child{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    row-gap: 7px;
+    width: 300px;
+}
+
+.event>div:last-child>div:last-child>h2{
+    font-size: 16.7px;
+    font-weight: 500;
+    text-transform: uppercase;
+    word-spacing: 4px;
+}
+
+.event>div:last-child>div:last-child>p{
+    font-weight: 500;
+    text-align: left;
+    font-size: 13.9px;
+    word-spacing:4px;
+}
+
+.event p::after{
+    content: "...";
+    color: var(--main-cl);
+}
+
+
+.fa-solid.fa-heart{
+    color: rgb(190, 21, 78);
+}
+@media screen and (max-width:400px) {
+      
+    
+    .event>div:last-child{
+        flex-wrap: wrap;
+        row-gap: 15px;
+    }
+}

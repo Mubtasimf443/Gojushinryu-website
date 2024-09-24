@@ -42,3 +42,7 @@ button ,i{
 main{
     min-height: 80vh;
 }
+
+body{
+    background: whitesmoke;
+}

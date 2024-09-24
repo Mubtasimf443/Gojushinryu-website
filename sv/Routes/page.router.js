@@ -10,6 +10,7 @@ pageRouter.get('/Membership-application', (req, res) => res.render('MembershipFr
 pageRouter.get('/about-us/goju-shin-ryo', (req, res) => res.render('about-us-gsr'))
 pageRouter.get('/about-us/school-of-tradistional-martial-arts', (req, res) => res.render('about-us-smta'))
 pageRouter.get('/dates',(req,res)=>res.render('calender'))
+pageRouter.get('/events',(req,res)=>res.render('events'))
 pageRouter.get('/auth/:name',(req,res)=> {
     if (req.params.name === 'register') return res.render('sign-up');
     if (req.params.name === 'sign-up') return res.render('sign-up');
