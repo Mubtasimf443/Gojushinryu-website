@@ -15,7 +15,7 @@ InshaAllah, By his Marcy I will Gain Success
 
 
     document.addEventListener('click', e => {
-        if (e.target.tagName === 'A') e.preventDefault() 
+        if (e.target.tagName === 'A' && e.target.parentNode.className ==='st-nav-main') e.preventDefault() 
         if (e.target.id ==='massage_href') return ChangeSection(1) ;
         if (e.target.id ==='orders_href') return ChangeSection(4) ;
         if (e.target.id ==='info_href') return ChangeSection(2) ;

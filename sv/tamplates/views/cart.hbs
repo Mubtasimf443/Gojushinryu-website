@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cart Page</title>
+    {{>Links}}
+    <link rel="stylesheet" href="/css/shop/cart.css">
+    <script defer src="/js/cart.js"></script>
+    
+</head>
+<body>
+   {{>whiteHeader}}
+{{>shopheader}}
+
+    <main class="cart-container">
+        <table class="cart-items">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Subtotal</th>
+                    <th>Remove</th>
+                </tr>
+            </thead>
+            <tbody id="cart-body">
+                <!-- Cart items will be injected here -->
+            </tbody>
+        </table>
+
+        <div class="cart-summary">
+            <h3>Cart Summary</h3>
+            <div class="summary-item">
+                <span>Total Items:</span>
+                <span id="total-items">0</span>
+            </div>
+            <div class="summary-item">
+                <span>Total Price:</span>
+                <span id="total-price">$0.00</span>
+            </div>
+            <button class="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </main>
+
+  {{>Footer}}
+</body>
+</html>

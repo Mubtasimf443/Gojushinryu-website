@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Image & Video Sliders</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .slider-container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .slider {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+        .slider-item {
+            min-width: calc(100% / 3); /* Display 3 items at a time */
+            cursor: pointer;
+        }
+        .slider-item img, .slider-item iframe {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+        }
+        /* Popup Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            max-width: 90%;
+            max-height: 80%;
+        }
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+        @media (max-width: 768px) {
+            .slider-item img, .slider-item iframe {
+                height: 200px;
+            }
+            .slider-item {
+                min-width: calc(100% / 1); /* Show 1 item at a time on mobile */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Image Slider</h1>
+    <div class="slider-container">
+        <div class="slider" id="imageSlider">
+            <!-- Image 1 -->
+            <div class="slider-item" data-type="image" data-src="https://via.placeholder.com/1000x500/FF5733/ffffff?text=Image+1">
+                <img src="https://via.placeholder.com/1000x500/FF5733/ffffff?text=Image+1" alt="Image 1">
+            </div>
+            <!-- Image 2 -->
+            <div class="slider-item" data-type="image" data-src="https://via.placeholder.com/1000x500/33FF57/ffffff?text=Image+2">
+                <img src="https://via.placeholder.com/1000x500/33FF57/ffffff?text=Image+2">
+            </div>
+            <!-- Image 3 -->
+            <div class="slider-item" data-type="image" data-src="https://via.placeholder.com/1000x500/5733FF/ffffff?text=Image+3">
+                <img src="https://via.placeholder.com/1000x500/5733FF/ffffff?text=Image+3">
+            </div>
+            <!-- Image 4 -->
+            <div class="slider-item" data-type="image" data-src="https://via.placeholder.com/1000x500/FF3333/ffffff?text=Image+4">
+                <img src="https://via.placeholder.com/1000x500/FF3333/ffffff?text=Image+4">
+            </div>
+        </div>
+    </div>
+
+    <h1>Video Slider</h1>
+    <div class="slider-container">
+        <div class="slider" id="videoSlider">
+            <!-- Video 1 -->
+            <div class="slider-item" data-type="video" data-src="https://www.youtube.com/embed/VIDEO_ID1">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID1" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <!-- Video 2 -->
+            <div class="slider-item" data-type="video" data-src="https://www.youtube.com/embed/VIDEO_ID2">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID2" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <!-- Video 3 -->
+            <div class="slider-item" data-type="video" data-src="https://www.youtube.com/embed/VIDEO_ID3">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID3" frameborder="0" allowfullscreen></iframe>
+            </div>
+            <!-- Video 4 -->
+            <div class="slider-item" data-type="video" data-src="https://www.youtube.com/embed/VIDEO_ID4">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID4" frameborder="0" allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Popup -->
+    <div id="popupModal" class="modal">
+        <span class="close-btn">&times;</span>
+        <img class="modal-content" id="popupImage" style="display: none;">
+        <iframe class="modal-content" id="popupVideo" frameborder="0" allowfullscreen style="display: none;"></iframe>
+    </div>
+
+    <script>
+        // Auto Slide Functionality
+        let imageIndex = 0;
+        let videoIndex = 0;
+
+        function autoSlide(slider, type, itemsToShow) {
+            const items = slider.querySelectorAll('.slider-item');
+            if (type === 'image') {
+                imageIndex = (imageIndex + 1) % (items.length - itemsToShow + 1);
+                slider.style.transform = 'translateX(' + (-imageIndex * (100 / itemsToShow)) + '%)';
+            } else if (type === 'video') {
+                videoIndex = (videoIndex + 1) % (items.length - itemsToShow + 1);
+                slider.style.transform = 'translateX(' + (-videoIndex * (100 / itemsToShow)) + '%)';
+            }
+        }
+
+        setInterval(() => autoSlide(document.getElementById('imageSlider'), 'image', 3), 3000); // Auto-slide images
+        setInterval(() => autoSlide(document.getElementById('videoSlider'), 'video', 3), 5000); // Auto-slide videos
+
+        // Modal Popup
+        const modal = document.getElementById("popupModal");
+        const popupImage = document.getElementById("popupImage");
+        const popupVideo = document.getElementById("popupVideo");
+        const closeBtn = document.querySelector(".close-btn");
+
+        document.querySelectorAll('.slider-item').forEach( item => {
+            item.addEventListener('click', function() {
+                const type = this.getAttribute('data-type');
+                const src = this.getAttribute('data-src');
+                if (type === 'image') {
+                    popupImage.src = src;
+                    popupImage.style.display = "block";
+                    popupVideo.style.display = "none";
+                } else if (type === 'video') {
+                    popupVideo.src = src;
+                    popupVideo.style.display = "block";
+                    popupImage.style.display = "none";
+                }
+                modal.style.display = "flex";
+            });
+        });
+
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = "none";
+            popupVideo.src = ""; // Stop video when closing
+        });
+
+        window.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.style.display = "none";
+                popupVideo.src = ""; // Stop video when closing
+            }
+        });
+    </script>
+
+</body>
+</html>

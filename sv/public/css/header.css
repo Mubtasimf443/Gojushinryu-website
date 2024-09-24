@@ -2,11 +2,10 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
 InshaAllah, By his marcy I will Gain Success 
 */
-
+/* 
 @media screen and (min-width :200px ) and (max-width :630px){
 
     
-/*-------------------- Header -------------------------*/
 
 header {
     display: flex;
@@ -101,7 +100,6 @@ header > .m_nav {
 
 
 @media screen and (min-width :631px ) and (max-width :1000px){
-/*-------------------- Header -------------------------*/
 
 header {
     display: flex;
@@ -163,11 +161,11 @@ header > .m_nav_i , header > .m_nav {
     display: none;
     }
 
-}
+} */
 
 
 
-@media screen and (min-width :1000px ) {
+/* @media screen and (min-width :1000px ) { */
     /*-------------------- Header -------------------------*/
     header{
         display: flex;
@@ -203,22 +201,23 @@ header > .m_nav_i , header > .m_nav {
     #header {
         display: flex;
         flex-direction: row;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
         width: 100%;
         height: auto;
         background: transparent;
         position: absolute;
         z-index: 300;
-        padding:14px 0px;
+        padding:14px 4.5em;
         top: 3.5em;
+        box-sizing: border-box;
     }
     #header > .hd-icon-div{
         display: flex;
         flex-direction: row;
         justify-content: left;
         align-items: center;
-        width: 16em;
+        /* width: 16em; */
 
     }
     .hd-icon{
@@ -230,7 +229,7 @@ header > .m_nav_i , header > .m_nav {
         flex-direction: row;
         justify-content: right;
         align-items: center;
-        width: 38.5em;
+        /* width: 38.5em; */
         column-gap: 1.4em;
     }
     #header > nav > div{
@@ -252,7 +251,7 @@ header > .m_nav_i , header > .m_nav {
         flex-direction: row;
         justify-content: right;
         align-items:center;
-        width: 16em;
+        /* width: 16em; */
         
     }
      
@@ -309,7 +308,7 @@ header > .m_nav_i , header > .m_nav {
         border: none;
     }
 
-}
+
 
 
 

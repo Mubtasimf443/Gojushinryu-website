@@ -2,7 +2,9 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
 InshaAllah, By his marcy I will Gain Success 
 */
-
+*{
+    box-sizing: border-box;
+}
 
 
 body {
@@ -10,43 +12,13 @@ body {
     color: #333;
 }
 
-#header_2  {
-    color: white;
-    background: var(--main-cl);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: space-between;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
-    height: 60px;
-}
-
-#header_2> h1 {
-    font-size: 1.8em;
-    margin-left: 20px;
-    text-wrap: nowrap;
-    font-weight: 500;
-}
-
-#header_2> .icons {
-    width: 80px;
-    column-gap: 16px;
-}
-#header_2 > .icons > i{
-    
-    font-size: 22px;
-    cursor: pointer;
-}
-#header_2 > .icons > img {
-    width: 30px;
-    cursor: pointer;
-}
 
 .product-container {
     display: flex;
     justify-content: space-around;
     padding: 40px;
     flex-wrap: wrap;
+    
 }
 
 .product-card {
@@ -60,18 +32,19 @@ body {
     border-radius: 12px;
     padding: 20px;
     margin: 15px;
-    width: 250px;
+    width: 300px;
     text-align: left;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     height: 430px;
+    box-sizing: border-box;
 }
 
 .product_img {
-    width: 250px;
-    height: 280px;
+    width: 100%;
+    height: 300px;
     border-radius: 8px;
-    margin-bottom: 15px;
+    margin-bottom: 8px;
     object-fit: cover;
     object-position: top left;
     overflow: hidden;
@@ -92,7 +65,7 @@ body {
 height: auto;
     max-height: 80px;
     font-weight: 500; 
-    margin-top: 10px; 
+    margin-top: 5px; 
 }
 .price {
     font-size: 1.6em;

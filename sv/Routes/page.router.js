@@ -19,8 +19,18 @@ pageRouter.get('/auth/:name',(req,res)=> {
     if (req.params.name === 'reset-password') return res.render('reset-password');
     return res.render('login');
 })
+pageRouter.get('/shop',(req,res)=>res.render('shop'))
 pageRouter.get('/shop/:name',(req,res)=> {
+    if (req.params.name === 'liked-products') return res.render('LikedProduct');
+    if (req.params.name === 'cart') return res.render('cart');
     return res.render('shop');
+
+})
+
+pageRouter.get('/media/:name',(req,res)=> {
+    // if (req.params.name === 'video') return res.render('video');
+    return res.render('images');
+
 })
 pageRouter.get('/grand-master-counchil',(req,res)=> {
     return res.render('grand-master-counchil')
