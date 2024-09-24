@@ -2,18 +2,13 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
 Insha Allah,  By your Marcy Ya Allah
 */
-
 :root {
     --mob--width-box : 430px;
     --f-massage-bg:rgb(121, 95, 61);
-  }
-
+}
 * {
     box-sizing: border-box;
 }
-
-
-
 #st-corner {
     display: flex;
     flex-direction: row;
@@ -37,7 +32,6 @@ a{
     color:inherit;
 }
 /*----------------------------sidebar----------------------*/
-
 .sidebar-div{
     display: flex;
     flex-direction: column;
@@ -50,13 +44,13 @@ a{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: start;
     width: var(--mob--width-box) ; 
-    height: 400px;
+    height: 370px;
     background: #fff;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
     border-radius :8px;
-    row-gap: 20px;
+    row-gap: 12px;
     padding: 1.4em 1.75em;
   }
    .st-bio > img {
@@ -65,27 +59,26 @@ a{
     object-fit: cover;
     object-position: top center;
     border-radius: 50%;
-    margin-bottom: 10px;
   }
   .st-bio > h2{
     font-weight: 500;
-    font-style: 20px;
+    font-style: 23px;
     max-width: 350px;
+    text-align: justify;
   }
 .st-bio > p {
     font-weight: 500;
-    color: black;
+    color: #000;
     font-style: 15px;
     max-width: 350px;
-    text-align: center;
-    margin: 5px 0px;
+    text-align: justify;
   }
 .st-bio > .plans{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 280px;
+    width: 100%;
  
  }
 .st-bio >.plans > span {

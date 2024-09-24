@@ -15,7 +15,6 @@ Allah, I believe in you,And You are enough for me
   justify-content: flex-start;
   row-gap:20px;
 }
-
 .event-upload-input-box {
   display: flex;
   flex-direction: row;
@@ -89,7 +88,6 @@ Allah, I believe in you,And You are enough for me
   align-items: center;
   text-align: center;
 }
-
 .upload_sec_env_img_inp_box {
   display: flex;
   flex-direction: row;
@@ -108,7 +106,6 @@ Allah, I believe in you,And You are enough for me
 }
 .upload_sec_env_img_inp_box > label {
   border: 2px solid lightgrey;
-  
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -118,7 +115,6 @@ Allah, I believe in you,And You are enough for me
   height: 150px;
   border-radius :7px;
 }
-
 .upload_sec_event_tumb_img_inp_box >.event_section_event_image_upload_image {
   width: 150px;
   height: 150px;

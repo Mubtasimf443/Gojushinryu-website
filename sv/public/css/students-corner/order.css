@@ -1,0 +1,83 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+div{
+    box-sizing: border-box;
+}
+.gm-order-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    width: 100%;
+    row-gap: 23px;
+}
+.gm-order-box h2 {
+    font-weight: 500px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.gm-order-box> .orders {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    width: 100%;
+    height: fit-content;
+    box-shadow: var(--fev-box-shadow);
+}
+
+.orders .order{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    padding: 12px 19px;
+    border-bottom:2px solid rgba(0, 0, 0, 0.096) ;
+}
+
+.orders .order:first-child{
+    background-color: var(--main-cl);
+    color: white;
+    border: none;
+    padding:16px 19px;
+}
+
+img[alt="ordered product"]{
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+}
+
+.order-status{
+    padding:10px;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+div[completed]{
+    background: green;
+    color: white;
+
+}
+
+div[Ondelivery]{
+    background:var(--main-cl);
+    color: white;
+}
+
+div[pending]{
+    background:#666;
+    color: white;
+}
+
+
+div[cancelled]{
+    background:red;
+    color: white;
+}
