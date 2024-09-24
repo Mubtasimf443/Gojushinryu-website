@@ -49,4 +49,4 @@ app.get('*', (req, res) => res.status(404).render('404'))
 
 
 
-app.listen(4001, e=> log('SubhanAllah server is working'))
+app.listen(4000, e=> log('SubhanAllah server is working'))

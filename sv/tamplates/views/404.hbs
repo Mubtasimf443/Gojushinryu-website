@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -9,13 +10,30 @@
     Can not find the page 
   </title>
   {{>Links}}
-  <style>
-  
-</style>
+
+  <link rel="stylesheet" href="/css/pages/404.css">
 </head>
 
 <body>
- <h1>Page Not Found</h1>
+
+  {{>Header}}
+  <main>
+<section id="banner">
+<div class="container">
+  <h2>404 ERROR</h2>
+  <P>
+    Sorry ,We Can Not Find The Page <SPAn style="color: var(--main-cl);" class="w-url"></SPAn> . Please try again . <br> Thanks
+  </P>
+</div>
+</section>
+
+  </main>
+  {{>Footer}}
 </body>
+<script>
+window.addEventListener('load',e =>{
+  document.querySelector('.w-url').innerHTML =`"`+ this.location.href+ `"`
+  })
+</script>
 
 </html>

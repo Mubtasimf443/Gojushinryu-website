@@ -1,32 +1,67 @@
 /*  بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  */ 
 
-
-
-.container{
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  min-height: 80vh;
-}
-
-
-.txt_box{
+#banner{
+  min-height: 20em ;
+  background: url('/img/samurai4.jpg');
+  background-position: center center;
+  background-size: cover;
+  background-repeat:no-repeat;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  align-items: center;
+  border-image-slice: fill 1;
+  border-image-source: linear-gradient(to right,
+   rgba(0, 0, 0, 0.474) ,
+   rgba(0, 0, 0, 0.712),
+  rgba(0, 0, 0, 0.5));
+  box-sizing: content-box;
+  position: relative;;
+}
+#banner > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   align-items: start;
-  row-gap: 0.6em;
+  box-sizing: border-box;
+  padding:1em 1em;
+  position:absolute ;
+  bottom: 20px;
+  background: rgba(255, 255, 255, 0.103);
+  border: 2px solid rgba(255, 255, 255, 0.719);
+  border-radius: 7px;
+  row-gap: 4px;
 }
 
-.img{
-  width: 22em;
+
+
+#banner>div>h2 {
+  font-size: 18px;
+  color: #fff;
+  position: relative;
+  text-transform: uppercase;
+  font-weight: 500;
+
+}
+#banner>div>p{
+  color: white;
+  font-size: 14.6px;
+  text-transform: capitalize;list-style: 1.4em;
+
 }
 
 
-.anchor{
-  color: blue;
+#banner >h2 {
+  color: #fff;
+  font-size: 1.4em;
+  position: relative;
+  top: -1.5em;
+  opacity:.85;
 }
+
+
+
+
 
 
 
