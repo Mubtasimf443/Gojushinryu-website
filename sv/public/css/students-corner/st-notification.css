@@ -1,0 +1,82 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+
+#st-notification{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+    border-radius :8px ;  
+    box-sizing: border-box;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 13px 24px;
+}
+
+#st-notification>h2 {
+    font-size: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+  .Notification-box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    box-sizing: border-box;
+    width: 100%;
+    padding:7px 0px;
+    row-gap: 20px;
+  }
+  .Notification-massage-cobtainer {
+    display: flex ;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:center;
+    position: relative;
+    border-radius :8px;
+    background: #F2F0F0;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    width: 650px;
+    height:400px;
+    padding: 15px 15px;
+    row-gap:8px;
+  }
+  .Notification-massage-cobtainer > div {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 5px;
+    width: 100%;
+    padding-left: 0px;
+    align-items: start;    
+  }
+  .Notification-massage-cobtainer > div > div {
+
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    width: 500px;
+    padding: 16px;
+    border-radius: 0px 7px 7px 7px
+    ;
+    row-gap: 5px;
+     background:white;
+    min-height: 20px;
+    box-shadow: var(--fev-box-shadow);
+  }
+
+  .notification-paragrap{
+
+     text-align: left;
+    color: #666;
+  }
+

@@ -4,9 +4,9 @@ Insha Allah,  By your Marcy Ya Allah
 */
 
 :root {
-    --mob--width-box : 430px;
-    --f-massage-bg:rgb(121, 95, 61);
-  }
+  --mob--width-box : 430px;
+  --f-massage-bg:rgb(121, 95, 61);
+}
   
   body{
     background:whitesmoke;
@@ -143,6 +143,7 @@ Insha Allah,  By your Marcy Ya Allah
     color: #fff;
     border: none;
   }
+
   .chat-box-container {
     display: flex;
     flex-direction: column;
@@ -169,8 +170,8 @@ Insha Allah,  By your Marcy Ya Allah
     position: relative;
    border-radius :8px;
     background: #F2F0F0;
-    overflow-x: scroll;
-    overflow-y: hidden;
+    overflow-y: scroll;
+    overflow-x: hidden;
   }
   .chat-massage-cobtainer > div {
     width: 100%;
@@ -186,7 +187,6 @@ Insha Allah,  By your Marcy Ya Allah
     align-items: start;
     justify-content: flex-start;
   }
-  
   /* .t-massage{
    
   }
@@ -383,7 +383,6 @@ Insha Allah,  By your Marcy Ya Allah
     .chat-massage-cobtainer > div > div{
       width: 370px;
       padding: 7.5px;
-      
     }
     .t-massage{
       padding-left: 0px;

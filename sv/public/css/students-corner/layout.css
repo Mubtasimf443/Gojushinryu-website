@@ -1,0 +1,166 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+:root {
+    --mob--width-box : 430px;
+    --f-massage-bg:rgb(121, 95, 61);
+  }
+
+* {
+    box-sizing: border-box;
+}
+
+
+
+#st-corner {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: start;
+    flex-wrap: wrap;
+    column-gap: 34px;
+    padding:3em 0px 4em 0px ;
+    row-gap: 25px;
+}
+h1{
+    font-weight: 500;
+    font-size: 24px
+}
+h2 {
+    font-weight: 500;
+    font-size: 20px
+}
+a{
+    text-decoration: none;
+    color:inherit;
+}
+/*----------------------------sidebar----------------------*/
+
+.sidebar-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    row-gap: 2em;
+  }
+
+  .st-bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: var(--mob--width-box) ; 
+    height: 400px;
+    background: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+    border-radius :8px;
+    row-gap: 20px;
+    padding: 1.4em 1.75em;
+  }
+   .st-bio > img {
+    width: 140px;
+    height:140px;
+    object-fit: cover;
+    object-position: top center;
+    border-radius: 50%;
+    margin-bottom: 10px;
+  }
+  .st-bio > h2{
+    font-weight: 500;
+    font-style: 20px;
+    max-width: 350px;
+  }
+.st-bio > p {
+    font-weight: 500;
+    color: black;
+    font-style: 15px;
+    max-width: 350px;
+    text-align: center;
+    margin: 5px 0px;
+  }
+.st-bio > .plans{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 280px;
+ 
+ }
+.st-bio >.plans > span {
+font-size: 15.5px;
+font-weight: 500;
+}
+.st-bio > .st-org {
+    color: var(--main-cl);
+    text-align: justify;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+.sidebar-div  .ff-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+}
+.sidebar-div .ff-div div{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    row-gap:7px;
+}
+.ff-div span{
+    font-weight: 500;
+    font-size: 16px;
+    text-align: center;
+}
+.ff-div b {
+    text-transform: uppercase;
+    text-align: center;
+}
+.st-nav-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    row-gap: 20px;
+   width: 420px;
+}
+.st-nav-main > a {
+    padding: 20px ;
+   background: white;
+    box-shadow: var(--fev-box-shadow);
+    border-radius: 6px;
+    width: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center
+    ;position: relative;
+}
+.st-nav-main > a > button>i{
+    color: #666;
+    font-size: 18px;
+}
+.st-nav-main a >  button{
+  background: inherit;
+  border: none;
+  
+    position: absolute;
+    right: 20px;
+    display: inline-block;
+}
+.st-nav-main h2 {
+    text-transform: uppercase;
+    font-size: 16.8px;
+    font-weight: 600;
+}
+
+.st_main{
+  width:700px;
+  row-gap: 19px;
+}

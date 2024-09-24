@@ -13,75 +13,6 @@ let dirName = path.dirname(__filename)
 let fileRouter = Router();
 
 // css files
-
-fileRouter.get('/css/home/:name',(req, res) => {
-    try {
-       return res.status(200).sendFile(path.resolve(dirName, '../public/css/home/' + req.params.name))
-    } catch (error) {
-        log(error)
-        return res.sendStatus(404)
-    }
-})
-
-
-fileRouter.get('/css/about_us/:name',(req, res) => {
-    try {
-       return res.status(200).sendFile(path.resolve(dirName, '../public/css/about_us/' + req.params.name))
-    } catch (error) {
-        log(error)
-        return res.sendStatus(404)
-    }
-})
-
-
-
-fileRouter.get('/css/pages/:name',(req, res) => {
-    try {
-       return res.status(200).sendFile(path.resolve(dirName, '../public/css/pages/' + req.params.name))
-    } catch (error) {
-        log(error)
-        return res.sendStatus(404)
-    }
-})
-
-
-
-
-
-fileRouter.get('/css/shop/:name',(req, res) => {
-    try {
-       return res.status(200).sendFile(path.resolve(dirName, '../public/css/shop/' + req.params.name))
-    } catch (error) {
-        log(error)
-        return res.sendStatus(404)
-    }
-})
-
-
-
-
-fileRouter.get('/css/Grand-master-counchil/:name',(req, res) => {
-    try {
-       return res.status(200).sendFile(path.resolve(dirName, '../public/css/Grand-master-counchil/' + req.params.name))
-    } catch (error) {
-        log(error)
-        return res.sendStatus(404)
-    }
-})
-
-
-
-
-fileRouter.get('/img/allience/:name',(req, res) => {
-    try {
-       return res.status(200).sendFile(path.resolve(dirName, '../public/img/allience/' + req.params.name))
-    } catch (error) {
-        log(error)
-        return res.sendStatus(404)
-    }
-})
-
-
 fileRouter.get('/css/:name', (req, res) => {
     try {
        return res.status(200).sendFile(path.resolve(dirName, '../public/css/' + req.params.name))
@@ -90,9 +21,54 @@ fileRouter.get('/css/:name', (req, res) => {
         return res.sendStatus(404)
     }
 })
-
-
-
+fileRouter.get('/css/home/:name',(req, res) => {
+    try {
+       return res.status(200).sendFile(path.resolve(dirName, '../public/css/home/' + req.params.name))
+    } catch (error) {
+        log(error)
+        return res.sendStatus(404)
+    }
+})
+fileRouter.get('/css/about_us/:name',(req, res) => {
+    try {
+       return res.status(200).sendFile(path.resolve(dirName, '../public/css/about_us/' + req.params.name))
+    } catch (error) {
+        log(error)
+        return res.sendStatus(404)
+    }
+})
+fileRouter.get('/css/pages/:name',(req, res) => {
+    try {
+       return res.status(200).sendFile(path.resolve(dirName, '../public/css/pages/' + req.params.name))
+    } catch (error) {
+        log(error)
+        return res.sendStatus(404)
+    }
+})
+fileRouter.get('/css/shop/:name',(req, res) => {
+    try {
+       return res.status(200).sendFile(path.resolve(dirName, '../public/css/shop/' + req.params.name))
+    } catch (error) {
+        log(error)
+        return res.sendStatus(404)
+    }
+})
+fileRouter.get('/css/Grand-master-counchil/:name',(req, res) => {
+    try {
+       return res.status(200).sendFile(path.resolve(dirName, '../public/css/Grand-master-counchil/' + req.params.name))
+    } catch (error) {
+        log(error)
+        return res.sendStatus(404)
+    }
+})
+fileRouter.get('/css/students-corner/:name',(req, res) => {
+    try {
+       return res.status(200).sendFile(path.resolve(dirName, '../public/css/students-corner/' + req.params.name))
+    } catch (error) {
+        log(error)
+        return res.sendStatus(404)
+    }
+})
 
 fileRouter.get('/img/abs-slide/:name', (req, res) => {
     try {
@@ -102,9 +78,14 @@ fileRouter.get('/img/abs-slide/:name', (req, res) => {
         return res.sendStatus(404)
     }
 })
-
-
-
+fileRouter.get('/img/allience/:name',(req, res) => {
+    try {
+       return res.status(200).sendFile(path.resolve(dirName, '../public/img/allience/' + req.params.name))
+    } catch (error) {
+        log(error)
+        return res.sendStatus(404)
+    }
+})
 fileRouter.get('/img/:name', (req, res) => {
     try {
        return res.status(200).sendFile(path.resolve(dirName, '../public/img/' + req.params.name))
@@ -113,8 +94,6 @@ fileRouter.get('/img/:name', (req, res) => {
         return res.sendStatus(404)
     }
 })
-
-
 fileRouter.get('/js/:name', (req, res) => {
     try {
        return res.status(200).sendFile(path.resolve(dirName, '../public/js/' + req.params.name))
@@ -123,9 +102,6 @@ fileRouter.get('/js/:name', (req, res) => {
         return res.sendStatus(404)
     }
 })
-
-
-
 fileRouter.get('/icon/:name', (req, res) => {
     try {
        return res.status(200).sendFile(path.resolve(dirName, '../public/icon/' + req.params.name))
@@ -134,9 +110,6 @@ fileRouter.get('/icon/:name', (req, res) => {
         return res.sendStatus(404)
     }
 })
-
-
-
 fileRouter.get('/video/:name', (req, res) => {
     try {
        return res.status(200).sendFile(path.resolve(dirName, '../public/video/' + req.params.name))

@@ -4,8 +4,7 @@ InshaAllah, By his marcy I will Gain Success
 */
 
 
-*{
-    
+*{ 
     font-family:"Libre Franklin",sans-serif ;
     /* font-family: "Libre Franklin", sans-serif; */
     margin: 0px;
@@ -31,6 +30,7 @@ InshaAllah, By his marcy I will Gain Success
     --df-b-w : 2px;
     --df-b-color : #866565 ;
     --gradian-effect :linear-gradient( to right, #00000093, #00000081);
+    --fev-box-shadow:0px 0px 10px rgba(0, 0, 0, 0.07);
 }
 
 

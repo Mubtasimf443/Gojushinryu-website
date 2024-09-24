@@ -27,7 +27,7 @@ pageRouter.get('/grand-master-counchil',(req,res)=> {
 })
 pageRouter.get('/organization-charts',(req,res)=>res.render('OurOrganaizationChart'))
 pageRouter.get('/allience',(req,res)=> res.render('alli'))
-// pageRouter.get('/alli',(req,res)=> res.render('alli'))
+ pageRouter.get('/student-corner',(req,res)=> res.render('student-corner'))
 
 
 
