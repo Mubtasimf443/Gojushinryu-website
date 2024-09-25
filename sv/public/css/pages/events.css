@@ -30,6 +30,9 @@ Insha Allah,  By His Marcy I will Gain Success
     text-transform: uppercase;
     font-weight: 500;
 }
+i{
+    cursor: pointer;
+}
 
 #events_sec{
     display:flex;

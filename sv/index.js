@@ -30,8 +30,8 @@ app.use(express.json());
 
 
 //routes
-
-app.use(fileRouter);
+app.use(express.static(path.resolve(dirName,'./public/')))
+ //app.use(fileRouter);
 app.use('/api/chat',chateRouter);
 app.use('/api/upload',uploadRouter);
 app.use('/api/auth/',authRouter);

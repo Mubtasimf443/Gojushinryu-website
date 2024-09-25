@@ -20,6 +20,7 @@ pageRouter.get('/auth/:name',(req,res)=> {
     if (req.params.name === 'reset-password') return res.render('reset-password');
     return res.render('login');
 })
+pageRouter.get('/contact',(req,res)=>res.render('contact'))
 pageRouter.get('/shop',(req,res)=>res.render('shop'))
 pageRouter.get('/shop/:name',(req,res)=> {
     if (req.params.name === 'liked-products') return res.render('LikedProduct');
