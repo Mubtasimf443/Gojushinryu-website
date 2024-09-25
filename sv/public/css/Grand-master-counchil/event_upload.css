@@ -93,7 +93,7 @@ Allah, I believe in you,And You are enough for me
   flex-direction: row;
   justify-content: left;
   align-items: start;
-  flex-wrap:nowrap;
+  flex-wrap:wrap;
   row-gap: 13px;
   width: 100%;
   padding:10px 10px;
@@ -119,6 +119,7 @@ Allah, I believe in you,And You are enough for me
   width: 150px;
   height: 150px;
   border-radius :7px;
+  object-fit: contain;
   
 }
 @media screen  and (min-width:900px) { 

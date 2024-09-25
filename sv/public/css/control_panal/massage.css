@@ -40,7 +40,7 @@ Insha Allah,  By your Marcy Ya Allah
     background: #F2F0F0;
     overflow-y: scroll;
     overflow-x: hidden;
-    width: 650px;
+    width: 100%;
     height:400px;
     padding: 15px 15px;
     row-gap:8px;
@@ -87,7 +87,6 @@ Insha Allah,  By your Marcy Ya Allah
   .f-massage > div {
     background: #ccc;
     border-radius: 7px 7px 0px 7px
-
   }
   .send-chat-massage-containar{
     display: flex;
@@ -96,7 +95,7 @@ Insha Allah,  By your Marcy Ya Allah
     align-items: center;
     column-gap:6px;
     justify-content: space-between;
-    width: 650px;
+    width: 100%;
   }
   .send-chat-massage-containar > textarea {
     padding:4px 5px;
@@ -114,12 +113,12 @@ Insha Allah,  By your Marcy Ya Allah
     align-items: center;
     height: 35px;
     font-size:14px;
-    width: 600px;
+    width: 90%;
    resize: vertical;
    max-height: 100px;
   }
   .send-chat-massage-containar-btn{
-    background:var(--main-cl);
+    background:black;
     font-weight: 500;
     font-style: 16px;
     border: none;

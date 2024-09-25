@@ -1,0 +1,100 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+.order-list-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    width: 100%;
+    row-gap: 23px;
+}
+.order-list-box b {
+    font-weight: 500px;
+    font-size: 20px;
+    text-transform: uppercase;
+}
+.order-list-box > .orders {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    width: 100%;
+    height: fit-content;
+    box-shadow: var(--fev-box-shadow);
+}
+
+.order-list-box >.orders>.order-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    width: 100%;
+    height:fit-content;
+
+}
+.order-list-box> .orders >.order-box > .order{
+    background-color:white;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    align-items: center;
+    flex-wrap: nowrap;
+    width: 100%;
+    cursor: pointer;
+    padding: 12px 19px 24px ;
+    /* border-bottom:2px solid rgba(0, 0, 0, 0.096) ; */
+}
+ .order-list-box> div> div:first-child{
+    background-color: black;
+    color: white;
+    border: none;
+    padding:16px 19px;
+    width: 100%;
+}
+.order-list-box> .orders>.order-box > .order> img {
+   width: 60px;
+   height: 60px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 50%;
+}
+.order-list-box> .orders >.order-box> .order> img +div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    row-gap: 5px;
+    width: 600px;
+
+}
+.order-list-box> .orders >.order-box> .order> img +div>b{
+    color:black;
+    font-weight: 500;
+    font-size: 18.5px;
+    text-transform: capitalize;
+}
+.order-list-box> .orders >.order-box> .order> img +div>span{
+    font-size: 14px;
+    color: #666;
+    font-weight: 500;
+}
+.order-list-box> .orders > .order>  .order-quantity{
+    width: 30px;
+    height: 30px;
+    color: black;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.order-list-box> .orders > .order>  .order-quantity[active]{
+    background:black;
+    color: white;
+    font-size: 16px;
+}

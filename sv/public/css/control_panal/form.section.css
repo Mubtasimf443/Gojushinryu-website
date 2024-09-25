@@ -1,0 +1,177 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By Allah's Will,  I will earn success
+*/
+
+
+.form-section{
+    width:100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+    padding:30px 15px 30px 15px  ;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    row-gap:30px;
+  }
+  
+  .form-section > h2 {
+    font-size: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    line-height:24px;
+  }
+  
+  .form-section > .img-inp-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    row-gap: 14px;
+    width: 100%;
+    padding: 7px 0px;
+  }
+  .form-section  >.img-inp-box > label {
+    background: #000;
+    width: 100px ;
+    height: 100px;
+    border-radius :50%;
+    background-size: cover;
+    background-repeat: none;
+    background-position: top center;
+  }
+  .form-section  >.s-sec-input-box> label::after{
+    content: "*";
+    color: var(--main-cl);
+    display: inline;
+    font-weight: 600;
+  }
+  .form-section > .s-sec-input-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+  
+  
+  .form-section > .s-sec-input-box > input,select{
+    background: rgba(0, 0, 0, 0.08);
+    border: none;
+    height: 34px;
+    width: 66%;
+    outline: none;
+    padding: 10px;
+  }
+  .form-section > .s-sec-input-box > textarea{
+    min-height: 60px;
+    max-height: 400px;
+    background: rgba(0, 0, 0, 0.08);
+    border: none;
+    height: 34px;
+    width: 66%;
+    outline: none;
+    resize: vertical;
+    padding: 10px;
+  }
+
+  .form-section >.s-sec-input-box > label {
+    font-weight: 500;
+    font-size :16.5px;
+  }
+  
+  .form-section > .s-sec-btn-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 10px
+  }
+  .form-section > .s-sec-btn-box > button{
+    width :70px;
+    height: 35px;
+    background: #fff;
+    color: var(--main-cl);
+    border: 2px solid var(--main-cl);
+    font-weight: 500;
+  
+  }
+  .form-section >  .s-sec-btn-box > button:nth-child(2) {
+    background: var(--main-cl);
+    color: #fff;
+    
+    
+  }
+ 
+  .form-section > .upload_sec_env_img_inp_box {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: start;
+    flex-wrap:nowrap;
+    row-gap: 13px;
+    width: 100%;
+    padding:10px 10px;
+    column-gap: 20px;
+    overflow-y: hidden;
+    overflow-x:scroll ;
+    scrollbar-width: none;
+    border: 2px solid lightgrey;
+    border-radius:5px;
+  }
+  .form-section > .upload_sec_env_img_inp_box > label {
+    border: 2px solid lightgrey;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color:black;
+    width: 150px;
+    height: 150px;
+    border-radius :7px;
+  }
+  .form-section > .upload_sec_event_tumb_img_inp_box >.event_section_event_image_upload_image {
+    width: 150px;
+    height: 150px;
+    border-radius :7px;
+    object-fit: contain;
+  }
+
+  
+  .form-section >.upload_sec_event_tumb_img_inp_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    row-gap: 13px;
+    width: 100%;
+    padding: 7px 0px;
+  }
+  .form-section > .upload_sec_event_tumb_img_inp_box > label {
+    background: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 280px;
+    border-radius :0%;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    display: flex;
+    flex-direction: center;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    font-weight: 500;
+    height: 150px;
+    border-image-slice: fill 1 ;
+    border-image-source: linear-gradient(to left,  rgba(0, 0, 0, 0.35),  rgba(0, 0, 0, 0.35) );
+    cursor: pointer;
+  }
+  .form-section > .upload_sec_event_tumb_img_inp_box > label > b {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }

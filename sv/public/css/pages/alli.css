@@ -9,35 +9,51 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
     --color--of--line:rgba(218, 165, 32, 0.5);
 }
 #banner{
-    min-height: 16em ;
-    background: url('/img/samurai4.jpg');
-    background-position: bottom left;
-    background-size: cover;
-    background-repeat:no-repeat;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    border-image-slice: fill 1;
-    border-image-source: linear-gradient(to right,
-     rgba(0, 0, 0, 0.474) ,
-     rgba(0, 0, 0, 0.712),
-    rgba(0, 0, 0, 0.5));
-    padding-top: 87px;
-    box-sizing: content-box;
+  min-height: 35em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: url('/img/samurai4.jpg');
+  background-position: bottom left;
+  background-size: cover;
+  background-repeat:no-repeat;
+  border-image-slice: fill 1;
+  border-image-source: linear-gradient(to right,
+   rgba(0, 0, 0, 0.474) ,
+   rgba(0, 0, 0, 0.712),
+  rgba(0, 0, 0, 0.5));
+  color: white;
+  row-gap: 12px;
+  padding: 2em;
+  text-align: center;
 }
-#banner > h1 {
-    font-size: 2.5em;
-    color: #fff;
-    position: relative;
-    top: -1em;
+#banner h1{
+  font-size: 27px;
+  text-transform: uppercase;
+  word-spacing:4.5px;
 }
-#banner > h2 {
-    color: #fff;
-    font-size: 1.4em;
-    position: relative;
-    top: -1.5em;
-    opacity:.85;
+#banner p {
+  font-size: 15px;
+  color: #fff;
+  width: 500px;
+  word-spacing: 3px;
+  text-wrap: wrap;
+}
+@media screen and (max-width: 510px) {
+  #banner p {
+    width: 400px;
+  }
+}
+#banner button {
+  background: var(--main-cl);
+  color: #000000;
+  font-style: 15px;
+  word-spacing: 3px;
+  padding: 14px 20px;
+  border:none ;
+  text-transform: uppercase;
+  font-weight: 600;
 }
 #alliance-chart{
     padding: 3em 0em;

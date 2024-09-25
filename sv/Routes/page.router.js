@@ -28,7 +28,7 @@ pageRouter.get('/shop/:name',(req,res)=> {
     return res.render('shop');
 
 })
-
+pageRouter.get('/control-panal/admin/name/varun-jettly' ,(req,res)=>res.render('control-panal'));
 pageRouter.get('/media/:name',(req,res)=> {
     // if (req.params.name === 'video') return res.render('video');
     return res.render('images');

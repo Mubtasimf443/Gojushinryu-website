@@ -2,7 +2,8 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
 Insha Allah,  By your Marcy Ya Allah
 */
-.chat-box-container {
+.live-chat-box-container
+{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -15,12 +16,27 @@ Insha Allah,  By your Marcy Ya Allah
     box-sizing: border-box;
     padding: 13px 24px;
   }
-  .chat-box-container h2{
-    font-size: 20px;
-    font-weight: 600;
-    text-transform: uppercase;
-  }
-  .chat-box {
+ .live-chat-box-container > .st-massager-info{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  column-gap: 13px;
+ } 
+ .live-chat-box-container > .st-massager-info>img{
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: center center;
+ }
+ .live-chat-box-container > .st-massager-info>span{
+  font-weight: 500;
+  font-size: 17px;
+  color: black;
+ }
+
+  .live-chat-box-container > .chat-box {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -40,15 +56,16 @@ Insha Allah,  By your Marcy Ya Allah
     background: #F2F0F0;
     overflow-y: scroll;
     overflow-x: hidden;
-    width: 650px;
+    width: 100%;
     height:400px;
-    padding: 15px 15px;
+/* padding: 15px 15px; */
     row-gap:8px;
   }
   .chat-massage-cobtainer > div {
     width: 100%;
     display: flex;
     flex-direction: column;
+
     row-gap: 5px;
     width: 100%;
   }
@@ -58,7 +75,7 @@ Insha Allah,  By your Marcy Ya Allah
     flex-direction: column;
     align-items: start;
     justify-content: flex-start;
-    width: 500px;
+    width: 80%;
     padding: 16px;
     row-gap: 6px;
     box-shadow: var(--fev-box-shadow);
@@ -87,7 +104,6 @@ Insha Allah,  By your Marcy Ya Allah
   .f-massage > div {
     background: #ccc;
     border-radius: 7px 7px 0px 7px
-
   }
   .send-chat-massage-containar{
     display: flex;
@@ -96,7 +112,7 @@ Insha Allah,  By your Marcy Ya Allah
     align-items: center;
     column-gap:6px;
     justify-content: space-between;
-    width: 650px;
+    width: 100%;
   }
   .send-chat-massage-containar > textarea {
     padding:4px 5px;
@@ -114,7 +130,7 @@ Insha Allah,  By your Marcy Ya Allah
     align-items: center;
     height: 35px;
     font-size:14px;
-    width: 600px;
+    width: 90%;
    resize: vertical;
    max-height: 100px;
   }

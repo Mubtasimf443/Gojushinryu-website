@@ -1,0 +1,418 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Panal</title>
+    {{>Links}}
+    <link rel="stylesheet" href="/css/control_panal/massage.css">
+    <link rel="stylesheet" href="/css/control_panal/index.css">
+    <link rel="stylesheet" href="/css/control_panal/form.section.css">
+    <link rel="stylesheet" href="/css/control_panal/massageList.css">
+    <link rel="stylesheet" href="/css/control_panal/live-chat-box-conatainer.css">
+    <link rel="stylesheet" href="/css/control_panal/order.list.css">  
+    <script defer src="/js/c.panal.js"></script>
+</head>
+<body>
+<Header>
+   <h1>Control Panal</h1>
+</Header>
+<main>
+
+<section id="ct-corner">
+    <div class="sidebar-div">
+  <div class="st-nav-main">
+    <h2>options</h2>
+    <a id="massage_href">Massages<button><i class="fa-solid fa-angle-right"></i></button></a>
+    <a id="GrandMaster_massage">GM Massage<button><i class="fa-solid fa-angle-right"></i></button></a>
+
+    <a id="notification_href" >Create Notification<button><i class="fa-solid fa-angle-right"></i></button></a>
+    <a id="upload_post_href">Upload Post<button><i class="fa-solid fa-angle-right"></i></button></a>
+    <a id="uplaod_product_href">Uplaod Product <button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="orders_href" >Orders<button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="user_page_href">User's <button><i class="fa-solid fa-angle-right"></i></button></a>
+    <a id="info_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
+    <a id="info_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
+
+
+<style>
+  button,a ,i{
+    cursor: pointer;
+  }
+</style>
+  </div>
+  
+  </div>
+  <div class="ct_main">
+    <div class="heading_sec">
+      <h2 main-h2 > Create Notification </h2>
+    </div>
+    <!-----------------------Gm massage ----------------------------->
+    <div ct_section style="display: none;" targetedElement="GrandMaster_massage" id="grandMaster_massages_container"  class="chat-box-container">
+  <h2>Massages</h2>
+  <div class="chat-box">
+    <div class="chat-massage-cobtainer">
+      <div class="t-massage">
+        <div class="massage">
+          <b class="sender-name">Varun Jettly</b>
+          <p class="sender-p">
+            Sir, Wellcome to Our Website 
+          </p>
+        </div>
+        <span class="massage-time"></span>
+      </div>
+      <div class="f-massage">
+       <div class="massage">
+         <b class="sender-name">You</b>
+           <p class="sender-p">
+            I am making something, and Show you how it will work...
+           </p>
+         </div>
+
+      </div>
+    </div>
+    <div class="send-chat-massage-containar">
+     <textarea placeholder="Write a massage" name="" id=""></textarea>
+     <button class="send-chat-massage-containar-btn">
+       Send
+     </button>
+    </div>
+  </div>
+  
+  </div>
+    <!-----------------------St massage massage list ----------------------------->
+
+<div ct_section style="display: none;" targetedElement="massage_href" class="massage-list-box">
+<div class="massages">
+  <div class="massage">
+    10 Massages
+  </div>
+  <div class="massage">
+    <img src="/img/samurai.jpg"  class="massage-image">
+    <div class="massage-txt-div">
+      <b>Mubtasim Fuad</b>
+    <span>
+      Wellcome To you Brand New Control Panal Sir
+    </span>
+        </div>
+    <div active class="massage-quantity">3</div>
+  </div>
+ 
+ 
+</div>
+
+</div>
+    <!-----------------------St live massage ----------------------------->
+
+   <div ct_section
+   style="display: none;"
+   id="student_massages_container"
+   class="live-chat-box-container"
+   >
+<div class="st-massager-info">
+  <img src="/img/samurai.jpg" alt="">
+  <b>
+    Mubtasim Fuad 
+  </b>
+</div>
+  <div class="chat-box">
+    <div class="chat-massage-cobtainer">
+      <div class="t-massage">
+        <div class="massage">
+          <b class="sender-name">
+            Varun Jettly
+          </b>
+          <p class="sender-p">
+            Sir, Wellcome to Our Website 
+          </p>
+        </div>
+        <span class="massage-time"></span>
+      </div>
+      <div class="f-massage">
+       <div class="massage">
+         <b class="sender-name">You</b>
+           <p class="sender-p">
+            I am making something, and Show you how it will work...
+           </p>
+         </div>
+
+      </div>
+    </div>
+    <div class="send-chat-massage-containar">
+     <textarea placeholder="Write a massage" name="" id=""></textarea>
+     <button class="send-chat-massage-containar-btn">
+       Send
+     </button>
+    </div>
+  </div>
+  
+  </div>
+
+ 
+    <!-----------------------Upload Notification ----------------------------->
+
+ 
+<div id="upload-Notification-conatiner"
+targetedElement="notification_href"
+style="display: none;" ct_section class="form-section">
+  
+   
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Title</label>
+     <input type="Text" name="" id="s-sec-name-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-bio-inp">Description</label>
+     <input type="Text" name="" id="s-sec-bio-inp">
+   </div>
+
+   <div class="s-sec-btn-box">
+     <button>Cancel</button>
+     <button> Send</button>
+   </div>
+ </div>
+    <!-----------------------Upload Product ----------------------------->
+
+<div id="upload-Product-conatiner"
+ targetedElement="uplaod_product_href"
+
+style="display: none;"
+ ct_section class="form-section">
+   
+ <div class="upload_sec_event_tumb_img_inp_box">
+     <h4>
+       Thumnail
+     </h4>
+    <label for="upload_sec_event_tumb_img_inp">
+      <b>Click To Upload <br>
+      Thumbnail
+      </b>
+    </label>
+    <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp">
+   
+  </div>
+  <div class="upload_sec_env_img_inp_box">
+    
+    <label for="upload_sec_env_img_inp">
+      Upload Images
+    </label>
+    <input 
+    style="display: none" 
+    type="file"
+    id="upload_sec_env_img_inp">
+    
+  </div>
+
+   
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Product Name</label>
+     <input type="Text" name="" id="s-sec-name-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-bio-inp">Product Description</label>
+     <textarea name="" id=""></textarea>
+   </div>
+  
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp"> Cetegory</label>
+     <Select>
+      <option value="weapons">weapons</option>
+      <option value="Cloth">Cloth</option>
+     </Select>
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp"> Price</label>
+     <input type="Text" name="" id="s-sec-name-inp">
+   </div>
+
+   <div class="s-sec-btn-box">
+     <button>Cancel</button>
+     <button> Upload</button>
+   </div>
+ </div>
+   <!-----------------------Upload Post ----------------------------->
+
+<div id="upload-post-conatiner" targetedElement="upload_post_href" style="display: none;" ct_section class="form-section">
+   
+ <div class="upload_sec_event_tumb_img_inp_box">
+     <h4>
+       Thumnail
+     </h4>
+    <label for="upload_sec_event_tumb_img_inp">
+      <b>Click To Upload <br>
+      Thumbnail
+      </b>
+    </label>
+    <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp">
+   
+  </div>
+  <div class="upload_sec_env_img_inp_box">
+    
+    <label for="upload_sec_env_img_inp">
+      Upload Images
+    </label>
+    <input 
+    style="display: none" 
+    type="file"
+    id="upload_sec_env_img_inp">
+    
+  </div>
+
+   
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Title</label>
+     <input type="Text" name="" id="s-sec-name-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-bio-inp">Description</label>
+     <input type="Text" name="" id="s-sec-bio-inp">
+   </div>
+
+   <div class="s-sec-btn-box">
+     <button>Cancel</button>
+     <button> Upload</button>
+   </div>
+ </div>
+   <!-----------------------order list ----------------------------->
+
+<div ct_section targetedElement="massage_href"
+ class="order-list-box">
+<div class="orders">
+  <div><b>Orders </b></div>
+  <div class="order-box">
+  <div class="order">
+    <img src="/img/product1.jpg"  class="massage-image">
+      <b>
+        Martial Art Cloths
+      </b>
+      <span>
+        27 Jan 2024
+      </span>
+ 
+<button>Action</button>
+  </div>
+  <div style="display: none;" class="li-edit-form" id="order-edit-form">
+    <div class="input-box">
+      <label>Name</label>
+      <input disabled value="Martial Art Cloths" type="text">
+    </div>
+    <div class="input-box">
+      <label>Id</label>
+      <input disabled value="9384386982" type="text">
+    </div>
+    <div class="input-box">
+      <label>Quantity</label>
+      <input disabled value="7" type="text">
+    </div>
+    <div class="input-box">
+      <label>Total Price</label>
+      <input disabled value="93$" type="text">
+    </div>
+    <div class="input-box">
+      <label>Country</label>
+      <input disabled value="India" type="text">
+    </div>
+    <div class="input-box">
+      <label>District</label>
+      <input disabled value="Delhi" type="text">
+    </div>
+    <div class="input-box">
+      <label>City</label>
+      <input disabled value="London" type="text">
+    </div>
+    <div class="input-box">
+      <label>
+        Street/Village/road No
+      </label>
+      <input disabled value="Moulovi Road No. 48" type="text">
+    </div>
+    <div class="input-box">
+      <label>Post Code</label>
+      <input disabled value="4544" type="text">
+    </div>
+    <div class="txt-box">
+      <label>Notes</label>
+      <textarea value="Under Contruction" disabled></textarea>
+    </div>
+    
+  </div>
+  </div>
+
+ 
+ 
+</div>
+
+</div>
+   <!-----------------------Memver List list ----------------------------->
+
+<div ct_section style="display: none;" targetedElement="massage_href" class="massage-list-box">
+<div class="massages">
+  <div class="massage">
+    10 Massages
+  </div>
+  <div class="massage">
+    <img src="/img/samurai.jpg"  class="massage-image">
+    <div class="massage-txt-div">
+      <b>Mubtasim Fuad</b>
+    <span>
+      Wellcome To you Brand New Control Panal Sir
+    </span>
+        </div>
+    <div active class="massage-quantity">3</div>
+  </div>
+ 
+ 
+</div>
+
+</div>
+   <!-----------------------User list ----------------------------->
+
+<div ct_section style="display: none;" targetedElement="massage_href" class="massage-list-box">
+<div class="massages">
+  <div class="massage">
+    10 Massages
+  </div>
+  <div class="massage">
+    <img src="/img/samurai.jpg"  class="massage-image">
+    <div class="massage-txt-div">
+      <b>Mubtasim Fuad</b>
+    <span>
+      Wellcome To you Brand New Control Panal Sir
+    </span>
+        </div>
+    <div active class="massage-quantity">3</div>
+  </div>
+ 
+ 
+</div>
+
+</div>
+
+   <!----------------------- Grand Master list ----------------------------->
+
+<div ct_section style="display: none;" targetedElement="massage_href" class="massage-list-box">
+<div class="massages">
+  <div class="massage">
+    10 Massages
+  </div>
+  <div class="massage">
+    <img src="/img/samurai.jpg"  class="massage-image">
+    <div class="massage-txt-div">
+      <b>Mubtasim Fuad</b>
+    <span>
+      Wellcome To you Brand New Control Panal Sir
+    </span>
+        </div>
+    <div active class="massage-quantity">3</div>
+  </div>
+ 
+ 
+</div>
+
+</div>
+
+  </div>
+</section>
+</main>    
+
+</body>
+</html>
