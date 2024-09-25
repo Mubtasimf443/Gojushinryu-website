@@ -1,0 +1,110 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+*{
+    box-sizing: border-box;
+}
+.popup_c{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    z-index: 29;
+    background: rgba(0, 0, 0, 0.4);
+}
+.popup_c >div {
+    background: white;
+    color: black;
+   border-radius:7px ;
+   overflow-inline: scroll;
+   overflow: scroll;
+   z-index: 100;
+   scrollbar-width: none;
+}
+.popup_c >.popup_order_action_form{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    width: 800px;
+    max-height:90vh;
+    padding: 2em;
+    row-gap: 20px;
+    
+}
+.popup_c >.popup_order_action_form >.input-box ,
+.popup_c >.popup_order_action_form >.txt-box
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+.popup_c >.popup_order_action_form >.input-box> label ,
+.popup_c >.popup_order_action_form >.txt-box>label
+{
+    font-weight: 500;
+    font-size :16.5px;
+    text-transform: capitalize;
+}
+.popup_c >.popup_order_action_form >.input-box> label::after ,
+.popup_c >.popup_order_action_form >.txt-box>label::after{
+    content: "*";
+    display: inline;
+    color: goldenrod;
+}
+.popup_c >.popup_order_action_form >.input-box>input
+{
+    background: rgba(0, 0, 0, 0.08);
+    border: none;
+    height: 34px;
+    width: 66%;
+    outline: none;
+    padding: 5px 10px;
+}
+.popup_c >.popup_order_action_form >.txt-box>textarea{
+    min-height: 60px;
+    max-height: 400px;
+    background: rgba(0, 0, 0, 0.08);
+    border: none;
+    height: 34px;
+    width: 66%;
+    outline: none;
+    resize: vertical;
+    padding: 10px;
+}
+.popup_c > .popup_order_action_form>.pp_btn_box
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    width: fit-content;
+    column-gap: 10px;
+}
+.popup_c > .popup_order_action_form>.pp_btn_box>button{
+    width: 80px;
+    height: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid black;
+    text-transform: uppercase;
+    font-weight: 500;
+    font-size: 14px;
+}
+.popup_c > .popup_order_action_form>.pp_btn_box>button:first-child{
+    background: white;
+    color: black;
+}
+.popup_c > .popup_order_action_form>.pp_btn_box>button:last-child{
+    background: rgb(0, 0, 0);
+    color: rgb(255, 255, 255);
+}
+label{text-transform: capitalize;}

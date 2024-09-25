@@ -2,7 +2,7 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
 Insha Allah,  By your Marcy Ya Allah
 */
-.order-list-box{
+.gm-list-box{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -10,12 +10,12 @@ Insha Allah,  By your Marcy Ya Allah
     width: 100%;
     row-gap: 23px;
 }
-.order-list-box b {
+.gm-list-box b {
     font-weight: 500px;
     font-size: 16px;
     text-transform: uppercase;
 }
-.order-list-box > .orders {
+.gm-list-box > .gm_s {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -24,16 +24,9 @@ Insha Allah,  By your Marcy Ya Allah
     height: fit-content;
     box-shadow: var(--fev-box-shadow);
 }
-.order-list-box >.orders>.order-box{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: start;
-    width: 100%;
-    height:fit-content;
 
-}
-.order-list-box> .orders >.order-box > .order{
+
+.gm-list-box> .gm_s >.gm_{
     background-color:white;
     display: flex;
     flex-direction: row;
@@ -43,47 +36,82 @@ Insha Allah,  By your Marcy Ya Allah
     width: 100%;
     cursor: pointer;
     padding: 12px 19px 24px ;
-    /* border-bottom:2px solid rgba(0, 0, 0, 0.096) ; */
+    /* bgm_-bottom:2px solid rgba(0, 0, 0, 0.096) ; */
 }
- .order-list-box> div> div:first-child{
+ .gm-list-box > .gm_s > .gm_:first-child{
     background-color: black;
     color: white;
     border: none;
     padding:16px 19px;
     width: 100%;
 }
-.order-list-box> .orders>.order-box > .order> img {
+.gm-list-box> .gm_s> .gm_> img {
    width: 60px;
    height: 60px;
-    object-fit: contain;
+    object-fit: cover;
+    border-radius: 50%;
     object-position: center center;
 }
-.order-list-box> .orders >.order-box> .order> h3{
+.gm-list-box> .gm_s > .gm_> .name{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
     row-gap: 5px;
-    width: 400px;
+    width: 520px;
     text-wrap: wrap;
     font-size: 17.7px;
     font-weight: 500;
+    color: black;
 
 }
-.order-list-box> .orders >.order-box> .order> b{
-    color:black;
+
+.gm-list-box> .gm_s > .gm_>div{
+    width: 150px;
+    display:flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items:start;
+    column-gap: 10px;
+
+}
+.gm-list-box> .gm_s > .gm_>div[gm_ship]{
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    row-gap: 5px;
+    position: relative;
+}
+.gm-list-box> .gm_s > .gm_>div[gm_ship]>span:first-child{
     font-weight: 500;
-    font-size: 17.5px;
+    text-transform: capitalize;
+    font-size: 15.5px;
+    font-style: bold;
+}
+
+.gm-list-box> .gm_s > .gm_>div[gm_ship]>span:last-child{
+    font-weight: 500;
     text-transform: uppercase;
+    font-size: 13px;
+    font-style: bold;
+}
+
+
+.gm-list-box> .gm_s > .gm_>div> b{
+    color:black;
+    font-weight: 600;
+    font-size: 17.5px;
+    text-transform: capitalize;
     text-wrap: wrap;
 }
-.order-list-box> .orders >.order-box> .order> span{
+.gm-list-box> .gm_s > .gm_> span{
     font-size: 14px;
     color: #666;
     font-weight: 500;
     width: 100px;
 }
-.order-list-box> .orders >.order-box> .order>button{
+.gm-list-box> .gm_s > .gm_>button{
     width: 70px;
     height: 30px;
     font-size: 14px;

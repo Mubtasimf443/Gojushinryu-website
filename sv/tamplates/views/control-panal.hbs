@@ -3,16 +3,236 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Panal</title>
-    {{>Links}}
+ <!-- ImportTANT links -->
+<link rel="Icon" href="/img/link_icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/css/root.css">
     <link rel="stylesheet" href="/css/control_panal/massage.css">
     <link rel="stylesheet" href="/css/control_panal/index.css">
     <link rel="stylesheet" href="/css/control_panal/form.section.css">
     <link rel="stylesheet" href="/css/control_panal/massageList.css">
     <link rel="stylesheet" href="/css/control_panal/live-chat-box-conatainer.css">
-    <link rel="stylesheet" href="/css/control_panal/order.list.css">  
+    <link rel="stylesheet" href="/css/control_panal/order.list.css">
+    <link rel="stylesheet" href="/css/control_panal/user.list.css">
+    <link rel="stylesheet" href="/css/control_panal/member.list.css">  
+    <link rel="stylesheet" href="/css/control_panal/gm.list.css">  
+    <link rel="stylesheet" href="/css/control_panal/product.list.css">
+    <link rel="stylesheet" href="/css/control_panal/popup.css">
+
     <script defer src="/js/c.panal.js"></script>
 </head>
 <body>
+
+<!------------------------ order PopUp ------------------------------>
+<div id="popup_order_action" style="display: none;" class="popup_c">
+  <div class="popup_order_action_form">
+  <h2>
+ See Order
+  </h2> 
+   <div class="input-box">
+      <label>Name</label>
+      <input disabled value="Martial Art Cloths" type="text">
+    </div>
+    <div class="input-box">
+      <label>Id</label>
+      <input disabled value="9384386982" type="text">
+    </div>
+    <div class="input-box">
+      <label>Quantity</label>
+      <input disabled value="7" type="text">
+    </div>
+    <div class="input-box">
+      <label>Total Price</label>
+      <input disabled value="93$" type="text">
+    </div>
+    <div class="input-box">
+      <label>Country</label>
+      <input disabled value="India" type="text">
+    </div>
+    <div class="input-box">
+      <label>District</label>
+      <input disabled value="Delhi" type="text">
+    </div>
+    <div class="input-box">
+      <label>City</label>
+      <input disabled value="London" type="text">
+    </div>
+    <div class="input-box">
+      <label>
+        Street/Village/road No
+      </label>
+      <input disabled value="Moulovi Road No. 48" type="text">
+    </div>
+    <div class="input-box">
+      <label>Post Code</label>
+      <input disabled value="4544" type="text">
+    </div>
+    <div class="txt-box">
+      <label>Notes</label>
+      <textarea value="Under Contruction" disabled></textarea>
+    </div>
+    <h2>Action</h2>
+    <div class="input-box">
+      <label for="">Mark </label>
+      <select name="" id="">
+        <option value="">Pending</option>
+        <option value="">In Process</option>
+        <option value="">Completed</option>
+        <option value="">Cancelled</option>
+      </select>
+      </div>
+    <div class="pp_btn_box">
+      <button class="popup-btn">
+        Close
+      </button class="popup-btn">
+      <button>
+  Save
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!------------------------ product PopUp ------------------------------>
+<div id="popup_product_action" 
+style="display: none;"
+ class="popup_c">
+  <div class="popup_order_action_form">
+  <h2>
+ Product Action
+  </h2> 
+   <div class="input-box">
+      <label>Name</label>
+      <input  value="Martial Art Cloths" type="text">
+    </div>
+    <div class="input-box">
+      <label>Stock</label>
+      <input  value="7" type="text">
+    </div>
+    <div class="input-box">
+      <label> Price</label>
+      <input value="93$" type="text">
+    </div>
+    <div class="txt-box">
+      <label>Description</label>
+      <textarea value="Under Contruction" ></textarea>
+    </div>
+    <div class="input-box">
+      <label for="">Cetegory </label>
+      <select name="" id="">
+        <option value="">Cloth</option>
+        <option value="">weapons</option>
+      </select>
+      </div>
+    <div class="pp_btn_box">
+      <button class="popup-btn">
+        Close
+      </button>
+      <button class="popup-btn">
+  Save
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!------------------------ GM PopUp ------------------------------>
+<div id="popup_GM_action" 
+style="display: none;"
+ class="popup_c">
+  <div class="popup_order_action_form">
+  <h2>
+ GM Action
+  </h2> 
+   <div class="input-box">
+      <label>Name</label>
+      <input  value="Dr. Vikram Kapoor" type="text">
+    </div>
+     <div class="txt-box">
+      <label>Bio</label>
+      <textarea ></textarea>
+    </div>
+    <div class="input-box">
+      <label>ID</label>
+      <input  value="vikramkapoor" type="text">
+    </div>
+    <div class="input-box">
+      <label> Password</label>
+      <input value="93$e443d" type="text">
+    </div>
+  
+  <div class="input-box">
+      <label> Restrict Account</label>
+<select name="" id="">
+  <option value="">False</option>
+  <option value="">True</option>
+</select>
+    </div>
+
+   
+   
+    <div class="pp_btn_box">
+      <button class="popup-btn">
+        Close
+      </button>
+      <button class="popup-btn">
+  Save
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!------------------------ user PopUp ------------------------------>
+<div id="popup_user_action" 
+{{!-- style="display: none;" --}}
+ class="popup_c">
+  <div class="popup_order_action_form">
+  <h2>
+   User Action
+  </h2> 
+   <div class="input-box">
+      <label>Name</label>
+      <input  value="Dr. Vikram Kapoor" type="text">
+    </div>
+     <div class="input-box">
+      <label>Email</label>
+      <input  value="jsie******so@hsi.com" type="text">
+    </div>
+     <div class="input-box">
+      <label>Phone</label>
+      <input  value="****88" type="number">
+    </div>
+    <div class="input-box">
+      <label>Country</label>
+      <input  value="****88" type="number">
+    </div>
+    <div class="input-box">
+      <label>ID</label>
+      <input  value="vikramkapoor" type="text">
+    </div>
+    <div class="input-box">
+      <label> Restrict Account</label>
+<select name="" id="">
+  <option value="">False</option>
+  <option value="">True</option>
+</select>
+    </div>
+     <div class="pp_btn_box">
+      <button class="popup-btn">
+        Close
+      </button>
+      <button class="popup-btn">
+  Save
+      </button>
+    </div>
+
+  </div>
+</div>
+<!------------------------ Start The Page ------------------------------>
 <Header>
    <h1>Control Panal</h1>
 </Header>
@@ -28,11 +248,12 @@
     <a id="notification_href" >Create Notification<button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="upload_post_href">Upload Post<button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="uplaod_product_href">Uplaod Product <button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="orders_href" >Orders<button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="order_href" >Orders<button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="user_page_href">User's <button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="info_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="info_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
+    <a id="gm_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
+    <a id="member_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
 
+    <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
 
 <style>
   button,a ,i{
@@ -274,65 +495,24 @@ style="display: none;"
  </div>
    <!-----------------------order list ----------------------------->
 
-<div ct_section targetedElement="massage_href"
+<div ct_section targetedElement="order_href" style="display: none;"
  class="order-list-box">
 <div class="orders">
   <div><b>Orders </b></div>
   <div class="order-box">
   <div class="order">
     <img src="/img/product1.jpg"  class="massage-image">
-      <b>
+      <h3>
         Martial Art Cloths
-      </b>
+      </h3>
       <span>
         27 Jan 2024
       </span>
- 
-<button>Action</button>
+      <b>pending</b>
+<button class="order_list_action">Action</button>
   </div>
   <div style="display: none;" class="li-edit-form" id="order-edit-form">
-    <div class="input-box">
-      <label>Name</label>
-      <input disabled value="Martial Art Cloths" type="text">
-    </div>
-    <div class="input-box">
-      <label>Id</label>
-      <input disabled value="9384386982" type="text">
-    </div>
-    <div class="input-box">
-      <label>Quantity</label>
-      <input disabled value="7" type="text">
-    </div>
-    <div class="input-box">
-      <label>Total Price</label>
-      <input disabled value="93$" type="text">
-    </div>
-    <div class="input-box">
-      <label>Country</label>
-      <input disabled value="India" type="text">
-    </div>
-    <div class="input-box">
-      <label>District</label>
-      <input disabled value="Delhi" type="text">
-    </div>
-    <div class="input-box">
-      <label>City</label>
-      <input disabled value="London" type="text">
-    </div>
-    <div class="input-box">
-      <label>
-        Street/Village/road No
-      </label>
-      <input disabled value="Moulovi Road No. 48" type="text">
-    </div>
-    <div class="input-box">
-      <label>Post Code</label>
-      <input disabled value="4544" type="text">
-    </div>
-    <div class="txt-box">
-      <label>Notes</label>
-      <textarea value="Under Contruction" disabled></textarea>
-    </div>
+  
     
   </div>
   </div>
@@ -342,67 +522,73 @@ style="display: none;"
 </div>
 
 </div>
-   <!-----------------------Memver List list ----------------------------->
+ <!-----------------------User list ----------------------------->
 
-<div ct_section style="display: none;" targetedElement="massage_href" class="massage-list-box">
-<div class="massages">
-  <div class="massage">
-    10 Massages
+<div ct_section 
+style="display: none;"
+targetedElement="user_page_href" class="user-list-box">
+<div class="users">
+  <div class="user">
+    1 User 
   </div>
-  <div class="massage">
+  <div class="user">
     <img src="/img/samurai.jpg"  class="massage-image">
-    <div class="massage-txt-div">
-      <b>Mubtasim Fuad</b>
-    <span>
-      Wellcome To you Brand New Control Panal Sir
+    <span class="name">
+      Mubtasim
     </span>
-        </div>
-    <div active class="massage-quantity">3</div>
+    <div class="col">
+      <b>Joined</b> <span>10 July</span>
+    </div>
+    <button class="user_list_action">Action</button>
   </div>
  
  
 </div>
 
 </div>
-   <!-----------------------User list ----------------------------->
 
-<div ct_section style="display: none;" targetedElement="massage_href" class="massage-list-box">
-<div class="massages">
-  <div class="massage">
-    10 Massages
+
+   <!-----------------------Member List list ----------------------------->
+
+<div ct_section 
+style="display: none;" 
+targetedElement="member_href" class="member-list-box">
+<div class="members">
+  <div class="member">
+    7 member
   </div>
-  <div class="massage">
-    <img src="/img/samurai.jpg"  class="massage-image">
-    <div class="massage-txt-div">
-      <b>Mubtasim Fuad</b>
-    <span>
-      Wellcome To you Brand New Control Panal Sir
+  <div class="member">
+   <img src="/img/samurai.jpg"  class="massage-image">
+    <span class="name">
+      Mubtasim
     </span>
-        </div>
-    <div active class="massage-quantity">3</div>
+    <div class="col">
+      <b>Joined</b> <span>10 July</span>
+    </div>
+    <div membership><span>Annual Membership</span><span>stma</span>
+    </div>
+    <button class="member_list_action">Action</button>
   </div>
  
  
 </div>
 
 </div>
+  
 
    <!----------------------- Grand Master list ----------------------------->
 
-<div ct_section style="display: none;" targetedElement="massage_href" class="massage-list-box">
-<div class="massages">
-  <div class="massage">
-    10 Massages
+<div ct_section style="display: none;" targetedElement="gm_href" class="gm-list-box">
+<div class="gm_s">
+  <div class="gm_">
+    10 Grand Master
   </div>
-  <div class="massage">
-    <img src="/img/samurai.jpg"  class="massage-image">
-    <div class="massage-txt-div">
-      <b>Mubtasim Fuad</b>
-    <span>
-      Wellcome To you Brand New Control Panal Sir
-    </span>
-        </div>
-    <div active class="massage-quantity">3</div>
+  <div class="gm_">
+    <img src="/img/samurai.jpg"  class="gm_image">
+    
+      <b class="name">Mubtasim Fuad</b>
+    
+    <button class="gm-list-action">Action</button>
   </div>
  
  
@@ -410,6 +596,27 @@ style="display: none;"
 
 </div>
 
+
+   <!----------------------- product list ----------------------------->
+
+<div ct_section style="display: flex;" targetedElement="product_href" class="product-list-box">
+<div class="products">
+  <div class="product">
+    10 Products
+  </div>
+  <div class="product">
+    <img src="/img/samurai.jpg">
+    <span class="name">Mubtasim Fuad</span>
+    <span class="price">500$</span>
+    <span>Stock <b>5</b></span>
+    <span class="cetegory">weapons</span>
+    <button class="product_list_action">Action</button>
+  </div>
+ 
+ 
+</div>
+
+</div>
   </div>
 </section>
 </main>    

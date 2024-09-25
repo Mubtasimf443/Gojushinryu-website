@@ -1,4 +1,7 @@
-
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ   
+Insha Allab,  By the marcy of Allah,  I will gain success
+*/
 {
     let gm_section=document.querySelectorAll('[ct_section]')
     let mainh2=document.querySelector('[main-h2]');
@@ -6,8 +9,6 @@
     function ChangeSection(index) {
         gm_section.forEach((el) => el.style.display='none');
     }
-
-
     document.addEventListener('click',async e => {
         if (e.target.parentNode.className ==="st-nav-main") { 
             e.preventDefault();
@@ -29,8 +30,29 @@
             // if (e.target.id ==='orders_href') return ChangeSection(2) ;
             // if (e.target.id ==='upload_post_href') return ChangeSection(3) ;
             // if (e.target.id ==='user_page_href') return ChangeSection(4) ;
+        }
+        if (e.target.tagName==='BUTTON') {
+            if (e.target.className==="popup-btn" && e.target.parentNode.className==='pp_btn_box'){
+                let dom=e.target;
+                for (let index = 1; index < 4;index= index+1) dom= dom.parentNode;
+                dom.style.display='none';
+                return
             }
-      
-        
+            if (e.target.className ==='order_list_action') {
+                return   document.getElementById('popup_order_action').style.display ='flex'
+            }
+            if (e.target.className ==='user_list_action') {
+                return  document.getElementById('popup_user_action').style.display ='flex'
+            }
+            if (e.target.className ==='member_list_action') {
+                return  document.getElementById('popup_user_action').style.display ='flex'
+            }
+            if (e.target.className ==='gm_list_action') {
+                return  document.getElementById('popup_GM_action').style.display ='flex'
+            }
+            if (e.target.className ==='product_list_action') {
+                return  document.getElementById('popup_product_action').style.display ='flex'
+            }
+        }
     })
 }
