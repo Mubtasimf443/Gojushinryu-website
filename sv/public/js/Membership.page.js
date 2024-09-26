@@ -121,11 +121,13 @@ function changeHeadingSectionLayout() {
   
 }
 function changeMembership(target) {
-  document.querySelectorAll('.membership').forEach((element) => {
+  // document.querySelectorAll('.membership').forEach((element) => {
     // element.style.border=element.id === e.target.id ? '2px solid var(--main-cl)' : ' 2px solid rgba(0, 0, 0, 0.123)';
-    element.id === target.id ? element.setAttribute('default-membership','true') :element.setAttribute('default-membership','false') ;
-    membershipValue=target.getAttribute('membershipValue')
-  }); 
+    // element.id === target.id ? element.setAttribute('default-membership','true') :element.setAttribute('default-membership','false') ;
+    // membershipValue=target.getAttribute('membershipValue')
+  // }); 
+       target.getAttribute('default-membership') ==="true" ? target.setAttribute('default-membership','false') :target.setAttribute('default-membership','true') ;
+
 }
 function ChangeYesNoStatenent(target) {
   let yesNoDivFor = target.getAttribute('yes-no-div-for');
@@ -175,10 +177,10 @@ document.addEventListener('click',e => {
   //success go it btn
   if (e.target.id==='successGotItBtn') return window.location.replace('/')
   //membership
-  if (e.target.className==='membership') return changeMembership(e.target);
+ if (e.target.className==='membership') return changeMembership(e.target);
   if (e.target.parentNode.className==='membership') return changeMembership(e.target.parentNode);
   if (e.target.parentNode.parentNode.className==='membership') return changeMembership(e.target.parentNode.parentNode);
-  // yes or no statements
+ //  yes or no statements
   if (e.target.className==='yes-no-div') return ChangeYesNoStatenent(e.target);
   if (e.target.parentNode.className==='yes-no-div') return ChangeYesNoStatenent(e.target.parentNode);
   if (e.target.parentNode.parentNode.className ==='yes-no-div') return ChangeYesNoStatenent(e.target.parentNode.parentNode);

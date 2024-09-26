@@ -5,12 +5,14 @@ import { Router } from "express";
 let pageRouter = Router();
 pageRouter.get('/home', (req, res) => res.render('home'))
 pageRouter.get('/course', (req, res) => res.render('course-selling-page'))
-pageRouter.get('/course/:name',(req,res)=>res.render('course'))
+pageRouter.get('/courses/:name', (req,res)=> {
+    if (req.params.name==="course") return res.render('course-selling-page')
+    if (req.params.name==="dates") return res.render('calender')
+})
 pageRouter.get('/Membership-application', (req, res) => res.render('MembershipFrom'))
 pageRouter.get('/about-us/goju-shin-ryo', (req, res) => res.render('about-us-gsr'))
 pageRouter.get('/about-us/school-of-tradistional-martial-arts', (req, res) => res.render('about-us-smta'))
-pageRouter.get('/dates',(req,res)=>res.render('calender'))
-pageRouter.get('/events',(req,res)=>res.render('events'))
+// pageRouter.get('/dates',(req,res)=>res.render('calender'))
 pageRouter.get('/auth/:name',(req,res)=> {
     if (req.params.name === 'register') return res.render('sign-up');
     if (req.params.name === 'sign-up') return res.render('sign-up');
@@ -34,16 +36,21 @@ pageRouter.get('/control-panal/admin/name/varun-jettly' ,(req,res)=>res.render('
 pageRouter.get('/media/:name',(req,res) => {
     if (req.params.name === 'videos') return res.render('video');
     if (req.params.name === 'video') return res.render('video');
-    return res.render('images');
-
+    if (req.params.name==="events") return res.render('events');
+    if (req.params.name==="post") return res.render('events');
+    if (req.params.name==="images") return res.render('images');
+    
 })
 pageRouter.get('/grand-master-counchil',(req,res)=> {
     return res.render('grand-master-counchil')
 })
-pageRouter.get('/organization-charts',(req,res)=>res.render('OurOrganaizationChart'))
+pageRouter.get('/about-us/organization-charts',(req,res)=>res.render('OurOrganaizationChart'))
 pageRouter.get('/allience',(req,res)=> res.render('alli'))
  pageRouter.get('/student-corner',(req,res)=> res.render('student-corner'))
-
+pageRouter.get('/accounts/:name',(req,res)=>{
+    if (req.params.name === 'grand-master-counchil') return res.render('video');
+    if (req.params.name === 'students') return res.render('video');
+})
 
 
 

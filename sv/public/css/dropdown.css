@@ -1,0 +1,117 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+#about-us-header-nav-div-link-anchor-div,
+#lt-header-nav-accounts-anchor-div,
+#lt-header-nav-media-anchor-div,
+#lt-header-nav-shop-anchor-div ,
+#lt-header-nav-course-anchor-div
+{
+    position: relative;
+}
+
+
+#about-us-header-nav-div-link-anchor-div > .dropdown:hover {
+    display: flex;
+    /* width: 220px; */
+    left: 0px;
+
+}
+
+#lt-header-nav-course-anchor-div > .dropdown:hover,
+#lt-header-nav-accounts-anchor-div>.dropdown:hover ,
+#lt-header-nav-shop-anchor-div>.dropdown:hover  ,
+#lt-header-nav-media-anchor-div>.dropdown:hover 
+{
+    display: flex;
+    width: 160px;
+    left: 0px;
+    top: 35px;
+}
+
+#about-us-header-nav-div-link-anchor-div > a:focus-within + .dropdown{
+    display: flex;
+    top:34px;
+    opacity: 1;
+    top: 35px;
+    left: 0px;
+    /* opacity: 1; */
+}
+#lt-header-nav-accounts-anchor-div> a:focus-within + .dropdown ,
+#lt-header-nav-media-anchor-div> a:focus-within + .dropdown ,
+#lt-header-nav-course-anchor-div >a:focus + .dropdown
+{
+    display: flex;
+    width: 160px;
+    top: 35px;
+    left: 0px;
+}
+#lt-header-nav-shop-anchor-div > a:focus-within+ .dropdown{
+    display: flex;
+    top:34px;
+    opacity: 1;
+    width: 160px;
+    left: 0px;
+    /* opacity: 1; */
+}
+
+
+.dropdown{
+    display: none;
+    flex-direction: column;
+    justify-self: flex-start;
+    align-items: center;
+    background: rgb(0, 0, 0);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.103);
+    overflow: hidden;
+    width:250px;
+    position: absolute;
+    z-index: 20;
+   padding: 8px 0px;
+   top:60px;
+   color:var(--main-cl);
+   transition: top .2s ease,opacity .2s ease;
+   /* opacity: 0%; */
+   box-sizing: border-box;
+   transition-delay: .4;
+   height: fit-content;
+   animation-name: dropdownnime ;
+   animation-duration: .3s;
+   animation-timing-function: ease;
+   animation-iteration-count: 1;
+   animation-fill-mode: forwards;
+}
+.dropdown >a{
+    color: rgba(0, 0, 0, 0.822);
+    text-decoration: none;
+    border: none; 
+    width: 90%;
+   padding: 10px 5px;
+   font-weight: 500;
+   color: var(--main-cl);
+   box-sizing: border-box;
+   font-size: 14.6px;
+   cursor: pointer;
+   height: fit-content;
+} 
+.dropdown >hr{
+    width: 100%;
+    height: 2px ;
+    background: rgb(216, 216, 216);
+    border: none;
+}
+
+@keyframes dropdownnime {
+    0%{
+        top: 60px;
+        opacity: 0;
+        z-index: -1000;
+    }
+    100%{
+        top: 34px;
+        opacity: 1;
+        z-index: 100;
+    }
+}

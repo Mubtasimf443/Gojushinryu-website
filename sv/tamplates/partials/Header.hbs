@@ -1,3 +1,9 @@
+{{!--     
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success
+  --}}
+
+    
     <!-------------------- Header ------------------------------->
     <header>
       <div id="top-bar">
@@ -10,16 +16,80 @@
      </div>
     <nav class="header-nav-div">
       <div class="nv-div"><a href="/">Home</a></div>
-      <div class="nv-div"><a href="/course"> Courses</a></div>
+      <div id="lt-header-nav-course-anchor-div" class="nv-div">
+        <a href="#"> Courses</a>
+        <div class="dropdown">
+          <a href="/courses/course">Course</a>
+          <hr>
+          <a href="/courses/dates">Dates</a>
+        </div>
+      </div>
       <div class="nv-div"><a href="/Membership-application">Membership</a></div>
-      <div class="nv-div"><a href="/dates"> Dates</a></div>
-      <div class="nv-div"><a href="/shop">Shop</a></div>
-      <div class="nv-div"><a href="/grand-master-counchil">GM Counchil</a></div>
-      <div class="nv-div"><a href="/student-corner">St Corner</a></div>
+      {{!-- <div class="nv-div"><a href="/dates"> Dates</a></div> --}}
       <div class="nv-div"><a href="/allience">Alliance</a></div>
 
-      <div id="about-us-header-nav-div-link-anchor-div" class="nv-div"><a>About Us</a></div>
-      <div class="nv-div"><a href="">Blog</a></div>
+      <div id="lt-header-nav-shop-anchor-div" class="nv-div">
+        <a tabindex="2">Shop</a>
+        <nav class="dropdown">
+      <a href="/shop/product">
+      Equipment
+      </a>
+      <hr>
+      <a href="/shop/fevorites">
+      Fevorites
+      </a>
+      <hr>
+       <a href="/shop/Cart">
+      Cart
+      </a>
+      <hr>
+      <a href="/shop/checkout">
+      Checkout
+      </a>
+  </nav>
+      </div>
+
+
+      {{!-- 
+      <div class="nv-div"><a href="/grand-master-counchil">GM Counchil</a></div>
+       --}}
+
+
+      <div id="about-us-header-nav-div-link-anchor-div" class="nv-div">
+        <a href="#">About Us
+      </a>
+        <nav class="dropdown" id="about_us_dropdown">
+      <a href="/about-us/goju-shin-ryo"> School  of Traditional Martial Arts</a>
+      <hr>
+      <a href="/about-us/school-of-tradistional-martial-arts">Goju Shin Ryu</a>
+      <hr>
+      <a href="/about-us/organization-charts">Organization Chart</a>
+  </nav>
+      </div>
+
+     <div id="lt-header-nav-accounts-anchor-div" class="nv-div">
+        <a href="#">Accounts</a>
+        <div class="dropdown">
+           <a href="/accounts/grand-master-counchil">Grand Master</a>
+           <hr>
+           <a href="/accounts/student">Students</a>
+
+        </div>
+      </div>
+
+            <div id="lt-header-nav-media-anchor-div" class="nv-div">
+        <a href="#">Media</a>
+        <div class="dropdown">
+           <a href="/media/post">Post</a>
+           <hr>
+           <a href="/accounts/events">Events</a>
+           <hr>
+           <a href="/media/images">Images</a>
+           <hr>
+           <a href="/media/video">Videos</a>
+        </div>
+      </div>
+      {{!-- <div class="nv-div"><a href="">Blog</a></div> --}}
      </nav>
      <div class="hd-btn-div">
       <button>
@@ -43,9 +113,7 @@
 
      </div>
   </div>
-  <nav id="about_us_dropdown">
-      <a href="/about-us/goju-shin-ryo">Traditional School of Martial Arts</a>
-      <hr>
-      <a href="/about-us/school-of-tradistional-martial-arts">Goju Shin Ryu</a>
-  </nav>
+  
    </header>
+
+{{!-- <script src="/js/header.js"></script> --}}

@@ -163,42 +163,48 @@
      
     </div>
    <div class="fl-box">
-      <div class="fl-heading">
+      {{!-- <div class="fl-heading">
         <h3>Apply For The Course </h3>
-      </div>
+      </div> --}}
       <div class="input-box">
-        <label for="--inp-name">Name </label>
+        {{!-- <label for="--inp-name">Name </label> --}}
         <input type="text" name="" placeholder="Student Name" id="--inp-name">
       </div>
       <div class="input-box">
-        <label for="--inp-name">Email</label>
+        {{!-- <label for="--inp-name">Email</label> --}}
         <input type="text" name="" placeholder="Student Email" id="--inp-name">
       </div>
       <div class="input-box">
-        <label for="--inp-name">Phone </label>
+        {{!-- <label for="--inp-name">Phone </label> --}}
         <input type="text" name="" placeholder="Student Number" id="--inp-name">
       </div> 
       <div class="input-box">
-        <label for="--inp-name">Date Of Birth</label>
-        <input type="Date" name="" placeholder="23 A.K road" id="--inp-name">
+        {{!-- <label for="--inp-name">Date Of Birth</label> --}}
+        <input type="text" onblur="(this.type='text')" onclick="(this.type='date')"  name="" placeholder="Birth Date " id="--inp-name">
       </div>
   <div class="input-box">
-        <label for="--inp-name">Country</label>
-        <input type="text" name="" placeholder="Canada" id="--inp-name">
+        {{!-- <label for="--inp-name">Country</label> --}}
+        <input type="text" name="" placeholder="Country" id="--inp-name">
       </div>
       <div class="input-box">
-        <label for="--inp-name">City</label>
-        <input type="text" name="" placeholder="London" id="--inp-name">
+      {{!-- <label for="--inp-name">City</label> --}}
+        <input type="text" name="" placeholder="District" id="--inp-name">
       </div>
-       {{!-- <div class="input-box">
-        <label for="--inp-name">Road/Street/Village</label>
-        <input type="text" name="" placeholder="23 A.K road" id="--inp-name">
+      <div class="input-box">
+         {{!-- <label for="--inp-name">Road/Street/Village</label> --}}
+        <input type="text" name="" placeholder="City" id="--inp-name">
       </div>
-      --}}
+      <div class="input-box">
+         <label for="--inp-name">Credit Card Info</label>
+        <input type="text" name="" placeholder="Card Number" id="--inp-name">
+        <input type="text" placeholder="Expiry Date">
+        <input type="text" placeholder="CVV">
+      </div>
       <div class="fl-option-div">
         <button>
           <i class="fa-regular fa-credit-card"></i>
-          Purchase Course</button>
+          Purchase Course at 90$
+          </button>
         <button>Contact Us </button>
       </div>
     </div>

@@ -1,4 +1,7 @@
 /* General Layout */
+*{
+    box-sizing: border-box;
+}
 .checkout-container {
     display: flex;
     flex-direction: column;
@@ -6,7 +9,6 @@
     padding: 20px;
     max-width: 1200px;
 }
-
 .checkout-header {
     display: flex;
     justify-content: space-between;
@@ -23,6 +25,9 @@
     justify-content: space-between;
     margin-top: 20px;
     flex-wrap: wrap;
+    columns: 20px;
+    row-gap: 20px;
+    
 }
 
 /* Form Section */
@@ -38,12 +43,13 @@
 }
 
 .form-group input, select {
-    padding: 10px;
+    padding:10px 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
     margin-bottom: 10px;
     font-size: 1rem;
     width: 100%;
+    box-sizing: content-box;
 }
 
 /* Order Summary Section */
@@ -63,13 +69,15 @@
 .item img {
     max-width: 50px;
 }
-
+input{
+    outline: none;
+}
 .totals {
     margin-top: 20px;
 }
 
 .place-order-btn {
-    background-color: #1e90ff;
+    background-color: var(--main-cl);
     color: #fff;
     padding: 15px 30px;
     border: none;

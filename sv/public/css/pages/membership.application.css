@@ -195,17 +195,19 @@ body{
     column-gap: 1em;
   }
   #Applicant-info-form > #membership-box > span>.membership{
-    width: 45%;
-    min-height: 5em;
-    height: fit-content;
+    width: 48%;
+    height: 170px;
     display:flex;
     flex-direction: column;
     align-items: start;
     justify-content: flex-start;
     border: 2px solid rgba(0, 0, 0, 0.123);
     border-radius: 8px;
-    padding: 1em .5em;
+    padding:10px;
     cursor: pointer;
+    box-sizing: border-box;
+    position: relative;
+    row-gap:4px;
   }
   #Applicant-info-form > #membership-box > span> [default-membership="true"]{
     border: 2px solid var(--main-cl);
@@ -216,7 +218,7 @@ body{
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    margin-top: -10px;
+    margin-top: 0px;
   }
   #Applicant-info-form > #membership-box > span>.membership>div>b{
     color: #000;
@@ -239,6 +241,17 @@ body{
   #Applicant-info-form > #membership-box >span >.membership>p{
     text-transform: capitalize;
     font-size: .9em;
+  }
+
+  #Applicant-info-form > #membership-box >span >.membership>span{
+    color: var(--main-cl);
+    font-weight: 500;
+    font-size: 14px;
+    text-transform: uppercase;
+    position:absolute;
+    bottom: 10px;
+    left: 10px;
+
   }
   #applicant-form-btn-div{
     display: flex;

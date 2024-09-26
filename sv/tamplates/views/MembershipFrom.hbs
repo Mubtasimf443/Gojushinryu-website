@@ -125,9 +125,10 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
       <div id="membership-box">
         <label>choose Your Membership</label>
         <span>
-            <fieldset  membershipValue="LifeTime" default-membership="true" for="lf-membership-inp" id="lifetime-membership-box"  class="membership">
-            <legend> Goju Shin Ryo </legend>
-            <div>
+            <label  membershipValue="LifeTime" default-membership="false" for="lf-membership-inp" id="lifetime-membership-box"  class="membership">
+     {{!-- <input type="checkbox" id="lf-membership-inp-gsr"> --}}
+
+<div>
               <b>
               LifeTime Membership
               </b>
@@ -140,9 +141,14 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
              <p>
               For the individual joining the association
              </p>
-            </fieldset>
-    <fieldset membershipValue="Annual" default-membership="false" for="annual-membership-inp" id="annual-membership-box" class="membership">
- <legend> Goju Shin Ryo </legend>
+
+                 <span>School  
+              of Traditional Martial arts
+            </span>
+            </label>
+    <label membershipValue="Annual" default-membership="false" for="annual-membership-inp-stml" id="annual-membership-box" class="membership">
+      {{!-- <input type="checkbox" id="annual-membership-inp-stma"> --}}
+
             <div>
               <b>
               Annual Membership
@@ -156,12 +162,16 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
              <p>
               Pay annually for the individual joining the association
             </p>
-    </fieldset>
+            <span>School  
+              of Traditional Martial arts
+            </span>
+    </label>
   
         </span>
          <span>
-            <fieldset  membershipValue="LifeTime" default-membership="true" for="lf-membership-inp" id="lifetime-membership-box"  class="membership">
-            <legend> Traditional school of martail art </legend>
+            <label  membershipValue="LifeTime" default-membership="true" for="lf-membership-inp-gsr" id="lifetime-membership-box"  class="membership">
+     {{!-- <input type="checkbox" id="lf-membership-inp-gsr"> --}}
+
             <div>
               <b>
               LifeTime Membership
@@ -175,12 +185,14 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
              <p>
               For the individual joining the association
              </p>
-            </fieldset>
-    <fieldset membershipValue="Annual" default-membership="false" for="annual-membership-inp" id="annual-membership-box" class="membership">
-            <legend> Traditional school of martail art </legend>
+            <span>Goju Shin Ryu</span>
+
+            </label>
+    <label  class="membership"  membershipValue="Annual" default-membership="false" for="annual-membership-inp-gsr" id="annual-membership-box">
+          {{!-- <input type="checkbox" id="annual-membership-inp-gsr"> --}}
             <div>
               <b>
-              Annual Membership
+              Annual Membership 
               </b>
               <span>
                 <sup>$</sup>
@@ -191,7 +203,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
              <p>
               Pay annually for the individual joining the association
             </p>
-    </fieldset>
+            <span>Goju Shin Ryu</span>
+    </label>
   
         </span>
       </div>
@@ -333,7 +346,9 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
 
 
 </div>
-    <div id="payment-info-form">
+
+
+<div id="payment-info-form">
       <h2>Membership Info</h2>
     <div class="payment-box-div">
       <Label>Membership Type</Label>
@@ -391,6 +406,8 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
 
 
     </div>
+
+
     <div class="Success-massage-form" id="Success-massage-form">
       <h3>Thanks for your Order</h3>
       <p>

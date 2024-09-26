@@ -293,7 +293,11 @@ footer > .ft_div2{
         width: 4em;
         border-radius: 50%;
     }
-    
+    footer > .ft_div1 >a .div1 > img {
+    width: 4em;
+    border-radius: 50%;
+
+    }
     footer > .ft_div1 > .div1 > p {
        font-size: 14px;
        font-weight: 500;
