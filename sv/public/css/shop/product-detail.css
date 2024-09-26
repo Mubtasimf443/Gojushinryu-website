@@ -1,0 +1,40 @@
+/* Basic resets */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    color: #000;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #fff;
+}
+
+/* Product Page Layout */
+.product-page {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 20px;
+    border-bottom: 2px solid goldenrod;
+    margin-bottom: 30px;
+    background-color: #fff;
+}
+
+.product-image img {
+    max-width: 100%;
+    height: auto;
+    border: 3px solid goldenrod;
+    border-radius: 10

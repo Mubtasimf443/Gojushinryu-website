@@ -1,0 +1,93 @@
+/* General Layout */
+.checkout-container {
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+}
+
+.checkout-header {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+}
+
+.progress-indicator {
+    font-size: 0.9rem;
+    color: #888;
+}
+
+.checkout-body {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    flex-wrap: wrap;
+}
+
+/* Form Section */
+.form-section {
+    flex: 1;
+    min-width: 60%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+.form-group input, select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    width: 100%;
+}
+
+/* Order Summary Section */
+.order-summary {
+    flex: 0 0 35%;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.order-summary .item {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 15px;
+}
+
+.item img {
+    max-width: 50px;
+}
+
+.totals {
+    margin-top: 20px;
+}
+
+.place-order-btn {
+    background-color: #1e90ff;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 100%;
+    max-width: 300px;
+    margin: 20px auto;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    .checkout-body {
+        flex-direction: column;
+    }
+
+    .order-summary {
+        margin-top: 20px;
+    }
+}

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Check Out </title>
+  <link rel="stylesheet" href="./">
+  
+
+</head>
+
+<body>
+
+<div class="checkout-container">
+    <!-- Header with logo and progress indicator -->
+    <header class="checkout-header">
+        <div class="logo">Your Logo</div>
+        <div class="progress-indicator">
+            <span>Cart</span> > <span>Shipping</span> > <span>Payment</span> > <span>Review</span>
+        </div>
+    </header>
+
+    <div class="checkout-body">
+        <!-- Main Form Section -->
+        <div class="form-section">
+            <!-- Shipping Information -->
+            <h2>Shipping Information</h2>
+            <form class="shipping-form">
+                <div class="form-group">
+                    <input type="text" placeholder="First Name" required>
+                    <input type="text" placeholder="Last Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" placeholder="Address" required>
+                    <input type="text" placeholder="City" required>
+                    <input type="text" placeholder="Zip Code" required>
+                    <select>
+                        <option value="USA">United States</option>
+                        <option value="CAN">Canada</option>
+                        <!-- Add more countries -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="tel" placeholder="Phone Number" required>
+                </div>
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox"> Use the same address for billing
+                    </label>
+                </div>
+            </form>
+
+            <!-- Payment Information -->
+            <h2>Payment Information</h2>
+            <form class="payment-form">
+                <div class="form-group">
+                    <input type="text" placeholder="Card Number" required>
+                    <input type="text" placeholder="Expiry Date" required>
+                    <input type="text" placeholder="CVV" required>
+                </div>
+            </form>
+        </div>
+
+        <!-- Order Summary Sidebar -->
+        <div class="order-summary">
+            <h2>Order Summary</h2>
+            <div class="items">
+                <!-- Example item -->
+                <div class="item">
+                    <img src="product-image.jpg" alt="Product Image">
+                    <p>Product Name</p>
+                    <span>$50.00</span>
+                </div>
+            </div>
+            <div class="totals">
+                <p>Subtotal: $50.00</p>
+                <p>Shipping: $5.00</p>
+                <p>Taxes: $4.00</p>
+                <p><strong>Total: $59.00</strong></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Place Order Button -->
+    <div class="checkout-footer">
+        <button class="place-order-btn">Place Order</button>
+    </div>
+</div>
+
+
+</body>
+
+</html>
