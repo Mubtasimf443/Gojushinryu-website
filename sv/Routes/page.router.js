@@ -23,8 +23,8 @@ pageRouter.get('/auth/:name',(req,res)=> {
 pageRouter.get('/contact',(req,res)=>res.render('contact'))
 pageRouter.get('/shop',(req,res)=>res.render('shop'))
 pageRouter.get('/shop/:name',(req,res)=> {
-    if (req.params.name === 'liked-products') return res.render('LikedProduct');
     if (req.params.name === 'cart') return res.render('cart');
+    if (req.params.name === 'fevorites') return res.render('fevorites');
     return res.render('shop');
 
 })

@@ -12,6 +12,21 @@ body {
     color: #333;
 }
 
+.heading_section{
+    padding: 2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.heading_section h1{
+    text-transform: uppercase;
+    font-size: 27px;
+}
+
+
+
 
 .product-container {
     display: flex;
