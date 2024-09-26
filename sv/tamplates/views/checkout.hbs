@@ -5,21 +5,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Check Out </title>
-  <link rel="stylesheet" href="./">
+ {{>Links}}
+  <link rel="stylesheet" href="/css/shop/checkout.css">
   
 
 </head>
 
 <body>
 
+{{>whiteHeader}}
+{{>shopheader}}
+
+
+<main>
+
+
 <div class="checkout-container">
-    <!-- Header with logo and progress indicator -->
-    <header class="checkout-header">
-        <div class="logo">Your Logo</div>
-        <div class="progress-indicator">
-            <span>Cart</span> > <span>Shipping</span> > <span>Payment</span> > <span>Review</span>
-        </div>
-    </header>
 
     <div class="checkout-body">
         <!-- Main Form Section -->
@@ -88,7 +89,9 @@
     </div>
 </div>
 
+</main>
+
+{{>Footer}}
 
 </body>
-
 </html>

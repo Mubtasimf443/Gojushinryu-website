@@ -25,9 +25,11 @@ pageRouter.get('/shop',(req,res)=>res.render('shop'))
 pageRouter.get('/shop/:name',(req,res)=> {
     if (req.params.name === 'cart') return res.render('cart');
     if (req.params.name === 'fevorites') return res.render('fevorites');
+    if (req.params.name === 'checkout') return res.render('checkout');
     return res.render('shop');
-
-})
+});
+pageRouter.get('/post/:name',(req,res)=> res.render('post-detail'));
+pageRouter.get('/shop/equipments/:name',(req,res)=>  res.render('product-detail'));
 pageRouter.get('/control-panal/admin/name/varun-jettly' ,(req,res)=>res.render('control-panal'));
 pageRouter.get('/media/:name',(req,res) => {
     if (req.params.name === 'videos') return res.render('video');

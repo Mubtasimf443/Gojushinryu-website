@@ -5,18 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
    
     <title>
-      Product Details
+      Product Details |
     | Goju Shin Ryu Shop
     </title>
-    <link rel="stylesheet" href="./css/product-detail.css">
+ {{>Links}}
+
+    <link rel="stylesheet" href="/css/shop/product-detail.css">
 </head>
 <body>
+
+{{>whiteHeader}}
+{{>shopheader}}
+
+
+    <main>
+
+ 
     <div class="container">
         <!-- Main Product Section -->
         <div class="product-page">
             <!-- Main Image -->
             <div class="product-image">
-                <img src="main-product.jpg" alt="Main Product Image" id="main-image">
+                <img src="/img/product1.jpg" alt="Main Product Image" id="main-image">
             </div>
 
             <!-- Product Information -->
@@ -26,13 +36,14 @@
 
                 <!-- Price -->
                 <p class="product-price">$499.99</p>
+                <button class="add-to-cart">Add to Cart</button>
 
                 <!-- Description -->
                 <div class="product-description">
                     <h2>Description</h2>
                     <p>This is a detailed description of the premium product, highlighting its features, materials, and what makes it unique.</p>
                 </div>
-
+{{!-- 
                 <!-- Size Options -->
                 <div class="product-size">
                     <h2>Select Size</h2>
@@ -42,19 +53,25 @@
                         <option value="large">Large</option>
                         <option value="xl">XL</option>
                     </select>
-                </div>
+                </div> --}}
 
                 <!-- Add to Cart Button -->
-                <button class="add-to-cart">Add to Cart</button>
             </div>
         </div>
 
         <!-- Thumbnail Images Section -->
+        <h3>More Image</h3>
         <div class="thumbnail-images">
-            <img src="thumb1.jpg" alt="Thumbnail 1" class="thumb">
-            <img src="thumb2.jpg" alt="Thumbnail 2" class="thumb">
-            <img src="thumb3.jpg" alt="Thumbnail 3" class="thumb">
+            <img src="/img/product1.jpg" alt="Thumbnail 1" class="thumb">
+            <img src="/img/product2.jpg" alt="Thumbnail 2" class="thumb">
+            <img src="/img/product3.jpg" alt="Thumbnail 3" class="thumb">
         </div>
     </div>
+
+   </main>
+
+{{>Footer}}
+
+
 </body>
 </html>
