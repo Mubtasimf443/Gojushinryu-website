@@ -46,8 +46,10 @@ input {
   rgba(0, 0, 0, 0.5));
   color: white;
   row-gap: 12px;
-  padding: 2em;
+  padding-top: 80px;
   text-align: center;
+  box-sizing: content-box;
+
 }
 #banner h1{
   font-size: 27px;

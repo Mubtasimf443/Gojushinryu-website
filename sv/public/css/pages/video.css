@@ -66,13 +66,13 @@ body {
 .gallery-item {
     position: relative;
     overflow: hidden;
-    width:330px ;
-    height: 265px;
-    
+    width:380px ;
+    height: 245px;
+   
 }
 
 
-
+/* 
 @media screen and (min-width: 1000px){
     .gallery-item {
         width:340px ;
@@ -84,21 +84,20 @@ body {
         width:395px ;
         height: 320px;
     }
-}
-.gallery-item img,iframe {
+} */
+.gallery-item iframe {
     width: 100%;
     height: 100%;
     transition: transform 0.3s ease;
     object-fit: cover;
     object-position: top center;
+    background: #000;
+    color: white;
 }
 
-.gallery-item:hover img,iframe {
+ iframe:hover {
     transform: scale(1.1);
 }
-
-
-
 .modal {
     display: none;
     flex-direction: column;
