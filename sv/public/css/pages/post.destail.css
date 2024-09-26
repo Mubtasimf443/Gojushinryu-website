@@ -1,26 +1,67 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+
+.main{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding:4em 3em;
+}
+
+.post{
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    height: fit-content;
+    row-gap: 20px;
+}
 /* Main Image */
 .main-image {
     width: 100%;
     height: 60vh;
     background-size: cover;
     background-position: center;
-}
+} 
 
+@media screen and (max-width:550px) {
+    .main{
+        padding:2em auto;
+    }
+    .post{
+        width: 460px;
+    }
+}
 /* Image Gallery */
 .image-gallery {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: 10px;
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 20px;
+  row-gap: 20px;
+  justify-content: center;
+  align-items: center;
+  padding: auto;
+  object-fit: cover;
+  object-position: top left;
 }
 .image-gallery img {
-    width: 100%;
+    width: 200px;
     height: auto;
     border-radius: 8px;
+    height: 200px;
+    opacity: 1;
+    object-fit: cover;
+    object-position:top left;
+    z-index: -1;
 }
 
 /* Post Title */
 .post-title {
-    font-family: 'Playfair Display', serif;
     font-size: 2.5rem;
     text-align: center;
     margin: 20px 0;
@@ -30,13 +71,19 @@
 .post-description {
     font-family: 'Roboto', sans-serif;
     line-height: 1.7;
-    padding: 0 15px;
+    padding: 0 0px;
     max-width: 900px;
     margin: 0 auto;
+    word-spacing: 3;
+    text-align: justify;
+    margin-top: -20px;
 }
 
 /* Responsive Design */
 @media screen and (max-width: 768px) {
+    .post{
+        width: 600px;
+    }
     .main-image {
         height: 40vh;
     }
