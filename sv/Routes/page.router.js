@@ -22,7 +22,7 @@ pageRouter.get('/auth/:name',(req,res)=> {
     if (req.params.name === 'login') return res.render('login');
     if (req.params.name === 'sign-in') return res.render('login');
     if (req.params.name === 'otp-varification') {
-        console.log(req.cookies.vft);
+       // console.log(req.cookies.vft);
         if (!req.cookies.vft) return res.status(400).render('notAllowed');
         jwt.verify(req.cookies.vft,JWT_SECRET_KEY,(err,data)=> {
             if (err) return res.status(400).render('notAllowed');

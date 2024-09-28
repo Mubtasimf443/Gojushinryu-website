@@ -47,9 +47,7 @@ primaryBtn.addEventListener('click',  async(e) => {
  primaryBtn.style.opacity=.7;
  primaryBtn.removeAttribute('disabled');
  if (error) return alert(error);
- if (success === true)  return setTimeout(() => {
-  
- }, 200); window.location.replace('/auth/otp-varification')
+ if (success === true)  return window.location.replace('/auth/otp-varification')
   return alert('unknown Error')
 })
 

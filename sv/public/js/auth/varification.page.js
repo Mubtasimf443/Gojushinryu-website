@@ -8,7 +8,7 @@ InshaAllah, By his Marcy I will Gain Success
   let timer = document.querySelectorAll('.vf-time')
   let inp_opt =document.getElementById('---inp--otp');
   var Varification_Success = false;
-  let vfbTN =document.querySelector(['vf-btn']);
+  let vfbTN =document.querySelector('.vf-btn');
   
   (function TimerFunction() {
     timer.forEach(el => el.innerHTML = timerTime);
@@ -17,7 +17,7 @@ InshaAllah, By his Marcy I will Gain Success
       vf_timer_text.innerHTML = 'Time Is finished,You can not Varify,  Please Sign In again ';
       vf_timer_text.style.color = 'red';
       setTimeout(e => {
-        window.location.replace('/sign-up')
+        window.location.replace('/auth/sign-up')
       },4000) 
       return
     }
@@ -30,24 +30,42 @@ InshaAllah, By his Marcy I will Gain Success
 
   vfbTN.addEventListener('click',e => {
     e.preventDefault();
+    if (inp_opt.value.toString() === '') { 
+      alert('code is not valid');
+      return
+    }
     let code =inp_opt.valueAsNumber;
-    if (typeof code !== 'number') alert('code is not valid');
-    if (code <99999 || code >999999) alert('code is not valid');
+    if (typeof code !== 'number') { 
+      alert('code is not valid');
+      return
+    };
+    if (code <99999 || code >999999) {
+      alert('code is not valid');
+      return 
+    };
     let jsonObj=JSON.stringify({
       code
-    });
+    });    
+    vfbTN.style.opacity=.6;
     vfbTN.style.transition='all 1s ease';
     vfbTN.setAttribute('disabled','');
-    vfbTN.style.opacity=.6;
     fetch(window.location.origin +'/api/auth-api/user/sign-up-otp-varification',{
       method:"POST",
       headers:{
         'Content-Type':"application/json"
       },
       body:jsonObj
-    });
-    vfbTN.style.opacity=.6;
-    vfbTN.removeAttribute('disabled');
+    }).then(async data=> {
+      let {error,success} =await data.json();
+      vfbTN.removeAttribute('disabled');
+      vfbTN.style.opacity=1;
+      if (error) return alert(error);
+      if (success) return window.location.replace('/')
+    }).catch(e => {
+      vfbTN.removeAttribute('disabled');
+      vfbTN.style.opacity=1;
+    })
+   
   });
 
 }

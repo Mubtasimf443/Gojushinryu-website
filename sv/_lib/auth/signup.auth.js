@@ -12,7 +12,7 @@ import { JWT_SECRET_KEY } from '../env.js';
 
 
 export const signUpFunction = async (req, res ) => {
-  console.log('sign up started');
+ // console.log('sign up started');
   
   let userCreatedSuccessFully = false ;
   let {firstname, lastname,  email,  phone ,password ,country } = req.body
@@ -44,7 +44,7 @@ export const signUpFunction = async (req, res ) => {
              },JWT_SECRET_KEY,{});
              res
              .cookie('vft',token,{
-              expires: new Date(Date.now() + 1000*60*60// *60*24*30
+              expires: new Date(Date.now() + 1000*64// *60*24*30
             ),
               httpOnly:true
              })
@@ -89,19 +89,9 @@ export const signUpFunction = async (req, res ) => {
             
           })
          }
-       }, 60000000)
+       }, 64000)
  //     log('finished')
  
      }
   }
 }
-
-
-
-
-
-
-
-
-
-

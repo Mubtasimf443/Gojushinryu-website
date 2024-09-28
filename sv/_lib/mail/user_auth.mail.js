@@ -7,10 +7,6 @@ import { log } from '../smallUtils.js';
 
 
 
-
-
-
-
 export const user_varification_user_mail = async ({to, otp}) => {
   if (!to.toString().includes('@')) return false
   if (!to.toString().includes('.')) return false
