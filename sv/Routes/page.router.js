@@ -1,6 +1,9 @@
 /*  بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah */
 
 import { Router } from "express";
+import jwt from 'jsonwebtoken'
+import { JWT_SECRET_KEY } from "../_lib/env.js";
+
 
 let pageRouter = Router();
 pageRouter.get('/home', (req, res) => res.render('home'))
@@ -18,9 +21,16 @@ pageRouter.get('/auth/:name',(req,res)=> {
     if (req.params.name === 'sign-up') return res.render('sign-up');
     if (req.params.name === 'login') return res.render('login');
     if (req.params.name === 'sign-in') return res.render('login');
-    if (req.params.name === 'otp-varification') return res.render('varification');
+    if (req.params.name === 'otp-varification') {
+        console.log(req.cookies.vft);
+        if (!req.cookies.vft) return res.status(400).render('notAllowed');
+        jwt.verify(req.cookies.vft,JWT_SECRET_KEY,(err,data)=> {
+            if (err) return res.status(400).render('notAllowed');
+            return res.render('varification')
+        })
+        
+    }
     if (req.params.name === 'reset-password') return res.render('reset-password');
-    return res.render('login');
 })
 pageRouter.get('/contact',(req,res)=>res.render('contact'))
 pageRouter.get('/shop',(req,res)=>res.render('shop'))

@@ -2,7 +2,7 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah 
 By his marcy,  I will gain success
 */
-const course_purchase_user_email = (to) => {
+export const course_purchase_user_email = (to) => {
   mailer.sendMail({
       from: MAIL_USER,
       to,
@@ -14,7 +14,10 @@ const course_purchase_user_email = (to) => {
         Thank You For  Purchasing The course
       </p>`
     })
-    .then(() => {}).catch(e => console.log(e))
+    .then(() => {
+      return true
+    })
+    .catch(e => console.log(e))
 }
 const course_purchase_admin_email = (to) => {
   mailer.sendMail({

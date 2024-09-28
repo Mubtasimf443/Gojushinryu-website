@@ -16,3 +16,6 @@ export const MAIL_HOST =process.env.MAIL_HOST
 export const MAIL_PORT =process.env.MAIL_PORT
 export const MAIL_USER =process.env.MAIL_USER
 export const MAIL_PASS=process.env.MAIL_PASS
+export const ADMIN_EMAIL =process.env.ADMIN_EMAIL
+export const JWT_SECRET_KEY=process.env.JWT_SECRET_KEY
+export const FROM_EMAIL=process.env.FROM_EMAIL

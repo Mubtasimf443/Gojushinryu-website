@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title> OTP Varification | Goju Shin Ryu </title>
-  <script defer src="./js/Varifation.page.js">
+  <script defer src="/js/auth/Varification.page.js">
   </script>
     {{>Links}}
 
@@ -43,11 +43,16 @@
           <a class="vf-timer-anchor">Remaining Time
           <span class="vf-time">60</span> Second's </a>
           <div class="btn-box">
-            <button>
+            <button vf-btn>
               Varify
             </button>
             <button>
-              Register Again
+              <a 
+          style="text-decoration:none; color: inherit;background:inherit;font-size:inherit;font-weight:inherit"
+           href="/auth/sign-up">
+       Sign Up again
+        </a>
+              
             </button>
           </div>
         </div>

@@ -95,6 +95,7 @@ background: whitesmoke;
   font-weight: 500;
   font-size: 20px;
   border-radius :6px;
+  transition: all .7s ease;
 
 }
 .form-sec > form > .action-box div > button:nth-child(2){

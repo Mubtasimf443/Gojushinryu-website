@@ -33,8 +33,8 @@ primaryBtn.addEventListener('click',  async(e) => {
     phone,
     country
   })
-  
-  
+  primaryBtn.style.opacity=.7;
+  primaryBtn.setAttribute('disabled','');
   let respose =await fetch(window.location.origin +'/api/auth-api/user/sign-up',{
     headers:{
         'Content-Type':'application/json',
@@ -44,8 +44,12 @@ primaryBtn.addEventListener('click',  async(e) => {
   });
  respose =await respose.json();
  let {error,success} =respose;
- if (error) return alert(error)
- if (success === true)  return window.location.replace('/auth/otp-varification')
+ primaryBtn.style.opacity=.7;
+ primaryBtn.removeAttribute('disabled');
+ if (error) return alert(error);
+ if (success === true)  return setTimeout(() => {
+  
+ }, 200); window.location.replace('/auth/otp-varification')
   return alert('unknown Error')
 })
 

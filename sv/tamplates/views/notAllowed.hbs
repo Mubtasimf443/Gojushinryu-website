@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+ 
+  <title>
+    Restricted To Access the page
+  </title>
+  {{>Links}}
+
+  <link rel="stylesheet" href="/css/pages/404.css">
+</head>
+
+<body>
+
+  {{>Header}}
+  <main>
+<section id="banner">
+<div class="container">
+  <h2>Request Not accapted</h2>
+  <P>
+    Sorry ,We You are not allowed to view <SPAn style="color: var(--main-cl);" class="w-url"></SPAn> . Please try again . <br> Thanks
+  </P>
+</div>
+</section>
+
+  </main>
+  {{>Footer}}
+</body>
+<script>
+window.addEventListener('load',e =>{
+  document.querySelector('.w-url').innerHTML =`"`+ this.location.href+ `"`
+  })
+</script>
+
+</html>

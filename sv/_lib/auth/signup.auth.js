@@ -5,6 +5,10 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user.js';
 import {generatePin} from "../generatePin.js";
+import { course_purchase_user_email } from '../mail/Course.mail.js';
+import { user_varification_user_mail } from '../mail/user_auth.mail.js';
+import { log } from '../smallUtils.js';
+import { JWT_SECRET_KEY } from '../env.js';
 
 
 export const signUpFunction = async (req, res ) => {
@@ -17,7 +21,7 @@ export const signUpFunction = async (req, res ) => {
   try {
     const salt =await bcrypt.genSalt(15)
     let newPassword = await bcrypt.hash('abs',  salt)
-    let pin =await generatePin(999999)
+    let pin =await generatePin(9999999)
     await User.create({
       first_name:firstname,
        last_name:lastname,
@@ -28,31 +32,65 @@ export const signUpFunction = async (req, res ) => {
        isRegistered:false  ,
        country
       })
-      .then(data => {
-        userCreatedSuccessFully = true
-        res.status(201).json({success : true});
-       console.log(
-        'user created');
+    .then(async data => {
+     await  user_varification_user_mail({to:email,otp:pin})
+    .then(async boolean=>{
+        if (boolean) { 
+          userCreatedSuccessFully=true;
+          try {
+            let token=await jwt.sign({
+              email,
+              key:'wyieiwuxhk xsudywsxaslkaoedhxx ,mx avwqer62739728405482p9210936389290'//just making harder to hack
+             },JWT_SECRET_KEY,{});
+             res
+             .cookie('vft',token,{
+              expires: new Date(Date.now() + 1000*60*60// *60*24*30
+            ),
+              httpOnly:true
+             })
+             .status(201)
+             .json({
+              success:true
+             });
+          } catch (error) {
+            console.log(error);
+           return  res.status(500).json({error :'Server error,  please report to us '})
+
+          }
+        }
+        if (!boolean) {
+           User.findOneAndDelete({email}).then(async e => {
+          //  console.log('email deleted');
+            
+           }) 
+          }
+       })    
           })
-      .catch(e => {
-        res.status(500).json({error :'Server error,  please report to us '})
-      })
-      
-      
+    .catch(e => {
+      console.log(e);  
+      return  res.status(500).json({error :'Server error,  please report to us '})
+      }) 
   } catch (e) {
-    console.log(e)
+    console.log(e);
+    return res.status(500).json({error:'server error'})
   } finally {
      if (!userCreatedSuccessFully) console.log('Failed to create the User')
      if (userCreatedSuccessFully) {
-       console.log('user created successFully')
+     //  console.log('user created successFully')
        
        setTimeout(async e => {
          let varifiedUserOrNot = await User.findOne({ email });
+       //  console.log(varifiedUserOrNot);
+         
          if (!varifiedUserOrNot) return
          if (!varifiedUserOrNot.isRegistered) {
-          User.findOneAndDelete(varifiedUserOrNot._id)
+          User.findOneAndDelete({email}).then(e =>{
+           console.log('deleted after 60s');
+            
+          })
          }
-       }, 60000)
+       }, 60000000)
+ //     log('finished')
  
      }
   }
