@@ -8,7 +8,7 @@
     {{>Links}}
 
   <link rel="stylesheet" href="/css/pages/sign-up.page.css">
-  <script defer src="/js/Signup.page.js"></script>
+  <script defer src="/js/auth/sign-up.js"></script>
 </head>
 
 <body>
@@ -52,6 +52,13 @@
         placeholder="+968****7"
         type="Number">
       </div>
+        <div class="input-box">
+        <label for="---inp--country">Country</label>
+        <input 
+        id="---inp--country"
+        placeholder="canada"
+        type="text">
+      </div>
        <div class="input-box">
          <label for="---inp--ps">
            Password
@@ -73,8 +80,8 @@
        <div class="action-box">
          <a href="">I have Forgot Password</a>
          <div class="btn-box">
-           <button>Join</button>
-          <button >Login</button>
+           <button primarybtn>Join</button>
+          <button sbtn>Login</button>
          </div>
        </div>
     </form>

@@ -45,7 +45,7 @@ const schema = mongoose.Schema({
   reciever_email :{
     type: number,
     required: true
-  }
+  },
   shipping_cost:{
     type: String,
     required: true
@@ -90,7 +90,7 @@ const schema = mongoose.Schema({
 
 schema.methods.checkSQLInjection =function() {
   if (this.name.includes('{')) return false 
-  if (this.delevering_country.includes('date')) return false 
+  if (this.delevering_country.includes('{')) return false 
   if (this.delevering_city.includes('{')) return false 
   if (this.delevering_district.includes('{')) return false 
   if (this.delevering_house_address.includes('{')) return false 

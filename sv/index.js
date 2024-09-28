@@ -18,6 +18,7 @@ import { unlinkSync } from 'fs';
 import OrderRouter from './Routes/order.router.js';
 import mailRouter from './Routes/mail.router.js';
 import { connectDB } from './_lib/ConnectDb.js';
+import cookieParser from 'cookie-parser';
 
 //varibles
 const app = express();
@@ -26,11 +27,12 @@ let dirName = path.dirname(__filename);
 
 
 //environment setup
-connectDB()
+ connectDB()
 app.set('view engine', 'hbs');
 app.set('views', path.resolve(dirName , './tamplates/views'));
 hbs.registerPartials(path.resolve(dirName ,'./tamplates/partials'));
 app.use(express.json());
+app.use(cookieParser());
 
 
 //routes
@@ -38,7 +40,7 @@ app.use(express.static(path.resolve(dirName,'./public/')))
  //app.use(fileRouter);
 app.use('/api/chat',chateRouter);
 app.use('/api/upload',uploadRouter);
-app.use('/api/auth/',authRouter);
+app.use('/api/auth-api/',authRouter);
 //buyer do not pay us and takes the website
 app.use('/api/order-api/',OrderRouter);
 app.use('/api/mailer-api/',mailRouter)

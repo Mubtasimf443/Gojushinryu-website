@@ -24,25 +24,28 @@ let schema = new mongoose.Schema({
         type :Number,
         required :true ,
         unique :true
-
     },
     password :{
         type:String,
         required:true,
     },
+    pin:Number,
     isRegistered :Boolean,
     isMember :{
         required:true,
-        type:Boolean
+        type:Boolean,
+        default:false
     } ,
-    address:{
+    country:{
         required:true,
         type:String
     }
 })
 
 
-
+schema.methods.checkDataForSignUp=function () {
+    
+}
 
 
 const User= mongoose.model('User',schema);
