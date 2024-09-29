@@ -16,6 +16,7 @@ authRouter.post('/user/sign-up-otp-varification',user_varification_api);
 authRouter.post('/user/sign-in',loginApiFunc);
 authRouter.post('/user/reset-password-opt-request',forgetPasswordOtpApi);
 authRouter.post('/user/reset-password-request',forgetPasswordResetPassApi);
+authRouter.post('/admin/varify',);
 
 
 

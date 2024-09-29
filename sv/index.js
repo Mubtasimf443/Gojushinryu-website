@@ -27,8 +27,8 @@ let dirName = path.dirname(__filename);
 
 
 //environment setup
- connectDB()
-app.set('view engine', 'hbs');
+connectDB()
+app.set('view engine','hbs');
 app.set('views', path.resolve(dirName , './tamplates/views'));
 hbs.registerPartials(path.resolve(dirName ,'./tamplates/partials'));
 app.use(express.json());

@@ -3,6 +3,8 @@
 import { Router } from "express";
 import jwt from 'jsonwebtoken'
 import { JWT_SECRET_KEY } from "../_lib/env.js";
+import { Admin } from "../_lib/models/Admin.js";
+import { addMinPageRoute } from "../_lib/auth/Admin.cpanal.js";
 
 
 let pageRouter = Router();
@@ -43,7 +45,7 @@ pageRouter.get('/shop/:name',(req,res)=> {
 });
 pageRouter.get('/post/:name',(req,res)=> res.render('post-detail'));
 pageRouter.get('/shop/equipments/:name',(req,res)=>  res.render('product-detail'));
-pageRouter.get('/control-panal/admin/name/varun-jettly' ,(req,res)=>res.render('control-panal'));
+pageRouter.get('/control-panal/admin/name/varun-jettly' ,addMinPageRoute);
 pageRouter.get('/media/:name',(req,res) => {
     if (req.params.name === 'videos') return res.render('video');
     if (req.params.name === 'video') return res.render('video');

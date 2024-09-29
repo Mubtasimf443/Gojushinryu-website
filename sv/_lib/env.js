@@ -6,7 +6,7 @@ InshaAllah, By his marcy I will Gain Success
 import dotenv from 'dotenv'
 dotenv.config()
 
-
+export const SDATABASE = process.env.SDATABASE
 export const DATABASE = process.env.DATABASE
 export const PAYPAL_LINK = process.env.PAYPAL_LINK
 export const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID

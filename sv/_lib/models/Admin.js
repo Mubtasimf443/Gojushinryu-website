@@ -1,26 +1,30 @@
 /*
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah 
 By his marcy,  I will gain success
-*/ 
+*/
 
 import mongoose from 'mongoose';
 
-const schema = mongoose.Schema({
-  first_name:String, 
-  last_name:String,
-  email :{
-    type : String,  
-    required :true, 
-    unique:true
+const Adminschema = mongoose.Schema({
+  name : String,
+  fname:String,
+  lname : String,
+  email: {
+    type: String,
+    required: true,
+    unique: true
   },
-  password:{
+  password: {
     type: String,
     required: true
   },
-  
- 
+  Otp: Number ,
+  Secret_Key :{
+    type:String,
+    required:true
+  }
 })
 
-const Admin = mongoose.model('User', schema);
+const Admin = mongoose.model('Admin', Adminschema);
 
-export {Admin}
+export { Admin }
