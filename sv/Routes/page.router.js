@@ -21,6 +21,7 @@ pageRouter.get('/auth/:name',(req,res)=> {
     if (req.params.name === 'sign-up') return res.render('sign-up');
     if (req.params.name === 'login') return res.render('login');
     if (req.params.name === 'sign-in') return res.render('login');
+    if (req.params.name === 'reset-password') return res.render('reset-user-password');
     if (req.params.name === 'otp-varification') {
        // console.log(req.cookies.vft);
         if (!req.cookies.vft) return res.status(400).render('notAllowed');
@@ -51,15 +52,11 @@ pageRouter.get('/media/:name',(req,res) => {
     if (req.params.name==="images") return res.render('images');
     
 })
-pageRouter.get('/grand-master-counchil',(req,res)=> {
-    return res.render('grand-master-counchil')
-})
 pageRouter.get('/about-us/organization-charts',(req,res)=>res.render('OurOrganaizationChart'))
 pageRouter.get('/allience',(req,res)=> res.render('alli'))
- pageRouter.get('/student-corner',(req,res)=> res.render('student-corner'))
 pageRouter.get('/accounts/:name',(req,res)=>{
-    if (req.params.name === 'grand-master-counchil') return res.render('video');
-    if (req.params.name === 'students') return res.render('video');
+    if (req.params.name === 'grand-master-counchil') return res.render('grand-master-counchil')
+    if (req.params.name === 'student') return res.render('student-corner')
 })
 
 

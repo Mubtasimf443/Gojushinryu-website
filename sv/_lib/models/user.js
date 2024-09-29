@@ -29,6 +29,10 @@ let schema = new mongoose.Schema({
         type:String,
         required:true,
     },
+    country:{
+        required:true,
+        type:String
+    },
     pin:Number,
     isRegistered :Boolean,
     isMember :{
@@ -36,9 +40,16 @@ let schema = new mongoose.Schema({
         type:Boolean,
         default:false
     } ,
-    country:{
+  
+    resetingThePassword :{
+        type:Boolean,
         required:true,
-        type:String
+        default:false
+    },
+    resetingThePasswordOTP:{
+        type:Number,
+        required:true,
+        default:0
     }
 })
 

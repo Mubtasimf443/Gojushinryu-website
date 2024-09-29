@@ -5,6 +5,15 @@
 let primaryBtn = document.querySelector('[primarybtn]')
 let secondaryBtn = document.querySelector('[sbtn]');
 const InpPrefik ='---inp--'
+let notice_text = document.querySelector('#notice_text');
+function negativeNotice(text) {
+  notice_text.style.color ='red';
+  notice_text.style.fontSize='19px';
+  notice_text.innerHTML=text;
+  notice_text.style.textTransform='capitalize';
+}
+
+
 
 
 primaryBtn.addEventListener('click',  async(e) => {
@@ -15,16 +24,16 @@ primaryBtn.addEventListener('click',  async(e) => {
   let country = document.getElementById(InpPrefik+'country').value
   let password = document.getElementById(InpPrefik+'ps').value
   let cpassword = document.getElementById(InpPrefik+'cps').value;
-  let phone = document.getElementById(InpPrefik+'num').valueAsNumber;
-  if (email.trim().length  < 5 || email.trim().length  > 36) return alert('email should be min 5 and max 36 characters ')
-  if (password.trim().length  < 5 || password.trim().length  > 20) return alert(
+  let phone = document.getElementById(InpPrefik+'num').valueAsNumber;  
+  if (email.trim().length  < 5 || email.trim().length  > 36) return negativeNotice('email should be min 5 and max 36 characters ')
+  if (password.trim().length  < 5 || password.trim().length  > 20) return negativeNotice(
     'password should be min 5 and max 20 characters'
   );
-  if (firstname.trim().length < 3 || firstname.trim().length > 16 ) return alert('firstname should be min 3 and max 16 characters ') ;
-  if (lastname.trim().length < 3 || lastname.trim().length > 16 ) return alert('last should be min 3 and max 16 characters ') ;
-  if (country.trim().length < 4 || firstname.trim().length > 25 ) return alert('not a valid country') ;
-  if ( typeof phone !== 'number' ) return alert('not valid number') ;
-  if  (password !== cpassword) return alert('Password Do not match')
+  if (firstname.trim().length < 3 || firstname.trim().length > 16 ) return negativeNotice('firstname should be min 3 and max 16 characters ') ;
+  if (lastname.trim().length < 3 || lastname.trim().length > 16 ) return negativeNotice('last should be min 3 and max 16 characters ') ;
+  if (country.trim().length < 4 || firstname.trim().length > 25 ) return negativeNotice('not a valid country') ;
+  if ( typeof phone !== 'number' ) return negativeNotice('not valid number') ;
+  if  (password !== cpassword) return negativeNotice('Password Do not match')
   let jsonObj = JSON.stringify({
     firstname:firstname.toString(),
     lastname:lastname.toString(),
@@ -46,9 +55,9 @@ primaryBtn.addEventListener('click',  async(e) => {
  let {error,success} =respose;
  primaryBtn.style.opacity=.7;
  primaryBtn.removeAttribute('disabled');
- if (error) return alert(error);
+ if (error) return negativeNotice(error);
  if (success === true)  return window.location.replace('/auth/otp-varification')
-  return alert('unknown Error')
+  return negativeNotice('unknown Error')
 })
 
 

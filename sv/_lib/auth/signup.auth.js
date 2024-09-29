@@ -19,8 +19,8 @@ export const signUpFunction = async (req, res ) => {
   let chekedUser =await User.findOne({email})
   if (chekedUser) return res.json({error : 'You already have an account,  please sign in '})
   try {
-    const salt =await bcrypt.genSalt(15)
-    let newPassword = await bcrypt.hash('abs',  salt)
+    const salt =await bcrypt.genSalt(12)
+    let newPassword = await bcrypt.hash(password,  salt)
     let pin =await generatePin(9999999)
     await User.create({
       first_name:firstname,

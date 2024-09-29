@@ -5,7 +5,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Login | Goju Shin Ryu </title>
-  <script src="/js/Login.js"></script>
+  <script defer src="/js/auth/Login.page.js"></script>
   {{>Links}}
   <link rel="stylesheet" href="/css/pages/Login.page.css">
 </head>
@@ -18,7 +18,7 @@
     <section class="form-sec">
 
       <h1> Login </h1>
-      <h2>And Join Goju Shin Ryu</h2>
+      <h2 id="notice_text">And Join Goju Shin Ryu</h2>
 
       <form>
 
@@ -48,9 +48,9 @@
           </label>
         </div>
         <div class="action-box">
-          <a href="">I have Forgot Password</a>
+          <a href="/auth/reset-password">I have Forgot Password</a>
           <div class="btn-box">
-            <button>Login</button>
+            <button id="login">Login</button>
             <button>Sign Up</button>
           </div>
         </div>
