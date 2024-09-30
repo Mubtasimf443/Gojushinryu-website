@@ -6,6 +6,8 @@ InshaAllah, By his Marcy I will Gain Success
 
 
 {
+
+  var busy =false;
     let gm_section=document.querySelectorAll('[st_section]')
     function ChangeSection(index) {
         gm_section.forEach((el,ind) => (ind === index) ? el.style.display='flex': el.style.display='none');
@@ -117,6 +119,55 @@ InshaAllah, By his Marcy I will Gain Success
     .finally(e=>btn.style.opacity=1)
 
     }
+    async function ChangeUserPasswordRequest() {
+      if (busy) return
+      let password =document.getElementById('s-sec-password-inp').value ;
+      if ( typeof name !== 'string')  return
+      if (password.length >30)  return alert('password is to big');
+      if (password.length <6) return alert('password is to small');
+      let simbolError='you can not use < , > , * , $ , { , } , [ , ] , (, )';
+      if (password.includes('['))  return alert(simbolError);
+      if (password.includes(']'))  return alert(simbolError);
+      if (password.includes('{'))  return alert(simbolError);
+      if (password.includes('}'))  return alert(simbolError);
+      if (password.includes('('))  return alert(simbolError);
+      if (password.includes(')'))  return alert(simbolError);
+      if (password.includes('&'))  return alert(simbolError);
+      if (password.includes('`'))  return alert(simbolError);
+      if (password.includes('"'))  return alert(simbolError);
+      if (password.includes("'"))  return alert(simbolError);
+      if (password.includes('|'))  return alert(simbolError);
+      let btn=document.getElementById('s-sec-change-password-btn') ;
+      btn.style.opacity=.6;
+      busy=true;
+      fetch(window.location.origin +'/api/api_s/Update-User-Password',{
+        headers :{
+        'Content-type' :'application/json'
+        } ,
+        method:'PUT',
+        body:JSON.stringify({password})
+      })
+      .then( e => e.json())
+      .then(({error ,success}) => {
+        if (error) return alert(error);
+        if (success) {
+         btn.style.boxSizing='content-box'
+         btn.style.background='green';
+         let i= document.createElement('i');
+         i.className='fa-solid fa-check';
+         btn.innerText ='success';
+         btn.style.border='2px solid green';
+         btn.style.color='white';
+         btn.appendChild(i);
+        }
+      })
+      .catch(e =>console.log(e))
+      .finally(
+        e=>{btn.style.opacity=1;
+        busy=false
+      })
+    }
+
     document.addEventListener('click', e => {
        if (e.target.id === 'update-user-info-btn') {e.preventDefault();return ChangeUserDataRequest();}
         if (e.target.tagName === 'A' && e.target.parentNode.className ==='st-nav-main') e.preventDefault() 
@@ -135,6 +186,7 @@ InshaAllah, By his Marcy I will Gain Success
         if (e.target.parentNode.id ==='info_href') return ChangeSection(2) ;
         if (e.target.parentNode.id ==='settings_href') return ChangeSection(3) ;
         if (e.target.parentNode.id ==='notification_href') return ChangeSection(0) ;
+        if (e.target.id ==='s-sec-change-password-btn') return ChangeUserPasswordRequest()
     });
     document.getElementById('s-sec-profile-input').addEventListener('change',async e =>{
         if (e.target.files[0].type !== 'image/png' 

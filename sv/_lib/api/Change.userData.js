@@ -9,6 +9,9 @@ import { ImageUrl } from "../models/imageUrl.js";
 import { User } from "../models/user.js";
 import { log, Success } from "../smallUtils.js";
 import jwt from 'jsonwebtoken'
+import bcrypt from 'bcryptjs'
+//varible
+let simbolError ='you can not use < , > , * , $ , { , } , [ , ] , (, )';
 
 
 export async function ChangeuserData(req,res) {
@@ -33,11 +36,9 @@ export async function ChangeuserData(req,res) {
         return res.json({error :params})
     }
     if (!varified ||!email) return alert('You Do not Have the access to Change Data');
-
   let {
     name,age,bio,gender,District,city,country,postcode,street,ImageUrlForChangeMaking,needsToUpdataProfileImage
   } =req.body;
-  let simbolError ='you can not use < , > , * , $ , { , } , [ , ] , (, )';
   if (!name )  return alert('name is not define');
   if (!age)  return alert('age is not define');
   if (!bio)  return alert('bio is not define');
@@ -149,4 +150,66 @@ export async function ChangeuserData(req,res) {
     .catch(e => { log(e);alert('Failed To change')} )
    }
   
+}
+
+
+export async function changeUserPasswordAPI(req,res) {
+    function alert(params) {
+        return res.json({error :params})
+    }
+    // log('started pass change')
+    let varified=false;//is user varified
+    let email =false;
+    let {rft} =req.cookies;
+    await jwt.verify(rft,JWT_SECRET_KEY,async (err,data) => {
+        if (err) return
+        try {
+            email =data.email;
+            if (!email) return 
+            if (email) {
+            await  User.findOne({email})
+                .then(e => varified =true)
+                .catch(e => log(e))
+            }
+        } catch (error) {
+            console.log(e);          
+        }    
+    })
+    if (!varified || !email) return alert('You Do not Have the access to Change Data');
+    //log('//varified');
+    let {password} =req.body;
+    if (!password) return alert('password is not define')
+    simbolError ='you can not use < , > , * , $ , { , } , [ , ] , (, )';
+    if ( typeof password !== 'string')  return alert('sorry,can not update');
+    if (password.length >30)  return alert('password is to big');
+    if (password.length <6) return alert('password is to small');
+    if (password.includes('['))  return alert(simbolError);
+    if (password.includes(']'))  return alert(simbolError);
+    if (password.includes('{'))  return alert(simbolError);
+    if (password.includes('}'))  return alert(simbolError);
+    if (password.includes('('))  return alert(simbolError);
+    if (password.includes(')'))  return alert(simbolError);
+    if (password.includes('&'))  return alert(simbolError);
+    if (password.includes('`'))  return alert(simbolError);
+    if (password.includes('"'))  return alert(simbolError);
+    if (password.includes("'"))  return alert(simbolError);
+    if (password.includes('|'))  return alert(simbolError);
+    // console.log('//under encription');
+    
+    let salt = await bcrypt.genSalt(12);
+    let newpassword;
+    try {
+        newpassword =await bcrypt.hash(password,salt); 
+    } catch (error) {
+        return alert('server error')
+    }
+    //log('//under update')
+    User.findOneAndUpdate({email},{password :newpassword})
+    .then(e =>{ //log('password changed');
+        Success(res)})
+    .catch(
+        e => {
+        log(e);
+        alert('server error')
+    })
 }
