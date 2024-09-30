@@ -4,7 +4,9 @@ import { Router } from "express";
 import jwt from 'jsonwebtoken'
 import { JWT_SECRET_KEY } from "../_lib/env.js";
 import { Admin } from "../_lib/models/Admin.js";
-import { addMinPageRoute } from "../_lib/auth/Admin.cpanal.js";
+import { addMinPageRoute } from "../_lib/user_role_base_function/admin/Admin.cpanal.js";
+import { GMCornerPageRoute } from "../_lib/user_role_base_function/gm/gm_council.page.route.js";
+import { StudentCornerPageRoute } from "../_lib/user_role_base_function/user/st.corner.page.route.js";
 
 
 let pageRouter = Router();
@@ -45,7 +47,7 @@ pageRouter.get('/shop/:name',(req,res)=> {
 });
 pageRouter.get('/post/:name',(req,res)=> res.render('post-detail'));
 pageRouter.get('/shop/equipments/:name',(req,res)=>  res.render('product-detail'));
-pageRouter.get('/control-panal/admin/name/varun-jettly' ,addMinPageRoute);
+pageRouter.get('/control-panal' ,addMinPageRoute);
 pageRouter.get('/media/:name',(req,res) => {
     if (req.params.name === 'videos') return res.render('video');
     if (req.params.name === 'video') return res.render('video');
@@ -56,12 +58,10 @@ pageRouter.get('/media/:name',(req,res) => {
 })
 pageRouter.get('/about-us/organization-charts',(req,res)=>res.render('OurOrganaizationChart'))
 pageRouter.get('/allience',(req,res)=> res.render('alli'))
-pageRouter.get('/accounts/:name',(req,res)=>{
-    if (req.params.name === 'grand-master-counchil') return res.render('grand-master-counchil')
-    if (req.params.name === 'student') return res.render('student-corner')
+pageRouter.get('/accounts/:name',async (req,res)=>{
+    if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req,res)
+    if (req.params.name === 'student') return StudentCornerPageRoute(req,res)
 })
-
-
 
 
 export {pageRouter}

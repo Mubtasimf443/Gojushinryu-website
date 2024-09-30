@@ -31,7 +31,7 @@ export const signUpFunction = async (req, res ) => {
        phone,
        isRegistered:false  ,
        country
-      })
+    })
     .then(async data => {
      await  user_varification_user_mail({to:email,otp:pin})
     .then(async boolean=>{
@@ -95,3 +95,4 @@ export const signUpFunction = async (req, res ) => {
      }
   }
 }
+

@@ -15,7 +15,7 @@
     <meta property="og:name" content="Traditional School of Martial Arts | Goju Shin Ryu">
     <meta property="og:description" content="THE SCHOOL OF TRADITIONAL MARTIAL ARTS offers a different path to physical, mental and spiritual fulfilment through the systematic study of traditional Goju Ryu Karate and or Jiu Jitsu.">
     <meta property="og:image" content="https://gojushinryu.com/img/7442.jpg">
- 
+ <script defer src="/js/Contactus.js"></script>
   {{>Links}}
   <link rel="stylesheet" href="./css/pages/contact_us.css">
 </head>
@@ -31,7 +31,7 @@
       </p>
      <button>
       <a  style="text-decoration:none; color: inherit;background:inherit;font-size:inherit;font-weight:inherit"
-      href="#contact-us"  >
+      href="#contact_us"  >
       Contact Us 
 
       </a>
@@ -40,7 +40,7 @@
     
     
     
-  <section id="contact-us" class="contact-sec">
+  <section id="contact_us" class="contact-sec">
     <div class="contact-info-container">
       <div class="icon-box">
         <div class="icons">
@@ -94,9 +94,9 @@
     </div>
     
       <div class="contact-form-container">
-        <div class="f-info">
+        <div  class="f-info">
                 <h2>Contact Us </h2>
-                <p>
+                <p id="f_info_massage" >
                   By Contacting Us, You will find Our Suffort what You Needed as A martial Art Practitioner.
            </p>
         </div>
@@ -138,7 +138,7 @@
         <textarea id="massage-inp" ></textarea>
       </div>
     <div class="c-form-btn-box">
-       <button>Send Massage</button>
+       <button id="Contact_us_api_btn"  >Send Massage</button>
     </div>
 
     </div>
@@ -160,5 +160,11 @@ src="//www.weebly.com/weebly/apps/generateMap.php?map=google&amp;elementid=39219
   </main>
 
   {{>Footer}}
+
+
+
+
+
+
 </body>
 </html>

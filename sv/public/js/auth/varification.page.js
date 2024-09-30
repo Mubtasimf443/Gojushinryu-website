@@ -60,7 +60,7 @@ InshaAllah, By his Marcy I will Gain Success
       vfbTN.removeAttribute('disabled');
       vfbTN.style.opacity=1;
       if (error) return alert(error);
-      if (success) return window.location.replace('/')
+      if (success) return window.location.replace('/accounts/student')
     }).catch(e => {
       vfbTN.removeAttribute('disabled');
       vfbTN.style.opacity=1;

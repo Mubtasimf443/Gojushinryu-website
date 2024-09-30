@@ -45,5 +45,4 @@ let schema = new mongoose.Schema({
 
 
 
-const GM = mongoose.model('Grand_Master',schema);
-export {GM}
+export const GM = mongoose.model('Grand_Master',schema);

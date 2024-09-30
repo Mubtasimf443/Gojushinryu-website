@@ -14,10 +14,10 @@ InshaAllah, By his Marcy I will Gain Success
     timer.forEach(el => el.innerHTML = timerTime);
     if (timerTime <= 0) {
      let vf_timer_text= document.querySelector('.vf-timer-anchor');
-      vf_timer_text.innerHTML = 'Time Is finished,You can not Varify,  Please Sign In again ';
+      vf_timer_text.innerHTML = 'Time Is finished,You can not Varify, ';
       vf_timer_text.style.color = 'red';
       setTimeout(e => {
-        window.location.replace('/auth/sign-up')
+        window.location.reload();
       },4000) 
       return
     }
@@ -44,12 +44,12 @@ InshaAllah, By his Marcy I will Gain Success
       return 
     };
     let jsonObj=JSON.stringify({
-      code
+      otp:code
     });    
     vfbTN.style.opacity=.6;
     vfbTN.style.transition='all 1s ease';
     vfbTN.setAttribute('disabled','');
-    fetch(window.location.origin +'/api/auth-api/user/sign-up-otp-varification',{
+    fetch(window.location.origin +'/api/auth-api/admin/varify',{
       method:"POST",
       headers:{
         'Content-Type':"application/json"
@@ -60,7 +60,7 @@ InshaAllah, By his Marcy I will Gain Success
       vfbTN.removeAttribute('disabled');
       vfbTN.style.opacity=1;
       if (error) return alert(error);
-      if (success) return window.location.replace('/')
+      if (success) return window.location.reload()
     }).catch(e => {
       vfbTN.removeAttribute('disabled');
       vfbTN.style.opacity=1;

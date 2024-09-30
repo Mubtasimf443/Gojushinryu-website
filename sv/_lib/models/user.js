@@ -7,6 +7,22 @@ import mongoose from "mongoose";
 
 
 let schema = new mongoose.Schema({
+    thumb :String,    
+    name:{
+        type :String,
+        required :true
+    },
+    bio:{
+        type:String,
+        required :true,
+        default:'I dream to become black belt in karate and Master Martial Arts'
+    },
+    age :Number,
+    gender :{type :
+        String,
+        required:true,
+        default :'male'
+    },
     first_name:{
         type :String,
         required :true
@@ -33,6 +49,10 @@ let schema = new mongoose.Schema({
         required:true,
         type:String
     },
+    district:String,
+    city:String,
+    street:String,
+    postCode :Number,
     pin:Number,
     isRegistered :Boolean,
     isMember :{
@@ -40,7 +60,6 @@ let schema = new mongoose.Schema({
         type:Boolean,
         default:false
     } ,
-  
     resetingThePassword :{
         type:Boolean,
         required:true,
@@ -50,7 +69,13 @@ let schema = new mongoose.Schema({
         type:Number,
         required:true,
         default:0
-    }
+    },
+    orders:[{
+        id :{ type:mongoose.SchemaTypes.ObjectId, ref:'orders'}
+    }],
+    // fevorites :[{
+    //     id :{ type:mongoose.SchemaTypes.ObjectId, ref:'orders'}
+    // }]
 })
 
 

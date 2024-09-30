@@ -11,27 +11,26 @@
     <link rel='stylesheet' type='text/css' media='screen' href="/css/students-corner/massage.css">
     <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/Settings.css">
     <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/order.css">
-    <script defer src="/js/student-corner.js"></script>
 </head>
 <body>
     {{>whiteHeader}}
-
+  
 <main>
 <section id="st-corner">
     <div class="sidebar-div">
 
   
   <div class="st-bio">
-    <img src="/img/samurai4.jpg" alt="">
-    <h2>Varrun Jettly</h2>
+    <img src="{{thumb}}">
+    <h2>{{ name }}</h2>
     <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi omnis, volupt
+{{bio}}
     </p>
     <div class="plans">
        <span>Membership</span> <span>Annual</span>
     </div>
     <b class="st-org">
-SChool Traditional  Of MARTIAL Arts
+School Traditional  Of MARTIAL Arts
     </b>
   </div>
   <div class="st-nav-main">
@@ -102,7 +101,12 @@ SChool Traditional  Of MARTIAL Arts
 <div st_section id="info-section" class="form-section">
    <h2>Info</h2>
    <div class="img-inp-box">
-     <label for="s-sec-profile-input">
+     <label for="s-sec-profile-input" 
+     style='background:url("{{thumb}}") ; 
+      background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
+    '>
        <input id="s-sec-profile-input" style="display: none" type="file">
      </label>
      <b>Profile Image</b>
@@ -117,7 +121,7 @@ SChool Traditional  Of MARTIAL Arts
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-age-inp">Age</label>
-     <input type="Text" name="" id="s-sec-age-inp">
+     <input type="number" name="" id="s-sec-age-inp">
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-gender-inp">Gender</label>
@@ -144,8 +148,8 @@ SChool Traditional  Of MARTIAL Arts
      <input type="number" name="" id="s-sec-post-code-inp">
    </div>
    <div class="s-sec-btn-box">
-     <button>Cancel</button>
-     <button> Save</button>
+     <button  >Cancel</button>
+     <button id="update-user-info-btn" > Save</button>
    </div>
  </div>
 
@@ -159,10 +163,10 @@ SChool Traditional  Of MARTIAL Arts
      <label for="s-sec-country-inp">
        Password
      </label>
-     <input type="password" name="" id="s-sec-country-inp">
+     <input type="password" name="" id="s-sec-password-inp">
    </div>
    <div class="s-sec-btn-box">
-     <button>Cancel</button>
+     {{!-- <button>Cancel</button> --}}
      <button> Save</button>
    </div>
  </div>
@@ -219,11 +223,22 @@ SChool Traditional  Of MARTIAL Arts
 </section>
 
 </main>
-
-
-
-
-
+  <script>
+    var needsToUpdataProfileImage='{{thumb}}' === '/img/avatar.png' ? true : false ;
+    var ImageUrlForChangeMaking=undefined;
+  </script>
+  <script>
+      document.getElementById('s-sec-name-inp').value ='{{name}}';
+     document.getElementById('s-sec-age-inp').valueAsNumber ='{{age}}';
+     document.getElementById('s-sec-bio-inp').value='{{bio}}' ;
+     document.getElementById('s-sec-gender-inp').value ='{{gender}}';
+    document.getElementById('s-sec-country-inp').value='{{country}}' ;
+      document.getElementById('s-sec-District-inp').value ='{{district}}';
+      document.getElementById('s-sec-city-inp').value ='{{city}}';
+     document.getElementById('s-sec-street-inp').value ='{{street}}';
+      document.getElementById('s-sec-post-code-inp').valueAsNumber={{postcode}} ;
+  </script>
+  <script src="/js/student-corner.js"></script>
     {{>Footer}}
 </body>
 </html>

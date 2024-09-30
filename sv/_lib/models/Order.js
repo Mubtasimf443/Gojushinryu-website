@@ -113,4 +113,4 @@ schema.methods.checkSQLInjection =function() {
   return true
 }
 
-export const Orders = mongoose.model('Orders', schema);
+export const Orders = mongoose.model('orders', schema);

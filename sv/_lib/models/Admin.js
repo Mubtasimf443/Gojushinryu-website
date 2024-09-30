@@ -4,7 +4,6 @@ By his marcy,  I will gain success
 */
 
 import mongoose from 'mongoose';
-
 const Adminschema = mongoose.Schema({
   name : String,
   fname:String,
@@ -24,7 +23,5 @@ const Adminschema = mongoose.Schema({
     required:true
   }
 })
-
 const Admin = mongoose.model('Admin', Adminschema);
-
 export { Admin }

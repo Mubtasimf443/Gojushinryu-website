@@ -19,3 +19,6 @@ export const MAIL_PASS=process.env.MAIL_PASS
 export const ADMIN_EMAIL =process.env.ADMIN_EMAIL
 export const JWT_SECRET_KEY=process.env.JWT_SECRET_KEY
 export const FROM_EMAIL=process.env.FROM_EMAIL
+export const CLOUDINARY_CLOUD_NAME=process.env.CLOUDINARY_CLOUD_NAME
+export const CLOUDINARY_API_KEY=process.env.CLOUDINARY_API_KEY
+export const CLOUDINARY_SECRET_KEY=process.env.CLOUDINARY_SECRET_KEY
