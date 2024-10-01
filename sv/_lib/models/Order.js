@@ -15,7 +15,8 @@ const schema = mongoose.Schema({
     required: true
   },
   orderer_id :{
-    type:mongoose.SchemaTypes.ObjectId.User,
+    type:mongoose.SchemaTypes.ObjectId,
+    ref :'user',
     required:true
   },
   delevering_country :{

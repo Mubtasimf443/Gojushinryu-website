@@ -32,7 +32,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
             // if (e.target.id ==='user_page_href') return ChangeSection(4) ;
         }
         if (e.target.tagName==='BUTTON') {
-            if (e.target.className==="popup-btn" && e.target.parentNode.className==='pp_btn_box'){
+            if (e.target.className==="popup-close-btn" && e.target.parentNode.className==='pp_btn_box'){
                 let dom=e.target;
                 for (let index = 1; index < 4;index= index+1) dom= dom.parentNode;
                 dom.style.display='none';

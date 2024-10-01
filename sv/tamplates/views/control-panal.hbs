@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="/css/control_panal/product.list.css">
     <link rel="stylesheet" href="/css/control_panal/popup.css">
 
-    <script defer src="/js/c.panal.js"></script>
+    <script defer src="/js/control panal/c.panal.js"></script>
+    <script defer src="/js/control panal/Upload.product.js"></script>
 </head>
 <body>
 
@@ -85,9 +86,9 @@
       </select>
       </div>
     <div class="pp_btn_box">
-      <button class="popup-btn">
+      <button class="popup-close-btn">
         Close
-      </button class="popup-btn">
+      </button class="popup-close-btn">
       <button>
   Save
       </button>
@@ -128,10 +129,10 @@ style="display: none;"
       </select>
       </div>
     <div class="pp_btn_box">
-      <button class="popup-btn">
+      <button class="popup-close-btn">
         Close
       </button>
-      <button class="popup-btn">
+      <button class="popup-close-btn">
   Save
       </button>
     </div>
@@ -175,10 +176,10 @@ style="display: none;"
    
    
     <div class="pp_btn_box">
-      <button class="popup-btn">
+      <button class="popup-close-btn">
         Close
       </button>
-      <button class="popup-btn">
+      <button class="popup-close-btn">
   Save
       </button>
     </div>
@@ -188,7 +189,7 @@ style="display: none;"
 
 <!------------------------ user PopUp ------------------------------>
 <div id="popup_user_action" 
-{{!-- style="display: none;" --}}
+style="display: none;"
  class="popup_c">
   <div class="popup_order_action_form">
   <h2>
@@ -222,16 +223,99 @@ style="display: none;"
 </select>
     </div>
      <div class="pp_btn_box">
-      <button class="popup-btn">
-        Close
-      </button>
-      <button class="popup-btn">
+      <button class="popup-close-btn">
   Save
       </button>
     </div>
 
   </div>
 </div>
+
+<!------------------------ product size PopUp ------------------------------>
+<div id="edit_product_size_popup" 
+style="display: none;"
+ class="popup_c">
+  <div class="popup_order_action_form">
+  <h2>
+ Size Action
+  </h2> 
+   <div class="input-box">
+      <label>Size Name</label>
+      <input  
+      value="m"
+      placeholder="M size" 
+      type="text">
+    </div>
+     <div class="input-box">
+      <label>Size Price</label>
+      <input  
+      value="23"
+      placeholder="USD" 
+      type="number">
+    </div>
+  <div class="input-box">
+      <label>Size Price</label>
+      <input  
+value="23"
+      placeholder="INR" 
+      type="number">
+    </div>
+   
+ 
+     <div class="pp_btn_box">
+      <button class="popup-close-btn">
+        Close
+      </button>
+      <button class="popup-save-btn">
+  Save
+      </button>
+    </div>
+
+  </div>
+</div>
+
+<!------------------------ product size PopUp ------------------------------>
+<div id="edit_product_size_popup_for_updating" 
+style="display: none;"
+ class="popup_c" targetedDIV=""
+ >
+  <div class="popup_order_action_form">
+  <h2>
+ Size Action
+  </h2> 
+   <div class="input-box">
+      <label>Size Name</label>
+      <input  
+      value="0"
+      placeholder="M size" 
+      type="text">
+    </div>
+     <div class="input-box">
+      <label>Size Price</label>
+      <input  
+      value="0"
+      placeholder="USD" 
+      type="number">
+    </div>
+  <div class="input-box">
+      <label>Size Price</label>
+      <input  
+      value="0"
+      placeholder="INR" 
+      type="number">
+    </div>
+   
+ 
+     <div class="pp_btn_box">
+     
+      <button class="popup-save-btn">
+  Save
+      </button>
+    </div>
+
+  </div>
+</div>
+
 <!------------------------ Start The Page ------------------------------>
 <Header>
    <h1>Control Panal</h1>
@@ -394,10 +478,10 @@ style="display: none;" ct_section class="form-section">
     <!-----------------------Upload Product ----------------------------->
 
 <div id="upload-Product-conatiner"
- targetedElement="uplaod_product_href"
-
-style="display: none;"
- ct_section class="form-section">
+  targetedElement="uplaod_product_href" 
+  {{!-- style="display: none;" --}}
+  ct_section 
+  class="form-section">
    
  <div class="upload_sec_event_tumb_img_inp_box">
      <h4>
@@ -408,7 +492,7 @@ style="display: none;"
       Thumbnail
       </b>
     </label>
-    <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp">
+    <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp_for_uploading_the_products">
    
   </div>
   <div class="upload_sec_env_img_inp_box">
@@ -419,11 +503,9 @@ style="display: none;"
     <input 
     style="display: none" 
     type="file"
-    id="upload_sec_env_img_inp">
+    id="upload_sec_product_image_inp_for_uploading_the_products">
     
-  </div>
-
-   
+  </div> 
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Product Name</label>
      <input type="Text" name="" id="s-sec-name-inp">
@@ -440,8 +522,49 @@ style="display: none;"
       <option value="Cloth">Cloth</option>
      </Select>
    </div>
+    <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Price Style</label>
+     <Select price_style_select>
+      <option value="per_price">Per Product</option>
+      <option value="per_size">Price by Size</option>
+     </Select>
+   </div>
+    
    <div class="s-sec-input-box">
-     <label for="s-sec-name-inp"> Price</label>
+     <label for="s-sec-name-inp"> Product Amount </label>
+     <input type="Text" name="" placeholder="300grams" id="s-sec-name-inp">
+   </div>
+  
+ <h4>Product Size</h4>
+  <div prosizeUploadContainern class="class-upload-size-and-price-container">
+     <div prosizeUploader class="upload-size-div">
+      <i class="fa-solid fa-upload"></i>
+     </div>
+  </div>
+  
+    <div class="s-sec-input-box">
+     <label >Saling Country</label>
+     <Select CountrySelect_select >
+      <option value="both">Both</option>
+      <option value="india">INDIA</option>
+      <option value="canada">CANADA</option>
+     </Select>
+   </div>
+  <div class="s-sec-input-box">
+    <label for="s-sec-name-inp"> Price<sup> India </sup> </label>
+    <input type="Text" name="" placeholder="INR" id="s-sec-name-inp">
+  </div>
+    <div class="s-sec-input-box">
+     <label for="s-sec-name-inp"> Price
+      <sup> Canada </sup> </label>
+     <input type="Text" name="" placeholder="USD" id="s-sec-name-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Delivray Charge <sup> India </sup> </label>
+     <input type="Text" name="" id="s-sec-name-inp">
+   </div>
+  <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Delivray Charge <sup> canada </sup> </label>
      <input type="Text" name="" id="s-sec-name-inp">
    </div>
 
@@ -599,7 +722,7 @@ targetedElement="member_href" class="member-list-box">
 
    <!----------------------- product list ----------------------------->
 
-<div ct_section style="display: flex;" targetedElement="product_href" class="product-list-box">
+<div ct_section style="display: none;" targetedElement="product_href" class="product-list-box">
 <div class="products">
   <div class="product">
     10 Products
