@@ -3,8 +3,6 @@
 InshaAllah, By his Marcy I will Gain Success 
 */
 
-
-
 {
 
   var busy =false;

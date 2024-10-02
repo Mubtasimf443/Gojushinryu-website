@@ -9,15 +9,15 @@ import { AdminAuthEmail } from "../../mail/Admin.mails.js";
 import {randomBytes} from 'crypto'
 
 export const addMinPageRoute= async (req,res) => {
-    return res.render('control-panal')
+    // return res.render('control-panal')
 
-    // try {
-    // let {cpat}=req.cookies;//c panal access token
-    // if (cpat === undefined) navigateToVarify(req,res)
-    // if (cpat !== undefined) return navigateToCpanal(req,res)
-    // } catch (error) {
-    // log(error)
-    // }   
+    try {
+    let {cpat}=req.cookies;//c panal access token
+    if (cpat === undefined) navigateToVarify(req,res)
+    if (cpat !== undefined) return navigateToCpanal(req,res)
+    } catch (error) {
+    log(error)
+    }   
 
 }
 export async function adminVaification(req,res) {

@@ -247,14 +247,14 @@ style="display: none;"
       type="text">
     </div>
      <div class="input-box">
-      <label>Size Price</label>
+      <label>USD Price</label>
       <input  
       value="23"
       placeholder="USD" 
       type="number">
     </div>
   <div class="input-box">
-      <label>Size Price</label>
+      <label>INR Price</label>
       <input  
 value="23"
       placeholder="INR" 
@@ -291,14 +291,14 @@ style="display: none;"
       type="text">
     </div>
      <div class="input-box">
-      <label>Size Price</label>
+      <label>USD Price</label>
       <input  
       value="0"
       placeholder="USD" 
       type="number">
     </div>
   <div class="input-box">
-      <label>Size Price</label>
+      <label>INR Price</label>
       <input  
       value="0"
       placeholder="INR" 
@@ -487,7 +487,7 @@ style="display: none;" ct_section class="form-section">
      <h4>
        Thumnail
      </h4>
-    <label for="upload_sec_event_tumb_img_inp">
+    <label for="upload_sec_event_tumb_img_inp_for_uploading_the_products">
       <b>Click To Upload <br>
       Thumbnail
       </b>
@@ -495,29 +495,31 @@ style="display: none;" ct_section class="form-section">
     <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp_for_uploading_the_products">
    
   </div>
-  <div class="upload_sec_env_img_inp_box">
+  <div 
+  id="product_upload_container_product_images_contaioner"
+   class="upload_sec_env_img_inp_box">
     
-    <label for="upload_sec_env_img_inp">
+    <label for="upload_sec_product_image_inp_for_uploading_the_products">
       Upload Images
     </label>
     <input 
     style="display: none" 
-    type="file"
+    type="file" 
     id="upload_sec_product_image_inp_for_uploading_the_products">
     
   </div> 
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Product Name</label>
-     <input type="Text" name="" id="s-sec-name-inp">
+     <input type="Text"  value="343"  inp_for_product_name id="s-sec-name-inp">
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-bio-inp">Product Description</label>
-     <textarea name="" id=""></textarea>
+     <textarea  value="343" inp_for_product_des>6454</textarea>
    </div>
   
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp"> Cetegory</label>
-     <Select>
+     <Select inp_for_product_cetegory_select>
       <option value="weapons">weapons</option>
       <option value="Cloth">Cloth</option>
      </Select>
@@ -532,11 +534,11 @@ style="display: none;" ct_section class="form-section">
     
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp"> Product Amount </label>
-     <input type="Text" name="" placeholder="300grams" id="s-sec-name-inp">
+     <input type="Text" name="" inp_for_product_amount value="300grams" id="s-sec-name-inp">
    </div>
   
- <h4>Product Size</h4>
-  <div prosizeUploadContainern class="class-upload-size-and-price-container">
+ <h4 style="display: none;">Product Size</h4>
+  <div style="display: none;" prosizeUploadContainern class="class-upload-size-and-price-container">
      <div prosizeUploader class="upload-size-div">
       <i class="fa-solid fa-upload"></i>
      </div>
@@ -552,25 +554,26 @@ style="display: none;" ct_section class="form-section">
    </div>
   <div class="s-sec-input-box">
     <label for="s-sec-name-inp"> Price<sup> India </sup> </label>
-    <input type="Text" name="" placeholder="INR" id="s-sec-name-inp">
+    <input type="number" value="343"   name="" inp_for_product_price_india placeholder="INR" id="s-sec-name-inp">
   </div>
     <div class="s-sec-input-box">
-     <label for="s-sec-name-inp"> Price
-      <sup> Canada </sup> </label>
-     <input type="Text" name="" placeholder="USD" id="s-sec-name-inp">
+     <label for="s-sec-name-inp"> 
+      Price
+      <sup> Canada </sup> 
+      </label>
+     <input type="number"  value="343"  inp_for_product_price_canada placeholder="USD" id="s-sec-name-inp">
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Delivray Charge <sup> India </sup> </label>
-     <input type="Text" name="" id="s-sec-name-inp">
+     <input type="number"  value="343" inp_for_product_delivary_india name="" id="s-sec-name-inp">
    </div>
   <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Delivray Charge <sup> canada </sup> </label>
-     <input type="Text" name="" id="s-sec-name-inp">
+     <input type="number"  value="343" inp_for_product_delivary_canada id="s-sec-name-inp">
    </div>
 
    <div class="s-sec-btn-box">
-     <button>Cancel</button>
-     <button> Upload</button>
+     <button uploadTheProductBtn > Upload</button>
    </div>
  </div>
    <!-----------------------Upload Post ----------------------------->

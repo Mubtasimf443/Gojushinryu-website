@@ -85,13 +85,13 @@ export async function UplaodImageApiIn25Minutes(req,res) {
         .then(image  => {
             if (image) {
                     unlink(urlpath).catch(e => log(e)) ;
-                    if (!image.active) ImageUrl.findOneAndDelete({urlpath : image.urlpath}).catch(e => log(e))
+                    if (!image.active)  ImageUrl.findOneAndDelete({urlpath : image.urlpath}).catch(e => log(e))
             }
         })
         .catch(e=> {
             log(e) 
         })
-    },1500000)
+    },2700000)
     //agter 25 minutes ,Image will be delated
 })
 }

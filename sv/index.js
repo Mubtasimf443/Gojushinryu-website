@@ -4,6 +4,7 @@ InshaAllah, By his marcy I will Gain Success
 */
 
 //import
+import cors from 'cors'
 import express from 'express';
 import {fileURLToPath} from 'url';
 import path from "path";
@@ -26,13 +27,15 @@ let dirName = path.dirname(__filename);
 
 
 //environment setup
-connectDB()
+connectDB() ;
 app.set('view engine','hbs');
 app.set('views', path.resolve(dirName , './tamplates/views'));
 hbs.registerPartials(path.resolve(dirName ,'./tamplates/partials'));
 app.use(express.json());
 app.use(cookieParser());
-
+app.use(cors({
+    origin :'*'
+}))
 
 //routes
 app.use(express.static(path.resolve(dirName,'./public/')))

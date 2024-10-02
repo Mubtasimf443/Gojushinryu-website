@@ -8,7 +8,11 @@ import mongoose from 'mongoose';
 
 
 
-const schema = mongoose.Schema({
+const productschema = mongoose.Schema({
+    id :{
+      type : Number,
+      required:true
+    },
     name : {
       type : String,  
       required :true
@@ -17,14 +21,15 @@ const schema = mongoose.Schema({
       type: String,
       required: true
     },
+    cetegory:{
+      type: String,
+      required: true
+    },
     thumb:{
       type: String,
       required: true
     },
-    images :[{image : {
-      type: String,
-      required: true
-    }}],
+    images :[String],
     date : {
       type: String,
       required: true,
@@ -38,20 +43,19 @@ const schema = mongoose.Schema({
         required: true,
     },
     selling_price_canada : {
-        type: Number,
+        type: String,
     },
     selling_price_india : {
-        type: Number,
+        type: String,
     },
     size_and_price :[{
         key :String,
-        price_in_canada :Number,
-        selling_price_india:Number,
+        piu :String,//price in usd
+        pii:String,//price in inr 
     }],
-    delivery_charge_in_india :Number,
-    delivery_charge_in_india :Number,
+    selling_amount:String,
+    delivery_charge_in_india :String,
+    delivery_charge_in_canada :String,
   })
 
-  export const Posts = mongoose.model('products', schema);
-
-  
+export const Product = mongoose.model('products', productschema); 

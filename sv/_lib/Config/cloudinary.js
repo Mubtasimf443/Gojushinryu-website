@@ -28,5 +28,5 @@ export async function UploadImageToCloudinary(url,type ) {
     }
     if (image) return {image} ;
     if (error) return {error};
-    return {error :'cloudinary error'}
+    if (!image && !error ) return {error :'cloudinary error'}
 };
