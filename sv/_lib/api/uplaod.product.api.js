@@ -2,12 +2,12 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
 InshaAllah, By his marcy I will Gain Success 
 */
-import { log } from '../_lib/smallUtils.js';
-import { UploadImageToCloudinary } from '../_lib/Config/cloudinary.js';
-import { ImageUrl } from '../_lib/models/imageUrl.js';
-import { Product } from '../_lib/models/Products.js';
+import { log } from '../utils/smallUtils.js';
+import { UploadImageToCloudinary } from '../Config/cloudinary.js';
+import { ImageUrl } from '../models/imageUrl.js';
+import { Product } from '../models/Products.js';
 
-export   async function UploadProductApi(req,res) {  
+export  async function UploadProductApi(req,res) {  
         function alert(params) {
           return res.json({error:params})
         }
@@ -34,7 +34,8 @@ export   async function UploadProductApi(req,res) {
         if (index !== -1 ) return alert('please give all the data') ;
         if (images.length === 0) return alert('Please upload image for the product');
         let err;
-     
+        let isExitingName =await Product.findOne({name,cetegory}).catch(e => err =e);
+        if (isExitingName ) return alert('Please Change the name');
         if (selling_style !== 'per_price' && selling_style !== 'per_size' ) return alert('Bugs in the code ,please contact developer')
         //images 
         thumb=  await ImageUrl.findOne({url :thumb})

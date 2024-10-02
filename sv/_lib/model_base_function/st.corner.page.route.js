@@ -2,8 +2,8 @@
 /* Insha Allah,  Allah loves s enough for me */
 
 import jwt from "jsonwebtoken";
-import { JWT_SECRET_KEY } from "../../env.js";
-import { User } from "../../models/user.js";
+import { JWT_SECRET_KEY } from "../utils/env.js";
+import { User } from "../models/user.js";
 
 
 export async function StudentCornerPageRoute(req,res) {

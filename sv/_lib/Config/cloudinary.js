@@ -3,8 +3,8 @@
 Insha Allah,  By his marcy I will Gain Success 
 */
 import { v2 as cloudinary } from 'cloudinary';
-import {CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_SECRET_KEY } from '../env.js';
-import { log } from '../smallUtils.js';
+import {CLOUDINARY_CLOUD_NAME, CLOUDINARY_API_KEY, CLOUDINARY_SECRET_KEY } from '../utils/env.js';
+import { log } from '../utils/smallUtils.js';
 const Cloudinary  = cloudinary.config({ 
      cloud_name: CLOUDINARY_CLOUD_NAME,
      api_key:  CLOUDINARY_API_KEY,

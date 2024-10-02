@@ -38,7 +38,7 @@ let schema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    
+    bio: String
 })
 
 

@@ -3,9 +3,9 @@
 InshaAllah, By his marcy I will Gain Success 
 */
 
-import { ADMIN_EMAIL, FROM_EMAIL } from "../env.js";
-import { mailer } from "../mailer.js";
-import { log } from "../smallUtils.js";
+import { ADMIN_EMAIL, FROM_EMAIL } from "../utils/env.js";
+import { mailer } from "../utils/mailer.js";
+import { log } from "../utils/smallUtils.js";
 
 export async function Contact_us_api_Function(req,res) {
     log('contact')

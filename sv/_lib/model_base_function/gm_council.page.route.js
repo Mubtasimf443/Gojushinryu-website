@@ -2,7 +2,7 @@
 /* Insha Allah,  Allah loves s enough for me */
 
 import jwt from "jsonwebtoken";
-import { JWT_SECRET_KEY } from "../../env.js";
+import { JWT_SECRET_KEY } from "../utils/env.js";
 
 export async function GMCornerPageRoute(req,res) {
     //using undefined ,A lot of things to know

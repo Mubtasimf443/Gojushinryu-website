@@ -11,14 +11,14 @@ import path from "path";
 import { fileRouter } from './Routes/file.router.js';
 import { pageRouter } from './Routes/page.router.js';
 import hbs from 'hbs'
-import { log } from './_lib/smallUtils.js';
+import { log } from './_lib/utils/smallUtils.js';
 import chateRouter from './Routes/Chat.Router.js';
 import authRouter from './Routes/Auth.router.js';
 import { unlinkSync } from 'fs';
 import OrderRouter from './Routes/order.router.js';
 import { connectDB } from './_lib/Config/ConnectDb.js';
 import cookieParser from 'cookie-parser';
-import apiRouter from './Routes/api.router.js';
+import apiRouter from './api.router.js';
 
 //varibles
 const app = express();

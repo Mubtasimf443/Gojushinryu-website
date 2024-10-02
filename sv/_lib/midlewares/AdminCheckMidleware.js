@@ -5,8 +5,8 @@ InshaAllah, By his marcy I will Gain Success
 
 import jwt from 'jsonwebtoken' ;
 import { Admin } from '../models/Admin.js'
-import { log } from '../smallUtils.js';
-import { JWT_SECRET_KEY } from '../env.js';
+import { log } from '../utils/smallUtils.js';
+import { JWT_SECRET_KEY } from '../utils/env.js';
 
 const AdminCheckMidleware = async (req,res,next) => {
     let {cpat} =req.cookies;

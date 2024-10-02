@@ -4,11 +4,11 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { User } from '../models/user.js';
-import {generatePin} from "../generatePin.js";
+import {generatePin} from "../utils/generatePin.js";
 import { course_purchase_user_email } from '../mail/Course.mail.js';
 import { user_varification_user_mail } from '../mail/user_auth.mail.js';
-import { log } from '../smallUtils.js';
-import { JWT_SECRET_KEY } from '../env.js';
+import { log } from '../utils/smallUtils.js';
+import { JWT_SECRET_KEY } from '../utils/env.js';
 
 
 export const signUpFunction = async (req, res ) => {

@@ -1,10 +1,10 @@
 /*بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ*/
 /* Insha Allah,  Allah loves s enough for me */
 
-import { generatePin } from "../generatePin.js";
+import { generatePin } from "../utils/generatePin.js";
 import { forget_Password_Otp_Mail } from "../mail/user_auth.mail.js";
 import { User } from "../models/user.js";
-import { log } from "../smallUtils.js";
+import { log } from "../utils/smallUtils.js";
 import bcrypt from 'bcryptjs';
 
 

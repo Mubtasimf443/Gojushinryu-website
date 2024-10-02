@@ -1,11 +1,11 @@
 /*بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ*/
 /* Insha Allah,  Allah loves s enough for me */
-import { ADMIN_EMAIL, JWT_SECRET_KEY } from "../../env.js";
-import { Admin } from "../../models/Admin.js";
+import { ADMIN_EMAIL, JWT_SECRET_KEY } from "../utils/env.js";
+import { Admin } from "../models/Admin.js";
 import jwt from 'jsonwebtoken'
-import {log} from '../../smallUtils.js'
-import {generatePin} from '../../generatePin.js'
-import { AdminAuthEmail } from "../../mail/Admin.mails.js";
+import {log} from '../utils/smallUtils.js'
+import {generatePin} from '../utils/generatePin.js'
+import { AdminAuthEmail } from "../mail/Admin.mails.js";
 import {randomBytes} from 'crypto'
 
 export const addMinPageRoute= async (req,res) => {

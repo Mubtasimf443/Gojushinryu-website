@@ -4,10 +4,10 @@ InshaAllah, By his marcy I will Gain Success
 */
 
 import { UploadImageToCloudinary } from "../Config/cloudinary.js";
-import { JWT_SECRET_KEY } from "../env.js";
+import { JWT_SECRET_KEY } from "../utils/env.js";
 import { ImageUrl } from "../models/imageUrl.js";
 import { User } from "../models/user.js";
-import { log, Success } from "../smallUtils.js";
+import { log, Success } from "../utils/smallUtils.js";
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
 //varible

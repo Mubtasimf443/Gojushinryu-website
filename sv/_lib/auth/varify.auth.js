@@ -1,10 +1,10 @@
 /*بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ*/
 /* Insha Allah,  Allah loves s enough for me */
 import jwt from 'jsonwebtoken'
-import { JWT_SECRET_KEY } from '../env.js'
+import { JWT_SECRET_KEY } from '../utils/env.js'
 import { User } from "../models/user.js";
 import { user_sign_up_success_admin_mail, user_sign_up_success_user_mail } from "../mail/user_auth.mail.js";
-import { log } from "../smallUtils.js";
+import { log } from "../utils/smallUtils.js";
 import { Admin } from '../models/Admin.js';
 
 

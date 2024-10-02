@@ -1,11 +1,11 @@
 /*  بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  InshaAllah  */
 import bcrypt from 'bcryptjs'
 import { User } from "../models/user.js";
-import { log } from '../smallUtils.js';
+import { log } from '../utils/smallUtils.js';
 import { response } from 'express';
 import jwt from 'jsonwebtoken'
-import {generatePin} from '../generatePin.js'
-import { JWT_SECRET_KEY } from '../env.js';
+import {generatePin} from '../utils/generatePin.js'
+import { JWT_SECRET_KEY } from '../utils/env.js';
 import { GM } from '../models/GM.js';
 
 

@@ -1,9 +1,9 @@
 /*
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah 
 */ 
-import {MAIL_USER, ADMIN_EMAIL, FROM_EMAIL} from '../env.js';
-import {mailer} from '../mailer.js'
-import { log } from '../smallUtils.js';
+import {MAIL_USER, ADMIN_EMAIL, FROM_EMAIL} from '../utils/env.js';
+import {mailer} from '../utils/mailer.js'
+import { log } from '../utils/smallUtils.js';
 
 
 

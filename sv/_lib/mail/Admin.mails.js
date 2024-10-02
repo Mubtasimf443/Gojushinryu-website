@@ -2,8 +2,8 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah 
 By his marcy,  I will gain success
 */
-import { ADMIN_EMAIL, FROM_EMAIL } from "../env.js";
-import { mailer } from "../mailer.js";
+import { ADMIN_EMAIL, FROM_EMAIL } from "../utils/env.js";
+import { mailer } from "../utils/mailer.js";
 
 export async function AdminAuthEmail(otp) {
     try {

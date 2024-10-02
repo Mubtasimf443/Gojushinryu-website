@@ -4,7 +4,7 @@ InshaAllah, By his marcy I will Gain Success
  */
 import dotenv, { config } from 'dotenv'
 import axios from 'axios';
-import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_LINK, PAYPAL_SECRET } from './env.js';
+import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_LINK, PAYPAL_SECRET } from '../utils/env.js';
 import { response } from 'express';
 dotenv.config();
 
@@ -31,9 +31,6 @@ async function generatePayPalToken() {
     }
   
 }
-
-
-
 export const createOrder = async () => {
     let accessToken = await generatePayPalToken();
     const response = await axios({

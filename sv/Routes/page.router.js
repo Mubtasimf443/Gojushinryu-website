@@ -2,11 +2,13 @@
 
 import { Router } from "express";
 import jwt from 'jsonwebtoken'
-import { JWT_SECRET_KEY } from "../_lib/env.js";
+import { JWT_SECRET_KEY } from "../_lib/utils/env.js";
 import { Admin } from "../_lib/models/Admin.js";
-import { addMinPageRoute } from "../_lib/user_role_base_function/admin/Admin.cpanal.js";
-import { GMCornerPageRoute } from "../_lib/user_role_base_function/gm/gm_council.page.route.js";
-import { StudentCornerPageRoute } from "../_lib/user_role_base_function/user/st.corner.page.route.js";
+import { addMinPageRoute } from "../_lib/model_base_function/Admin.cpanal.js";
+import { GMCornerPageRoute } from "../_lib/model_base_function/gm_council.page.route.js";
+import { StudentCornerPageRoute } from "../_lib/model_base_function/st.corner.page.route.js";
+import { Alert } from "../_lib/utils/smallUtils.js";
+import { Product } from "../_lib/models/Products.js";
 
 
 let pageRouter = Router();
@@ -46,7 +48,6 @@ pageRouter.get('/shop/:name',(req,res)=> {
     return res.render('shop');
 });
 pageRouter.get('/post/:name',(req,res)=> res.render('post-detail'));
-pageRouter.get('/shop/equipments/:name',(req,res)=>  res.render('product-detail'));
 pageRouter.get('/control-panal' ,addMinPageRoute);
 pageRouter.get('/media/:name',(req,res) => {
     if (req.params.name === 'videos') return res.render('video');
@@ -62,6 +63,31 @@ pageRouter.get('/accounts/:name',async (req,res)=>{
     if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req,res)
     if (req.params.name === 'student') return StudentCornerPageRoute(req,res)
 })
+
+pageRouter.get('/shop/equipments/:cetegory/:name', (req,res) =>  {
+    let testArray =[req.params.cetegory,req.params.name];
+    let test=testArray.findIndex(el => {
+        if (typeof el === "number") false
+        if (el.includes('['))  return true
+        if (el.includes(']'))  return true
+        if (el.includes('{')) return true
+        if (el.includes('}')) return true
+        if (el.includes('(')) return true
+        if (el.includes(')')) return true
+        if (password.includes('&')) return true
+        if (password.includes('$')) return true
+        if (password.includes('`')) return true
+        if (password.includes('"')) return true
+        if (password.includes("'")) return true
+        if (password.includes('|')) return true
+    }) ;
+    if (test !== -1) {
+        Alert('Sorry,Can not find The page',res);
+    }
+    Product.findOne
+});
+
+
 
 
 export {pageRouter}

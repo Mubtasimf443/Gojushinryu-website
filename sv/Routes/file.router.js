@@ -2,7 +2,7 @@
 
 
 import { Router } from "express";
-import { log } from "../_lib/smallUtils.js";
+import { log } from "../_lib/utils/smallUtils.js";
 import {fileURLToPath} from 'url'
 import path from "path";
 
