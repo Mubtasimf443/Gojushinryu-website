@@ -18,7 +18,8 @@ import { unlinkSync } from 'fs';
 import OrderRouter from './Routes/order.router.js';
 import { connectDB } from './_lib/Config/ConnectDb.js';
 import cookieParser from 'cookie-parser';
-import apiRouter from './api.router.js';
+import apiRouter from './Routes/api.router.js';
+import { fileRateLimter, ApiRateLimter } from './_lib/Config/express-slow-down.js';
 
 //varibles
 const app = express();
@@ -28,6 +29,8 @@ let dirName = path.dirname(__filename);
 
 //environment setup
 connectDB() ;
+app.use(fileRateLimter)
+app.use(express.static(path.resolve(dirName,'./public/')));
 app.set('view engine','hbs');
 app.set('views', path.resolve(dirName , './tamplates/views'));
 hbs.registerPartials(path.resolve(dirName ,'./tamplates/partials'));
@@ -35,11 +38,10 @@ app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
     origin :'*'
-}))
+}));
 
 //routes
-app.use(express.static(path.resolve(dirName,'./public/')))
- app.use('/api/file',fileRouter);
+app.use('/api/file',fileRouter);
 app.use('/api/chat',chateRouter);
 // app.use('/api/upload',uploadRouter);
 app.use('/api/auth-api/',authRouter);
@@ -54,7 +56,12 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
 });
 
 app.use(pageRouter);
-app.get('/', (req, res) => res.render('home'))
+app.get('/hello', (req, res) =>{ 
+    log('hello')
+    res.send('hello')}
+);
+app.get('/', (req, res) => res.render('home'));
+
 app.get('*', (req, res) => res.status(404).render('404'))
 
 
