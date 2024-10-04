@@ -17,7 +17,6 @@ productContainer.addEventListener('click', e => {
         e.preventDefault();
         e.stopPropagation();
         addToCard(e);
-        changeWindow(e);
     }
 })
 
@@ -123,10 +122,3 @@ async function addToCard(e) {
 }
  }
  
-
- async function changeWindow(e) {
-    let id= e.target.getAttribute('prod-id');
-    setTimeout(() => {
-        window.location.replace(`/shop/equipments/${id}`)
-    }, 3000);
- }
