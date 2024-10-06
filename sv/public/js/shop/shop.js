@@ -50,19 +50,19 @@ async function LoadProducs(params) {
              description,
              selling_style,
              size_and_price ,
-             selling_price_canada ,
-             selling_amount
+             price ,
+             size
              } =el;
 
              let df_size,df_price;
              let priceComponent=(function name(params) {
                  if (selling_style ==='per_price') {
-                    df_price=selling_price_canada;
-                    df_size=selling_amount;
-                     return "$"+selling_price_canada 
+                    df_price=price;
+                    df_size=size;
+                     return "$"+df_price 
                  } else {       
-                    df_price=size_and_price[0].piu;
-                    df_size=size_and_price[0].key;
+                    df_price=size_and_price[0].price;
+                    df_size=size_and_price[0].size;
                      return '$'+ df_price;
                  }
              })();
@@ -100,20 +100,23 @@ async function addToCard(e) {
                 return el
             }
             else return el
-        })
-        return
+        }) 
+        return window.location.assign('/shop/cart')
     }
     if (!check) {
 
     let prod=productDataArray.find(el => el.id ==id);
-    if (!prod) return
+    if (!prod) { return}
     addedProduct.push({
-        product :prod,
+        prod:prod,
         quantity:1,
         id,
-        df_price :e.target.getAttribute('df-price'),
+        df_price:Number(e.target.getAttribute('df-price')),
         df_size:e.target.getAttribute("df-size")
     });
+    log(
+        Number(e.target.getAttribute('df-price'))
+    )
     addToStorage(addedProduct)
     .then(e=> {
      shopAddtoCartNumberofProduct()

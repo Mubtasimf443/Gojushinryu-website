@@ -11,7 +11,7 @@ export const ApiRateLimter =slowDown({
     windowMs:5*1000,
     delayAfter: ApidelayAfter,
     delayMs:(used) => {
-      console.log(used);
+      log(used);
       return (used -ApidelayAfter) *500;
     }
 });
@@ -21,7 +21,7 @@ export const fileRateLimter =slowDown({
     windowMs:5*1000,
     delayAfter: fileDelayAfter,
     delayMs:(used) => {
-      console.log(used);
+      log(used);
       return (used -fileDelayAfter) *500;
     }
 });

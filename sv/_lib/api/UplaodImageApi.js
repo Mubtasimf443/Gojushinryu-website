@@ -35,7 +35,7 @@ export async function UplaodImageApi(req,res) {
     DontSuffortMime =true
     return false 
     },
-    filename : () => Date.now() + Math.floor(Math.random()*10000) + '.jpg'
+    filename : () => Date.now() +'_' + Math.floor(Math.random()*10000) + '.jpg'
     };
     formidable(options).parse(req, async (err,feilds,file) => { 
     console.log('not uploaded ===== '+DontSuffortMime);

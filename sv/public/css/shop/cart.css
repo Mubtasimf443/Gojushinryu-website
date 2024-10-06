@@ -1,3 +1,9 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+
 * {
     margin: 0;
     padding: 0;
@@ -11,34 +17,51 @@ body{
     margin: 40px auto;
     padding: 20px;
 }
-
-.cart-items {
-    width: 100%;
+table {
+    font-family: arial, sans-serif;
     border-collapse: collapse;
+    width: 100%;
     margin-bottom: 30px;
-}
-
-.cart-items th, .cart-items td {
-    padding: 15px;
-    text-align: center;
-    border: 1px solid #ddd;
-    background: white;
-}
-
-.cart-items th {
-    background-color: var(--main-cl);
-    color: white;
-}
-
-.cart-items td {
-    background-color: white;
-}
-
+  }
+  
+  th{
+    border: 1px solid #ffffff67;
+    text-align: left;
+    padding: 13px 8px; 
+    background-color:inherit;
+  }
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 13px 10px;
+    background: inherit;
+    text-wrap: wrap;
+  }
+  td >img {
+    max-width:90% ;
+    object-fit: contain;
+    object-position: top left;
+    max-height:80px ;
+  }
+  tr:nth-child(1){
+    background: var(--main-cl);
+  }
+  tr{
+    background-color: #ffffff;
+  }
 .cart-items .remove-btn {
     color: red;
     cursor: pointer;
 }
 
+
+table button{
+    background: inherit;
+    border: none;
+    font-size: 18px;
+    color: black
+    ;
+}
 .cart-summary {
     border: 1px solid #ddd;
     padding: 20px;

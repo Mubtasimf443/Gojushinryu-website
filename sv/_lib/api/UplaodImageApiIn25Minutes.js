@@ -35,15 +35,16 @@ export async function UplaodImageApiIn25Minutes(req,res) {
     DontSuffortMime =true
     return false 
     },
-    filename : () => Date.now() + Math.floor(Math.random()*10000) + '.jpg'
+    filename : () => Date.now() +'_' + Math.floor(Math.random()*10000) + '.jpg'
     };
     formidable(options).parse(req, async (err,feilds,file) => { 
-    console.log('not uploaded ===== '+DontSuffortMime);
-    if (DontSuffortMime === true ) return res.json({error :'We do not suppot this type of file'})
+    // console.log('not uploaded ===== '+DontSuffortMime);
+    if (DontSuffortMime === true ) return res.json({error :'We do not suppot this type of file'});
     if (err) { 
         log(err);
         return res.json({error :'Unknown error'});
     }
+    log('uploaded')
     if (!file.img) return res.json({error :'You can not access To this service'})
     if (file.img.length > 1) {
        (function() {
@@ -64,23 +65,20 @@ export async function UplaodImageApiIn25Minutes(req,res) {
         urlpath:file.img[0].filepath,
         active:false
     });
-  //  newImageurl.save().then(e => log(e)).catch(e=> log(err))
-    let SavedImageUrl;
-    try {
-       SavedImageUrl= await newImageurl.save();
-     
-    } catch (err) {
-        log(err)
+    let urlpath = await newImageurl.save().then(({urlpath}) => urlpath).catch(e=> {log(e);return null})
+    if (!urlpath) {
         return res.json({error :'Unknown error'});
-    }   
+    }
+    // let SavedImageUrl;
+   
     res.status(200).json({
         success:true ,
-        link :SavedImageUrl.url 
+        link : BASE_URL + '/api/file/temp/'+ file.img[0].newFilename,
     })
     setTimeout(
         () => {
         ImageUrl.findOne({
-            urlpath:file.img[0].filepath
+            urlpath
         })
         .then(image  => {
             if (image) {

@@ -90,7 +90,7 @@ InshaAllah, By his Marcy I will Gain Success
     let jsonObject = JSON.stringify({
       name,age,gender,bio,District,city,country,street,postcode,ImageUrlForChangeMaking,needsToUpdataProfileImage
     }) ;
-    fetch(window.location.origin +'/api/api_s/UpdateUserData' ,{
+    fetch(window.location.origin +'/api/api_s/Update-User-Data' ,{
       headers :{
       'Content-type' :'application/json'
       } ,

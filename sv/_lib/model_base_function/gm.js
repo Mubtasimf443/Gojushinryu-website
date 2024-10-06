@@ -4,7 +4,11 @@
 import jwt from "jsonwebtoken";
 import { JWT_SECRET_KEY } from "../utils/env.js";
 import { GM } from "../models/GM.js";
-import { Alert, log } from "../utils/smallUtils.js";
+import { Alert, log, Success } from "../utils/smallUtils.js";
+
+
+
+
 
 export async function GMCornerPageRoute(req,res) {
     //using undefined ,A lot of things to know
@@ -22,6 +26,8 @@ export async function GMCornerPageRoute(req,res) {
 } 
 
 
+
+
 export async function FindGMApi(req,res) {   
     let GmArray = GM.find({})
    .then(data => res.json({success : true, gm: data}))
@@ -32,6 +38,8 @@ export async function FindGMApi(req,res) {
       })
     })
   };
+
+
 
 
 export async function UpdateGmDataAPI(req, res) {
@@ -50,7 +58,11 @@ export async function UpdateGmDataAPI(req, res) {
    })
     
   };
- export async function CreateGMApi(req,res) {
+
+
+
+
+export async function CreateGMApi(req,res) {
     let {name,  bio, first_name,  last_name, email, phone, password} = req.body;
     let testArray = [name, bio, first_name, last_name, email, phone,  password];
     
@@ -83,3 +95,21 @@ export async function UpdateGmDataAPI(req, res) {
     })
  
 };
+
+
+
+
+export async function DeleteGMAccount(req, res) {
+    let {id}=req.body;
+    GM.findOneAndRemove({
+      id
+    })
+   .then(data => {
+       Success(res)
+     }
+    )
+   .catch(e => {
+     console.log(e);
+     Alert('Error, Failed To Delete Account, Does It exist? ',res)
+   })
+  };

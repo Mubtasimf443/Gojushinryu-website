@@ -4,7 +4,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 */
 {
 
-    let ThumbUrl;
+    let ThumbUrl ='';
     let productImageUrlArrays =[];
     let sellingCountry ='both';
     let sellingStyle ='per_price';
@@ -21,14 +21,62 @@ Insha Allab,  By the marcy of Allah,  I will gain success
     let inp_for_product_des =uploadProductConatiner.querySelector('[inp_for_product_des]')
     let inp_for_product_cetegory_select =uploadProductConatiner.querySelector('[inp_for_product_cetegory_select]')
     let inp_for_product_amount =uploadProductConatiner.querySelector('[inp_for_product_amount]')
-    let inp_for_product_price_india =uploadProductConatiner.querySelector('[inp_for_product_price_india]')
-    let inp_for_product_price_canada =uploadProductConatiner.querySelector('[inp_for_product_price_canada]')
+    let price_pp/*Per price */ =uploadProductConatiner.querySelector('[inp_for_product_price_canada]')
     let inp_for_product_delivary_india =uploadProductConatiner.querySelector('[inp_for_product_delivary_india]')
     let inp_for_product_delivary_canada =uploadProductConatiner.querySelector('[inp_for_product_delivary_canada]')
     // let inp_for_product_des =uploadProductConatiner.querySelector('[inp_for_product_des]')
 
     /*****************************  image upload **********************************/
   
+    //function 
+    
+function v(htmlElementSelector) {
+    let simbolerror='You can not use <,>,{,},[,],",,$'+ "`," + '"' ;
+    let el=document.querySelector(htmlElementSelector);
+    if (!el) throw new Error(`can not find using ${htmlElementSelector}`);
+    let value=el.value;
+    if (!value) {
+        el.style.outline='2px solid red';
+        throw new Error(simbolerror);
+    }
+    if (value.includes('<')) {
+        el.style.outline='2px solid red';
+        throw new Error(simbolerror);
+    }
+    if (value.includes('>')) {
+        el.style.outline='2px solid red';
+        throw new Error(simbolerror);
+    }
+    if (value.includes("'")) {
+        el.style.outline='2px solid red';
+        throw new Error(simbolerror);
+    }
+    if (value.includes('"')) {
+        el.style.outline='2px solid red';
+        throw new Error(simbolerror);
+    }
+    if (value.includes('`')) {
+        el.style.outline='2px solid red';
+        throw new Error(simbolerror);
+    }if (value.includes('{')) {
+        el.style.outline='2px solid red';
+        throw new Error(simbolerror);
+    }if (value.includes('}')) {
+        el.style.outline='2px solid red';
+        throw new Error(simbolerror);
+    }
+    if (value.includes('[')) {
+        el.style.outline='2px solid red';
+        throw new Error(simbolerror);
+    }if (value.includes(']')) {
+        el.style.outline='2px solid red';
+        throw new Error(simbolerror);
+    }
+    return value
+}
+
+
+
   //thumb
     productThumbInput.addEventListener('change',e => {
         if (
@@ -175,17 +223,14 @@ Insha Allab,  By the marcy of Allah,  I will gain success
             let inputs=popupForm.querySelectorAll('input');
             inputs[0].value= parent.querySelector('b').innerHTML;
             inputs[1].value= parent.children[1].children[1].innerText;
-            inputs[2].value= parent.children[2].children[1].innerText;
             popupForm.querySelector('button')
             .addEventListener('click' , function func(e) {
             try {
                 parent = document.querySelector(`[id="${id}"`) ;
                 parent.querySelector('b').innerHTML=inputs[0].value;
                 parent.querySelectorAll('.p-box')[0].children[1].innerHTML =inputs[1].value ;
-                parent.querySelectorAll('.p-box')[1].children[1].innerHTML =inputs[2].value ;
                 inputs[0].value='';
                 inputs[1].value='';
-                inputs[2].value=''; 
                 popupForm.style.display='none';
                 popupForm.querySelector('button').removeEventListener('click' ,func)
             } catch (error) {
@@ -205,20 +250,16 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         let inputs= document.querySelector('#edit_product_size_popup').querySelectorAll('input');
         let title =inputs[0].value;
         let USD =inputs[1].valueAsNumber;
-        let INR =inputs[2].valueAsNumber;
         prosizeUploader.remove();
         let div =document.createElement('div');
         div.setAttribute('product_size_el_container_box' ,'')
         div.innerHTML = ` 
          <b>${ title}</b>
         <span class="p-box"> 
-      <span>  USD  </span>
+      <span>  Price  </span>
      <span> ${ USD } </span>
         </span>
-        <span class="p-box">
-      <span>  INR </span>
-        <span>  ${INR} </span>
-        </span>
+       
         <div class="btn-box">
         <i class="fa-solid fa-trash"></i>
         <i class="fa-solid fa-pen"></i>
@@ -231,7 +272,6 @@ Insha Allab,  By the marcy of Allah,  I will gain success
      
         inputs[0].value='';
         inputs[1].value='';
-        inputs[2].value='';
         document.getElementById('edit_product_size_popup').style.display='none';
     })
     
@@ -243,10 +283,9 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         let cetegory = inp_for_product_cetegory_select.selectedOptions[0].value;
         let delivery_charge_in_india = inp_for_product_delivary_india.value;
         let delivery_charge_in_canada = inp_for_product_delivary_canada.value;
-        let selling_price_canada = inp_for_product_price_canada.value;
-        let selling_price_india = inp_for_product_price_india.value;
         let selling_style = sellingStyle;
-        let selling_Amount=inp_for_product_amount.value;
+        let size_pp = selling_style ==='per_price' ? v('[size_pp]') : '';
+        let price =selling_style==='per_price'? v('[price_pp]'):'';
         let selling_country = CountrySelect_select.selectedOptions[0].value;
         let thumb =ThumbUrl;
         let images =productImageUrlArrays;
@@ -259,31 +298,27 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         delivery_charge_in_canada, 
         selling_country,
         selling_style,
-        thumb,
-        images.length
+       //  thumb,
+      //  images.length
        ];
        let arrayTestStatus = await testingArray.findIndex(el => !el) ;
        if (arrayTestStatus !== -1) return alert('please check all the form');
        if (sellingStyle === 'per_price') {
-        if (!selling_price_canada) return alert('please enter the price in canada ')
-        if (!selling_price_india) return alert('please enter the price in india')
-        if (!selling_Amount) return alert('In per price algorithm ,You have to write the amount of produuct')
+        if (!size_pp) return alert('please enter the price in india')
+        if (!price) return alert('In per price algorithm ,You have to write the amount of produuct')
        }
 
        if (sellingStyle === 'per_size') {
         try {
         await  uploadProductConatiner.querySelectorAll(`[product_size_el_container_box]`)
         .forEach(el => {
-         let key= el.children[0].innerText;
-         let priceInUsd=el.children[1].children[1].innerText;
-         let priceInInr=el.children[2].children[1].innerText;
-         if (!key) throw 'Size Do not have a title';
-         if (priceInInr.toString().trim() === '' || priceInInr === undefined || priceInInr === null  ) throw 'Size Do not have a Price in India';
-         if (priceInUsd.toString().trim() === '' || priceInUsd === undefined || priceInUsd === null  ) throw 'Size Do not have a Price in India';
+         let size= el.children[0].innerText;
+         let price=el.children[1].children[1].innerText;
+         if (!size) throw 'Size Do not have a title';
+         if (!price) throw 'Size Do not have a Price ';
          size_and_price.push({
-            key,
-            pii:  priceInInr,
-            piu:priceInUsd
+            size,
+            price:price,
          })
         });
         if (!size_and_price.length) throw 'You have not added a size'
@@ -298,9 +333,8 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         cetegory,
         thumb,
         images,
-        selling_price_canada :sellingStyle === 'per_price'?selling_price_canada :'none',
-        selling_price_india :sellingStyle === 'per_price'?selling_price_india :'none',
-        selling_Amount :sellingStyle === 'per_price'? selling_Amount :'none',
+        price,
+        size:size_pp,
         selling_style,
         selling_country,
         size_and_price,
@@ -344,8 +378,4 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         uploadingStatus =false;
     })
     })
-
-
-
-
 }

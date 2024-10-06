@@ -18,7 +18,7 @@ export async function UploadImageToCloudinary(url,type ) {
     try {
         log(url)
         image = await cloudinary.uploader.upload(url,{
-            public_id: type ? type :'website_image',
+            public_id: type ? type :Date.now(),
             resource_type:'image',
         })
     } catch (err) {

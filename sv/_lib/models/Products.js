@@ -42,18 +42,14 @@ const productschema = mongoose.Schema({
         type: String,
         required: true,
     },
-    selling_price_canada : {
-        type: String,
-    },
-    selling_price_india : {
+    price : {
         type: String,
     },
     size_and_price :[{
-        key :String,
-        piu :String,//price in usd
-        pii:String,//price in inr 
+        size :String,
+        price :String,//price in usd
     }],
-    selling_amount:String,
+    size:String,
     delivery_charge_in_india :String,
     delivery_charge_in_canada :String,
   })

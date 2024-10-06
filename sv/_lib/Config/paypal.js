@@ -9,28 +9,6 @@ import { response } from 'express';
 dotenv.config();
 
 
-async function generatePayPalToken() {
-    try {
-        let response= await axios({
-            url:PAYPAL_LINK +'/v1/oauth2/token'
-            ,
-            method:"POST",
-            data: 'grant_type=client_credentials',
-            auth:{
-                username:PAYPAL_CLIENT_ID,
-                password:PAYPAL_SECRET
-            }
-        });
-     //   console.log(response.data);
-        
-        return response.data.access_token
-    } catch (error) {
-       //console.log(error);
-        
-        throw 'Token Failed To gain'
-    }
-  
-}
 export const createOrder = async () => {
     let accessToken = await generatePayPalToken();
     const response = await axios({
@@ -77,7 +55,6 @@ export const createOrder = async () => {
         })
     })
     console.log(response);
-    
     return response.data.links.find(link => link.rel === 'approve').href;
 }
 

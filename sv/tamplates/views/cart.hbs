@@ -6,7 +6,7 @@
     <title>Cart Page</title>
     {{>Links}}
     <link rel="stylesheet" href="/css/shop/cart.css">
-    <script defer src="/js/cart.js"></script>
+    <script defer src="/js/shop/cart.js"></script>
     
 </head>
 <body>
@@ -14,20 +14,22 @@
 {{>shopheader}}
 
     <main class="cart-container">
-        <table class="cart-items">
-            <thead>
-                <tr>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Subtotal</th>
-                    <th>Remove</th>
-                </tr>
-            </thead>
-            <tbody id="cart-body">
-                <!-- Cart items will be injected here -->
-            </tbody>
-        </table>
+    <table>
+  <tr
+  id="th-container"
+  >
+    <th width="5%">No.</th>
+    <th width="14%">Image</th>
+    <th>Name</th>
+    <th  width="11%">Price</th>
+    <th  width="11%">Size</th>
+    <th  width="11%">Quantity</th>
+    <th width="11%">Total</th>
+  </tr>
+ 
+ 
+</table>
+
 
         <div class="cart-summary">
             <h3>Cart Summary</h3>

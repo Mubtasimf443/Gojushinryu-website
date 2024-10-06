@@ -1,4 +1,7 @@
-/* Basic resets */
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
 * {
     margin: 0;
     padding: 0;
@@ -13,7 +16,7 @@ body {
 
 /* Container */
 .container {
-    max-width: 1200px;
+    max-width:700px;
     margin: 0 auto;
     padding: 20px;
     display: flex;
@@ -26,7 +29,6 @@ body {
 /* Product Page Layout */
 .product-page {
     display: flex;
-
     justify-content: space-between;
     flex-wrap: wrap;
     padding: 20px;
@@ -34,23 +36,33 @@ body {
     background-color: #fff;
 }
 .product-details{
-    row-gap: 6px;
+    row-gap: 16px;
     display: flex;
     flex-direction: column;
     justify-content:flex-start;
     align-items: start;
     padding: auto;
 }
-@media screen and (min-width :800px){
     
 .product-image {
-    width: 650px;
-}
+    width: 100%;
+    max-height: 550px;
+    object-fit: contain;
+    object-position: top left;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
 }
 .product-image img {
-    max-width: 100%;
-    height: auto;
+    width:100%;
+    max-height: 550px;
     object-fit: contain;
+    object-fit: contain;
+    object-position: top left;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -61,8 +73,16 @@ body {
     justify-content:left;
     align-items: start;
     padding: auto;
-}
+    line-height:1.65;
+    word-spacing: 3px;
+   
 
+}
+.product-description hr {
+    height: 2px;
+    background: #000;
+    width: 100%;
+}
 .thumbnail-images{
     display: flex;
     flex-direction: row;
@@ -72,14 +92,25 @@ body {
     row-gap: 20px;
     column-gap: 20px;
     width: 100%;
+    padding: 20px;
+    box-sizing: border-box;
 }
-
+h3 {
+    width: 100%;
+    text-align: left;
+    padding-left: 20px;
+    box-sizing: border-box;
+    font-size: 20px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+}
 
 .thumbnail-images >img {
     width:200px;
     height: 200px;
     object-fit: contain;
     object-position: top left;
+    box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
 }
 
 
@@ -87,10 +118,39 @@ body {
     color: black;
     font-weight: 500;
     background: var(--main-cl);
-    font-style: 16px;
+    font-size: 15px;
     text-transform: uppercase;
     border: 2px solid goldenrod;
-    border-radius: 5px;
+    border-radius: 3px;
     padding: 9px 13px;
     box-sizing: content-box;
 }
+
+
+.row{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 15px;
+    row-gap: 16px;
+}
+#size{
+    box-sizing: content-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 3px;
+    color: #fff;
+    background: #000;
+    font-weight: 500;
+    font-size: 15px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    padding: 9px 13px;
+    box-sizing: content-box;
+}
+
+

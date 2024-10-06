@@ -2,27 +2,39 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah 
 By his marcy,  I will gain success
 */
+import mongoose, { Mongoose } from 'mongoose'
 
 
-
-import mongoose from 'mongoose';
-
-
-const schema = mongoose.Schema({
-  title: {
-    required :true,
-    type:String
-    
+const CourseSchema = mongoose.Schema({
+  id :Number,
+  name: {
+    unique :true,
+    type:String ,
+    required:true
   }  , 
   description :{
-    required:true,
     type : String
   },
   price :{
-    required: true,
-    type: String
+    unique :true,
+    type:String ,
+    required:true
   },
-  annual : Boolean,
   Date :[Number],
-  
+  dateArray:[Number],
+  courseType:String,
+  price:String,
+  seniorTime:String,
+  joniourTime:String ,
+  thumb :{
+    type:String ,
+    required:true
+  }, 
+  images :[String ]
 });
+
+
+
+
+let Course =mongoose.model('Course',CourseSchema)
+export default Course;

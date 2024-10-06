@@ -21,15 +21,16 @@ const schema = mongoose.Schema({
     type: String,
     required: true
   },
-  images :[{image : {
-    type: String,
-    required: true
+  images :[{
+    image : {
+      type: String,
+      required: true
   }}],
   Date : {
     type: String,
     required: true,
   },
-  gm_writen:{
+  writen_type:{
     type: Boolean,
     required: true,
     default:false
@@ -39,24 +40,26 @@ const schema = mongoose.Schema({
     required: true,
   },
   gm_writer:{
-    type: mongoose.SchemaTypes.ObjectId.GM,
-    required: false
+    type: mongoose.SchemaTypes.ObjectId,
+    required: false ,
+    ref:"Grand_Master"
   },
-  admin_writen: {
+  admin_writer: {
       type: Boolean,
       required: true
   //  ,  default: false
     },
   admin_writer: {
-      type: mongoose.SchemaTypes.ObjectId.Admin,
-      required: false
+    type: mongoose.SchemaTypes.ObjectId,
+    required: false ,
+    ref:"Admin"
   },
   
 })
 
 
 
-const Events= mongoose.model('Events', schema)
+const Events=  mongoose.model('Events', schema)
 
 export {
   Events

@@ -2,7 +2,7 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
 InshaAllah, By his marcy I will Gain Success 
 */
-import { log } from '../utils/smallUtils.js';
+import { log, Success } from '../utils/smallUtils.js';
 import { UploadImageToCloudinary } from '../Config/cloudinary.js';
 import { ImageUrl } from '../models/imageUrl.js';
 import { Product } from '../models/Products.js';
@@ -12,7 +12,7 @@ export  async function UploadProductApi(req,res) {
           return res.json({error:params})
         }
         log('request recieved')
-        log(req.body.images)
+        log(req.body)
         let {
             name,
             description,
@@ -21,14 +21,13 @@ export  async function UploadProductApi(req,res) {
             images,
             selling_country,
             selling_style ,
-            selling_price_canada ,
-            selling_price_india,
-            selling_amount,
+            price ,
+            size,
             size_and_price, 
             delivery_charge_in_india ,
             delivery_charge_in_canada
         } =req.body;
-        let testArray=[ name, description,thumb,images, selling_country,cetegory,selling_style , selling_price_canada , selling_price_india,delivery_charge_in_india ,delivery_charge_in_canada] ;
+        let testArray=[ name, description,thumb,images, selling_country,cetegory,selling_style , selling_style==='per_price'?price :images.length,delivery_charge_in_india ,delivery_charge_in_canada] ;
         let index= await testArray.findIndex(el => !el );
         console.log(index);
         if (index !== -1 ) return alert('please give all the data') ;
@@ -62,7 +61,6 @@ export  async function UploadProductApi(req,res) {
         if (err) return alert('please change the thumb');
         let newImageArray =[];
         for (let index = 0; index < images.length; index++) {
-           
             if (!err) {
                 log(`image index ${index}`)
                 let Urlelement = images[index];
@@ -104,12 +102,12 @@ export  async function UploadProductApi(req,res) {
             date:new Date( Date.now()).getDate() + '-' +new Date().getMonth() + '-'  + new Date().getFullYear()  ,
             selling_country,
             selling_style ,
-            selling_price_canada ,
-            selling_price_india,
+            price ,
+            
             size_and_price, 
             delivery_charge_in_india ,
             delivery_charge_in_canada,
-    
+             size,
         })
         .then(e => {
             log('//database created')

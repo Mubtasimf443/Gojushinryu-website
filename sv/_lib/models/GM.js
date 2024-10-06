@@ -9,6 +9,7 @@ import mongoose from "mongoose";
 
 
 let schema = new mongoose.Schema({
+    image:String,
     first_name:{
         type :String,
         required :false

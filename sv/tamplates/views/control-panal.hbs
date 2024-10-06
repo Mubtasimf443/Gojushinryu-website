@@ -21,9 +21,12 @@
     <link rel="stylesheet" href="/css/control_panal/gm.list.css">  
     <link rel="stylesheet" href="/css/control_panal/product.list.css">
     <link rel="stylesheet" href="/css/control_panal/popup.css">
-
+    <script defer src="/js/control panal/gm.js"></script>
     <script defer src="/js/control panal/c.panal.js"></script>
     <script defer src="/js/control panal/Upload.product.js"></script>
+    <script defer src="/js/control panal/User.js"></script>
+    <script defer src="/js/control panal/Member.js"></script>
+
 </head>
 <body>
 
@@ -141,9 +144,11 @@ style="display: none;"
 </div>
 
 <!------------------------ GM PopUp ------------------------------>
-<div id="popup_GM_action" 
-style="display: none;"
- class="popup_c">
+<div 
+id="popup_GM_action" 
+ style="display: none;" 
+ class="popup_c"
+ >
   <div class="popup_order_action_form">
   <h2>
  GM Action
@@ -197,23 +202,23 @@ style="display: none;"
   </h2> 
    <div class="input-box">
       <label>Name</label>
-      <input  value="Dr. Vikram Kapoor" type="text">
+      <input disabled>
     </div>
      <div class="input-box">
       <label>Email</label>
-      <input  value="jsie******so@hsi.com" type="text">
+      <input disabled >
     </div>
      <div class="input-box">
       <label>Phone</label>
-      <input  value="****88" type="number">
+      <input disabled >
     </div>
     <div class="input-box">
       <label>Country</label>
-      <input  value="****88" type="number">
+      <input disabled >
     </div>
     <div class="input-box">
       <label>ID</label>
-      <input  value="vikramkapoor" type="text">
+      <input disabled >
     </div>
     <div class="input-box">
       <label> Restrict Account</label>
@@ -222,8 +227,10 @@ style="display: none;"
   <option value="">True</option>
 </select>
     </div>
+
      <div class="pp_btn_box">
-      <button class="popup-close-btn">
+      <button  class="popup-close-btn" >Close</button>
+      <button class="user-save-btn">
   Save
       </button>
     </div>
@@ -231,7 +238,7 @@ style="display: none;"
   </div>
 </div>
 
-<!------------------------ product size PopUp ------------------------------>
+<!------------------------ create product size PopUp ------------------------------>
 <div id="edit_product_size_popup" 
 style="display: none;"
  class="popup_c">
@@ -246,20 +253,14 @@ style="display: none;"
       placeholder="M size" 
       type="text">
     </div>
-     <div class="input-box">
-      <label>USD Price</label>
+    <div class="input-box">
+      <label> Price</label>
       <input  
       value="23"
-      placeholder="USD" 
+      placeholder="20 USD" 
       type="number">
     </div>
-  <div class="input-box">
-      <label>INR Price</label>
-      <input  
-value="23"
-      placeholder="INR" 
-      type="number">
-    </div>
+ 
    
  
      <div class="pp_btn_box">
@@ -274,7 +275,7 @@ value="23"
   </div>
 </div>
 
-<!------------------------ product size PopUp ------------------------------>
+<!------------------------update product size PopUp ------------------------------>
 <div id="edit_product_size_popup_for_updating" 
 style="display: none;"
  class="popup_c" targetedDIV=""
@@ -291,19 +292,13 @@ style="display: none;"
       type="text">
     </div>
      <div class="input-box">
-      <label>USD Price</label>
+      <label> Price</label>
       <input  
       value="0"
-      placeholder="USD" 
+      placeholder="30 DOLAR" 
       type="number">
     </div>
-  <div class="input-box">
-      <label>INR Price</label>
-      <input  
-      value="0"
-      placeholder="INR" 
-      type="number">
-    </div>
+  
    
  
      <div class="pp_btn_box">
@@ -533,11 +528,11 @@ style="display: none;" ct_section class="form-section">
    </div>
     
    <div class="s-sec-input-box">
-     <label for="s-sec-name-inp"> Product Amount </label>
-     <input type="Text" name="" inp_for_product_amount value="300grams" id="s-sec-name-inp">
+     <label for="s-sec-name-inp"> size</label>
+     <input type="Text" name="" size_pp value="300grams" id="s-sec-name-inp">
    </div>
   
- <h4 style="display: none;">Product Size</h4>
+ <h4 style="display: none;">Size</h4>
   <div style="display: none;" prosizeUploadContainern class="class-upload-size-and-price-container">
      <div prosizeUploader class="upload-size-div">
       <i class="fa-solid fa-upload"></i>
@@ -553,16 +548,10 @@ style="display: none;" ct_section class="form-section">
      </Select>
    </div>
   <div class="s-sec-input-box">
-    <label for="s-sec-name-inp"> Price<sup> India </sup> </label>
-    <input type="number" value="343"   name="" inp_for_product_price_india placeholder="INR" id="s-sec-name-inp">
+    <label for="s-sec-name-inp"> Price </label>
+    <input type="number" value="343"   name="" price_pp placeholder="INR" id="s-sec-name-inp">
   </div>
-    <div class="s-sec-input-box">
-     <label for="s-sec-name-inp"> 
-      Price
-      <sup> Canada </sup> 
-      </label>
-     <input type="number"  value="343"  inp_for_product_price_canada placeholder="USD" id="s-sec-name-inp">
-   </div>
+  
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Delivray Charge <sup> India </sup> </label>
      <input type="number"  value="343" inp_for_product_delivary_india name="" id="s-sec-name-inp">
@@ -652,21 +641,14 @@ style="display: none;" ct_section class="form-section">
 
 <div ct_section 
 style="display: none;"
+id="list-of-user"
+
 targetedElement="user_page_href" class="user-list-box">
 <div class="users">
-  <div class="user">
-    1 User 
+  <div length class="user">
+    User 
   </div>
-  <div class="user">
-    <img src="/img/samurai.jpg"  class="massage-image">
-    <span class="name">
-      Mubtasim
-    </span>
-    <div class="col">
-      <b>Joined</b> <span>10 July</span>
-    </div>
-    <button class="user_list_action">Action</button>
-  </div>
+
  
  
 </div>
@@ -678,22 +660,12 @@ targetedElement="user_page_href" class="user-list-box">
 
 <div ct_section 
 style="display: none;" 
+id="list-of-member"
 targetedElement="member_href" class="member-list-box">
 <div class="members">
-  <div class="member">
-    7 member
-  </div>
-  <div class="member">
-   <img src="/img/samurai.jpg"  class="massage-image">
-    <span class="name">
-      Mubtasim
-    </span>
-    <div class="col">
-      <b>Joined</b> <span>10 July</span>
-    </div>
-    <div membership><span>Annual Membership</span><span>stma</span>
-    </div>
-    <button class="member_list_action">Action</button>
+  <div length class="member">
+   
+    member
   </div>
  
  
@@ -704,7 +676,7 @@ targetedElement="member_href" class="member-list-box">
 
    <!----------------------- Grand Master list ----------------------------->
 
-<div ct_section style="display: none;" targetedElement="gm_href" class="gm-list-box">
+<div ct_section style="display: none;" targetedElement="gm_href" id="list-of-gm" class="gm-list-box">
 <div class="gm_s">
   <div class="gm_">
     10 Grand Master
@@ -712,7 +684,7 @@ targetedElement="member_href" class="member-list-box">
   <div class="gm_">
     <img src="/img/samurai.jpg"  class="gm_image">
     
-      <b class="name">Mubtasim Fuad</b>
+    <b class="name">Mubtasim Fuad</b>
     
     <button class="gm-list-action">Action</button>
   </div>

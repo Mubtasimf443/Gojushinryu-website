@@ -7,8 +7,7 @@
   <title>Check Out </title>
  {{>Links}}
   <link rel="stylesheet" href="/css/shop/checkout.css">
-  
-
+  <script defer src="/js/shop/checkout.js"></script>
 </head>
 
 <body>
@@ -28,60 +27,71 @@
             <!-- Shipping Information -->
             <h2>Shipping Information</h2>
             <form class="shipping-form">
-                <div class="form-group">
-                    <input type="text" placeholder="First Name" required>
-                    <input type="text" placeholder="Last Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" placeholder="Address" required>
-                    <input type="text" placeholder="City" required>
-                    <input type="text" placeholder="Zip Code" required>
-                    <select>
-                        <option value="USA">India</option>
-                        <option value="CAN">Canada</option>
+                    <input value="{{first_name}}" type="text" placeholder="First Name" required>
+                    <input value="{{last_name}}" type="text" placeholder="Last Name" required>
+                    <input  type="text" value="{{district}}" placeholder="District" required>
+                    <input type="text" value="{{city}}"  placeholder="City" required>
+                    <input type="text" value="{{postcode}}"  placeholder="Zip Code" required>
+                    <select id="countrySelect" >
+                        <option value="canada">Canada</option>
+                        <option value="india">India</option>
                         <!-- Add more countries -->
                     </select>
-                </div>
-                <div class="form-group">
-                    <input type="tel" placeholder="Phone Number" required>
-                </div>
-               
+                    <input type="number" value="{{phone}}"  placeholder="Phone Number" required>
+                    <textarea id="" placeholder="Notes">Nothing in Notes</textarea>
             </form>
 
             <!-- Payment Information -->
-            <h2>Payment Information</h2>
+            {{!-- <h2>Payment Information</h2>
             <form class="payment-form">
-                <div class="form-group">
                     <input type="text" placeholder="Card Number" required>
                     <input type="text" placeholder="Expiry Date" required>
                     <input type="text" placeholder="CVV" required>
-                </div>
-            </form>
+            </form> --}}
         </div>
 
-        <!-- Order Summary Sidebar -->
         <div class="order-summary">
             <h2>Order Summary</h2>
             <div class="items">
-                <!-- Example item -->
-                <div class="item">
-                    <img src="/img/product1.jpg" alt="Product Image">
-                    <p>Product Name</p>
-                    <span>$50.00</span>
-                </div>
+              
             </div>
             <div class="totals">
-                <p>Subtotal: $50.00</p>
-                <p>Shipping: $5.00</p>
-                <p>Taxes: $4.00</p>
-                <p><strong>Total: $59.00</strong></p>
+                <p>Subtotal: $
+                  <span class="Subtotal">
+                    50
+                  </span> .00
+                </p>
+                <p>Shipping: $
+                    <span class="shipping">
+
+                    </span>
+                    .00</p>
+                {{!-- <p>Taxes: $4.00</p> --}}
+                <p><strong>
+                    Total: $
+                   <span class="total"></span>
+                    .00</strong></p>
             </div>
         </div>
     </div>
 
     <!-- Place Order Button -->
     <div class="checkout-footer">
-        <button class="place-order-btn">Place Order</button>
+        <h2>Place Order</h2>
+        <div class="btns">
+        <button class="paypal-payment">
+ <i class="fa-brands fa-paypal"></i>
+          <span>
+Paypal Payment 
+          </span>  
+        </button>
+        <button class="visa-payment">
+            <i class="fa-brands fa-cc-visa"></i>
+             <span>
+Card Payment 
+          </span>  
+        </button>
+        </div>
     </div>
 </div>
 

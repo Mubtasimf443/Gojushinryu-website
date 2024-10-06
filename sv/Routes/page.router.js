@@ -3,17 +3,21 @@
 import { Router } from "express";
 import jwt from 'jsonwebtoken'
 import { JWT_SECRET_KEY } from "../_lib/utils/env.js";
-import { Admin } from "../_lib/models/Admin.js";
-import { addMinPageRoute } from "../_lib/model_base_function/Admin.cpanal.js";
-import { GMCornerPageRoute } from "../_lib/model_base_function/gm_council.page.route.js";
-import { StudentCornerPageRoute } from "../_lib/model_base_function/st.corner.page.route.js";
-import { Alert } from "../_lib/utils/smallUtils.js";
-import { Product } from "../_lib/models/Products.js";
+import { addMinPageRoute } from "../_lib/model_base_function/Admin.js";
+import { GMCornerPageRoute } from "../_lib/model_base_function/gm.js";
+import { StudentCornerPageRoute } from "../_lib/model_base_function/user.js";
+import { fileRateLimter } from "../_lib/Config/express-slow-down.js";
+import {FindCourseApi} from '../_lib/model_base_function/Course.js'
+import {findProductPageNavigation ,findProductDetails} from '../_lib/model_base_function/Product.js'
+import { checkoutPageMidleware } from "../_lib/midlewares/chackoutPageMildleware.js";
 
 
 let pageRouter = Router();
+
+
+pageRouter.use(fileRateLimter)
 pageRouter.get('/home', (req, res) => res.render('home'))
-pageRouter.get('/course', (req, res) => res.render('course-selling-page'))
+pageRouter.get('/course', FindCourseApi)
 pageRouter.get('/courses/:name', (req,res)=> {
     if (req.params.name==="course") return res.render('course-selling-page')
     if (req.params.name==="dates") return res.render('calender')
@@ -40,22 +44,22 @@ pageRouter.get('/auth/:name',(req,res)=> {
     if (req.params.name === 'reset-password') return res.render('reset-password');
 })
 pageRouter.get('/contact',(req,res)=>res.render('contact'))
-pageRouter.get('/shop',(req,res)=>res.render('shop'))
+pageRouter.get('/shop/equipments/:id',findProductDetails)
 pageRouter.get('/shop/:name',(req,res)=> {
-    if (req.params.name === 'cart') return res.render('cart');
-    if (req.params.name === 'fevorites') return res.render('fevorites');
-    if (req.params.name === 'checkout') return res.render('checkout');
-    return res.render('shop');
+    let {name,cetegory,id}=req.params
+    if (name === 'cart') return res.render('cart');
+    if (name === 'fevorites') return res.render('fevorites');
+    if (name === 'checkout') return checkoutPageMidleware(req,res); 
 });
+pageRouter.get('/shop', findProductPageNavigation);
 pageRouter.get('/post/:name',(req,res)=> res.render('post-detail'));
-pageRouter.get('/control-panal' ,addMinPageRoute);
+pageRouter.get('/control-panal',addMinPageRoute);
 pageRouter.get('/media/:name',(req,res) => {
     if (req.params.name === 'videos') return res.render('video');
     if (req.params.name === 'video') return res.render('video');
     if (req.params.name==="events") return res.render('events');
     if (req.params.name==="post") return res.render('events');
-    if (req.params.name==="images") return res.render('images');
-    
+    if (req.params.name==="images") return res.render('images');    
 })
 pageRouter.get('/about-us/organization-charts',(req,res)=>res.render('OurOrganaizationChart'))
 pageRouter.get('/allience',(req,res)=> res.render('alli'))
@@ -63,29 +67,6 @@ pageRouter.get('/accounts/:name',async (req,res)=>{
     if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req,res)
     if (req.params.name === 'student') return StudentCornerPageRoute(req,res)
 })
-
-pageRouter.get('/shop/equipments/:cetegory/:name', (req,res) =>  {
-    let testArray =[req.params.cetegory,req.params.name];
-    let test=testArray.findIndex(el => {
-        if (typeof el === "number") false
-        if (el.includes('['))  return true
-        if (el.includes(']'))  return true
-        if (el.includes('{')) return true
-        if (el.includes('}')) return true
-        if (el.includes('(')) return true
-        if (el.includes(')')) return true
-        if (password.includes('&')) return true
-        if (password.includes('$')) return true
-        if (password.includes('`')) return true
-        if (password.includes('"')) return true
-        if (password.includes("'")) return true
-        if (password.includes('|')) return true
-    }) ;
-    if (test !== -1) {
-        Alert('Sorry,Can not find The page',res);
-    }
-    Product.findOne
-});
 
 
 

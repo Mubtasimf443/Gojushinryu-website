@@ -1,0 +1,61 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+
+
+#header_2  {
+    color: white;
+    background: var(--main-cl);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.15);
+    height: 60px;
+    position: relative;
+    padding: 0px 60px;
+}
+
+#header_2> h1 {
+    font-size: 27px;
+    text-wrap: nowrap;
+    font-weight: 500;
+    text-transform: uppercase;;
+}
+#header_2 > h1 > sup{
+    font-size: 16px;
+}
+
+#header_2> .icons {
+    width: 67px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content:space-between;
+}
+
+#header_2 .icons a {
+    color: rgba(255, 255, 255, 0.87);
+    text-decoration: none;
+    position: relative;
+     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+#header_2 .icons a i{
+    
+    font-size: 22px;
+    cursor: pointer;
+
+}
+
+#header_2 .icons a span{
+    position: absolute;
+    bottom: -5.8px;
+    right:-10px;
+    color: white;
+    font-weight: 500;
+}

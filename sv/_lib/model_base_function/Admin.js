@@ -56,7 +56,8 @@ async function navigateToVarify(req,res) {
     log('navigateToVarify')
     Admin.findOne({email :ADMIN_EMAIL})
     .then(async admin => {
-        let otp=await generatePin(1)
+        let otp=await generatePin(1) ;
+        log(otp)
         admin.Otp=otp;
         admin.save() 
         .then(async sData => {

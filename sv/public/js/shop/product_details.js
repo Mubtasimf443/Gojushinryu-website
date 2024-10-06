@@ -16,7 +16,7 @@ var thumb;
 var id;
 var images;
 var selling_style;
-var selling_price_canada;
+var selling_price;
 var size_and_price;
 let df_size;
 let df_price;
@@ -55,17 +55,17 @@ window.addEventListener('load',async e =>{
           id =prod.id;
           description =prod.description;
           selling_style =prod.selling_style;
-          selling_price_canada=prod.selling_price_canada;
+          selling_price=prod.selling_price;
           size_and_price=prod.size_and_price;
           if (selling_style === 'per_price') {
-            df_size = prod.selling_amount;
-            df_price=selling_price_canada;
+            df_size = prod.size;
+            df_price=selling_price;
             
             
           }
           if (selling_style !== 'per_price') {
-            df_size=size_and_price[0].key;log('df_size' + df_size);
-            df_price=size_and_price[0].piu;
+            df_size=size_and_price[0].size;log('df_size' + df_size);
+            df_price=size_and_price[0].price;
           }
           LoadUi();
         }
@@ -79,7 +79,7 @@ function LoadUi() {
     descriptionElment.innerHTML = description;
     if (selling_style ==='per_price'){
      
-        priceEl.innerHTML='$'+ selling_price_canada;
+        priceEl.innerHTML='$'+ selling_price;
     }
     if (selling_style !=='per_price'){
         priceEl.innerHTML='$'+ size_and_price[0].piu;

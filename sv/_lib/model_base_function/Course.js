@@ -1,16 +1,16 @@
 /*بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ*/
 /* Insha Allah,  Allah loves s enough for me */
 
-import Course from "../models/Course";
-import { Alert, log } from "../utils/smallUtils";
+import Course from "../models/Course.js";
+import { Alert, log } from "../utils/smallUtils.js";
 
 
 
 export async function FindCourseApi(req, res) {
   try {
-    let CouseArray = await Course.find({});
-    res.render('Page',{
-      Product
+    let CourseArray = await Course.find({});
+    res.render('course',{
+      courses:CourseArray
     });
   } catch (e) {
     res.status(500).render('massage_server', {
@@ -19,7 +19,6 @@ export async function FindCourseApi(req, res) {
     })
   } 
 };
-
 export async function CreateACourseApi() {    
   try {
   let {

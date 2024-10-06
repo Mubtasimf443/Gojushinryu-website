@@ -74,7 +74,14 @@ Insha Allah,  By your Marcy Ya Allah
     column-gap: 10px;
 
 }
-.member-list-box> .members > .member>div[membership]{
+.member-list-box> .members > .member> .membership_box {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    row-gap: 5px;
+}
+.member-list-box> .members > .member> .membership_box >div[membership]{
     display:flex;
     flex-direction: column;
     justify-content: flex-start;
@@ -82,13 +89,13 @@ Insha Allah,  By your Marcy Ya Allah
     row-gap: 5px;
     position: relative;
 }
-.member-list-box> .members > .member>div[membership]>span:first-child{
+.member-list-box> .members > .member>.membership_box >div[membership]>span:first-child{
     font-weight: 500;
     text-transform: capitalize;
     font-size: 15.5px;
     font-style: bold;
 }
-.member-list-box> .members > .member>div[membership]>span:last-child{
+.member-list-box> .members > .member>.membership_box >div[membership]>span:last-child{
     font-weight: 500;
     text-transform: uppercase;
     font-size: 13px;

@@ -7,6 +7,7 @@ import mongoose from "mongoose";
 
 
 let schema = new mongoose.Schema({
+    id :Number,
     thumb :String,    
     name:{
         type :String,
@@ -49,6 +50,7 @@ let schema = new mongoose.Schema({
         required:true,
         type:String
     },
+    joining_date:String,
     district:String,
     city:String,
     street:String,
@@ -60,6 +62,11 @@ let schema = new mongoose.Schema({
         type:Boolean,
         default:false
     } ,
+    memberShipArray :[{
+        Type :String,
+        Organization :String
+    }],
+    //For reseting the password
     resetingThePassword :{
         type:Boolean,
         required:true,
@@ -73,6 +80,11 @@ let schema = new mongoose.Schema({
     orders:[{
         id :{ type:mongoose.SchemaTypes.ObjectId, ref:'orders'}
     }],
+    banned :{
+        type :Boolean,
+        default :false,
+        required :true,
+    }
     // fevorites :[{
     //     id :{ type:mongoose.SchemaTypes.ObjectId, ref:'orders'}
     // }]

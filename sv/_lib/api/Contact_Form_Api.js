@@ -25,7 +25,8 @@ export async function Contact_us_api_Function(req,res) {
       from:FROM_EMAIL,
       to:newArray[2],
       subject:'Thanks ',
-      html :`<div style=" padding: auto;
+      html :`
+      <div style=" padding: auto;
           margin: auto;
            width: fit-content; 
            padding: 2em 7px;

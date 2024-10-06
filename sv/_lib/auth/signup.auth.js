@@ -22,8 +22,10 @@ export const signUpFunction = async (req, res ) => {
     const salt =await bcrypt.genSalt(12)
     let newPassword = await bcrypt.hash(password,  salt)
     let pin =await generatePin(9999999)
-    await User.create({
-      first_name:firstname,
+    await User.create({ 
+       joining_date :`${new Date().getMonth()} ${new Date().getFullYear()}`,
+       id:Date.now(),
+       first_name:firstname,
        last_name:lastname,
        pin, 
        email,

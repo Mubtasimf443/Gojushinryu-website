@@ -3,11 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   
+    <meta name="title" content="{{metaname}}">
+    <meta name="description" content="{{metaDescription}}">
+    <meta name="keywords" content="{{metaname}}, Goju shin Ryu Store  ,Martial Art equipments,buy Martial Art equipments ">
+    <meta property="og:url" content="http://localhost:4000/shop/equipments/{{id}}">
+    <meta property="og:site_name" content="Goju Shin Ryu Store">
+    <meta property="og:type" content="website">
+    <meta property="og:name" content="{{metaname}} | Goju shin Ryu Store">
+    <meta property="og:description" content="{{metaDescription}}">
+    <meta property="og:image" content="{{thumb}}">
     <title>
-      Product Details |
-    | Goju Shin Ryu Shop
+Buy - {{name}} - form Goju shin Ryu Store 
+    
     </title>
+
  {{>Links}}
 
     <link rel="stylesheet" href="/css/shop/product-detail.css">
@@ -17,7 +26,9 @@
 {{>whiteHeader}}
 {{>shopheader}}
 
-
+<!-- 
+{{prod}}
+ -->
     <main>
 
  
@@ -26,34 +37,44 @@
         <div class="product-page">
             <!-- Main Image -->
             <div class="product-image">
-                <img src="/img/product1.jpg" alt="Main Product Image" id="main-image">
+                <img src="{{thumb}}" alt="Main Product Image" id="main-image">
             </div>
 
             <!-- Product Information -->
             <div class="product-details">
                 <!-- Product Name -->
-                <h1 class="product-name">Premium Product Name</h1>
-
+                <h1 class="product-name">{{name}}</h1>
                 <!-- Price -->
-                <p class="product-price">$499.99</p>
-                <button class="add-to-cart">Add to Cart</button>
+                <p class="product-price"></p>
+            
+          <!-- Size Options -->
+          <div class="row">
+            <button class="add-to-cart">Add to Cart</button>
+              <div class="product-size">
+                    <select style="display: none;" name="size" id="size">
+                        {{!-- <option value="small">Small</option>
+                        <option value="medium">Medium</option>
+                        <option value="large">Large</option>
+                        <option value="xl">XL</option> --}}
+                    </select>
+                </div> 
+          </div>
+            
 
                 <!-- Description -->
                 <div class="product-description">
                     <h2>Description</h2>
-                    <p>This is a detailed description of the premium product, highlighting its features, materials, and what makes it unique.</p>
+                    <hr>
+                    {{!-- <p>{{description}}</p> --}}
+                    <p></p>
+                    <script>
+                      
+                    </script>
                 </div>
-{{!-- 
-                <!-- Size Options -->
-                <div class="product-size">
-                    <h2>Select Size</h2>
-                    <select name="size" id="size">
-                        <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                        <option value="xl">XL</option>
-                    </select>
-                </div> --}}
+
+
+      
+
 
                 <!-- Add to Cart Button -->
             </div>
@@ -62,9 +83,11 @@
         <!-- Thumbnail Images Section -->
         <h3>More Image</h3>
         <div class="thumbnail-images">
-            <img src="/img/product1.jpg" alt="Thumbnail 1" class="thumb">
-            <img src="/img/product2.jpg" alt="Thumbnail 2" class="thumb">
-            <img src="/img/product3.jpg" alt="Thumbnail 3" class="thumb">
+            {{#each images}}
+            <img src="{{this}}" alt="Thumbnail 1" class="thumb">
+            {{!-- <img src="/img/product2.jpg" alt="Thumbnail 2" class="thumb">
+            <img src="/img/product3.jpg" alt="Thumbnail 3" class="thumb"> --}}
+            {{/each}}
         </div>
     </div>
 
@@ -73,5 +96,11 @@
 {{>Footer}}
 
 
+
+<script>
+    var id = Number({{id}});
+    
+</script>
+<script defer src="/js/shop/product_details.js"></script>
 </body>
 </html>
