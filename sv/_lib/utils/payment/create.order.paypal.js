@@ -6,7 +6,14 @@ import axios from 'axios'
 import { BASE_URL, PAYPAL_LINK, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from '../env.js';
 import { log, Success } from '../smallUtils.js';
 
-export async function createPaypalPayment({items,total ,productToatal,shipping}) {
+export async function createPaypalPayment({items,total ,productToatal,shipping ,success_url,cancell_url}) {
+    log({
+        items,
+        a: items[0].unit_amount,
+        total ,
+        productToatal,
+        shipping
+    }); 
     try {
         if (items instanceof Array === false) throw new Error("Items is not a array");
         for (let index = 0; index < items.length; index++) {
@@ -24,17 +31,14 @@ export async function createPaypalPayment({items,total ,productToatal,shipping})
             if (currency_code !=='USD') throw new Error("currency_code is not USD"); 
             if (typeof value !=='string') throw new Error("value is not string"); 
         }
-        log({
-            items,
-            total ,
-            productToatal,
-            shipping
-        });
+        
+       
         if (typeof total !== 'string' || Number(total).toString==='NaN' ) { log({total}); throw new Error("total  is not a corect");            }
         if (typeof productToatal !== 'string' || Number(productToatal).toString==='NaN' ) { log({productToatal}); throw new Error("productotal  is not a corect");            }
         if (typeof shipping !== 'number' || Number(shipping).toString==='NaN' ) { log({shipping}); throw new Error("shipping  is not a corect");            }
         // log(productToatal)
-         if ( Number(total) !== Number(productToatal)+shipping) throw new Error("Total is not correct");
+
+
         /************************fetch request started****************************/
         let access_token =await generatePayPalToken()
 
@@ -52,28 +56,29 @@ export async function createPaypalPayment({items,total ,productToatal,shipping})
                         items,
                         amount: {
                             currency_code: 'USD',
-                            value: '23.00',
+                            value: total,//'23.00',
                             breakdown: {
                                 item_total: {
                                     currency_code: 'USD',
-                                    value:'23.00' //productToatal
+                                    value:productToatal
                                 }
                             }
                         }
                     }
                 ],
                 application_context: {
-                    return_url: BASE_URL + '/api/order-api/success',
-                    cancel_url: BASE_URL + '/api/order-api/cancel',
+                    return_url: BASE_URL + success_url,
+                    cancel_url: BASE_URL + cancell_url,
                     shipping_preference: 'NO_SHIPPING',
                     user_action: 'PAY_NOW',
                     brand_name: 'GojuShinRyu'
                 }
             })
-        })
-        log(response.data.links[1]);
+        }) ;
+        log(response.data)
+        log({pplink:response.data.links[1]});
         let link= response.data.links.find(link => link.rel === 'approve').href;
-        return {success:true,link}
+        return {success:true,link , paypal_id:response.data.id}
     } catch (error) {
         log(error);
         console.error('paypal error')
