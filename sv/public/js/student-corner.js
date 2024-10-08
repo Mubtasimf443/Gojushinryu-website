@@ -45,7 +45,7 @@ InshaAllah, By his Marcy I will Gain Success
       if (city.length <4)  return alert('city is to short');
       if (street.length <8)  return alert('street is to short');
       if (postcode >10000) return alert('post code should be under 10000');
-      if (postcode >600) return alert('post code should be greater than 600');
+      if (postcode <600) return alert('post code should be greater than 600');
       if (gender.toLowerCase() !== 'male' && gender.toLowerCase() !== 'female')  return alert('male and female should be use in gender');
       if (name.includes('<'))  return alert(simbolError);
       if (bio.includes('<'))  return alert(simbolError);

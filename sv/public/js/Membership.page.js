@@ -41,48 +41,218 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   //input
   let FnameInput  = document.querySelector('#inp--f--name');
   let LnameInput  = document.querySelector('#inp--f--name');
- let emailInput = document.querySelector('#inp--email');
- let DOB_Input = document.querySelector('#inp--dob');//Date of birth
- let numInput = document.querySelector('#inp--num');
- let countryInput = document.querySelector('#inp--Country');
- let cityInput = document.querySelector('#inp--City');
- let districtInput = document.querySelector('#inp--District');
- let pCodeInput = document.querySelector('#inp--pcode');
- let dojuNameInput = document.querySelector('#inp--doju-name');
- let permanentDisabillityInput = document.querySelector('#inp--pr--disabillity');
- let previousInjuryInput = document.querySelector('#inp--previous-injury');
-
-
+  let emailInput = document.querySelector('#inp--email');
+  let DOB_Input = document.querySelector('#inp--dob');//Date of birth
+  let numInput = document.querySelector('#inp--num');
+  let countryInput = document.querySelector('#inp--Country');
+  let cityInput = document.querySelector('#inp--City');
+  let districtInput = document.querySelector('#inp--District');
+  let pCodeInput = document.querySelector('#inp--pcode');
+  let dojuNameInput = document.querySelector('#inp--doju-name');
+  let instructorInput = document.querySelector('#inp--Instructor');
+  let currentGradeInput = document.querySelector('#inp--current-grade');
+  let membership_expiring_date_input = document.querySelector('#membership-exp-date-inp');
+  let previousViolanceChargeInput = document.querySelector('#inp--pr--violance-charge');
+  var permanentDisabillityInput = document.querySelector('#inp--pr--disabillity');
+  var previousInjuryInput = document.querySelector('#inp--previous-injury');
+  let policy1Input=document.getElementById('policy-1-inp');
+  let policy2Input=document.getElementById('policy-2-inp');
+  let creditCardName =document.querySelector(`[id="inp--credit-card-name"]`)
+  let creditCardNumber =document.querySelector(`[id="inp--credit-card-number"]`)
+  let creditCardCVV =document.querySelector(`[id="inp--credit-card-cvv"]`)
+  let creditCardExpiryDate =document.querySelector(`[id="inp--credit-card-exp-date"]`)
  //values
- let membershipValue ='Annual';
- let genderValue ='Male';
- let pre_membership_status_Value ='no';
- let experience_value ='Junior';
- let violance_charge_status_Value ='no';
- let permanent_Injury_status_Value='no';
+  //let membershipValue ='Annual';
  
+ var userInfo={
+  fname :'',
+  lname :'',
+  email :'',
+  phone :'',
+  date_of_birth :'',
+  country :'',
+  city :'',
+  district :'',
+  postcode :'',
+  doju_Name:"",
+  instructor:"",
+  current_grade:"",
+  violance_charge:"",
+  permanent_disabillity:'',
+  previous_injury:'' ,
+  //defined
+  gender:'Male',
+  is_previous_member:'No',
+  experience_level :'Junior',
+  has_violance_charge:"No",
+  has_permanent_injury:'No',
+  membeship_array:[{
+    company:'gojushinryu',
+    membership:"LifeTime"
+  }],
+  accapted :{
+    role1 :false,
+    role2 :false ,
+  }
+
+ };
+
+
+ /*----------- v function  ----------*/
+ 
+function log(e) {console.log(e)}
+function v2(el) {
+  let simbolerror='You can not use <,>,{,},[,],",,$'+ "`," + '"' ;
+  if (!el) throw new Error(`can not find using ${htmlElementSelector}`);
+  let value=el.value;
+  if (!value) {
+      el.style.outline='2px solid red';
+      throw new Error('This feild is emty');
+  }
+  if (value.includes('<')) {
+      el.style.outline='2px solid red';
+      throw new Error(simbolerror);
+  }
+  if (value.includes('>')) {
+      el.style.outline='2px solid red';
+      throw new Error(simbolerror);
+  }
+  if (value.includes("'")) {
+      el.style.outline='2px solid red';
+      throw new Error(simbolerror);
+  }
+  if (value.includes('"')) {
+      el.style.outline='2px solid red';
+      throw new Error(simbolerror);
+  }
+  if (value.includes('`')) {
+      el.style.outline='2px solid red';
+      throw new Error(simbolerror);
+  }
+  if (value.includes('{')) {
+      el.style.outline='2px solid red';
+      throw new Error(simbolerror);
+  }
+  if (value.includes('}')) {
+      el.style.outline='2px solid red';
+      throw new Error(simbolerror);
+  }
+  if (value.includes('[')) {
+      el.style.outline='2px solid red';
+      throw new Error(simbolerror);
+  }
+  if (value.includes(']')) {
+      el.style.outline='2px solid red';
+      throw new Error(simbolerror);
+  }
+  return value
+}
+async function v3(el) {
+  let num=el.valueAsNumber;
+  if (!el) {
+    el.style.outline='2px solid red';
+    throw 'not a number'
+  }
+  if (Number(num).toString().toLowerCase()==='nan') {
+    el.style.outline='2px solid red';
+    throw 'not a number'
+  }
+  return num
+}
+async function v4(el) {
+  if (!el) throw 'can not find date'
+  let value = el.value;
+  if (!value) {
+    el.style.outline='2px solid red';
+    throw 'Please give the Date';
+  }
+  return el.valueAsDate.getDate()+'-' +el.valueAsDate.getMonth()+'-' + el.valueAsDate.getFullYear() ;
+  
+}
+function setValue(params,value) {
+  document.querySelector(params).setAttribute('value',value)
+}
+
+/*-----------  moving To QboxForm  ----------*/
+async function movingToQboxForm(params) {
+  try {
+    //String
+    userInfo.fname = await v2(FnameInput);
+    userInfo.lname = await v2(LnameInput);
+    userInfo.email = await v2(emailInput);
+    userInfo.country = await v2(countryInput);
+    userInfo.city = await v2(cityInput);
+    userInfo.district = await v2(districtInput);
+    userInfo.postcode = await v2(pCodeInput);
+    userInfo.instructor = await v2(instructorInput);
+    userInfo.doju_Name = await v2(dojuNameInput);
+
+    //number
+    await v3(numInput).then(e => userInfo.phone =e).catch(e => {  alert(e);  throw new Error("Error");})
+    await v3(pCodeInput).then(e => userInfo.postcode =e).catch(e => {  alert(e);   throw new Error("Error");})
+
+    //Date
+    userInfo.date_of_birth =await v4(DOB_Input);
+
+
+    if (!userInfo.membeship_array.length) return
+
+    /*------------------------Form Change -------------------------------*/
+    formStatus=formStatus+1;
+    aplicantForm.style.display='none';
+    QboxForm.style.right='0px';
+    QboxForm.style.display='flex';
+    return changeHeadingSectionLayout()
+  } catch (error) {
+     log(error)
+  }
+
+}
+
+
+function calculateTotal(params) {
+  let memberships='';
+  let cost =0;
+  if (!userInfo.membeship_array.length) throw 'You do not have any data'
+  for (let i = 0; i < userInfo.membeship_array.length; i++) {
+    let {membership,company}=userInfo.membeship_array[i] ;
+    memberships=memberships+`${i===0?'':' + '}${membership} (${company})`;
+    cost+=membership.toLowerCase()==='annual'?75:150;
+  }
+  setValue(`[payment_membership_total]`,cost +'.00$');
+  setValue(`[payment_membership_cost]`,cost +'.00$');
+  setValue(`[payment_membership_type]`,memberships);
+
+}
+async function MoveToPaymentForm() {
+  try {
+    if (userInfo.is_previous_member.toLowerCase()==='yes') userInfo.membership_expiring_date =await v4(membership_expiring_date_input)
+    if (userInfo.is_previous_member.toLowerCase()==='no') userInfo.membership_expiring_date ='';
+    if (userInfo.has_permanent_injury.toLowerCase()==='yes') userInfo.permanent_disabillity =await v2(permanentDisabillityInput);
+    if (userInfo.has_violance_charge.toLowerCase()==='yes') userInfo.violance_charge = await v2(previousViolanceChargeInput)
+    userInfo.current_grade=await v2(currentGradeInput);
+    userInfo.previous_injury=await v2(previousInjuryInput);
+    if (!userInfo.accapted.role1 || !userInfo.accapted.role2) return 
+    formStatus=formStatus+1;
+    QboxForm.style.display='none';
+    paymentForm.style.right='0px';
+    paymentForm.style.display='flex';
+    calculateTotal()
+    return changeHeadingSectionLayout()
+  } catch (error) {
+    log(error)
+  }
+}
+
 /*----------- changing form  ----------*/
- function changeFormLayout(moveForward) {
+function changeFormLayout(moveForward) {
   let transitionTime=500;
   if (moveForward===true){
-    if (formStatus===1){
-      formStatus=formStatus+1;
-      // aplicantForm.style.left='-110%';
-      QboxForm.style.right='0px';
-      QboxForm.style.display='flex';
-      // QboxForm.style.right='0%';
-      // setTimeout(() => {
-        aplicantForm.style.display='none';
-      // }, transitionTime);
-      return changeHeadingSectionLayout()
-    }
-    if (formStatus===2){
-      formStatus=formStatus+1;
-      QboxForm.style.display='none';
-      paymentForm.style.right='0px';
-      paymentForm.style.display='flex';
-      return changeHeadingSectionLayout()
-    }
+    if (formStatus===1) return movingToQboxForm()
+    if (formStatus===2)  return MoveToPaymentForm();
+      
+      // return changeHeadingSectionLayout()
+    
     if (formStatus===3) {
       formStatus=formStatus+1;
       paymentForm.style.display='none';
@@ -120,13 +290,23 @@ function changeHeadingSectionLayout() {
   })
   
 }
-function changeMembership(target) {
-  // document.querySelectorAll('.membership').forEach((element) => {
-    // element.style.border=element.id === e.target.id ? '2px solid var(--main-cl)' : ' 2px solid rgba(0, 0, 0, 0.123)';
-    // element.id === target.id ? element.setAttribute('default-membership','true') :element.setAttribute('default-membership','false') ;
-    // membershipValue=target.getAttribute('membershipValue')
-  // }); 
-       target.getAttribute('default-membership') ==="true" ? target.setAttribute('default-membership','false') :target.setAttribute('default-membership','true') ;
+async function changeMembership(target) {
+  let status = target.getAttribute('default-membership');
+  let company = target.getAttribute('membershipOrganization');
+  let membership = target.getAttribute('membershipValue');
+  if (status === 'true') {
+    userInfo.membeship_array=userInfo.membeship_array.filter(el => (el.company !==company && el.membership !== membership));
+    target.setAttribute('default-membership','false') 
+    return 
+  }
+  if (status === 'false') {
+    let index=userInfo.membeship_array.findIndex(el => (el.company ===company && el.membership === membership));
+    if (index===-1) userInfo.membeship_array.push({company,membership})
+    target.setAttribute('default-membership','true') ;
+    return
+  }
+ 
+      
 
 }
 function ChangeYesNoStatenent(target) {
@@ -139,29 +319,53 @@ function ChangeYesNoStatenent(target) {
     });
   }
   if (yesNoDivFor==='genderValue') {
-    genderValue = yesNoDivValue;
-   return changeCheckMark('genderValue')
+    userInfo.gender = yesNoDivValue.toString();
+    return changeCheckMark('genderValue')
   }
   if (yesNoDivFor==='pre_membership_status_Value') {    
-    pre_membership_status_Value = yesNoDivValue;
+    userInfo.is_previous_member = yesNoDivValue;
     return changeCheckMark('pre_membership_status_Value')
   }
   if (yesNoDivFor==='experience_value') {
-    experience_value = yesNoDivValue;
+    userInfo.experience_level = yesNoDivValue;
     return changeCheckMark('experience_value')
   }
   
   if (yesNoDivFor==='violance_charge_status_Value') {
-    violance_charge_status_Value = yesNoDivValue;
+    userInfo.has_violance_charge = yesNoDivValue;
+    document.querySelector('[display_if_violance_charge_yes]').style.display = yesNoDivValue.toLowerCase() === 'no' ? 'none':'flex'
     return changeCheckMark('violance_charge_status_Value')
   }
   if (yesNoDivFor==='permanent_Injury_status_Value') {
-    permanent_Injury_status_Value = yesNoDivValue;  
+    userInfo.has_permanent_injury = yesNoDivValue;  
     return changeCheckMark('permanent_Injury_status_Value')
   }
 
 }
 
+async function paypalMembershipFunction(e) {
+  e.preventDefault();
+  try {
+    let jsonObject=await JSON.stringify(userInfo);
+    alert('working')
+    fetch(window.location.origin + '/api/l-api/paypal-membership-purchase' ,{
+      method:'POST',
+      headers:{
+        'Content-Type' :'application/json'
+      },
+      body:jsonObject
+    })
+    .then(data=>data.json())
+    .then(data=>{
+      log(data)
+      if (data.error) return alert(data.error);
+      if (data.success) return window.location.assign(data.link)
+    })
+    .catch(e => log(e))
+  } catch (e) {
+    log(e)
+  }
+}
 /*----------- event delegation and  listener ----------*/
 document.addEventListener('click',e => {
   //aplicant info continue btn
@@ -175,9 +379,9 @@ document.addEventListener('click',e => {
   //payment form continue btn
    if (e.target.id==='payment-Continue-btn') return changeFormLayout(true);
   //success go it btn
-  if (e.target.id==='successGotItBtn') return window.location.replace('/')
+  if (e.target.id==='successGotItBtn') return window.location.assign('/')
   //membership
- if (e.target.className==='membership') return changeMembership(e.target);
+  if (e.target.className==='membership') return changeMembership(e.target);
   if (e.target.parentNode.className==='membership') return changeMembership(e.target.parentNode);
   if (e.target.parentNode.parentNode.className==='membership') return changeMembership(e.target.parentNode.parentNode);
  //  yes or no statements
@@ -187,37 +391,76 @@ document.addEventListener('click',e => {
 
  })
 
+policy1Input.addEventListener('change' ,e => {
+  let status=e.target.getAttribute('status');
+  userInfo.accapted.role1 = status ==='off' ? true : false;
+  document.getElementById('q-box-cn-btn').style.opacity= (!userInfo.accapted.role1 || !userInfo.accapted.role2) ? .65:1;
+  status =status ==='on' ?'off' : 'on'
+})
+
+policy2Input.addEventListener('change' ,e => {
+  let status=e.target.getAttribute('status');
+  userInfo.accapted.role2 = status ==='off' ? true : false;
+  document.getElementById('q-box-cn-btn').style.opacity= (!userInfo.accapted.role1 || !userInfo.accapted.role2) ? .65:1;
+  status =status ==='on' ?'off' : 'on'
+  e.target.setAttribute('status',status)
+})
+
+document.querySelector(`[credit_card_check_div]`)
+.addEventListener('click',e => {
+  let i =document.querySelector(`[credit_card_check_div]`).querySelector('i');
+  if (!i) {
+    i=document.createElement('i');
+    i.className='fa-solid fa-check';
+    document.querySelector(`[credit_card_check_div]`).appendChild(i);
+    document.querySelectorAll(`[Credit_Card_info]`).forEach(el => el.style.display ='flex');
+    document.querySelector(`[paypal_check_div]`).querySelector('i').remove();
+    document.getElementById('credit-card-payment-Continue-btn').style.display='flex';
+    let paypalBtn= document.getElementById('paypal-payment-Continue-btn');
+    if (paypalBtn) paypalBtn.remove();
+    return
+  }
+});
+
+
+document.querySelector(`[paypal_check_div]`)
+.addEventListener('click',e => {
+  let i =document.querySelector(`[paypal_check_div]`).querySelector('i');
+  if (!i) {
+    i=document.createElement('i');
+    i.className='fa-solid fa-check';
+    document.querySelector(`[paypal_check_div]`).appendChild(i);
+    document.querySelectorAll(`[Credit_Card_info]`).forEach(el => el.style.display ='none');
+    document.querySelector(`[credit_card_check_div]`).querySelector('i').remove();
+    document.getElementById('credit-card-payment-Continue-btn').style.display='none';
+    let paypalBtn=document.createElement('button');
+    paypalBtn.id='paypal-payment-Continue-btn';
+    paypalBtn.innerHTML=`<span>Paypal Order </span><i class="fa-brands fa-paypal" ></i>`;
+   
+    paypalBtn.style.display='flex';
+    paypalBtn.style.flexDirection='row';
+    paypalBtn.style.justifyContent="center";
+    paypalBtn.style.alignItems='center';
+    paypalBtn.style.columnGap='6px';
+    paypalBtn.style.color='#fff';
+    paypalBtn.style.background='#212c62'
+    paypalBtn.style.border='none'
+    paypalBtn.style.width='130px'
+    paypalBtn.style.height='36px'
+   paypalBtn.style.borderRadius='4.5px'
+   paypalBtn.style.fontWeight='600'
+   paypalBtn.addEventListener('click',paypalMembershipFunction)
+    document.querySelector(`[class="paymetn-btn-div"]`).appendChild(paypalBtn);
+    
+    return
+  }
+});
+
+
+
+
+
+
 
 
 }/*----------- form scope finished ----------*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

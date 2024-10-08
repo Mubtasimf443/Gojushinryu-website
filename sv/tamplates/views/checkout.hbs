@@ -29,16 +29,19 @@
             <form class="shipping-form">
                     <input value="{{first_name}}" type="text" placeholder="First Name" required>
                     <input value="{{last_name}}" type="text" placeholder="Last Name" required>
-                    <input  type="text" value="{{district}}" placeholder="District" required>
-                    <input type="text" value="{{city}}"  placeholder="City" required>
-                    <input type="text" value="{{postcode}}"  placeholder="Zip Code" required>
+                    <input type="text" placeholder="Reciever Email" value="{{email}}" required>
+                    <input type="number" value="{{phone}}"  placeholder="Phone Number" required>
                     <select id="countrySelect" >
                         <option value="canada">Canada</option>
                         <option value="india">India</option>
-                        <!-- Add more countries -->
                     </select>
-                    <input type="number" value="{{phone}}"  placeholder="Phone Number" required>
+                    <input  type="text" value="{{district}}" placeholder="District" required>
+                    <input type="text" value="{{city}}"  placeholder="City" required>
+                    <input type="text" placeholder="Road No / Village / Street" required value="{{street}}">
+                    <input type="text" value="{{postcode}}"  placeholder="Zip Code" required>
+        
                     <textarea id="" placeholder="Notes">Nothing in Notes</textarea>
+
             </form>
 
             <!-- Payment Information -->

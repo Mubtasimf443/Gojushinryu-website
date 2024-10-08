@@ -3,6 +3,7 @@
 InshaAllah, By his marcy I will Gain Success 
 */
 
+import { sendMembershipMails } from "../mail/membership.mail.js";
 import { Memberships } from "../models/Membership.js";
 import { User as Users} from "../models/user.js";
 import { T_PAYPAL_SECRET } from "../utils/env.js";
@@ -330,10 +331,11 @@ export async function membershipSuccessPaypalApi(req,res) {
     let memberships =await Memberships.find({
         paypal_token :token
     })
-
+    //membership mail
+    sendMembershipMails(memberships[0]);
     for (let i = 0; i < memberships.length; i++) {
        let {_id,id,user_id,membership_type,membership_company,membership_name} = memberships[i];
-       await Memberships.findByIdAndUpdate(_id,{activated:true}).then(e => log('activated'))
+       await Memberships.findByIdAndUpdate(_id,{activated:true}).then(e => {})
        let user= await Users.findById(user_id);
        if (user ) {
         let length=user.memberShipArray.length;
@@ -345,6 +347,7 @@ export async function membershipSuccessPaypalApi(req,res) {
                 name:membership_name,
                 Organization :membership_company
             }];
+            user.isMember=true;
             await user.save();
          
         }
@@ -356,6 +359,10 @@ export async function membershipSuccessPaypalApi(req,res) {
                 name:membership_name,
                 Organization :membership_company
             });
+            user.isMember=true;
+            user.city=user.city?user.city:memberships[i].city;
+            user.district=user.district?user.district:memberships[i].district;
+            user.postCode=user.postCode?user.postCode:memberships[i].postcode;
             await user.save()
         }
         

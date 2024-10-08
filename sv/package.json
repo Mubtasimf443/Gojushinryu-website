@@ -23,7 +23,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "sv": "nodemon --ignore public/",
+    "sv": "nodemon --ignore public/ --ignore _lib/",
     "nv": "nodemon s.js "
 
   },

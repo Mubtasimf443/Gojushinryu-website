@@ -25,6 +25,7 @@ export const signUpFunction = async (req, res ) => {
     await User.create({ 
        joining_date :`${new Date().getMonth()} ${new Date().getFullYear()}`,
        id:Date.now(),
+       name:firstname+lastname,
        first_name:firstname,
        last_name:lastname,
        pin, 

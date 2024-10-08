@@ -36,6 +36,7 @@ export  async function UploadProductApi(req,res) {
         let isExitingName =await Product.findOne({name,cetegory}).catch(e => err =e);
         if (isExitingName ) return alert('Please Change the name');
         if (selling_style !== 'per_price' && selling_style !== 'per_size' ) return alert('Bugs in the code ,please contact developer')
+        
         //images 
         thumb=  await ImageUrl.findOne({url :thumb})
         .then( async ({urlpath}) => urlpath ?urlpath :false) 

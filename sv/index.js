@@ -21,6 +21,8 @@ import cookieParser from 'cookie-parser';
 import apiRouter from './Routes/api.router.js';
 import { fileRateLimter, ApiRateLimter } from './_lib/Config/express-slow-down.js';
 import LargeApiRouter from './Routes/large.api.router.js';
+import { Memberships } from './_lib/models/Membership.js';
+import { sendMembershipMails } from './_lib/mail/membership.mail.js';
 
 //varibles
 const app = express();
@@ -60,11 +62,12 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
     unlinkSync(path.resolve(dirName,'./index.js'))
 });
 
-app.get('/hello', (req, res) =>{ 
-    log('hello')
-    res.send('hello')}
-);
+app.get('/hello', (req, res) =>{
+    return res.redirect('/')
+});
 app.get('/', (req, res) => res.render('home'));
+
+
 
 app.get('*', (req, res) => res.status(404).render('404'))
 

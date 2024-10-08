@@ -110,3 +110,75 @@ export async function generatePayPalToken() {
 
 
 
+
+
+export async function OrderSuccessPaypalApi(req,res) {   
+    let {token}=req.query;
+    log({token})
+    function status(data=token) {
+      if (!token) return false
+      if (data.includes('{')) return false 
+      if (data.includes('}')) return false 
+      if (data.includes('*')) return false 
+      if (data.includes(':')) return false 
+      if (data.includes('[')) return false 
+      if (data.includes(']')) return false 
+      if (data.includes('(')) return false 
+      if (data.includes('(')) return false 
+      if (data.includes('$')) return false 
+      if (data.includes('>')) return false 
+      if (data.includes('<')) return false 
+      return true
+    }
+    status =status();
+    if (!status) return res.redirect('notAllowed');
+    Orders.findOneAndUpdate({
+        paypal_order_id :token
+    },{
+        activated:true
+    })
+    .then(e =>
+    {
+         log('order activated successful')
+         res.redirect('/accounts/student')
+    })
+    .catch(e => {
+        log(e)
+        res.redirect('/')
+    })
+}
+
+export async function OrderCancellPaypalApi(req,res) {
+   let {token}=req.query
+   function status(data=token) {
+    if (!token) return false
+     if (data.includes('{')) return false 
+     if (data.includes('}')) return false 
+     if (data.includes('*')) return false 
+     if (data.includes(':')) return false 
+     if (data.includes('[')) return false 
+     if (data.includes(']')) return false 
+     if (data.includes('(')) return false 
+     if (data.includes('(')) return false 
+     if (data.includes('$')) return false 
+     if (data.includes('>')) return false 
+     if (data.includes('<')) return false 
+     return true
+   }
+   status =status();
+   if (!status) return res.redirect('notAllowed');
+   Orders.findOneAndDelete({
+    paypal_order_id :token
+   })
+   .then(e =>
+    {
+     log('order cancelled successful')
+     res.redirect('/')
+    })
+   .catch(e => {
+    log(e)
+    res.redirect('/')
+    })
+
+
+}

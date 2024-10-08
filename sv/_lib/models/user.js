@@ -3,7 +3,7 @@
 InshaAllah, By his marcy I will Gain Success 
 */
 
-import mongoose from "mongoose";
+import mongoose, { Mongoose } from "mongoose";
 
 
 let schema = new mongoose.Schema({
@@ -63,8 +63,16 @@ let schema = new mongoose.Schema({
         default:false
     } ,
     memberShipArray :[{
-        Type :String,
-        Organization :String
+        _id:{
+            ref:'Membership',
+            type:mongoose.SchemaTypes.ObjectId
+        },
+        id:Number,
+        membership :String,
+        Organization :String,
+        name:String,
+       
+
     }],
     //For reseting the password
     resetingThePassword :{

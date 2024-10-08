@@ -23,7 +23,7 @@ import { JWT_SECRET_KEY } from '../utils/env.js';
            let user= await User.findOne({email}) ;
            if (!user) return Alert('You can not access this feature',res);
            if (user) { 
-            req.user_email=email ;
+            req.user_info = user;
             next()
         }
         }

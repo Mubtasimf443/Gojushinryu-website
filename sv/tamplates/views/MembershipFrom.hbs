@@ -68,67 +68,69 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
 
         <div class="input-box">
           <label for="inp--f--name">First Name</label>
-          <input id="inp--f--name" type="text" placeholder="Jone">
+          <input value="Varun jettly" id="inp--f--name" type="text" placeholder="Jone">
         </div>
         
        <div class="input-box">
        <label for="inp--l--name">last name</label>
-       <input id="inp--l--name" type="text" placeholder="Doe">
+       <input value="Varun jettly" id="inp--l--name" type="text" placeholder="Doe">
         </div>
      
 
      <div class="input-box">
           <label for="inp--email">Personal Email</label>
-          <input id="inp--email" type="text" placeholder="JoneDoe@gmail.com">
+          <input value="Varun jettly" id="inp--email" value="Varun jettly" type="text" placeholder="JoneDoe@gmail.com">
         </div>
         <!-- Date of birth -->
        <div class="input-box">
        <label for="inp--dob">date of birth</label>
-       <input id="inp--dob" type="date">
+       <input value="Varun jettly" id="inp--dob" type="date">
         </div>
      
       <div class="input-box">
         <label for="inp--num">Personal Number</label>
-        <input id="inp--num" type="text" placeholder="746892">
+        <input value="19379" id="inp--num" type="Number" placeholder="746892">
       </div>
   
       <div class="input-box">
         <label for="inp--Country">Present Address - Country</label>
-        <input id="inp--Country" type="text" placeholder="India">
+        <input value="Varun jettly" id="inp--Country" type="text" placeholder="India">
       </div>
    
       <div class="input-box">
         <label for="inp--City">Present Address - City</label>
-        <input id="inp--City" type="text" placeholder="London">
+        <input value="Varun jettly" id="inp--City" type="text" placeholder="London">
       </div>
 
       <div class="input-box">
         <label for="inp--District">Present Address - District</label>
-        <input id="inp--District" type="text" placeholder="Chittagong">
+        <input value="Varun jettly" id="inp--District" type="text" placeholder="Chittagong">
       </div>
 
       
       <div class="input-box">
         <label for="inp--pcode"> Postal Code</label>
-        <input id="inp--pcode" type="number" placeholder="5432">
+        <input value="8943" id="inp--pcode" type="number" placeholder="5432">
       </div>
 
       <div class="input-box">
         <label for="inp--dojo-name">Dojo Name</label>
-        <input id="inp--doju-name" type="text" placeholder="Karate">
+        <input value="Varun jettly" id="inp--doju-name" type="text" placeholder="Karate">
       </div>
       <div class="input-box">
         <label for="inp--Instructor">Instructor</label>
-        <input id="inp--Instructor" type="text" placeholder="Varun Jettly">
+        <input value="Varun jettly" id="inp--Instructor" type="text" placeholder="Varun Jettly">
       </div>
 
       <div id="membership-box">
         <label>choose Your Membership</label>
         <span>
-            <label  membershipValue="LifeTime" default-membership="false" for="lf-membership-inp" id="lifetime-membership-box"  class="membership">
-     {{!-- <input type="checkbox" id="lf-membership-inp-gsr"> --}}
-
-<div>
+            <label  membershipValue="LifeTime"
+             membershipOrganization="school_of_traditional_martial_art" 
+             default-membership="false" 
+              id="lifetime-membership-box"   
+               class="membership">
+              <div>
               <b>
               LifeTime Membership
               </b>
@@ -146,8 +148,12 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
               of Traditional Martial arts
             </span>
             </label>
-    <label membershipValue="Annual" default-membership="false" for="annual-membership-inp-stml" id="annual-membership-box" class="membership">
-      {{!-- <input type="checkbox" id="annual-membership-inp-stma"> --}}
+    <label 
+    membershipValue="Annual" 
+    membershipOrganization="school_of_traditional_martial_art"
+    default-membership="false" 
+    id="annual-membership-box" 
+    class="membership" >
 
             <div>
               <b>
@@ -169,8 +175,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
   
         </span>
          <span>
-            <label  membershipValue="LifeTime" default-membership="true" for="lf-membership-inp-gsr" id="lifetime-membership-box"  class="membership">
-     {{!-- <input type="checkbox" id="lf-membership-inp-gsr"> --}}
+            <label  membershipValue="LifeTime"  membershipOrganization="gojushinryu" default-membership="true" id="lifetime-membership-box"  class="membership">
 
             <div>
               <b>
@@ -188,8 +193,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
             <span>Goju Shin Ryu</span>
 
             </label>
-    <label  class="membership"  membershipValue="Annual" default-membership="false" for="annual-membership-inp-gsr" id="annual-membership-box">
-          {{!-- <input type="checkbox" id="annual-membership-inp-gsr"> --}}
+            <label  class="membership" membershipOrganization="gojushinryu"  membershipValue="Annual" default-membership="false"  id="annual-membership-box">
             <div>
               <b>
               Annual Membership 
@@ -204,7 +208,7 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
               Pay annually for the individual joining the association
             </p>
             <span>Goju Shin Ryu</span>
-    </label>
+            </label>
   
         </span>
       </div>
@@ -241,12 +245,12 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
         </label>
         <span>
        
-      <div yes-no-div-for="pre_membership_status_Value" yes-no-div-value="yes"  class="yes-no-div">
+      <div yes-no-div-for="pre_membership_status_Value" yes-no-div-value="Yes"  class="yes-no-div">
           <div class="check-div">
             </div>
             <span>Yes</span>
         </div>
-        <div yes-no-div-for="pre_membership_status_Value" yes-no-div-value="no" class="yes-no-div">
+        <div yes-no-div-for="pre_membership_status_Value" yes-no-div-value="No" class="yes-no-div">
           <div class="check-div">
               <i class="fa-solid fa-check"></i>
          
@@ -257,11 +261,11 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
   </div>
   <div class="question-text-div" id="exp-date-box">
     <label for="exp-date-inp">Expiring Date<sup>(if renewing)</sup> </label>
-    <input type="date" name="" id="exp-date-inp">
+    <input type="date" name="" id="membership-exp-date-inp">
   </div>
   <div class="question-text-div" >
     <label for="exp-date-inp">Current Grade<sup>(Kyu or Dan grade)</sup> </label>
-    <input type="text" placeholder="CGPA 4.5" id="grade-inp">
+    <input type="text" placeholder="CGPA 4.5" id="inp--current-grade">
   </div>
   <div  class="column_y_n_question">
         <label>Your Experience?
@@ -269,12 +273,13 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
         <span>  
         <div yes-no-div-for="experience_value" yes-no-div-value="Junior" class="yes-no-div">
           <div class="check-div">
+             <i class="fa-solid fa-check"></i>    
             </div>
             <span>Junior</span>
         </div>
         <div yes-no-div-for="experience_value" yes-no-div-value="Senior"  class="yes-no-div">
           <div class="check-div">
-            <i class="fa-solid fa-check"></i>           
+                  
             </div>
             <span>Senior</span>
         </div>
@@ -285,15 +290,14 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
         On the Charge Of Violence? 
         </label>
        <span>
-        <div yes-no-div-for="violance_charge_status_Value" yes-no-div-value="yes" class="yes-no-div">
+        <div yes-no-div-for="violance_charge_status_Value" yes-no-div-value="Yes" class="yes-no-div">
           <div class="check-div">
-            <i class="fa-solid fa-check"></i>
             </div>
             <span>Yes</span>
         </div>
-        <div yes-no-div-for="violance_charge_status_Value" yes-no-div-value="no" class="yes-no-div">
+        <div yes-no-div-for="violance_charge_status_Value" yes-no-div-value="No" class="yes-no-div">
           <div class="check-div">
-           
+                       <i class="fa-solid fa-check"></i>
             </div>
             <span>No</span>
         </div>
@@ -303,45 +307,48 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
         <label>Do you Have any type of permanent Injury or Disability?
         </label>
        <span>
-        <div yes-no-div-for="permanent_Injury_status_Value" yes-no-div-value="yes"  class="yes-no-div">
+        <div yes-no-div-for="permanent_Injury_status_Value" yes-no-div-value="Yes"  class="yes-no-div">
           <div class="check-div">
-            <i class="fa-solid fa-check"></i>
             </div>
             <span>Yes</span>
         </div>
-        <div yes-no-div-for="permanent_Injury_status_Value" yes-no-div-value="no" class="yes-no-div">
+        <div yes-no-div-for="permanent_Injury_status_Value" yes-no-div-value="No" class="yes-no-div">
           <div class="check-div">
-           
+                       <i class="fa-solid fa-check"></i>
             </div>
             <span>No</span>
         </div>
         </span>
   </div>
+  <div display_if_violance_charge_yes style="display: none;" class="question-text-div" >
+    <label  for="exp-date-inp">Describe your previous violance charge?<sup>(if you Have)</sup> </label>
+    <input type="text" placeholder="Tell your disabillity if you have" id="inp--pr--violance-charge">
+  </div>
   <div class="question-text-div" >
     <label for="exp-date-inp">Describe your Injury or Disability?<sup>(if you Have)</sup> </label>
-    <input type="text" placeholder="Tell your disabillity if you have" id="inp--pr--disabillity">
+    <input type="text" placeholder="Tell your disabillity if you have" id="inp--pr--disabillity" >
   </div>
   <div class="question-text-div">
-    <label for="exp-date-inp">Previous Injury or Disabilty?<sup>(if you Had)</sup> </label>
-    <input type="text" placeholder="Cancer / HIV / Heart Disorder or else..." id="inp">
+    <label for="exp-date-inp">Previous Injury or Disabilty? </label>
+    <input type="text" placeholder="Cancer / HIV / Heart Disorder or else..." id="inp--previous-injury">
   </div>
 
   <div id="policy-div-for-checkbox">
-    <input type="checkbox" name="" id="policy-1-inp">
+    <input status="off" type="checkbox" name="" id="policy-1-inp">
     <label for="policy-1-inp">&nbsp;
       I clearly Understand that Practice of martial arts is entirely At my Risk  
     </label>
   </div>
 
   <div id="policy-div-for-checkbox">
-    <input type="checkbox" name="" id="policy-2-inp">
+    <input status="off" type="checkbox" name="" id="policy-2-inp">
     <label for="policy-2-inp">&nbsp;
       If accepted by the association , I undertake to abide by the rules and Article of the Goju ryo kyokai including any ammendents that maybe made during my period of membership
     </label>
   </div>
   <div id="q-box-btn-div">
     <button id="q-box-back-btn">Back</button>
-    <button id="q-box-cn-btn">Continue</button>
+    <button style="opacity: .65;" id="q-box-cn-btn">Continue</button>
   </div>
 
 
@@ -352,56 +359,54 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
       <h2>Membership Info</h2>
     <div class="payment-box-div">
       <Label>Membership Type</Label>
-      <input disabled type="text" value="Annual" >
+      <input disabled type="text" payment_membership_type  >
     </div>
      <div class="payment-box-div">
       <Label>Cost</Label>
-      <input disabled type="text" value="75$" >
+      <input disabled type="text" payment_membership_cost >
     </div>
-     <div class="payment-box-div">
-      <Label>Tax</Label>
-      <input disabled type="text" value="0$" >
-    </div>
+    
     <div class="payment-box-div">
       <Label>Total</Label>
-      <input disabled type="text" value="75$" >
+      <input disabled type="text" payment_membership_total value="75$" >
     </div>
     <h2>Provide the Payment Details</h2>
     <div class="payment-box-div">
       <Label>Payment Method</Label>
       <span>
         <div>
-          <div class="check-div">
+          <div credit_card_check_div class="check-div">
           <i class="fa-solid fa-check"></i>
           </div>
           Credit Card
         </div>
         <div>
-          <div class="check-div">
+          <div paypal_check_div class="check-div">
           </div>
           Paypal
         </div>
       </span>
     </div>
-    <div class="payment-box-div">
+    <div Credit_Card_info class="payment-box-div">
       <Label>Name on the Credit Card</Label>
-      <input type="text" placeholder="jone due">
+      <input type="text" id="inp--credit-card-name" placeholder="jone due">
     </div>
-    <div class="payment-box-div">
+    <div Credit_Card_info class="payment-box-div">
       <Label> Credit Card Number</Label>
-      <input type="text" placeholder="93**********88738">
+      <input type="text" id="inp--credit-card-number" placeholder="93**********88738">
     </div>
-    <div class="payment-box-div">
+    <div Credit_Card_info class="payment-box-div">
       <Label> Credit Card Expiry Date</Label>
-      <input type="date" >
+      <input type="date"  id="inp--credit-card-exp-date">
     </div>
-    <div class="payment-box-div">
+    <div Credit_Card_info class="payment-box-div">
       <Label> CVV</Label>
-      <input type="text" placeholder="*************" >
+      <input type="text" placeholder="*************" id="inp--credit-card-cvv" >
     </div>
 <div class="paymetn-btn-div">
       <button id="payment-back-btn">Back</button>
-      <button id="payment-Continue-btn">Place Order</button>
+      <button id="credit-card-payment-Continue-btn">Place Order</button>
+      
     </div>
 
 

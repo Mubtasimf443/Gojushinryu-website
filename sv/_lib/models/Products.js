@@ -50,8 +50,8 @@ const productschema = mongoose.Schema({
         price :String,//price in usd
     }],
     size:String,
-    delivery_charge_in_india :String,
-    delivery_charge_in_canada :String,
-  })
+    delivery_charge_in_india :Number,
+    delivery_charge_in_canada :Number,
+  });
 
 export const Product = mongoose.model('products', productschema); 

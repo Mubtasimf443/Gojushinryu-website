@@ -14,65 +14,99 @@ const schema = mongoose.Schema({
     type: String,
     required: true
   },
-  orderer_id :{
+  buyer :{
+    id :{
     type:mongoose.SchemaTypes.ObjectId,
-    ref :'user',
+    ref :'User',
     required:true
+    },
+    email :{
+      type :String,
+      required:true
+    },
   },
-  delevering_country :{
-    type: String,
+  reciever :{
+    name :{
+      type: String,
+      required: true
+    },
+    phone:{
+      type: String,
+      required: true
+    },
+    country  :{
+      type: String,
+      required: true
+    },
+    district  :{
+      type: String,
+      required: true
+    },
+    city  :{
+      type: String,
+      required: true
+    },
+    street:{
+      type: String,
+      required: true
+    } ,
+    postcode :{
+      type: Number,
+      required: true
+    }
+  },
+  reciever_notes :{
+    type:String,
     required: true
   },
-  delevering_district: {
-    type: String,
+  total :{
+    type: String, 
     required: true
   },
-  delevering_city:{
-    type: String,
-    required: true
-  },
-  delevering_house_address:/*street,  Road no*/{
-    type: String,
-    required: true
-  },
-  reciever_name :{
-    type: String,
-    required: true
-  },
-  reciever_phone:{
-    type: number,
-    required: true
-  },
-  reciever_email :{
-    type: number,
+  total_product_price :{
+    type: String, 
     required: true
   },
   shipping_cost:{
     type: String,
     required: true
   },
-  currency :{
-    type: String,
-    required: true
-  },
   shiping_items:[{
+    _id :{
+      type: mongoose.SchemaTypes.ObjectId,
+      ref:'products', 
+      required: true
+    },
     item_name:{
-    type: String, 
-    required: true
+      type: String, 
+      required: true
     },
     quantity: {
       type: Number,
       required: true
     },
     per_price: {
-      type: String,
+      type: Number,
       required: true
     },
+    size :{
+      type :String,
+      required :true
+    },
+    shipping:{
+      type :Number,
+      required :true
+    },
     total_price:{
-      type: String,
+      type: Number,
       required: true
     }
   }],
+  payment_method :{
+    type: String,
+    required: true,
+  },
+  paypal_order_id :String,
   order_status :{
     type: String,
     required: true,
@@ -85,33 +119,41 @@ const schema = mongoose.Schema({
   },
   cancelReason:{
     type:String
+  } ,
+  activated :{
+    type :Boolean,
+    default :false,
+    required :true
   }
 });
 
-
-schema.methods.checkSQLInjection =function() {
-  if (this.name.includes('{')) return false 
-  if (this.delevering_country.includes('{')) return false 
-  if (this.delevering_city.includes('{')) return false 
-  if (this.delevering_district.includes('{')) return false 
-  if (this.delevering_house_address.includes('{')) return false 
-  if (this.reciever_name.includes('{')) return false
-  if (this.reciever_email.includes('{')) return false 
-  if (this.name.includes('{')) return false 
-  if (this.currency.includes('{')) return false
-  if (
-    (function (){
-    let defaultSend = false;
-    for (var i = 0; i < this.shiping_items.length; i++) {
-      if (shiping_items[i].item_name.includes('{')) defaultSend = true
-      if (shiping_items[i].per_price.includes('{')) defaultSend =true
-      if (shiping_items[i].total_price.includes('{') ) defaultSend = true 
-      return defaultSend
-    }
-   })()
-    ) return false
+/************************I worked hard to prevent dql injection****************************/
+// schema.methods.checkSQLInjection =function() {
+//   if (this.name.includes('{')) return false 
+//   if (this.delevering_country.includes('{')) return false 
+//   if (this.delevering_city.includes('{')) return false 
+//   if (this.delevering_district.includes('{')) return false 
+//   if (this.delevering_house_address.includes('{')) return false 
+//   if (this.reciever_name.includes('{')) return false
+//   if (this.reciever_email.includes('{')) return false 
+//   if (this.name.includes('{')) return false 
+//   if (this.currency.includes('{')) return false
+//   if (
+//     (function (){
+//     let defaultSend = false;
+//     for (var i = 0; i < this.shiping_items.length; i++) {
+//       if (shiping_items[i].item_name.includes('{')) defaultSend = true
+//       if (shiping_items[i].per_price.includes('{')) defaultSend =true
+//       if (shiping_items[i].total_price.includes('{') ) defaultSend = true 
+//       return defaultSend
+//     }
+//    })()
+//     ) return false
     
-  return true
-}
+//   return true
+// }
 
-export const Orders = mongoose.model('orders', schema);
+
+
+ const Orders = mongoose.model('orders', schema);
+ export {Orders}

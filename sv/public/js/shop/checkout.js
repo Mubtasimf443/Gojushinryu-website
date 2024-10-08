@@ -49,7 +49,8 @@ window.addEventListener('load',async e => {
     }
    
     addedProduct.forEach(({prod  ,id,df_price,quantity,df_size}) => {
-        items.innerHTML=items.innerHTML+`
+        items.innerHTML=items.innerHTML+
+        `
         <div class="item">
         <img src="${prod.thumb}" alt="Product Image">
         <p>${prod.name}</p>
@@ -58,18 +59,17 @@ window.addEventListener('load',async e => {
         `;
         totalProductAmount+=df_price*quantity;
         totalshipping=(function ({prod,totalshipping}) {
-            if (prod.selling_style!=='per_price' && prod.selling_style!=='per_size') {
-                setTimeout(() => {
+                if (prod.selling_style!=='per_price' && prod.selling_style!=='per_size') {
+                    setTimeout(() => {
                     addToStorage([]);
                     window.location.reload()
                 }, 13000);
                 throw new Error("You Have a very Big change at product model -- checkout.js");
                 //if another freelancer comes and made change
-            }
+                }
             return Number(prod.delivery_charge_in_canada )+totalshipping;
-        })({prod,totalshipping})
-       
-        checkoutApiArray.push((function(id,size,quantity) {
+            })({prod,totalshipping})
+            checkoutApiArray.push((function(id,size,quantity) {
             if (Number(id).toString()==='NaN') throw new Error('not valid id')
             if (Number(quantity).toString()==='NaN') throw new Error('not valid quantity')
             if (typeof size !== 'string') throw new Error('not valid string')
@@ -148,19 +148,23 @@ async function uploadToApi({method}) {
     let postcode =await v('[placeholder="Zip Code"]');
     let phone =await v('[placeholder="Phone Number"]');
     let notes=await v('[placeholder="Notes"]');
+    let email =await  v('[placeholder="Reciever Email"]');
+    let street =await v(`[placeholder="Road No / Village / Street"]`);
     let jsonObject= await JSON.stringify({
         first_name,
         last_name,
         phone,
+        email,
         country,
         city,
         district,
+        street,
         postcode,
         notes,
         items:checkoutApiArray,
     });
     // log(jsonObject)
-    if (method!=='paypal'&&method!=='visa')  throw new Error('Error ');
+    if (method!=='paypal'&& method!=='visa')  throw new Error('Error ');
     fetch(window.location.origin +'/api/l-api/paypal-checkout', {
         method:'POST',
         headers:{
@@ -169,9 +173,10 @@ async function uploadToApi({method}) {
         body:jsonObject
     })
     .then(e => e.json())
-    .then(({link,error}) => {
-        if (error) return alert(error);
-        if (link) window.location.assign(link)
+    .then( data => {
+        log(data)
+        if (data.error) return alert(data.error);
+        if (data.link) window.location.assign(data.link)
     })
     .catch(e =>log(e) )
 

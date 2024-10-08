@@ -281,8 +281,8 @@ function v(htmlElementSelector) {
         let name = inp_for_product_name.value;
         let description = inp_for_product_des.value;
         let cetegory = inp_for_product_cetegory_select.selectedOptions[0].value;
-        let delivery_charge_in_india = inp_for_product_delivary_india.value;
-        let delivery_charge_in_canada = inp_for_product_delivary_canada.value;
+        let delivery_charge_in_india = inp_for_product_delivary_india.valueAsNumber;
+        let delivery_charge_in_canada = inp_for_product_delivary_canada.valueAsNumber;
         let selling_style = sellingStyle;
         let size_pp = selling_style ==='per_price' ? v('[size_pp]') : '';
         let price =selling_style==='per_price'? v('[price_pp]'):'';
