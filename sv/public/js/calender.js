@@ -8,8 +8,10 @@ const dates = document.querySelector(".dates");
 const navs = document.querySelectorAll("#prev, #next");
 
 
-let classDates =[3,5,8,10,13,15,18,19,21,24,27,30];
+//let classDates =[3,5,8,10,13,15,18,19,21,24,27,30];
 
+classDates=classDates.split(',')
+console.log(classDates);
 
 const months = [
   "January",
@@ -50,7 +52,7 @@ function renderCalendar() {
    }
 
   for (let i = 1; i <= endDate; i++) {
-    let checkDate = classDates.findIndex(el => el === i);
+    let checkDate = classDates.findIndex(el => Number(el) === i);
     let className = checkDate!== -1 ? 'class="class-day"':''
     datesHtml += `<li ${className} >${i}</li>`;
   }

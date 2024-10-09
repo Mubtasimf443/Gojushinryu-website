@@ -4,12 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Control Panal</title>
  <!-- ImportTANT links -->
-<link rel="Icon" href="/img/link_icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="/css/root.css">
+    <link rel="Icon" href="/img/link_icon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="/css/root.css">
     <link rel="stylesheet" href="/css/control_panal/massage.css">
     <link rel="stylesheet" href="/css/control_panal/index.css">
     <link rel="stylesheet" href="/css/control_panal/form.section.css">
@@ -21,11 +21,13 @@
     <link rel="stylesheet" href="/css/control_panal/gm.list.css">  
     <link rel="stylesheet" href="/css/control_panal/product.list.css">
     <link rel="stylesheet" href="/css/control_panal/popup.css">
+    <link rel="stylesheet" href="/css/control_panal/courses.css">
     <script defer src="/js/control panal/gm.js"></script>
     <script defer src="/js/control panal/c.panal.js"></script>
     <script defer src="/js/control panal/Upload.product.js"></script>
     <script defer src="/js/control panal/User.js"></script>
     <script defer src="/js/control panal/Member.js"></script>
+    <script defer src="/js/control panal/course.js"></script>
 
 </head>
 <body>
@@ -327,11 +329,12 @@ style="display: none;"
     <a id="notification_href" >Create Notification<button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="upload_post_href">Upload Post<button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="uplaod_product_href">Uplaod Product <button><i class="fa-solid fa-angle-right"></i></button></a>
+    <a id="course_href"> Course <button><i class="fa-solid fa-angle-right"></i></button></a>
+ 
   <a id="order_href" >Orders<button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="user_page_href">User's <button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="gm_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="member_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
-
     <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
 
 <style>
@@ -474,7 +477,7 @@ style="display: none;" ct_section class="form-section">
 
 <div id="upload-Product-conatiner"
   targetedElement="uplaod_product_href" 
-  {{!-- style="display: none;" --}}
+  style="display: none;"
   ct_section 
   class="form-section">
    
@@ -607,6 +610,7 @@ style="display: none;" ct_section class="form-section">
      <button>Cancel</button>
      <button> Upload</button>
    </div>
+
  </div>
    <!-----------------------order list ----------------------------->
 
@@ -715,7 +719,115 @@ targetedElement="member_href" class="member-list-box">
 </div>
 
 </div>
+ 
+
+
+<!-------------------------- course list -------------------------->
+
+<div ct_section style="display: flex;"  targetedElement="course_href"  id="couses-list-and-uplaod-container" >
+  <table>
+    <tr>
+      <th width="20%" >Image</th>
+      <th width="45%">name</th>
+      <th  width="15%" >Price</th>
+      <th  width="20%" >Action</th>
+    </tr>
+    {{!--
+     <tr>
+      <td><img src="/img/join.jpg" alt=""></td>
+      <td>
+        <strong>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem nesciunt 
+        </strong>
+      </td>
+      <td>
+        <span class="price">20.00$</span>
+      </td>
+      <td> <button class="action">Action</button></td>
+    </tr> 
+    --}}
+
+  </table>
+
+<div class="form-section">
+     
+ <div class="upload_sec_event_tumb_img_inp_box">
+     <h4>
+       Thumnail
+     </h4>
+    <label for="course-thumb-inp">
+      <b>Click To Upload <br>
+      Thumbnail
+      </b>
+    </label>
+    <input multiple="false" style="display: none" type="file" id="course-thumb-inp">
+   
   </div>
+  <div id="images_container" class="upload_sec_env_img_inp_box">
+    
+    <label for="_images_inp">
+      Upload Images
+    </label>
+    <input 
+    style="display: none" 
+    type="file"
+    id="_images_inp">
+    
+  </div>
+
+   
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Title</label>
+     <input type="Text" name="Title" id="s-sec-name-inp">
+   </div>
+  
+   <div class="s-sec-input-box">
+     <label for="s-sec-bio-inp">Description</label>
+     <input type="Text" name="Description" id="s-sec-bio-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-bio-inp">Price</label>
+     <input type="number" name="Price" id="s-sec-bio-inp">
+   </div>
+   
+   <div class="s-sec-input-box">
+     <label for="dateInput">Class's Dates</label>
+     <input type="Text" id="dateInput">
+   </div>
+
+  <div class="s-sec-input-box">
+     <label for="dateInput">Duration</label>
+     <input type="Text" placeholder="6 Months" id="course_duration_inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="dateInput">Senior Start Time</label>
+     <input  type="time" id="SeniorStartTime">
+   </div>
+
+   <div class="s-sec-input-box">
+     <label for="dateInput">Senior End Time</label>
+     <input  type="time" id="SeniorEndTime">
+   </div>
+
+   <div class="s-sec-input-box">
+     <label for="dateInput">Junior Start Time</label>
+     <input type="time" id="juniorStartTime">
+   </div>
+
+ <div class="s-sec-input-box">
+     <label for="dateInput">Junior End Time</label>
+     <input type="time" id="juniorEndTime">
+   </div>
+
+
+   <div class="s-sec-btn-box">
+     <button style="background-color: black;color:white" upload_course_btn >Upload</button>
+   </div>
+</div>
+
+</div>
+
+ </div>
 </section>
 </main>    
 

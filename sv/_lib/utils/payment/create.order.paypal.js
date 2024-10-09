@@ -81,6 +81,10 @@ export async function createPaypalPayment({items,total ,productToatal,shipping ,
         return {success:true,link , paypal_id:response.data.id}
     } catch (error) {
         log(error);
+        if (error.data) {
+            log(error.data)
+            log(error.data.links)
+        }
         console.error('paypal error')
         return {error:'Failed make a payment '}
     }

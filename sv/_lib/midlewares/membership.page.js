@@ -18,7 +18,6 @@ export async function MembershipPageNavigation(req,res) {
     } =req.user_info;
     res.render('MembershipFrom',{
         name:name,
-        age:age?age:18,
         first_name,
         last_name,
         email,
@@ -26,6 +25,6 @@ export async function MembershipPageNavigation(req,res) {
         country,
         district:district?district:'',
         city:city?city:'',
-        postCode: postCode? postCode :1000
+        postcode: typeof postCode === 'number' ? postCode :1000
     })
 }

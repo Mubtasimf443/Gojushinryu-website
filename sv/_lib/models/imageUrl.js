@@ -11,5 +11,6 @@ let imgUrlSchema= mongoose.Schema({
     urlpath :String,
     active:Boolean,
 })
+
  const ImageUrl = mongoose.model('imageUrl', imgUrlSchema);
  export  {ImageUrl}

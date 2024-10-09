@@ -6,7 +6,7 @@ import { ChangeuserData, changeUserPasswordAPI } from '../_lib/api/Change.userDa
 import { UplaodImageApiIn25Minutes } from '../_lib/api/UplaodImageApiIn25Minutes.js';
 import AdminCheckMidleware from '../_lib/midlewares/AdminCheckMidleware.js';
 import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
-import { CreateACourseApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
+import { CreateACourseApi, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
 import { UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, giveProductDetails } from '../_lib/model_base_function/Product.js';
@@ -15,6 +15,7 @@ import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
 import { OrderCancellPaypalApi, OrderSuccessPaypalApi } from "../_lib/api/OrderAPi.js";
 import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/api/MembershipApi.js";
+import { courseBuyCancellPaypalApi, courseBuySuccessPaypalApi } from "../_lib/api/course.buy.api.js";
 
 
 
@@ -31,7 +32,7 @@ apiRouter.get('/find-grand-master', FindGMApi)
 apiRouter.get('/find-product',FindProduct)
 apiRouter.get('/find-user',FindUser)
 apiRouter.get('/find-member', FindMember)
-
+apiRouter.get('/courses',giveCourseJsonApi)
 
 
 //Post Route
@@ -43,7 +44,6 @@ apiRouter.post('/upload-image-for-25-minutes',UplaodImageApiIn25Minutes);
 apiRouter.post('/upload-event-api',UploadEventApi)
 apiRouter.post('/create-grand-master',CreateGMApi)
 apiRouter.post('/give-product-details', giveProductDetails)
-
 
 //Update
 apiRouter.put('/Update-User-Data',ChangeuserData);
@@ -65,7 +65,8 @@ apiRouter.get('/paypal-order-success', OrderSuccessPaypalApi)
 apiRouter.get('/paypal-order-cancel', OrderCancellPaypalApi);
 apiRouter.get('/paypal-membership-success',membershipSuccessPaypalApi);
 apiRouter.get('/paypal-membership-cancel',membershipCancellPaypalApi);
-
+apiRouter.get('/paypal-course-buy-success',courseBuySuccessPaypalApi)
+apiRouter.get('/paypal-course-buy-cancell',courseBuyCancellPaypalApi)
 
 
 export default apiRouter

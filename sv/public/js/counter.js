@@ -2,6 +2,8 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ   
 Insha Allab,  By the marcy of Allah,  I will gain success
 */
+{
+
 
 let progressSection = document.getElementById('hm_progress_section');
 let countryCounter =document.getElementById('countries_counter');
@@ -66,4 +68,12 @@ const addCountries =()=>{
         setTimeout(addCountries,130)
     }
     return
+}
+
+
+
+
+
+
+
 }

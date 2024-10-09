@@ -10,8 +10,9 @@ import { fileRateLimter } from "../_lib/Config/express-slow-down.js";
 import {FindCourseApi} from '../_lib/model_base_function/Course.js'
 import {findProductPageNavigation ,findProductDetails} from '../_lib/model_base_function/Product.js'
 import { checkoutPageMidleware } from "../_lib/midlewares/chackoutPageMildleware.js";
-import userCheck from "../_lib/midlewares/User.check.js";
+import userCheck, { userCheckAndNavigation } from "../_lib/midlewares/User.check.js";
 import { MembershipPageNavigation } from "../_lib/midlewares/membership.page.js";
+import { coursePageNavigation } from "../_lib/midlewares/course.page.navigation.js";
 
 
 let pageRouter = Router();
@@ -19,11 +20,8 @@ let pageRouter = Router();
 
 pageRouter.use(fileRateLimter)
 pageRouter.get('/home', (req, res) => res.render('home'))
-pageRouter.get('/course', FindCourseApi)
-pageRouter.get('/courses/:name', (req,res)=> {
-    if (req.params.name==="course") return res.render('course-selling-page')
-    if (req.params.name==="dates") return res.render('calender')
-})
+// pageRouter.get('/course', FindCourseApi)
+pageRouter.get('/courses/:name',userCheckAndNavigation,coursePageNavigation)
 pageRouter.get('/Membership-application',userCheck, MembershipPageNavigation)
 pageRouter.get('/about-us/goju-shin-ryo', (req, res) => res.render('about-us-gsr'))
 pageRouter.get('/about-us/school-of-tradistional-martial-arts', (req, res) => res.render('about-us-smta'))

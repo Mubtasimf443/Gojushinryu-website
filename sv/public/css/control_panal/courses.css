@@ -1,0 +1,61 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By Allah's Will,  I will earn success
+*/
+
+#couses-list-and-uplaod-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    row-gap: 40px;
+    width: 100%;
+}
+
+#couses-list-and-uplaod-container> table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#couses-list-and-uplaod-container table th{
+    border: 1px solid #000;
+    text-align: left;
+    padding: 10px 12px; 
+    background-color:black;
+    color: white;
+  }
+  #couses-list-and-uplaod-container table td {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 10px 12px;
+    background: inherit;
+    text-wrap: wrap;
+  }
+  #couses-list-and-uplaod-container table td img {
+    max-width:90% ;
+    object-fit: contain;
+    object-position: top left;
+    max-height:80px ;
+  }
+  #couses-list-and-uplaod-container table tr:nth-child(1){
+    background: var(--main-cl);
+  }
+  #couses-list-and-uplaod-container table tr{
+    background-color: #ffffff;
+  }
+
+  
+  #couses-list-and-uplaod-container table button{
+    background: inherit;
+    border: none;
+    font-size: 14px;
+    color: white;
+    background: #000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 8px 14px;
+}

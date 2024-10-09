@@ -7,6 +7,7 @@ import userCheck from "../_lib/midlewares/User.check.js";
 import { OrderApiPaypal } from "../_lib/api/OrderAPi.js";
 import morgan from "morgan";
 import { MembershipApidataCheckMidleware, paypalMembershipFunction } from "../_lib/api/MembershipApi.js";
+import { courseBuyPaypalApi } from "../_lib/api/course.buy.api.js";
 
 const LargeApiRouter = Router();
 
@@ -18,7 +19,7 @@ LargeApiRouter.use(morgan('dev'))
 //post
 LargeApiRouter.post('/paypal-checkout', userCheck,OrderApiPaypal);
 LargeApiRouter.post('/paypal-membership-purchase', userCheck,MembershipApidataCheckMidleware ,paypalMembershipFunction);
-
+LargeApiRouter.post('/paypal-course-purchase-api',userCheck,courseBuyPaypalApi);
 
 
 

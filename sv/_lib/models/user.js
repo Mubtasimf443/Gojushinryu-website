@@ -18,6 +18,7 @@ let schema = new mongoose.Schema({
         required :true,
         default:'I dream to become black belt in karate and Master Martial Arts'
     },
+    date_of_birth:String,
     age :Number,
     gender :{type :
         String,
@@ -73,6 +74,19 @@ let schema = new mongoose.Schema({
         name:String,
        
 
+    }],
+    enrolled_course:[{
+       id : {
+        type :mongoose.SchemaTypes.ObjectId,
+        ref :"Course",
+       } ,
+       paid :{
+        type :Boolean,
+       },
+       courseEnrollMentID :{
+        type :mongoose.SchemaTypes.ObjectId,
+        ref :'CourseEnrollments',
+       }
     }],
     //For reseting the password
     resetingThePassword :{

@@ -309,9 +309,10 @@ export async function paypalMembershipFunction(req,res) {
 }
 export async function membershipSuccessPaypalApi(req,res) {   
     let {token}=req.query;
+    if (!token) return res.render('notAllowed');
     log({token})
-    function status(data=token) {
-      if (!token) return false
+    function status(data) {
+      if (!data) return false
       if (data.includes('{')) return false 
       if (data.includes('}')) return false 
       if (data.includes('*')) return false 
@@ -325,8 +326,8 @@ export async function membershipSuccessPaypalApi(req,res) {
       if (data.includes('<')) return false 
       return true
     }
-    status =status();
-    if (!status) return res.redirect('notAllowed');
+    status =status(token);
+    if (!status) return res.render('notAllowed');
 
     let memberships =await Memberships.find({
         paypal_token :token
@@ -373,8 +374,8 @@ export async function membershipSuccessPaypalApi(req,res) {
 }
 export async function membershipCancellPaypalApi(req,res) {
    let {token}=req.query
-   function status(data=token) {
-    if (!token) return false
+   function status(data) {
+    if (!data) return false
      if (data.includes('{')) return false 
      if (data.includes('}')) return false 
      if (data.includes('*')) return false 
@@ -388,7 +389,7 @@ export async function membershipCancellPaypalApi(req,res) {
      if (data.includes('<')) return false 
      return true
    }
-   status =status();
+   status =status(token);
    if (!status) return res.redirect('notAllowed');
    Memberships.findOneAndDelete({
     paypal_token :token

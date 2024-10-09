@@ -2,35 +2,60 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah 
 By his marcy,  I will gain success
 */
-import mongoose, { Mongoose } from 'mongoose'
+import mongoose from 'mongoose';
 
 
 const CourseSchema = mongoose.Schema({
-  id :Number,
-  name: {
+  thumb :{
+    type:String ,
+    required:true
+  }, 
+  images :[{
+    type:String ,
+    required:true
+  }],
+  id :{
+    type:Number,
+    default:Date.now
+  },
+  url :{
+    type : String,
+    required:true
+  },
+  title: {
     unique :true,
     type:String ,
     required:true
   }  , 
   description :{
-    type : String
+    type : String,
+    required:true
   },
   price :{
-    unique :true,
     type:String ,
     required:true
   },
-  Date :[Number],
-  dateArray:[Number],
-  courseType:String,
-  price:String,
-  seniorTime:String,
-  joniourTime:String ,
-  thumb :{
+  dates :[Number],
+  courseDuration:{
     type:String ,
     required:true
-  }, 
-  images :[String ]
+  },
+  juniorEndTime:{
+    type:String ,
+    required:true
+  },
+  juniorStartTime :{
+    type:String ,
+    required:true
+  },
+  seniorStartTime:{
+    type:String ,
+    required:true
+  },
+  seniorEndTime:{
+    type:String ,
+    required:true
+  }
 });
 
 

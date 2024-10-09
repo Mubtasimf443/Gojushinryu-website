@@ -7,13 +7,28 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
   <title>
-    Course - Martial Art Courses 
+    Courses - {{metatitle}}
   </title>
+   <meta name="author" content="Goju Shin Ryu">
+    <meta name="title" content="{{metatitle}}">
+    <meta name="description" content="{{metadescription}}">
+    <meta name="keywords" content="{{metatitle}}, Goju Shin Ryu  ,Traditional School of Martial Arts , Martial Arts Courses ">
+    <meta property="og:url" content="https://gojushinryu.com/">
+    <meta property="og:site_name" content="GOJU SHIN RYU">
+    <meta property="og:type" content="website">
+    <meta property="og:name" content="{{metatitle}}">
+    <meta property="og:description" content="{{metadescription}}">
+    <meta property="og:image" content="{{thumb}}">
   {{>Links}}
+      <link rel="stylesheet" href="/css/pages/couse.selling.page.css">
    <script defer src="/js/calender.js"></script>
    <script defer src="/js/course.selling.js"></script>
-    <link rel="stylesheet" href="/css/pages/couse.selling.page.css">
+   <script>
+    var course_id={{course_id}}
+    let classDates ='{{dates}}'
+   </script>
 <style>
   #header{
     position: static;
@@ -24,6 +39,8 @@
     color: black;
    }
 </style>
+
+
 </head>
 
 <body>
@@ -66,10 +83,16 @@
       </div> --}}
       
       <div class="m_img_div">
-        <img src="/img/2150753727.jpg" id="----m-image" alt="first Thumbnail Of the Course">
+        <img src="{{thumb}}" id="----m-image" alt="first Thumbnail Of the Course">
       </div>
       <div class="galerry_slider_div">
-        <img 
+        {{#each images}}
+          <img 
+        class="gly_img" 
+        src="{{this}}" 
+        alt="images Of the martial art Course">
+         {{/each}}
+        {{!-- <img 
         class="gly_img" 
         src="/img/2150753727.jpg" 
         alt="first Thumbnail Of the Course">
@@ -82,12 +105,13 @@
         class="gly_img" 
         src="/img/karate_img.png"
         alt="third Thumbnail Of the Course"
-        >
+        > --}}
       
       </div>
 <div class="name-div">
         <h1>
-          Martial Art  course -Online Classes
+          {{title}}
+          {{!-- Martial Art  course -Online Classes --}}
         </h1>
       </div>
       <h2 class="dresciption_heading">
@@ -95,12 +119,13 @@
         </h2>
       <div class="description-div">
         <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium possimus omnis totam qui soluta? Numquam cumque incidunt mollitia earum molestiae quidem dolore rem ad tenetur, cupiditate, quisquam sunt libero in?
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. At animi inventore illo sapiente quia cum debitis ex dignissimos! Est ut quidem illo provident deleniti ipsum, quam omnis sed consequatur nisi!
+          {{description}}
+  {{!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium possimus omnis totam qui soluta? Numquam cumque incidunt mollitia earum molestiae quidem dolore rem ad tenetur, cupiditate, quisquam sunt libero in?
+  Lorem ipsum dolor sit amet, consectetur adipisicing elit. At animi inventore illo sapiente quia cum debitis ex dignissimos! Est ut quidem illo provident deleniti ipsum, quam omnis sed consequatur nisi!
  <br>
  <br>
  Lorem ipsum dolor sit amet consectetur adipisicing elit. Beatae consequuntur neque hic sapiente dolores iusto consectetur quasi ut corporis nostrum eligendi illo asperiores, voluptatem animi et assumenda nisi numquam dolor?
- Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat sint, nam nemo quos veritatis porro vero molestiae labore sequi unde ea ipsam vel laboriosam assumenda dolores, id corrupti cum blanditiis.
+ Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat sint, nam nemo quos veritatis porro vero molestiae labore sequi unde ea ipsam vel laboriosam assumenda dolores, id corrupti cum blanditiis. --}}
 </p>
       </div>
   <h2 class="dt-h2">Classes Dates</h2>
@@ -131,7 +156,7 @@
           </div>
           <div class="column">
             <b>Seniur</b>
-            <span>7:00PM - 9:00PM </span>
+            <span>{{seniorStartTime}} - {{seniorEndTime}}</span>
           </div>
 
         </div>
@@ -141,7 +166,7 @@
           </div>
           <div class="column">
             <b>Joniur</b>
-            <span>5:00PM - 6:00PM </span>
+            <span>{{juniorStartTime}} - {{juniorEndTime}}</span>
           </div>
 
         </div>
@@ -166,33 +191,37 @@
       {{!-- <div class="fl-heading">
         <h3>Apply For The Course </h3>
       </div> --}}
-      <div class="input-box">
-        {{!-- <label for="--inp-name">Name </label> --}}
-        <input type="text" name="" placeholder="Student Name" id="--inp-name">
-      </div>
-      <div class="input-box">
-        {{!-- <label for="--inp-name">Email</label> --}}
-        <input type="text" name="" placeholder="Student Email" id="--inp-name">
-      </div>
-      <div class="input-box">
-        {{!-- <label for="--inp-name">Phone </label> --}}
-        <input type="text" name="" placeholder="Student Number" id="--inp-name">
-      </div> 
+      {{!-- <div class="input-box">
+        <label for="--inp-name">Name </label>
+        <input type="text" value="{{name}}" placeholder="Student Name" id="--inp-name">
+      </div> --}}
+      {{!-- <div class="input-box">
+        <label for="--inp-name">Email</label>
+        <input type="text" value="{{email}}" placeholder="Student Email" id="--inp-email">
+      </div> --}}
+      {{!-- <div class="input-box">
+        <label for="--inp-name">Phone </label>
+        <input type="text" value="{{phone}}" placeholder="Student Number" id="--inp-phone">
+      </div>  --}}
       <div class="input-box">
         {{!-- <label for="--inp-name">Date Of Birth</label> --}}
-        <input type="text" onblur="(this.type='text')" onclick="(this.type='date')"  name="" placeholder="Birth Date " id="--inp-name">
+        <input type="text" onblur="(this.type='text')" onclick="(this.type='date')" placeholder="Birth Date" id="--inp-dob">
       </div>
   <div class="input-box">
         {{!-- <label for="--inp-name">Country</label> --}}
-        <input type="text" name="" placeholder="Country" id="--inp-name">
+        <input type="text"  placeholder="Country" id="--inp-country">
       </div>
       <div class="input-box">
       {{!-- <label for="--inp-name">City</label> --}}
-        <input type="text" name="" placeholder="District" id="--inp-name">
+        <input type="text" placeholder="District" id="--inp-district">
       </div>
       <div class="input-box">
          {{!-- <label for="--inp-name">Road/Street/Village</label> --}}
-        <input type="text" name="" placeholder="City" id="--inp-name">
+        <input type="text" placeholder="City" id="--inp-city">
+      </div>
+        <div class="input-box">
+         {{!-- <label for="--inp-name">Road/Street/Village</label> --}}
+        <input type="number" placeholder="postcode" id="--inp-postcode">
       </div>
       <div class="input-box">
          <label for="--inp-name">Credit Card Info</label>
@@ -203,9 +232,12 @@
       <div class="fl-option-div">
         <button>
           <i class="fa-regular fa-credit-card"></i>
-          Purchase Course at 90$
+          Purchase Course at ${{price}}.00
           </button>
-        <button>Contact Us </button>
+        <button paypal_purchase_btn > 
+          <i class="fa-brands fa-paypal"></i>
+          Paypal Purchase at ${{price}}.00
+        </button>
       </div>
     </div>
     
