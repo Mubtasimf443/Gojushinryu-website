@@ -106,10 +106,19 @@ let schema = new mongoose.Schema({
         type :Boolean,
         default :false,
         required :true,
-    }
-    // fevorites :[{
-    //     id :{ type:mongoose.SchemaTypes.ObjectId, ref:'orders'}
-    // }]
+    },
+    notification:[{
+        id :{
+            type :Number,
+            default:Date.now
+        },
+        title :String,
+        massage:String,
+        viewed:{
+            type :Boolean,
+            default:false
+        }
+    }]
 })
 
 

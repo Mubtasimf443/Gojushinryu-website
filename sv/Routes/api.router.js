@@ -16,6 +16,7 @@ import { log } from "../_lib/utils/smallUtils.js";
 import { OrderCancellPaypalApi, OrderSuccessPaypalApi } from "../_lib/api/OrderAPi.js";
 import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/api/MembershipApi.js";
 import { courseBuyCancellPaypalApi, courseBuySuccessPaypalApi } from "../_lib/api/course.buy.api.js";
+import { notificationApi, notificationMailApi } from "../_lib/api/notification.api.js";
 
 
 
@@ -67,6 +68,12 @@ apiRouter.get('/paypal-membership-success',membershipSuccessPaypalApi);
 apiRouter.get('/paypal-membership-cancel',membershipCancellPaypalApi);
 apiRouter.get('/paypal-course-buy-success',courseBuySuccessPaypalApi)
 apiRouter.get('/paypal-course-buy-cancell',courseBuyCancellPaypalApi)
+
+
+//mail
+apiRouter.post('/mail-notification-to-user',notificationMailApi)
+apiRouter.post('/notification-to-user',notificationApi)
+
 
 
 export default apiRouter

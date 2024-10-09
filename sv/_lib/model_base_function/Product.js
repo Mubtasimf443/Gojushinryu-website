@@ -115,7 +115,8 @@ export async function findProductDetails(req,res) {
   export  async function DeleteProduct(req,res) {
     let {id}= req.body;
     if (!id) return Alert('Please Give The Correct User InfoCan not Bann User ',res );
-    if(   Number(id).toString()==='NaN' ) return Alert('This id is not valid')
+    if( Number(id).toString()==='NaN' ) return Alert('This id is not valid');
+   log({id})
     Product.findOneAndDelete({id})
     .then(e=>Success(res))
     .catch(e => {

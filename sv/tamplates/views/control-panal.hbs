@@ -28,6 +28,8 @@
     <script defer src="/js/control panal/User.js"></script>
     <script defer src="/js/control panal/Member.js"></script>
     <script defer src="/js/control panal/course.js"></script>
+    <script defer src="/js/control panal/Product.js"></script>
+    <script defer src="/js/control panal/notication.js"></script>
 
 </head>
 <body>
@@ -461,16 +463,21 @@ style="display: none;" ct_section class="form-section">
    
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Title</label>
-     <input type="Text" name="" id="s-sec-name-inp">
+     <input type="Text" name="Title" id="s-sec-name-inp">
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-bio-inp">Description</label>
-     <input type="Text" name="" id="s-sec-bio-inp">
+     <input type="Text" name="Description" id="s-sec-bio-inp">
    </div>
-
+    <div class="s-sec-input-box">
+     <label for="s-sec-bio-inp">Type</label>
+     <select >
+      <option value="mail">Mail Notification</option>
+      <option value="basic">Basic Notification</option> 
+     </select>
+   </div>
    <div class="s-sec-btn-box">
-     <button>Cancel</button>
-     <button> Send</button>
+     <button notification_btn > Send</button>
    </div>
  </div>
     <!-----------------------Upload Product ----------------------------->
@@ -648,6 +655,7 @@ style="display: none;"
 id="list-of-user"
 
 targetedElement="user_page_href" class="user-list-box">
+
 <div class="users">
   <div length class="user">
     User 
@@ -666,11 +674,15 @@ targetedElement="user_page_href" class="user-list-box">
 style="display: none;" 
 id="list-of-member"
 targetedElement="member_href" class="member-list-box">
-<div class="members">
-  <div length class="member">
-   
-    member
-  </div>
+<table>
+  <tr>
+    <th width="12%">No</th>
+    <th width="23%">images</th>
+    <th width="40%">Name</th>
+    <th width="10%">Date</th>
+    <th width="15%">Action</th>
+  </tr>
+</table>
  
  
 </div>
@@ -681,20 +693,60 @@ targetedElement="member_href" class="member-list-box">
    <!----------------------- Grand Master list ----------------------------->
 
 <div ct_section style="display: none;" targetedElement="gm_href" id="list-of-gm" class="gm-list-box">
-<div class="gm_s">
-  <div class="gm_">
-    10 Grand Master
-  </div>
-  <div class="gm_">
-    <img src="/img/samurai.jpg"  class="gm_image">
-    
-    <b class="name">Mubtasim Fuad</b>
-    
-    <button class="gm-list-action">Action</button>
-  </div>
+
+
+<table>
+
+  <tr>
+    <th width="16%">Image</th>
+    <th width="28%" >Name</th>
+    <th width="40%" >Organization</th>
+    <th width="16%">Action</th>
+  </tr>
+  
+
+
+</table>
+
+
+<div class="form-section">
  
- 
+ <strong>
+  Add Grand Master
+  </strong>
+
+
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Name</label>
+     <input type="Text" placeholder="name">
+   </div>
+  
+
+   <div class="s-sec-input-box">
+     <label >email</label>
+     <input type="Text" placeholder="email" >
+   </div>
+   
+   <div class="s-sec-input-box">
+     <label >Organization</label>
+     <input type="Text" placeholder="Organiztaion" >
+   </div>
+
+   <div class="s-sec-input-box">
+     <label >Username</label>
+     <input type="text" placeholder="for login and should be unique" >
+   </div>
+   
+   <div class="s-sec-input-box">
+     <label >password</label>
+     <input type="password" placeholder="******" >
+   </div>
+   
+   <div class="s-sec-btn-box">
+     <button style="background-color: black;color:white" upload_gm_btn >Add</button>
+   </div>
 </div>
+
 
 </div>
 
@@ -704,15 +756,7 @@ targetedElement="member_href" class="member-list-box">
 <div ct_section style="display: none;" targetedElement="product_href" class="product-list-box">
 <div class="products">
   <div class="product">
-    10 Products
-  </div>
-  <div class="product">
-    <img src="/img/samurai.jpg">
-    <span class="name">Mubtasim Fuad</span>
-    <span class="price">500$</span>
-    <span>Stock <b>5</b></span>
-    <span class="cetegory">weapons</span>
-    <button class="product_list_action">Action</button>
+     Products
   </div>
  
  

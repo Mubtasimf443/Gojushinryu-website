@@ -35,8 +35,6 @@ export async function giveCourseJsonApi(r, res) {
   } 
 };
 
-
-
 export async function CreateACourseApi(req,res) {    
   try {
     let courseData={};

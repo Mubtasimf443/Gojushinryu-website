@@ -63,29 +63,24 @@ export async function UpdateGmDataAPI(req, res) {
 
 
 export async function CreateGMApi(req,res) {
-    let {name,  bio, first_name,  last_name, email, phone, password} = req.body;
-    let testArray = [name, bio, first_name, last_name, email, phone,  password];
-    
+
+    let {name, organization, email, password,username} = req.body;
+    let testArray = [name, organization, email, password,username];
     let FoundEmtyIndex = await testArray.findIndex(el => !el)
     if (FoundEmtyIndex > -1) return Alert('You Can not Use Emty Feild To Update', res);
+    if (!email.includes('@') ||!email.includes('.')  ) return Alert('Email is not correct', res);
 
     try {
     let gm =await GM.findOne({email});
-    if (gm) return Alert('A Grand master Account Exist Form this account',res)
+    if (gm) return Alert('A Grand master Account Exist Form this email',res)
+     gm =await GM.findOne({username});
+    if (gm) return Alert('A Grand master Account Exist Form this username',res)
     } catch (error) {
       log(e)
       return Alert('Server error',res)
     }
-
     GM.create({
-      name,  
-      bio,
-      first_name,  
-      last_name,
-      email,
-      phone, 
-      id: Date.now(),  
-      password
+      name, organization, email, password,username
     })
    .then(e => res.status(201).json({
      success : true
@@ -101,7 +96,8 @@ export async function CreateGMApi(req,res) {
 
 export async function DeleteGMAccount(req, res) {
     let {id}=req.body;
-    GM.findOneAndRemove({
+    if (Number(id).toString().toLowerCase() ==='nan') return Alert('Server error')
+    GM.findOneAndDelete({
       id
     })
    .then(data => {

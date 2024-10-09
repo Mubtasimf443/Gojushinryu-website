@@ -370,7 +370,7 @@ export async function membershipSuccessPaypalApi(req,res) {
     }
 
     }
-    res.render('/accounts/student')
+    res.redirect('/accounts/student')
 }
 export async function membershipCancellPaypalApi(req,res) {
    let {token}=req.query

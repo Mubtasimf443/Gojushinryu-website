@@ -99,7 +99,7 @@ export async function FindMember(req,res) {
     const Member =await User.find({isMember:true})
     res.json({
       success:true,
-      Member
+      Member 
     })
   } catch (error) {
     console.log(error);

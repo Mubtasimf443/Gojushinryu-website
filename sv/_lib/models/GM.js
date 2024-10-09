@@ -9,7 +9,10 @@ import mongoose from "mongoose";
 
 
 let schema = new mongoose.Schema({
-    image:String,
+    image:{
+        type :String,
+        default:'http://localhost:4000/img/avatar.png'      
+    },
     first_name:{
         type :String,
         required :false
@@ -29,17 +32,29 @@ let schema = new mongoose.Schema({
     },
     phone:{
         type :Number,
-        unique :false
     },
     id :{
-        type :String,
-        unique:true
+        type :Number,
+        unique:true,
+        default:Date.now
     },
     password :{
         type:String,
         required:true,
     },
-    bio: String
+    username :{
+        type:String,
+        required:true,
+    },
+    organization :{
+        type:String,
+        required:true,
+    },
+    
+    bio: {
+        type:String,
+        default :'I am happy to become invited as a grand master in Goju Shin Ryu International'
+    }
 })
 
 

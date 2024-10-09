@@ -2,6 +2,9 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ   
 Insha Allab,  By the marcy of Allah,  I will gain success
 */
+
+
+
 const log= e => console.log(e)
 
 {
@@ -58,9 +61,7 @@ const log= e => console.log(e)
             else if (e.target.className ==='member_list_action') {
                 return  document.getElementById('popup_user_action').style.display ='flex'
             } 
-            else if (e.target.className ==='product_list_action') {
-                return  document.getElementById('popup_product_action').style.display ='flex'
-            }
+            
         }
     })
 }
