@@ -23,6 +23,7 @@ import { fileRateLimter, ApiRateLimter } from './_lib/Config/express-slow-down.j
 import LargeApiRouter from './Routes/large.api.router.js';
 import { Memberships } from './_lib/models/Membership.js';
 import { sendMembershipMails } from './_lib/mail/membership.mail.js';
+import fastApiRouter from './Routes/fast.api.router.js';
 
 //varibles
 const app = express();
@@ -47,7 +48,8 @@ app.use(cors({
 //routes
 app.use(pageRouter);
 app.use('/api/file',fileRouter);
-app.use('/api/l-api',LargeApiRouter)
+app.use('/api/l-api',LargeApiRouter);
+app.use('/api/fast-api/',fastApiRouter)
 app.use(ApiRateLimter) //Rate Limiting Added to apis
 app.use('/api/chat',chateRouter);
 // app.use('/api/upload',uploadRouter);

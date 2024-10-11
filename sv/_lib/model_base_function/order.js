@@ -10,8 +10,7 @@ import { Alert, Success  ,log} from "../utils/smallUtils.js";
 export async function findOrders(req,res) {
     try {
         let orders =await Orders.find({//activeted:false
-
-        });
+ });
         
         if (orders) return res.json({success:true,data:orders})
     } catch (error) {
@@ -42,5 +41,22 @@ export async function updateOrderStatus(req,res) {
     } catch (error) {
         log(error)
         return res.status(400).json({error:'failed to update data'})
+    }
+}
+
+
+
+export async function findUserOrder(req,res) {
+    try {
+        let {_id,email} =req.user_info;
+        let data=await  Orders.find({buyer :{
+            id:_id,
+            // email
+        }})
+        if (!data.length) return res.sendStatus(304);
+        return res.status(200).json({data})
+    } catch (e) {
+        log(e)
+        res.sendStatus(400)
     }
 }

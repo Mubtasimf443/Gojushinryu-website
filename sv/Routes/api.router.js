@@ -18,8 +18,9 @@ import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/
 import { courseBuyCancellPaypalApi, courseBuySuccessPaypalApi } from "../_lib/api/course.buy.api.js";
 import { notificationApi, notificationMailApi } from "../_lib/api/notification.api.js";
 import { stripeOrderCancellApi, stripeOrderSuccessApi } from "../_lib/api/stripe.checkout.api.js";
-import { findOrders, updateOrderStatus } from "../_lib/model_base_function/order.js";
+import { findOrders, findUserOrder, updateOrderStatus } from "../_lib/model_base_function/order.js";
 import { findMemberShipdata } from "../_lib/model_base_function/membership.js";
+import userCheck from "../_lib/midlewares/User.check.js";
 
 
 
@@ -39,6 +40,7 @@ apiRouter.get('/find-user',FindUser)
 apiRouter.get('/find-order',findOrders)
 apiRouter.get('/find-member', FindMember)
 apiRouter.get('/courses',giveCourseJsonApi)
+apiRouter.get('/get_user_orders',userCheck,findUserOrder)
 
 
 //Post Route

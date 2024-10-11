@@ -7,6 +7,8 @@ import {slowDown} from 'express-slow-down'
 import { log } from '../utils/smallUtils.js'
 
 let ApidelayAfter =5;
+
+
 export const ApiRateLimter =slowDown({
     windowMs:5*1000,
     delayAfter: ApidelayAfter,
@@ -24,4 +26,14 @@ export const fileRateLimter =slowDown({
       log(used);
       return (used -fileDelayAfter) *500;
     }
+});
+
+
+export  const fastApiRateLimiter =slowDown({
+  windowMs:30*1000,
+  delayAfter: 30,
+  delayMs:(used) => {
+    log(used);
+    return (used -fileDelayAfter) *500;
+  }
 });

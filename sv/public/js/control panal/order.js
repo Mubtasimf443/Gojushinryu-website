@@ -126,7 +126,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
                             status,
                         }=shiping_items[i];
                     
-                        let image =await fetch(window.location.origin+ `/api/api_s/find-product-image?id=${_id}` )
+                        let image =await fetch(window.location.origin+ `/api/fast-api/find-product-image?id=${_id}` )
                         image =await image.text();
                         let tr =document.createElement('tr');
                         tr.innerHTML=                    `

@@ -29,7 +29,7 @@ export async function notificationApi(req,res) {
         user.notification.push({
             title,
             massage,
-            id :Date.now(),
+            id :Math.floor(Date.now()*Math.random()),
             viewed:false
         })
         await user.save().then(e => log('//user saved'))

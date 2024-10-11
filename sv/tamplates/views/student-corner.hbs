@@ -17,7 +17,7 @@
   
 <main>
 <section id="st-corner">
-    <div class="sidebar-div">
+       <div class="sidebar-div">
 
   
   <div class="st-bio">
@@ -48,12 +48,14 @@ School Traditional  Of MARTIAL Arts
   </div>
   
   </div>
+
+
   <div class="st_main">
     <div st_section style="display: none;" id="st-notification">
-  <h2>Notification's</h2>
-  <div class="Notification-box">
-    <div class="Notification-massage-cobtainer">
-      <div>
+       <h2>Notification's</h2>
+      <div class="Notification-box">
+      <div class="Notification-massage-cobtainer">
+        <div>
         <div class="massage">
           <b>Varun Jettly</b>
           <p class="notification-paragrap">
@@ -183,38 +185,7 @@ School Traditional  Of MARTIAL Arts
       Status
     </div>
   </div>
-  <div class="order">
-    <div class="order-no">01</div>
-<img src="/img/product1.jpg" alt="ordered product" class="order-image" >
-<div class="order-quantity">2</div>
-    <div class="order-price">400$</div>
-    <div Pending class="order-status">
-      Pending
-    </div>
   
-  </div>
-  <div class="order">
-    <div class="order-no">02</div>
-<img src="/img/product1.jpg" alt="ordered product" class="order-image" >    <div class="order-quantity">Quantity</div>
-    <div class="order-price">700$</div>
-    <div Ondelivery class="order-status">Processing</div>
-  </div>
-  <div class="order">
-    <div class="order-no">03</div>
-<img src="/img/product1.jpg" alt="ordered product" class="order-image" >    <div class="order-quantity">Quantity</div>
-    <div class="order-price">300$</div>
-    <div completed class="order-status">
-     complated
-    </div>
-  </div>
-   <div class="order">
-    <div class="order-no">03</div>
-<img src="/img/product1.jpg" alt="ordered product" class="order-image" >    <div class="order-quantity">Quantity</div>
-    <div class="order-price">300$</div>
-    <div  cancelled class="order-status">
-      cancelled
-    </div>
-  </div>
 </div>
 
 </div>
@@ -227,6 +198,8 @@ School Traditional  Of MARTIAL Arts
     var needsToUpdataProfileImage='{{thumb}}' === '/img/avatar.png' ? true : false ;
     var ImageUrlForChangeMaking=undefined;
   </script>
+
+
   <script>
       document.getElementById('s-sec-name-inp').value ='{{name}}';
      document.getElementById('s-sec-age-inp').valueAsNumber ='{{age}}';
@@ -238,7 +211,8 @@ School Traditional  Of MARTIAL Arts
      document.getElementById('s-sec-street-inp').value ='{{street}}';
       document.getElementById('s-sec-post-code-inp').valueAsNumber={{postcode}} ;
   </script>
-  <script src="/js/student-corner.js"></script>
+  <script src="/js/student_coner/student-corner.js"></script>
+<script src="/js/student_coner/order.js"></script>
     {{>Footer}}
 </body>
 </html>

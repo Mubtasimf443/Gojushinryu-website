@@ -5,7 +5,7 @@ InshaAllah, By his Marcy I will Gain Success
 
 {
 
-  var busy =false;
+  let busy =false;
     let gm_section=document.querySelectorAll('[st_section]')
     function ChangeSection(index) {
         gm_section.forEach((el,ind) => (ind === index) ? el.style.display='flex': el.style.display='none');
@@ -224,6 +224,8 @@ InshaAllah, By his Marcy I will Gain Success
             
           })
     });
+
+    
 }
 
 
