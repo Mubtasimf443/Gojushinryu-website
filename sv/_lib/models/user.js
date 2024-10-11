@@ -120,7 +120,10 @@ let schema = new mongoose.Schema({
         }
     }],
     not_seen_massage:[{
-        title:String,
+        name:{
+            type:String,
+            default:'Sensei Varun Jettly'
+        },
         massage:String,
         data_as_number :{
             type:Number,
@@ -128,7 +131,10 @@ let schema = new mongoose.Schema({
         }
     }],
     seen_massage:[{
-        title:String,
+        name:{
+            type:String,
+            default:'Sensei Varun Jettly'
+        },
         massage:String,
         data_as_number :{
             type:Number,

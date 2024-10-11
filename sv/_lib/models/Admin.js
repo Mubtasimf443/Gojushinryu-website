@@ -4,6 +4,7 @@ By his marcy,  I will gain success
 */
 
 import mongoose from 'mongoose';
+
 const Adminschema = mongoose.Schema({
   name : String,
   fname:String,
@@ -21,7 +22,29 @@ const Adminschema = mongoose.Schema({
   Secret_Key :{
     type:String,
     required:true
-  }
+  },
+  student_massages:[{
+    student_id:{
+      type:mongoose.SchemaTypes.ObjectId,
+      ref:'User'
+    },
+    seen_massage:[{
+      name :String,
+      massage:String,
+      date_as_number:{
+        type:Number,
+        default:Date.now
+      }
+    }],
+    not_seen_massage:[{
+      name :String,
+      massage:String,
+      date_as_number:{
+        type:Number,
+        default:Date.now
+      }
+    }],
+  }]
 })
 const Admin = mongoose.model('Admin', Adminschema);
 export { Admin }
