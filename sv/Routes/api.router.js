@@ -10,7 +10,7 @@ import { CreateACourseApi, giveCourseJsonApi, UpdateCourseDates } from '../_lib/
 import { UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails } from '../_lib/model_base_function/Product.js';
-import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, RemoveFromBanedUserFunction } from '../_lib/model_base_function/user.js';
+import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, getUserData, RemoveFromBanedUserFunction } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
 import { OrderCancellPaypalApi, OrderSuccessPaypalApi } from "../_lib/api/OrderAPi.js";
@@ -21,6 +21,7 @@ import { stripeOrderCancellApi, stripeOrderSuccessApi } from "../_lib/api/stripe
 import { findOrders, findUserOrder, updateOrderStatus } from "../_lib/model_base_function/order.js";
 import { findMemberShipdata } from "../_lib/model_base_function/membership.js";
 import userCheck from "../_lib/midlewares/User.check.js";
+import { removeNotificationFromDatabase } from "../_lib/api/basic.notifiation.api.js";
 
 
 
@@ -41,7 +42,7 @@ apiRouter.get('/find-order',findOrders)
 apiRouter.get('/find-member', FindMember)
 apiRouter.get('/courses',giveCourseJsonApi)
 apiRouter.get('/get_user_orders',userCheck,findUserOrder)
-
+apiRouter.get('/get-user-data',userCheck,getUserData)
 
 //Post Route
 apiRouter.post('/contact' , Contact_us_api_Function)
@@ -63,7 +64,7 @@ apiRouter.put('/update-grand-master',UpdateGmDataAPI);
 apiRouter.put('/bann-user',BaneUserFunction);
 apiRouter.put('/remove-from-bann-user', RemoveFromBanedUserFunction);
 apiRouter.put('/update-order-status', updateOrderStatus);
-
+apiRouter.put('/remove-notification-form-database',userCheck,removeNotificationFromDatabase)
 
 //Delete
 apiRouter.delete('/delete-product',DeleteProduct)

@@ -39,6 +39,7 @@ function renderCalendar() {
   const endDatePrev = new Date(year, month, 0).getDate();
   
   let datesHtml = "";
+
   (function logDate() {
       console.log('year : '+ year);
       console.log('month : '+month);
@@ -46,7 +47,9 @@ function renderCalendar() {
       console.log(`endDate : ${endDate}`);
       console.log(`end : ${end}`);
       console.log(`endDatePrev : ${endDatePrev}`);
-    })()
+  })()
+
+
    for (let i = start; i > 0; i--) {
     datesHtml += `<li class="inactive">${endDatePrev - i + 1}</li>`;
    }

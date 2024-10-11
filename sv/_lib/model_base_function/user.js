@@ -109,3 +109,26 @@ export async function FindMember(req,res) {
   }
 
 }
+
+
+export async function getUserData(req,res) {
+  try {
+    let id =req.user_info._id;
+    let user =await User.findById(id);
+    if (!user) return res.sendStatus(400);
+    if (user) return res.json({
+      user:{
+        name :user.first_name+' '+user.last_name,
+        email :user.email,
+        thumb :user.thumb,
+        id :user.id,
+        _id :user._id,
+        joining_data:user.joining_date,
+        notification:user.notification
+      }
+    })
+  } catch (e) {
+    log(e)
+    return res.sendStatus(400)
+  }
+}

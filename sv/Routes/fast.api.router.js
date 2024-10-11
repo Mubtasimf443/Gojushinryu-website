@@ -15,15 +15,4 @@ fastApiRouter.get('/find-product-image', findProductImage)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 export default fastApiRouter

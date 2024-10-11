@@ -118,6 +118,22 @@ let schema = new mongoose.Schema({
             type :Boolean,
             default:false
         }
+    }],
+    not_seen_massage:[{
+        title:String,
+        massage:String,
+        data_as_number :{
+            type:Number,
+            default:Date.now
+        }
+    }],
+    seen_massage:[{
+        title:String,
+        massage:String,
+        data_as_number :{
+            type:Number,
+            default:Date.now
+        }
     }]
 })
 
