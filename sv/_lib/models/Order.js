@@ -8,7 +8,8 @@ import mongoose from 'mongoose';
 const schema = mongoose.Schema({
   id :{
     type : Number,
-    required :true
+    required :true,
+    default:Date.now
   },
   date:{
     type: String,
@@ -107,6 +108,7 @@ const schema = mongoose.Schema({
     required: true,
   },
   paypal_order_id :String,
+  stripe_Token :String,
   order_status :{
     type: String,
     required: true,
@@ -124,7 +126,9 @@ const schema = mongoose.Schema({
     type :Boolean,
     default :false,
     required :true
-  }
+  },
+
+  trash:Boolean
 });
 
 /************************I worked hard to prevent dql injection****************************/

@@ -9,7 +9,7 @@ Insha Allah,  By your Marcy Ya Allah
     width: 100vw;
     height: 100vh;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     position: fixed;
@@ -108,3 +108,67 @@ Insha Allah,  By your Marcy Ya Allah
     color: rgb(255, 255, 255);
 }
 label{text-transform: capitalize;}
+
+.popup_c .popup_order_action_form table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.popup_c .popup_order_action_form table th{
+    border: 1px solid #000;
+    text-align: left;
+    padding: 10px 12px; 
+    background-color:black;
+    color: white;
+  }
+
+
+  .popup_c .popup_order_action_form table td {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 10px 12px;
+    background: inherit;
+    text-wrap: wrap;
+  }
+
+
+  .popup_c .popup_order_action_form table td img {
+    max-width:90% ;
+    object-fit: contain;
+    object-position: top left;
+    max-height:80px ;
+  }
+
+
+  .popup_c .popup_order_action_form table tr:nth-child(1){
+    background: var(--main-cl);
+  }
+
+
+  .popup_c .popup_order_action_form table tr{
+    background-color: #ffffff;
+  }
+
+  .popup_c .popup_order_action_form table tr td span {
+    color: #444444;
+    font-size: 13.5px;
+  }
+
+  .popup_c .popup_order_action_form table button{
+    background: inherit;
+    border: none;
+    font-size: 14px;
+    color: white;
+    background: #000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 8px 14px;
+}
+
+
+
+

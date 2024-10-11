@@ -9,7 +9,7 @@ import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
 import { CreateACourseApi, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
 import { UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
-import { DeleteProduct, FindProduct, giveProductDetails } from '../_lib/model_base_function/Product.js';
+import { DeleteProduct, FindProduct, findProductImage, giveProductDetails } from '../_lib/model_base_function/Product.js';
 import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, RemoveFromBanedUserFunction } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
@@ -17,6 +17,8 @@ import { OrderCancellPaypalApi, OrderSuccessPaypalApi } from "../_lib/api/OrderA
 import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/api/MembershipApi.js";
 import { courseBuyCancellPaypalApi, courseBuySuccessPaypalApi } from "../_lib/api/course.buy.api.js";
 import { notificationApi, notificationMailApi } from "../_lib/api/notification.api.js";
+import { stripeOrderCancellApi, stripeOrderSuccessApi } from "../_lib/api/stripe.checkout.api.js";
+import { findOrders, updateOrderStatus } from "../_lib/model_base_function/order.js";
 
 
 
@@ -31,7 +33,9 @@ apiRouter.use(morgan('dev'))
 //get
 apiRouter.get('/find-grand-master', FindGMApi)
 apiRouter.get('/find-product',FindProduct)
+apiRouter.get('/find-product-image',findProductImage)
 apiRouter.get('/find-user',FindUser)
+apiRouter.get('/find-order',findOrders)
 apiRouter.get('/find-member', FindMember)
 apiRouter.get('/courses',giveCourseJsonApi)
 
@@ -53,6 +57,7 @@ apiRouter.put('/update-cousre-dates',UpdateCourseDates);
 apiRouter.put('/update-grand-master',UpdateGmDataAPI);
 apiRouter.put('/bann-user',BaneUserFunction);
 apiRouter.put('/remove-from-bann-user', RemoveFromBanedUserFunction);
+apiRouter.put('/update-order-status', updateOrderStatus);
 
 
 //Delete
@@ -68,6 +73,9 @@ apiRouter.get('/paypal-membership-success',membershipSuccessPaypalApi);
 apiRouter.get('/paypal-membership-cancel',membershipCancellPaypalApi);
 apiRouter.get('/paypal-course-buy-success',courseBuySuccessPaypalApi)
 apiRouter.get('/paypal-course-buy-cancell',courseBuyCancellPaypalApi)
+apiRouter.get('/stripe-order-success',stripeOrderSuccessApi)
+apiRouter.get('/stripe-order-cancel', stripeOrderCancellApi)
+
 
 
 //mail

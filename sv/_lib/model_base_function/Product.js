@@ -2,6 +2,7 @@
 /* Insha Allah,  Allah loves s enough for me */
 
 import { Product } from "../models/Products.js";
+import { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
 
 export async function findProductPageNavigation(req, res) {
@@ -29,8 +30,6 @@ export const FindProduct =async (req,res) => {
     res.status(500).json({error :'Failed to Give you the products'})
   } 
 }
-
-
 
 export async function findProductDetails(req,res) {
   let {id}=req.params;    
@@ -126,4 +125,21 @@ export async function findProductDetails(req,res) {
   };
   
   
+export async function findProductImage(req,res) {
+  try {
+    let id =req.query.id;
+    if (!id) return res.sendStatus(304)
+    id =await repleCaracter(id);
+
+    let image =await Product.findById(id);
+    if (!image) return res.sendStatus(304)
+    image=image.thumb;
+
+    return res.send(image)
+
+  } catch (error) {
+    log(error);
+    return res.sendStatus(304)
+  }
   
+}

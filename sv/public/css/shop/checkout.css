@@ -142,12 +142,14 @@ input ,select ,textarea{
 }
 .btns button:first-child{
     background-color: #002e83;
+    transition: opacity .5s ease-in;
     
 }
 
 .btns button:last-child{
     background-color: #1a1b1d;
-    
+    transition: opacity .5s ease-in;
+
 }
 
 /* Responsive Design */

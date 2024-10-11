@@ -48,19 +48,15 @@ const log= e => console.log(e)
                 document.querySelector('[id="popup_GM_action"]').style.display ='flex' ;return
             }
              else if (e.target.className==="popup-close-btn" && e.target.parentNode.className==='pp_btn_box'){
-          return
+        
                 let dom=e.target;
                 for (let index = 1; index < 4;index= index+1) dom= dom.parentNode;
                 dom.style.display='none';
                 return
             } 
-            else if (e.target.className ==='order_list_action') {
-                return   document.getElementById('popup_order_action').style.display ='flex'
-            } 
+          
            
-            else if (e.target.className ==='member_list_action') {
-                return  document.getElementById('popup_user_action').style.display ='flex'
-            } 
+            
             
         }
     })

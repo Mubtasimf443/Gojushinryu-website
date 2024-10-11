@@ -18,7 +18,7 @@ let total=document.querySelector('.total');
 let shipping=document.querySelector('.shipping');
 let paypal_payment=document.querySelector(".paypal-payment")
 let visa_payment=document.querySelector(".visa-payment")
-
+let incheckOut=false;
 window.addEventListener('load',async e => {
     
     if (!addedProduct.length) {
@@ -140,6 +140,7 @@ function v(htmlElementSelector) {
 
 
 async function uploadToApi({method}) {
+    if (incheckOut) return
     let first_name =await v('[placeholder="First Name"]');
     let last_name =await v('[placeholder="Last Name"]');
     let country =await document.getElementById('countrySelect').selectedOptions[0].value;
@@ -163,9 +164,23 @@ async function uploadToApi({method}) {
         notes,
         items:checkoutApiArray,
     });
+
+    let url = window.location.origin + '/api/l-api/'+ ( method ==='paypal' ? 'paypal-checkout':'stripe-checkout'  );
     // log(jsonObject)
-    if (method!=='paypal'&& method!=='visa')  throw new Error('Error ');
-    fetch(window.location.origin +'/api/l-api/paypal-checkout', {
+    if (method!=='paypal' && method!=='visa')  throw new Error('Error ');
+
+    if (method==='paypal') {
+        paypal_payment.style.opacity=.7;
+    }
+
+
+    if (method!=='paypal') {
+        visa_payment.style.opacity=.7;
+    }
+
+    incheckOut =true;
+
+    fetch(url, {
         method:'POST',
         headers:{
             'Content-Type':'application/json'
@@ -178,7 +193,13 @@ async function uploadToApi({method}) {
         if (data.error) return alert(data.error);
         if (data.link) window.location.assign(data.link)
     })
-    .catch(e =>log(e) )
+    .catch(e => setTimeout(() => window.location.reload(),3000 ))
+    .finally(e => {
+        paypal_payment.style.opacity=1;
+        visa_payment.style.opacity=1;
+        incheckOut =false;
+
+    })
 
 }
 

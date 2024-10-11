@@ -13,7 +13,7 @@ export const addMinPageRoute= async (req,res) => {
 
     try {
     let {cpat}=req.cookies;//c panal access token
-    if (cpat === undefined) navigateToVarify(req,res)
+    if (cpat === undefined) return navigateToVarify(req,res)
     if (cpat !== undefined) return navigateToCpanal(req,res)
     } catch (error) {
     log(error)

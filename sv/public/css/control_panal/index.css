@@ -23,9 +23,9 @@ header {
 #ct-corner {
     display: flex;
     flex-direction: row;
-    justify-content:center;
+    justify-content:left;
     align-items: start;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     column-gap: 34px;
     padding:3em 0px 4em 30px ;
     row-gap: 25px;
@@ -98,7 +98,8 @@ a{
     flex-direction: column;
     justify-content:flex-start;
     align-items:start;
-  width:900px;
-  padding: 0px 2em;
-  row-gap:20px;
+    /* max-width:900px; */
+    min-width: 70%;
+    padding: 0px 2em;
+    row-gap:20px;
 }

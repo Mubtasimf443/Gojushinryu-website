@@ -10,6 +10,8 @@ InshaAllah, By Allah's Will,  I will earn success
     align-items: start;
     row-gap: 40px;
     width: 100%;
+    /* max-width: 650px; */
+    /* box-sizing: border-box; */
 }
 
 #couses-list-and-uplaod-container> table{

@@ -7,14 +7,9 @@ import { BASE_URL, PAYPAL_LINK, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from '../e
 import { log, Success } from '../smallUtils.js';
 
 export async function createPaypalPayment({items,total ,productToatal,shipping ,success_url,cancell_url}) {
-    log({
-        items,
-        a: items[0].unit_amount,
-        total ,
-        productToatal,
-        shipping
-    }); 
+   
     try {
+        
         if (items instanceof Array === false) throw new Error("Items is not a array");
         for (let index = 0; index < items.length; index++) {
             const {name ,description ,quantity, unit_amount} =await items[index];

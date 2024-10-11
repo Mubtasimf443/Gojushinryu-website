@@ -70,7 +70,8 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 
     Observer.observe(userListContainer)
 
-    userListContainer.addEventListener('click', e => {
+    userListContainer.addEventListener('click', 
+    e => {
         if (e.target.className === 'user_list_action') {
             let popup = document.querySelector('#popup_user_action')
             popup.style.display = 'flex';

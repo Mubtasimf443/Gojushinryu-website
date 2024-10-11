@@ -43,7 +43,6 @@ export  async function OrderApiPaypal(req,res) {
     first_name =await repleCaracter(first_name);
     last_name =await repleCaracter(last_name);
     phone =await repleCaracter(phone);
-    log({country })
     if (country !== 'india' && country !== 'canada')  return Alert('We do not support in this country',res)
     city =await repleCaracter(city);
     district =await repleCaracter(district);
@@ -136,9 +135,10 @@ export  async function OrderApiPaypal(req,res) {
                 onlyTotalProductPrice+=totalProductPrice;
                 let PaypalValue=await MakePriceString(value)
                 items.push({
-                    name ,
+                    name :( name.length>120 ? name.substring(0,120) : name),
                     quantity,
-                    description,
+                    description:(description.length > 120 ? description.substring(0,120) : description)
+                    ,
                     unit_amount:
                     {
                         currency_code: 'USD',

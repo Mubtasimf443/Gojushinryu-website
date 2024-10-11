@@ -6,13 +6,16 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 
     let memberListContainer = document.querySelector('#list-of-member')  
     let memberIsSeen = false;
+    let membersArray=[];
+    let table =memberListContainer.querySelector('table');
+
+
+
     let Observer = new IntersectionObserver( entry => {
     
       if (entry[0].target.id ==='list-of-member' && entry[0].isIntersecting) {
         if (!memberIsSeen) {
-            console.log('user');
             
-            console.log(entry[0]);
           fetch(window.location.origin + '/api/api_s/find-member')
           .then( res => res.json())
           .then(({error, success, Member})=> {
@@ -23,45 +26,38 @@ Insha Allab,  By the marcy of Allah,  I will gain success
             }
             
             if (success && Member) {
-            memberListContainer.querySelector('[length]').innerHTML=Member.length + memberListContainer.querySelector('[length]').innerHTML;
               let members = memberListContainer.querySelector('.members');
+              membersArray=Member;
 
-              if (Member.length === 0 )  {
-                members.innerHTML = members.innerHTML + `<div class="member">
-                <b> 
-            There is No Member
-                    </b> 
-                </div>`
-                return
-              } 
-              Member.forEach(el => {
-                let membershipListComponent ;
+              for (let i = 0; i < membersArray.length; i++) {
+                let {name,thumb ,memberShipArray} = membersArray[i];
+                let date =(
+                  new Date(memberShipArray[0].id).getDate()+'-'+new Date(memberShipArray[0].id).getMonth()+'-'+ new Date(memberShipArray[0].id).getFullYear()
+                );
+                let tr= document.createElement('tr');
+                tr.innerHTML=`
+                <td>
+                <b>${i+1}</b>
+                </td>
+                <td>
+                <img src="${thumb}" alt=""></td>
+                <td>
+                <strong>
+                 ${name} 
+                 </strong>
+                 </td>
+                 <td>
+                 ${date}
+                 </td>
+                 <td> <button class="action">Details</button></td>
                 
-                for (let index = 0; index < el.memberShipArray.length; index++) {
-                    const {Type , Organization} = el.memberShipArray[index];
-                    membershipListComponent = 
-                    `<div membership>
-                    <span>${Type} Membership</span>
-                    <span>${Organization.substring(0,10)}</span>
-                    </div>`
-                }
-                members.innerHTML = members.innerHTML +
-                `<div user_id="${el.id ?? el.email}" class="member">
-                       <img src="${ el.thumb ?? '/img/avatar.png'}">     
-                        <span class="name">
-                            ${el.first_name + '' + el.last_name} 
-                            </span>
-                    <div class="col">
-                        <div class="membership_box"> 
-                        ${membershipListComponent}
-                   </div>
-                   </div>
-                       <button class="user_list_action">
-                         Action
-                       </button>
-                 </div>`
-                return
-              });
+                `
+                table.appendChild(tr)
+
+
+              }
+              
+
             }
           })
          .catch( (e)=>{  alert('Failed To load User');console.log(e)
@@ -75,6 +71,12 @@ Insha Allab,  By the marcy of Allah,  I will gain success
     
     
     Observer.observe(memberListContainer)
+
+
+
+
+
+
     
     }
     

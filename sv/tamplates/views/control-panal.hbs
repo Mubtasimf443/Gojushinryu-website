@@ -30,6 +30,7 @@
     <script defer src="/js/control panal/course.js"></script>
     <script defer src="/js/control panal/Product.js"></script>
     <script defer src="/js/control panal/notication.js"></script>
+    <script defer src="/js/control panal/order.js"></script>
 
 </head>
 <body>
@@ -41,67 +42,112 @@
  See Order
   </h2> 
    <div class="input-box">
-      <label>Name</label>
-      <input disabled value="Martial Art Cloths" type="text">
+      <label>Reciever Name</label>
+      <input disabled value="Reciever Name" placeholder="Reciever Name" type="text">
     </div>
     <div class="input-box">
-      <label>Id</label>
-      <input disabled value="9384386982" type="text">
-    </div>
+      <label>R. Number</label>
+      <input disabled value="R. Number" placeholder="R. Number" type="text">
+    </div> 
     <div class="input-box">
-      <label>Quantity</label>
-      <input disabled value="7" type="text">
+      <label>B. Email</label>
+      <input disabled value="Buyer Email" placeholder="Buyer Email" type="text">
     </div>
-    <div class="input-box">
-      <label>Total Price</label>
-      <input disabled value="93$" type="text">
-    </div>
-    <div class="input-box">
+ <div class="input-box">
       <label>Country</label>
-      <input disabled value="India" type="text">
+      <input disabled value="India" placeholder="country"  type="text">
     </div>
     <div class="input-box">
       <label>District</label>
-      <input disabled value="Delhi" type="text">
+      <input disabled value="Delhi" placeholder="district" type="text">
     </div>
     <div class="input-box">
       <label>City</label>
-      <input disabled value="London" type="text">
+      <input disabled value="London" placeholder="city" type="text">
     </div>
     <div class="input-box">
       <label>
         Street/Village/road No
       </label>
-      <input disabled value="Moulovi Road No. 48" type="text">
+      <input disabled value="Moulovi Road No. 48" placeholder="street" type="text">
     </div>
     <div class="input-box">
       <label>Post Code</label>
-      <input disabled value="4544" type="text">
+      <input disabled value="4544"  placeholder="postcode"  type="text">
     </div>
     <div class="txt-box">
       <label>Notes</label>
-      <textarea value="Under Contruction" disabled></textarea>
+      <textarea value="Under Contruction" placeholder="notes" disabled></textarea>
     </div>
-    <h2>Action</h2>
+
     <div class="input-box">
+      <label>Order Id</label>
+      <input disabled value="9384386982"  placeholder="Order Id" type="text">
+    </div>
+    <div class="input-box">
+      <label>Quantity</label>
+      <input disabled value="7"  placeholder="quantity" type="text">
+    </div>
+   
+     <div class="input-box">
+      <label>Product Value</label>
+      <input disabled value="93$" placeholder="Product Value"  type="text">
+    </div>
+
+    <div class="input-box">
+      <label>Shipping</label>
+      <input disabled value="93$" placeholder="total shipping"  type="text">
+    </div>
+
+    <div class="input-box">
+      <label>Total Price</label>
+      <input disabled value="93$" placeholder="total"  type="text">
+    </div>
+   
+   
+
+  <table>
+    <tr>
+      
+      <th>No</th>
+      <th>Image</th>
+      <th>name</th>
+      <th>quantity</th>
+      <th>size</th>
+      <th>price</th>
+    </tr>
+    
+  </table>
+
+    <h2>Action</h2>
+    <div class="input-box ">
       <label for="">Mark </label>
-      <select name="" id="">
-        <option value="">Pending</option>
-        <option value="">In Process</option>
-        <option value="">Completed</option>
-        <option value="">Cancelled</option>
+      <select pp_select>
+        <option value="pending">Pending</option>
+        <option value="processing">In Process </option>
+        <option value="completed">Completed</option>
+        <option value="cancelled">Cancelled</option>
       </select>
-      </div>
+      </div> 
+    <div class="txt-box c-reason-box" >
+      <label>Cancell Reason</label>
+      <textarea placeholder="If you want to cancel the order then you have to give the write the reasson .And Buyer will get a notification that order is cancel"  class="cancel_notes" ></textarea>
+    </div>
+
+
+
     <div class="pp_btn_box">
       <button class="popup-close-btn">
         Close
       </button class="popup-close-btn">
-      <button>
-  Save
-      </button>
+     
     </div>
 
   </div>
+
+
+
+
 </div>
 
 <!------------------------ product PopUp ------------------------------>
@@ -623,29 +669,32 @@ style="display: none;" ct_section class="form-section">
 
 <div ct_section targetedElement="order_href" style="display: none;"
  class="order-list-box">
-<div class="orders">
-  <div><b>Orders </b></div>
-  <div class="order-box">
-  <div class="order">
-    <img src="/img/product1.jpg"  class="massage-image">
-      <h3>
-        Martial Art Cloths
-      </h3>
-      <span>
-        27 Jan 2024
-      </span>
-      <b>pending</b>
-<button class="order_list_action">Action</button>
-  </div>
-  <div style="display: none;" class="li-edit-form" id="order-edit-form">
-  
-    
-  </div>
-  </div>
 
- 
- 
-</div>
+<table>
+  <tr>
+    <th>
+      No
+    </th>
+     <th>
+      Reciever
+    </th>
+    <th>
+      Date
+    </th>
+    <th>
+      Price
+    </th> 
+     <th>
+      Status
+    </th>
+    <th>
+      Action
+    </th>
+
+  </tr>
+
+</table>
+
 
 </div>
  <!-----------------------User list ----------------------------->
@@ -687,7 +736,6 @@ targetedElement="member_href" class="member-list-box">
  
 </div>
 
-</div>
   
 
    <!----------------------- Grand Master list ----------------------------->
@@ -769,6 +817,8 @@ targetedElement="member_href" class="member-list-box">
 <!-------------------------- course list -------------------------->
 
 <div ct_section style="display: flex;"  targetedElement="course_href"  id="couses-list-and-uplaod-container" >
+ 
+ 
   <table>
     <tr>
       <th width="20%" >Image</th>
@@ -869,7 +919,14 @@ targetedElement="member_href" class="member-list-box">
    </div>
 </div>
 
+
+
+
+
+
 </div>
+
+
 
  </div>
 </section>
