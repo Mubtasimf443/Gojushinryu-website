@@ -106,7 +106,7 @@ export async function MembershipApidataCheckMidleware(req,res,next) {
             is_previous_member,
             experience_level ,
             has_violance_charge,
-            has_permanent_injury,
+           
         ];
         let notFoundIndex= testArray.findIndex(el => !el)
         if (notFoundIndex !==-1) throw new Error("Please Complete the form");

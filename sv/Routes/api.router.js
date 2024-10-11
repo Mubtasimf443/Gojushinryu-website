@@ -19,6 +19,7 @@ import { courseBuyCancellPaypalApi, courseBuySuccessPaypalApi } from "../_lib/ap
 import { notificationApi, notificationMailApi } from "../_lib/api/notification.api.js";
 import { stripeOrderCancellApi, stripeOrderSuccessApi } from "../_lib/api/stripe.checkout.api.js";
 import { findOrders, updateOrderStatus } from "../_lib/model_base_function/order.js";
+import { findMemberShipdata } from "../_lib/model_base_function/membership.js";
 
 
 
@@ -49,6 +50,8 @@ apiRouter.post('/upload-image-for-25-minutes',UplaodImageApiIn25Minutes);
 apiRouter.post('/upload-event-api',UploadEventApi)
 apiRouter.post('/create-grand-master',CreateGMApi)
 apiRouter.post('/give-product-details', giveProductDetails)
+apiRouter.post('/find-membership-data',findMemberShipdata)
+
 
 //Update
 apiRouter.put('/Update-User-Data',ChangeuserData);
