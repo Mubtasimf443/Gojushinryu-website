@@ -80,8 +80,9 @@ export async function sendMassageToUserFromAdmin(req,res) {
         let {massage,student_id}=req.body;
         if (!massage||!student_id) throw `the user  id is ${student_id} and massage is ${massage} `
         massage=await repleCaracter(massage)
-        student_id=await repleCaracter(student_id)
-        let user =await User.findById(student_id)
+        //student_id=await repleCaracter(student_id)
+        if (typeof student_id !== 'number' || Number(student_id).toString().toLowerCase()==='nan') throw 'error:student is is not a number '+student_id
+        let user =await User.findOne({id:student_id})
         if (!user) throw 'their is not user //'+user
         user.not_seen_massage.push({
             massage:massage,    
@@ -97,7 +98,13 @@ export async function sendMassageToUserFromAdmin(req,res) {
 
 export async function getAdminMassageStatusAndNewMassaseForUser(req,res) {
     try {
-        let {not_seen_massage,seen_massage,id}=req.user_info;//midleware
+        let {
+            not_seen_massage,
+            seen_massage,
+            id
+        }=req.user_info;//midleware
+       // console.log({not_seen_massage});
+        
         if (!not_seen_massage.length) {   
             return res.status(200).json({
             has_massage:false
@@ -124,39 +131,19 @@ export async function getAdminMassageStatusAndNewMassaseForUser(req,res) {
 }
 
 
-export async function getStudentMassageStatusAndNewMassaseForAdmin(req,res) {
-    try {
-        let admin=await Admin.findOne({email:ADMIN_EMAIL});
-        let {student_massages} =admin;
-        let data=student_massages.filter(el =>{
-            if (el.not_seen_massage.length !==0) {
-                return {
-                    student_id: el.student_id,
-                    massages :el.not_seen_massage
-                }
-            }
-        })
-        student_massages=student_massages.map(el => {
-            if (!el.not_seen_massage.length) return
-            let seen_massage=el.seen_massage;
-            for (let i = 0; i < el.not_seen_massage.length; i++) {
-                seen_massage.push(el.not_seen_massage[i])
-            }
-            return {
-                    student_id: el.student_id,
-                    not_seen_massage :[],
-                    seen_massage
-            }
-        })
 
-        admin.student_massages=student_massages;
-        await admin.save()
-        return res.json({data})
+export async function getAdminMassageWhatIsSeen(req,res) {
+    try {
+        let {  seen_massage  }=req.user_info;//midleware
+        return res.status(200).json({seen_massage})
     } catch (error) {
-        log({error})
-        res.sendStatus(400)
+        console.error({error});
+        
+        return res.sendStatus(400)
     }
 }
+
+
 
 
 
@@ -171,3 +158,51 @@ export async function getUserMassageListForAdmin(req,res) {
         return res.sendStatus(500)
     }
 }
+
+
+
+
+export async function checkUserHasSendMassageOrNotTotheAdmin(req,res) {
+    try {
+        
+        
+        let {id}=req.body;
+        if (typeof id !== 'number') throw 'error , id is not correct'
+        let admin=await Admin.findOne({email:ADMIN_EMAIL});
+        //we will check is their is massage or not
+        let student_massages= admin.student_massages;
+        let index= student_massages.findIndex(el => el.student_ID===id)
+        if(index ===-1) throw 'their is no user ,thanks'
+        let {seen_massage,not_seen_massage} =student_massages[index];
+        if (!not_seen_massage.length) return res.status(200).json({error:'no data'}); //As their is no not seen massage
+        for (let i = 0; i < not_seen_massage.length; i++) {
+            seen_massage.push( not_seen_massage[i]);
+        }//before sending we want update the massage to not seen form seen
+       
+       
+        student_massages=student_massages.map((el,i)=> {
+            if (i !== index) return el
+            return {
+                student_ID:el.student_ID,
+                student_id:el.student_id,
+                student_image:el.student_image,
+                seen_massage:seen_massage,//seen massage has added massage
+                not_seen_massage:[]//removed massage
+            }
+        })
+
+        admin.student_massages=student_massages;
+        await admin.save()
+        console.log({not_seen_massage});console.log('//checkUserHasSendMassageOrNotTotheAdmin.js');
+        
+        
+        return res.status(200).json({massages:not_seen_massage})
+    } catch (error) {
+        console.log(error);
+        return res.sendStatus(400)
+    }
+   
+    
+}
+
+

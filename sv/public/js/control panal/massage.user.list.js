@@ -113,8 +113,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 
 
                         massageContainer.innerHTML=massagesHtml;
-
-
+                        student_massages_container_for_live_massage.setAttribute('student_id',student_ID);
 
 
 
