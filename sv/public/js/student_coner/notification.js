@@ -34,7 +34,7 @@ InshaAllah, By his Marcy I will Gain Success
        res =await res.json();
        if (!res.user) return
        let {notification} =res.user;
-       log(notification)
+
        for (let i = 0; i < notification.length; i++) {
         const {id,title,massage} = notification[i];
         

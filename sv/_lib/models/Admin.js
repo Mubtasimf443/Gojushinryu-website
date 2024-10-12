@@ -24,10 +24,13 @@ const Adminschema = mongoose.Schema({
     required:true
   },
   student_massages:[{
+
     student_id:{
       type:mongoose.SchemaTypes.ObjectId,
       ref:'User'
     },
+    student_ID:Number,
+    student_image:String,
     seen_massage:[{
       name :String,
       massage:String,

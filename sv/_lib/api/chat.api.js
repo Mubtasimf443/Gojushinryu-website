@@ -8,22 +8,33 @@ import { ADMIN_EMAIL } from "../utils/env.js";
 import { repleCaracter } from "../utils/replaceCr.js";
 import { log } from "../utils/smallUtils.js";
 import {User} from '../models/user.js'
+import { response } from "express";
 
 
 
 export async function sendMassageToAdminFromUser(req,res) {
     try {
-        let { first_name , last_name, _id} =req.user_info;
+        let {thumb, first_name , last_name, _id,id} =req.user_info;
         let {massage}=req.body;
+        log({massage})
         if (!massage) return res.sendStatus(400)
         massage=await repleCaracter(massage)
         let admin=await Admin.findOne({email:ADMIN_EMAIL});
         if (!admin) return res.sendStatus(500);
         let stMassages= admin.student_massages;
-        let checkMassageExistents= stMassages.findIndex(el => el.student_id === _id);
+        let checkMassageExistents= stMassages.findIndex(el =>{ 
+           // log({el:el.student_id,_id})
+            
+            console.log(el.student_ID === id);
+            if (el.student_ID === id) return el
+            return false
+            
+            });
+      
+       
         if (checkMassageExistents !== -1) {
             stMassages= stMassages.map(el => {
-                if (el.student_id ===_id) {
+                if (el.student_ID ===id) {
                     el.not_seen_massage.push({
                         name :first_name+" "+last_name,
                         massage:massage,
@@ -33,14 +44,18 @@ export async function sendMassageToAdminFromUser(req,res) {
                 }
                 return el
             })
+           // console.log(stMassages);
+           log(1)
 
             admin.student_massages =stMassages;
-            await admin.save()
-            return
+            await admin.save().then(e =>log('success'));
+            return res.sendStatus(200)
         }
         if (checkMassageExistents ===-1 ) {
             admin.student_massages.push({
+                student_ID:id,
                 student_id:_id,
+                student_image:thumb,
                 seen_massage:[],
                 not_seen_massage:[{
                     name :first_name+" "+last_name,
@@ -48,7 +63,10 @@ export async function sendMassageToAdminFromUser(req,res) {
                     data_as_number:Date.now()
                 }]
             })
-            return
+            await admin.save()
+            console.log(2);
+           
+            return res.sendStatus(200)
         }
     } catch (error) {
         log('error');
@@ -92,6 +110,7 @@ export async function getAdminMassageStatusAndNewMassaseForUser(req,res) {
         }
 
         await User.findOneAndUpdate({id},{seen_massage,not_seen_massage:[]})
+
         return res.status(200).json({
             has_massage:true,
             massages
@@ -136,5 +155,19 @@ export async function getStudentMassageStatusAndNewMassaseForAdmin(req,res) {
     } catch (error) {
         log({error})
         res.sendStatus(400)
+    }
+}
+
+
+
+export async function getUserMassageListForAdmin(req,res) {
+    try {
+        let admin =await Admin.findOne({email:ADMIN_EMAIL})
+        if (!admin ) return res.sendStatus(500)
+        if (!admin.student_massages.length) return res.sendStatus(304)
+        return res.status(200).json({userMassageList:admin.student_massages })
+     } catch(e){
+        console.log(e);       
+        return res.sendStatus(500)
     }
 }

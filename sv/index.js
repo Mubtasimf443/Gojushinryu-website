@@ -51,7 +51,7 @@ app.use('/api/file',fileRouter);
 app.use('/api/l-api',LargeApiRouter);
 app.use('/api/fast-api/',fastApiRouter)
 app.use(ApiRateLimter) //Rate Limiting Added to apis
-app.use('/api/chat',chateRouter);
+app.use('/api/chat-api',chateRouter);
 // app.use('/api/upload',uploadRouter);
 app.use('/api/auth-api',authRouter);
 //buyer do not pay us and takes the website
