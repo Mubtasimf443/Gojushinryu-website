@@ -79,7 +79,6 @@ Insha Allah,  By the marcy of Allah,  I will gain success
             
 
             let {massages}=r//res;
-            console.log({massages});
             
             if (massages) {
                 for (let i = 0; i < massages.length; i++) {

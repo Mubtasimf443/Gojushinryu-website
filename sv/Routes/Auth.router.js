@@ -8,7 +8,6 @@ import { user_varification_api } from "../_lib/auth/varify.auth.js";
 import { GMLoginApiFunc, loginApiFunc } from "../_lib/auth/login.auth.js";
 import { forgetPasswordOtpApi, forgetPasswordResetPassApi } from "../_lib/auth/password.reset.auth.js";
 import { adminVaification } from "../_lib/model_base_function/Admin.js";
-import { ApiRateLimter } from "../_lib/Config/express-slow-down.js";
 let authRouter = Router();
 
 authRouter.post('/user/sign-up',checkSignUpData_for_user,signUpFunction);

@@ -42,11 +42,12 @@ export async function getGmGroupMassage(req,res) {
         let massageGroup=await Grand_Master_Group_Massages.findOne({id :GRAND_MASTER_GROUP_MASSAGE_ID});
         if (!massageGroup) throw 'server is hacked'
         let massages =massageGroup.massages;
-        if (massages.length <2) return res.status(200).json({massages})
+        if (massages.length <50) return res.status(200).json({massages})
         let sendIngMassageArray =[];
         let startingIndex=massages.length-1;
         let endIndex=massages.length-51;
         for (let i = startingIndex; i > endIndex; i--) sendIngMassageArray.push(massages[i])
+        
         return res.status(200).json({massages:sendIngMassageArray})
     } catch (error) {
         console.log({error:'server error : '+error});
@@ -57,12 +58,13 @@ export async function getGmGroupMassage(req,res) {
 export async function addGmMassageApi(req,res) {
     try {
         let {name,massage}=req.body;
+        console.log({name,massage});
+        
         if (!name) throw 'name is undefined'
         if (!massage) throw 'massage is undefined'
         if (typeof name!=='string' || typeof massage !=='string' ) throw 'name or massage not is a string'
         name =await repleCaracter(name);
         massage=await repleCaracter(massage)
-        log({massage})
         let massageGroup=await Grand_Master_Group_Massages.findOne({id :GRAND_MASTER_GROUP_MASSAGE_ID});
         if (!massageGroup) throw 'server is hacked'
         massageGroup.massages.push({
@@ -77,7 +79,6 @@ export async function addGmMassageApi(req,res) {
         return res.sendStatus(400);
     }
 }
-
 
 export async function grand_Master_Group_Massages_Midleware(req,res,next) {
     try {

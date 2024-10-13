@@ -19,6 +19,15 @@ Insha Allah,  By Your Marcy Ya Allah
   <link rel="stylesheet" href="/css/Grand-master-counchil/gm-settings.css">
   <link rel="stylesheet" href="/css/Grand-master-counchil/event_upload.css">
 <script defer src="/js/grand-master-couchil.js"></script>
+<script>
+ var gmName=`{{name}}`;
+</script>
+
+
+
+
+
+
 </head>
 
 <body>
@@ -31,12 +40,15 @@ Insha Allah,  By Your Marcy Ya Allah
 
   
   <div class="gm-bio">
-    <img src="/img/samurai4.jpg" alt="">
-    <h2>Varrun Jettly</h2>
+    <img src="{{image}}" alt="">
+    <h2>{{name}}</h2>
     <p>
-    Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi omnis, volupt
+    {{!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi omnis, volupt --}}
+    {{bio}}
     </p>
-    <b class="gm-country">Canada</b>
+    <b class="gm-country">
+     {{organization}}
+  </b>
     <div class="icons">
       
     </div>
@@ -44,7 +56,7 @@ Insha Allah,  By Your Marcy Ya Allah
   <div class="gm-nav-main">
     <h2>Counchil</h2>
     <nav class="sidebar_nav">
-      <a id="massage_href" href="">
+      <a id="massage_href" >
         Massage
       </a>
       <a  id="events_href"  href="">
@@ -80,7 +92,6 @@ Insha Allah,  By Your Marcy Ya Allah
             Sir, Wellcome to Our Website 
           </p>
         </div>
-        <span class="massage-time"></span>
       </div>
       <div class="f-massage">
        <div class="massage">
@@ -198,7 +209,6 @@ Insha Allah,  By Your Marcy Ya Allah
  </div>
  
 <div gm_section style="display: none;" class="event_upload_sec">
-
   <div class="event-upload-input-box">
     <label for="event-upload-input-box-title--inp">Title</label>
     <input type="text" placeholder="Write the event Title"
@@ -238,7 +248,7 @@ Insha Allah,  By Your Marcy Ya Allah
   </div>
 
   
-  <div class="upload_event_btn_box">
+<div class="upload_event_btn_box">
     <button>Cencel</button>
     <button>Upload</button>
   </div>

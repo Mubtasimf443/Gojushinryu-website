@@ -63,8 +63,8 @@ export const loginApiFunc =async (req, res) => {
 
 
 export const GMLoginApiFunc =async (req, res) => {
-  // log('sign in started')
-   if (req.cookies.rft) return res.json({error:'You have Login Before'})
+   // log('sign in started')
+   //  if (req.cookies.rft) return res.json({error:'You have Login Before'})
    let {password,  email } = req.body ; 
    if (!password) return res.json({error:'password is not define'})
    if (!email) return res.json({error:'email is not  define'})
@@ -84,7 +84,7 @@ export const GMLoginApiFunc =async (req, res) => {
    
    try {
      let user = await GM.findOne({email})
-     if (!user) return res.json({error : 'not user info match ,Please Create an account'});
+     if (!user) return res.json({error :'not user info match ,Please Create an account'});
      //console.log('user is found');
      let passwordMatch = await bcrypt.compareSync(password,user.password)/* password ===user.password*///testing the password
      if (!passwordMatch) return res.json({error : 'password not match ,Please Create a give the correct'});
@@ -95,7 +95,8 @@ export const GMLoginApiFunc =async (req, res) => {
       key :'oeoihdojkcsuw3t7uwsudjkckncksjuefglhd.clseiy48y39efjdion dcbakgwiqfiwilaso;aowiry38t48tfjdbdbv dsffuoee7'
       //pin and key is only used to make cookie big enoughf without using a large data 
       //and big cookie can make hacker more confuse
-     },  JWT_SECRET_KEY, {});
+     },JWT_SECRET_KEY,{});
+
      // log('cookie done')
      return  res.cookie('gm_cat',
        rft,
