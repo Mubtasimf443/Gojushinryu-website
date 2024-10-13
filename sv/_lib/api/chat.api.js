@@ -16,7 +16,7 @@ export async function sendMassageToAdminFromUser(req,res) {
     try {
         let {thumb, first_name , last_name, _id,id} =req.user_info;
         let {massage}=req.body;
-        log({massage})
+        // log({massage})
         if (!massage) return res.sendStatus(400)
         massage=await repleCaracter(massage)
         let admin=await Admin.findOne({email:ADMIN_EMAIL});
@@ -25,7 +25,7 @@ export async function sendMassageToAdminFromUser(req,res) {
         let checkMassageExistents= stMassages.findIndex(el =>{ 
            // log({el:el.student_id,_id})
             
-            console.log(el.student_ID === id);
+            // console.log(el.student_ID === id);
             if (el.student_ID === id) return el
             return false
             
@@ -45,7 +45,7 @@ export async function sendMassageToAdminFromUser(req,res) {
                 return el
             })
            // console.log(stMassages);
-           log(1)
+        //    log(1)
 
             admin.student_massages =stMassages;
             await admin.save().then(e =>log('success'));
@@ -64,12 +64,12 @@ export async function sendMassageToAdminFromUser(req,res) {
                 }]
             })
             await admin.save()
-            console.log(2);
+            // console.log(2);
            
             return res.sendStatus(200)
         }
     } catch (error) {
-        log('error');
+        log(error);
         return res.sendStatus(400)
     }
 }
@@ -193,7 +193,7 @@ export async function checkUserHasSendMassageOrNotTotheAdmin(req,res) {
 
         admin.student_massages=student_massages;
         await admin.save()
-        console.log({not_seen_massage});console.log('//checkUserHasSendMassageOrNotTotheAdmin.js');
+       // console.log({not_seen_massage});console.log('//checkUserHasSendMassageOrNotTotheAdmin.js');
         
         
         return res.status(200).json({massages:not_seen_massage})

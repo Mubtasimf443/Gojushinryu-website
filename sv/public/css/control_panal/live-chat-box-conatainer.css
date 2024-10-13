@@ -56,6 +56,8 @@ Insha Allah,  By your Marcy Ya Allah
     background: #F2F0F0;
     overflow-y: scroll;
     overflow-x: hidden;
+    overflow-anchor: auto;
+    
     width: 100%;
     height:400px;
 /* padding: 15px 15px; */
