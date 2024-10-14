@@ -17,7 +17,6 @@ let dirname = path.dirname(__filename);
 
 
 export async function UplaodImageApiIn25Minutes(req,res) {
-    log('uploading')
     let DontSuffortMime = false;
     let options =  {
     uploadDir :
@@ -26,7 +25,6 @@ export async function UplaodImageApiIn25Minutes(req,res) {
     allowEmptyFiles:false,
     maxFileSize:10*1024*1024,
     filter :(file) => {
-      
     if (
     file.mimetype === 'image/png' 
     || file.mimetype === 'image/jpg' 

@@ -18,9 +18,13 @@ Insha Allah,  By Your Marcy Ya Allah
   <link rel="stylesheet" href="/css/Grand-master-counchil/gm-note.css">
   <link rel="stylesheet" href="/css/Grand-master-counchil/gm-settings.css">
   <link rel="stylesheet" href="/css/Grand-master-counchil/event_upload.css">
-<script defer src="/js/grand-master-couchil.js"></script>
+<script defer src="/js/gm/grand-master-couchil.js"></script>
+<script defer src="/js/gm/settings.js"></script>
+<script defer src="/js/gm/massages.js"></script>
+<script defer src="/js/gm/upload.event.js"></script>
 <script>
  var gmName=`{{name}}`;
+ var gmID='{{_id}}';
 </script>
 
 
@@ -56,16 +60,16 @@ Insha Allah,  By Your Marcy Ya Allah
   <div class="gm-nav-main">
     <h2>Counchil</h2>
     <nav class="sidebar_nav">
-      <a id="massage_href" >
+      <a class="navigation" id="massage_href" >
         Massage
       </a>
-      <a  id="events_href"  href="">
+      <a class="navigation" id="events_href"  href="">
         Events
       </a>
-      <a  id="notes_href"  href="">
+      <a class="navigation" id="notes_href"  href="">
         Notes
       </a>
-      <a  id="settings_href"  href="">
+      <a class="navigation" id="settings_href"  href="">
         Settings
       </a>
     </nav>
@@ -81,27 +85,15 @@ Insha Allah,  By Your Marcy Ya Allah
     </span>
 
   </div>
+
+
+
+  <!------------------------ chat box ----------------------------------->
   <div gm_section style="display: none;"  class="chat-box-container">
   <h2>Chat's</h2>
   <div class="chat-box">
     <div class="chat-massage-cobtainer">
-      <div class="t-massage">
-        <div class="massage">
-          <b class="sender-name">Varun Jettly</b>
-          <p class="sender-p">
-            Sir, Wellcome to Our Website 
-          </p>
-        </div>
-      </div>
-      <div class="f-massage">
-       <div class="massage">
-         <b class="sender-name">You</b>
-           <p class="sender-p">
-            I am making something, and Show you how it will work...
-           </p>
-         </div>
-
-      </div>
+  
     </div>
     <div class="send-chat-massage-containar">
      <textarea placeholder="Write a massage" name="" id=""></textarea>
@@ -112,6 +104,8 @@ Insha Allah,  By Your Marcy Ya Allah
   </div>
   
   </div>
+  <!------------------------ chat box ----------------------------------->
+
   <div gm_section class="gm-event-box">
    <div class="env-box-header">
      <h3>Events</h3>
@@ -141,6 +135,9 @@ Insha Allah,  By Your Marcy Ya Allah
      </div>
 
 </div>
+
+  <!------------------------ notes box ----------------------------------->
+
 <div gm_section style="display: none;" class="notes-section">
     <h2>Notes</h2>
     <div class="notes-container">
@@ -170,6 +167,11 @@ Insha Allah,  By Your Marcy Ya Allah
       </div>
     </div>
   </div>
+
+
+  <!------------------------ settings box ----------------------------------->
+
+
 <div gm_section style="display: none;" class="settings-section">
    <h2>Info</h2>
    <div class="img-inp-box">
@@ -180,49 +182,39 @@ Insha Allah,  By Your Marcy Ya Allah
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Name</label>
-     <input type="Text" name="" id="s-sec-name-inp">
+     <input type="Text" name="" value="{{name}}" id="s-sec-name-inp">
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-bio-inp">bio</label>
-     <input type="Text" name="" id="s-sec-bio-inp">
+     <input type="Text" name="" value="{{bio}}" id="s-sec-bio-inp">
    </div>
    <div class="s-sec-input-box">
-     <label for="s-sec-country-inp">Country</label>
-     <input type="Text" name="" id="s-sec-country-inp">
+     <label for="s-sec-country-inp">Organization</label>
+     <input type="Text" name="" value="{{organization}}" id="s-sec-organization-inp">
    </div>
 
    <h2>Credentials</h2>
    <div class="s-sec-input-box">
-     <label for="s-sec-user-id-inp">User Id</label>
-     <input type="Text" name="" id="s-sec-user-id-inp">
+     <label for="s-sec-user-id-inp">UserName</label>
+     <input type="Text" name="" value="{{username}}" id="s-sec-user-id-inp">
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-country-inp">
        Password
      </label>
-     <input type="password" name="" id="s-sec-country-inp">
+     <input type="password" name="" id="s-sec-pass-inp">
    </div>
    <div class="s-sec-btn-box">
-     <button>Cancel</button>
-     <button> Save</button>
+     <button style="display: none;">Cancel</button>
+     <button save_settings > Save</button>
    </div>
  </div>
  
+  <!------------------------ upload event box ----------------------------------->
+
+
 <div gm_section style="display: none;" class="event_upload_sec">
-  <div class="event-upload-input-box">
-    <label for="event-upload-input-box-title--inp">Title</label>
-    <input type="text" placeholder="Write the event Title"
-    id="event-upload-input-box-title--inp">
-
-  </div>
-  <div class="event-upload-input-box">
-    <label for="event-upload-input-box-Description--inp">Description</label>
-    <input 
-     type="text" placeholder="Write the event Description"
-    id="event-upload-input-box-Description--inp">
-
-  </div>
-  <div class="upload_sec_event_tumb_img_inp_box">
+   <div class="upload_sec_event_tumb_img_inp_box">
      <h4>
        Thumnail
      </h4>
@@ -246,11 +238,29 @@ Insha Allah,  By Your Marcy Ya Allah
     id="upload_sec_env_img_inp">
     
   </div>
+  <div class="event-upload-input-box">
+    <label for="event-upload-input-box-title--inp">Title</label>
+    <input 
+    type="text" 
+    placeholder="Write the event Title"
+    id="event-upload-input-box-title--inp"
+    >
+
+  </div>
+  <div class="event-upload-input-box">
+    <label for="event-upload-input-box-Description--inp">Description</label>
+    <textarea 
+    type="text"
+    placeholder="Write the event Description"
+    id="event-upload-input-box-Description--inp"
+    ></textarea>
+  </div>
+ 
 
   
 <div class="upload_event_btn_box">
-    <button>Cencel</button>
-    <button>Upload</button>
+    <button style="display: none;"> Cencel</button>
+    <button uplaod_event_btn >Upload</button>
   </div>
   
 </div>

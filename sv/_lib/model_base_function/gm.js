@@ -5,7 +5,7 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET_KEY } from "../utils/env.js";
 import { GM } from "../models/GM.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
-import bcrypt from 'bcryptjs'
+import bcrypt from 'bcryptjs' 
 
 
 
@@ -24,9 +24,9 @@ export async function GMCornerPageRoute(req,res) {
             let {email} = data;
             if (!email) return res.clearCookie('gm_cat').status(200).render('login_gm_counchil');
             let gm =await GM.findOne({email});  
-            let {name ,organization,username,image,id ,bio}=gm;
+            let {name ,organization,username,image,id ,bio ,_id}=gm;
             if (!gm) return res.json({error:'Unknown error'})
-            return res.render('grand-master-counchil' ,{name ,organization,username,image,id,bio })
+            return res.render('grand-master-counchil' ,{name ,organization,username,image,id,bio ,_id})
        })
     }
   } catch (error) {
@@ -52,20 +52,31 @@ export async function FindGMApi(req,res) {
 
 
 export async function UpdateGmDataAPI(req, res) {
-    let {name,  bio, first_name,  last_name, email, phone, id,  password} = req.body;
-    let testArray = [name,  bio, first_name,  last_name, email, phone,  id,  password];
+  try {
+    let {email} =req.gm_info;
+    console.log({email});
     
+    let {name,bio,organization, username,password} = req.body;
+    let testArray = [name,  bio,organization, username,password];
     let FoundEmtyIndex =await testArray.findIndex(el => !el)
-    if (FoundEmtyIndex > -1) return Alert('You Can not Use Emty Feild To Update',res);
-    await GM.findOneAndUpdate({email}, {
-      name,  bio, first_name,  last_name, email, phone, id,  password
+    if (FoundEmtyIndex > -1) {
+      console.log({name,  bio,organization, username,password});
       
+      return Alert('You Can not Use Emty Feild To Update',res)
+    }
+
+    let salt =await bcrypt.genSalt()
+    password=await bcrypt.hash(password,salt)
+    await GM.findOneAndUpdate({email}, {
+      name,bio,organization, username,password
     })
    .then(data => res.json({success :true}))
    .catch(e => {
      Alert('failed to update data ', res )
    })
-    
+  } catch (error) {
+    console.error({error});
+  }
   };
 
 
@@ -120,3 +131,6 @@ export async function DeleteGMAccount(req, res) {
      Alert('Error, Failed To Delete Account, Does It exist? ',res)
    })
   };
+
+
+

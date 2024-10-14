@@ -22,6 +22,7 @@ import { findOrders, findUserOrder, updateOrderStatus } from "../_lib/model_base
 import { findMemberShipdata } from "../_lib/model_base_function/membership.js";
 import userCheck from "../_lib/midlewares/User.check.js";
 import { removeNotificationFromDatabase } from "../_lib/api/basic.notifiation.api.js";
+import { checkGM } from "../_lib/midlewares/gm.midleware.js";
 
 
 
@@ -60,7 +61,7 @@ apiRouter.post('/find-membership-data',findMemberShipdata)
 apiRouter.put('/Update-User-Data',ChangeuserData);
 apiRouter.put('/Update-User-Password',changeUserPasswordAPI);
 apiRouter.put('/update-cousre-dates',UpdateCourseDates);
-apiRouter.put('/update-grand-master',UpdateGmDataAPI);
+apiRouter.put('/update-grand-master',checkGM ,UpdateGmDataAPI);
 apiRouter.put('/bann-user',BaneUserFunction);
 apiRouter.put('/remove-from-bann-user', RemoveFromBanedUserFunction);
 apiRouter.put('/update-order-status', updateOrderStatus);

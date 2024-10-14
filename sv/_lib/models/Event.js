@@ -27,40 +27,37 @@ const schema = mongoose.Schema({
       required: true
   }}],
   Date : {
-    type: String,
-    required: true,
+    type: Number,
+    default: Date.now,
   },
-  writen_type:{
-    type: Boolean,
-    required: true,
-    default:false
-  }, 
-  event_date: {
-    type: String,
-    required: true,
-  },
+  // writen_type:{
+  //   type: Boolean,
+  //   required: true,
+  //   default:false
+  // }, 
+  // event_date: {
+  //   type: String,
+  //   required: true,
+
+  // },
   gm_writer:{
     type: mongoose.SchemaTypes.ObjectId,
     required: false ,
     ref:"Grand_Master"
   },
-  admin_writer: {
-      type: Boolean,
-      required: true
-  //  ,  default: false
-    },
-  admin_writer: {
-    type: mongoose.SchemaTypes.ObjectId,
-    required: false ,
-    ref:"Admin"
-  },
+  // admin_writen: {
+  //     type: Boolean,
+  //     required: true
+  // //  ,  default: false
+  //   },
+  // admin_writer: {
+  //   type: mongoose.SchemaTypes.ObjectId,
+  //   required: false ,
+  //   ref:"Admin"
+  // },
   
 })
 
 
 
-const Events=  mongoose.model('Events', schema)
-
-export {
-  Events
-}
+export const Events=  mongoose.model('Events', schema)
