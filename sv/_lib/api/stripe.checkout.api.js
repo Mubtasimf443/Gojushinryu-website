@@ -208,7 +208,7 @@ export async function stripeOrderApi(req,res) {
 
     if (!data) throw 'Paypal url is not correct url //' +data
 
-    log({id :data.id});
+    log(data.id);
 
     order.stripe_Token=data.id;
     await order.save();
@@ -226,13 +226,76 @@ export async function stripeOrderApi(req,res) {
 
 
 export async function stripeOrderSuccessApi(req,res) {
-    log(req.query)
-    Success(res)
+    try {
+        log(req.query.session_id)
+        function status(data=req.query.session_id) {
+          if (!token) return false
+          if (data.includes('{')) return false 
+          if (data.includes('}')) return false 
+          if (data.includes('*')) return false 
+          if (data.includes(':')) return false 
+          if (data.includes('[')) return false 
+          if (data.includes(']')) return false 
+          if (data.includes('(')) return false 
+          if (data.includes('(')) return false 
+          if (data.includes('$')) return false 
+          if (data.includes('>')) return false 
+          if (data.includes('<')) return false 
+          return true
+        }
+        status =status();
+        if (!status) return res.redirect('notAllowed');
+        Orders.findOneAndUpdate({
+            stripe_Token:req.query.session_id
+        },
+        {
+            activated:true
+        })
+        .then(e =>
+        {
+             log('order activated successful')
+             res.redirect('/accounts/student')
+        })
+        .catch(e => {
+            log(e)
+            res.redirect('/')
+        })
+        Success(res)
+    } catch (error) {
+        console.error({error});
+        
+        return
+    }
 }
 
 
 export async function stripeOrderCancellApi(req,res) {
-    log(req.query)
-    Success(res)
+    try {
+        function status(data=req.query.session_id) {
+            if (!token) return false
+            if (data.includes('{')) return false 
+            if (data.includes('}')) return false 
+            if (data.includes('*')) return false 
+            if (data.includes(':')) return false 
+            if (data.includes('[')) return false 
+            if (data.includes(']')) return false 
+            if (data.includes('(')) return false 
+            if (data.includes('(')) return false 
+            if (data.includes('$')) return false 
+            if (data.includes('>')) return false 
+            if (data.includes('<')) return false 
+            return true
+        }
+        status =status();
+        if (!status) return res.redirect('/shop');
+        if (status) {
+            await Orders.findOneAndDelete({
+                stripe_Token:req.query.session_id
+            });
+            return res.redirect('/shop');
+        }
+    } catch (error) {
+        console.log({error});
+    }
 }
 

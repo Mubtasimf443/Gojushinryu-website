@@ -133,7 +133,8 @@ export async function OrderSuccessPaypalApi(req,res) {
     if (!status) return res.redirect('notAllowed');
     Orders.findOneAndUpdate({
         paypal_order_id :token
-    },{
+    },
+    {
         activated:true
     })
     .then(e =>

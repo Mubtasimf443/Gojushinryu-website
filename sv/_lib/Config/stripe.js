@@ -16,8 +16,8 @@ export async function createStripeCheckOut({success_url,cancel_url,line_items ,a
         
     
     const session = await STRIPE.checkout.sessions.create({
-    cancel_url:BASE_URL+cancel_url,
-    success_url: BASE_URL +success_url,
+    cancel_url:BASE_URL+cancel_url +'?session_id={CHECKOUT_SESSION_ID}',
+    success_url: BASE_URL +success_url +'?session_id={CHECKOUT_SESSION_ID}',
     line_items:line_items,
     // [
     //     {
