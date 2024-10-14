@@ -58,7 +58,7 @@ export async function UploadEventApi(req, res) {
           let title =await repleCaracter(feilds.title[0]);
           let description =await repleCaracter(feilds.description[0]);
           let author =await repleCaracter(feilds.author[0]);
-          let gm_id =await reportError(feilds.gm_id[0])
+          let gm_id =await repleCaracter(feilds.gm_id[0])
           log(`//condition check pass`)
 
 
@@ -66,7 +66,7 @@ export async function UploadEventApi(req, res) {
           if (!gm) throw 'Their is no gm ';
 
 
-          let thumb =await UploadImageToCoudinary(files.thumb[0].filepath).then(({image,error})=> {
+          let thumb =await UploadImageToCloudinary(files.thumb[0].filepath).then(({image,error})=> {
             if (image) return image.url
             if (error) throw 'cloudianry error'
           })
@@ -106,3 +106,42 @@ export async function UploadEventApi(req, res) {
 
 }
   
+
+
+
+export async function getGmEvents(req,res) {
+  try {
+    let {gm_id}  =req.body;
+    if (!gm_id) throw 'error gm-id is not correct'
+    gm_id =await repleCaracter(gm_id)
+    let events=await Events.find({gm_writer :gm_id});
+    return res.status(200).json({events});
+  } catch (error) {
+    log({error})
+    return res.sendStatus(400)
+  }
+}
+
+
+
+
+export async function deleteEvent(req,res) {
+  try {
+    let {date}=req.body;
+    console.log(req.body);
+    
+    if (!date) throw 'date is not defined';
+    if (typeof date !== 'number') throw 'date is not a number';
+    if (date.toString().toLowerCase() === 'nan') throw 'date is  a NaN';
+    let event =await Events.findOneAndDelete({Date:date});
+    if (event) return res.sendStatus(200)
+  } catch (error) {
+    console.error({error});
+    return res.sendStatus(200)
+  }
+
+
+}
+
+
+

@@ -7,7 +7,7 @@ import { UplaodImageApiIn25Minutes } from '../_lib/api/UplaodImageApiIn25Minutes
 import AdminCheckMidleware from '../_lib/midlewares/AdminCheckMidleware.js';
 import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
 import { CreateACourseApi, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
-import { UploadEventApi } from '../_lib/model_base_function/Event.js';
+import { deleteEvent, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails } from '../_lib/model_base_function/Product.js';
 import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, getUserData, RemoveFromBanedUserFunction } from '../_lib/model_base_function/user.js';
@@ -55,6 +55,7 @@ apiRouter.post('/upload-event-api',UploadEventApi)
 apiRouter.post('/create-grand-master',CreateGMApi)
 apiRouter.post('/give-product-details', giveProductDetails)
 apiRouter.post('/find-membership-data',findMemberShipdata)
+apiRouter.post('/get-gm-events',getGmEvents)
 
 
 //Update
@@ -71,7 +72,7 @@ apiRouter.put('/remove-notification-form-database',userCheck,removeNotificationF
 apiRouter.delete('/delete-product',DeleteProduct)
 apiRouter.delete('/delete-grand-master-account',DeleteGMAccount)
 apiRouter.delete('/delete-user-account',DeleteUserAccount)
-
+apiRouter.delete('/delete-event', deleteEvent)
 
 //payments
 apiRouter.get('/paypal-order-success', OrderSuccessPaypalApi)
