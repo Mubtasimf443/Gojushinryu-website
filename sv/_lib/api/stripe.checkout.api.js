@@ -11,6 +11,8 @@ import { Alert, log, Success } from "../utils/smallUtils.js";
 
 
 export async function stripeOrderApi(req,res) {
+
+
     let { 
         first_name,
         last_name,
@@ -24,6 +26,9 @@ export async function stripeOrderApi(req,res) {
         items,
         street ,
     } =req.body; 
+
+
+    
     let testArray =[
         first_name,
         last_name,
@@ -36,6 +41,8 @@ export async function stripeOrderApi(req,res) {
         email ,
         street,
     ];
+
+
 
     let EmtyTest=await testArray.findIndex((el,index )=> { if (!el && index !== 8) return true });
     if (EmtyTest!==-1) return Alert('Please give add the data' ,res);
@@ -66,7 +73,7 @@ export async function stripeOrderApi(req,res) {
 
      
     let Order={ //mongo database
-        date:new Date().getDate()+ '-' + new Date().getMonth()+ '-' +new Date().getFullYear()  ,
+        date:new Date().getDate()+ '-' + new Date().getMonth()+ '-' +new Date().getFullYear(),
         reciever :{
             name :first_name + last_name,
             phone : country === 'canada' ? '+1' + phone : '+91' + phone,
@@ -102,18 +109,13 @@ export async function stripeOrderApi(req,res) {
     let totalProductValue=0;
 
     for (let i = 0; i < items.length; i++) {
-        let {id,quantity,size}  = items[i];
-        
+        let {id,quantity,size}  = items[i];     
         size =await repleCaracter(size)
         if (Number(quantity).toString().toLowerCase()==='nan') throw 'quantity is not ok // ' +quantity 
         if (Number(id).toString().toLowerCase() === 'nan') throw 'quantity is not ok // ' +id 
-        
-
         let prod=await Product.findOne({id})
         if (!prod) throw 'prod is not found'
        
-
-
         let {
             name ,  
             selling_style,

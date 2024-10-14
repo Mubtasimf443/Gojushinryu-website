@@ -61,7 +61,8 @@ let Membershipschema = new mongoose.Schema({
         default :false
     },
     payment_method:String,
-    paypal_token :String
+    paypal_token :String,
+    stripe_id :String
 })
 
 

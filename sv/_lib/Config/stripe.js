@@ -21,14 +21,14 @@ export async function createStripeCheckOut({success_url,cancel_url,line_items ,a
     line_items:line_items,
     // [
     //     {
-    //         price_data: {
-    //             currency: 'usd',
-    //             product_data: {
-    //                 name: 'Node.js and Express book'
-    //             },
-    //             unit_amount: 50 * 100
-    //         },
-    //         quantity: 1
+            // price_data: {
+            //     currency: 'usd',
+            //     product_data: {
+            //         name: 'Node.js and Express book'
+            //     },
+            //     unit_amount: 50 * 100
+            // },
+            // quantity: 1
     //     },
     //     {
     //         price_data: {
