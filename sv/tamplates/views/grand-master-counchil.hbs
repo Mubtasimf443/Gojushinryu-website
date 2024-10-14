@@ -18,11 +18,13 @@ Insha Allah,  By Your Marcy Ya Allah
   <link rel="stylesheet" href="/css/Grand-master-counchil/gm-note.css">
   <link rel="stylesheet" href="/css/Grand-master-counchil/gm-settings.css">
   <link rel="stylesheet" href="/css/Grand-master-counchil/event_upload.css">
+  <link rel="stylesheet" href="/css/Grand-master-counchil/writeNotesPopup.css">
   <script defer src="/js/gm/grand-master-couchil.js"></script>
   <script defer src="/js/gm/settings.js"></script>
   <script defer src="/js/gm/massages.js"></script>
   <script defer src="/js/gm/upload.event.js"></script>
   <script defer src="/js/gm/gm.events.js"></script>
+  <script defer src="/js/gm/notes.js"></script>
 
 
 <script>
@@ -37,7 +39,36 @@ Insha Allah,  By Your Marcy Ya Allah
 
 </head>
 
+
+
+
+
+
+
+<!-- Popup for writting notes -->
+<div style="display: none;" id="writeNotesPopup" class="writeNotesPopup">
+  <div class="form">
+    <strong>Create A note</strong>
+    <div class="inp-box">
+      <label for="notes-title-inp">Title</label>
+      <input type="text" id="notes-title-inp">
+    </div>
+    <div class="inp-box">
+      <label for="notes-description-inp">Description</label>
+      <textarea type="text" id="notes-description-inp"></textarea>
+    </div>
+    <div class="btns">
+      <button close >Close</button>
+      <button create >Save</button>
+    </div>
+  </div>
+</div>
+
+
+
 <body>
+
+
 
   {{>whiteHeader}}
 <main>
@@ -84,7 +115,7 @@ Insha Allah,  By Your Marcy Ya Allah
     <h2> Grand Master Counchil </h2>
     <span>
     <button id="upload-event-button">  Upload Event</button>
-    <button>Create A Note</button>
+    <button id="upload-note-button">Create A Note</button>
     </span>
 
   </div>
@@ -123,29 +154,18 @@ Insha Allah,  By Your Marcy Ya Allah
 <div gm_section style="display: none;" class="notes-section">
     <h2>Notes</h2>
     <div class="notes-container">
-    
-    
       <div class="notes">
         <div class="notes-div-1">
           <h2>
             Developing the Ui
-    
           </h2>
-          <div class="notes-icon">
-            <button>
-              <i class="fa-solid fa-pen"></i>
-            </button>
+          <div class="notes-icon"> 
             <button>
               <i class="fa-solid fa-trash"></i>
             </button>
-            <button>
-              <i class="fa-solid fa-eye"></i>
-            </button>
           </div>
         </div>
-        <p>
-          Hi buddy can you make this chart I need 7 in 1 line and 1 in bottom this one I can use in alliance
-        </p>
+        <p></p>
       </div>
     </div>
   </div>

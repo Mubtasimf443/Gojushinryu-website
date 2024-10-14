@@ -1,0 +1,99 @@
+/* 
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By Allah's Will,  I will earn success
+*/
+
+.writeNotesPopup{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    width: 100vw;
+    height: 100vh;
+    background: #00000046;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    overflow-inline: scroll;
+
+}
+
+.writeNotesPopup .form {
+    padding: 25px;
+    box-sizing: border-box;
+    background: white;
+    color: black;
+    width: 500px;
+    min-height: 200px;
+    max-height: fit-content;
+     /* overflow-y: scroll; 
+     overflow-inline:scroll ;  */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: left;
+    row-gap: 20px;
+}
+
+.writeNotesPopup .form .inp-box{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 0px;
+    flex-wrap: wrap;
+    row-gap: 10px;
+    width: 100%;
+    box-sizing: border-box;
+
+}
+
+.writeNotesPopup .form .inp-box label {
+    font-size: 18px;
+    width: 30%;
+}
+
+.writeNotesPopup .form .inp-box input {
+    background: #00000018;
+    border: none;
+    border-radius: 5px;
+    height: 24px;
+    width: 70%;
+}
+
+.writeNotesPopup .form .inp-box textarea {
+    background: #00000018;
+    border: none;
+    border-radius: 5px;
+    min-height: 35px;
+    width: 70%;
+    resize: vertical;
+    max-height:300px;
+}
+
+
+.btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.btns button {
+    width: 80px;
+    height: 30px;
+}
+
+.btns button:first-child {
+    border: 2px solid var(--main-cl);
+    color: black;
+    background:white;
+}
+.btns button:last-child {
+    border: 2px solid var(--main-cl);
+    color: black;
+    background:var(--main-cl);
+}
