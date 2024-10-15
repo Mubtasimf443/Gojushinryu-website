@@ -39,6 +39,7 @@ let courseEnrollmentSchema =new Schema({
     },
     payment_method :String,
     paypal_token:String,
+    stripe_session_id:String,
     
 })
 

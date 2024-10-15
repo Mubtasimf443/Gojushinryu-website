@@ -23,6 +23,7 @@ import { findMemberShipdata } from "../_lib/model_base_function/membership.js";
 import userCheck from "../_lib/midlewares/User.check.js";
 import { removeNotificationFromDatabase } from "../_lib/api/basic.notifiation.api.js";
 import { checkGM } from "../_lib/midlewares/gm.midleware.js";
+import { courseBuyCancellStripeApi, courseBuySuccessStripeApi, stripeCourseBuyAPiJs } from "../_lib/api/stripe.course.buy.api.js";
 
 
 
@@ -83,8 +84,10 @@ apiRouter.get('/paypal-course-buy-success',courseBuySuccessPaypalApi)
 apiRouter.get('/paypal-course-buy-cancell',courseBuyCancellPaypalApi)
 apiRouter.get('/stripe-order-success',stripeOrderSuccessApi)
 apiRouter.get('/stripe-order-cancel', stripeOrderCancellApi)
-
-
+apiRouter.get('/stripe-course-purchase-success',courseBuySuccessStripeApi)
+apiRouter.get('/stripe-course-purchase-cancel',courseBuyCancellStripeApi)
+apiRouter.get('/stripe-membership-success',membershipSuccessPaypalApi);
+apiRouter.get('/stripe-membership-cancel',membershipCancellPaypalApi);
 
 //mail
 apiRouter.post('/mail-notification-to-user',notificationMailApi)

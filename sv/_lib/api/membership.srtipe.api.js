@@ -221,7 +221,7 @@ export async function membershipMidleWareStripe(req,res,next) {
     }
 }
 
-async function stripeMembershipFunction(req,res) {
+export async function stripeMembershipFunction(req,res) {
     try {
         let user_info = req.user_info;
         let stripeTotal = req.stripeTotal;
@@ -310,8 +310,8 @@ async function stripeMembershipFunction(req,res) {
         
         let data = await createStripeCheckOut({
             line_items:stripe_items,
-            success_url :'/api/api_s/stripe-order-success',
-            cancel_url :'/api/api_s/stripe-order-cancel',
+            success_url :'/api/api_s/stripe-membership-success',
+            cancel_url :'/api/api_s/stripe-membership-cancel',
             amount_shipping : 0
         });
        
@@ -333,7 +333,7 @@ async function stripeMembershipFunction(req,res) {
 }
 
 
-async function stripeMembershipSuccessFunction(req,res) {
+export async function stripeMembershipSuccessFunction(req,res) {
     try {
         let {session_id}=req.query
         function status(data) {
@@ -405,7 +405,7 @@ async function stripeMembershipSuccessFunction(req,res) {
 }
 
 
-async function stripeMembershipCancelFunction(req,res) {
+export async function stripeMembershipCancelFunction(req,res) {
     try {
         
         let {session_id}=req.query

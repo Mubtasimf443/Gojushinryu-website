@@ -14,7 +14,6 @@ import { MakePriceString } from "../utils/string.manipolation.js";
 
 
 export async function courseBuyPaypalApi(req,res) {
-    let DbOnject;
     try {
         let {
             date_of_birth,
@@ -27,7 +26,7 @@ export async function courseBuyPaypalApi(req,res) {
    
         
         let user_info=req.user_info;//user check midleware
-        let testArray=[ date_of_birth,postcode,district,country,city,course_id];
+        let testArray=[date_of_birth,postcode,district,country,city,course_id];
         let emtytestPassResult=testArray.findIndex(el => !el);
         if (emtytestPassResult !== -1) throw new Error("emtytest failed");
         log('// emtytestPassResult === true')
@@ -49,7 +48,7 @@ export async function courseBuyPaypalApi(req,res) {
         user.city=user.city ? user.city:city;
         user.district=user.district ? user.district:district;
         user.postCode = user.postCode ? user.postCode :postcode ;
-        user.save();
+        await user.save();
 
 
         let course=await Course.findOne({id : course_id});
@@ -70,15 +69,16 @@ export async function courseBuyPaypalApi(req,res) {
             student_district :district ,
             student_postcode :postcode ,
         });
+
+
         courseEnrollMent=await courseEnrollMent.save()
-
-
-
         let paypalItemsObject={};
         let paypalItemsArray =[];
         paypalItemsObject.name =course.title.length >100? course.title.substring(0,100):course.title,
         paypalItemsObject.description =course.description.length >100? course.description.substring(0,100):course.description,
         paypalItemsObject.quantity=1 ;
+        
+
         paypalItemsObject.unit_amount={ 
             currency_code:'USD',
             value : price
@@ -86,6 +86,8 @@ export async function courseBuyPaypalApi(req,res) {
 
         log('//price '+ price)
         paypalItemsArray.push(paypalItemsObject);
+
+
 
         let {error,success,paypal_id,link } = await createPaypalPayment({
             items:paypalItemsArray,
@@ -105,11 +107,6 @@ export async function courseBuyPaypalApi(req,res) {
             await courseEnrollMent.save()
             return res.status(201).json({success,link})
         }
-
-
-
-
-
 
 
     } catch (e) {
@@ -182,17 +179,17 @@ export async function courseBuyCancellPaypalApi(req,res) {
     log({token})
     function status(data) {
       if (!data) return false
-      if (data.includes('{')) return false 
-      if (data.includes('}')) return false 
-      if (data.includes('*')) return false 
-      if (data.includes(':')) return false 
-      if (data.includes('[')) return false 
-      if (data.includes(']')) return false 
-      if (data.includes('(')) return false 
-      if (data.includes('(')) return false 
-      if (data.includes('$')) return false 
-      if (data.includes('>')) return false 
-      if (data.includes('<')) return false 
+      if (data.includes('{')) return false
+      if (data.includes('}')) return false
+      if (data.includes('*')) return false
+      if (data.includes(':')) return false
+      if (data.includes('[')) return false
+      if (data.includes(']')) return false
+      if (data.includes('(')) return false
+      if (data.includes('(')) return false
+      if (data.includes('$')) return false
+      if (data.includes('>')) return false
+      if (data.includes('<')) return false
       return true
     }
     status =status(token);
