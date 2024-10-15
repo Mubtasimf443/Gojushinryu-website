@@ -9,12 +9,12 @@ import { log } from '../utils/smallUtils.js';
 import { JWT_SECRET_KEY } from '../utils/env.js';
 
 function Alert(params,res,not_a_user) {
-    return res.status(400).json({error :params,notAUser:not_a_user?not_a_user :true})
+    return res.status(400).json({ error : params , notAUser: not_a_user ? not_a_user : true })
 }
 
 const userCheck = async (req,res,next) => {
     let {rft} =req.cookies;
-    if (!rft) return Alert('You can not access this page , Please login')
+    if (!rft) return Alert('You can not access this page , Please login' ,res)
     await jwt.verify(rft,JWT_SECRET_KEY,async (err,data) => {
         if (err) {
             log(err)

@@ -70,12 +70,15 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         if (!images.length) return
         let title = v(`[placeholder="Write the event Title"]`)
         let description = v(`[placeholder="Write the event Description"]`);
+        let eventDate = eventUploadSection.querySelector(`[placeholder="Write the event Date"]`).valueAsNumber;
+        if (!eventDate) throw 'event date is null '
         let formData =new FormData();
         formData.append('title',title);
         formData.append('description',description);
         formData.append('thumb',thumb);
         formData.append('author',gmName)
         formData.append('gm_id', gmID)
+        formData.append('eventDate',eventDate)
         for (let i = 0; i < images.length; i++) formData.append(`images`, images[i]);  
         try {
 

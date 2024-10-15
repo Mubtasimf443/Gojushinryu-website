@@ -498,21 +498,35 @@ body{
   justify-content: center;
   align-items: center;
   border-radius:5px ;
-  width: 6em;
+  width: 6.5em;
   height: 2.5em;
   font-weight: 500;
   text-transform: capitalize;
  }
  #payment-info-form>.paymetn-btn-div>button:nth-child(2){
-  background:  var(--main-cl);
+  background:  black;
   color:white;
-  border: 2px solid var(--main-cl);
+  border: 2px solid black;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-radius:5px ;
-  width: 7.5em;
+  width: 8.2em;
+  height: 2.5em;
+  font-weight: 500;
+  text-transform: capitalize;
+ }
+
+
+ #payment-info-form>.paymetn-btn-div>button:nth-child(3){
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  border-radius:5px ;
+  width: 8.2em;
   height: 2.5em;
   font-weight: 500;
   text-transform: capitalize;

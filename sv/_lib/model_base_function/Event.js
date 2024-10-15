@@ -3,7 +3,7 @@
 */
 import formidable from "formidable";
 import { Events } from "../models/Event.js";
-import { log } from "../utils/smallUtils.js";
+import { Alert, log } from "../utils/smallUtils.js";
 import path from 'path'
 import {fileURLToPath} from 'url'
 import { repleCaracter } from "../utils/replaceCr.js";
@@ -55,17 +55,18 @@ export async function UploadEventApi(req, res) {
           if (!feilds.description) throw 'description is is not define '
           if (!feilds.author) throw 'author is is not define '
           if (!feilds.gm_id) throw 'author is is not define '
+          if (!feilds.eventDate) throw 'event date is is not define '
           let title =await repleCaracter(feilds.title[0]);
           let description =await repleCaracter(feilds.description[0]);
           let author =await repleCaracter(feilds.author[0]);
           let gm_id =await repleCaracter(feilds.gm_id[0])
+          let eventDate =feilds.eventDate[0];
+          eventDate =Number(eventDate);
+          if (eventDate.toString() ==='NaN') return Alert('event date is not correct',res)
+
           log(`//condition check pass`)
-
-
           let gm =await GM.findOne({_id :gm_id})
           if (!gm) throw 'Their is no gm ';
-
-
           let thumb =await UploadImageToCloudinary(files.thumb[0].filepath).then(({image,error})=> {
             if (image) return image.url
             if (error) throw 'cloudianry error'
@@ -90,7 +91,8 @@ export async function UploadEventApi(req, res) {
             author, 
             thumb,
             images ,
-            gm_writer :gm._id
+            gm_writer :gm._id,
+            eventDate,
           })
 
           return res.sendStatus(201);
@@ -145,3 +147,44 @@ export async function deleteEvent(req,res) {
 
 
 
+
+export async function eventPageNavigation(req,res) {
+  try {
+    let events = await Events.find({});
+    // console.log(events);
+    
+    for (let i = 0; i < events.length; i++) {
+      let {title,description,thumb,eventDate,gm_writer} = events[0];
+      events.push({
+        title : title.length >120 ?title.substring(0,120) :title,
+        description : description.length >220 ?description.substring(0,220) :description,
+        thumb:thumb,
+        day :new Date(eventDate).getDate(),
+        month :(e => {
+          let m=new Date(eventDate).getMonth();
+          if (m === 0) return 'Jan'
+          if (m === 1) return 'Feb'
+          if (m === 2) return 'Mar'
+          if (m === 3) return 'Apr'
+          if (m === 4) return 'May'
+          if (m === 5) return 'June'
+          if (m === 6) return 'July'
+          if (m === 7 ) return 'Aug'
+          if (m === 8) return 'Sep'
+          if (m === 9) return 'Oct'
+          if (m === 10) return 'Nov'
+          if (m === 11) return 'Dec'
+        })(),
+        year:new Date(eventDate).getFullYear()
+      });
+
+      events.shift();
+    }
+  
+     log({events})
+    return res.render('events',{events:events})
+  } catch (error) {
+    log({error})
+    return res.render('events')
+  }
+}

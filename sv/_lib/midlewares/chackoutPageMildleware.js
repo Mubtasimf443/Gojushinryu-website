@@ -12,27 +12,21 @@ import { JWT_SECRET_KEY } from '../utils/env.js';
 
 
 export const checkoutPageMidleware = async (req,res,next) => {
+    try {
+        
+    
     let {rft} =req.cookies;
-    if (!rft) return res.render(  'massage_server',{
-            title:'Please Login ',
-            body :'You can not access this page , Please login'
-        })
+    if (!rft) return res.redirect('/auth/sign-in')
     await jwt.verify(rft,JWT_SECRET_KEY,async (err,data) => {
         if (err) {
             log(err)
-            return  res.render(  'massage_server',{
-                title:'Please Login ',
-                body :'You can not access this page , Please login'
-            })
+            return  res.redirect('/auth/sign-in')
         }
         if (data ) {
            let {email} =data;
            if (!email) return res.clearCookie('rft').status(401).json({error :'You can not access this feature'})
            let user= await User.findOne({email}) ;
-           if (!user) return res.render(  'massage_server',{
-            title:'Please Login ',
-            body :'You can not access this page , Please login'
-        });
+           if (!user) return res.redirect('/auth/sign-in');
            if (user) { 
                 let {first_name,last_name,email,phone,country,district,city,street,postCode}=user;
                 res.render('checkout',{
@@ -50,4 +44,8 @@ export const checkoutPageMidleware = async (req,res,next) => {
             }
         }
     }) ;
+} catch (error) {
+console.error({error});
+        
+}
 }

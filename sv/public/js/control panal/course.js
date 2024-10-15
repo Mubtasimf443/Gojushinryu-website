@@ -4,7 +4,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
 */
 {
 
-
+/*
 
     //dom
     let courseSection=document.querySelector(`[id="couses-list-and-uplaod-container"]`);
@@ -174,7 +174,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
             .then(data => {
                 let {error,success}=data;
                 log(data)
-                if (error) return log(error);
+                if (error) return alert(error)
                 if (success) return window.location.reload();
             })
         .catch(r => log(e))
@@ -196,6 +196,7 @@ let observer =new IntersectionObserver(enties => {
             for (let i = 0; i < courses.length; i++) {
                 let {title,thumb,price,id} = courses[i];
                 let tr= document.createElement('tr');
+                tr.setAttribute('course_id', id);
                 tr.innerHTML=`
                 <td><img src="${thumb}" alt=""></td>
                 <td>
@@ -206,9 +207,22 @@ let observer =new IntersectionObserver(enties => {
                 <td>
                 <span class="price">${price}.00$</span>
                 </td>
-                <td> <button course_id="${id}" class="action">Action</button></td>
+                <td> <button course_id="${id}" class="action">Delete</button></td>
                 `;
-                table.appendChild(tr)
+                table.appendChild(tr) ;
+
+                tr.querySelector('button').addEventListener('click' ,async e => {
+                    try {
+                    let res= await fetch(window.location.origin +'/api/api_s/delete-course?id='+e.target.getAttribute('course_id'),{method :'DELETE'})
+                    if (res.status=== 200) {
+                        table.querySelectorAll('tr').forEach(el => {
+                           if (el.getAttribute('course_id') ==e.target.getAttribute('course_id')) el.remove()
+                        })
+                    }
+                } catch (error) {
+                        
+                    }
+                })
             }
         })
         .finally(e => tableDone =true)
@@ -249,6 +263,6 @@ const v2=(htmlElementSelector) => {
 }
 
 
-
+*/
 
 }

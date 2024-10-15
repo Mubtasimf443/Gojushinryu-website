@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+  <!--  
+  بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+  InshaAllah, Allah is Marcyfull and He will gove me success
+  -->
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>
+      Join Our Regular Martial Classes - Goju Shin Ryu
+    </title>
+    <meta name="author" content="Goju Shin Ryu">
+    <meta name="title" content="Join Our Regular Martial Classes - Goju Shin Ryu">
+    <meta name="description" content="
+    Join Our Regular Martial Classes - Goju Shin Ryu
+    ">
+    <meta name="keywords" content="Join Our Regular Martial Classes , Goju Shin Ryu  ,Traditional School of Martial Arts , Martial Arts Courses ">
+    <meta property="og:url" content="https://gojushinryu.com/">
+    <meta property="og:site_name" content="GOJU SHIN RYU">
+    <meta property="og:type" content="website">
+    <meta property="og:name" content="Join Our Regular Martial Classes ">
+    <meta property="og:description" content="Join Our Regular Martial Class -Goju Shin Ryu">
+    <meta property="og:image" content="/img/3101.jpg">
+  {{>Links}}
+      <link rel="stylesheet" href="/css/pages/couse.selling.page.css">
+   <script defer src="/js/calender.js"></script>
+   <script defer src="/js/course.selling.js"></script>
+   <script>
+    var course_id=1;
+    let classDates ='2,3,9,10,16,17,23,24' ;
+   </script>
+<style>
+  #header{
+    position: static;
+    background: white;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.007) , 0px 0px 0px rgba(0, 0, 0, 0.007) ,0px 0px 10px rgba(0, 0, 0, 0.07) ,0px 0px 0px rgba(0, 0, 0, 0.007) ;
+  }
+   #header > nav > div > a {
+    color: black;
+   }
+</style>
+
+
+</head>
+
+<body>
+
+  {{!-- Links popup --}}
+  <div id="Links-container">
+    <div class="link-popup">
+      <img src="/icon/facebook.png" alt="facebook icon">
+      <img src="/icon/instragram.png" alt="instagram icon">
+      <img src="/icon/twitter.png" alt=" twitter (X) icon"> 
+      <img src="/icon/linkedin.png" alt="linkedin icon">
+      <div  class="copy-btn-box">
+        <i class="fa-solid fa-copy"></i>
+      </div>
+      <div class="Links-container-close-btn">
+        <i class="fa-solid fa-close"></i>
+      </div>
+    </div>
+  </div>
+
+
+  <main>
+    {{>Header}}
+
+    <!-- course Section -->
+    
+<section class="course-section">
+  
+
+    <article class="course-article">
+{{!--    
+      <div class="t_heading">
+       <a><i class="fa-solid fa-home home"></i></a>
+       <a><i>>></i></a>
+       <a>Course</a>
+       <a><i>>></i></a>
+       <a>
+         Martial Art Course
+       </a>
+      </div> --}}
+      
+      <div class="m_img_div">
+        <img src="/img/abs-slide/slide17.jpg" id="----m-image" alt="first Thumbnail Of the Course">
+      </div>
+      <div class="galerry_slider_div">
+    
+         <img 
+        class="gly_img" 
+        src="/img/abs-slide/slide15.jpg" 
+        alt="first Thumbnail Of the Course">
+        <img 
+        class="gly_img" 
+        src="/img/abs-slide/slide17.jpg"
+        alt="Second Thumbnail Of the Course"
+        >
+        <img 
+        class="gly_img" 
+        src="/img/abs-slide/slide32.jpg"
+        alt="third Thumbnail Of the Course"
+        >
+      
+      </div>
+<div class="name-div">
+        <h1>
+          {{!-- {{title}} --}}
+         Join Our Martial Art Regular Classes
+        </h1>
+      </div>
+      <h2 class="dresciption_heading">
+        Description 
+        </h2>
+      <div class="description-div">
+        <p>
+          
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Praesentium possimus omnis totam qui soluta? Numquam cumque incidunt mollitia earum molestiae quidem dolore rem ad tenetur, cupiditate, quisquam sunt libero in?
+  Lorem, ipsum dolor sit amet consectetur adipisicing elit. Libero placeat aut vel dolorem perferendis adipisci voluptatum! Reiciendis similique voluptate quisquam quae consectetur sapiente dolorum labore. Necessitatibus quas enim blanditiis quia.
+ <br>
+ <br>
+ Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repellat sint, nam nemo quos veritatis porro vero molestiae labore sequi unde ea ipsam vel laboriosam assumenda dolores, id corrupti cum blanditiis.
+ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet accusamus quaerat quod autem sed! Praesentium quibusdam esse magnam in itaque odit doloribus voluptatum deserunt quaerat blanditiis harum, placeat, similique reprehenderit!
+</p>
+      </div>
+  <h2 class="dt-h2">Classes Dates</h2>
+ <div id="calendar" class="calendar">
+      <div class="cld-header">
+        <h3></h3>
+        <nav class="cl-nav">
+          <button id="prev"><</button>
+          <button id="next">></button>
+        </nav>
+      </div>
+      <div class="cl-sec">
+        <div class="days">
+          <div class="day-list">Sun</div>
+          <div class="day-list">Mon</div>
+          <div class="day-list">Tue</div>
+          <div class="day-list">Wed</div>
+          <div class="day-list">Thu</div>
+          <div class="day-list">Fri</div>
+          <div class="day-list">Sat</div>
+        </div>
+        <div class="dates"></div>
+      </div>
+      <div class="base-calender">
+        <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Seniur</b>
+            {{!-- <span>{{seniorStartTime}} - {{seniorEndTime}}</span> --}}
+            <span>10:00 AM - 11:00AM  </span>
+          </div>
+
+        </div>
+         <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Joniur</b>
+            <span>
+            11:00AM :12:00PM
+              {{!-- {{juniorStartTime}} - {{juniorEndTime}} --}}
+            </span>
+          </div>
+
+        </div>
+      </div>
+ </div>    
+      <div class="similar_course_div">
+     
+      </div>
+    </article>
+    <!-- div course float option -->
+    <div class="course-float-sec">
+    <div class="fl-icon-box">
+       <button class="add-to-fev">
+        <i class="fa-regular fa-heart"></i>
+      </button>
+      <button title="share" class="add-to-fev">
+        <i class="fa-solid fa-link"></i>
+      </button>
+     
+    </div>
+   <div class="fl-box">
+      {{!-- <div class="fl-heading">
+        <h3>Apply For The Course </h3>
+      </div> --}}
+      {{!-- <div class="input-box">
+        <label for="--inp-name">Name </label>
+        <input type="text" value="{{name}}" placeholder="Student Name" id="--inp-name">
+      </div> --}}
+      {{!-- <div class="input-box">
+        <label for="--inp-name">Email</label>
+        <input type="text" value="{{email}}" placeholder="Student Email" id="--inp-email">
+      </div> --}}
+      {{!-- <div class="input-box">
+        <label for="--inp-name">Phone </label>
+        <input type="text" value="{{phone}}" placeholder="Student Number" id="--inp-phone">
+      </div>  --}}
+      <div class="input-box">
+        {{!-- <label for="--inp-name">Date Of Birth</label> --}}
+        <input type="text" onblur="(this.type='text')" onclick="(this.type='date')" placeholder="Birth Date" id="--inp-dob">
+      </div>
+  <div class="input-box">
+        {{!-- <label for="--inp-name">Country</label> --}}
+        <input type="text"  placeholder="Country" id="--inp-country">
+      </div>
+      <div class="input-box">
+      {{!-- <label for="--inp-name">City</label> --}}
+        <input type="text" placeholder="District" id="--inp-district">
+      </div>
+      <div class="input-box">
+         {{!-- <label for="--inp-name">Road/Street/Village</label> --}}
+        <input type="text" placeholder="City" id="--inp-city">
+      </div>
+        <div class="input-box">
+         {{!-- <label for="--inp-name">Road/Street/Village</label> --}}
+        <input type="number" placeholder="postcode" id="--inp-postcode">
+      </div>
+    
+      <div class="fl-option-div">
+        <button style="background-color: black;border:2px solid black">
+          <i class="fa-regular fa-credit-card"></i>
+          Purchase Course at $200.00
+          </button>
+        <button paypal_purchase_btn > 
+          <i class="fa-brands fa-paypal"></i>
+          Paypal Purchase at $200.00
+        </button>
+      </div>
+    </div>
+    
+    </div>
+</section>
+    
+  </main>
+
+
+  {{>Footer}}
+</body>
+
+</html>

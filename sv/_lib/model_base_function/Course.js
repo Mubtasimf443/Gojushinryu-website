@@ -86,18 +86,18 @@ export async function CreateACourseApi(req,res) {
 
     }
 
-    
-
-    Course.create(courseData).then(e => res.status(201).json({success:true}))
-
-
-
+    let check= await Course.findOne({title : courseData.title});
+    if (check) return res.status(400).json({error :'Please do not use same name'})
+    await Course.create(courseData).then(e => res.status(201).json({success:true}))
   } catch (e){ 
     log(e)
-    return Alert('failed to upload Data')
+    return Alert('failed to upload Data' ,res)
   }
 }
-export async function UpdateCourseDates() {
+export async function UpdateCourseDates(req,res) {
+    function alert(error) {
+     return res.json({error })
+    }
     let { dateArray, id} = req.body;
     if (!dateArray instanceof Array) return alert('Server Error, Please Contact The Developer');
     if (!dateArray.length) return alert('Please Give Date, You Can not Make it Emty');
@@ -118,3 +118,18 @@ export async function UpdateCourseDates() {
      })
    })
 };
+export async function deleteCourseApi(req,res) {
+  function alert(error) {
+    return res.json({error })
+  }
+  try {
+    let {id} =req.query ;
+    if (!id)  throw 'Not a defined'
+    if (Number(id).toString() === 'NaN') throw 'Not a number'
+    await Course.findOneAndDelete({id:Number(id)});
+    return res.sendStatus(200)
+  } catch (error) {
+    res.sendStatus(400)
+  }
+  
+}

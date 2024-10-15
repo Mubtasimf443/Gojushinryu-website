@@ -30,6 +30,11 @@ const schema = mongoose.Schema({
     type: Number,
     default: Date.now,
   },
+
+  eventDate:{
+    type :Number,
+    required:true
+  },
   // writen_type:{
   //   type: Boolean,
   //   required: true,

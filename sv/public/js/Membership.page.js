@@ -343,6 +343,9 @@ function ChangeYesNoStatenent(target) {
 
 }
 
+
+/*---------------------------- Paypal membership function ----------------------------*/
+
 async function paypalMembershipFunction(e) {
   e.preventDefault();
   try {
@@ -366,6 +369,36 @@ async function paypalMembershipFunction(e) {
     log(e)
   }
 }
+
+
+/*---------------------------- credit card membership function   ----------------------------*/
+
+
+
+async function stripeMembershipFunction(e) {
+  e.preventDefault();
+  try {
+    let jsonObject=await JSON.stringify(userInfo);
+    alert('working')
+    fetch(window.location.origin + '/api/l-api/stripe-membership-api' ,{
+      method:'POST',
+      headers:{
+        'Content-Type' :'application/json'
+      },
+      body:jsonObject
+    })
+    .then(data=>data.json())
+    .then(data=>{
+      log(data)
+      if (data.error) return alert(data.error);
+      if (data.success) return window.location.assign(data.link)
+    })
+    .catch(e => log(e))
+  } catch (e) {
+    log(e)
+  }
+}
+
 /*----------- event delegation and  listener ----------*/
 document.addEventListener('click',e => {
   //aplicant info continue btn
@@ -406,55 +439,22 @@ policy2Input.addEventListener('change' ,e => {
   e.target.setAttribute('status',status)
 })
 
-document.querySelector(`[credit_card_check_div]`)
-.addEventListener('click',e => {
-  let i =document.querySelector(`[credit_card_check_div]`).querySelector('i');
-  if (!i) {
-    i=document.createElement('i');
-    i.className='fa-solid fa-check';
-    document.querySelector(`[credit_card_check_div]`).appendChild(i);
-    document.querySelectorAll(`[Credit_Card_info]`).forEach(el => el.style.display ='flex');
-    document.querySelector(`[paypal_check_div]`).querySelector('i').remove();
-    document.getElementById('credit-card-payment-Continue-btn').style.display='flex';
-    let paypalBtn= document.getElementById('paypal-payment-Continue-btn');
-    if (paypalBtn) paypalBtn.remove();
-    return
-  }
-});
+
+document.getElementById('paypal-payment-btn').addEventListener('click',e => paypalMembershipFunction(e))
+document.getElementById('credit-card-payment-Continue-btn').addEventListener('click',e => stripeMembershipFunction(e))
 
 
-document.querySelector(`[paypal_check_div]`)
-.addEventListener('click',e => {
-  let i =document.querySelector(`[paypal_check_div]`).querySelector('i');
-  if (!i) {
-    i=document.createElement('i');
-    i.className='fa-solid fa-check';
-    document.querySelector(`[paypal_check_div]`).appendChild(i);
-    document.querySelectorAll(`[Credit_Card_info]`).forEach(el => el.style.display ='none');
-    document.querySelector(`[credit_card_check_div]`).querySelector('i').remove();
-    document.getElementById('credit-card-payment-Continue-btn').style.display='none';
-    let paypalBtn=document.createElement('button');
-    paypalBtn.id='paypal-payment-Continue-btn';
-    paypalBtn.innerHTML=`<span>Paypal Order </span><i class="fa-brands fa-paypal" ></i>`;
-   
-    paypalBtn.style.display='flex';
-    paypalBtn.style.flexDirection='row';
-    paypalBtn.style.justifyContent="center";
-    paypalBtn.style.alignItems='center';
-    paypalBtn.style.columnGap='6px';
-    paypalBtn.style.color='#fff';
-    paypalBtn.style.background='#212c62'
-    paypalBtn.style.border='none'
-    paypalBtn.style.width='130px'
-    paypalBtn.style.height='36px'
-   paypalBtn.style.borderRadius='4.5px'
-   paypalBtn.style.fontWeight='600'
-   paypalBtn.addEventListener('click',paypalMembershipFunction)
-    document.querySelector(`[class="paymetn-btn-div"]`).appendChild(paypalBtn);
-    
-    return
-  }
-});
+
+
+
+
+
+
+
+
+
+
+
 
 
 

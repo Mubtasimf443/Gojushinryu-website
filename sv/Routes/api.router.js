@@ -6,7 +6,7 @@ import { ChangeuserData, changeUserPasswordAPI } from '../_lib/api/Change.userDa
 import { UplaodImageApiIn25Minutes } from '../_lib/api/UplaodImageApiIn25Minutes.js';
 import AdminCheckMidleware from '../_lib/midlewares/AdminCheckMidleware.js';
 import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
-import { CreateACourseApi, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
+import { CreateACourseApi, deleteCourseApi, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
 import { deleteEvent, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails } from '../_lib/model_base_function/Product.js';
@@ -24,6 +24,7 @@ import userCheck from "../_lib/midlewares/User.check.js";
 import { removeNotificationFromDatabase } from "../_lib/api/basic.notifiation.api.js";
 import { checkGM } from "../_lib/midlewares/gm.midleware.js";
 import { courseBuyCancellStripeApi, courseBuySuccessStripeApi, stripeCourseBuyAPiJs } from "../_lib/api/stripe.course.buy.api.js";
+import { stripeMembershipCancelFunction, stripeMembershipSuccessFunction } from "../_lib/api/membership.srtipe.api.js";
 
 
 
@@ -42,13 +43,13 @@ apiRouter.get('/find-product-image',findProductImage)
 apiRouter.get('/find-user',FindUser)
 apiRouter.get('/find-order',findOrders)
 apiRouter.get('/find-member', FindMember)
-apiRouter.get('/courses',giveCourseJsonApi)
+// apiRouter.get('/courses',giveCourseJsonApi)
 apiRouter.get('/get_user_orders',userCheck,findUserOrder)
 apiRouter.get('/get-user-data',userCheck,getUserData)
 
 //Post Route
 apiRouter.post('/contact' , Contact_us_api_Function)
-apiRouter.post('/upload-course',CreateACourseApi);
+// apiRouter.post('/upload-course',CreateACourseApi);
 apiRouter.post('/upload-product',AdminCheckMidleware,UploadProductApi);
 apiRouter.post('/upload-image-for-10-minutes',UplaodImageApi)
 apiRouter.post('/upload-image-for-25-minutes',UplaodImageApiIn25Minutes);
@@ -62,18 +63,22 @@ apiRouter.post('/get-gm-events',getGmEvents)
 //Update
 apiRouter.put('/Update-User-Data',ChangeuserData);
 apiRouter.put('/Update-User-Password',changeUserPasswordAPI);
-apiRouter.put('/update-cousre-dates',UpdateCourseDates);
+// apiRouter.put('/update-cousre-dates',UpdateCourseDates);
 apiRouter.put('/update-grand-master',checkGM ,UpdateGmDataAPI);
 apiRouter.put('/bann-user',BaneUserFunction);
 apiRouter.put('/remove-from-bann-user', RemoveFromBanedUserFunction);
 apiRouter.put('/update-order-status', updateOrderStatus);
 apiRouter.put('/remove-notification-form-database',userCheck,removeNotificationFromDatabase)
 
+
+
 //Delete
 apiRouter.delete('/delete-product',DeleteProduct)
 apiRouter.delete('/delete-grand-master-account',DeleteGMAccount)
 apiRouter.delete('/delete-user-account',DeleteUserAccount)
 apiRouter.delete('/delete-event', deleteEvent)
+// apiRouter.delete('/delete-course',deleteCourseApi )
+
 
 //payments
 apiRouter.get('/paypal-order-success', OrderSuccessPaypalApi)
@@ -86,8 +91,9 @@ apiRouter.get('/stripe-order-success',stripeOrderSuccessApi)
 apiRouter.get('/stripe-order-cancel', stripeOrderCancellApi)
 apiRouter.get('/stripe-course-purchase-success',courseBuySuccessStripeApi)
 apiRouter.get('/stripe-course-purchase-cancel',courseBuyCancellStripeApi)
-apiRouter.get('/stripe-membership-success',membershipSuccessPaypalApi);
-apiRouter.get('/stripe-membership-cancel',membershipCancellPaypalApi);
+apiRouter.get('/stripe-membership-success',stripeMembershipSuccessFunction);
+apiRouter.get('/stripe-membership-cancel',stripeMembershipCancelFunction);
+
 
 //mail
 apiRouter.post('/mail-notification-to-user',notificationMailApi)

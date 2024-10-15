@@ -13,6 +13,7 @@ import { checkoutPageMidleware } from "../_lib/midlewares/chackoutPageMildleware
 import userCheck, { userCheckAndNavigation } from "../_lib/midlewares/User.check.js";
 import { MembershipPageNavigation } from "../_lib/midlewares/membership.page.js";
 import { coursePageNavigation } from "../_lib/midlewares/course.page.navigation.js";
+import { eventPageNavigation } from "../_lib/model_base_function/Event.js";
 
 
 let pageRouter = Router();
@@ -21,8 +22,11 @@ let pageRouter = Router();
 pageRouter.use(fileRateLimter)
 pageRouter.get('/home', (req, res) => res.render('home'))
 // pageRouter.get('/course', FindCourseApi)
-pageRouter.get('/courses/:name',userCheckAndNavigation,coursePageNavigation)
-pageRouter.get('/Membership-application',userCheck, MembershipPageNavigation)
+
+pageRouter.get('/courses',(req,res) => res.render('course-selling-page'))
+pageRouter.get('/courses/date',(req,res) => res.render('calender'))
+
+pageRouter.get('/Membership-application',userCheckAndNavigation, MembershipPageNavigation)
 pageRouter.get('/about-us/goju-shin-ryo', (req, res) => res.render('about-us-gsr'))
 pageRouter.get('/about-us/school-of-tradistional-martial-arts', (req, res) => res.render('about-us-smta'))
 // pageRouter.get('/dates',(req,res)=>res.render('calender'))
@@ -57,7 +61,7 @@ pageRouter.get('/control-panal',addMinPageRoute);
 pageRouter.get('/media/:name',(req,res) => {
     if (req.params.name === 'videos') return res.render('video');
     if (req.params.name === 'video') return res.render('video');
-    if (req.params.name==="events") return res.render('events');
+    if (req.params.name==="events") return eventPageNavigation(req,res)
     if (req.params.name==="post") return res.render('events');
     if (req.params.name==="images") return res.render('images');    
 })
@@ -67,7 +71,14 @@ pageRouter.get('/accounts/:name',async (req,res)=>{
     if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req,res)
     if (req.params.name === 'student') return StudentCornerPageRoute(req,res)
 })
-
+pageRouter.get('/course/:name',(req,res)=> {
+    let name =req.params.name;
+    if (name === 'regular-classes') return res.render('course__regular__class')
+    if (name === 'Online-classes') return res.render('course__online__class')
+    if (name === 'our-seminars') return res.render('course_our_seminar')
+    if (name === 'women-fitness-classes') return res.render('course__womens_seminars')
+    if (name === 'bhangar-fitness-classes-for-all-ages') return res.render('course__banghar__fitness__class')
+})
 
 
 

@@ -2,8 +2,15 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
 InshaAllah, By his marcy I will Gain Success 
 */
+import { createStripeCheckOut } from "../Config/stripe.js";
+import { sendMembershipMails } from "../mail/membership.mail.js";
+import { Memberships } from "../models/Membership.js";
 import { Orders } from "../models/Order.js";
+import { User } from "../models/user.js";
+import { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
+import { MakePriceString, makeTimeString } from "../utils/string.manipolation.js";
+
 
 
 
@@ -166,8 +173,8 @@ export async function membershipMidleWareStripe(req,res,next) {
             if (typeof membership_object !== 'object' || !membership_object) throw new Error("membership_object problem");
            
            
-            stripeTotal +=membership_object.price;
-            membership_object.price =await MakePriceString(membership_object.price);
+            stripeTotal +=(membership_object.price_data.unit_amount /100);
+            
             stripe_items.push(membership_object);
             membeship_array.push({
                 membership_company: company,
@@ -335,7 +342,8 @@ export async function stripeMembershipFunction(req,res) {
 
 export async function stripeMembershipSuccessFunction(req,res) {
     try {
-        let {session_id}=req.query
+        let {session_id}=req.query;
+        if (!session_id) return res.render('notAllowed')
         function status(data) {
          if (!data) return false
          if (data.includes('{')) return false 
@@ -352,6 +360,7 @@ export async function stripeMembershipSuccessFunction(req,res) {
          return true
         }
         status =status(session_id);
+        log({status})
         if (!status) return res.redirect('notAllowed');
         let memberships=await Memberships.find({
             stripe_id :session_id
@@ -361,7 +370,7 @@ export async function stripeMembershipSuccessFunction(req,res) {
         for (let i = 0; i < memberships.length; i++) {
             let {_id,id,user_id,membership_type,membership_company,membership_name} = memberships[i];
             await Memberships.findByIdAndUpdate(_id,{activated:true}).then(e => {})
-            let user= await Users.findById(user_id);
+            let user= await User.findById(user_id);
             if (user ) {
              let length=user.memberShipArray.length;
              if(!length) {

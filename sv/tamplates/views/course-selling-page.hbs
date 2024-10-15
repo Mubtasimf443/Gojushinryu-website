@@ -11,6 +11,9 @@ Insha Allab,  By the marcy of Allah,  I will gain success
   <meta name="title" content="Enroll to courses of Martial Art | karate | krav mega ">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="title" content="Enroll Martial Courses | Goju Shin Ryu">
+  <meta name="description" content="THE SCHOOL OF TRADITIONAL MARTIAL ARTS offers a different path to physical, mental and spiritual fulfilment through the systematic study of traditional Goju Ryu Karate and or Jiu Jitsu.">
+  <meta name="keywords" content="Martial Courses, Karate Course, Women Defence classes,Bhangar Fitness Class,for all ages">
   <meta property="og:site_name" content="  Goju Shin Ryu ">
   <meta property="og:type" content="website">
   <meta property="og:name" content=" Enroll Martial Courses | Goju Shin Ryu">
@@ -23,7 +26,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
     
 {
     document.addEventListener('click',e => {
-        if (e.target.className === 'btn') return window.location.replace('/course/' +'online-classes')
+        if (e.target.className === 'btn') return window.location.assign('/course/' + e.target.getAttribute('ref'))
     })
 }
       </script>
@@ -57,12 +60,12 @@ Insha Allab,  By the marcy of Allah,  I will gain success
    <h4 class="c-name">
      Join Our Regular classes
      </h4>
-     <span class="c-enrollment">
+     {{!-- <span class="c-enrollment">
        500+ joined Students
-       </span>
+       </span> --}}
      <div class="btn-div">
-       <button class="btn">Enroll Now</button>
-       <span>$80</span>
+       <button class="btn" ref="regular-classes">Enroll Now</button>
+       <span>200.00$</span>
      </div>
   </article>
    
@@ -74,12 +77,12 @@ Insha Allab,  By the marcy of Allah,  I will gain success
    <h4 class="c-name">
      Join Our Online classes
      </h4>
-     <span class="c-enrollment">
+     {{!-- <span class="c-enrollment">
        500+ joined Students
-       </span>
+       </span> --}}
      <div class="btn-div">
-       <button class="btn">Enroll Now</button>
-       <span>$80</span>
+       <button class="btn"  ref="Online-classes">Enroll Now</button>
+       <span>200.00$</span>
      </div>
   </article>
   
@@ -91,28 +94,28 @@ Insha Allab,  By the marcy of Allah,  I will gain success
    <h4 class="c-name">
      Join Our Seminar's
      </h4>
-     <span class="c-enrollment">
+     {{!-- <span class="c-enrollment">
        500+ joined Students
-       </span>
+       </span> --}}
      <div class="btn-div">
-       <button class="btn">Enroll Now</button>
-       <span>$80</span>
+       <button class="btn" ref="our-seminars">Enroll Now</button>
+       <span>200.00$</span>
      </div>
   </article>
   <article class="course-box">
-    <img src="/img/9668.jpg" alt="image of martial course">
+    <img src="/img/12334.jpg" alt="image of martial course">
    <b class="c-cetegory">
      Karate
    </b>
    <h4 class="c-name">
      Join Our Women Defence classes
      </h4>
-     <span class="c-enrollment">
+     {{!-- <span class="c-enrollment">
        500+ joined Students
-       </span>
+       </span> --}}
      <div class="btn-div">
-       <button class="btn">Enroll Now</button>
-       <span>$80</span>
+       <button class="btn" ref="women-fitness-classes">Enroll Now</button>
+       <span>200.00$</span>
      </div>
   </article>
   <article class="course-box">
@@ -121,14 +124,14 @@ Insha Allab,  By the marcy of Allah,  I will gain success
      Karate
    </b>
    <h4 class="c-name">
-     Join Our Online classes Online Class
+  Bhangar Fitness Class for all ages
      </h4>
-     <span class="c-enrollment">
+     {{!-- <span class="c-enrollment">
        500+ joined Students
-       </span>
+       </span> --}}
      <div class="btn-div">
-       <button class="btn">Enroll Now</button>
-       <span>$80</span>
+       <button class="btn" ref="bhangar-fitness-classes-for-all-ages">Enroll Now</button>
+       <span>200.00$</span>
      </div>
   </article>
 
