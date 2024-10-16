@@ -14,12 +14,29 @@ Insha Allah,  By your Marcy Ya Allah
     width: 100%;
     box-sizing: border-box;
     padding: 13px 24px;
+    row-gap: 7px;
+}
+  
+
+@media screen and (max-width:800px) {
+  .chat-box-container {
+    width: 650px;
   }
-  .chat-box-container h2{
-    font-size: 20px;
-    font-weight: 600;
-    text-transform: uppercase;
+}
+@media screen and (max-width:650px) {
+  .chat-box-container {
+    width: 480px;
   }
+}
+
+
+.chat-box-container h2{
+  font-size: 20px;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+
   .chat-box {
     display: flex;
     flex-direction: column;
@@ -30,6 +47,8 @@ Insha Allah,  By your Marcy Ya Allah
     padding:7px 0px;
     row-gap: 20px;
   }
+
+
   .chat-massage-cobtainer {
     display: flex ;
     flex-direction:column;
@@ -40,55 +59,77 @@ Insha Allah,  By your Marcy Ya Allah
     background: #F2F0F0;
     overflow-y: scroll;
     overflow-x: hidden;
-    width: 650px;
     height:400px;
     padding: 15px 15px;
     row-gap:8px;
+    box-sizing: border-box;
+    width: 100%;
   }
+
+
   .chat-massage-cobtainer > div {
     width: 100%;
     display: flex;
     flex-direction: column;
     row-gap: 5px;
     width: 100%;
+    box-sizing: border-box;
   }
+
+
   .chat-massage-cobtainer > div > div {
     height: fit-content;
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: flex-start;
-    width: 500px;
+    box-sizing: border-box;
     padding: 16px;
     row-gap: 6px;
     box-shadow: var(--fev-box-shadow);
+    width: 90%;
   }
+  @media screen and (max-width:600px) {
+    .chat-massage-cobtainer {
+      /* width: 430px; */
+    }
+  }
+
   .t-massage{
     padding-left: 0px;
     align-items: start;    
   }
+
+
   .f-massage{
     padding-right: 0px;
     align-items: end;
   }
+
+
    .sender-name{
     color: #000;
   }
+
   .sender-p{
     text-align: left;
     color: #666;
   }
+
   .t-massage > div{
     background:white;
     min-height: 20px;
     border-radius: 0px 7px 7px 7px
-
   }
+
+
   .f-massage > div {
     background: #ccc;
     border-radius: 7px 7px 0px 7px
 
   }
+
+
   .send-chat-massage-containar{
     display: flex;
     flex-direction: row;
@@ -96,8 +137,10 @@ Insha Allah,  By your Marcy Ya Allah
     align-items: center;
     column-gap:6px;
     justify-content: space-between;
-    width: 650px;
+   
   }
+
+
   .send-chat-massage-containar > textarea {
     padding:4px 5px;
     box-sizing:border-box;
@@ -114,10 +157,12 @@ Insha Allah,  By your Marcy Ya Allah
     align-items: center;
     height: 35px;
     font-size:14px;
-    width: 600px;
+    /* width: 600px; */
    resize: vertical;
    max-height: 100px;
   }
+
+
   .send-chat-massage-containar-btn{
     background:var(--main-cl);
     font-weight: 500;
@@ -129,4 +174,28 @@ Insha Allah,  By your Marcy Ya Allah
     box-sizing :border-box;
     height: 35px;
     width:70px;
+  }
+
+
+  @media screen and (min-width:750px) {
+    .send-chat-massage-containar{
+      width: fit-content;
+    }
+    .send-chat-massage-containar textarea{
+      min-width:570px ;
+      max-width:max-content;
+    }
+  
+  }
+
+  
+  @media screen and (max-width:749px) {
+    .send-chat-massage-containar{
+      width: fit-content;
+    }
+    .send-chat-massage-containar textarea{
+      min-width:340px ;
+      max-width:max-content;
+    }
+  
   }

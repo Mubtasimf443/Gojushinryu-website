@@ -43,26 +43,45 @@ InshaAllah, By Allah's Will,  I will earn success
 
 .settings-section > .s-sec-input-box{
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
   width: 100%;
-  
+  row-gap: 6px;
 }
 
 
 .settings-section > .s-sec-input-box > input {
   background: rgba(0, 0, 0, 0.08);
   border: none;
-  height: 26px;
-  width: 66%;
+  height: 30px;
+  width: 100%;
   outline: none;
 }
+
 
 .settings-section >.s-sec-input-box > label {
   font-weight: 500;
   font-size :14px;
 }
+
+
+
+@media screen and (min-width :700px) {
+  .s-sec-input-box{
+    flex-direction: row;
+    justify-content: flex-start;
+  align-items: center;
+  }
+  .s-sec-input-box label {
+    width: 100%;
+    text-align: left;
+  }
+  .s-sec-input-box > input {
+    width: 66%;
+  }
+}
+
 
 .s-sec-btn-box {
   display: flex;

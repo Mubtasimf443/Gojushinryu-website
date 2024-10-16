@@ -21,15 +21,17 @@
 
   <section id="banner">
     <div class="div1">
-<h1>Membeship Plans</h1>
-  <p>
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis mollitia maxime quos inventore dolor explicabo? Eum minima quisquam quod placeat, vero ipsa corporis accusantium fugiat fugit, quia rem.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis mollitia maxime quos inventore dolor explicabo? Eum minima quisquam quod placeat, vero ipsa corporis accusantium fugiat fugit, quia rem.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis mollitia maxime quos inventore dolor explicabo? Eum minima quisquam quod placeat, vero ipsa corporis accusantium fugiat fugit, quia rem.
-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis mollitia maxime quos inventore dolor explicabo? Eum minima quisquam quod placeat, vero ipsa corporis accusantium fugiat fugit, quia rem.
-
-  </p>
+    <h1>Become a Member</h1>
+    <p>
+    Joining Goju Shin Ryu and the School of Traditional Martial Arts offers a deep dive into martial arts’ rich heritage. Members learn self-discipline, physical fitness, and traditional techniques in a supportive community, fostering growth and personal mastery.
+    </p>
+     <button>
+    <a href="#form-section">
+      Apply
+    </a>
+    </button>
     </div>
+ 
     
   </section>
   
@@ -63,7 +65,10 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
  <section id="form-section">
    <div id="form-box">
     
-    <div id="Applicant-info-form">
+    <div 
+    {{!-- style="display: none;"  --}}
+    
+    id="Applicant-info-form">
       <h3>Applicant Information </h3>
 
         <div class="input-box">
@@ -115,11 +120,12 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
 
       <div class="input-box">
         <label for="inp--dojo-name">Dojo Name</label>
-        <input  id="inp--doju-name" type="text" placeholder="Karate">
+        <input  id="inp--doju-name" value="karate" type="text" placeholder="Karate">
       </div>
       <div class="input-box">
         <label for="inp--Instructor">Instructor</label>
-        <input value=" Varun jettly" id="inp--Instructor" type="text" placeholder="Varun Jettly">
+        <input value=" 
+        Varun jettly" id="inp--Instructor" type="text" placeholder="Varun Jettly">
       </div>
 
       <div id="membership-box">
@@ -220,7 +226,9 @@ Lorem ipsum dolor sit amet, consectetur adipisicing elit. Illo saepe reiciendis 
     </div>
   
  
- <div id="question-info-form">
+ <div 
+ {{!-- style="display: flex;" --}}
+  id="question-info-form">
   <h2>Please Answer This Qusetion</h2>
   <div class="column_y_n_question">
         <label >Your Gender? 

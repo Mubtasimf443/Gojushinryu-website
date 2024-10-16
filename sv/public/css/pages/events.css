@@ -58,7 +58,7 @@ i{
     width: 100%;
     position: relative;
     height: 240px;
-    background: url('/img/join.jpg');
+    /* background: url('/img/join.jpg'); */
     background-size: cover;
     background-position: top center;
     background-repeat: no-repeat;
@@ -152,6 +152,8 @@ i{
     font-weight: 500;
     text-transform: uppercase;
     word-spacing: 4px;
+    text-align: left;
+    width: 100%;
 }
 
 .event>div:last-child>div:last-child>p{
@@ -161,20 +163,32 @@ i{
     word-spacing:4px;
 }
 
-.event p::after{
-    content: "...";
-    color: var(--main-cl);
-}
 
 
 .fa-solid.fa-heart{
     color: rgb(190, 21, 78);
 }
+@media screen and (max-width:600px) {
+    .event{
+        width: 500px;
+    }
+    .event>div:last-child>div:first-child{
+        width: 40px;
+    }
+    .event>div:last-child>div:first-child>b{
+    left: 0px;
+    }
+    .event>div:last-child>div:first-child>span{
+        right: 0px;
+        text-align: center;
+    }
+}
 @media screen and (max-width:400px) {
-      
-    
     .event>div:last-child{
         flex-wrap: wrap;
         row-gap: 15px;
+    }
+    .event>div:last-child>div:first-child>b{
+        left: 0px;
     }
 }

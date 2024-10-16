@@ -32,7 +32,7 @@ body{
 /*--------------banner-----------------*/
 
 #banner{
-    height: 30em ;
+    height: 90vh;
     background: url('/img/samurai4.jpg');
     background-position: bottom left;
     background-size: cover;
@@ -43,36 +43,67 @@ body{
     align-items: center;
     border-image-slice: fill 1;
     border-image-source: linear-gradient(to right,
-     rgba(0, 0, 0, 0.474) ,
-     rgba(0, 0, 0, 0.712),
+    rgba(0, 0, 0, 0.474) ,
+    rgba(0, 0, 0, 0.712),
     rgba(0, 0, 0, 0.5));
     padding-top:80px ;
   }
+
+
+
   #banner > div {
     width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    row-gap: 12px;
   } 
+
   #banner>div  > h1 {
     font-size: 2.5em;
     color: #fff;
     position: relative;
-    top: -1em;
   }
+
+
   #banner >div > p {
     color: #fff;
     font-size: 1em;
     position: relative;
-    top: -1.5em;
     opacity:.85;
-    text-align: justify;
+    text-align: center;
+    word-spacing: 6;
+    width: 800px;
   } 
+
+  #banner >div > button{
+   padding: 10px 20px;
+   border-radius: 3px;
+   background: var(--main-cl);
+   color: black;
+   border: none;
+   font-weight: 600;
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
+  }
+  @media screen and (max-width :800px) {
+    #banner >div > p {
+      width: 650px;
+    }
+  }
+  @media screen and (max-width :600px) {
+    #banner >div > p {
+      width: 450px;
+      font-size: .95em;
+    }
+  }
   /* ------------- heading section ----------- */
   
   #heading_section {
-    padding: 2em 0em;
+    padding: 4em 0em 2em 0em;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -118,8 +149,9 @@ body{
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding-bottom: 3em;
+    padding-bottom: 4em;
   }
+
   #form-box{
     background: #fff;
     width: 50em;
@@ -140,6 +172,19 @@ body{
   }
   #form-box>div{
     position: relative;
+  }
+
+  
+  @media screen and (max-width :750px) {
+    
+    #form-box{
+      width: 670px;
+    }
+  }
+  @media screen and (max-width :670px) {
+    #form-box{
+      width: 480px;
+    }
   }
   /************ Applicant form  ************/
   #Applicant-info-form{
@@ -164,6 +209,7 @@ body{
     align-items: center; 
     column-gap: 8%; 
   } 
+
   #Applicant-info-form >div> label{
     font-weight: 500;
     color: black;
@@ -177,6 +223,24 @@ body{
     width: 33em;
   }
 
+  
+  @media screen and (max-width :670px) {
+    #Applicant-info-form >div{
+      flex-direction: column;
+      row-gap: 5px;
+      height: fit-content;
+    }
+
+    #Applicant-info-form >div> label{
+      width: 100%;
+      text-align: left;
+    }
+    
+    #Applicant-info-form >div> input{
+      width: 100%;
+      /* height: 22px; */
+    }
+  }
   #Applicant-info-form > #membership-box{
     display:flex;
     flex-direction: column;
@@ -251,13 +315,26 @@ body{
     position:absolute;
     bottom: 10px;
     left: 10px;
-
+  }
+  @media screen and (max-width :670px) {
+    #Applicant-info-form > #membership-box > span{
+      flex-direction: column;
+      row-gap: 13px;
+    }
+    #Applicant-info-form > #membership-box > span>.membership{
+      width: 100%;
+    }
   }
   #applicant-form-btn-div{
     display: flex;
     flex-direction: row;
     justify-content: left;
     align-items: center;
+  }
+  @media screen and (max-width :670px) {
+    #applicant-form-btn-div{
+      width: 100%;
+    }
   }
   #applicant-form-btn {
     background:  var(--main-cl);
@@ -295,6 +372,7 @@ body{
     width: 100%;
     height: 3.2em;
   }
+ 
   #question-info-form > .column_y_n_question >label {
     color: #000;
     font-weight: 500;
@@ -345,6 +423,16 @@ body{
     font-size: 1em;
     font-weight: 500;
   }
+  @media screen and (max-width :670px) {
+    #question-info-form > .column_y_n_question{
+      flex-direction: column;
+      width: 100%;
+      align-items: start;
+      row-gap:8px;
+      height: fit-content;
+      margin: 5px 0px;
+    }
+  }
   #question-info-form > .column_y_n_question > span >.yes-no-div > .check-div >i {
     font-size: 1em;
     color:var(--main-cl);
@@ -369,6 +457,22 @@ body{
     border-radius: 6px;
     height:2.5em ;
     width: 33em;
+  }
+  @media screen and (max-width :670px) {
+    #question-info-form > .question-text-div{
+      flex-direction: column;
+      row-gap:8px;
+      height: fit-content;
+      margin: 5px 0px;
+    }
+    #question-info-form > .question-text-div>label{
+      width: 100%;
+      text-align: left;
+    }
+    #question-info-form > .question-text-div>input{
+      width: 100%;
+    }
+  
   }
   #q-box-btn-div{
     display: flex;
@@ -415,6 +519,7 @@ body{
     position: relative;
     right: -110%;
     transition: var(--form--transition);
+    
   }
   #payment-info-form> h2{
   color: black;
@@ -429,6 +534,8 @@ body{
     width: 100%;
     height: 3.2em;
   }
+ 
+
   #payment-info-form>.payment-box-div>label{
     color: #000;
     font-weight: 500;
@@ -440,7 +547,22 @@ body{
     border: none;
     border-radius: 6px;
     height:2.5em ;
-    width: 33em;
+    
+  }
+  @media screen and (max-width :670px) {
+    #payment-info-form> .payment-box-div {
+      flex-direction: column;
+      row-gap: 6px;
+      margin: 6px 0px;
+    } 
+    #payment-info-form>.payment-box-div>input{
+      width: 100%;
+    }
+    #payment-info-form>.payment-box-div>label{
+      width: 100%;
+      text-align: left;
+      height: 30px;
+    }
   }
   #payment-info-form>.payment-box-div>span{
     display: flex;

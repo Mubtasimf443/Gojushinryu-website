@@ -181,7 +181,7 @@ export async function eventPageNavigation(req,res) {
       events.shift();
     }
   
-     log({events})
+ //    log({events})
     return res.render('events',{events:events})
   } catch (error) {
     log({error})

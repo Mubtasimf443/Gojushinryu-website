@@ -14,8 +14,27 @@ InshaAllah, By Allah's Will,  I will earn success
     flex-direction: column;
     align-items: start;
     justify-content: flex-start;
-    row-gap:30px;
+    row-gap:20px;
+}
+
+@media screen and (min-width :800px){
+  .form-section{
+    row-gap: 30px;
   }
+}
+@media screen and (max-width :750px){
+  .form-section{
+    width: 650px;
+  }
+}
+  
+
+
+@media screen and (max-width :600px){
+  .form-section{
+    width: 480px;
+  }
+}
   
   .form-section > h2 {
     font-size: 20px;
@@ -33,11 +52,21 @@ InshaAllah, By Allah's Will,  I will earn success
     width: 100%;
     padding: 7px 0px;
   }
+
   .form-section  >.img-inp-box > label {
     background: #000;
     width: 100px ;
     height: 100px;
     border-radius :50%;
+  }
+
+    
+  
+  
+  @media screen and (max-width :600px){
+    .form-section > .img-inp-box{
+      align-items: start;
+    }
   }
   .form-section  >.s-sec-input-box> label::after{
     content: "*";
@@ -45,6 +74,7 @@ InshaAllah, By Allah's Will,  I will earn success
     display: inline;
     font-weight: 600;
   }
+
   .form-section > .s-sec-input-box{
     display: flex;
     flex-direction: row;
@@ -60,7 +90,6 @@ InshaAllah, By Allah's Will,  I will earn success
     height: 34px;
     width: 66%;
     outline: none;
-
   }
   
   .form-section >.s-sec-input-box > label {
@@ -68,6 +97,21 @@ InshaAllah, By Allah's Will,  I will earn success
     font-size :16.5px;
   }
   
+  
+  @media screen and (max-width :700px){
+    .form-section > .s-sec-input-box{
+      flex-direction: column;
+      row-gap: 7px;
+    }
+    .form-section > .s-sec-input-box > label{
+      text-align: left;
+      width: 100%;
+    }
+    .form-section > .s-sec-input-box > input {
+      width: 100%;
+      height: 30px;
+    }
+  }
   .s-sec-btn-box {
     display: flex;
     flex-direction: row;
@@ -82,12 +126,9 @@ InshaAllah, By Allah's Will,  I will earn success
     color: var(--main-cl);
     border: 2px solid var(--main-cl);
     font-weight: 500;
-  
   }
   .s-sec-btn-box > button:nth-child(2) {
     background: var(--main-cl);
-    color: #fff;
-    
-    
+    color: #fff;  
   }
  

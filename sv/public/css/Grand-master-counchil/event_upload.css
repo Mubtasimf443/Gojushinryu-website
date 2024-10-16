@@ -22,6 +22,7 @@ Allah, I believe in you,And You are enough for me
   align-items: center;
   width: 100%;
   row-gap: 7px;
+  height: fit-content;
 }
 .event-upload-input-box > label {
   font-weight: 500;
@@ -46,7 +47,19 @@ Allah, I believe in you,And You are enough for me
   max-height: 305px;
   resize: vertical;
 }
-
+@media screen and (max-width :700px) {
+  .event-upload-input-box {
+    flex-direction: column;
+  }
+  .event-upload-input-box label {
+    width: 100%;
+    text-align: left;
+  }
+  .event-upload-input-box >input ,
+  .event-upload-input-box >textarea {
+    width: 100%;
+  }
+}
 .upload_event_btn_box{
   display: flex;
   flex-direction: row;

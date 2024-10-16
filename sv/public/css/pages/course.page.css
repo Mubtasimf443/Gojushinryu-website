@@ -7,7 +7,7 @@ body {
   background: whitesmoke;
 }
 #banner{
-  min-height: 35em ;
+  height: 90vh ;
   background: url('/img/samurai4.jpg');
   background-position: bottom left;
   background-size: cover;
@@ -16,33 +16,60 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  row-gap: .65em;
+  row-gap: 14px;
   border-image-slice: fill 1;
   border-image-source: linear-gradient(to right,
-   rgba(0, 0, 0, 0.474) ,
-   rgba(0, 0, 0, 0.712),
+  rgba(0, 0, 0, 0.474) ,
+  rgba(0, 0, 0, 0.712),
   rgba(0, 0, 0, 0.5));
+}
+.heading_section{
+
 }
 
 .heading_section > h2 {
   color: #fff;
-  font-size: 2.2em;
+  text-transform: uppercase;
   font-weight: 600;
   margin-top: 1em;
+ font-size: 26px;
+ text-align: center;
 }
 
 .heading_section > h1 {
   font-size: 1.4em;
   color: rgba(255, 255, 255, 0.856);
+  text-transform: uppercase;
+ font-size: 18px;
+ text-align: center;
+
 }
 
 
+@media screen and (min-width:1000px) {
+  .heading_section > h2{
+    font-size: 2em;
+  }
+  .heading_section > h1{
+    font-size:1.24em;
+  }
+}
+@media screen and (max-width:700px) {
+  .heading_section > h2{
+    width: 420px;
+  }
+  .heading_section > h1{
+    width: 420px;
+    font-size:1.1em;
+  }
+}
 .heading_section > p{
   color: #fff;
   color: rgba(255, 255, 255, 0.856);
   width: 60%;
   text-align: center;
   text-transform: capitalize;
+  font-size: .95em;
 }
 
 .heading_section > button {
@@ -50,14 +77,14 @@ body {
   background: goldenrod;
   border: none;
   font-size: .9em;
-  border-radius :6px; 
+  border-radius:3px; 
   width: 10em;
   height: 2.8em;
 }
 .heading_section > button > a {
   color: #fff;
   text-decoration: none;
-  font-size: 1.1em;
+  font-size: 14px;
   font-weight: 600;
 }
 

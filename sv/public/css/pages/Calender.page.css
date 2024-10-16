@@ -3,6 +3,9 @@
 Insha Allah,  By His Marcy I will Gain Success 
 */ 
 
+*{
+  box-sizing: border-box;
+}
 .dt_heading_sec{
     height: 60px;
     display: flex;
@@ -10,7 +13,7 @@ Insha Allah,  By His Marcy I will Gain Success
     justify-content: center;
     align-items: center;
     /* padding-left: 4em; */
-    padding-top: 2em;
+    padding-top: 4em;
     /* padding-bottom: 2em; */
 }
 
@@ -24,10 +27,15 @@ main >.dt-calander-section:last-child{
     justify-content: center;
     align-items: center;
     column-gap: 50px;
-    margin: 2em 0em;
+    row-gap: 55px;
+    /* margin: 2em 0em; */
+    padding: 3.5em 0px 0em 0px ;
+    flex-wrap: wrap;
+
 }
 
-
+@media screen  and (max-width :630px){
+}
 /*------------------------------calander-------------------------------------*/
 .calendar{
     width: 600px;
@@ -41,7 +49,15 @@ main >.dt-calander-section:last-child{
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
     padding-bottom: 2em;
+}
+@media screen  and (max-width :630px){
+  .calendar{
+    width: 490px;
   }
+}
+
+
+
    .cld-header{
     display: flex;
     flex-direction: row;
@@ -53,19 +69,19 @@ main >.dt-calander-section:last-child{
   
   }
   .cld-header button{
-    border: none;
-    background: none;
-    font-size: 1.5em;
-    color: gray;
+    
     display:none ;
   }
-  .cld-header button:hover{
-    color: black;
-  }
+ 
   .cld-header>h3{
     font-size: 1.5em;
     margin: .25em 0px;
     color: var(--main-cl);
+  }
+  @media screen  and (max-width :630px){
+    .cld-header>h3{
+      font-size: 20px;
+    }
   }
   .cld-header>nav {
     display: flex;
@@ -74,6 +90,8 @@ main >.dt-calander-section:last-child{
     align-items: center;
     column-gap: 10px;
   }
+
+ 
   .cl-sec{
     display: flex;
     flex-direction: column;
@@ -86,6 +104,8 @@ main >.dt-calander-section:last-child{
     margin-left: 30px;
     margin-bottom: 1.6em;
   }
+
+
   .days{
     display: grid;
     grid-template-columns: repeat(7,0fr);
@@ -93,6 +113,8 @@ main >.dt-calander-section:last-child{
     column-gap: 30px;
     width: 100%;
   }
+
+
   .dates{
     display: grid;
     grid-template-columns: repeat(7,0fr);
@@ -102,6 +124,8 @@ main >.dt-calander-section:last-child{
     margin-top: 30px;
     row-gap: 30px;
   }
+
+
   .days>div{
     width:48.5px;
     text-align: left;
@@ -110,6 +134,8 @@ main >.dt-calander-section:last-child{
     text-align: center;
   
   }
+
+
   .dates>li{
     list-style: none;
     color: black;
@@ -123,27 +149,50 @@ main >.dt-calander-section:last-child{
     justify-content: center;
     align-items: center;
   }
+
   .dates>.inactive{
     color: gray;
   }
+
+
   .dates >.class-day{
     background-color: var(--main-cl);
     color: white;
     border-radius: 50%;
   }
+
+  @media screen and (max-width:630px) {
+    .days{
+      column-gap: 16.6px;
+    }
+    .dates{
+      column-gap: 16.6px;
+    margin-top: 17px;
+
+    }
+    .days>div{
+      font-size: 1.1em;
+    }
+    .dates >li{
+      font-size: 1.1em;
+    }
+  }
   .base-calender{
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    column-gap: 2em;
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  column-gap: 2em;
   margin-bottom: 1em;
   margin-top: 1em;
   }
+
+
   .base-calender >div:nth-child(1){
     margin-left:2em
   
   }
+
   .cl_time_div{
     display: flex;
     flex-direction: row;
@@ -153,18 +202,22 @@ main >.dt-calander-section:last-child{
     border-radius: 5px;
     width: 15em;
     height: 80px;
-  
   }
+
+
   .cl_time_div>div{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    
   }
+
+
   .cl_time_div >div:nth-child(1){
     width: 30%;
   }
+
+
   .cl_time_div > div:nth-child(2) {
     align-items: start;
     width: 70%;
@@ -172,4 +225,21 @@ main >.dt-calander-section:last-child{
   
   .cl_time_div > div:nth-child(2) >b{
     font-size: 1.2em;
+  }
+
+
+  @media screen  and (max-width :630px){
+    .cl_time_div{
+      width: 12em;
+    }
+    .cl_time_div > div:nth-child(1){
+      width: 25%;
+    }
+    .cl_time_div > div:nth-child(2){
+      row-gap: 4px;
+      width: 75%;
+    }
+    .cl_time_div > div:nth-child(2) >span {
+      font-size: 14.5px;
+    }
   }

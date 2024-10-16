@@ -10,9 +10,15 @@ div{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: start;
+    align-items: center;
     width: 100%;
     row-gap: 23px;
+}
+
+@media screen and (min-width :900px){
+.gm-order-box{
+    align-items: start;
+}
 }
 .gm-order-box h2 {
     font-weight: 500px;
@@ -24,7 +30,7 @@ div{
     flex-direction: column;
     justify-content: flex-start;
     align-items: start;
-    width: 100%;
+    width: 450px;
     height: fit-content;
     box-shadow: var(--fev-box-shadow);
 }
@@ -59,7 +65,11 @@ img[alt="ordered product"]{
     text-transform: uppercase;
     font-weight: 500;
 }
-
+@media screen and (min-width :600px){
+   .orders{
+    width: 100%;
+   }
+}
 div[completed]{
     background: green;
     color: white;

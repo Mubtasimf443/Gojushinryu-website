@@ -13,7 +13,7 @@
    <style>
   
 #banner{
-  min-height: 25em ;
+  height: 90vh ;
   background: url('/img/samurai4.jpg');
   background-position: center left;
   background-size: cover;
@@ -27,18 +27,46 @@
    rgba(0, 0, 0, 0.474) ,
    rgba(0, 0, 0, 0.712),
   rgba(0, 0, 0, 0.5));
+  row-gap: 7px;
 }
 #banner > h1 {
-  font-size: 2.5em;
+  font-size: 33px;
   color: #fff;
   position: relative;
-  /* top: -1em*/
+ text-transform: uppercase;
+ top: 0px;
 }
 #banner > h2 {
   color: #fff;
-  font-size: 1.25em;
+  font-size:18px;
   position: relative;
   opacity:.85;
+  text-transform: uppercase;
+  top: 0px;
+}
+
+
+#banner > button{
+ background-color: var(--main-cl);
+  padding:8px 13.4px;
+  border: none;
+  font-weight: 500;
+}
+#banner > button >a {
+  color: inherit;
+  text-transform: uppercase;
+  text-decoration: none;
+ width: 100%;
+ background:inherit;
+}
+
+@media screen and (max-width :630px) {
+  #banner > h1 {
+    font-size: 27px;
+  }
+  #banner > h2 {
+    font-size: 18px;
+  }
 }
 </style>
 </head>
@@ -46,13 +74,21 @@
   {{>Header}}
     <main>
     <section class="banner" id="banner">
-        <h1>See the Dates Of Classes</h1>  
+      <h1>See the Dates Of Classes</h1>  
       <h2>This Month - Next Month</h2>
+      <button>
+        <a href="#dates_section">Dates</a>
+      </button>
     </section>
-    <section class="dt_heading_sec">
+
+
+
+
+
+<section class="dt_heading_sec">
       <h2>Dates of Reqular Classes</h2>
     </section>
-    <section class="dt-calander-section">
+    <section id="dates_section" class="dt-calander-section">
       <div id="calendar" class="calendar" >
       <div class="cld-header">
         <h3></h3>
@@ -140,11 +176,11 @@
         </div>
       </div>
  </div> 
-    </section>
-<section class="dt_heading_sec">
-      <h2>Dates of Online Classes</h2>
-    </section>
-    <section class="dt-calander-section">
+</section>
+<section  class="dt_heading_sec">
+<h2>Dates of Online Classes</h2>
+</section>
+<section class="dt-calander-section">
       <div id="calendar" class="calendar" >
       <div class="cld-header">
         <h3></h3>
@@ -232,7 +268,7 @@
         </div>
       </div>
  </div> 
-    </section>
+</section>
 <section class="dt_heading_sec">
       <h2>Dates of Women Self Defence Classes</h2>
     </section>
