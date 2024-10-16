@@ -6,179 +6,12 @@ InshaAllah, By his marcy I will Gain Success
 
 
 
-
-
-@media screen and (min-width:200px) and (max-width:630px ) {
     body {
         margin:0;
     }
-    #Hero_section {
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        min-height: 100vh;
-    }
+  
 
-    #wrapper_video:before {
-         content:"";
-         position: absolute;
-        top:0;
-        right:0;
-        left:0;
-        bottom:0;
-        z-index:1;
-        background:linear-gradient(to right,rgba(15, 15, 15, 0.5),rgba(15, 15, 15, 0.5));
-    }
-    #wrapper_video {
-         left: 0%;
-         top: 0%;
-         height: 100vh;
-         width: 100%;
-         overflow: hidden;
-         position: absolute;
-         z-index: -1;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        }
-    #hero_content {
-        position: absolute;
-    }
-    #hvideo{
-        width: 100%;
-        position: absolute;
-        z-index: -1;
-        left: 0px;
-        top: 0px;
-    }
 
-    #hero_content  {
-display: flex;
-flex-direction: column;
-justify-content: start;
-align-items: start;
-row-gap: 0.5em;
-}
-
-#hero_content > h1 {
-color: rgb(255, 255, 255);
-font-size:1.5em ;
-font-weight: var(--first-fw);
-z-index: 200;
-text-align: left;
-text-decoration: none;
-text-transform: uppercase;
-word-spacing: 4px;
-}
-
-#hero_content > b {
-font-size: 1.25em;
-color: rgba(255, 255, 255, 0.637);
-z-index: 100;
-}
-
-#hero_content >  button {
-padding: 0.6em 1.35em;
-background:transparent;
-border: var(--df-b-w) solid var(--more-red-color);
-color: var(--more-red-color);
-font-weight: 600;
-font-size: 1em;
-border-radius: 8px;
-z-index:100;
-}
-    
-
-}
-
-@media screen and (min-width:631px) and (max-width:1000px ) {
-    body {
-        margin:0;
-    }
-    #Hero_section {
-        text-align: center;
-        position: relative;
-        overflow: hidden;
-        min-height: 100vh;
-    }
-
-    #wrapper_video:before {
-         content:"";
-         position: absolute;
-        top:0;
-        right:0;
-        left:0;
-        bottom:0;
-        z-index:1;
-        background:linear-gradient(to right,rgba(15, 15, 15, 0.5),rgba(15, 15, 15, 0.5));
-    }
-    #wrapper_video {
-         left: 0%;
-         top: 0%;
-         height: 100vh;
-         width: 100%;
-         overflow: hidden;
-         position: absolute;
-         z-index: -1;
-        display: flex;
-        flex-direction: row;
-        justify-content: center;
-        align-items: center;
-        }
-    #hero_content {
-        position: absolute;
-    }
-    #hvideo{
-        width: 100vw;
-        position: absolute;
-        z-index: -1;
-        left: 0px;
-        top: 0px;
-    }
-
-    #hero_content  {
-display: flex;
-flex-direction: column;
-justify-content: start;
-align-items: center;
-row-gap: 0.5em;
-}
-
-#hero_content > h1 {
-color: rgb(255, 255, 255);
-font-size:1.8em ;
-font-weight: var(--first-fw);
-z-index: 200;
-text-align: center;
-text-decoration: none;
-text-transform: uppercase;
-word-spacing: 4px;
-}
-
-#hero_content > b {
-font-size: 1.25em;
-color: rgba(255, 255, 255, 0.637);
-z-index: 100;
-}
-
-#hero_content >  button {
-padding: 0.6em 1.35em;
-background:goldenrod ;
-border:none;
-color: white;
-font-weight: 600;
-font-size: 1em;
-border-radius: 8px;
-z-index:100;
-}
-    
-
-}
-@media screen and (min-width:1000px) {
-    body {
-        margin:0;
-    }
     #Hero_section {
         text-align: center;
         position: relative;
@@ -195,7 +28,11 @@ z-index:100;
         bottom:0;
         z-index:1;
         background:linear-gradient(to right,rgba(0, 0, 0, 0.295),rgba(0, 0, 0, 0.5));
+        /* width: 100px;
+        height: 100px; */
     }
+
+
     #wrapper_video {
          left: 0%;
          top: 0%;
@@ -209,6 +46,10 @@ z-index:100;
         justify-content: center;
         align-items: center;
         }
+
+   
+
+
     #hero_content {
         position: absolute;
     }
@@ -219,6 +60,7 @@ z-index:100;
         left: 0px;
         top: 0px;
         object-fit: cover;
+        object-position: top center;
         height: 100%;
     }
 
@@ -267,7 +109,7 @@ font-weight: 600;
     margin-top: 0em;
     opacity: .87;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
     }
     
 #hero_content >  button {
@@ -282,8 +124,24 @@ margin-top: 1em;
 z-index:100;
 }
     
+@media screen and (max-width:900px) {
+    #hero_content > h1 {
+        font-size: 26px;
+        
+    }
+    #hero_content > b{
+        font-size: 20px;
+    }
+    #hero_content >  button {
+        padding: 9.5px 16px;
+        font-size: 15px;
+    }
+}
+@media screen and (max-width:650px) {
 
 }
+
+
 
 
 

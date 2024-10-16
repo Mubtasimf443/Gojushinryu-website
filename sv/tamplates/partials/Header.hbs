@@ -10,7 +10,7 @@ InshaAllah, By his marcy I will Gain Success
       
 
       </div>
-      <div id="header">
+      <div main_header id="header">
      <div class="hd-icon-div">
       <img class="hd-icon" src="" alt="logo">
      </div>
@@ -73,7 +73,6 @@ InshaAllah, By his marcy I will Gain Success
            <a href="/accounts/grand-master-counchil">Grand Master</a>
            <hr>
            <a href="/accounts/student">Students</a>
-
         </div>
       </div>
 
@@ -101,19 +100,65 @@ InshaAllah, By his marcy I will Gain Success
       </button>
      </div>
 
-     <div class="m_nav_i">
+     <div  class="m_nav_i">
       <i class="fa-solid fa-align-right"></i>
      </div>
-     <div class="m_nav">
-      <a href="">hOME</a> 
-    <a href="">About us</a>
- <a href="">Contact us</a> 
 
-    <a href="">Blog</a>
 
+     <div mobileNab class="m_nav">
+
+      <button mobile_nab_close>&times;</button>
+      <strong>goju shin ryo</strong>
+      <a class="mna" href="">hOME</a>
+      <span class="mna dropd">Courses
+        <a href="">Course</a>
+        <a href="">Date</a>
+      </span>
+      <a href="" class="mna">Membership</a>
+      <a href="" class="mna">allience</a>
+     
+      <span class="mna dropd">Shop
+        <a href="">Equipment</a>
+        <a href="">fevorites</a>
+        <a href="">cart</a>
+        <a href="">date</a>
+      </span>
+      <span class="mna dropd" >
+         About us
+         <a href="">goju shin ryo</a>
+        <a href="">school of tradistional martial arts</a>
+      </span>
+      <span class="mna dropd" >
+        Accounts
+        <a href="">Student</a>
+        <a href="">Grand Master</a>
+      </span>
+
+      <span class="mna dropd">Media
+        <a href="">Post</a>
+        <a href="">Events</a>
+        <a href="">Videos</a>
+        <a href="">Images</a> 
+      </span>
+
+     <a  class="mna">
+      Contact Us
+     </a>
      </div>
   </div>
   
    </header>
 
-{{!-- <script src="/js/header.js"></script> --}}
+<script>
+ 
+ 
+document.querySelector('.fa-align-right').addEventListener('click', e => {
+  document.querySelector('[main_header]').querySelector('[mobileNab]').classList.add('visible');
+})
+
+
+document.querySelector(`[mobile_nab_close]`).addEventListener('click', e => {
+  document.querySelector('[main_header]').querySelector('[mobileNab]').classList.remove('visible');
+})
+
+</script>

@@ -1,173 +1,24 @@
-/*
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
-InshaAllah, By his marcy I will Gain Success 
-*/
-/* 
-@media screen and (min-width :200px ) and (max-width :630px){
+ /* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ InshaAllah, By his marcy I will Gain Success */
 
-    
-
-header {
-    display: flex;
-flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    min-height: 4em;
-    background: transparent;
-    position: fixed;
-    width: 100vw;
-
-}
-
-header > .hd-icon-div{
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    width: 75%;
-    padding-left: 20px;
-}
-
-.hd-icon{
-    width: 46px;
-    border-radius:50% ;
-}
-
-
-header > nav{
-    display: none;
-    flex-direction: row;
-    justify-content: right;
-    align-items: center;
-    width: 50%;
-    column-gap: 1.4em;
-}
-
-header > nav > div{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-header > nav > div > a {
-    color: var(--df--color);
-    text-decoration: none;
-    font-size: var(--first-fs);
-}
-
-header > .hd-btn-div{
-    display: none;
-   
-}
-
-header > .hd-btn-div >button{
-   width: 7.7em;
-   height: 3.3em;
-   background: var(--main-bg);
-   color: var(--bright-red-cl);
-   border: var(--df-b-w) solid var(--more-red-color);
-   border-radius: 8px;
-   
-}
-header > .m_nav {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: start;
-    padding: 25px;
-    position: fixed;
-    top: 15px;
-    right: -150%;
+@keyframes topBarAnime1{
+    from{
+    right:-50vw;
     }
-    header > .m_nav_i{
-        display: flex;
-        flex-direction: row;
-        justify-content: right;
-        align-items: center;
-        width: 20%;
-        padding-right: 2.3em;
+    to{
+    right: 150vw;
     }
-    
-    header > .m_nav_i > i {
-        font-size: 1.7em;
-        color: rgba(255, 255, 255, 0.849);
-       
-        
+}
+@keyframes topBarAnime2{   
+    from{
+    right:-50vw;
+    }
+    to{
+    right: 150vw;
     }
 }
 
-
-
-@media screen and (min-width :631px ) and (max-width :1000px){
-
-header {
-    display: flex;
-flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    min-height: 5em;
-    background: transparent;
-    position: fixed;
-    width: 100vw;
-}
-
-header > .hd-icon-div{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-}
-
-.hd-icon{
-    width: 50px;
-}
-
-header > nav > div{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-
-header > nav > div > a {
-    color: var(--df--color);
-    text-decoration: none;
-    font-size: var(--first-fs);
-}
-
-
-header > .hd-btn-div{
-    display: none;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    width: 25%;
-}
-
-
-header > .hd-btn-div >button{
-   width: 7.7em;
-   height: 3.3em;
-   background: var(--main-bg);
-   color: var(--bright-red-cl);
-   border: var(--df-b-w) solid var(--more-red-color);
-   border-radius: 8px;
-   
-}
-header > .m_nav_i , header > .m_nav {
-    display: none;
-    }
-
-} */
-
-
-
-/* @media screen and (min-width :1000px ) { */
-    /*-------------------- Header -------------------------*/
-    header a{
+ 
+ header a{
         cursor: pointer;
     }
     header{
@@ -204,23 +55,24 @@ header > .m_nav_i , header > .m_nav {
     #header {
         display: flex;
         flex-direction: row;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
         width: 100%;
         height: auto;
         background: transparent;
         position: absolute;
         z-index: 300;
-        padding:14px 4.5em;
+        padding:14px 1.5em;
         top: 3.5em;
         box-sizing: border-box;
+        column-gap: 12px;
     }
     #header > .hd-icon-div{
         display: flex;
         flex-direction: row;
-        justify-content: left;
+        justify-content: space-around;
         align-items: center;
-        /* width: 16em; */
+    
 
     }
     .hd-icon{
@@ -230,17 +82,22 @@ header > .m_nav_i , header > .m_nav {
     #header > nav{
         display: flex;
         flex-direction: row;
-        justify-content: right;
+        justify-content: center;
         align-items: center;
-        /* width: 38.5em; */
         column-gap: 1.4em;
+        flex-wrap: wrap;
+        row-gap: 10px;
     }
+
+
     #header > nav > div{
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
     }
+
+
     #header > nav > div > a {
         color:white;
         text-decoration: none;
@@ -253,9 +110,7 @@ header > .m_nav_i , header > .m_nav {
         display: flex;
         flex-direction: row;
         justify-content: right;
-        align-items:center;
-        /* width: 16em; */
-        
+        align-items:center;     
     }
      
     #header > .hd-btn-div >button{
@@ -263,42 +118,143 @@ header > .m_nav_i , header > .m_nav {
        height: 2.7em;
        border: none;
        color: white;
-       /* font-family: "Roboto Slab"; */
        background-color: var(   --main-cl);
        text-transform: uppercase;
        border-radius: 8px;
        font-weight: 500;
        line-height: 0px;
-       font-size: .9em;
-       
+       font-size: .9em;    
+    }
+
+    #header > .m_nav_i{
+        right: 0px;
+        color: white;
+        display: flex;
+        font-size: 22px;
+        cursor: pointer;
+    }
+
+    
+   
+    #header .m_nav {
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+        position: fixed;
+        top: 0px;
+        right: -100vw;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content:flex-start;
+        align-items: center;
+        row-gap: 6px;
+        padding: 30px 0px 0px 20px;
+    }
+
+    #header .m_nav.visible{
+        right: 0px;
+        top: 0px;
+        transition: right .45s ease;
+    }
+    
+    #header .m_nav strong {
+        color: darkorange;
+        text-transform: uppercase;
+        font-size: 22px;
+        margin-bottom: 0px;
     }
 
 
-    #header > .m_nav_i , #header > .m_nav {
+    #header .m_nav .mna{
+        text-transform: uppercase;
+        font-size: 16px;
+        font-weight: 500;
+        color: white;
+        text-decoration: none;
+        min-width: 91vw;
+        min-height:40px;
+        border :2px solid white;
+        border-radius: 5px;
+        text-align: center;
+        align-items: center;
+        align-content: center;
+        box-sizing: border-box;
+        padding: 7px;
+    }
+
+
+    #header .m_nav button[mobile_nab_close] {
+        position: absolute;
+        top: 24px;
+        right: 25px;
+        color: white;
+        font-size: 20px;
+        background: #000;
+        border: none;
+    } 
+
+
+    #header .m_nav a{
+        color: white;
+        text-transform: uppercase;
+        text-decoration: none;
+    }
+
+    #header .m_nav .dropd{
+        display: flex;
+        flex-direction:column;
+        justify-content: start;
+        align-items: center;
+        row-gap: 7px;
+    }
+
+    #header .m_nav .dropd a {
         display: none;
         
     }
-
-
-
-
-
-
-@keyframes topBarAnime1{
-    
-    from{
-    right:-50vw;
+    #header .m_nav .dropd:hover{
+        padding: 8px;
+        color :darkorange
     }
-    to{
-    right: 150vw;
+
+    #header .m_nav .dropd:hover a {
+        display: flex;
+        height: 34px;
+        width: 93%;
+        border :2px solid white;
+        border-radius: 5px;
+        align-items: center;
+        display: flex;
+        text-align: center;
+        box-sizing: border-box;
+        justify-content: center;
+        font-weight: 500;
+        transition: all .6s ease;
     }
+
+    #header .m_nav .mna:last-child{
+        background: darkorange;
+        border: 2px solid darkorange;
+        color: black;
+        font-weight: 600;
+    }
+@media screen and (max-width :600px){
+    #header {
+        justify-content: space-between;
+    }
+    #header nav, #header .hd-btn-div  {
+        display: none;
+    }
+
 }
-@keyframes topBarAnime2{
+
+
+
+@media screen and (min-width:601px){
     
-    from{
-    right:-50vw;
-    }
-    to{
-    right: 150vw;
+    #header > .m_nav_i,
+    #header > .m_nav {
+        display: none;
     }
 }

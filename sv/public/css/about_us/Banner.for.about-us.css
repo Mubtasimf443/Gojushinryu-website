@@ -36,7 +36,19 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
 }
 
 
-
+@media screen and (min-width :500px) and (max-width :900px) {
+  #banner{
+    height: 31em;
+  }
+  #banner > h1 {
+    top:-1.8em;
+    font-size: 2em;
+  }
+  #banner > h2 {
+    top: -2.8em;
+    font-size: 1.23em;
+  }
+}
 
 
 
