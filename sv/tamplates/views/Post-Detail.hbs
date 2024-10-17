@@ -16,26 +16,32 @@
 
   <article class="post">
     <!-- Main Image -->
-    <div class="main-image" style="background-image: url('/img/event.jpg');"></div>
+    <div class="main-image" style="background-image: url({{thumb}});"></div>
 
     <!-- Post Image Gallery -->
     <div class="image-gallery">
-        <img src="/img/abs-slide/slide1.jpg" alt="Gallery Image 1">
-        <img src="/img/abs-slide/slide2.jpg" alt="Gallery Image 2">
+
+      {{#each images}}
+        <img src="{{this}}" alt="Gallery Image 1">
+      {{/each}}
+        {{!-- <img src="/img/abs-slide/slide2.jpg" alt="Gallery Image 2"> --}}
         <!-- More images here -->
     </div>
 
     <!-- Post Title -->
-    <h1 class="post-title">Post Title Goes Here</h1>
+    <h1 style="text-align: left;" class="post-title">{{title}}</h1>
 
     <!-- Post Description -->
     <div class="post-description">
         <p>
+          {{description}}
+          {{!-- 
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque ut mollitia dolor quisquam cum tempore, dicta vero ullam illum architecto optio rem, recusandae possimus esse minus cupiditate consequatur, impedit similique.
           Post description starts here. It could be several paragraphs long, with subheadings and media embedded throughout.
           Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolores nesciunt nulla corporis laudantium hic officia perferendis, voluptatem cumque, earum totam quo dicta quasi illum reprehenderit maxime quas laboriosam, ut perspiciatis!
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Nostrum reiciendis a recusandae. Rem nulla, recusandae reiciendis dignissimos ullam tempore ratione quasi minima quidem aliquid repellendus ipsum aut, quisquam harum incidunt!
-          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ipsam est eligendi ducimus deserunt et autem dolor, vel ut harum ipsum esse, animi pariatur tempore ex non, placeat aperiam voluptatem?
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Exercitationem ipsam est eligendi ducimus deserunt et autem dolor, vel ut harum ipsum esse, animi pariatur tempore ex non, placeat aperiam voluptatem? 
+          --}}
         </p>
     </div>
   </article>

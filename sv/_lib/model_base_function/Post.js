@@ -25,8 +25,8 @@ export async function postPageNavigation(req,res) {
             posts.push({
                 title :(title.length >100 ? title.substring(0,100) :title),
                 description :(description.length >140 ? description.substring(0,140) : description),
-                date ,
-                link :BASE_URL +'/post/'+dateAsNumber,
+                date :date.toDateString() ,
+                link :BASE_URL +'/media/post/'+dateAsNumber,
                 thumb
             });
             posts.shift()
@@ -119,3 +119,21 @@ export async function uplaodPostAPiFucntion(req,res) {
     }
 }
 
+
+
+export async function givePostDetailsFunction(req,res) {
+    try {
+        let {id} =req.params;
+        if (Number(id).toString().toLowerCase()==='nan') throw 'error :- id is not a number';
+        id =Number(id);
+        let post =await Posts.findOne({
+            dateAsNumber:id
+        })
+        if (!post) throw 'error :- post is null' 
+        let {title ,description,date,thumb,images,dateAsNumber}=post;
+        return res.render('post-detail',{title ,description,date,thumb,images,dateAsNumber})
+    } catch (error) {
+        console.error({error});
+        
+    }
+}

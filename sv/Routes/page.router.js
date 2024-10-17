@@ -14,7 +14,7 @@ import userCheck, { userCheckAndNavigation } from "../_lib/midlewares/User.check
 import { MembershipPageNavigation } from "../_lib/midlewares/membership.page.js";
 import { coursePageNavigation } from "../_lib/midlewares/course.page.navigation.js";
 import { eventPageNavigation } from "../_lib/model_base_function/Event.js";
-import { postPageNavigation } from "../_lib/model_base_function/Post.js";
+import { givePostDetailsFunction, postPageNavigation } from "../_lib/model_base_function/Post.js";
 
 
 let pageRouter = Router();
@@ -66,12 +66,18 @@ pageRouter.get('/media/:name',(req,res) => {
     if (req.params.name === "post") return postPageNavigation(req,res)
     if (req.params.name==="images") return res.render('images');    
 })
+
+pageRouter.get('/media/:name/:id',(req,res) => {
+    if (req.params.name === "post") return givePostDetailsFunction(req,res)
+})
 pageRouter.get('/about-us/organization-charts',(req,res)=>res.render('OurOrganaizationChart'))
 pageRouter.get('/allience',(req,res)=> res.render('alli'))
 pageRouter.get('/accounts/:name',async (req,res)=>{
     if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req,res)
     if (req.params.name === 'student') return StudentCornerPageRoute(req,res)
 })
+
+
 pageRouter.get('/course/:name',(req,res)=> {
     let name =req.params.name;
     if (name === 'regular-classes') return res.render('course__regular__class')
@@ -80,6 +86,8 @@ pageRouter.get('/course/:name',(req,res)=> {
     if (name === 'women-fitness-classes') return res.render('course__womens_seminars')
     if (name === 'bhangar-fitness-classes-for-all-ages') return res.render('course__banghar__fitness__class')
 })
+
+
 
 
 
