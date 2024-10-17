@@ -30,7 +30,7 @@ input {
   outline: none;
 }
 #banner{
-  min-height: 35em;
+ height: 90vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -205,6 +205,8 @@ text-align: center;;
   width: 410px;
   }
  }
+
+
 .contact-form-container > div {
   margin: 0px 0px;
 }
@@ -255,6 +257,15 @@ text-align: center;;
   resize: vertical;
   max-height: 500px;
 }
+@media screen  and (max-width: 650px){
+  .r-input-box{
+    flex-direction: column;
+  }
+  .r-input-box > div {
+    width: 100%;
+  }
+}
+
 .c-form-btn-box {
   width:100%;
   display: flex;
@@ -300,9 +311,15 @@ iframe{
   margin-top: 60px;
   margin-bottom:30px;
 }
+
+
 @media screen  and (max-width: 650px){
  .map-sec > p {
    width: 409px;
+ }
+
+ iframe {
+  width: 100%;
  }
 }
 

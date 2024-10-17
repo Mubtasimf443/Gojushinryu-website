@@ -40,7 +40,10 @@ let courseEnrollmentSchema =new Schema({
     payment_method :String,
     paypal_token:String,
     stripe_session_id:String,
-    
+    date_as_Number:{
+        type :Number ,
+        default :Date.now
+    }
 })
 
 export const CourseEnrollments=model('CourseEnrollments',courseEnrollmentSchema)

@@ -2,6 +2,7 @@
 /*
 Insha Allah,  BY Allahs Marcy,  I will Gain success
 */ 
+
 *{
     box-sizing: border-box;
 }
@@ -56,104 +57,43 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
   font-weight: 600;
 }
 #alliance-chart{
-    padding: 3em 0em;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-
-}
-#alliance-chart > div {
+    padding: 4em 1em;
     display: flex;
     flex-direction: column;
+    justify-content: center;
     align-items: center;
-    width: 343.5px;
-    height: fit-content;
+    row-gap: 40px;
 }
+
+#alliance-chart > div {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: fit-content;
+    column-gap: 30px;
+    flex-wrap: wrap;
+    row-gap: 40px;
+}
+
+
 #alliance-chart > div> div{
     display: flex;
     flex-direction: row;
-    width: 100%;
     position: relative;
-    justify-content: space-between;
-    height: 400px;
-}
-/*-------------------------------------- container 1 ------------------------------------------*/
-#alliance-chart > div:nth-child(1){
     justify-content: center;
-}
-#alliance-chart > div:nth-child(1)> div{
-    /* justify-content: left; */
     align-items: center;
 }
-#alliance-chart > div:nth-child(1)> div:after{
-    content: "";
-    height: 100%;
-    width: 0px;
-    border: none;
-    border-right: 2.4px solid var(--color--of--line);
-}
-#alliance-chart > div:nth-child(1)> div:first-child:after{
-    right: 0px;
-}
-#alliance-chart > div:nth-child(1)> div:last-child:after{ 
-    height: 50%;
-    width: 125px;
-    border-bottom: 2.4px solid var(--color--of--line);
-    position: relative;
-    top: -50%;
-}
-#alliance-chart > div:nth-child(1)> div:last-child{
-    height: 375px;
-    align-items: end;
-}
-#alliance-chart > div:nth-child(1)> div:last-child:after{
-    right: 0px;
-}
-#alliance-chart > div:nth-child(1)> div:first-child{
-    height: 375px;
-    align-items: start;
-}
-#alliance-chart > div:nth-child(1)> div:first-child:after{
-    height: 104%;
-    width: 125px;
-    border-top: 2.4px solid var(--color--of--line);
-    position: relative;
-    bottom: -50%;
-}
-#alliance-chart > div:nth-child(1)> div:nth-child(2):after{
-    width:120px;
-    border-top: 2.3px solid var(--color--of--line);
-    position: relative;
-    bottom: -50%;
-    height: 100%;
-}
-#alliance-chart > div:nth-child(1)> div:nth-child(3):after{
-    height: 50%;
-    width:120px;
-   position: relative;
-    bottom: -25%;
-    border-top: 2.4px solid var(--color--of--line);
-    
-}
-/*-------------------------------------------------- container 2 ----------------------------------------------*/
-#alliance-chart > div:nth-child(2){
-    justify-content: center;
-    width: 437px;
-}
-#alliance-chart > div:nth-child(2)> div::before , #alliance-chart > div:nth-child(2)> div::after{
-    content: "";
-    width: 93.8px;
-    height: 0%;
-    border-top: 2.4px solid var(--color--of--line);
 
-}
-#alliance-chart > div:nth-child(2)> div:first-child{
-    /* justify-content: center; */
-    align-items: center;
-}
+
+/*-------------------------------------- container 1 ------------------------------------------*/
+
+/*-------------------------------------------------- container 2 ----------------------------------------------*/
+
+
 /*------------------------------------------------- container 3 ------------------------------------------------*/
-#alliance-chart > div:nth-child(3){
+/* #alliance-chart > div:nth-child(3){
     justify-content:center;
 }
 #alliance-chart > div:nth-child(3)> div:before{
@@ -165,11 +105,9 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
     position: relative;
 }
 #alliance-chart > div:nth-child(3)> div:after {
-/* #alliance-chart > div:nth-child(1)> div:before  */
     display: none;
  }
 #alliance-chart > div:nth-child(3)> div{
-    /* justify-content: right; */
     align-items: center;
 }
 #alliance-chart > div:nth-child(3)> div:last-child{
@@ -186,10 +124,12 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
 #alliance-chart > div:nth-child(3)> div:last-child:before{
     left: 0px;
 }
+
 #alliance-chart > div:nth-child(3)> div:first-child{
     height: 375px;
     align-items: start;
 }
+
 #alliance-chart > div:nth-child(3)> div:first-child:before{
     height: 103%;
     width: 125px;
@@ -197,12 +137,15 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
     position: relative;
     bottom: -50%;
 }
+
 #alliance-chart > div:nth-child(3)> div:first-child:before{
     left: 0px;
 }
+
 #alliance-chart > div:nth-child(3)> div:nth-child(2) {
     align-items: center;
 }
+
 #alliance-chart > div:nth-child(3)> div:nth-child(2):before{
     height:50%;
     border-top: 2.4px solid var(--color--of--line);
@@ -210,6 +153,12 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
     position: relative;
     bottom: -25%;
 }
+ */
+
+
+
+
+
 .ali_box{
     width: 250px;
     background: white;
@@ -223,12 +172,16 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.103);
     padding: 10px 13px 15px 13px;
 }
+
+
 .ali_box > img:first-child{
     width: 100%;
     height: 200px;
     object-fit: cover;
     object-position: top center;
 }
+
+
 .ali_box > img:nth-child(2){
     width: 70px;
     height: 70px;
@@ -242,6 +195,8 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.503);
  /*   left: 25%; */
 }
+
+
 .ali_box >h2 {
     text-align: center;
     text-transform: uppercase;
@@ -252,6 +207,7 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
     margin-top: -40px;
     background-color: transparent;
 }
+
 .ali_box>span{
     text-align: center;
     text-transform: uppercase;
@@ -261,6 +217,8 @@ Insha Allah,  BY Allahs Marcy,  I will Gain success
     color: var(--main-cl);
 
 }
+
+
 .ali_box::before ,.ali_box::after{
     display:none;
 }
