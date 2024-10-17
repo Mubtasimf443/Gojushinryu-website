@@ -36,6 +36,7 @@
     <script defer src="/js/control panal/control.panal.user.massage.js"></script>
     <script defer src="/js/control panal/gm.massase.group.js"></script>
     <script defer src="/js/control panal/course.enrollments.js"></script>
+    <script defer src="/js/control panal/uplaod.post.js"></script>
 
 </head>
 <body>
@@ -626,7 +627,6 @@ style="display: none;"
 
  
     <!-----------------------Upload Notification ----------------------------->
-
  
 <div id="upload-Notification-conatiner"
 targetedElement="notification_href"
@@ -755,39 +755,43 @@ style="display: none;" ct_section class="form-section">
      <h4>
        Thumnail
      </h4>
-    <label for="upload_sec_event_tumb_img_inp">
+    <label for="upload_post_thumb">
       <b>Click To Upload <br>
       Thumbnail
       </b>
     </label>
-    <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp">
+    <input multiple="false" style="display: none" type="file" id="upload_post_thumb">
    
   </div>
-  <div class="upload_sec_env_img_inp_box">
+  <div images__ class="upload_sec_env_img_inp_box">
     
-    <label for="upload_sec_env_img_inp">
+    <label for="upload_p_images_input">
       Upload Images
-    </label>
-    <input 
+
+       <input 
     style="display: none" 
     type="file"
-    id="upload_sec_env_img_inp">
+    id="upload_p_images_input">
+    </label>
+   
     
   </div>
-
    
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Title</label>
-     <input type="Text" name="" id="s-sec-name-inp">
+     <input type="Text" placeholder="title" id="s-sec-name-inp">
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-bio-inp">Description</label>
-     <input type="Text" name="" id="s-sec-bio-inp">
+     <textarea type="Text" placeholder="description" id="s-sec-bio-inp"></textarea>
    </div>
 
    <div class="s-sec-btn-box">
-     <button>Cancel</button>
-     <button> Upload</button>
+     <button uplaod_btn
+     style="
+     background-color: black;
+     color:white"
+     >Upload</button>
    </div>
 
  </div>

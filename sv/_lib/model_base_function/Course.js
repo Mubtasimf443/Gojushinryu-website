@@ -154,7 +154,7 @@ export async function findCourseEnrollments(req,res) {
       let {course_name,student_id,price} = enrollments[0];
       let studentName =await User.findById(student_id).then(({last_name,first_name}) => `${first_name} ${last_name}`);     
       let date =  enrollments[0].Date.toDateString();//=enrollments[0].Date.substring(0,10);
-      enrollments.push({no :i+1,date,course_name,tudentName, price});
+      enrollments.push({no :i+1,date,course_name,studentName, price});
       enrollments.shift()
     }
     return res.status(200).json({ enrollments })

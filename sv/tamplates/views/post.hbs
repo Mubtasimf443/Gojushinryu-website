@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Post's </title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/pages/post.css'>
+   {{>Links}}
+</head>
+<body>
+    {{>Header}}
+    <main>
+        <section id="banner">
+            <h1>Post's </h1>
+            <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum aliquid, a nisi sed fugiat, officiis nam id similique eius suscipit voluptatem nemo deserunt quis quos ipsam consequuntur consectetur quo illo?
+            </p>
+            <button>
+               <a href="#posts"
+               style="text-decoration:none;color:black ;background: initial;"
+               >
+                View Post
+               </a> 
+            </button>
+        </section>
+
+
+        <section id="posts" class="p_container">
+
+            {{#each posts}}
+             <div class="post">
+                <img src="{{this.thumb}}" alt="post thumbneil">
+                <span>{{this.date}}</span>
+                <h2>{{this.title}} </h2>
+                <p>
+                   {{this.description}}
+                </p>
+                <a href="{{this.link}}">Read More</a>
+            </div>
+            {{/each}}
+
+            {{!-- <div class="post">
+                <img src="/img/join.jpg" alt="">
+                <span>Wed Oct 09 2024 </span>
+                <h2> Lorem ipsum dolor, sit amet consectetur </h2>
+                <p>
+                    Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus laboriosam tempore aliquid voluptatum fuga iusto commodi iste, fugiat at...
+                </p>
+                <a>Read More</a>
+            </div> --}}
+        </section>
+    </main>
+    {{>Footer}} 
+</body>
+</html>

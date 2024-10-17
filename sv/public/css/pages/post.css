@@ -1,0 +1,126 @@
+/* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ   */
+/*
+Insha Allah,  BY Allahs Marcy,  I will Gain success
+*/ 
+*{
+    box-sizing: border-box;
+}
+
+
+
+   #banner{
+    height: 90vh;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     background: url('/img/samurai4.jpg');
+     background-position: bottom left;
+     background-size: cover;
+     background-repeat:no-repeat;
+     border-image-slice: fill 1;
+     border-image-source: linear-gradient(to right,
+      rgba(0, 0, 0, 0.474) ,
+      rgba(0, 0, 0, 0.712),
+     rgba(0, 0, 0, 0.5));
+     color: white;
+     row-gap: 12px;
+     padding-top: 80px;
+     text-align: center;
+     box-sizing: content-box;
+   
+   }
+   #banner h1{
+     font-size: 27px;
+     text-transform: uppercase;
+     word-spacing:4.5px;
+   }
+   #banner p {
+     font-size: 15px;
+     color: #fff;
+     width: 500px;
+     word-spacing: 3px;
+     text-wrap: wrap;
+   }
+   @media screen and (max-width: 510px) {
+     #banner p {
+       width: 400px;
+     }
+   }
+   #banner button {
+     background: var(--main-cl);
+     color: #000000;
+     font-style: 15px;
+     word-spacing: 3px;
+     padding: 14px 20px;
+     border:none ;
+     text-transform: uppercase;
+     font-weight: 600;
+   }
+   
+  .p_container{
+    display: flex;
+    flex-direction: row;
+    column-gap: 35px;
+    row-gap: 45px;
+    padding: 40px;
+    flex-wrap: wrap;
+  }
+
+  .post{
+    
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    row-gap: 8px;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 15px;
+    width: 440px;
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    height: 470px;
+    box-sizing: border-box;
+    text-decoration: none;
+    color: black;
+  }
+
+  .post img {
+    width: 100%;
+    min-height: 200px;
+    max-height: max-content;
+    border-radius: 8px;
+    object-fit: cover;
+    object-position: top left;
+    overflow: hidden;
+  }
+  .post h2{
+    max-width: 100%;
+    font-size: 1.3em;
+    line-height: 1.135em;
+  }
+  .post span{
+    font-weight: 500; 
+    color: darkorange;
+    font-size: 13.5px;
+    line-height: 1.135em;
+    padding-top: 7px;
+  }
+  .post p{
+    font-weight: 500; 
+    padding-bottom: 7px;
+   } 
+  .post a{ 
+    color: black;
+    text-decoration: none;
+    background-color: var(--main-cl);
+    border: none;
+    padding: 9px 14px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: .96em;
+    transition: background-color 0.3s ease;
+}

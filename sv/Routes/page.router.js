@@ -14,6 +14,7 @@ import userCheck, { userCheckAndNavigation } from "../_lib/midlewares/User.check
 import { MembershipPageNavigation } from "../_lib/midlewares/membership.page.js";
 import { coursePageNavigation } from "../_lib/midlewares/course.page.navigation.js";
 import { eventPageNavigation } from "../_lib/model_base_function/Event.js";
+import { postPageNavigation } from "../_lib/model_base_function/Post.js";
 
 
 let pageRouter = Router();
@@ -58,11 +59,11 @@ pageRouter.get('/shop/:name',(req,res)=> {
 pageRouter.get('/shop', findProductPageNavigation);
 pageRouter.get('/post/:name',(req,res)=> res.render('post-detail'));
 pageRouter.get('/control-panal',addMinPageRoute);
-pageRouter.get('/media/:name',(req,res) => {
+pageRouter.get('/media/:name',(req,res) => {   
     if (req.params.name === 'videos') return res.render('video');
     if (req.params.name === 'video') return res.render('video');
     if (req.params.name==="events") return eventPageNavigation(req,res)
-    if (req.params.name==="post") return res.render('events');
+    if (req.params.name === "post") return postPageNavigation(req,res)
     if (req.params.name==="images") return res.render('images');    
 })
 pageRouter.get('/about-us/organization-charts',(req,res)=>res.render('OurOrganaizationChart'))

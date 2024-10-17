@@ -17,6 +17,7 @@ let dirname = path.dirname(__filename);
 
 
 export async function UplaodImageApiIn25Minutes(req,res) {
+    try {
     let DontSuffortMime = false;
     let options =  {
     uploadDir :
@@ -89,6 +90,9 @@ export async function UplaodImageApiIn25Minutes(req,res) {
         })
     },2700000)
     //agter 25 minutes ,Image will be delated
-})
+    })
+    } catch (error) {
+        console.log({error});
+    }
 }
 

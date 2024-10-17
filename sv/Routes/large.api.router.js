@@ -11,6 +11,7 @@ import { courseBuyPaypalApi } from "../_lib/api/course.buy.api.js";
 import { stripeOrderApi } from "../_lib/api/stripe.checkout.api.js";
 import { stripeCourseBuyAPiJs } from "../_lib/api/stripe.course.buy.api.js";
 import { membershipMidleWareStripe, stripeMembershipFunction } from "../_lib/api/membership.srtipe.api.js";
+import { uplaodPostAPiFucntion } from "../_lib/model_base_function/Post.js";
 
 const LargeApiRouter = Router();
 
@@ -26,6 +27,7 @@ LargeApiRouter.post('/paypal-course-purchase-api',userCheck,courseBuyPaypalApi);
 LargeApiRouter.post('/stripe-checkout',userCheck,stripeOrderApi)
 LargeApiRouter.post('/stripe-membership-api',userCheck,membershipMidleWareStripe,stripeMembershipFunction)
 LargeApiRouter.post('/stripe-course-purchase-api',userCheck,stripeCourseBuyAPiJs)
+LargeApiRouter.post('/uplaod-post',uplaodPostAPiFucntion)
 
 
 

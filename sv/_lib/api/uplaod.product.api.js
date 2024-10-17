@@ -7,7 +7,10 @@ import { UploadImageToCloudinary } from '../Config/cloudinary.js';
 import { ImageUrl } from '../models/imageUrl.js';
 import { Product } from '../models/Products.js';
 
-export  async function UploadProductApi(req,res) {  
+export  async function UploadProductApi(req,res) { 
+    try {
+        
+     
         function alert(params) {
           return res.json({error:params})
         }
@@ -118,4 +121,7 @@ export  async function UploadProductApi(req,res) {
         alert('Database can not be created');
         log(e)
         }) 
+    } catch (error) {
+        return 
+    }
 }

@@ -76,7 +76,7 @@ body {
 
 .product-card>p{
     min-height: 30px;
-height: auto;
+    height: auto;
     max-height: 80px;
     font-weight: 500; 
     margin-top: 5px; 

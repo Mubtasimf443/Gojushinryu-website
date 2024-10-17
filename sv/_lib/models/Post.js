@@ -4,10 +4,11 @@ By his marcy,  I will gain success
 */
 
 
+
 import mongoose from 'mongoose';
 
 
-const schema = mongoose.Schema({
+const pSchema = mongoose.Schema({
   title : {
     type : String,  
     required :true
@@ -20,23 +21,19 @@ const schema = mongoose.Schema({
     type: String,
     required: true
   },
-  images :[{image : {
-    type: String,
-    required: true
-  }}],
-  
+  images :[ {
+      type: String,
+  }],
   date : {
-    type: String,
-    required: true,
+    type: Date,
+    default: Date.now,
   },
-  
-  
+  dateAsNumber:{
+    type: Number,
+    default: Date.now,
+  }
 })
 
-export const Posts = mongoose.model('Posts', schema);
 
 
-
-
-
-
+export const Posts=  mongoose.model('Posts', pSchema)

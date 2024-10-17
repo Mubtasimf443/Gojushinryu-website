@@ -29,6 +29,8 @@ input {
   height: 30px;
   outline: none;
 }
+
+
 #banner{
  height: 90vh;
   display: flex;
@@ -78,6 +80,8 @@ input {
   text-transform: uppercase;
   font-weight: 600;
 }
+
+
 .contact-sec {
   display: flex;
   flex-direction: row;

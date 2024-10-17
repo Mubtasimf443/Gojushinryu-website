@@ -17,7 +17,7 @@ By his marcy,  I will gain success
                     res=await res.json();
                     let {enrollments} =res;
                     for (let i = 0; i < enrollments.length; i++) {
-                        let { no ,date, course_name, studentName, price } =enrollments;     
+                        let { no ,date, course_name, studentName, price } =enrollments[i];     
                         let tr =document.createElement('tr');
                         tr.innerHTML=`
                         <td>${no}</td>
