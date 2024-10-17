@@ -9,7 +9,8 @@ import { Alert, log } from "../utils/smallUtils.js";
 import { JWT_SECRET_KEY } from "../utils/env.js";
 
 export async function checkGM(req,res,next) {
-    let {gm_cat} =req.cookies;
+    try {
+        let {gm_cat} =req.cookies;
     if (!gm_cat) return Alert('You can not access this page , Please login')
     await jwt.verify(gm_cat,JWT_SECRET_KEY,async (err,data) => {
         if (err) {
@@ -27,4 +28,8 @@ export async function checkGM(req,res,next) {
         }
         }
     }) 
+    } catch (error) {
+        console.log({error}); 
+    }
+    
 }

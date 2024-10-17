@@ -17,12 +17,12 @@ InshaAllah, By his marcy I will Gain Success
     
     <!-------------------- Header ------------------------------->
        
-   <header>
+    <header>
       <div id="top-bar">
       
 
       </div>
-      <div id="header">
+      <div main_header id="header">
      <div class="hd-icon-div">
       <img class="hd-icon" src="" alt="logo">
      </div>
@@ -85,7 +85,6 @@ InshaAllah, By his marcy I will Gain Success
            <a href="/accounts/grand-master-counchil">Grand Master</a>
            <hr>
            <a href="/accounts/student">Students</a>
-
         </div>
       </div>
 
@@ -113,18 +112,76 @@ InshaAllah, By his marcy I will Gain Success
       </button>
      </div>
 
-     <div class="m_nav_i">
-      <i class="fa-solid fa-align-right"></i>
+     <div  class="m_nav_i">
+      <i style="color: #000;" class="fa-solid fa-align-right"></i>
      </div>
-     <div class="m_nav">
-      <a href="">hOME</a> 
-    <a href="">About us</a>
- <a href="">Contact us</a> 
 
-    <a href="">Blog</a>
 
+     <div mobileNab class="m_nav">
+
+      <button mobile_nab_close>&times;</button>
+      <strong>goju shin ryo</strong>
+      <a class="mna" href="/home">home</a>
+      <span class="mna dropd">Courses
+        <a href="/courses">Course</a>
+        <a href="/courses/date">Date</a>
+      </span>
+      <a href="/Membership-application" class="mna">Membership</a>
+      <a href="/allience" class="mna">allience</a>
+     
+      <span class="mna dropd">Shop
+       <a href="/shop">
+      Equipment
+      </a>
+      <a href="/shop/fevorites">
+      Fevorites
+      </a>
+       <a href="/shop/cart">
+      Cart
+      </a>
+      <a href="/shop/checkout">
+      Checkout
+      </a>
+      </span>
+      <span class="mna dropd" >
+         About us
+        <a href="/about-us/goju-shin-ryo">goju shin ryo</a>
+        <a href="/about-us/school-of-tradistional-martial-arts">school of tradistional martial arts</a>
+        <a href="/about-us/organization-charts">Organization Chart</a>
+      
+      </span>
+      <span class="mna dropd" >
+        Accounts
+        <a href="/accounts/student">Student</a>
+        <a href="/accounts/grand-master-counchil">Grand Master</a>
+      </span>
+
+      <span class="mna dropd">Media
+        <a href="/media/post">Post</a>
+        <a href="/media/events">Events</a>
+        <a href="/media/video">Videos</a>
+        <a href="/media/images">Images</a> 
+      </span>
+
+     <a href="/contact"  class="mna">
+      Contact Us
+     </a>
      </div>
   </div>
   
    </header>
+
+<script>
+ 
+ 
+document.querySelector('.fa-align-right').addEventListener('click', e => {
+  document.querySelector('[main_header]').querySelector('[mobileNab]').classList.add('visible');
+})
+
+
+document.querySelector(`[mobile_nab_close]`).addEventListener('click', e => {
+  document.querySelector('[main_header]').querySelector('[mobileNab]').classList.remove('visible');
+})
+
+</script>
 {{!-- <script src="/js/header.js"></script> --}}

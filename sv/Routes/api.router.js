@@ -1,4 +1,6 @@
 /*  بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah */
+
+
 import { Router } from "express"
 import { Contact_us_api_Function } from '../_lib/api/Contact_Form_Api.js';
 import { UplaodImageApi } from '../_lib/api/UplaodImageApi.js';
@@ -6,7 +8,7 @@ import { ChangeuserData, changeUserPasswordAPI } from '../_lib/api/Change.userDa
 import { UplaodImageApiIn25Minutes } from '../_lib/api/UplaodImageApiIn25Minutes.js';
 import AdminCheckMidleware from '../_lib/midlewares/AdminCheckMidleware.js';
 import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
-import { CreateACourseApi, deleteCourseApi, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
+import { CreateACourseApi, deleteCourseApi, findCourseEnrollments, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
 import { deleteEvent, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails } from '../_lib/model_base_function/Product.js';
@@ -46,6 +48,7 @@ apiRouter.get('/find-member', FindMember)
 // apiRouter.get('/courses',giveCourseJsonApi)
 apiRouter.get('/get_user_orders',userCheck,findUserOrder)
 apiRouter.get('/get-user-data',userCheck,getUserData)
+apiRouter.get('/get-courses-enrollments-data',findCourseEnrollments)
 
 //Post Route
 apiRouter.post('/contact' , Contact_us_api_Function)

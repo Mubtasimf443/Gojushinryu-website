@@ -9,8 +9,9 @@ import { log } from '../utils/smallUtils.js';
 import { JWT_SECRET_KEY } from '../utils/env.js';
 
 const AdminCheckMidleware = async (req,res,next) => {
-    let {cpat} =req.cookies;
-    await jwt.verify(cpat,JWT_SECRET_KEY,async (err,data) => {
+    try {
+        let {cpat} =req.cookies;
+        await jwt.verify(cpat,JWT_SECRET_KEY,async (err,data) => {
         if (err) {
             log(err)
             return Alert('Access denied',res);
@@ -21,8 +22,11 @@ const AdminCheckMidleware = async (req,res,next) => {
            let admin= await Admin.findOne({Secret_Key:key}) ;
            if (!admin) return Alert('You can not access this feature',res);
            if (admin) next()
-        }
-    }) ;
+        }}) ;
+    } catch (error) {
+        
+    }
+    
 }
 
 export default AdminCheckMidleware

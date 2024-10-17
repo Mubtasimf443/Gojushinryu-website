@@ -3,7 +3,9 @@
 
 import { UploadImageToCloudinaryFromImageUrl } from "../Config/cloudinary.js";
 import Course from "../models/Course.js";
+import { CourseEnrollments } from "../models/courseEnrollment.js";
 import { ImageUrl } from "../models/imageUrl.js";
+import { User } from "../models/user.js";
 import { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
 import { makeTimeString, mekeLinkString } from "../utils/string.manipolation.js";
@@ -23,7 +25,6 @@ export async function FindCourseApi(req, res) {
     })
   } 
 };
-
 export async function giveCourseJsonApi(r, res) {
   try {
     let CourseArray = await Course.find();
@@ -34,7 +35,6 @@ export async function giveCourseJsonApi(r, res) {
     log(e)
   } 
 };
-
 export async function CreateACourseApi(req,res) {    
   try {
     let courseData={};
@@ -95,28 +95,39 @@ export async function CreateACourseApi(req,res) {
   }
 }
 export async function UpdateCourseDates(req,res) {
-    function alert(error) {
-     return res.json({error })
-    }
-    let { dateArray, id} = req.body;
-    if (!dateArray instanceof Array) return alert('Server Error, Please Contact The Developer');
-    if (!dateArray.length) return alert('Please Give Date, You Can not Make it Emty');
-    if (Number(id).toString() === 'NaN') {
-      return alert('Please Avoid To Hack Our Website')
-    }
-    Course.findOneAndUpdate({id}, {
-      dateArray
-    })
-   .then(e => res.json({
-     success :true
-   })
-   )
-   .catch(e => {
-     console.log(e);
-     res.status(500).json({
-       error :'Failed To Update Data'
+  try {
+     function alert(error) {
+      return res.json({error })
+     }
+     let { dateArray, id} = req.body;
+     if (!dateArray instanceof Array) return alert('Server Error, Please Contact The Developer');
+     if (!dateArray.length) return alert('Please Give Date, You Can not Make it Emty');
+     if (Number(id).toString() === 'NaN') {
+       return alert('Please Avoid To Hack Our Website')
+     }
+     Course.findOneAndUpdate({id}, {
+       dateArray
      })
-   })
+     .then(e => res.json({
+        success :true
+      })
+    )
+    .catch(e => {
+      console.log(e);
+      res.status(500).json({
+        error :'Failed To Update Data'
+      })
+    })
+  } catch (error) {
+    log({
+      error
+    })
+    res.sendStatus(400)
+  }
+   
+
+
+
 };
 export async function deleteCourseApi(req,res) {
   function alert(error) {
@@ -132,4 +143,23 @@ export async function deleteCourseApi(req,res) {
     res.sendStatus(400)
   }
   
+}
+
+
+export async function findCourseEnrollments(req,res) {
+  try {
+    let enrollments=await CourseEnrollments.find({});
+    if (enrollments.length===0) return res.sendStatus(304)
+    for (let i = 0; i < enrollments.length; i++) {
+      let {course_name,student_id,price} = enrollments[0];
+      let studentName =await User.findById(student_id).then(({last_name,first_name}) => `${first_name} ${last_name}`);     
+      let date =  enrollments[0].Date.toDateString();//=enrollments[0].Date.substring(0,10);
+      enrollments.push({no :i+1,date,course_name,tudentName, price});
+      enrollments.shift()
+    }
+    return res.status(200).json({ enrollments })
+  } catch (error) {
+    log({error})
+    res.sendStatus(400)
+  }
 }

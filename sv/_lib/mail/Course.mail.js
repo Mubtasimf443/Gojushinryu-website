@@ -2,8 +2,15 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah 
 By his marcy,  I will gain success
 */
+
+
+import { mailer } from "../utils/mailer.js"
+import { log } from "../utils/smallUtils.js"
+
+
 export const course_purchase_user_email = (to) => {
-  mailer.sendMail({
+  try {
+    mailer.sendMail({
       from: MAIL_USER,
       to,
       subject: 'Course Buyed Successfully',
@@ -18,6 +25,9 @@ export const course_purchase_user_email = (to) => {
       return true
     })
     .catch(e => console.log(e))
+  } catch (error) {
+    log
+  }
 }
 const course_purchase_admin_email = (to) => {
   mailer.sendMail({
