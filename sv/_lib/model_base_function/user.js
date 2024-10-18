@@ -5,6 +5,8 @@ import jwt from "jsonwebtoken";
 import { JWT_SECRET_KEY } from "../utils/env.js";
 import { User } from "../models/user.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
+import { CourseEnrollments } from "../models/courseEnrollment.js";
+import { Memberships } from "../models/Membership.js";
 
 
 
@@ -19,8 +21,6 @@ export const FindUser =async (req,res) => {
     res.status(500).json({error :'Failed to Give you the User'})
   } 
 }
-
-
 export async function StudentCornerPageRoute(req,res) {
   
     let {rft} = req.cookies;
@@ -52,8 +52,6 @@ export async function StudentCornerPageRoute(req,res) {
         }
     })
 }
-
-
 export async function BaneUserFunction (req,res) {
     let {email}= req.body;
     if (!email) return Alert('Please Give The Correct User InfoCan not Bann User ',res );
@@ -67,7 +65,6 @@ export async function BaneUserFunction (req,res) {
       Alert('Server error',res)
     })
   };
-
 export  async function RemoveFromBanedUserFunction (req,res) {
     let {email}= req.body;
     if (!email) return Alert('Please Give The Correct User InfoCan not Bann User ',res );
@@ -81,7 +78,6 @@ export  async function RemoveFromBanedUserFunction (req,res) {
       Alert('Server error',res)
     })
   };
-
 export  async function DeleteUserAccount(req,res) {
     let {email}= req.body;
     if (!email) return Alert('Please Give The Correct User InfoCan not Bann User ',res );
@@ -93,7 +89,6 @@ export  async function DeleteUserAccount(req,res) {
       Alert('Server error' ,res)
     })
 };
-
 export async function FindMember(req,res) {
   try {
     const Member =await User.find({isMember:true})
@@ -109,8 +104,6 @@ export async function FindMember(req,res) {
   }
 
 }
-
-
 export async function getUserData(req,res) {
   try {
     let id =req.user_info._id;
@@ -130,5 +123,62 @@ export async function getUserData(req,res) {
   } catch (e) {
     log(e)
     return res.sendStatus(400)
+  }
+}
+export async function getUserMembershipJS(req,res) {
+  try {
+    let {memberShipArray}=req.user_info;
+    if (!memberShipArray.length) return res.sendStatus(304);
+    let data=[];
+    for (let i = 0; i < memberShipArray.length; i++) {
+      const {_id} = memberShipArray[i];
+      let membership=await Memberships.findById(_id)   ;
+      if (!membership) throw 'error ,there is no membership'
+      
+      data.push({
+        no :membership.id,
+        date:membership.Date.toDateString(),
+        name :membership.membership_company+" "+membership.membership_type+" membership",
+        organization :membership.membership_company,
+        type :membership.membership_type
+      })  
+    };
+    return res.status(200).json({
+      data
+    })
+  } catch (error) {
+    res.sendStatus(400)
+    console.log({error});   
+  }
+}
+export async function getUserEnrolledCourseApi(req,res) {
+  try {
+    let {enrolled_course}=req.user_info;
+    if (!enrolled_course.length) return res.sendStatus(304);
+    let data=[];
+    for (let i = 0; i < enrolled_course.length; i++) {
+      const {courseEnrollMentID} = enrolled_course[i];
+      let courseEnrollment=await CourseEnrollments.findById(courseEnrollMentID);
+      if (!courseEnrollment) throw 'courseEnrollments'
+      let {id,course_id,course_price}=courseEnrollment;
+      let name =(id => {
+        if (id===1) return 'Regular Martial Art classes'
+        if (id===2) return 'Online Martial Art classes'
+        if (id===3) return 'International Martial Art Seminars'
+        if (id===4) return 'Join Our Women Self Defence classes'
+        if (id===5) return 'Bhangar Fitness Class for all ages'
+      })(course_id)
+      data.push({
+        id,
+        price :course_price,
+        date:courseEnrollment.Date.toDateString(),
+        name
+      })
+    }
+    return res.status(200).json({data})
+  } catch (error) {
+    res.sendStatus(400)
+    console.error({error});
+    
   }
 }

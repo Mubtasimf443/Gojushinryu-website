@@ -12,7 +12,7 @@ import { CreateACourseApi, deleteCourseApi, findCourseEnrollments, giveCourseJso
 import { deleteEvent, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails } from '../_lib/model_base_function/Product.js';
-import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, getUserData, RemoveFromBanedUserFunction } from '../_lib/model_base_function/user.js';
+import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, RemoveFromBanedUserFunction } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
 import { OrderCancellPaypalApi, OrderSuccessPaypalApi } from "../_lib/api/OrderAPi.js";
@@ -50,6 +50,9 @@ apiRouter.get('/find-member', FindMember)
 apiRouter.get('/get_user_orders',userCheck,findUserOrder)
 apiRouter.get('/get-user-data',userCheck,getUserData)
 apiRouter.get('/get-courses-enrollments-data',findCourseEnrollments)
+apiRouter.get('/get-user-membership',userCheck,getUserMembershipJS)
+apiRouter.get('/get-user-courses',userCheck,getUserEnrolledCourseApi)
+
 
 //Post Route
 apiRouter.post('/contact' , Contact_us_api_Function)

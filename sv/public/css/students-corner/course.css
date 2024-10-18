@@ -2,33 +2,41 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
 Insha Allah,  By your Marcy Ya Allah
 */
-.order-list-box{
+
+*{
+    box-sizing: border-box;
+}
+
+.course-e-box{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
     align-items: start;
-    width: 100%;
-    row-gap: 23px;
+    row-gap: 20px;
+    width: 650px;
 }
-
-
-
-.order-list-box table{
+@media screen  and (max-width :600px){
+    .course-e-box{
+        width: 470px;
+    }
+}
+.course-e-box table{
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
 }
 
-.order-list-box table th{
-    border: 1px solid #000;
+.course-e-box table th{
+    border: 1px solid var(--main-cl);
     text-align: left;
     padding: 10px 12px; 
-    background-color:black;
+    background-color:var(--main-cl);
     color: white;
+
   }
 
 
- .order-list-box table td {
+ .course-e-box table td {
     border: 1px solid #ccc;
     text-align: left;
     padding: 10px 12px;
@@ -37,7 +45,7 @@ Insha Allah,  By your Marcy Ya Allah
   }
 
 
- .order-list-box table td img {
+ .course-e-box table td img {
     max-width:90% ;
     object-fit: contain;
     object-position: top left;
@@ -45,16 +53,16 @@ Insha Allah,  By your Marcy Ya Allah
   }
 
 
- .order-list-box table tr:nth-child(1){
+ .course-e-box table tr:nth-child(1){
     background: var(--main-cl);
   }
 
 
- .order-list-box table tr{
+ .course-e-box table tr{
     background-color: #ffffff;
   }
 
- .order-list-box table button{
+ .course-e-box table button{
     background: inherit;
     border: none;
     font-size: 14px;

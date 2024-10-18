@@ -174,16 +174,22 @@ InshaAllah, By his Marcy I will Gain Success
         if (e.target.id ==='info_href') return ChangeSection(2) ;
         if (e.target.id ==='settings_href') return ChangeSection(3) ;
         if (e.target.id ==='notification_href') return ChangeSection(0) ;
+        if (e.target.id ==='membership_href') return ChangeSection(5) ;
+        if (e.target.id ==='course_enrollments_href') return ChangeSection(6) ;
         if (e.target.parentNode.parentNode.id ==='massage_href') return ChangeSection(1) ;
         if (e.target.parentNode.parentNode.id ==='orders_href') return ChangeSection(4) ;
         if (e.target.parentNode.parentNode.id ==='info_href') return ChangeSection(2) ;
         if (e.target.parentNode.parentNode.id ==='settings_href') return ChangeSection(3) ;
         if (e.target.parentNode.parentNode.id ==='notification_href') return ChangeSection(0) ;
+        if (e.target.parentNode.parentNode.id ==='membership_href') return ChangeSection(5) ;
+        if (e.target.parentNode.parentNode.id ==='course_enrollments_href') return ChangeSection(6) ;
         if (e.target.parentNode.id ==='massage_href') return ChangeSection(1) ;
         if (e.target.parentNode.id ==='orders_href') return ChangeSection(4) ;
         if (e.target.parentNode.id ==='info_href') return ChangeSection(2) ;
         if (e.target.parentNode.id ==='settings_href') return ChangeSection(3) ;
         if (e.target.parentNode.id ==='notification_href') return ChangeSection(0) ;
+        if (e.target.parentNode.id ==='membership_href') return ChangeSection(5) ;
+        if (e.target.parentNode.id ==='course_enrollments_href') return ChangeSection(6) ;
         if (e.target.id ==='s-sec-change-password-btn') return ChangeUserPasswordRequest()
     });
     document.getElementById('s-sec-profile-input').addEventListener('change',async e =>{

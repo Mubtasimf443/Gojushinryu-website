@@ -48,12 +48,16 @@ export async function updateOrderStatus(req,res) {
 
 export async function findUserOrder(req,res) {
     try {
-        let {_id,email} =req.user_info;
-        let data=await  Orders.find({buyer :{
-            id:_id,
-            // email
-        }})
-        if (!data.length) return res.sendStatus(304);
+        let {orders} =req.user_info;
+        console.log({orders});
+        
+        if (!orders.length) return res.sendStatus(304)
+        let data=[];
+        for (let i = 0; i < orders.length; i++) {
+            const id = orders[i];
+            let order=await Orders.findOne({_id :id})
+            data.push(order)
+        }
         return res.status(200).json({data})
     } catch (e) {
         log(e)

@@ -85,7 +85,7 @@ export async function UplaodImageApi(req,res) {
             })
             .then(image  => {
                 if (image) {
-                        unlink(urlpath).catch(e => log(e)) ;
+                        unlink(image.urlpath).catch(e => log(e)) ;
                         if (!image.active) ImageUrl.findOneAndDelete({urlpath : image.urlpath}).catch(e => log(e))
                 }
             })

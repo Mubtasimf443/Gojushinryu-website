@@ -72,8 +72,6 @@ let schema = new mongoose.Schema({
         membership :String,
         Organization :String,
         name:String,
-       
-
     }],
     enrolled_course:[{
        id : {

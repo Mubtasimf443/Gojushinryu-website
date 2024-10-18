@@ -15,28 +15,28 @@ import { MakePriceString } from "../utils/string.manipolation.js";
 
 
 export async function courseBuyPaypalApi(req,res) {
-    let coursesArray=[
+    let coursesArray=[//it is related user getcourse api
         {
-        name :' Regular classes',
+        name :'Regular Martial Art classes',
         description :"Join Our Regular Martial Art classes",
         price :200,
         id :1
         },
         {
-        name :'Online Martial classes',
+        name :'Online Martial Art classes',
         description :"Join Our Online Martial Art classes",
         price :200,
         id :2
         },
         {
-        name :"Martial Art Seminars",
+        name :"International Martial Art Seminars",
         description :"Join Our Martial Art Seminars",
         price :200,
         id :3
         },
         {
-        name :'Women Defence classes',
-        description :"Join Our Women Defence classes",
+        name :'Women Self Defence classes',
+        description :"Join Our Women Self Defence classes",
         price :200,
         id :4
         },
