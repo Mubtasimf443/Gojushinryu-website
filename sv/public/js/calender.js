@@ -55,8 +55,14 @@ function renderCalendar() {
    }
 
   for (let i = 1; i <= endDate; i++) {
-    let checkDate = classDates.findIndex(el => Number(el) === i);
-    let className = checkDate!== -1 ? 'class="class-day"':''
+    let checkDate = ((i) => {
+      let date =new Date(year,month,i).getDay();
+      let index= classDates.findIndex(el => el==date);
+      console.log({index});
+      
+      return index
+    })(i);
+    let className = checkDate!== -1 ? 'class="class-day"':'';
     datesHtml += `<li ${className} >${i}</li>`;
   }
  

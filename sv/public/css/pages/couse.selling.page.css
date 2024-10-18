@@ -2,7 +2,9 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
 Insha Allah,  By His Marcy I will Gain Success 
 */ 
-
+*{
+  box-sizing: border-box;
+}
 body{
   background: whitesmoke;
 }
@@ -25,7 +27,7 @@ input{
   top: 0px;
   left: 0px;
   z-index: 2000;
-transition: none;
+  transition: none;
 }
 #Links-container >div{
   display: flex;
@@ -75,21 +77,47 @@ padding:15px 26px;
 .course-section{
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: start;
-  padding-top: 1em;
+  flex-wrap: wrap;
+  padding: 2em 0em;
+}
+
+@media screen and (max-width :900px){
+  .course-section{
+    justify-content: center;
+  }
 }
 .course-article {
-  width: 55%;
+  width: 750px;
   display:flex;
   flex-direction:column;
   justify-content:flex-start;
   align-items: start;
-  min-height: 20em;
-  margin-left: 3em;
-  margin-top: 0.5em;
-  margin-bottom: 2em;
+ 
+ padding: 20px;
 }
+
+
+@media screen and (max-width :800px){
+  .course-article{
+    width: 650px;
+  }
+}
+
+@media screen and (max-width :700px){
+  .course-article{
+    width: 640px;
+  }
+}
+
+
+@media screen and (max-width :600px){
+  .course-article{
+    width: 480px;
+  }
+}
+
 .t_heading{
   display:flex;
   flex-direction:row;
@@ -116,9 +144,16 @@ padding:15px 26px;
   
 }
 .name-div > h1 {
-  font-size: 2.1em;
+  font-size: 25px;
   text-transform: capitalize;
-  font-weight: 500;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+@media screen and (min-width :850px) {
+  .name-div > h1 {
+    font-size: 33px;
+  }
 }
 .m_img_div{
   width: 100%;
@@ -127,26 +162,33 @@ padding:15px 26px;
   justify-content: left;
   align-items: center;
 }
+
+
 .m_img_div > img {
-  width: 100%;
+  max-width: 100%;
+  min-width: 70%;
   margin: 7px 0px;
   object-fit: cover;
   object-position:top left;
-  height: 470px;
+  max-height: 470px;
+  max-height: max-content;
   border-radius :7px;
 }
+
 .galerry_slider_div {
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: center;
-  column-gap: 1em;
+  column-gap: 20px;
   width: 100%;
   margin: 0.5em 0px 1em 0px ;
 }
 .gly_img {
-  width: 8.3em;
-  height: 5.4em;
+  max-width: 8.3em;
+  min-width: fit-content;
+ max-height: 100px;
+ min-height: fit-content;
   object-fit: cover;
   object-position: top center;
   opacity:.7;
@@ -156,28 +198,40 @@ padding:15px 26px;
   opacity: 1;
 }
 .dresciption_heading {
-  font-size: 1.8em;
-  margin: .23em 0em;
+  font-size: 1.34em;
+  margin: 0em 0em;
 }
+
+
+
 .description-div {
-  margin: 0.75em 0em .7em 0em;
+  padding:  0.75em 0em .7em 0em;
 }
 .description-div > p {
   color: rgba(0, 0, 0, 0.849);
   font-weight: 500;
   text-transform: capitalize;
   text-align: justify;
-  font-size:1.15em;
+  font-size:1.06em;
+  line-height: 1.6em;
 }
 .dt-h2{
   font-weight: 600;
-  font-size: 1.95em;
-  margin-top: 25px;
-  margin-bottom: 30px;
+  font-size: 20px;
+  margin-top: 16px;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  word-spacing: 8px;
+}
+
+@media screen and (min-width :900px){
+  .dt-h2{
+    font-size: 25px;
+  }
 }
 /*------------------------------calander-------------------------------------*/
 #calendar{
-  width: 700px;
+  width: 450px;
   display: flex;
   flex-direction: column;
   justify-content: start;
@@ -187,15 +241,15 @@ padding:15px 26px;
   background: white;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
-  padding-bottom: 2em;
+  padding: 6px;
 }
  .cld-header{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  width: 90%;
-  margin-left: 35px;
+  width: 86%;
+  margin-left: 25px;
   margin-top: 1em;
 
 }
@@ -209,10 +263,10 @@ padding:15px 26px;
   color: black;
 }
 .cld-header>h3{
-  font-size: 1.5em;
-  margin: .25em 0px;
+   font-size: 1.4em; 
   color: var(--main-cl);
 }
+
 .cld-header>nav {
   display: flex;
   flex-direction: row;
@@ -226,32 +280,29 @@ padding:15px 26px;
   justify-content: center;
   align-items: start;
   width: 100%;
-  padding-top: 15px;
-  min-height: 200px;
+  padding:20px;
   height: fit-content;
-  margin-left: 30px;
-  margin-bottom: 1.6em;
+  row-gap: 20px;
 }
 .days{
   display: grid;
   grid-template-columns: repeat(7,0fr);
   grid-template-rows: repeat(1,0fr);
-  column-gap: 30px;
+  column-gap: 20px;
   width: 100%;
 }
 .dates{
   display: grid;
   grid-template-columns: repeat(7,0fr);
   grid-template-rows: repeat(1,0fr);
-  column-gap: 30px;
   width: 100%;
-  margin-top: 30px;
-  row-gap: 30px;
+  column-gap: 20px;
+  row-gap: 20px;
 }
 .days>div{
-  width:60px;
+  width:40px;
   text-align: left;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 600;
   text-align: center;
 
@@ -259,10 +310,10 @@ padding:15px 26px;
 .dates>li{
   list-style: none;
   color: black;
-  width: 60px;
-  height: 60px;
+  width: 40px;
+  height: 40px;
   text-align: left;
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-weight: 600;
   display: flex;
   flex-direction: row;
@@ -277,17 +328,42 @@ padding:15px 26px;
   color: white;
   border-radius: 50%;
 }
+
+@media screen and (min-width :850px){
+  #calendar{
+    width: 650px;
+    padding: 15px 0px 20px 0px;
+  }
+  .cl-sec{
+    row-gap: 30px;
+  }
+  .days{
+    column-gap: 30px;
+  }
+  .days div {
+    width: 60px;
+    height: mins-content;
+  }
+  .dates{
+    column-gap: 30px;
+  }
+  .dates li {
+    width: 60px;
+    height: 60px;
+  }
+}
 .base-calender{
   display: flex;
   flex-direction: row;
   justify-content: left;
   align-items: center;
-  column-gap: 2em;
+  column-gap: 1em;
 margin-bottom: 1em;
 margin-top: 1em;
+flex-wrap: wrap;
 }
 .base-calender >div:nth-child(1){
-  margin-left:2em
+  margin-left:1em
 
 }
 .cl_time_div{
@@ -297,9 +373,8 @@ margin-top: 1em;
   align-items: center;
   border: 1.6px solid rgba(128, 128, 128, 0.438);
   border-radius: 5px;
-  width: 15em;
+  width: 190px;
   height: 80px;
-
 }
 .cl_time_div>div{
   display: flex;
@@ -309,27 +384,47 @@ margin-top: 1em;
   
 }
 .cl_time_div >div:nth-child(1){
-  width: 30%;
+  width: 27%;
 }
 .cl_time_div > div:nth-child(2) {
   align-items: start;
-  width: 70%;
+  width: 73%;
 }
 
 .cl_time_div > div:nth-child(2) >b{
-  font-size: 1.2em;
+  font-size: 1em;
+  text-transform: uppercase;
+  font-weight: 600;
 }
+
+.cl_time_div > div:nth-child(2) >span{
+  font-size: .86em;
+}
+@media screen and (min-width :780px){
+  .cl_time_div{
+    width: 250px;
+  }
+  .cl_time_div > div:nth-child(2) >b{
+    font-size: 1.2em;
+  }
+  
+.cl_time_div > div:nth-child(2) >span{
+  font-size: .96em;
+}
+
+}
+
 /*--------------- floating Div --------------*/ 
 .course-float-sec{
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  align-items: start;
+  align-items: center;
   position: sticky;
   top: 1em;
   right:2em ;
-  height: 600px;
-  width: 380px;
+  height: fit-content;
+  width: 470px;;
   margin-bottom: 2em;
   padding-right:2em ;
 }
@@ -348,11 +443,11 @@ margin-top: 1em;
   flex-direction: column;
   justify-content: flex-start;
   align-items: start;
-  padding:1em 1em;
+  padding:30px 16px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 9px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
-background-color: white;
+  background-color: white;
 }
 .fl-box> .fl-heading{
   display: flex;
@@ -366,7 +461,7 @@ background-color: white;
   width: 95%;
   font-size: 1.2em;
 }
-.fl-box >.input-box{
+.fl-box > .input-box{
   display: flex;
   flex-direction: column;
   align-items: start;
@@ -400,6 +495,10 @@ background-color: white;
   align-items: center;
   row-gap:.5em;
   width: 100%;
+}
+
+@media screen and (min-width :700px) {
+  
 }
 .fl-option-div>button{
   width: 96%;

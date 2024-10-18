@@ -7,6 +7,7 @@ import {log} from '../utils/smallUtils.js'
 import {generatePin} from '../utils/generatePin.js'
 import { AdminAuthEmail } from "../mail/Admin.mails.js";
 import {randomBytes} from 'crypto'
+import { Settings } from "../models/settings.js";
 
 export const addMinPageRoute= async (req,res) => {
     // return res.render('control-panal')
@@ -62,6 +63,7 @@ async function navigateToVarify(req,res) {
         admin.save() 
         .then(async sData => {
           let mailStatus = await AdminAuthEmail(otp);
+        
           if (mailStatus) return res.render('cpanal_varification')
         })
         .catch(e => {
@@ -94,9 +96,16 @@ async function navigateToCpanal(req,res) {
             let {key} =data;
             if (!key) return res.render('notAllowed')
             Admin.findOne({email:ADMIN_EMAIL}) 
-        .then(admin=>{
+        .then(async admin=>{
             if (key !==admin.Secret_Key) return res.render('notAllowed')
-            return res.render('control-panal')
+            let settings =await Settings.findOne({})
+            return res.render('control-panal',{
+                date_of_womens_defence_class:settings.date_of_womens_defence_class.date ?? ''
+                ,
+                date_of_regular_class:settings.date_of_regular_class.date ?? ''
+                ,
+                date_of_online_class:settings.date_of_online_class.date ?? ''
+              })
         })
         .catch(e => {
             console.log(e);               

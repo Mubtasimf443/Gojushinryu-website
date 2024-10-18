@@ -28,7 +28,7 @@
    <script defer src="/js/course.selling.js"></script>
    <script>
     var course_id=3;
-    let classDates ='2,3,9,10,16,17,23,24' ;
+    let classDates ='{{date}}' ;
    </script>
 <style>
   #header{
@@ -151,13 +151,13 @@
             <i class="fa-regular fa-calendar-days"></i>
           </div>
           <div class="column">
-            <b>Seniur</b>
+            <b>Time</b>
             {{!-- <span>{{seniorStartTime}} - {{seniorEndTime}}</span> --}}
-            <span>10:00 AM - 11:00AM  </span>
+            <span>03:45PM- 05:00PM  </span>
           </div>
 
         </div>
-         <div class="cl_time_div">
+         {{!-- <div class="cl_time_div">
           <div class="icon">
             <i class="fa-regular fa-calendar-days"></i>
           </div>
@@ -165,11 +165,12 @@
             <b>Joniur</b>
             <span>
             11:00AM :12:00PM
-              {{!-- {{juniorStartTime}} - {{juniorEndTime}} --}}
+              
             </span>
           </div>
 
         </div>
+         --}}
       </div>
  </div>    
       <div class="similar_course_div">

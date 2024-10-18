@@ -27,6 +27,7 @@ import { removeNotificationFromDatabase } from "../_lib/api/basic.notifiation.ap
 import { checkGM } from "../_lib/midlewares/gm.midleware.js";
 import { courseBuyCancellStripeApi, courseBuySuccessStripeApi, stripeCourseBuyAPiJs } from "../_lib/api/stripe.course.buy.api.js";
 import { stripeMembershipCancelFunction, stripeMembershipSuccessFunction } from "../_lib/api/membership.srtipe.api.js";
+import { changeSettingsAPI } from "../_lib/api/change.settings.api.js";
 
 
 
@@ -72,7 +73,7 @@ apiRouter.put('/bann-user',BaneUserFunction);
 apiRouter.put('/remove-from-bann-user', RemoveFromBanedUserFunction);
 apiRouter.put('/update-order-status', updateOrderStatus);
 apiRouter.put('/remove-notification-form-database',userCheck,removeNotificationFromDatabase)
-
+apiRouter.put('/change-settings', changeSettingsAPI)
 
 
 //Delete

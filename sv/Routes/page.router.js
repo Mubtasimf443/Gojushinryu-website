@@ -15,6 +15,7 @@ import { MembershipPageNavigation } from "../_lib/midlewares/membership.page.js"
 import { coursePageNavigation } from "../_lib/midlewares/course.page.navigation.js";
 import { eventPageNavigation } from "../_lib/model_base_function/Event.js";
 import { givePostDetailsFunction, postPageNavigation } from "../_lib/model_base_function/Post.js";
+import { Settings } from "../_lib/models/settings.js";
 
 
 let pageRouter = Router();
@@ -78,13 +79,29 @@ pageRouter.get('/accounts/:name',async (req,res)=>{
 })
 
 
-pageRouter.get('/course/:name',(req,res)=> {
-    let name =req.params.name;
-    if (name === 'regular-classes') return res.render('course__regular__class')
-    if (name === 'Online-classes') return res.render('course__online__class')
-    if (name === 'our-seminars') return res.render('course_our_seminar')
-    if (name === 'women-fitness-classes') return res.render('course__womens_seminars')
-    if (name === 'bhangar-fitness-classes-for-all-ages') return res.render('course__banghar__fitness__class')
+pageRouter.get('/course/:name',async (req,res) => {
+    try {
+        let settings=await Settings.findOne({})
+        let name =req.params.name;
+        let date='';
+        if (name === 'regular-classes') {
+            date=settings.date_of_regular_class.date;
+            return res.render('course__regular__class',{date})
+        }
+        if (name === 'Online-classes') {
+            date=settings.date_of_online_class.date;
+            return res.render('course__online__class',{date})
+        }
+         if (name === 'women-fitness-classes') {
+            date=settings.date_of_womens_defence_class.date;
+            return res.render('course__womens_seminars',{date})
+        }
+        if (name === 'our-seminars') return res.render('course_our_seminar')
+        if (name === 'bhangar-fitness-classes-for-all-ages') return res.render('course__banghar__fitness__class')    
+    } catch (error) {
+        console.log({error});
+    }
+  
 })
 
 

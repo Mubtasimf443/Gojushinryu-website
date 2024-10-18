@@ -28,7 +28,7 @@
    <script defer src="/js/course.selling.js"></script>
    <script>
     var course_id=1;
-    let classDates ='2,3,9,10,16,17,23,24' ;
+    let classDates ='0' ;
    </script>
 <style>
   #header{
@@ -69,8 +69,6 @@
     <!-- course Section -->
     
 <section class="course-section">
-  
-
     <article class="course-article">
 {{!--    
       <div class="t_heading">
@@ -125,7 +123,7 @@
 </p>
       </div>
   <h2 class="dt-h2">Classes Dates</h2>
- <div id="calendar" class="calendar">
+ {{!-- <div id="calendar" class="calendar">
       <div class="cld-header">
         <h3></h3>
         <nav class="cl-nav">
@@ -146,32 +144,31 @@
         <div class="dates"></div>
       </div>
       <div class="base-calender">
-        <div class="cl_time_div">
+        {{!-- <div class="cl_time_div">
           <div class="icon">
             <i class="fa-regular fa-calendar-days"></i>
           </div>
           <div class="column">
             <b>Seniur</b>
-            {{!-- <span>{{seniorStartTime}} - {{seniorEndTime}}</span> --}}
-            <span>10:00 AM - 11:00AM  </span>
+            <span> 10:00 AM - 11:00AM  </span>
           </div>
 
-        </div>
+        </div> --}}
          <div class="cl_time_div">
           <div class="icon">
             <i class="fa-regular fa-calendar-days"></i>
           </div>
           <div class="column">
-            <b>Joniur</b>
+            <b>All Ages</b>
             <span>
-            11:00AM :12:00PM
+          00:00AM -00:00PM
               {{!-- {{juniorStartTime}} - {{juniorEndTime}} --}}
-            </span>
+            {{!-- </span>
           </div>
 
         </div>
       </div>
- </div>    
+ </div>     --}}
       <div class="similar_course_div">
      
       </div>

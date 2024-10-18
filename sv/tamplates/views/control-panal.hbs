@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/css/control_panal/popup.css">
     <link rel="stylesheet" href="/css/control_panal/courses.css">
     <link rel="stylesheet" href="/css/control_panal/course_enroll_ments.css">
+
     <script defer src="/js/control panal/gm.js"></script>
     <script defer src="/js/control panal/c.panal.js"></script>
     <script defer src="/js/control panal/Upload.product.js"></script>
@@ -37,6 +38,7 @@
     <script defer src="/js/control panal/gm.massase.group.js"></script>
     <script defer src="/js/control panal/course.enrollments.js"></script>
     <script defer src="/js/control panal/uplaod.post.js"></script>
+    <script defer src="/js/control panal/settings.js"></script>
 
 </head>
 <body>
@@ -538,6 +540,7 @@ style="display: none;"
     <a id="member_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="course_enrolments_href">Course EnrollMents<button><i class="fa-solid fa-angle-right"></i></button></a>
+    <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
 <style>
   button,a ,i{
@@ -1057,8 +1060,6 @@ targetedElement="member_href" class="member-list-box">
 </div>
 
 <!---------------------------- course enrollments ----------------------------->
-
-
 <div ct_section style="display: none;"  targetedElement="course_enrolments_href"  id="couses-enrollment-list-container" >
  
  
@@ -1076,6 +1077,34 @@ targetedElement="member_href" class="member-list-box">
 
 
 
+   <!----------------------- Settings ----------------------------->
+
+<div id="settings-conatiner" targetedElement="settings_href" style="display: none;" ct_section class="form-section">
+   <strong>Dates of Course</strong>
+   
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Online Classes</label>
+     <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}" id="o-class-date">
+   </div>
+    <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Regular Classes</label>
+     <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}" id="r-class-date">
+   </div>
+    <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Woments Defence Classes</label>
+     <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_womens_defence_class}}" id="w-class-date">
+   </div>
+
+   <div class="s-sec-btn-box">
+     <button save_btn
+     style="transition: all .5s ease; background-color: black;
+     color:white;
+     opacity :0.6;
+    ;"
+     >Save</button>
+   </div>
+
+ </div>
 
 
  </div>
