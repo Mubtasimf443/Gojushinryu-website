@@ -361,10 +361,10 @@ padding:15px 26px;
 margin-bottom: 1em;
 margin-top: 1em;
 flex-wrap: wrap;
+padding-left: 1em;;
+row-gap: 1em;
 }
 .base-calender >div:nth-child(1){
-  margin-left:1em
-
 }
 .cl_time_div{
   display: flex;

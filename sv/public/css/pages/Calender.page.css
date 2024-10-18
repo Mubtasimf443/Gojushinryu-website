@@ -182,14 +182,18 @@ main >.dt-calander-section:last-child{
   flex-direction: row;
   justify-content: left;
   align-items: center;
+  flex-wrap: wrap;
   column-gap: 2em;
+  row-gap: 1.3em;
   margin-bottom: 1em;
   margin-top: 1em;
+box-sizing: border-box;
+padding-left: 2em;
   }
 
 
   .base-calender >div:nth-child(1){
-    margin-left:2em
+
   
   }
 

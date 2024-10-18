@@ -77,8 +77,8 @@ let schema = new mongoose.Schema({
     }],
     enrolled_course:[{
        id : {
-        type :mongoose.SchemaTypes.ObjectId,
-        ref :"Course",
+        type :Number// type :mongoose.SchemaTypes.ObjectId,
+        // ref :"Course",
        } ,
        paid :{
         type :Boolean,
@@ -100,7 +100,7 @@ let schema = new mongoose.Schema({
         default:0
     },
     orders:[{
-        id :{ type:mongoose.SchemaTypes.ObjectId, ref:'orders'}
+        id :{ type:mongoose.SchemaTypes.ObjectId, ref:'orders'},
     }],
     banned :{
         type :Boolean,

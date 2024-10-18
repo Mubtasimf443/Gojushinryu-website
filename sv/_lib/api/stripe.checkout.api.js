@@ -4,8 +4,10 @@ InshaAllah, By his marcy I will Gain Success
 */
 
 import { createStripeCheckOut } from "../Config/stripe.js";
+import { product_purchase_event_happaned_amdin_email, product_purchase_event_happaned_user_email } from "../mail/Course.mail.js";
 import { Orders } from "../models/Order.js";
 import { Product } from "../models/Products.js";
+import { User } from "../models/user.js";
 import { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
 
@@ -229,9 +231,9 @@ export async function stripeOrderApi(req,res) {
 
 export async function stripeOrderSuccessApi(req,res) {
     try {
-        log(req.query.session_id)
+     
         function status(data=req.query.session_id) {
-          if (!token) return false
+          if (!data) return false
           if (data.includes('{')) return false 
           if (data.includes('}')) return false 
           if (data.includes('*')) return false 
@@ -247,22 +249,34 @@ export async function stripeOrderSuccessApi(req,res) {
         }
         status =status();
         if (!status) return res.redirect('notAllowed');
-        Orders.findOneAndUpdate({
+        let order=await Orders.findOne({
             stripe_Token:req.query.session_id
-        },
-        {
-            activated:true
-        })
-        .then(e =>
-        {
-             log('order activated successful')
-             res.redirect('/accounts/student')
-        })
-        .catch(e => {
-            log(e)
-            res.redirect('/')
-        })
-        Success(res)
+        });
+        if (!order) return res.render('notAllowed');
+        order.activated =true;
+        let user= await User.findById(order.buyer.id);
+        user.orders.push({id:order._id});
+        user=await user.save();
+        await order.save();
+
+        product_purchase_event_happaned_amdin_email().then(()=> {})
+        product_purchase_event_happaned_user_email(user.email).then(()=> {})
+        
+        res.render('student-corner',{
+            bio : user.bio ?  user.bio :'I dream to become black belt in karate and Master Martial Arts',
+            name :user.name? user.name :'name',
+            age :user.age ? user.age :0,
+            gender :user.gender ?user.gender :'male',
+            district:user.district ? user.district :'name',
+            city:user.city? user.city :'',
+            country:user.country? user.country :'',
+            postcode:user.postCode? user.postCode :0,
+            street:user.street? user.street :'',
+            thumb :user.thumb?user.thumb:'/img/avatar.png'
+        }) ;
+        return
+        
+
     } catch (error) {
         console.error({error});
         
@@ -300,4 +314,3 @@ export async function stripeOrderCancellApi(req,res) {
         console.log({error});
     }
 }
-

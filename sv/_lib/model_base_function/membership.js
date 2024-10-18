@@ -19,6 +19,3 @@ export async function findMemberShipdata(req,res) {
     }
     
 }
-
-
-

@@ -23,7 +23,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
  let QboxForm = document.querySelector('#question-info-form');
  let paymentForm = document.querySelector('#payment-info-form');
  let successForm = document.querySelector('#Success-massage-form');
-
+ let processingPayment=false ;
  /*----------- Button's of Form ----------*/
 
  //aplicant info
@@ -57,10 +57,10 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   var previousInjuryInput = document.querySelector('#inp--previous-injury');
   let policy1Input=document.getElementById('policy-1-inp');
   let policy2Input=document.getElementById('policy-2-inp');
-  let creditCardName =document.querySelector(`[id="inp--credit-card-name"]`)
-  let creditCardNumber =document.querySelector(`[id="inp--credit-card-number"]`)
-  let creditCardCVV =document.querySelector(`[id="inp--credit-card-cvv"]`)
-  let creditCardExpiryDate =document.querySelector(`[id="inp--credit-card-exp-date"]`)
+  // let creditCardName =document.querySelector(`[id="inp--credit-card-name"]`)
+  // let creditCardNumber =document.querySelector(`[id="inp--credit-card-number"]`)
+  // let creditCardCVV =document.querySelector(`[id="inp--credit-card-cvv"]`)
+  // let creditCardExpiryDate =document.querySelector(`[id="inp--credit-card-exp-date"]`)
  //values
   //let membershipValue ='Annual';
  
@@ -348,9 +348,12 @@ function ChangeYesNoStatenent(target) {
 
 async function paypalMembershipFunction(e) {
   e.preventDefault();
+  if (processingPayment) return
   try {
     let jsonObject=await JSON.stringify(userInfo);
-    alert('working')
+    processingPayment=true;
+    document.getElementById('paypal-payment-btn').style.transition='all .5s ease';
+    document.getElementById('paypal-payment-btn').style.opacity=.7;
     fetch(window.location.origin + '/api/l-api/paypal-membership-purchase' ,{
       method:'POST',
       headers:{
@@ -365,6 +368,10 @@ async function paypalMembershipFunction(e) {
       if (data.success) return window.location.assign(data.link)
     })
     .catch(e => log(e))
+    .finally(e => {
+    processingPayment=false;
+    document.getElementById('paypal-payment-btn').style.opacity=1;
+    })
   } catch (e) {
     log(e)
   }
@@ -376,24 +383,32 @@ async function paypalMembershipFunction(e) {
 
 
 async function stripeMembershipFunction(e) {
+  if (processingPayment) return
   e.preventDefault();
   try {
-    let jsonObject=await JSON.stringify(userInfo);
-    alert('working')
-    fetch(window.location.origin + '/api/l-api/stripe-membership-api' ,{
+    let jsonObject= JSON.stringify(userInfo);
+    // alert('working')
+    document.getElementById('credit-card-payment-Continue-btn').style.transition='all .5s ease';
+    document.getElementById('credit-card-payment-Continue-btn').style.opacity=.7;
+    processingPayment=true
+    await fetch(window.location.origin + '/api/l-api/stripe-membership-api' ,{
       method:'POST',
       headers:{
         'Content-Type' :'application/json'
       },
       body:jsonObject
     })
-    .then(data=>data.json())
+    .then(data=> data.json())
     .then(data=>{
       log(data)
       if (data.error) return alert(data.error);
       if (data.success) return window.location.assign(data.link)
     })
     .catch(e => log(e))
+    .finally(e => {
+    processingPayment=false;
+    document.getElementById('credit-card-payment-Continue-btn').style.opacity=1;
+    })
   } catch (e) {
     log(e)
   }

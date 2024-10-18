@@ -60,7 +60,7 @@ export async function membershipMidleWareStripe(req,res,next) {
             price_data: {
                 currency: 'usd',
                 product_data: {
-                    name: 'School of Traditional Martial Art Membership'
+                    name: 'School of Traditional Martial Art Annual Membership'
                 },
                     unit_amount: 75*100
             },
@@ -78,7 +78,7 @@ export async function membershipMidleWareStripe(req,res,next) {
         price_data: {
             currency: 'usd',
                 product_data: {
-                    name: 'School of Traditional Martial Art Membership'
+                    name: 'School of Traditional Martial Art LifeTime Membership'
                 },
                 unit_amount: 150*100
             },
@@ -169,6 +169,7 @@ export async function membershipMidleWareStripe(req,res,next) {
             company =  company ==='gojushinryu'? 'Goju shin Ryu' : 'School of Traditional Martial Art';
             
             let membership_object =memberships.find(el => (el.price_data.product_data.name.includes(company) && el.price_data.product_data.name.includes(membership)) );
+            console.log({membership_object});
             
             if (typeof membership_object !== 'object' || !membership_object) throw new Error("membership_object problem");
            

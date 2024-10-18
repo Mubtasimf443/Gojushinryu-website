@@ -170,17 +170,19 @@ async function uploadToApi({method}) {
     if (method!=='paypal' && method!=='visa')  throw new Error('Error ');
 
     if (method==='paypal') {
-        paypal_payment.style.opacity=.7;
+        paypal_payment.style.transition='all .5s ease';
+        paypal_payment.style.opacity=.6;
     }
 
 
-    if (method!=='paypal') {
-        visa_payment.style.opacity=.7;
+    if (method !=='paypal') {
+        visa_payment.style.transition='all .5s ease';
+        visa_payment.style.opacity=.6;
     }
 
     incheckOut =true;
 
-    fetch(url, {
+    await fetch(url, {
         method:'POST',
         headers:{
             'Content-Type':'application/json'
@@ -190,7 +192,7 @@ async function uploadToApi({method}) {
     .then(e => e.json())
     .then( data => {
         log(data)
-        if (data.error) return alert(data.error);
+        if (data.error) return console.error(data.error);
         if (data.link) window.location.assign(data.link)
     })
     .catch(e => setTimeout(() => window.location.reload(),3000 ))
@@ -198,7 +200,6 @@ async function uploadToApi({method}) {
         paypal_payment.style.opacity=1;
         visa_payment.style.opacity=1;
         incheckOut =false;
-
     })
 
 }

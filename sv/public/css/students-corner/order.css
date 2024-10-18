@@ -11,8 +11,8 @@ div{
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
-    width: 100%;
     row-gap: 23px;
+    width: 600px;
 }
 
 @media screen and (min-width :900px){
@@ -30,11 +30,20 @@ div{
     flex-direction: column;
     justify-content: flex-start;
     align-items: start;
-    width: 450px;
     height: fit-content;
     box-shadow: var(--fev-box-shadow);
 }
 
+@media screen  and (max-width :699px) {
+    .orders {
+        width: 450px;
+    }
+}
+@media screen and (min-width :700px){
+    .orders {
+        width: 650px;
+    }
+}
 .orders .order{
     display: flex;
     flex-direction: row;
@@ -65,11 +74,7 @@ img[alt="ordered product"]{
     text-transform: uppercase;
     font-weight: 500;
 }
-@media screen and (min-width :600px){
-   .orders{
-    width: 100%;
-   }
-}
+
 div[completed]{
     background: green;
     color: white;

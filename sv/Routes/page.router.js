@@ -26,7 +26,18 @@ pageRouter.get('/home', (req, res) => res.render('home'))
 // pageRouter.get('/course', FindCourseApi)
 
 pageRouter.get('/courses',(req,res) => res.render('course-selling-page'))
-pageRouter.get('/courses/date',(req,res) => res.render('calender'))
+pageRouter.get('/courses/date',async (req,res) => {
+    try {
+        let settings=await Settings.findOne({})
+        return res.render('calender',{
+            date_of_womens_defence_class:settings.date_of_womens_defence_class.date ?? '',
+            date_of_regular_class:settings.date_of_regular_class.date ?? '',
+            date_of_online_class:settings.date_of_online_class.date ?? ''
+          }) 
+    } catch (error) {
+        console.log({error});
+    }
+})
 
 pageRouter.get('/Membership-application',userCheckAndNavigation, MembershipPageNavigation)
 pageRouter.get('/about-us/goju-shin-ryo', (req, res) => res.render('about-us-gsr'))

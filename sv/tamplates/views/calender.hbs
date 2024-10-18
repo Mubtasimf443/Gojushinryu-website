@@ -9,7 +9,11 @@
     <link rel="stylesheet" href="/css/pages/Calender.page.css">
      <link rel="stylesheet" href="/css/about_us/Banner.for.about-us.css"> 
      <script defer src="/js/Calender.Page.js"></script>
-     
+     <script>
+      let date_of_online_class='{{date_of_online_class}}';
+      let date_of_regular_class='{{date_of_regular_class}}';
+      let date_of_womens_defence_class='{{date_of_womens_defence_class}}';
+     </script>
    <style>
   
 #banner{
@@ -89,7 +93,7 @@
       <h2>Dates of Reqular Classes</h2>
     </section>
     <section id="dates_section" class="dt-calander-section">
-      <div id="calendar" class="calendar" >
+      <div id="calendar" calender="1" class="calendar" >
       <div class="cld-header">
         <h3></h3>
         <nav class="cl-nav">
@@ -110,13 +114,25 @@
         <div class="dates"></div>
       </div>
       <div class="base-calender">
+     <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Joniur</b>
+            <span>
+            05:00PM-06:15PM
+            </span>
+          </div>
+
+        </div>
         <div class="cl_time_div">
           <div class="icon">
             <i class="fa-regular fa-calendar-days"></i>
           </div>
           <div class="column">
             <b>Seniur</b>
-            <span>7:00PM - 9:00PM </span>
+            <span>06:15PM-07:30PM  </span>
           </div>
 
         </div>
@@ -125,15 +141,17 @@
             <i class="fa-regular fa-calendar-days"></i>
           </div>
           <div class="column">
-            <b>Joniur</b>
-            <span>5:00PM - 6:00PM </span>
+            <b>Adults</b>
+            <span>
+            07:30PM-08:45PM
+            </span>
           </div>
 
         </div>
       </div>
  </div> 
 
- <div id="calendar" class="calendar">
+ <div id="calendar" calender="2" class="calendar">
       <div class="cld-header">
         <h3></h3>
         <nav class="cl-nav">
@@ -154,13 +172,25 @@
         <div class="dates"></div>
       </div>
       <div class="base-calender">
+       <div class="cl_time_div">
+          <div class="icon">
+            <i class="fa-regular fa-calendar-days"></i>
+          </div>
+          <div class="column">
+            <b>Joniur</b>
+            <span>
+            05:00PM-06:15PM
+            </span>
+          </div>
+
+        </div>
         <div class="cl_time_div">
           <div class="icon">
             <i class="fa-regular fa-calendar-days"></i>
           </div>
           <div class="column">
             <b>Seniur</b>
-            <span>7:00PM - 9:00PM </span>
+            <span>06:15PM-07:30PM  </span>
           </div>
 
         </div>
@@ -169,8 +199,10 @@
             <i class="fa-regular fa-calendar-days"></i>
           </div>
           <div class="column">
-            <b>Joniur</b>
-            <span>5:00PM - 6:00PM </span>
+            <b>Adults</b>
+            <span>
+            07:30PM-08:45PM
+            </span>
           </div>
 
         </div>
@@ -181,7 +213,7 @@
 <h2>Dates of Online Classes</h2>
 </section>
 <section class="dt-calander-section">
-      <div id="calendar" class="calendar" >
+      <div id="calendar" calender="3" class="calendar" >
       <div class="cld-header">
         <h3></h3>
         <nav class="cl-nav">
@@ -202,30 +234,19 @@
         <div class="dates"></div>
       </div>
       <div class="base-calender">
-        <div class="cl_time_div">
-          <div class="icon">
-            <i class="fa-regular fa-calendar-days"></i>
-          </div>
-          <div class="column">
-            <b>Seniur</b>
-            <span>7:00PM - 9:00PM </span>
-          </div>
-
-        </div>
          <div class="cl_time_div">
           <div class="icon">
-            <i class="fa-regular fa-calendar-days"></i>
+            <i class="fa-Online fa-calendar-days"></i>
           </div>
           <div class="column">
-            <b>Joniur</b>
-            <span>5:00PM - 6:00PM </span>
+            <b>Time</b>
+            <span>09:40 AM - 11:00AM  </span>
           </div>
 
         </div>
       </div>
- </div> 
- 
- <div id="calendar" class="calendar">
+      </div> 
+      <div id="calendar" calender="4" class="calendar">
       <div class="cld-header">
         <h3></h3>
         <nav class="cl-nav">
@@ -246,34 +267,24 @@
         <div class="dates"></div>
       </div>
       <div class="base-calender">
-        <div class="cl_time_div">
+            <div class="cl_time_div">
           <div class="icon">
-            <i class="fa-regular fa-calendar-days"></i>
+            <i class="fa-Online fa-calendar-days"></i>
           </div>
           <div class="column">
-            <b>Seniur</b>
-            <span>7:00PM - 9:00PM </span>
-          </div>
-
-        </div>
-         <div class="cl_time_div">
-          <div class="icon">
-            <i class="fa-regular fa-calendar-days"></i>
-          </div>
-          <div class="column">
-            <b>Joniur</b>
-            <span>5:00PM - 6:00PM </span>
+            <b>Time</b>
+            <span>09:40 AM - 11:00AM  </span>
           </div>
 
         </div>
       </div>
- </div> 
+      </div> 
 </section>
 <section class="dt_heading_sec">
       <h2>Dates of Women Self Defence Classes</h2>
     </section>
     <section class="dt-calander-section">
-      <div id="calendar" class="calendar" >
+      <div id="calendar" calender="5" class="calendar" >
       <div class="cld-header">
         <h3></h3>
         <nav class="cl-nav">
@@ -299,25 +310,15 @@
             <i class="fa-regular fa-calendar-days"></i>
           </div>
           <div class="column">
-            <b>Seniur</b>
-            <span>7:00PM - 9:00PM </span>
-          </div>
-
-        </div>
-         <div class="cl_time_div">
-          <div class="icon">
-            <i class="fa-regular fa-calendar-days"></i>
-          </div>
-          <div class="column">
-            <b>Joniur</b>
-            <span>5:00PM - 6:00PM </span>
+            <b>Time</b>
+            <span>03:45PM- 05:00PM  </span>
           </div>
 
         </div>
       </div>
  </div> 
  
- <div id="calendar" class="calendar">
+ <div id="calendar" calender="6" class="calendar">
       <div class="cld-header">
         <h3></h3>
         <nav class="cl-nav">
@@ -338,23 +339,13 @@
         <div class="dates"></div>
       </div>
       <div class="base-calender">
-        <div class="cl_time_div">
-          <div class="icon">
-            <i class="fa-regular fa-calendar-days"></i>
-          </div>
-          <div class="column">
-            <b>Seniur</b>
-            <span>7:00PM - 9:00PM </span>
-          </div>
-
-        </div>
          <div class="cl_time_div">
           <div class="icon">
             <i class="fa-regular fa-calendar-days"></i>
           </div>
           <div class="column">
-            <b>Joniur</b>
-            <span>5:00PM - 6:00PM </span>
+            <b>Time</b>
+            <span>03:45PM- 05:00PM  </span>
           </div>
 
         </div>

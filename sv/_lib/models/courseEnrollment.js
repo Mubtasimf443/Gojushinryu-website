@@ -12,8 +12,8 @@ let courseEnrollmentSchema =new Schema({
         default :Date.now
     },
     course_id :{
-        type :mongoose.SchemaTypes.ObjectId,
-        ref :"Course",
+        type :Number,//mongoose.SchemaTypes.ObjectId,
+        //ref :"Course",
         require :true
     },
     student_id :{

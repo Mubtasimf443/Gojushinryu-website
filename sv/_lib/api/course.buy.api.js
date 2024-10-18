@@ -3,6 +3,7 @@
 InshaAllah, By his marcy I will Gain Success 
 */
 
+import { course_purchase_admin_email, course_purchase_user_email } from "../mail/Course.mail.js";
 import Course from "../models/Course.js";
 import { CourseEnrollments } from "../models/courseEnrollment.js";
 import { User } from "../models/user.js";
@@ -14,6 +15,38 @@ import { MakePriceString } from "../utils/string.manipolation.js";
 
 
 export async function courseBuyPaypalApi(req,res) {
+    let coursesArray=[
+        {
+        name :' Regular classes',
+        description :"Join Our Regular Martial Art classes",
+        price :200,
+        id :1
+        },
+        {
+        name :'Online Martial classes',
+        description :"Join Our Online Martial Art classes",
+        price :200,
+        id :2
+        },
+        {
+        name :"Martial Art Seminars",
+        description :"Join Our Martial Art Seminars",
+        price :200,
+        id :3
+        },
+        {
+        name :'Women Defence classes',
+        description :"Join Our Women Defence classes",
+        price :200,
+        id :4
+        },
+        {
+        name :'Bhangar Fitness Class for all ages',
+        description :"Join Our  Bhangar Fitness Class for all ages",
+        price :200,
+        id :5
+        }
+    ];
     try {
         let {
             date_of_birth,
@@ -51,8 +84,8 @@ export async function courseBuyPaypalApi(req,res) {
         await user.save();
 
 
-        let course=await Course.findOne({id : course_id});
-        if (!course) throw 'Can not find course'
+        let course=coursesArray.find(({id})=> id==course_id)//await Course.findOne({id : course_id});
+        // if (!course) throw 'Can not find course'
 
         let price =await MakePriceString(course.price);
 
@@ -60,7 +93,7 @@ export async function courseBuyPaypalApi(req,res) {
         log('//database CourseEnrollments')
         let courseEnrollMent =new CourseEnrollments({
             // name:course.title,
-            course_id :course._id ,
+            course_id :course.id ,
             student_id :user_info._id,
             Date : new Date(),
             course_price:course.price,
@@ -74,8 +107,8 @@ export async function courseBuyPaypalApi(req,res) {
         courseEnrollMent=await courseEnrollMent.save()
         let paypalItemsObject={};
         let paypalItemsArray =[];
-        paypalItemsObject.name =course.title.length >100? course.title.substring(0,100):course.title,
-        paypalItemsObject.description =course.description.length >100? course.description.substring(0,100):course.description,
+        paypalItemsObject.name =course.name//course.title.length >100? course.title.substring(0,100):course.title,
+        paypalItemsObject.description =course.description//course.description.length >100? course.description.substring(0,100):course.description,
         paypalItemsObject.quantity=1 ;
         
 
@@ -158,10 +191,24 @@ export async function courseBuySuccessPaypalApi(req,res) {
         paid :true,
         courseEnrollMentID :enrollment._id
     });
-    await user.save();
-    await enrollment.save()
-    return res.redirect('/accounts/student')
-
+    user= await user.save();
+    await enrollment.save();
+    
+    course_purchase_user_email(user.email).then(()=> {})
+    course_purchase_admin_email().then(()=> {})
+    res.render('student-corner',{
+        bio : user.bio ?  user.bio :'I dream to become black belt in karate and Master Martial Arts',
+        name :user.name? user.name :'name',
+        age :user.age ? user.age :0,
+        gender :user.gender ?user.gender :'male',
+        district:user.district ? user.district :'name',
+        city:user.city? user.city :'',
+        country:user.country? user.country :'',
+        postcode:user.postCode? user.postCode :0,
+        street:user.street? user.street :'',
+        thumb :user.thumb?user.thumb:'/img/avatar.png'
+    }) ;
+    return
     
     } catch (error ) {
         log(error)

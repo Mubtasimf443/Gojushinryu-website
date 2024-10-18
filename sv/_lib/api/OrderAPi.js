@@ -9,6 +9,8 @@ import { Product } from "../models/Products.js";
 import { MakePriceString } from "../utils/string.manipolation.js";
 import { createPaypalPayment } from "../utils/payment/create.order.paypal.js";
 import { Orders } from "../models/Order.js";
+import { User } from "../models/user.js";
+import { product_purchase_event_happaned_amdin_email, product_purchase_event_happaned_user_email } from "../mail/Course.mail.js";
 
 
 export  async function OrderApiPaypal(req,res) {
@@ -226,39 +228,53 @@ export  async function OrderApiPaypal(req,res) {
 
 
 export async function OrderSuccessPaypalApi(req,res) {   
-    let {token}=req.query;
-    log({token})
-    function status(data=token) {
-      if (!token) return false
-      if (data.includes('{')) return false 
-      if (data.includes('}')) return false 
-      if (data.includes('*')) return false 
-      if (data.includes(':')) return false 
-      if (data.includes('[')) return false 
-      if (data.includes(']')) return false 
-      if (data.includes('(')) return false 
-      if (data.includes('(')) return false 
-      if (data.includes('$')) return false 
-      if (data.includes('>')) return false 
-      if (data.includes('<')) return false 
-      return true
-    }
-    status =status();
-    if (!status) return res.redirect('notAllowed');
-    Orders.findOneAndUpdate({
-        paypal_order_id :token
-    },{
-        activated:true
-    })
-    .then(e =>
-    {
-         log('order activated successful')
-         res.redirect('/accounts/student')
-    })
-    .catch(e => {
-        log(e)
-        res.redirect('/')
-    })
+    try {
+        let {token}=req.query;
+        log({token})
+        function status(data=token) {
+          if (!token) return false
+          if (data.includes('{')) return false 
+          if (data.includes('}')) return false 
+          if (data.includes('*')) return false 
+          if (data.includes(':')) return false 
+          if (data.includes('[')) return false 
+          if (data.includes(']')) return false 
+          if (data.includes('(')) return false 
+          if (data.includes('(')) return false 
+          if (data.includes('$')) return false 
+          if (data.includes('>')) return false 
+          if (data.includes('<')) return false 
+          return true
+        }
+        status =status();
+        if (!status) return res.render('notAllowed');
+        let order=await Orders.findOne({
+            paypal_order_id :token
+        });
+        if (!order) return res.render('notAllowed');
+        order.activated =true;
+        let user= await User.findById(order.buyer.id);
+        user.orders.push({id:order._id});
+        user=await user.save();
+        await order.save();
+        product_purchase_event_happaned_amdin_email().then(()=> {})
+        product_purchase_event_happaned_user_email(user.email).then(()=> {})
+        res.render('student-corner',{
+            bio : user.bio ?  user.bio :'I dream to become black belt in karate and Master Martial Arts',
+            name :user.name? user.name :'name',
+            age :user.age ? user.age :0,
+            gender :user.gender ?user.gender :'male',
+            district:user.district ? user.district :'name',
+            city:user.city? user.city :'',
+            country:user.country? user.country :'',
+            postcode:user.postCode? user.postCode :0,
+            street:user.street? user.street :'',
+            thumb :user.thumb?user.thumb:'/img/avatar.png'
+        }) ;
+        return
+    } catch (error) {
+        log({error})
+    } 
 }
 
 export async function OrderCancellPaypalApi(req,res) {

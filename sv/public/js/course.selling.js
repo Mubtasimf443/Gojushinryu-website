@@ -31,7 +31,7 @@ document.addEventListener('click',e =>{
 
   var purchasing=false;
   let paypal_purchase_btn =document.querySelector(`[paypal_purchase_btn]`);
-
+  let stripe_purchase_btn=document.querySelector(`[stripe_purchase_btn]`)
   
     
  /*----------- v function  ----------*/
@@ -199,9 +199,50 @@ async function paypalpurchase(e) {
    
 }
 
+async function stripePurchase(e) {
+    if (purchasing) return
+    try {
+        // let name =await v(`[id="--inp-name"]`);
+        // let email =await v(`[id="--inp-email"]`);
+        // let phone =await v3( document.querySelector(`[id="--inp-phone"]`));
+        let date_of_birth =await v4(document.querySelector(`[id="--inp-dob"]`));
+        let postcode =await v3(`[id="--inp-postcode"]`);
+        let district =await v(`[id="--inp-district"]`);
+        let country =await v(`[id="--inp-country"]`);
+        let city =await v(`[id="--inp-city"]`);
+
+        let jsonObject=await JSON.stringify({date_of_birth,postcode,district,country,city,course_id : Number(course_id) });
+        purchasing =true;
+        stripe_purchase_btn.style.opacity =.65;
+        fetch(window.location.origin +'/api/l-api/stripe-course-purchase-api',{
+            method:'POST',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body :jsonObject
+        }) 
+        .then(res=> res.json())
+        .then(data => {
+            log(data)
+            let {notAUser,success ,error,link} =data
+            if (notAUser) return window.location.assign('/auth/sign-in') ;
+            if (success) return window.location.assign(link)
+            if (error) return alert(error)
+        })
+        .catch(e => log(e))
+        .finally(e => {
+            stripe_purchase_btn.style.opacity=1;
+            purchasing=false
+        } )
+    
+    } catch (error) {
+        log(error)
+    }  
+   
+}
 
 paypal_purchase_btn.addEventListener('click',e => paypalpurchase(e))
-
+stripe_purchase_btn.addEventListener('click', stripePurchase)
 
 }
 

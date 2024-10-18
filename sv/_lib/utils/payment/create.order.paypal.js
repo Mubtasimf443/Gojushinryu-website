@@ -70,8 +70,8 @@ export async function createPaypalPayment({items,total ,productToatal,shipping ,
                 }
             })
         }) ;
-        log(response.data)
-        log({pplink:response.data.links[1]});
+        // log(response.data)
+        // log({pplink:response.data.links[1]});
         let link= response.data.links.find(link => link.rel === 'approve').href;
         return {success:true,link , paypal_id:response.data.id}
     } catch (error) {
