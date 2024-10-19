@@ -13,7 +13,8 @@ export async function changeSettingsAPI(req,res) {
         let {
             date_of_womens_defence_class,
             date_of_regular_class,
-            date_of_online_class
+            date_of_online_class,
+            home_video_url
         }=req.body;
         date_of_womens_defence_class=await repleCaracter(date_of_womens_defence_class)
         date_of_regular_class=await repleCaracter(date_of_regular_class)
@@ -21,7 +22,8 @@ export async function changeSettingsAPI(req,res) {
         await Settings.findOneAndUpdate({}, {
             date_of_womens_defence_class:{date:date_of_womens_defence_class},
             date_of_online_class:{date:date_of_online_class},
-            date_of_regular_class:{date:date_of_regular_class}
+            date_of_regular_class:{date:date_of_regular_class},
+            home_video_url
         });
         return res.sendStatus(200)
     } catch (error) {

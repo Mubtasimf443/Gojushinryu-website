@@ -24,6 +24,7 @@ import LargeApiRouter from './Routes/large.api.router.js';
 import { Memberships } from './_lib/models/Membership.js';
 import { sendMembershipMails } from './_lib/mail/membership.mail.js';
 import fastApiRouter from './Routes/fast.api.router.js';
+import { Settings } from './_lib/models/settings.js';
 
 //varibles
 const app = express();
@@ -69,7 +70,22 @@ app.get('/hello', (req, res) =>{
 });
 
 
-app.get('/', (req, res) => res.render('home'));
+app.get('/', async (req, res) => { 
+    try {
+        let settings=await Settings.findOne({});
+        if (!settings) throw 'error !settings'
+        let {home_video_url}=settings;
+        
+        if (!home_video_url) throw 'error :!home_video_url'
+        res.render('home',{
+        home_video_url
+        }) 
+    } catch (error) {
+        console.log({error});
+        res.render('home')
+    }
+});
+
 app.get('*', (req, res) => res.status(404).render('404'))
 
 

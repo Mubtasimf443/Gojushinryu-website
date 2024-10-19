@@ -13,6 +13,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
       let date_of_online_class =v('[id="o-class-date"]');
       let date_of_regular_class =v('[id="r-class-date"]');
       let date_of_womens_defence_class =v('[id="w-class-date"]');
+      let home_video_url=v('[id="h-video-url-inp"]') ;
       let array=[];
       let test;
 
@@ -31,6 +32,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
       if (test !== undefined) {
         container.querySelector(`[id="r-class-date"]`).value ='You can not use date more then 6'
         container.querySelector(`[id="r-class-date"]`).style.color='red';
+
         setTimeout(() => {
           container.querySelector(`[id="r-class-date"]`).style.color='black';
         }, 2000);
@@ -62,7 +64,8 @@ Insha Allah,  By the marcy of Allah,  I will gain success
           body :JSON.stringify({
             date_of_online_class,
             date_of_regular_class,
-            date_of_womens_defence_class
+            date_of_womens_defence_class ,
+            home_video_url
           })
         });
       if (res.status===200) {

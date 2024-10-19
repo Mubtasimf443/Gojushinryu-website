@@ -8,8 +8,8 @@ InshaAllah, By his Marcy I will Gain Success
 {
     let containar=document.querySelector('.gm-order-box');
     let orders=containar.querySelector('.orders');
+    console.log(orders);
     
-
     let seen =false;
 
 
@@ -19,10 +19,21 @@ InshaAllah, By his Marcy I will Gain Success
         try {
             seen =true;
             let res=await fetch(window.location.origin + '/api/api_s/get_user_orders');
+            console.log({status :res.status});
+            
+            if (res.status===304){
+                 orders.innerHTML=orders.innerHTML+`
+                <h3>
+                You have not purchase any thing
+                </h3>
+                `;
+                return
+            }
+
             res=await res.json();
             if (!res) return
             let {data} =res;
-            console.log(data);
+            console.log({res});
             
             for (let i = 0; i < data.length; i++) {
                 let {shiping_items,total,order_status} = data[i];
@@ -58,6 +69,7 @@ InshaAllah, By his Marcy I will Gain Success
             }
 
         } catch (error) {
+            console.error({error});
             
         } finally {
 

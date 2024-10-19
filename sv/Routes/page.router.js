@@ -22,7 +22,21 @@ let pageRouter = Router();
 
 
 pageRouter.use(fileRateLimter)
-pageRouter.get('/home', (req, res) => res.render('home'))
+pageRouter.get('/home',async (req, res) => { 
+    try {
+        let settings=await Settings.findOne({});
+        if (!settings) throw 'error !settings'
+        let {home_video_url}=settings;
+        
+        if (!home_video_url) throw 'error :!home_video_url'
+        res.render('home',{
+        home_video_url
+        }) 
+    } catch (error) {
+        console.log({error});
+        res.render('home')
+    }
+})
 // pageRouter.get('/course', FindCourseApi)
 
 pageRouter.get('/courses',(req,res) => res.render('course-selling-page'))

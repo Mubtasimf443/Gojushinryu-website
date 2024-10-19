@@ -15,6 +15,7 @@ const settingsSchema = mongoose.Schema({
     date_of_womens_defence_class:{
         date :String,
     },
+    home_video_url:String,
 })
 
 export const Settings=mongoose.model('settings', settingsSchema);
