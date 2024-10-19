@@ -1,0 +1,111 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+InshaAllah, By his Marcy I will Gain Success 
+*/
+
+.testimonials {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 3.4em 0px;
+    column-gap: 55px;
+    row-gap: 45px; 
+    box-sizing: border-box;
+}
+.testimonials > .testimonial{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 30px 25px;
+    width: 440px;
+    background: white;
+    border: 10px;
+    row-gap: 7px;
+    box-sizing: border-box;
+    height: 420px;
+}
+.testimonials > .testimonial > div{
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    align-items: center;
+}
+.testimonials > .testimonial > .div1 {
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 15px;
+    box-sizing: border-box;
+    width: 100%;
+}
+.testimonials > .testimonial > .div1 >img{
+    width: 60px;
+    box-sizing: border-box;
+    height: 60px;
+    border-radius: 50%;
+}
+.testimonials > .testimonial > .div1 >div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+    row-gap: 5px;
+    position: relative;
+    max-height: fit-content;
+    /* height: 55px; */
+    min-width: 140px;
+    box-sizing: border-box;
+    /* margin-bottom: 15px;  */
+}
+.testimonials > .testimonial > .div1 >div>strong {
+    font-size: 17px;
+    font-weight: 600;
+    box-sizing: border-box;
+    text-wrap: nowrap;
+    line-height: 18px;
+}
+.testimonials > .testimonial > .div1 >div>span {
+    color: #FF6F3C;
+    font-size: 13px;
+    box-sizing: border-box;
+    font-weight: 500;
+    opacity: .76;
+}
+.testimonials > .testimonial > .div1 >div>hr {
+    background-color: #FF6F3C;
+    height: 2px;
+    width: 50px;
+    box-sizing: border-box;
+    border: none;
+}
+.testimonials > .testimonial > .div2{
+    position: relative;
+    box-sizing: border-box;
+    flex-direction: column;
+}
+.testimonials > .testimonial > .div2>p{
+    text-align: justify;
+    padding: 30px 0px;
+    box-sizing: border-box;
+    line-height: 1.6;
+}
+.testimonials > .testimonial > .div2>i{
+    color: #FF6F3C;
+    box-sizing: border-box;
+    font-size: 27px;
+}
+.testimonials > .testimonial > .div2>i:first-child{
+    position: absolute;
+    box-sizing: border-box;
+    top: 0px;
+    left: 0px;
+}
+.testimonials > .testimonial > .div2>i:last-child{
+    position: absolute;
+    right: 0px;
+    box-sizing: border-box;
+    bottom: 0%;
+}

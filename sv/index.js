@@ -67,10 +67,9 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
 app.get('/hello', (req, res) =>{
     return res.redirect('/')
 });
+
+
 app.get('/', (req, res) => res.render('home'));
-
-
-
 app.get('*', (req, res) => res.status(404).render('404'))
 
 
