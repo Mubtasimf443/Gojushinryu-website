@@ -3,16 +3,16 @@
 Insha Allah,  By his marcy I will Gain Success 
 */
 
-import dotenv from "dotenv";
 import mongoose from "mongoose";
 import { log } from "../utils/smallUtils.js";
-import { DATABASE, SDATABASE } from "../utils/env.js";
-
-dotenv.config();
+import { SDATABASE } from "../utils/env.js";
 
 
 export const connectDB = async() => {
-    mongoose.connect(SDATABASE)
-    .then(e => log('Db connected'))
-    .catch(e => log(e))
+    try {
+       await mongoose.connect(SDATABASE);
+       console.log('db connect');
+    } catch (error) {
+        log(error)
+    }  
 }

@@ -21,22 +21,19 @@ export async function UplaodImageApi(req,res) {
         log('uploading')
         let DontSuffortMime = false;
         let options =  {
-        uploadDir :
-            path.resolve(dirname , '../../temp/images') ,
+        uploadDir :path.resolve(dirname , '../../temp/images') ,
         maxFiles : 1,
         allowEmptyFiles:false,
-        maxFileSize:10*1024*1024,
+        maxFileSize:4*1024*1024,
         filter :(file) => {
-          
-        if (
-        file.mimetype === 'image/png' 
-        || file.mimetype === 'image/jpg' 
-        || file.mimetype === 'image/jpeg'   
-        || file.mimetype === 'image/webp' )  return true
-        DontSuffortMime =true
-        return false 
+            if ( file.mimetype === 'image/png' 
+                || file.mimetype === 'image/jpg' 
+                || file.mimetype === 'image/jpeg'   
+                || file.mimetype === 'image/webp' )  return true
+            DontSuffortMime =true
+            return false 
         },
-        filename : () => Date.now() +'_' + Math.floor(Math.random()*10000) + '.jpg'
+        filename : () => Date.now() +'_' + Math.floor(Math.random()*1000) + '.jpg'
         };
         await formidable(options).parse(req, async (err,feilds,file) => { 
         console.log('not uploaded ===== '+DontSuffortMime);
