@@ -9,7 +9,7 @@ body {
 #banner{
   height: 90vh ;
   background: url('/img/samurai4.jpg');
-  background-position: bottom left;
+  background-position: center left;
   background-size: cover;
   background-repeat:no-repeat;
   display: flex;

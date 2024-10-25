@@ -30,6 +30,7 @@ body{
   top: -15.5em;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.082);
   padding-bottom: 2.5em;
+  padding-top: 2em;
   row-gap: 2em;
   box-sizing: border-box;
 }
