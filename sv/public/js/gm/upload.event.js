@@ -40,7 +40,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         && e.target.files[0].type !== 'image/jpeg'
         && e.target.files[0].type !== 'image/webp'
       ) return alert('Only Image are alowed');
-    if (images.length ===10) return
+      if (images.length ===10) return
 
 
     let imageExist = images.findIndex(el =>  el.name === e.target.files[0].name )

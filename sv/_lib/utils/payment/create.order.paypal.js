@@ -3,7 +3,7 @@
 */ 
 
 import axios from 'axios'
-import { BASE_URL, PAYPAL_LINK, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from '../env.js';
+import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_LINK, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from '../env.js';
 import { log, Success } from '../smallUtils.js';
 
 export async function createPaypalPayment({items,total ,productToatal,shipping ,success_url,cancell_url}) {
@@ -92,8 +92,8 @@ export async function generatePayPalToken() {
             method:"POST",
             data: 'grant_type=client_credentials',
             auth:{
-                username:T_PAYPAL_CLIENT_ID,
-                password:T_PAYPAL_SECRET
+                username:PAYPAL_CLIENT_ID,
+                password:PAYPAL_SECRET
             }
         });
      //   console.log(response.data);

@@ -39,6 +39,8 @@
     <script defer src="/js/control panal/course.enrollments.js"></script>
     <script defer src="/js/control panal/uplaod.post.js"></script>
     <script defer src="/js/control panal/settings.js"></script>
+    <script defer src="/js/control panal/uplaod.event.js"></script>
+
 
 </head>
 <body>
@@ -534,6 +536,7 @@ style="display: none;"
     <a id="uplaod_product_href">Uplaod Product <button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="course_href" style="display: none;"> Course <button><i class="fa-solid fa-angle-right"></i></button></a>
  
+  <a id="uplaod_event_href" >Upload Event<button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="order_href" >Orders<button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="user_page_href">User's <button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="gm_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
@@ -690,11 +693,11 @@ style="display: none;" ct_section class="form-section">
   </div> 
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Product Name</label>
-     <input type="Text"  value="343"  inp_for_product_name id="s-sec-name-inp">
+     <input type="Text"  placeholder="Write name of the equipment"    inp_for_product_name id="s-sec-name-inp">
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-bio-inp">Product Description</label>
-     <textarea  value="343" inp_for_product_des>6454</textarea>
+     <textarea placeholder="Write the description of the equipment"  inp_for_product_des></textarea>
    </div>
   
    <div class="s-sec-input-box">
@@ -714,7 +717,7 @@ style="display: none;" ct_section class="form-section">
     
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp"> size</label>
-     <input type="Text" name="" size_pp value="300grams" id="s-sec-name-inp">
+     <input type="Text" name="" placeholder="write size like 400grams" size_pp id="s-sec-name-inp">
    </div>
   
  <h4 style="display: none;">Size</h4>
@@ -734,16 +737,16 @@ style="display: none;" ct_section class="form-section">
    </div>
   <div class="s-sec-input-box">
     <label for="s-sec-name-inp"> Price </label>
-    <input type="number" value="343"   name="" price_pp placeholder="INR" id="s-sec-name-inp">
+    <input type="number"    name="" price_pp placeholder="write Price like 80.00$" id="s-sec-name-inp">
   </div>
   
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Delivray Charge <sup> India </sup> </label>
-     <input type="number"  value="343" inp_for_product_delivary_india name="" id="s-sec-name-inp">
+     <input type="number" placeholder="10.00$ delivery charge" inp_for_product_delivary_india name="" id="s-sec-name-inp">
    </div>
   <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Delivray Charge <sup> canada </sup> </label>
-     <input type="number"  value="343" inp_for_product_delivary_canada id="s-sec-name-inp">
+     <input type="number" placeholder="10.00$ delivery charge"   inp_for_product_delivary_canada id="s-sec-name-inp">
    </div>
 
    <div class="s-sec-btn-box">
@@ -1110,6 +1113,59 @@ targetedElement="member_href" class="member-list-box">
 
  </div>
 
+
+
+  <!-----------------------Upload Event ----------------------------->
+
+<div 
+  id="upload-event-conatiner"
+  targetedElement="uplaod_event_href" 
+  style="display: none;"
+  ct_section 
+  class="form-section"
+  >
+   
+ <div class="upload_sec_event_tumb_img_inp_box">
+     <h4>
+       Thumnail
+     </h4>
+    <label for="upload_event_thumb_input">
+      <b>Click To Upload <br>
+      Thumbnail
+      </b>
+    </label>
+    <input multiple="false" style="display: none" type="file" id="upload_event_thumb_input">
+   
+  </div>
+  <div 
+  id="product_upload_container_product_images_contaioner"
+   class="upload_sec_env_img_inp_box">
+    
+    <label for="event_image_upload_input">
+      Upload Images
+    </label>
+    <input 
+    style="display: none" 
+    type="file" 
+    id="event_image_upload_input">
+    
+  </div> 
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Event Title</label>
+     <input type="Text"  placeholder="Write the Event Title"    inp_for_product_name id="s-sec-name-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-bio-inp">Event Description</label>
+     <textarea placeholder="Write the description of the event" inp_for_product_des></textarea>
+   </div>
+  <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Event Date</label>
+     <input type="date"  placeholder="Event Date"    inp_for_product_name id="s-sec-name-inp">
+   </div>
+   <div class="s-sec-btn-box">
+     <button uploadEventButton > Upload</button>
+   </div>
+ </div>
 
  </div>
 </section>

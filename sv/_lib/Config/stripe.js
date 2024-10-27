@@ -4,10 +4,10 @@ Insha Allah,  By his marcy I will Gain Success
 */
 
 import {createRequire} from 'module';
-import { BASE_URL, T_STRIPE_KEY } from '../utils/env.js';
+import { BASE_URL, T_STRIPE_KEY ,STRIPE_SECRET_KEY} from '../utils/env.js';
 import { log } from '../utils/smallUtils.js';
 let require =createRequire(import.meta.url)
-const STRIPE=require('stripe')(T_STRIPE_KEY) 
+const STRIPE=require('stripe')(STRIPE_SECRET_KEY) 
 
 
 

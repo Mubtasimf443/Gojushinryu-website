@@ -50,9 +50,18 @@ export async function findProductDetails(req,res) {
       
 
       if (prod) {
-       let {name , description, thumb, images,cetegory, selling_style,id ,price  ,size_and_price}=prod;
-          return res.render('Product-detail', {
-            name , description, thumb, images,cetegory, selling_style ,id,price,size_and_price,
+       let {name , description, thumb, images,cetegory, selling_style,id ,price ,size_and_price}=prod;
+        
+          return res.render('product-detail', {
+            name , 
+            description,
+            thumb,
+            images,
+            cetegory,
+            selling_style,
+            id,
+            price ,
+            size_and_price,
             metaname : name.length>80 ? name.substring(0,80) : name  ,
             metaDescription:description.length >120? description.substring(0,120):description
 

@@ -76,8 +76,7 @@ function v(htmlElementSelector) {
 }
 
 
-
-  //thumb
+    //thumb
     productThumbInput.addEventListener('change',e => {
         if (
             e.target.files[0].type !== 'image/png' 
@@ -378,4 +377,18 @@ function v(htmlElementSelector) {
         uploadingStatus =false;
     })
     })
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
 }

@@ -2,7 +2,7 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ   
 Insha Allab,  By the marcy of Allah,  I will gain success
  */
-{
+
 
 
 let descriptionElment = document.querySelector(`[class="product-description"]`).querySelector('p');
@@ -59,12 +59,11 @@ window.addEventListener('load',async e =>{
           size_and_price=prod.size_and_price;
           if (selling_style === 'per_price') {
             df_size = prod.size;
-            df_price=selling_price;
-            
-            
+            df_price=prod.price;      
           }
           if (selling_style !== 'per_price') {
-            df_size=size_and_price[0].size;log('df_size' + df_size);
+            df_size=size_and_price[0].size;
+            log('df_size' + df_size);
             df_price=size_and_price[0].price;
           }
           LoadUi();
@@ -78,13 +77,12 @@ function LoadUi() {
    log(selling_style)
     descriptionElment.innerHTML = description;
     if (selling_style ==='per_price'){
-     
-        priceEl.innerHTML='$'+ selling_price;
+        priceEl.innerHTML='$'+ df_price;
     }
     if (selling_style !=='per_price'){
-        priceEl.innerHTML='$'+ size_and_price[0].piu;
-        size_and_price.forEach(({key,piu})=> {
-            selectEl.innerHTML = selectEl.innerHTML + `<option value="${key}" price="${piu}" >${key}</option>`;
+        priceEl.innerHTML='$'+ size_and_price[0].price;
+        size_and_price.forEach(({size,price})=> {
+            selectEl.innerHTML = selectEl.innerHTML + `<option value="${size}" price="${price}" >${size}</option>`;
         });
         selectEl.style.display='flex';
     }
@@ -147,4 +145,3 @@ addToCardElement.addEventListener('click',e => {
 
 
 
-}

@@ -30,37 +30,23 @@ const schema = mongoose.Schema({
     type: Number,
     default: Date.now,
   },
-
   eventDate:{
     type :Number,
     required:true
   },
-  // writen_type:{
-  //   type: Boolean,
-  //   required: true,
-  //   default:false
-  // }, 
-  // event_date: {
-  //   type: String,
-  //   required: true,
-
-  // },
   gm_writer:{
     type: mongoose.SchemaTypes.ObjectId,
     required: false ,
     ref:"Grand_Master"
   },
-  // admin_writen: {
-  //     type: Boolean,
-  //     required: true
-  // //  ,  default: false
-  //   },
-  // admin_writer: {
-  //   type: mongoose.SchemaTypes.ObjectId,
-  //   required: false ,
-  //   ref:"Admin"
-  // },
-  
+  admin_writen: {
+      type: Boolean,
+      required: false,  
+      default: false
+    },
+  author :{
+    type :String 
+  }
 })
 
 

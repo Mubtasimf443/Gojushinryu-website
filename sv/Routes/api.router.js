@@ -9,7 +9,7 @@ import { UplaodImageApiIn25Minutes } from '../_lib/api/UplaodImageApiIn25Minutes
 import AdminCheckMidleware from '../_lib/midlewares/AdminCheckMidleware.js';
 import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
 import { CreateACourseApi, deleteCourseApi, findCourseEnrollments, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
-import { deleteEvent, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
+import { adminEventUplaodAPI, deleteEvent, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails } from '../_lib/model_base_function/Product.js';
 import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, RemoveFromBanedUserFunction } from '../_lib/model_base_function/user.js';
@@ -46,17 +46,14 @@ apiRouter.get('/find-product-image',findProductImage)
 apiRouter.get('/find-user',FindUser)
 apiRouter.get('/find-order',findOrders)
 apiRouter.get('/find-member', FindMember)
-// apiRouter.get('/courses',giveCourseJsonApi)
 apiRouter.get('/get_user_orders',userCheck,findUserOrder)
 apiRouter.get('/get-user-data',userCheck,getUserData)
 apiRouter.get('/get-courses-enrollments-data',findCourseEnrollments)
 apiRouter.get('/get-user-membership',userCheck,getUserMembershipJS)
 apiRouter.get('/get-user-courses',userCheck,getUserEnrolledCourseApi)
 
-
 //Post Route
 apiRouter.post('/contact' , Contact_us_api_Function)
-// apiRouter.post('/upload-course',CreateACourseApi);
 apiRouter.post('/upload-product',AdminCheckMidleware,UploadProductApi);
 apiRouter.post('/upload-image-for-10-minutes',UplaodImageApi)
 apiRouter.post('/upload-image-for-25-minutes',UplaodImageApiIn25Minutes);
@@ -65,12 +62,12 @@ apiRouter.post('/create-grand-master',CreateGMApi)
 apiRouter.post('/give-product-details', giveProductDetails)
 apiRouter.post('/find-membership-data',findMemberShipdata)
 apiRouter.post('/get-gm-events',getGmEvents)
+apiRouter.post('/admin-event-upload-api', adminEventUplaodAPI);
 
 
 //Update
 apiRouter.put('/Update-User-Data',ChangeuserData);
 apiRouter.put('/Update-User-Password',changeUserPasswordAPI);
-// apiRouter.put('/update-cousre-dates',UpdateCourseDates);
 apiRouter.put('/update-grand-master',checkGM ,UpdateGmDataAPI);
 apiRouter.put('/bann-user',BaneUserFunction);
 apiRouter.put('/remove-from-bann-user', RemoveFromBanedUserFunction);
@@ -84,7 +81,6 @@ apiRouter.delete('/delete-product',DeleteProduct)
 apiRouter.delete('/delete-grand-master-account',DeleteGMAccount)
 apiRouter.delete('/delete-user-account',DeleteUserAccount)
 apiRouter.delete('/delete-event', deleteEvent)
-// apiRouter.delete('/delete-course',deleteCourseApi )
 
 
 //payments

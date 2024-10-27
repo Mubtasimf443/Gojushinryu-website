@@ -77,11 +77,10 @@ const setUpTable= async e => {
 
    await document.querySelectorAll('.plus').forEach(el => {
     el.addEventListener('click', async e=> {
-        
         let prodId=el.getAttribute('prod-id');
         addedProduct = await addedProduct.map(e => {
             let {id} =e;
-            let status=prodId !== id;
+            let status=prodId != id;
             log(status)
             if (status) return e
             e.quantity +=1;
@@ -97,7 +96,7 @@ const setUpTable= async e => {
         let prodId=el.getAttribute('prod-id');
         addedProduct =addedProduct.filter(e => {
             let {id} =e;
-            if (prodId !== id) return e
+            if (prodId !=id) return e
             e.quantity-=1;
             if (!e.quantity) return false
             return e
