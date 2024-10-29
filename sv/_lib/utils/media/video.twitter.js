@@ -1,0 +1,12 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+
+
+export default async function UploadVideoTwitter({
+    title,
+}) {
+    
+}

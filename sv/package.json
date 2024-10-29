@@ -11,6 +11,7 @@
     "express-rate-limit": "^7.4.0",
     "express-slow-down": "^2.0.3",
     "formidable": "^3.5.1",
+    "googleapis": "^144.0.0",
     "hbs": "^4.2.0",
     "jsonwebtoken": "^9.0.2",
     "mongoose": "^8.6.2",
@@ -20,7 +21,7 @@
     "nodemon": "^3.1.4",
     "oauth-1.0a": "^2.2.6",
     "stripe": "^17.2.0",
-    "twitter-api-v2": "^1.18.0"
+    "twit": "^2.2.11"
   },
   "name": "sv",
   "version": "1.0.0",

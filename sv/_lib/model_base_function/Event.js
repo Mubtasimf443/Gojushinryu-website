@@ -212,7 +212,7 @@ export async function adminEventUplaodAPI(req,res) {
       },
       filename : () => Date.now() +'_' + Math.floor(Math.random()*10000) + '.jpg'
     }
-    formidable(options).parse(req, async (error,feilds , files) => {
+    await formidable(options).parse(req, async (error,feilds , files) => {
 
 
       try {

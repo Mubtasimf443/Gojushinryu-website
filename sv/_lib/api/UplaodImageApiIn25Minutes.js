@@ -19,6 +19,7 @@ let dirname = path.dirname(__filename);
 export async function UplaodImageApiIn25Minutes(req,res) {
     try {
     let DontSuffortMime = false;
+    checkOrCreateTempDir()
     let options =  {
     uploadDir :
         path.resolve(dirname , '../../temp/images') ,

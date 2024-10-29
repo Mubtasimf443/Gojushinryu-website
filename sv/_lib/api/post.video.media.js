@@ -9,7 +9,7 @@ import path from "path";
 import {fileURLToPath} from 'url';
 import { unlink } from "fs/promises";
 import { log } from "console";
-import { BASE_URL } from "../utils/en.js";
+import { BASE_URL } from "../utils/env.js";
 import fetch from "node-fetch";
 import { FV_PAGE_ACCESS_TOKEN } from "../utils/env.js";
 
@@ -70,6 +70,11 @@ export async function uploadVideoToMultimediaApi(params) {
                 console.log({error :'facebook :- '+error});
             }
             /********************************** Uplaod to youtube  ***************************/
+
+            
+
+
+
             /********************************** Uplaod to x  ***************************/
             /********************************** Uplaod to linkedin  ***************************/
             /********************************** Uplaod to instegram  ***************************/
@@ -78,3 +83,19 @@ export async function uploadVideoToMultimediaApi(params) {
         console.log({error});
     }
 }
+
+
+
+
+function uploadVideoToYoutube() {
+    
+}
+
+
+
+
+
+
+
+
+
