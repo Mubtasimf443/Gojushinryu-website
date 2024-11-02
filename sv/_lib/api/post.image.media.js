@@ -22,6 +22,7 @@ let dirname = path.dirname(__filename);
 
 export async function uploadImagesToMultimediaApi(req,res) {
     let DontSuffortMime = false;
+    checkOrCreateTempDir()
     let options ={
         uploadDir :path.resolve(dirname , '../../temp/images') ,
         maxFiles : 10,

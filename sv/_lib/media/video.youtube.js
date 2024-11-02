@@ -12,7 +12,7 @@ import {
     YOUTUBE_API_REDIRECT_URL,
     YOUTUBE_CLIENT_ID,
     YOUTUBE_CLIENT_SECRET 
-} from '../env.js';
+} from '../utils/env.js';
 
 
 

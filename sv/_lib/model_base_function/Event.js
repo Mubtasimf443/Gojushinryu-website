@@ -9,6 +9,7 @@ import {fileURLToPath} from 'url'
 import { repleCaracter } from "../utils/replaceCr.js";
 import { UploadImageToCloudinary } from "../Config/cloudinary.js";
 import { GM } from "../models/GM.js";
+import { checkOrCreateTempDir } from "../utils/dir.js";
 
 
 //var
@@ -195,6 +196,7 @@ export async function eventPageNavigation(req,res) {
 export async function adminEventUplaodAPI(req,res) {
   try {
     let DontSuffortMime = false;
+    checkOrCreateTempDir()
     let options =  {
       uploadDir :
           path.resolve(dirname , '../../temp/images') ,

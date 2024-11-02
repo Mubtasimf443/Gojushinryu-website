@@ -6,10 +6,13 @@
     "cloudinary": "^2.5.0",
     "cookie-parser": "^1.4.6",
     "cors": "^2.8.5",
+    "cron": "^3.1.8",
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-rate-limit": "^7.4.0",
     "express-slow-down": "^2.0.3",
+    "fb": "^2.0.0",
+    "form-data": "^4.0.1",
     "formidable": "^3.5.1",
     "googleapis": "^144.0.0",
     "hbs": "^4.2.0",
@@ -20,6 +23,7 @@
     "nodemailer": "^6.9.15",
     "nodemon": "^3.1.4",
     "oauth-1.0a": "^2.2.6",
+    "string-player": "^1.0.2",
     "stripe": "^17.2.0",
     "twit": "^2.2.11"
   },
@@ -29,7 +33,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "sv": "nodemon --ignore public/ --ignore _lib/",
-    "nv": "nodemon s.js --ignore public/ --ignore _lib/"
+    "nv": "nodemon linkedin.js --ignore public/ --ignore _lib/"
   },
   "keywords": [],
   "author": "",

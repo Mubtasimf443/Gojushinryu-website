@@ -14,8 +14,7 @@ export  async function UploadProductApi(req,res) {
         function alert(params) {
           return res.json({error:params})
         }
-        log('request recieved')
-        log(req.body)
+        
         let {
             name,
             description,

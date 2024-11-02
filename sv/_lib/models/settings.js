@@ -16,6 +16,8 @@ const settingsSchema = mongoose.Schema({
         date :String,
     },
     home_video_url:String,
+    yt_token:String,
+    
 })
 
 export const Settings=mongoose.model('settings', settingsSchema);

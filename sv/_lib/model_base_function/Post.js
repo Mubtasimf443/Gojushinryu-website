@@ -9,6 +9,7 @@ import { Posts } from "../models/Post.js";
 import path from "path";
 import { BASE_URL } from "../utils/env.js";
 import {fileURLToPath} from 'url'
+import { checkOrCreateTempDir } from "../utils/dir.js";
 
 
 
@@ -44,6 +45,7 @@ export async function postPageNavigation(req,res) {
 export async function uplaodPostAPiFucntion(req,res) {
     try {
         let DontSuffortMime=false;
+        checkOrCreateTempDir()
         let options =  {
             uploadDir :path.resolve(dirname , '../../temp/images') ,
             maxFiles : 11,
