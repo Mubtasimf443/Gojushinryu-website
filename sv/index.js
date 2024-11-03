@@ -86,7 +86,18 @@ app.get('/', async (req, res) => {
     }
 });
 
+app.get('/api_files_tiktok_vf_files', (req,res) => {
+    try {
+        res.setHeader('Content-Type', 'text/plain');
+        res.sendFile(path.resolve(dirName, './vf.txt'))
+    } catch (error) {
+        console.log({error});
+          
+    }
+})
 app.get('*', (req, res) => res.status(404).render('404'))
 
 
-app.listen(4000, e=> log('SubhanAllah server is working'))
+
+app.listen(4000, e=> log('SubhanAllah server is working')) ;
+
