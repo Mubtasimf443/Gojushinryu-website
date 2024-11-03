@@ -89,7 +89,7 @@ app.get('/', async (req, res) => {
 app.get('/api_files_tiktok_vf_files', (req,res) => {
     try {
         res.setHeader('Content-Type', 'text/plain');
-        res.sendFile(path.resolve(dirName, './vf.txt'))
+        res.sendFile(path.resolve(dirName, './tiktok325E2MHUh7KO2smVL3LDTF5jIwieo2Xi.txt'))
     } catch (error) {
         console.log({error});
           

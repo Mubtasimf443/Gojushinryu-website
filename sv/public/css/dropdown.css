@@ -7,8 +7,7 @@ InshaAllah, By his marcy I will Gain Success
 #lt-header-nav-accounts-anchor-div,
 #lt-header-nav-media-anchor-div,
 #lt-header-nav-shop-anchor-div ,
-#lt-header-nav-course-anchor-div
-{
+#lt-header-nav-course-anchor-div {
     position: relative;
 }
 
@@ -30,7 +29,6 @@ InshaAllah, By his marcy I will Gain Success
     left: 0px;
     top: 35px;
 }
-
 #about-us-header-nav-div-link-anchor-div > a:focus-within + .dropdown{
     display: flex;
     top:34px;
@@ -56,8 +54,6 @@ InshaAllah, By his marcy I will Gain Success
     left: 0px;
     /* opacity: 1; */
 }
-
-
 .dropdown{
     display: none;
     flex-direction: column;
