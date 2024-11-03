@@ -25,6 +25,7 @@ import { Memberships } from './_lib/models/Membership.js';
 import { sendMembershipMails } from './_lib/mail/membership.mail.js';
 import fastApiRouter from './Routes/fast.api.router.js';
 import { Settings } from './_lib/models/settings.js';
+import mediaRouter from './Routes/media.router.js';
 
 //varibles
 const app = express();
@@ -55,6 +56,7 @@ app.use('/api/fast-api/',fastApiRouter)
 app.use('/api/chat-api',chateRouter);
 // app.use('/api/upload',uploadRouter);
 app.use('/api/auth-api',authRouter);
+app.use('/api/media-api',mediaRouter)
 //buyer do not pay us and takes the website
 app.use('/api/order-api',OrderRouter);
 app.use('/api/api_s',apiRouter)

@@ -1,0 +1,44 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+#settings-conatiner .auth_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+#settings-conatiner .auth_div .icon_div {
+    display: flex;
+    flex-direction: row;
+    width: fit-content;
+    height: fit-content;
+    align-items: center;
+    justify-content: left;
+    column-gap: 3px;
+}
+
+#settings-conatiner .auth_div .icon_div img{
+    max-width: 40px;
+    max-height: 27px; 
+    margin-right: 7px;  
+}
+#settings-conatiner .auth_div .icon_div .fa-close{
+    color: red;
+}
+#settings-conatiner .auth_div .icon_div .fa-check{
+    color: green;
+}
+
+#settings-conatiner .auth_div button {
+    background-color:black ;
+    padding: 10px 14px;
+    border-radius: 0px;
+    color: white;
+    border: none;
+    border-radius: 5px;
+}
+

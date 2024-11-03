@@ -6,7 +6,7 @@ InshaAllah, By his marcy I will Gain Success
 import { Router } from "express";
 import eventEmiter from 'node:events'
 import { createRequire } from "node:module";
-import { YOUTUBE_CLIENT_ID as client_id ,YOUTUBE_CLIENT_SECRET as client_secret , YOUTUBE_API_REDIRECT_URL as redirect_uri } from './_lib/utils/env.js';
+import { YOUTUBE_CLIENT_ID as client_id ,YOUTUBE_CLIENT_SECRET as client_secret , YOUTUBE_API_REDIRECT_URL as redirect_uri } from '../../../_lib/utils/env.js';
 import { log } from "string-player";
 import {CronJob} from 'cron';
 import path from 'path'

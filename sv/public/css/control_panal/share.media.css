@@ -1,0 +1,65 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+#share-media-conatiner {
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+}
+#share-media-conatiner .icon_label_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 10px;
+    
+}
+#share-media-conatiner .icon_label_box img {
+    max-width: 45px;
+    max-height: 30px;
+}
+#share-media-conatiner .form_icon_grid{
+    display: grid;
+    grid-template-columns: repeat(6,0fr);
+    grid-template-rows: repeat(1,0fr);
+    row-gap: 20px;
+    justify-content: space-between;
+    width: 100%;
+}
+#share-media-conatiner button[uploadTheProductBtn]{
+    background: #000;
+    color: white;
+    border-radius: 5px;
+}
+.video_inp_div {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 24px;
+
+}
+.video_inp_div label {
+    width: 200px;
+    height: 200px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    row-gap: 6px;
+}
+.video_inp_div video{
+    width: 330px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center center;
+}
+.video_inp_div label i {
+    font-size: 22px;
+    color: black;
+}

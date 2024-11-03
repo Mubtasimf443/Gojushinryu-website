@@ -23,6 +23,9 @@
     <link rel="stylesheet" href="/css/control_panal/popup.css">
     <link rel="stylesheet" href="/css/control_panal/courses.css">
     <link rel="stylesheet" href="/css/control_panal/course_enroll_ments.css">
+    <link rel="stylesheet" href="/css/control_panal/settings.css">
+    <link rel="stylesheet" href="/css/control_panal/share.media.css">
+    
 
     <script defer src="/js/control panal/gm.js"></script>
     <script defer src="/js/control panal/c.panal.js"></script>
@@ -40,6 +43,7 @@
     <script defer src="/js/control panal/uplaod.post.js"></script>
     <script defer src="/js/control panal/settings.js"></script>
     <script defer src="/js/control panal/uplaod.event.js"></script>
+    <script defer src="/js/control panal/share.media.js"></script>
 
 
 </head>
@@ -535,15 +539,15 @@ style="display: none;"
     <a id="upload_post_href">Upload Post<button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="uplaod_product_href">Uplaod Product <button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="course_href" style="display: none;"> Course <button><i class="fa-solid fa-angle-right"></i></button></a>
- 
+  <a id="share_media_href" >Share To Social Media<button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="uplaod_event_href" >Upload Event<button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="order_href" >Orders<button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="user_page_href">User's <button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="gm_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="member_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="course_enrolments_href">Course EnrollMents<button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="gm_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="member_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="course_enrolments_href">Course EnrollMents<button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
 <style>
   button,a ,i{
@@ -559,8 +563,8 @@ style="display: none;"
     </div>
     <!-----------------------Gm massage ----------------------------->
     <div ct_section style="display: none;" targetedElement="GrandMaster_massage" id="grandMaster_massages_container"  class="chat-box-container">
-  <h2>Massages</h2>
-  <div class="chat-box">
+    <h2>Massages</h2>
+    <div class="chat-box">
     <div class="chat-massage-cobtainer">
      
     </div>
@@ -659,24 +663,17 @@ style="display: none;" ct_section class="form-section">
    </div>
  </div>
     <!-----------------------Upload Product ----------------------------->
-
-<div id="upload-Product-conatiner"
-  targetedElement="uplaod_product_href" 
-  style="display: none;"
-  ct_section 
-  class="form-section">
-   
- <div class="upload_sec_event_tumb_img_inp_box">
-     <h4>
-       Thumnail
-     </h4>
-    <label for="upload_sec_event_tumb_img_inp_for_uploading_the_products">
-      <b>Click To Upload <br>
-      Thumbnail
-      </b>
-    </label>
-    <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp_for_uploading_the_products">
-   
+    <div id="upload-Product-conatiner"targetedElement="uplaod_product_href" style="display: none;" ct_section class="form-section">
+      <div class="upload_sec_event_tumb_img_inp_box">
+        <h4>
+          Thumnail
+        </h4>
+        <label for="upload_sec_event_tumb_img_inp_for_uploading_the_products">
+          <b>Click To Upload <br>
+          Thumbnail
+          </b>
+        </label>
+        <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp_for_uploading_the_products">
   </div>
   <div 
   id="product_upload_container_product_images_contaioner"
@@ -752,7 +749,7 @@ style="display: none;" ct_section class="form-section">
    <div class="s-sec-btn-box">
      <button uploadTheProductBtn > Upload</button>
    </div>
- </div>
+   </div>
    <!-----------------------Upload Post ----------------------------->
 
 <div id="upload-post-conatiner" targetedElement="upload_post_href" style="display: none;" ct_section class="form-section">
@@ -1101,14 +1098,45 @@ targetedElement="member_href" class="member-list-box">
      <label for="s-sec-name-inp"> home video url </label>
      <input type="Text" placeholder="like http://cloudinary/video/****" value="{{home_video_url}}" id="h-video-url-inp" >
    </div>
+   <strong>Authenticated Media</strong>
+
+   <div class="auth_div">
+    <div class="icon_div">
+      <img src="/icon/youtube.png" alt="youtube icon">
+      <b>Youtube</b>
+      <i class="fa-solid fa-close"></i>
+    </div>
+    <button >Refresh</button>
+   </div>
+   
+   <div class="auth_div">
+    <div class="icon_div">
+      <img src="/icon/linkedin.png" alt="linkedin icon">
+      <b>Linkedin</b>
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <button>Refresh</button>
+   </div>
+
+   <div class="auth_div">
+    <div class="icon_div">
+      <img src="/icon/tiktok.png" alt="tiktok icon">
+      <b>Tiktok</b>
+      <i class="fa-solid fa-check"></i>
+    </div>
+    <button>Refresh</button>
+   </div>
 
    <div class="s-sec-btn-box">
      <button save_btn
-     style="transition: all .5s ease; background-color: black;
+     style="
+     transition: all .5s ease;
+    background-color:black;
      color:white;
-     opacity :0.6;
-    ;"
+     opacity :0.6;"
      >Save</button>
+
+
    </div>
 
  </div>
@@ -1160,12 +1188,126 @@ targetedElement="member_href" class="member-list-box">
    </div>
   <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Event Date</label>
-     <input type="date"  placeholder="Event Date"    inp_for_product_name id="s-sec-name-inp">
+     <input type="date"  placeholder="Event Date" inp_for_product_name id="s-sec-name-inp">
    </div>
    <div class="s-sec-btn-box">
      <button uploadEventButton > Upload</button>
    </div>
  </div>
+
+
+<!----------------------- share to social media ----------------------------->
+
+
+<div style="display: none;" ct_section id="share-media-conatiner" targetedElement="share_media_href">
+  <div share_video_container  class="form-section">
+  <strong>Uplaod Video</strong>
+
+  <div class="video_inp_div">
+    <label for="social_media_video_uplaod_input">
+      <input type="file" accept="video/mp4" id="social_media_video_uplaod_input" style="display: none;">
+      <i class="fa-solid fa-cloud-arrow-up"></i>
+      <strong>Uplaod Video</strong>
+    </label>
+  </div>
+  
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Title</label>
+     <input type="Text"  placeholder="Write name of the title of the post"   id="s-sec-name-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-bio-inp"> Description</label>
+     <textarea placeholder="Write the description of the Description of the post" ></textarea>
+   </div>
+   <div class="form_icon_grid">
+     <label class="icon_label_box" for="check-input-vid-yt">
+      <img src="/icon/youtube.png" alt="">
+      <input type="checkbox" checked id="check-input-vid-yt">
+   </label>
+   <label class="icon_label_box" for="check-input-vid-fb">
+    <img src="/icon/facebook.png" alt="">
+    <input type="checkbox" checked name="" id="check-input-vid-fb">
+   </label>
+   <label class="icon_label_box" for="check-input-vid-ttk">
+    <img src="/icon/tiktok.png" alt="">
+    <input type="checkbox" checked name="" id="check-input-vid-ttk">
+   </label>
+  <label class="icon_label_box" for="check-input-vid-istr">
+    <img src="/icon/instragram.png" alt="">
+    <input type="checkbox" checked name="" id="check-input-vid-istr">
+  </label>
+   <label class="icon_label_box" for="check-input-vid-twitter">
+    <img src="/icon/twitter.png" alt="">
+    <input type="checkbox" checked name="" id="check-input-vid-twitter">
+   </label>
+   <label class="icon_label_box" for="check-input-vid-link">
+    <img src="/icon/linkedin.png" alt="">
+    <input type="checkbox" checked name="" id="check-input-vid-link">
+   </label>
+   </div>
+ 
+
+   <div class="s-sec-btn-box">
+     <button uploadTheProductBtn > Upload</button>
+   </div>
+  </div>
+  <div share_image_container  class="form-section">
+  <strong>Uplaod Image</strong>
+  
+  <div 
+  id="product_upload_container_product_images_contaioner"
+   class="upload_sec_env_img_inp_box">
+    
+    <label for="social_media_share_image_input">
+      Upload Images
+    </label>
+    <input 
+    style="display: none" 
+    type="file" 
+    id="social_media_share_image_input">
+    
+  </div> 
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">description</label>
+     <input type="Text"  placeholder="Write name of the description of the post"   id="s-sec-name-inp">
+   </div>
+ 
+ <div class="form_icon_grid">
+     <label class="icon_label_box" for="check-input-img-yt">
+      <img src="/icon/youtube.png" alt="">
+      <input type="checkbox" checked id="check-input-img-yt">
+   </label>
+   <label class="icon_label_box" for="check-input-img-fb">
+    <img src="/icon/facebook.png" alt="">
+    <input type="checkbox" checked name="" id="check-input-img-fb">
+   </label>
+   <label class="icon_label_box" for="check-input-img-ttk">
+    <img src="/icon/tiktok.png" alt="">
+    <input type="checkbox" checked name="" id="check-input-img-ttk">
+   </label>
+  <label class="icon_label_box" for="check-input-img-istr">
+    <img src="/icon/instragram.png" alt="">
+    <input type="checkbox" checked name="" id="check-input-img-istr">
+  </label>
+   <label class="icon_label_box" for="check-input-img-twitter">
+    <img src="/icon/twitter.png" alt="">
+    <input type="checkbox" checked name="" id="check-input-img-twitter">
+   </label>
+   <label class="icon_label_box" for="check-input-img-link">
+    <img src="/icon/linkedin.png" alt="">
+    <input type="checkbox" checked name="" id="check-input-img-link">
+   </label>
+   </div>
+ 
+   <div class="s-sec-btn-box" >
+     <button uploadTheProductBtn > Upload</button>
+   </div>
+  </div>
+
+</div>
+  
+
+
 
  </div>
 </section>

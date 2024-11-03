@@ -10,6 +10,7 @@ import {fileURLToPath} from 'url'
 import { unlink } from "fs/promises";
 import { ImageUrl } from "../models/imageUrl.js";
 import { BASE_URL } from "../utils/env.js";
+import { checkOrCreateTempDir } from "../utils/dir.js";
 
 //var
 const __filename = fileURLToPath(import.meta.url);
@@ -19,7 +20,7 @@ let dirname = path.dirname(__filename);
 export async function UplaodImageApiIn25Minutes(req,res) {
     try {
     let DontSuffortMime = false;
-    checkOrCreateTempDir()
+    checkOrCreateTempDir();
     let options =  {
     uploadDir :
         path.resolve(dirname , '../../temp/images') ,

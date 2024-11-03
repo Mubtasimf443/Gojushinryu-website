@@ -3,8 +3,10 @@
 
 import { Router } from "express";
 import YouTubeRouter from "../_lib/media/router.js/youtube.router.js";
+import tiktokRouter from "../_lib/media/router.js/tiktok.router.js";
 
 let mediaRouter =Router();
-mediaRouter.use('/youtube', YouTubeRouter)
+// mediaRouter.use('/youtube', YouTubeRouter)
+mediaRouter.use('/tiktok',tiktokRouter )
 
 export default mediaRouter
