@@ -16,13 +16,13 @@ const app = express();
 const port = 3000;
 
 app.get('/auth', (req, res) => {
-  const authUrl = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${LINKEDIN_KEY}&redirect_uri=${LINKEDIN_REDIRECT_URI}}&scope=r_liteprofile%20r_emailaddress%20w_member_social`;
+  const authUrl = `https://www.linkedin.com/oauth/v2/authorization?response_type=code&client_id=${LINKEDIN_KEY}&redirect_uri=${LINKEDIN_REDIRECT_URI}&scope=r_liteprofile`+`%20r_emailaddress`+`%20w_member_social`;
   res.redirect(authUrl);
 });
 
 app.get('/callback', async (req, res) => {
   const authCode = req.query.code;
-  log({authCode})
+  log({query :req.query})
   try {
     const response = await axios.post('https://www.linkedin.com/oauth/v2/accessToken', null, {
       params: {
@@ -42,5 +42,6 @@ app.get('/callback', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server running at http://localhost:${port}`);
+  
+  console.log(`Server running at http://localhost:${port} and redirect uri is ${LINKEDIN_REDIRECT_URI}`);
 });

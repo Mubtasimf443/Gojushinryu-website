@@ -534,11 +534,10 @@ style="display: none;"
     <h2>options</h2>
     <a id="massage_href">Massages<button><i class="fa-solid fa-angle-right"></i></button></a>
     <a id="GrandMaster_massage">GM Massage<button><i class="fa-solid fa-angle-right"></i></button></a>
-
-    <a id="notification_href" >Create Notification<button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="upload_post_href">Upload Post<button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="uplaod_product_href">Uplaod Product <button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="course_href" style="display: none;"> Course <button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="notification_href" >Create Notification<button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="upload_post_href">Upload Post<button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="uplaod_product_href">Uplaod Product <button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="course_href" style="display: none;"> Course <button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="share_media_href" >Share To Social Media<button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="uplaod_event_href" >Upload Event<button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="order_href" >Orders<button><i class="fa-solid fa-angle-right"></i></button></a>
@@ -1104,27 +1103,27 @@ targetedElement="member_href" class="member-list-box">
     <div class="icon_div">
       <img src="/icon/youtube.png" alt="youtube icon">
       <b>Youtube</b>
-      <i class="fa-solid fa-close"></i>
+      <i yt_status_icon class="fa-solid fa-close"></i>
     </div>
-    <button >Refresh</button>
+    <button auth_btn_youtube >Refresh</button>
    </div>
    
    <div class="auth_div">
     <div class="icon_div">
       <img src="/icon/linkedin.png" alt="linkedin icon">
       <b>Linkedin</b>
-      <i class="fa-solid fa-check"></i>
+      <i linkedin_status_icon class="fa-solid fa-check"></i>
     </div>
-    <button>Refresh</button>
+    <button auth_btn_linkedin >Refresh</button>
    </div>
 
    <div class="auth_div">
     <div class="icon_div">
       <img src="/icon/tiktok.png" alt="tiktok icon">
       <b>Tiktok</b>
-      <i class="fa-solid fa-check"></i>
+      <i tiktok_status_icon class="fa-solid fa-check"></i>
     </div>
-    <button>Refresh</button>
+    <button auth_btn_tiktok >Refresh</button>
    </div>
 
    <div class="s-sec-btn-box">
@@ -1213,11 +1212,17 @@ targetedElement="member_href" class="member-list-box">
   
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">Title</label>
-     <input type="Text"  placeholder="Write name of the title of the post"   id="s-sec-name-inp">
+     <input type="Text" title_of_the_post placeholder="Write name of the title of the post"   id="s-sec-name-inp">
    </div>
    <div class="s-sec-input-box">
      <label for="s-sec-bio-inp"> Description</label>
-     <textarea placeholder="Write the description of the Description of the post" ></textarea>
+     <textarea description_of_the_post placeholder="Write the description of the Description of the post" ></textarea>
+   </div>
+   <div class="tags_div">
+    <ul class="tags">
+      
+    </ul>
+    <textarea name="" tags_textarea placeholder="write the tags"></textarea>
    </div>
    <div class="form_icon_grid">
      <label class="icon_label_box" for="check-input-vid-yt">
@@ -1248,7 +1253,7 @@ targetedElement="member_href" class="member-list-box">
  
 
    <div class="s-sec-btn-box">
-     <button uploadTheProductBtn > Upload</button>
+     <button uploadshareblePostBtn > Upload</button>
    </div>
   </div>
   <div share_image_container  class="form-section">
@@ -1269,7 +1274,7 @@ targetedElement="member_href" class="member-list-box">
   </div> 
    <div class="s-sec-input-box">
      <label for="s-sec-name-inp">description</label>
-     <input type="Text"  placeholder="Write name of the description of the post"   id="s-sec-name-inp">
+     <input type="text"  placeholder="Write name of the description of the post"   id="s-sec-name-inp">
    </div>
  
  <div class="form_icon_grid">
@@ -1300,7 +1305,7 @@ targetedElement="member_href" class="member-list-box">
    </div>
  
    <div class="s-sec-btn-box" >
-     <button uploadTheProductBtn > Upload</button>
+     <button uploadshareblePostBtn > Upload</button>
    </div>
   </div>
 

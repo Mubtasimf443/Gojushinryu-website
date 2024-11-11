@@ -119,9 +119,6 @@ Insha Allah,  By the marcy of Allah,  I will gain success
         }   
         return value
       }
-    
-    
-    
 
     container.querySelectorAll('input').forEach(el => el.addEventListener('keyup', e => {
         needsToUpdate=true;
@@ -130,7 +127,123 @@ Insha Allah,  By the marcy of Allah,  I will gain success
         e.target.style.outline='none';
 
     }))
+    let seen=false;
+    let observer =new IntersectionObserver(async (ent) => {
+      if (!seen && ent[0].isIntersecting) {
+        let res=await fetch(window.location.origin + '/api/media-api/status');
+        if (res.status===200) {
+          let {tiktok,youtube,linkedin}=await res.json();
+          if (youtube) {
+            container.querySelector(`[yt_status_icon]`).className='fa-solid fa-check';
+            let btn =container.querySelector(`[auth_btn_youtube]`);
+            btn.innerHTML='refresh'
+            btn.style.background='green'
+            btn.addEventListener('click',rfsYoutube)
+          }
+          if (!youtube) {
+            container.querySelector(`[yt_status_icon]`).className='fa-solid fa-close';
+            let btn =container.querySelector(`[auth_btn_youtube]`);
+            btn.innerHTML='Authenticate'
+            btn.addEventListener('click',authenticateYT)
+          }
+          if (linkedin) {
+            container.querySelector(`[linkedin_status_icon]`).className='fa-solid fa-check';
+            let btn =container.querySelector(`[auth_btn_linkedin]`);
+            btn.innerHTML='refresh'
+            btn.style.background='green'
+          }
+          if (!linkedin) {
+            container.querySelector(`[linkedin_status_icon]`).className='fa-solid fa-close';
+            let btn =container.querySelector(`[auth_btn_linkedin]`);
+            btn.innerHTML='Authenticate'
+          }
+          if (tiktok) {
+            container.querySelector(`[tiktok_status_icon]`).className='fa-solid fa-check';
+            let btn =container.querySelector(`[auth_btn_tiktok]`);
+            btn.innerHTML='refresh'
+            btn.style.background='green'
+          }
+          if (!tiktok) {
+            container.querySelector(`[tiktok_status_icon]`).className='fa-solid fa-close';
+            let btn =container.querySelector(`[auth_btn_tiktok]`);
+            btn.innerHTML='Authenticate'
+          }
+        }        
+      }
+    });
+    observer.observe(container);
+    
 
+
+
+
+    //auth functions
+    async function rfsTiktok(e) {
+      e.preventDefault();
+      try {
+        
+      } catch (error) {
+        console.log({error});
+      }
+    }
+    async function rfsYoutube(e) {
+      e.preventDefault();
+      try {
+        e.target.style.transition='all 300ms ease';
+        let target=e.target;
+        target.style.opacity=.65;        
+        await fetch(window.location.origin +'/api/media-api/youtube/refresh');
+        target.style.opacity=1
+        target.innerHTML='Done';
+        setTimeout(() => {
+          target.innerHTML='Refresh'
+        }, 1000);
+      } catch (error) {
+        console.log({error});
+      }
+    }
+    async function rfsLinkedin(e) {
+      e.preventDefault();
+      try {
+        
+      } catch (error) {
+        console.log({error});
+      }
+    }
+    async function authenticateYT(e) {
+      e.preventDefault();
+      try {
+        e.target.style.transition='all .6s ease';
+        e.target.style.opacity=.65;
+        let res=await fetch(window.location.origin +'/api/media-api/youtube/generate-youtube-access-token-code');
+        if (res.status===200) {
+          let {url}=await res.json();
+          window.location.assign(url) 
+          return;
+        }
+        else throw await res.json();   
+      } catch (error) {
+        console.log({error});
+        e.target.style.opacity=1;
+        e.target.style.background='red';
+      }
+    }
+    async function authenticateLinkedin(e) {
+      e.preventDefault();
+      try {
+        
+      } catch (error) {
+        console.log({error});
+      }
+    }
+    async function authenticateTiktok(e) {
+      e.preventDefault();
+      try {
+        
+      } catch (error) {
+        console.log({error});
+      }
+    }
 
 
 }

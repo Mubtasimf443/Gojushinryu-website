@@ -20,11 +20,11 @@ const __filename = fileURLToPath(import.meta.url);
 let dirname = path.dirname(__filename);
 
 
-export async function uploadVideoToMultimediaApi(params) {
+export async function uploadVideoToMultimediaApi(req,res) {
     try {
         let DontSuffortMime = false;
         let options ={
-            uploadDir :path.resolve(dirname , '../../temp/images') ,
+            uploadDir :path.resolve(dirname , '../../temp/video') ,
             maxFiles : 10,
             allowEmptyFiles:false,
             maxFileSize:4*1024*1024,
@@ -36,48 +36,71 @@ export async function uploadVideoToMultimediaApi(params) {
             filename : () => Date.now() +'_' + Math.floor(Math.random()*1000) + '.mp4'
         }
         await formidable(options).parse(req , async (err, feilds,files) => {
-            if (error) return res.sendStatus(400);
-            if (DontSuffortMime) return res.sendStatus(400)
-            let {message,title}=feilds;
-            let {video}=files;
-            if (!message || !video || !title) throw 'error , !massage || !video || title is not define'
-            if (message.length ===0 ) throw 'error , massage.length ===0 is not define'
-            if (title.length ===0 ) throw 'error , massage.length ===0 is not define'
-            if (video.length ===0 ) throw 'error , massage.length ===0 is not define'
-            
-            title =title[0].toString();
-            message =message[0].toString();
-
-            let statusObject={
-                facebook:false,
-                twiter:false,
-                integram:false,
-                linkedin:false,
-                youtube:false,
-            };
-            /********************************** Uplaod to facebook  ***************************/
             try {
-                let form =new FormData();
-                form.append('title',title);
-                form.append('message',message);
-                form.append('video',BASE_URL+'/api/file/temp/'+video[0].newFilename);
-                let res =await fetch('https://graph.facebook.com/me/fead',{
-                   method :'POST',
-                   body :form
-                });
-                if (res.status===200) statusObject.facebook=true;
+                if (err) {
+                    console.log({err});
+                    return res.sendStatus(400);
+                }
+                if (DontSuffortMime) return res.sendStatus(400)
+                let {description,title,tags}=feilds;
+                let {video}=files;
+               
+                if (!description || !tags || !video || !title ) throw 'error , !massage || !video || title is not define'
+                if (description.length === 0 ) throw 'error , description.length ===0 is not define'
+                if (title.length === 0 ) throw 'error , title.length ===0 is not define'
+                if (video.length !== 1 ) throw 'error , video.length !== 1 is not define'
+                if (tags.length ===0 ) throw 'error , tags.length ===0 is not define'
+                console.log({feilds});
+                
+                // title =title[0].toString();
+    
+                let statusObject={
+                    facebook:false,
+                    twiter:false,
+                    integram:false,
+                    linkedin:false,
+                    youtube:false,
+                };
+                /********************************** Uplaod to facebook  ***************************/
+                // try {
+                //     let form =new FormData();
+                //     form.append('title',title);
+                //     form.append('message',message);
+                //     form.append('video',BASE_URL+'/api/file/temp/'+video[0].newFilename);
+                //     let res =await fetch('https://graph.facebook.com/me/fead',{
+                //        method :'POST',
+                //        body :form
+                //     });
+                //     if (res.status===200) statusObject.facebook=true;
+                // } catch (error) {
+                //     console.log({error :'facebook :- '+error});
+                // }
+                /********************************** Uplaod to youtube  ***************************/
+                // let response=await fetch(BASE_URL + '/api/media-api/youtube/upload-video', {
+                //     method :'POST',
+                //     headers :{ 
+                //         'Content-Type' :'application/json'
+                //     } ,
+                //     body :JSON.stringify({
+                //         name :path.resolve(dirname ,'../../temp/video/'+video[0].newFilename),
+                //         title:title[0],
+                //         description:description[0],
+                //         tags 
+                //     })
+                // })
+                // if (response.status===200) statusObject.youtube=true;
+    
+                /********************************** Uplaod to x  ***************************/
+                /********************************** Uplaod to linkedin  ***************************/
+                /********************************** Uplaod to instegram  ***************************/
+    
+
+                log({status:statusObject})
+                return res.sendStatus(201)
             } catch (error) {
-                console.log({error :'facebook :- '+error});
+                console.log(error);
+                return res.sendStatus(400)
             }
-            /********************************** Uplaod to youtube  ***************************/
-
-            
-
-
-
-            /********************************** Uplaod to x  ***************************/
-            /********************************** Uplaod to linkedin  ***************************/
-            /********************************** Uplaod to instegram  ***************************/
         })
     } catch (error) {
         console.log({error});

@@ -1,8 +1,10 @@
 /test
 /public/test.html
 /s.js
-/temp
-/temp/_test
+temp/images/*
+/temp/video/*
 /public/video
 /public_html
 /_lib/utils/media
+/client_secret_874358106010-eugum2pcaoqkrtcd1vnvmjmfqj4fut57.apps.googleusercontent.com.json
+/twitter.json

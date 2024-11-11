@@ -1,5 +1,7 @@
-/*  بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah */
-/* By Allah's Marcy I will gain success , Insha Allah*/
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah
+By Allah's Marcy I will gain success , Insha Allah
+*/
 
 import { Router } from "express";
 

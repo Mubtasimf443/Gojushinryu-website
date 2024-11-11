@@ -434,5 +434,3 @@ export async function membershipCancellPaypalApi(req,res) {
            return res.redirect('/')
     }
 }
-
-

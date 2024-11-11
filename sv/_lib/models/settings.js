@@ -16,6 +16,7 @@ const settingsSchema = mongoose.Schema({
         date :String,
     },
     home_video_url:String,
+    youtube_refresh_token:String,
     youtube_token:String,
     linkedin_access_token:String,
     tiktok_access_token:String,

@@ -44,4 +44,5 @@ export const TIKTOK_CLIENT_KEY=process.env.TIKTOK_CLIENT_KEY
 export const TIKTOK_CLIENT_SECRET=process.env.TIKTOK_CLIENT_SECRET
 export const LINKEDIN_KEY=process.env.LINKEDIN_KEY
 export const LINKEDIN_SECRET=process.env.LINKEDIN_SECRET
+export const LINKEDIN_PERSON_URN=process.env.LINKEDIN_PERSON_URN
 export const LINKEDIN_REDIRECT_URI=process.env.LINKEDIN_REDIRECT_URI

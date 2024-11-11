@@ -29,12 +29,12 @@ Insha Allah,  By your Marcy Ya Allah
     justify-content: space-between;
     width: 100%;
 }
-#share-media-conatiner button[uploadTheProductBtn]{
+#share-media-conatiner button[uploadshareblePostBtn]{
     background: #000;
     color: white;
     border-radius: 5px;
 }
-.video_inp_div {
+#share-media-conatiner .video_inp_div {
     display: flex;
     flex-direction: row;
     justify-content: left;
@@ -42,7 +42,7 @@ Insha Allah,  By your Marcy Ya Allah
     column-gap: 24px;
 
 }
-.video_inp_div label {
+#share-media-conatiner .video_inp_div label {
     width: 200px;
     height: 200px;
     border: 2px solid #ccc;
@@ -53,13 +53,56 @@ Insha Allah,  By your Marcy Ya Allah
     justify-content: center;
     row-gap: 6px;
 }
-.video_inp_div video{
+#share-media-conatiner .video_inp_div video{
     width: 330px;
     height: 200px;
     object-fit: cover;
     object-position: center center;
 }
-.video_inp_div label i {
+#share-media-conatiner .video_inp_div label i {
     font-size: 22px;
     color: black;
+}
+#share-media-conatiner .tags_div {
+    width: 100%;
+    min-height: 80px;
+    max-height: fit-content;
+    background-color: rgb(235,235,235);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#share-media-conatiner .tags_div ul {
+    display: flex;
+    flex-direction: row;
+    column-gap: 15px;
+    row-gap: 20px;
+    flex-wrap: wrap;
+    padding: 7px;
+    max-height: fit-content;
+}
+#share-media-conatiner .tags_div ul li {
+    list-style: none;
+    border: 1px solid #ccc;
+    padding: 7px;
+    font-size: 13px;
+    color: rgb(36, 36, 36);
+    border-radius: 6px;
+
+}
+#share-media-conatiner .tags_div textarea{
+    background-color: rgb(235,235,235);
+    width: 100%;
+    border: none;
+    outline: none;
+    resize: none;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 9px;
+    box-sizing: border-box;
+    height: 36px;
+    font-size: 16px;
+    color: #000;
+    overflow: hidden;
 }
