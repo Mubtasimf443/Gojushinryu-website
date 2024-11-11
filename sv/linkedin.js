@@ -24,6 +24,11 @@ app.get('/callback', async (req, res) => {
   const authCode = req.query.code;
   log({query :req.query})
   try {
+
+    if (req.query.error_description) {
+      
+      return
+    }
     const response = await axios.post('https://www.linkedin.com/oauth/v2/accessToken', null, {
       params: {
         grant_type: 'authorization_code',
