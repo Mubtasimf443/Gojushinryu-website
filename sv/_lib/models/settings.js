@@ -18,11 +18,18 @@ const settingsSchema = mongoose.Schema({
     home_video_url:String,
     youtube_refresh_token:String,
     youtube_token:String,
+    fb_access_token_enroll_date:Number,
+    fb_access_token:String,
     linkedin_access_token:String,
+    instagram_token:String,
     tiktok_access_token:String,
     tiktok_access_token_status:Boolean,
     youtube_access_token_status:Boolean,
     linkedin_access_token_status:Boolean,
-})
+    instagram_access_token_status:Boolean,
+});
 
-export const Settings=mongoose.model('settings', settingsSchema);
+
+const Settings=mongoose.model('settings', settingsSchema);
+
+export {Settings} 

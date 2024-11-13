@@ -7,15 +7,16 @@ import tiktokRouter from "../_lib/media/router.js/tiktok.router.js";
 import { Settings } from "../_lib/models/settings.js";
 import { log } from "string-player";
 import { uploadVideoToMultimediaApi } from "../_lib/api/post.video.media.js";
-import twitterRouter from "../_lib/media/router.js/twitter.js";
+// import twitterRouter from "../_lib/media/router.js/twitter.js";
 import linkedinRouter from "../_lib/media/router.js/linkedin.js";
+import fb_media_router from "../_lib/media/router.js/facebook.router.js";
 
 let mediaRouter =Router();
 mediaRouter.use('/youtube', YouTubeRouter)
 mediaRouter.use('/tiktok',tiktokRouter)
 mediaRouter.use('/linkedin',linkedinRouter)
-mediaRouter.use('/twitter',twitterRouter)
-
+// mediaRouter.use('/twitter',twitterRouter)
+mediaRouter.use('/facebook',fb_media_router )
 
 mediaRouter.get('/status', mediaStatus)
 mediaRouter.post('/upload-video', uploadVideoToMultimediaApi)
