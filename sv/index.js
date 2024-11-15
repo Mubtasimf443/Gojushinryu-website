@@ -29,6 +29,7 @@ import mediaRouter from './Routes/media.router.js';
 
 //varibles
 const app = express();
+
 const __filename = fileURLToPath(import.meta.url);
 let dirName = path.dirname(__filename);
 
