@@ -5,7 +5,7 @@ By Allah's Marcy I will gain success , Insha Allah
 
 import { Router } from "express";
 import { log, makeUrlWithParams } from "string-player";
-import { FV_PAGE_ACCESS_TOKEN, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_GRAPH_API, FACEBOOK_GRAPH_VERSION, FB_PAGE_ID} from "../../utils/env.js";
+import { FV_PAGE_ACCESS_TOKEN, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_GRAPH_API, FACEBOOK_GRAPH_VERSION, FB_PAGE_ID, FACEBOOK_VIDEO_UPLOAD_TIMEOUT} from "../../utils/env.js";
 import fetch from 'node-fetch'
 import { resolve ,dirname} from 'path';
 import fs from 'fs'
@@ -250,7 +250,7 @@ async function uploadAVideoFile(options) {
                         clearTimeout(timeOut);
                         resolve(h);
                     }
-                    timeOut=setTimeout( e => deleTimeOut(data.h) , 200000)
+                    timeOut=setTimeout( e => deleTimeOut(data.h) , FACEBOOK_VIDEO_UPLOAD_TIMEOUT)
                 }
                 if (!data.h) throw new Error('File Handler is not define')
             }
