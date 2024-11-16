@@ -111,7 +111,7 @@ async function videoFacebookApi(req,res) {
 
         let videoPath=resolve(dirname(fileURLToPath(import.meta.url)), '../../../public/12345678910.mp4');
         
-       
+        filename=Math.floor(Math.random()*100000000)+'.mp4';
         log('// file upload session started')
         let session=await initInializeVideoUploadSession({
             file_name:filename,
@@ -210,6 +210,7 @@ async function uploadAVideoFile(options) {
 
         
         let file=fs.readFileSync(videoPath);
+        const array=new Uint8Array(file)
         // let blob=new Blob([file], {
         //     type :'video/mp4',
         //     name :filename
@@ -221,20 +222,23 @@ async function uploadAVideoFile(options) {
 
         try {
 
-
             await request(url , {
                 method :'POST',
                 headers :{
                     'Authorization':'OAuth '+access_token,
                     'file_offset' :'0',
-                    'Accapt':"*/*",
-                    // 'cache-control': 'no-cache',
-                    //  'Content-Type' : 'application/octet-stream',
-                    // 'content-disposition': 'attachment; filename=' + filename,
-                    // 'content-length':fs.statSync(videoPath).size.toString()
+                    'Accapt':"video/mp4",
+                    'Cache-Control': 'no-cache',
+                    'Content-Type' : 'video/mp4',
+                    'Content-Disposition': 'attachment; filename=' + filename,
+                    'Content-Length':fs.statSync(videoPath).size.toString(),
+                    'Connection':'close',
+                    'Accept-Encoding':'gzip,deflate, br',
+                    'User-Agent':'nodejs/20.15.0'
                 },
-                body:file,
-                // encoding :null
+                host :"graph.facebook.com",
+                body:array,
+                encoding :null
             },responseCallBack);
 
             
@@ -243,6 +247,7 @@ async function uploadAVideoFile(options) {
                 data=JSON.parse(data);
                
                 if (data.h) {
+
                     log(data.h)
                     let timeOut;
                     function deleTimeOut(h) {
@@ -250,6 +255,7 @@ async function uploadAVideoFile(options) {
                         clearTimeout(timeOut);
                         resolve(h);
                     }
+                    log('waiting for '+ (FACEBOOK_VIDEO_UPLOAD_TIMEOUT/60000)+' minutes')
                     timeOut=setTimeout( e => deleTimeOut(data.h) , FACEBOOK_VIDEO_UPLOAD_TIMEOUT)
                 }
                 if (!data.h) throw new Error('File Handler is not define')
