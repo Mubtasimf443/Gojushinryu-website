@@ -72,7 +72,7 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
           log({error})  
         }
 });
-app.get('log-path',  (req,res)=> {
+app.get('/log-path',  (req,res)=> {
     try {
         res.send(path.resolve(dirName, './temp/video/a.mp4'))
     } catch (error) {
