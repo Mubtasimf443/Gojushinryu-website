@@ -103,8 +103,8 @@ body{
 
 #main_content > article > .info  > div:nth-child(1) > h2{
 font-size: 2em;
-line-height: 20px;
 margin-bottom: .5em;
+
 }
 #main_content > article > .info  > div:nth-child(1) > p{
   font-size: 1.2em;
