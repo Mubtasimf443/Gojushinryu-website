@@ -54,8 +54,8 @@ pageRouter.get('/courses/date',async (req,res) => {
 })
 
 pageRouter.get('/Membership-application',userCheckAndNavigation, MembershipPageNavigation)
-pageRouter.get('/about-us/goju-shin-ryo', (req, res) => res.render('about-us-gsr'))
-pageRouter.get('/about-us/school-of-tradistional-martial-arts', (req, res) => res.render('about-us-smta'))
+pageRouter.get('/about-us/goju-shin-ryu', (req, res) => res.render('about-us-gsr'))
+pageRouter.get('/about-us/school-of-traditional-martial-arts', (req, res) => res.render('about-us-smta'))
 pageRouter.get('/about-us/testimonials', (req, res) => res.render('testimonials'))
 // pageRouter.get('/dates',(req,res)=>res.render('calender'))
 pageRouter.get('/auth/:name',(req,res)=> {

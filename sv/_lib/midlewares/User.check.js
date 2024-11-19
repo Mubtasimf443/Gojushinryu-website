@@ -44,11 +44,11 @@ const userCheck = async (req,res,next) => {
 export const userCheckAndNavigation = async (req,res,next) => {
     try {
         let {rft} =req.cookies;
-        if (!rft) return res.redirect('/auth/sign-in')
+        if (!rft) return res.redirect('/auth/sign-up')
         await jwt.verify(rft,JWT_SECRET_KEY,async (err,data) => {
             if (err) {
                 log(err)
-                return  res.redirect('/auth/sign-in')
+                return res.redirect('/auth/sign-in')
             }
             if (data ) {
                let {email} =data;

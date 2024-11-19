@@ -15,7 +15,10 @@ function negativeNotice(text) {
 
 
 
-
+secondaryBtn.addEventListener('click', e=> {
+  e.preventDefault();
+  window.location.assign('/auth/sign-in')
+})
 primaryBtn.addEventListener('click',  async(e) => {
   e.preventDefault();
   let firstname = document.getElementById(InpPrefik+'fn').value;

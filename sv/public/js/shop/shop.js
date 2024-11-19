@@ -71,7 +71,7 @@ async function LoadProducs(params) {
              href="${window.location.origin}/shop/equipments/${id}"
              class="product-card">
              <img src="${thumb}" alt="Martial Art Equiment  no ${index}" class="product_img">
-             <h2>${name}</h2>
+             <h5>${name}</h5>
              <p>${description.length >50 ? description.substring(0,50) :description}</p>
              <div class="price">${priceComponent}</div>
              <button

@@ -37,7 +37,20 @@ let dirName = path.dirname(__filename);
 
 //environment setup
 connectDB() ;
-app.use(helmet())
+app.use(helmet({
+    contentSecurityPolicy :{
+        directives :{
+            "script-src": ["'self'",`'unsafe-inline'`, "https://www.googletagmanager.com"],
+            "img-src":["'self'","https://res.cloudinary.com" ],
+            "style-src":["'self'", `'unsafe-inline'` ,'https://cdnjs.cloudflare.com' ,"https://fonts.googleapis.com" ,'https://fonts.gstatic.com'],
+            // "font-src":["https://fonts.googleapis.com" ,'https://fonts.gstatic.com', `'unsafe-inline'` ],
+            "media-src":["'self'","https://res.cloudinary.com", 'https://www.youtube.com'],
+            "frame-src":["https://www.youtube.com"],
+            "connect-src":[`'self'`]
+        },
+    },
+    
+}))
 app.use(express.static(path.resolve(dirName,'./public/')));
 app.set('view engine','hbs');
 app.set('views', path.resolve(dirName , './tamplates/views'));
@@ -106,4 +119,3 @@ app.get('*', (req, res) => res.status(404).render('404'))
 
 
 app.listen(4000, e=> log('SubhanAllah server is working')) ;
-

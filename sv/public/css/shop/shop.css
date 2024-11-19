@@ -64,7 +64,7 @@ body {
     overflow: hidden;
 }
 
-.product-card>h2 {
+.product-card>h5 {
     max-width: 100%;
     font-size: 1.3em;
    padding: 0px; 

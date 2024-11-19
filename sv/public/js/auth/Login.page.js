@@ -69,3 +69,9 @@ InshaAllah, By his Marcy I will Gain Success
   })
 
 }
+
+
+document.getElementById('sign-up-btn').onclick=function (event) {
+  event.preventDefault();
+  window.location.assign('/auth/sign-up')
+}

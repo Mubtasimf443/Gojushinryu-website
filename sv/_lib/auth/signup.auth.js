@@ -15,7 +15,7 @@ export const signUpFunction = async (req, res ) => {
  // console.log('sign up started');
   
   let userCreatedSuccessFully = false ;
-  let {firstname, lastname,  email,  phone ,password ,country } = req.body
+  let {firstname, lastname,  email,  phone ,password ,country } = req.body;
   let chekedUser =await User.findOne({email})
   if (chekedUser) return res.json({error : 'You already have an account,  please sign in '})
   try {

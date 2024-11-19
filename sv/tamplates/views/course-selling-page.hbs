@@ -10,7 +10,6 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="title" content="Enroll Martial Courses | Goju Shin Ryu">
   <meta name="description" content="Explore our courses at the School of Traditional Martial Arts! Learn ancient techniques, build strength, discipline, and self-defense skills in a supportive, expert-led environment.">
   <meta name="keywords" content="Martial Courses, Karate Course, Women Defence classes,Bhangar Fitness Class,for all ages">
   <meta property="og:site_name" content="  Goju Shin Ryu ">
@@ -21,14 +20,8 @@ Insha Allab,  By the marcy of Allah,  I will gain success
   <title> Enroll Martial Courses | Goju Shin Ryu </title>
   {{>Links}}
   <link rel="stylesheet" href="/css/pages/course.page.css" type="text/css"  />
-      <script defer>
-    
-{
-    document.addEventListener('click',e => {
-        if (e.target.className === 'btn') return window.location.assign('/course/' + e.target.getAttribute('ref'))
-    })
-}
-      </script>
+
+
 
 </head>
 <body>
@@ -139,7 +132,15 @@ Explore our courses at the School of Traditional Martial Arts! Learn ancient tec
 
   
  </section>
+
 </main>
+
+<script>
+  document.querySelector(`[ref=""]`).onclick=function (event) {
+    e.preventDefault();
+    window.location
+  }
+</script>
 {{>Footer}}
 </body>
 </html>
