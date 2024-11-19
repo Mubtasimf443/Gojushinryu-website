@@ -14,13 +14,14 @@ function negativeNotice(text) {
 }
 
 
-
+let Joining=false;
 secondaryBtn.addEventListener('click', e=> {
   e.preventDefault();
   window.location.assign('/auth/sign-in')
 })
 primaryBtn.addEventListener('click',  async(e) => {
   e.preventDefault();
+  if (Joining) return
   let firstname = document.getElementById(InpPrefik+'fn').value;
   let lastname = document.getElementById(InpPrefik+'ln').value;
   let email = document.getElementById(InpPrefik+'em').value;
@@ -46,7 +47,9 @@ primaryBtn.addEventListener('click',  async(e) => {
     country
   })
   primaryBtn.style.opacity=.7;
+  primaryBtn.style.transition='all 0.5s ease';
   primaryBtn.setAttribute('disabled','');
+  Joining=true;
   let respose =await fetch(window.location.origin +'/api/auth-api/user/sign-up',{
     headers:{
         'Content-Type':'application/json',
@@ -56,11 +59,14 @@ primaryBtn.addEventListener('click',  async(e) => {
   });
  respose =await respose.json();
  let {error,success} =respose;
- primaryBtn.style.opacity=.7;
+ primaryBtn.style.opacity=1;
  primaryBtn.removeAttribute('disabled');
+ Joining=false;
+
  if (error) return negativeNotice(error);
  if (success === true)  return window.location.replace('/auth/otp-varification')
   return negativeNotice('unknown Error')
+
 })
 
 

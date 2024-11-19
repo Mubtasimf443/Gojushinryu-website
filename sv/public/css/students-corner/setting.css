@@ -2,8 +2,6 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
 InshaAllah, By Allah's Will,  I will earn success
 */
-
-
 .form-section{
     width:100%;
     background: #fff;
@@ -27,22 +25,17 @@ InshaAllah, By Allah's Will,  I will earn success
     width: 650px;
   }
 }
-  
-
-
 @media screen and (max-width :600px){
   .form-section{
     width: 480px;
   }
 }
-  
   .form-section > h2 {
     font-size: 20px;
     font-size: 20px;
     font-weight: 500;
     line-height:24px;
   }
-  
   .form-section > .img-inp-box{
     display: flex;
     flex-direction: column;
@@ -52,17 +45,12 @@ InshaAllah, By Allah's Will,  I will earn success
     width: 100%;
     padding: 7px 0px;
   }
-
   .form-section  >.img-inp-box > label {
     background: #000;
     width: 100px ;
     height: 100px;
     border-radius :50%;
   }
-
-    
-  
-  
   @media screen and (max-width :600px){
     .form-section > .img-inp-box{
       align-items: start;
@@ -74,7 +62,6 @@ InshaAllah, By Allah's Will,  I will earn success
     display: inline;
     font-weight: 600;
   }
-
   .form-section > .s-sec-input-box{
     display: flex;
     flex-direction: row;
@@ -82,8 +69,6 @@ InshaAllah, By Allah's Will,  I will earn success
     align-items: center;
     width: 100%;
   }
-  
-  
   .form-section > .s-sec-input-box > input {
     background: rgba(0, 0, 0, 0.08);
     border: none;
@@ -91,13 +76,10 @@ InshaAllah, By Allah's Will,  I will earn success
     width: 66%;
     outline: none;
   }
-  
   .form-section >.s-sec-input-box > label {
     font-weight: 500;
     font-size :16.5px;
   }
-  
-  
   @media screen and (max-width :700px){
     .form-section > .s-sec-input-box{
       flex-direction: column;
@@ -131,4 +113,3 @@ InshaAllah, By Allah's Will,  I will earn success
     background: var(--main-cl);
     color: #fff;  
   }
- 
