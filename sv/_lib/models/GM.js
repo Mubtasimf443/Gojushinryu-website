@@ -6,12 +6,13 @@ InshaAllah, By his marcy I will Gain Success
 
 
 import mongoose from "mongoose";
+import { BASE_URL } from "../utils/env.js";
 
 
 let schema = new mongoose.Schema({
     image:{
         type :String,
-        default:'http://localhost:4000/img/avatar.png'      
+        default:'https://gojushinryu.com/img/avatar.png'      
     },
     first_name:{
         type :String,

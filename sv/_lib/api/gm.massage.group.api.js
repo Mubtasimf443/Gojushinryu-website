@@ -47,7 +47,6 @@ export async function getGmGroupMassage(req,res) {
         let startingIndex=massages.length-1;
         let endIndex=massages.length-51;
         for (let i = startingIndex; i > endIndex; i--) sendIngMassageArray.push(massages[i])
-        
         return res.status(200).json({massages:sendIngMassageArray})
     } catch (error) {
         console.log({error:'server error : '+error});
@@ -59,7 +58,6 @@ export async function addGmMassageApi(req,res) {
     try {
         let {name,massage}=req.body;
         console.log({name,massage});
-        
         if (!name) throw 'name is undefined'
         if (!massage) throw 'massage is undefined'
         if (typeof name!=='string' || typeof massage !=='string' ) throw 'name or massage not is a string'
