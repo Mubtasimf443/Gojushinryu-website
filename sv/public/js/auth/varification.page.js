@@ -30,42 +30,40 @@ InshaAllah, By his Marcy I will Gain Success
 
   vfbTN.addEventListener('click',e => {
     e.preventDefault();
-    if (inp_opt.value.toString() === '') { 
+    let value=Number(inp_opt.value);
+    if (value.toString() === 'NaN') { 
       alert('code is not valid');
       return
     }
-    let code =inp_opt.valueAsNumber;
-    if (typeof code !== 'number') { 
-      alert('code is not valid');
-      return
-    };
-    if (code <99999 || code >999999) {
+    if (value <99999 || value >999999) {
       alert('code is not valid');
       return 
     };
     let jsonObj=JSON.stringify({
-      code
+      code:value
     });    
-    vfbTN.style.opacity=.6;
+   
     vfbTN.style.transition='all 1s ease';
-    vfbTN.setAttribute('disabled','');
+    vfbTN.style.opacity=.6;
     fetch(window.location.origin +'/api/auth-api/user/sign-up-otp-varification',{
       method:"POST",
       headers:{
         'Content-Type':"application/json"
       },
       body:jsonObj
-    }).then(async data=> {
+    })
+    .then(async data=> {
       let {error,success} =await data.json();
       vfbTN.removeAttribute('disabled');
       vfbTN.style.opacity=1;
       if (error) return alert(error);
       if (success) return window.location.replace('/accounts/student')
-    }).catch(e => {
+    })
+    .catch(e => {
       vfbTN.removeAttribute('disabled');
       vfbTN.style.opacity=1;
     })
-   
+    .finally(e => vfbTN.style.opacity=1)
   });
 
 }

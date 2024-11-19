@@ -94,7 +94,7 @@ app.get('/log-path',  (req,res)=> {
 })
 
 app.get('/hello', (req, res) =>{
-    return res.redirect('/')
+    return res.clearCookie('rft').status(401).redirect('/auth/sign-in')//.redirect('/auth/sign-in')
 });
 
 

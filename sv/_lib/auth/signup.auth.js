@@ -23,7 +23,7 @@ export const signUpFunction = async (req, res ) => {
     let newPassword = await bcrypt.hash(password,  salt)
     let pin =await generatePin(9999999)
     await User.create({ 
-       joining_date :`${new Date().getMonth()} ${new Date().getFullYear()}`,
+       joining_date :`${new Date(Date.now()).toLocaleDateString()}`,
        id:Date.now(),
        name:firstname+lastname,
        first_name:firstname,

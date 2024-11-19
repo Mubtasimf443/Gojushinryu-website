@@ -31,7 +31,6 @@ export function user_varification_api(req,res) {
                     if (data.isRegistered) {
                       user_sign_up_success_admin_mail().then(()=>{}).catch((e)=>{log(e)});
                       user_sign_up_success_user_mail({to:email}).then(()=>{}).catch((e)=>{log(e)});
-                 
                      let token = await jwt.sign({
                          email, 
                          key:'oidissa89t3d78dsheuiw87r723212093edhdjskdtSDTQWDHSUISFSUXGCYSAUFADWLFLSDDFEIFJ'
@@ -41,7 +40,8 @@ export function user_varification_api(req,res) {
                              httpOnly:true,
                              sameSite:true,
                              expires:new Date(Date.now()+(1000*60*60*24*31))
-                        }).status(201).json({
+                        })
+                        .status(201).json({
                              success:true
                          })
                       

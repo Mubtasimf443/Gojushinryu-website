@@ -22,7 +22,6 @@ export const FindUser =async (req,res) => {
   } 
 }
 export async function StudentCornerPageRoute(req,res) {
-  
     let {rft} = req.cookies;
     if (!rft) return res.redirect('/auth/sign-up');
     jwt.verify(rft,JWT_SECRET_KEY,async (error,data)=>{
@@ -32,7 +31,7 @@ export async function StudentCornerPageRoute(req,res) {
             if (!email) return res.redirect('/auth/sign-in');
             User.findOne({email})
             .then(user => {                
-                if (!user) return res.render('massage_server', {title :'Account ot found',body :'Account Not Found ,You can Login again to avoid this problem'})       
+                if (!user) return res.clearCookie('rft').status(401).redirect('/auth/sign-in')      
                 return res.render('student-corner',{
                     bio : user.bio ?  user.bio :'I dream to become black belt in karate and Master Martial Arts',
                     name :user.name? user.name :'name',

@@ -26,8 +26,9 @@ export async function adminVaification(req,res) {
     if (!otp) return res.json({error:'otp in not defined' });
     if (typeof otp !== 'number') return res.json({error:'error ,Otp Has to Be a number' });
     if ( otp <-1 || otp > 1000000 ) return res.json({error:'error ,Otp is 6 digit' });
+
     await Admin.findOne({email : ADMIN_EMAIL})
-    .then( async admin => {
+    .then(async admin => {
         if (!admin) return res.json({error:'Server Error , Admin Not Found' });
         if (admin.Otp !== otp ) return res.json({error:'Otp do not match' });
         let key =await randomBytes(62).toString('hex');
@@ -97,7 +98,7 @@ async function navigateToCpanal(req,res) {
             if (!key) return res.render('notAllowed')
             Admin.findOne({email:ADMIN_EMAIL}) 
         .then(async admin=>{
-            if (key !==admin.Secret_Key) return res.render('notAllowed')
+            // if (key !==admin.Secret_Key) return res.render('notAllowed')
             let settings =await Settings.findOne({})
             return res.render('control-panal',{
                 date_of_womens_defence_class:settings.date_of_womens_defence_class.date ?? '',
