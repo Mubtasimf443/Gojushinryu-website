@@ -28,8 +28,7 @@ export async function stripeOrderApi(req,res) {
         items,
         street ,
     } =req.body; 
-
-
+    log({...req.body})
     
     let testArray =[
         first_name,
@@ -70,7 +69,6 @@ export async function stripeOrderApi(req,res) {
     email =await repleCaracter(email);
     notes = (notes === ''|| !notes ) ? 'no Notes' :notes;
     notes = await repleCaracter(notes);
-
     console.log('//repleCaracter ');
 
      
@@ -119,7 +117,7 @@ export async function stripeOrderApi(req,res) {
         if (!prod) throw 'prod is not found'
        
         let {
-            name ,  
+            name ,
             selling_style,
             size_and_price,
             delivery_charge_in_india,
@@ -128,7 +126,7 @@ export async function stripeOrderApi(req,res) {
         log({name})
 
         let value='';        
-        let shipping=country==='canada' ? delivery_charge_in_canada : delivery_charge_in_india;
+        let shipping=country ==='canada' ? delivery_charge_in_canada : delivery_charge_in_india;
         
         if (selling_style=== 'per_price') {
             value = Number(prod.price);

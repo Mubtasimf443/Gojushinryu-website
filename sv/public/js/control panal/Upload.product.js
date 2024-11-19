@@ -39,39 +39,7 @@ function v(htmlElementSelector) {
         el.style.outline='2px solid red';
         throw new Error(simbolerror);
     }
-    if (value.includes('<')) {
-        el.style.outline='2px solid red';
-        throw new Error(simbolerror);
-    }
-    if (value.includes('>')) {
-        el.style.outline='2px solid red';
-        throw new Error(simbolerror);
-    }
-    if (value.includes("'")) {
-        el.style.outline='2px solid red';
-        throw new Error(simbolerror);
-    }
-    if (value.includes('"')) {
-        el.style.outline='2px solid red';
-        throw new Error(simbolerror);
-    }
-    if (value.includes('`')) {
-        el.style.outline='2px solid red';
-        throw new Error(simbolerror);
-    }if (value.includes('{')) {
-        el.style.outline='2px solid red';
-        throw new Error(simbolerror);
-    }if (value.includes('}')) {
-        el.style.outline='2px solid red';
-        throw new Error(simbolerror);
-    }
-    if (value.includes('[')) {
-        el.style.outline='2px solid red';
-        throw new Error(simbolerror);
-    }if (value.includes(']')) {
-        el.style.outline='2px solid red';
-        throw new Error(simbolerror);
-    }
+   
     return value
 }
 
@@ -201,7 +169,7 @@ function v(htmlElementSelector) {
             uploadProductConatiner.children[7].style.display ='flex';
             uploadProductConatiner.children[8].style.display ='flex';
             uploadProductConatiner.children[10].style.display='none';
-            uploadProductConatiner.children[11].style.display='none';
+            // uploadProductConatiner.children[11].style.display='none';
             
             
          } 

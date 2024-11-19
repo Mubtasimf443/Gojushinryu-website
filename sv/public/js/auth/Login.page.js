@@ -14,6 +14,7 @@ InshaAllah, By his Marcy I will Gain Success
   notice_text.innerHTML=text;
   notice_text.style.textTransform='capitalize';
   }
+
   var btnActive =true
   loginBtn.addEventListener('click',async(e) => {;
     e.preventDefault();
@@ -58,7 +59,7 @@ InshaAllah, By his Marcy I will Gain Success
   loginBtn.style.opacity=1;
   loginBtn.removeAttribute('disabled');
   if (error ) return negativeNotice(error);
-  if (success) return window.location.replace('/');
+  if (success) return window.location.replace('/accounts/student');
 } catch (error) {
   btnActive=true;
   loginBtn.style.opacity=1;
