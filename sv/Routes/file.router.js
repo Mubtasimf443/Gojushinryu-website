@@ -19,7 +19,9 @@ fileRouter.use(express.static(path.resolve(dirName,'../public/')));
 fileRouter.get('/temp/:name',(req, res) => {
     try {
         log(req.params.name)
-       return res.status(200).sendFile(path.resolve(dirName,  '../temp/images/' + req.params.name))
+        let location=path.resolve(dirName,  '../temp/images/' + req.params.name);
+        log({location})
+        return res.status(200).sendFile(location)
     } catch (error) {
         log(error)
         return res.sendStatus(404)

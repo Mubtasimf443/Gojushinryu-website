@@ -10,6 +10,7 @@ import { repleCaracter } from "../utils/replaceCr.js";
 import { UploadImageToCloudinary } from "../Config/cloudinary.js";
 import { GM } from "../models/GM.js";
 import { checkOrCreateTempDir } from "../utils/dir.js";
+import Awaiter from "awaiter.js";
 
 
 //var
@@ -68,6 +69,10 @@ export async function UploadEventApi(req, res) {
           log(`//condition check pass`)
           let gm =await GM.findOne({_id :gm_id})
           if (!gm) throw 'Their is no gm ';
+
+          log('awaiting for images to be loaded and stating from '+new Date().toLocaleTimeString())
+          await Awaiter(3000)
+          log('awaiting finish at ' +new Date().toLocaleTimeString())
           let thumb =await UploadImageToCloudinary(path.resolve(dirname,'../../temp/images/'+files.thumb[0].newFilename)).then(({image,error})=> {
             if (image) return image.url
             if (error) throw 'cloudianry error'

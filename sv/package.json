@@ -1,6 +1,7 @@
 {
   "type": "module",
   "dependencies": {
+    "awaiter.js": "^1.0.1",
     "axios": "^1.7.7",
     "bcryptjs": "^2.4.3",
     "cloudinary": "^2.5.0",
@@ -33,7 +34,7 @@
     "twitter": "^1.7.1",
     "uuid": "^11.0.2"
   },
-  "name": "sv",
+  "name": "gojushinryu.com-website",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
