@@ -68,16 +68,16 @@ export async function UploadEventApi(req, res) {
           log(`//condition check pass`)
           let gm =await GM.findOne({_id :gm_id})
           if (!gm) throw 'Their is no gm ';
-          let thumb =await UploadImageToCloudinary(files.thumb[0].filepath).then(({image,error})=> {
+          let thumb =await UploadImageToCloudinary(path.resolve(dirname,'../../temp/images/'+files.thumb[0].newFilename)).then(({image,error})=> {
             if (image) return image.url
             if (error) throw 'cloudianry error'
           })
           let images=[];
-
-
+         
+          
           for (let i = 0; i < files.images.length; i++) {
-            const image = await UploadImageToCloudinary(files.images[i].filepath)
-            .then(({image,error})=> {
+            const image = await UploadImageToCloudinary(path.resolve(dirname,'../../temp/images/'+files.images[0].newFilename))
+            .then(({image,error}) => {
               if (image) return image.url
               if (error) throw 'cloudianry error'
             });
