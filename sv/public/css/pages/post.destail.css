@@ -91,3 +91,15 @@ InshaAllah, By his marcy I will Gain Success
         font-size: 2rem;
     }
 }
+address {
+    font-size: medium;
+    margin-top: -13px;
+}
+time {
+    font-size: 14px;
+    color: var(--main-cl);
+    font-weight: 500;
+}
+address +div {
+    margin-top: -10px;
+}

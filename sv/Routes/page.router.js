@@ -83,7 +83,6 @@ pageRouter.get('/shop/:name',(req,res)=> {
     if (name === 'checkout') return checkoutPageMidleware(req,res); 
 });
 pageRouter.get('/shop', findProductPageNavigation);
-pageRouter.get('/post/:name',(req,res)=> res.render('post-detail'));
 pageRouter.get('/control-panal',addMinPageRoute);
 pageRouter.get('/media/:name',(req,res) => {   
     if (req.params.name === 'videos') return res.render('video');
@@ -97,7 +96,7 @@ pageRouter.get('/media/:name/:id',(req,res) => {
     if (req.params.name === "post") return givePostDetailsFunction(req,res)
 })
 pageRouter.get('/about-us/organization-charts',(req,res)=>res.render('OurOrganaizationChart'))
-pageRouter.get('/allience',(req,res)=> res.render('alli'))
+pageRouter.get('/alliance',(req,res)=> res.render('alli'))
 pageRouter.get('/accounts/:name',async (req,res)=>{
     if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req,res)
     if (req.params.name === 'student') return StudentCornerPageRoute(req,res)

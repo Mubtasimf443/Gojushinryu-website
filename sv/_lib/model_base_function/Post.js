@@ -28,7 +28,7 @@ export async function postPageNavigation(req,res) {
                 description :(description.length >140 ? description.substring(0,140) : description),
                 date :date.toDateString() ,
                 link :BASE_URL +'/media/post/'+dateAsNumber,
-                thumb
+                thumb,
             });
             posts.shift()
         }
@@ -133,7 +133,15 @@ export async function givePostDetailsFunction(req,res) {
         })
         if (!post) throw 'error :- post is null' 
         let {title ,description,date,thumb,images,dateAsNumber}=post;
-        return res.render('post-detail',{title ,description,date,thumb,images,dateAsNumber})
+        return res.render('post-detail',{
+            title ,
+            description,
+            date:new Date(dateAsNumber).toDateString(),
+            thumb,
+            images,
+            dateAsNumber, 
+            metaDescription : description.length < 150 ? description :description.substring(0,150)
+        })
     } catch (error) {
         console.error({error});
         

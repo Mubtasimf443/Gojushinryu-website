@@ -19,24 +19,32 @@ export async function checkNewGmGroupMassage(req,res) {
         let massage=await Grand_Master_Group_Massages.findOne({id :GRAND_MASTER_GROUP_MASSAGE_ID})
         if (!massage) throw 'DataBase is hack ,Please solve it'
         let massages= massage.massages;
+        if (massages.length===0) return res.sendStatus(200)
         let lastMassage=massages[massages.length -1] ;
         if (lastMassageId === lastMassage.massage_time) return res.status(200).json({has_massage:false})
+        
         if (lastMassageId!==lastMassage.massage_time) {
             let newMassages= massages.filter(el => {
                 if (el.massage_time > lastMassageId) return el
             });
-            return res.status(200).json({
+            res.status(200).json({
                 has_massage:true,
                 massages:newMassages
             })
+        };
+
+        if (massages.length ===100 ) {
+            for (let i = 0; i < 25; i++) massages.shift();
+            console.log('massage deleted successfully');
+            massage.massages=massages;
+            await massage.save().then(e => log('//10 massages are deleted')).catch(e=> console.error(e))
         }
+
     } catch (error) {
         console.log({error:'server error : '+error});
         return res.sendStatus(400);
     }
-   
 }
-
 export async function getGmGroupMassage(req,res) {
     try {
         let massageGroup=await Grand_Master_Group_Massages.findOne({id :GRAND_MASTER_GROUP_MASSAGE_ID});
@@ -53,7 +61,6 @@ export async function getGmGroupMassage(req,res) {
         return res.sendStatus(400);
     }
 }
-
 export async function addGmMassageApi(req,res) {
     try {
         let {name,massage}=req.body;
@@ -77,7 +84,6 @@ export async function addGmMassageApi(req,res) {
         return res.sendStatus(400);
     }
 }
-
 export async function grand_Master_Group_Massages_Midleware(req,res,next) {
     try {
         let {gm_cat,cpat}=req.cookies;

@@ -5,7 +5,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <link rel="stylesheet" href="/css/pages/post.destail.css">
 {{>Links}}
-  <title>Product Details</title>
+  <title>{{title}}</title>
+  <meta name="author" content="Varun Jettly" />
+  <meta name="description" content="{{metaDescription}}">
 </head>
 <body>
 
@@ -15,6 +17,12 @@
   <section class="main">
 
   <article class="post">
+     <time >{{date}}</time>
+    <address>
+      <small>The Writter </small>SENSEI VARUN JETTLY 
+    </address>
+    
+    
     <!-- Main Image -->
     <div class="main-image" style="background-image: url({{thumb}});"></div>
 

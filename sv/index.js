@@ -40,13 +40,13 @@ connectDB() ;
 app.use(helmet({
     contentSecurityPolicy :{
         directives :{
-            "script-src": ["'self'",`'unsafe-inline'`, "https://www.googletagmanager.com"],
-            "img-src":["'self'","https://res.cloudinary.com" ],
+            "script-src": ["'self'",`'unsafe-inline'`, "https://www.googletagmanager.com", ],
+            "img-src":["'self'","https://res.cloudinary.com", "blob:" ],
             "style-src":["'self'", `'unsafe-inline'` ,'https://cdnjs.cloudflare.com' ,"https://fonts.googleapis.com" ,'https://fonts.gstatic.com'],
             // "font-src":["https://fonts.googleapis.com" ,'https://fonts.gstatic.com', `'unsafe-inline'` ],
             "media-src":["'self'","https://res.cloudinary.com", 'https://www.youtube.com'],
             "frame-src":["https://www.youtube.com"],
-            "connect-src":[`'self'`]
+            "connect-src":[`'self'`, `https://www.google-analytics.com`]
         },
     },
     

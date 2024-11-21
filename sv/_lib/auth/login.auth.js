@@ -88,7 +88,7 @@ export const GMLoginApiFunc =async (req, res) => {
      //console.log('user is found');
      let passwordMatch = await bcrypt.compareSync(password,user.password)/* password ===user.password*///testing the password
      if (!passwordMatch) return res.json({error : 'password not match ,Please Create a give the correct'});
-     log('passwordMatch : '+passwordMatch);
+    //  log('passwordMatch : '+passwordMatch);
      let rft=await jwt.sign({
       email,
       pin: generatePin(67896),
@@ -100,7 +100,7 @@ export const GMLoginApiFunc =async (req, res) => {
      // log('cookie done')
      return  res.cookie('gm_cat',
        rft,
-       {sameSite : true,  expires : new Date( Date.now() + (1000*60 *60 *24 *30))})
+       {sameSite : true,  expires : new Date( Date.now() + (1000*60*60*24*30))})
      .status(200)
      .json({success :true})
    } catch (e) {
