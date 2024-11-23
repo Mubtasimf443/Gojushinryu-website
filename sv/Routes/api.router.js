@@ -28,6 +28,7 @@ import { checkGM } from "../_lib/midlewares/gm.midleware.js";
 import { courseBuyCancellStripeApi, courseBuySuccessStripeApi, stripeCourseBuyAPiJs } from "../_lib/api/stripe.course.buy.api.js";
 import { stripeMembershipCancelFunction, stripeMembershipSuccessFunction } from "../_lib/api/membership.srtipe.api.js";
 import { changeSettingsAPI } from "../_lib/api/change.settings.api.js";
+import { createTestimonials, getTestimonials,deleteTestimonials } from "../_lib/model_base_function/Testimonials.js";
 
 
 
@@ -51,6 +52,8 @@ apiRouter.get('/get-user-data',userCheck,getUserData)
 apiRouter.get('/get-courses-enrollments-data',findCourseEnrollments)
 apiRouter.get('/get-user-membership',userCheck,getUserMembershipJS)
 apiRouter.get('/get-user-courses',userCheck,getUserEnrolledCourseApi)
+apiRouter.get('/testimonials', getTestimonials)
+
 
 //Post Route
 apiRouter.post('/contact' , Contact_us_api_Function)
@@ -63,7 +66,7 @@ apiRouter.post('/give-product-details', giveProductDetails)
 apiRouter.post('/find-membership-data',findMemberShipdata)
 apiRouter.post('/get-gm-events',getGmEvents)
 apiRouter.post('/admin-event-upload-api', adminEventUplaodAPI);
-
+apiRouter.post('/testimonials', createTestimonials)
 
 //Update
 apiRouter.put('/Update-User-Data',ChangeuserData);
@@ -81,6 +84,7 @@ apiRouter.delete('/delete-product',DeleteProduct)
 apiRouter.delete('/delete-grand-master-account',DeleteGMAccount)
 apiRouter.delete('/delete-user-account',DeleteUserAccount)
 apiRouter.delete('/delete-event', deleteEvent)
+apiRouter.delete('/testimonials', deleteTestimonials)
 
 
 //payments

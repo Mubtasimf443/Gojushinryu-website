@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/css/control_panal/courses.css">
     <link rel="stylesheet" href="/css/control_panal/course_enroll_ments.css">
     <link rel="stylesheet" href="/css/control_panal/settings.css">
+    <link rel="stylesheet" href="/css/control_panal/Testimonials.css">
     <link rel="stylesheet" href="/css/control_panal/share.media.css">
     
 
@@ -42,6 +43,7 @@
     <script defer src="/js/control panal/course.enrollments.js"></script>
     <script defer src="/js/control panal/uplaod.post.js"></script>
     <script defer src="/js/control panal/settings.js"></script>
+    <script defer src="/js/control panal/Testimonials.js"></script>
     <script defer src="/js/control panal/uplaod.event.js"></script>
     <script defer src="/js/control panal/share.media.js"></script>
 
@@ -441,9 +443,7 @@ style="display: none;"
 
      <div class="pp_btn_box">
       <button  class="popup-close-btn" >Close</button>
-      <button class="user-save-btn">
-  Save
-      </button>
+      <button class="user-save-btn">Save</button>
     </div>
 
   </div>
@@ -546,6 +546,7 @@ style="display: none;"
   <a id="member_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="course_enrolments_href">Course EnrollMents<button><i class="fa-solid fa-angle-right"></i></button></a>
+  <a id="Testimonials_href">Testimonials<button><i class="fa-solid fa-angle-right"></i></button></a>
   <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
 <style>
@@ -1311,6 +1312,103 @@ targetedElement="member_href" class="member-list-box">
 
 </div>
   
+<!-------------------------- Testimonials ----------------------------->
+ 
+ 
+<div 
+  id="Testimonials-conatiner"
+  targetedElement="Testimonials_href" 
+  style="display: none;"
+  ct_section 
+
+  >
+
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Appreciator</th>
+      <th>Appreciator job role</th>
+      <th>edit</th>
+      <th>Delete</th>
+
+    </tr>
+    <tr>
+   
+    </tr>
+  </table>
+
+<div id="edit_testimonial_popup"
+ style="display: none;" 
+ class="popup_c">
+ <div class="popup_order_action_form">
+
+  <h2>
+    Edit Testimonials
+  </h2>
+  {{!-- 
+  <strong>Image</strong>
+  <div class="change-image">
+    <input type="file" >
+    <label></label>
+  </div> 
+  --}}
+  <div class="input-box">
+    <label >Appreciator</label>
+    <input type="text" placeholder="Appreciator Name">
+  </div>
+  <div class="input-box">
+    <label for="">Appreciator Job Position</label>
+    <input type="text" placeholder="Appreciator Job Position">
+  </div>
+  <div class="txt-box">
+    <label for="">Appreciation</label>
+    <textarea name="" placeholder="Appreciation" id=""></textarea>
+  </div>
+
+    <div class="pp_btn_box">
+      <button  class="popup-close-btn" >Close</button>
+      {{!-- <button class="user-save-btn">Save</button> --}}
+    </div>
+    </div>
+</div>
+
+
+   <div
+     class="form-section"
+   >
+   <div class="upload_sec_event_tumb_img_inp_box">
+     <h4>
+      Post a Testimonials
+     </h4>
+    <label for="upload_testimonial_images">
+      <b>Click To Upload <br>
+      Appreciator Image
+      </b>
+    </label>
+    <input multiple="false" style="display: none" type="file" id="upload_testimonial_images">
+   
+  </div>
+
+   <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Appreciator</label>
+     <input type="Text" placeholder="Write the name of Appreciator" name_of_Appreciator id="s-sec-name-inp">
+   </div>
+    <div class="s-sec-input-box">
+     <label for="s-sec-name-inp">Positon</label>
+     <input type="Text" placeholder="Write the job Positon of Appreciator" Positon_of_Appreciator id="s-sec-name-inp">
+   </div>
+   <div class="s-sec-input-box">
+     <label for="s-sec-bio-inp">Appreciation</label>
+     <textarea placeholder="Write the Appreciation" Appreciation></textarea>
+   </div>
+ 
+   <div class="s-sec-btn-box">
+     <button uploadTestimonialsButton > Upload</button>
+   </div>
+   </div>
+
+ </div>
+
 
 
 

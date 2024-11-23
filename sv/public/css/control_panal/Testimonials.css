@@ -1,0 +1,81 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+#Testimonials-conatiner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    row-gap: 30px;
+}
+
+#Testimonials-conatiner table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#Testimonials-conatiner table th{
+    border: 1px solid #000;
+    text-align: left;
+    padding: 10px 12px; 
+    background-color:black;
+    color: white;
+  }
+
+
+  #Testimonials-conatiner table td {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 10px 12px;
+    background: inherit;
+    text-wrap: wrap;
+  }
+
+
+  #Testimonials-conatiner table td img {
+    max-width:90% ;
+    object-fit: contain;
+    object-position: top left;
+    max-height:80px ;
+  }
+
+
+  #Testimonials-conatiner table tr:nth-child(1){
+    background: var(--main-cl);
+  }
+
+
+  #Testimonials-conatiner table tr{
+    background-color: #ffffff;
+  }
+
+  #Testimonials-conatiner table button{
+    background: inherit;
+    border: none;
+    font-size: 14px;
+    color: white;
+    background: #000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 8px 14px;
+}
+
+#Testimonials-conatiner table .Delete{
+
+}
+
+#Testimonials-conatiner  #edit_testimonial_popup{
+    position: fixed;
+    top:0px;
+    left: 0px;
+    background-color: white;
+    color: red;
+    border: 2px solid red;
+
+}
