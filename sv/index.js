@@ -45,7 +45,7 @@ app.use(helmet({
             "style-src":["'self'", `'unsafe-inline'` ,'https://cdnjs.cloudflare.com' ,"https://fonts.googleapis.com" ,'https://fonts.gstatic.com'],
             // "font-src":["https://fonts.googleapis.com" ,'https://fonts.gstatic.com', `'unsafe-inline'` ],
             "media-src":["'self'","https://res.cloudinary.com", 'https://www.youtube.com'],
-            "frame-src":["https://www.youtube.com", 'https://www.weebly.com'],
+            "frame-src":["https://www.youtube.com", 'https://www.weebly.com','https://www.editmysite.com'],
             "connect-src":[`'self'`, `https://www.google-analytics.com`]
         },
     },
