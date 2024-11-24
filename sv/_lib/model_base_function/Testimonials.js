@@ -62,7 +62,7 @@ export async function createTestimonials(req,res) {
               //   filePath: imagePath,
               // });
 
-              await Awaiter(1000)
+              await Awaiter(2000)
               
               let thumb =await UploadImageToCloudinary(imagePath)
               .then(({image,error})=> {
