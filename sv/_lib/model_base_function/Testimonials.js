@@ -58,12 +58,11 @@ export async function createTestimonials(req,res) {
               let appreciation_position =await repleCaracter(feilds.appreciation_position[0]);
               let imagePath = files.images[0].filepath;
 
-              // await waidTillFileLoad({
-              //   filePath: imagePath,
-              // });
-
-              await Awaiter(2000)
-              
+             
+              console.log('waiting time starts from'+ new Date().toLocaleTimeString());
+          
+              await Awaiter(3000)
+              console.log('waiting time ends from'+ new Date().toLocaleTimeString());
               let thumb =await UploadImageToCloudinary(imagePath)
               .then(({image,error})=> {
                 if (image) return image.url

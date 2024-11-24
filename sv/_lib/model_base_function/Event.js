@@ -74,10 +74,10 @@ export async function UploadEventApi(req, res) {
           // await waidTillFileLoad({
           //   filePath: files.images[files.images.length-1].filepath
           // });
-          await Awaiter(2000)
+          await Awaiter(3000)
 
           
-          let thumb =await UploadImageToCloudinary(path.resolve(dirname,'../../temp/images/'+files.thumb[0].newFilename)).then(({image,error})=> {
+          let thumb =await UploadImageToCloudinary(path.resolve(files.thumb[0].filepath)).then(({image,error})=> {
             if (image) return image.url
             if (error) throw 'cloudianry error'
           })

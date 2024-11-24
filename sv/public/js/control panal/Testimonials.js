@@ -75,6 +75,10 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                 }, 2000); 
                 return;
             }
+            if (res.status!==201) {
+                btn.style.background='red';
+                btn.innerHTML='error';
+            }
         })
         .catch(function (error) {
             btn.style.background='red';
