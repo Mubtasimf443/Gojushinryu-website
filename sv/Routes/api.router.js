@@ -28,7 +28,11 @@ import { checkGM } from "../_lib/midlewares/gm.midleware.js";
 import { courseBuyCancellStripeApi, courseBuySuccessStripeApi, stripeCourseBuyAPiJs } from "../_lib/api/stripe.course.buy.api.js";
 import { stripeMembershipCancelFunction, stripeMembershipSuccessFunction } from "../_lib/api/membership.srtipe.api.js";
 import { changeSettingsAPI } from "../_lib/api/change.settings.api.js";
-import { createTestimonials, getTestimonials,deleteTestimonials } from "../_lib/model_base_function/Testimonials.js";
+import { 
+    createTestimonials,
+    getTestimonials,deleteTestimonials,
+    testinmonialsForHomePage 
+} from "../_lib/model_base_function/Testimonials.js";
 
 
 
@@ -53,6 +57,7 @@ apiRouter.get('/get-courses-enrollments-data',findCourseEnrollments)
 apiRouter.get('/get-user-membership',userCheck,getUserMembershipJS)
 apiRouter.get('/get-user-courses',userCheck,getUserEnrolledCourseApi)
 apiRouter.get('/testimonials', getTestimonials)
+apiRouter.get('/testimonials/home', testinmonialsForHomePage)
 
 
 //Post Route

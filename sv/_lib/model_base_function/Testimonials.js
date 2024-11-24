@@ -10,7 +10,7 @@ import { repleCaracter } from "../utils/replaceCr.js";
 import { UploadImageToCloudinary } from "../Config/cloudinary.js";
 import Awaiter, { waidTillFileLoad } from "awaiter.js";
 import Testimonials from "../models/testinmonials.js";
-
+import mergesort from '../utils/algorithms.js'
 
 
 //var
@@ -61,8 +61,8 @@ export async function createTestimonials(req,res) {
              
               console.log('waiting time starts from'+ new Date().toLocaleTimeString());
           
-              // await Awaiter()
-              // console.log('waiting time ends from'+ new Date().toLocaleTimeString());
+              await Awaiter(3000)
+              console.log('waiting time ends from'+ new Date().toLocaleTimeString());
             
             
               let thumb =await UploadImageToCloudinary(imagePath)
@@ -120,7 +120,7 @@ export async function deleteTestimonials(req,res) {
   }
 }
 
-export async function testinmonialsFoeHomePage(params) {
+export async function testinmonialsForHomePage(req,res) {
   try {
     let data=await Testimonials.find({});
     if (data.length===0) return res.sendStatus(400);

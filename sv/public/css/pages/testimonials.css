@@ -3,6 +3,57 @@
 InshaAllah, By his Marcy I will Gain Success 
 */
 
+#banner{
+    height: 90vh;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     background: url('/img/samurai4.jpg');
+     background-position: bottom left;
+     background-size: cover;
+     background-repeat:no-repeat;
+     border-image-slice: fill 1;
+     border-image-source: linear-gradient(to right,
+      rgba(0, 0, 0, 0.474) ,
+      rgba(0, 0, 0, 0.712),
+     rgba(0, 0, 0, 0.5));
+     color: white;
+     row-gap: 12px;
+     padding-top: 80px;
+     text-align: center;
+     box-sizing: content-box;
+   
+   }
+   #banner h1{
+     font-size: 27px;
+     text-transform: uppercase;
+     word-spacing:4.5px;
+   }
+   #banner p {
+     font-size: 15px;
+     color: #fff;
+     width: 500px;
+     word-spacing: 3px;
+     text-wrap: wrap;
+   }
+   @media screen and (max-width: 510px) {
+     #banner p {
+       width: 400px;
+     }
+   }
+   #banner button {
+     background: var(--main-cl);
+     color: #000000;
+     font-style: 15px;
+     word-spacing: 3px;
+     padding: 14px 20px;
+     border:none ;
+     text-transform: uppercase;
+     font-weight: 600;
+   }
+   
+
 .testimonials {
     display: flex;
     flex-direction: row;
@@ -68,14 +119,14 @@ InshaAllah, By his Marcy I will Gain Success
     line-height: 18px;
 }
 .testimonials > .testimonial > .div1 >div>span {
-    color: #FF6F3C;
+    /* color: #FF6F3C; */
     font-size: 13px;
     box-sizing: border-box;
     font-weight: 500;
     opacity: .76;
 }
 .testimonials > .testimonial > .div1 >div>hr {
-    background-color: #FF6F3C;
+    /* background-color: #FF6F3C; */
     height: 2px;
     width: 50px;
     box-sizing: border-box;
@@ -85,10 +136,11 @@ InshaAllah, By his Marcy I will Gain Success
     position: relative;
     box-sizing: border-box;
     flex-direction: column;
+    padding: 30px 0px;
 }
 .testimonials > .testimonial > .div2>p{
     text-align: justify;
-    padding: 30px 0px;
+    padding: 0px 0px;
     box-sizing: border-box;
     line-height: 1.6;
 }
@@ -108,4 +160,53 @@ InshaAllah, By his Marcy I will Gain Success
     right: 0px;
     box-sizing: border-box;
     bottom: 0%;
+}
+
+.skeleliton_testimonial_image{
+    background-color: var(--sceliton-color);
+    color: var(--sceliton-color);
+    animation-name:skeleliton_testimonial_image_animation ;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    animation-duration: 2s;
+    height: 60px;
+    width: 60px;
+
+}
+
+.skeleliton_testimonial_txt{
+    height: 200px;
+    background: var(--sceliton-color);
+    animation-name:skeleliton_testimonial_image_animation ;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 1400ms;
+    width: 100%;
+    color: var(--sceliton-color);
+}
+
+.skeleliton_testimonial_name{
+
+    background: var(--sceliton-color);
+    animation-name:skeleliton_testimonial_image_animation ;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 1400ms;
+    color: var(--sceliton-color);
+}
+
+.skeleliton_testimonial_hr {
+    background: var(--sceliton-color);
+    animation-name:skeleliton_testimonial_image_animation ;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 1400ms;
+}
+@keyframes skeleliton_testimonial_image_animation {
+    0%{
+        opacity: .7;
+    }
+    100%{
+        opacity: 1;
+    }
 }
