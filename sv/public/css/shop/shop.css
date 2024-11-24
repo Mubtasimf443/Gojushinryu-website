@@ -100,3 +100,32 @@ body {
     background-color: #e6d200;
 }
 
+.loading_image{
+    background-color: var(--sceliton-color);
+    color: var(--sceliton-color);
+    animation-name:skeleliton_testimonial_image_animation ;
+    animation-timing-function: ease-in;
+    animation-iteration-count: infinite;
+    animation-duration: 1400ms;
+}
+
+
+.skeleliton_testimonial_name{
+
+    background: var(--sceliton-color);
+    animation-name:skeleliton_testimonial_image_animation ;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+    animation-duration: 1400ms;
+    color: var(--sceliton-color);
+}
+
+
+@keyframes skeleliton_testimonial_image_animation {
+    0%{
+        opacity: .7;
+    }
+    100%{
+        opacity: 1;
+    }
+}

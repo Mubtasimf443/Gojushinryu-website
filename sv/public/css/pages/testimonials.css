@@ -168,7 +168,7 @@ InshaAllah, By his Marcy I will Gain Success
     animation-name:skeleliton_testimonial_image_animation ;
     animation-timing-function: ease-in;
     animation-iteration-count: infinite;
-    animation-duration: 2s;
+    animation-duration: 1400ms;
     height: 60px;
     width: 60px;
 
@@ -209,4 +209,4 @@ InshaAllah, By his Marcy I will Gain Success
     100%{
         opacity: 1;
     }
-}
+} 
