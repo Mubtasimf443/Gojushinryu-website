@@ -38,7 +38,7 @@ export async function UploadEventApi(req, res) {
         },
         filename : () => Date.now() +'_' + Math.floor(Math.random()*10000) + '.jpg'
       }
-      formidable(options).parse(req, async (error,feilds , files) => {
+      await formidable(options).parse(req, async (error,feilds , files) => {
         try {
           if (DontSuffortMime ===true) throw 'error , Donot soffourt this type of files '
           if (error) { 
@@ -204,8 +204,7 @@ export async function adminEventUplaodAPI(req,res) {
     let DontSuffortMime = false;
     checkOrCreateTempDir()
     let options =  {
-      uploadDir :
-          path.resolve(dirname , '../../temp/images') ,
+      uploadDir :path.resolve(dirname , '../../temp/images') ,
       maxFiles : 11,
       allowEmptyFiles:false,
       maxFileSize:4*1024*1024,
@@ -244,7 +243,11 @@ export async function adminEventUplaodAPI(req,res) {
         let eventDate =feilds.eventDate[0];
         eventDate =Number(eventDate);
 
+
+
         if (eventDate.toString() ==='NaN') return Alert('event date is not correct',res)
+       
+       
         let thumb =await UploadImageToCloudinary(files.thumb[0].filepath).then(({image,error})=> {
           if (image) return image.url
           if (error) throw 'cloudianry error'
@@ -260,7 +263,6 @@ export async function adminEventUplaodAPI(req,res) {
           });
           images.push({image})
         }
-
         log('//image uplaoded')
 
         let event = await Events.create({

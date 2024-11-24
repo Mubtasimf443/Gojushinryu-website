@@ -38,7 +38,7 @@ export async function createTestimonials(req,res) {
         filename : () => Date.now() +'_' + Math.floor(Math.random()*10000) + '.jpg'
         };
 
-        formidable(options).parse(req, async (error,feilds , files) => {
+        await formidable(options).parse(req, async (error,feilds , files) => {
             try {
               if (DontSuffortMime ===true) throw 'error , Donot soffourt this type of files '
 
@@ -61,8 +61,10 @@ export async function createTestimonials(req,res) {
              
               console.log('waiting time starts from'+ new Date().toLocaleTimeString());
           
-              await Awaiter(3000)
-              console.log('waiting time ends from'+ new Date().toLocaleTimeString());
+              // await Awaiter()
+              // console.log('waiting time ends from'+ new Date().toLocaleTimeString());
+            
+            
               let thumb =await UploadImageToCloudinary(imagePath)
               .then(({image,error})=> {
                 if (image) return image.url
