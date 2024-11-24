@@ -58,11 +58,11 @@ export async function createTestimonials(req,res) {
               let appreciation_position =await repleCaracter(feilds.appreciation_position[0]);
               let imagePath = files.images[0].filepath;
 
-              await waidTillFileLoad({
-                filePath: imagePath,
-              
-              });
+              // await waidTillFileLoad({
+              //   filePath: imagePath,
+              // });
 
+              await Awaiter(1000)
               
               let thumb =await UploadImageToCloudinary(imagePath)
               .then(({image,error})=> {
@@ -104,6 +104,7 @@ export async function getTestimonials(req,res) {
   } 
 }
 
+
 export async function deleteTestimonials(req,res) {
   try {
     let id=req.body.id;
@@ -112,6 +113,32 @@ export async function deleteTestimonials(req,res) {
     await Testimonials.findOneAndDelete({date :id})
     .catch( (error) => console.error(error) );
     return res.sendStatus(200)
+  } catch (error) {
+    console.log({error});
+    return res.sendStatus(500)  
+  }
+}
+
+export async function testinmonialsFoeHomePage(params) {
+  try {
+    let data=await Testimonials.find({});
+    if (data.length===0) return res.sendStatus(400);
+    if (data.length===1 || data.length===2) {
+      return res.status(200).json({
+        data
+      })
+    }
+    let dates =data.map(el => el.date);
+    dates=mergesort(dates);
+    let responsneArray=[];
+    for (let i = dates.length-1; i > dates.length-3; i--) {
+      const element = dates[i];
+      let obj=data.find(el => el.date === element);
+      responsneArray.push(obj)
+    }
+    return res.status(200).json({
+      data:responsneArray
+    })
   } catch (error) {
     console.log({error});
     return res.sendStatus(500)  

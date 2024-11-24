@@ -71,9 +71,10 @@ export async function UploadEventApi(req, res) {
           if (!gm) throw 'Their is no gm ';
 
           
-          await waidTillFileLoad({
-            filePath: files.images[files.images.length-1].filepath
-          });
+          // await waidTillFileLoad({
+          //   filePath: files.images[files.images.length-1].filepath
+          // });
+          await Awaiter(1000)
           
           let thumb =await UploadImageToCloudinary(path.resolve(dirname,'../../temp/images/'+files.thumb[0].newFilename)).then(({image,error})=> {
             if (image) return image.url
