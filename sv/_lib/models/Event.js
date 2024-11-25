@@ -46,7 +46,10 @@ const schema = mongoose.Schema({
     },
   author :{
     type :String 
-  }
+  },
+  organizerCountry:String,
+  participatingCountry:Number,
+  participatingAtletes:Number
 })
 
 

@@ -4,6 +4,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
  */
 const productContainer=document.querySelector(`[class="product-container"]`);
 let productDataArray=[];
+const currency= `<span style="font-family:"Roboto"sans-serif;" class="currency">$</span>`;
 
 
 window.addEventListener('load',async (e) => {
@@ -57,15 +58,17 @@ async function LoadProducs(params) {
                     size
                 } =el;
                 let df_size,df_price;
+
+
                 let priceComponent=(function name(params) {
                     if (selling_style ==='per_price') {
                        df_price=price;
                        df_size=size;
-                        return "$"+df_price 
+                        return currency +df_price 
                     } else {       
                        df_price=size_and_price[0].price;
                        df_size=size_and_price[0].size;
-                        return '$'+ df_price;
+                        return currency + df_price;
                     }
                 })();
                 let prod=`

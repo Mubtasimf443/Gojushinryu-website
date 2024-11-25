@@ -11,6 +11,7 @@ import { UploadImageToCloudinary } from "../Config/cloudinary.js";
 import { GM } from "../models/GM.js";
 import { checkOrCreateTempDir } from "../utils/dir.js";
 import Awaiter, { waidTillFileLoad } from "awaiter.js";
+import mergesort from "../utils/algorithms.js";
 
 
 //var
@@ -164,12 +165,14 @@ export async function eventPageNavigation(req,res) {
     // console.log(events);
     
     for (let i = 0; i < events.length; i++) {
-      let {title,description,thumb,eventDate,gm_writer} = events[0];
+      let {title,thumb,eventDate, organizerCountry,participatingCountry,participatingAtletes,description } = events[0];
       events.push({
         title : title.length >120 ?title.substring(0,120) :title,
-        description : description.length >220 ?description.substring(0,220) :description,
         thumb:thumb,
-        day :new Date(eventDate).getDate(),
+        organizerCountry,
+        participatingCountry,
+        participatingAtletes ,
+        date :new Date(eventDate).getDate(),
         month :(e => {
           let m=new Date(eventDate).getMonth();
           if (m === 0) return 'Jan'
@@ -185,7 +188,7 @@ export async function eventPageNavigation(req,res) {
           if (m === 10) return 'Nov'
           if (m === 11) return 'Dec'
         })(),
-        year:new Date(eventDate).getFullYear()
+        description :description.length ===103 ?description:description.substring(0,103)
       });
 
       events.shift();
@@ -284,5 +287,71 @@ export async function adminEventUplaodAPI(req,res) {
   } catch (e ) {
     log({error :'server error '+ e})
     res.sendStatus(400)
+  }
+}
+
+
+
+export async function eventsHome(req,res) {
+  try {
+    let arr=[];
+
+    let data=await Events.find({});
+
+    if (data.length===0) return res.sendStatus(400);
+    
+    if (data.length===1 || data.length===2) {
+      arr=data.map(el => {
+        let {title,organizerCountry, participatingCountry,participatingAtletes ,description,thumb}=el;
+        let month = new Date(el.eventDate).getMonth();
+        let date= new Date(el.eventDate).getDate();
+        return {
+          thumb ,
+          month ,
+          date,
+          title,
+          description :description.length ===103 ?description:description.substring(0,103),
+          organizerCountry,
+          participatingCountry,
+          participatingAtletes ,
+        }
+      });
+    }
+
+    if (data.length >2 ) {
+      let dates =data.map(el => el.Date);
+      dates=mergesort(dates);
+      let responsneArray=[];
+      for (let i = dates.length-1; i > dates.length-3; i--) {
+        const element = dates[i];
+        let obj=data.find(el => el.Date === element);
+        responsneArray.push(obj)
+      }
+  
+      arr=responsneArray.map(el => {
+        let {title,organizerCountry, participatingCountry,participatingAtletes,description ,thumb}=el;
+        let month = new Date(el.eventDate).getMonth();
+        let date= new Date(el.eventDate).getDate();
+        return {
+          thumb ,
+          month ,
+          date,
+          title,
+          description :description.length ===103 ?description:description.substring(0,103),
+          organizerCountry,
+          participatingCountry,
+          participatingAtletes 
+        }
+      })
+    
+      
+    }
+   
+    return res.status(200).json({
+      data:arr
+    })
+  } catch (error) {
+    console.error(error)
+    return res.sendStatus(500)
   }
 }

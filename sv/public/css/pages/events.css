@@ -2,9 +2,13 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
 Insha Allah,  By His Marcy I will Gain Success 
 */
+
+
 *{
     box-sizing: border-box;
 }
+
+
 #banner{
     min-height: 20em ;
     background: url('/img/samurai4.jpg');
@@ -23,6 +27,8 @@ Insha Allah,  By His Marcy I will Gain Success
     box-sizing: content-box;
     position: relative;;
   }
+
+
 #banner > h1 {
     font-size: 28px;
     color: #fff;
@@ -30,6 +36,8 @@ Insha Allah,  By His Marcy I will Gain Success
     text-transform: uppercase;
     font-weight: 500;
 }
+
+
 i{
     cursor: pointer;
 }
@@ -37,158 +45,121 @@ i{
 #events_sec{
     display:flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
     row-gap: 40px;
     padding:3em;
-}
-.event{
-    width: 450px;
-    height: 400px;
-    display:flex;
-    flex-direction: column;
-    justify-content:flex-start;
-    align-items:start;
-    border-radius: 10px;
-    background: white;
-    box-shadow: var(--fev-box-shadow);overflow: hidden;
-}
-.event >div:first-child{
-    width: 100%;
-    position: relative;
-    height: 240px;
-    /* background: url('/img/join.jpg'); */
-    background-size: cover;
-    background-position: top center;
-    background-repeat: no-repeat;
-    /* border-image-slice: fill 1;
-    border-image-source: linear-gradient(to left ,rgba(0, 0, 0, 0.123) ,rgba(0, 0, 0, 0.122)); */
-}
-
-.event >div:first-child>div {
-    position: absolute;
-    right: 16px;
-    top: 16px;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width:75px;
-}
-.event>div:first-child>div>a{
-    background:rgba(255, 255, 255, 0.37);
-    color: white;
-    box-shadow: 0px 0px 8px rgba(255, 255, 255, 0.048);
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    border: none;
-    text-decoration:none;
-    display:flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-}
-
-.event>div:first-child>div>a>i{
-    color: white;
-    font-size: 18px;
-}
-
-
-.event>div:last-child{
-    width: 100%;
-    display:flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: nowrap;
-    padding: 14px;
-
-}
-.event>div:last-child>div{
-    padding:auto;
-}
-.event>div:last-child>div:first-child{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    left: 14px;
-    row-gap: 3px;
-    width: 80px;
-}
-.event>div:last-child>div:first-child>b{
-    font-weight: 500;
-    font-size: 25px;
-    position: relative;
-    left: -15px;
     
 }
+.event {
+    width: 28em;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 2em 2em;
+    background: #ffffff5b;
+    border-radius:10px ;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.167);
+   z-index: 100; 
+   filter: none;
+height: 459px;
+}
+.event > img {
+    width: 100%;
+    margin-bottom: 1em;
+    height: 14em;
+    object-fit: cover;
+    object-position: center center;
+    opacity: 1;
+}
+.event >.div1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 
+}
+.event >hr {
+    width: 100%;
+    background-color: black;
+    height: 1.6px;
+    border: none;
+    margin: .4em 0px .9em 0em;
+}
+.event >.div2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 
-.event>div:last-child>div:first-child>span{
+}
+.event >.div1 > div:nth-child(1){
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: start;
+}
+.event >.div1 > div:nth-child(2){
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    align-items: end;
+    column-gap: .4em;
+}
+.event >.div1 > div:nth-child(1) > h2 {
+    font-size: 1.35em;
+    color:  black;
+    font-weight: 600;
+} 
+.event >.div1 > div:nth-child(1) > span {
     font-weight: 500;
-    font-size: 14px;
-    position: relative;
-    right: -15px;
+    color:  var(--main-cl);
+    margin-top: 4px;
+}
+
+.event >.div1 > div:nth-child(1) > span::before{
+    content: 'In';
+    color:  black;
+}
+.event >.div1 > div:nth-child(2) > b {
+    font-size: 1.6em;
+    color:  var(--main-cl);
+    font-weight: 500;
+}
+.event >.div1 > div:nth-child(2) > span {
+    font-size: .8em;
+    font-weight: 500;
+    color:black;
+
+}
+.event >.div2 > span {
+    font-size: .95em;
+    font-weight: 500;
     color: var(--main-cl);
 }
 
-.event>div:last-child>div:last-child{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    row-gap: 7px;
-    width: 300px;
+.event >.div2 > span:nth-child(1)::after {
+    content: 'Countries';
+    color:  black;
 }
 
-.event>div:last-child>div:last-child>h2{
-    font-size: 16.7px;
-    font-weight: 500;
-    text-transform: uppercase;
-    word-spacing: 4px;
-    text-align: left;
-    width: 100%;
+.event >.div2 > span:nth-child(2)::after {
+    content: 'Athletes';
+    color:  black;
 }
 
-.event>div:last-child>div:last-child>p{
-    font-weight: 500;
-    text-align: left;
-    font-size: 13.9px;
-    word-spacing:4px;
+.event p {
+    color :rgb(51, 51, 51);
+    font-size: 14px;
+    margin-top: .4em;
 }
 
-
-
-.fa-solid.fa-heart{
-    color: rgb(190, 21, 78);
-}
-@media screen and (max-width:600px) {
+@media screen and (max-width:650px) {
     .event{
-        width: 500px;
-    }
-    .event>div:last-child>div:first-child{
-        width: 40px;
-    }
-    .event>div:last-child>div:first-child>b{
-    left: 0px;
-    }
-    .event>div:last-child>div:first-child>span{
-        right: 0px;
-        text-align: center;
-    }
-}
-@media screen and (max-width:400px) {
-    .event>div:last-child{
-        flex-wrap: wrap;
-        row-gap: 15px;
-    }
-    .event>div:last-child>div:first-child>b{
-        left: 0px;
+        width: 433px;
     }
 }

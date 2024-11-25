@@ -1,0 +1,133 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/   
+   /*-------------------- event Section -------------------------*/
+    #event_section { 
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background:url("/img/kr_b_sun.jpg");
+        background-repeat: no-repeat;
+        background-position:center center;
+        background-size: cover;
+        padding: 4.5em 3em;
+        border-image: fill 1 ;
+        border-image-source: linear-gradient(to right,rgba(0, 0, 0, 0.74),rgba(0, 0, 0, 0.74));
+    }
+
+ 
+
+    @media screen and (min-width:1000px) {
+        #event_section { 
+            background-size: 130%;
+            background-position:bottom center;
+            padding: 5.5em 3em;
+        }
+    }
+    #event_section > h2{
+        color: rgb(240, 240, 240);
+        text-transform: uppercase;
+        font-size: 1.14em;
+        z-index: 6;
+    }
+    #event_section > div {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        column-gap: 2em;
+        row-gap: 2.5em;
+        margin-top: 2em;
+        color: rgb(240, 240, 240);
+    }
+    #event_section > div > div {
+        width: 31em;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 2em 2em;
+        background: #7777775b;
+        border-radius:10px ;
+        box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.178);
+       z-index: 100; 
+       filter: none;
+       border: .3px solid #7e7e7e;
+    }
+    #event_section > div > div > img {
+        width: 100%;
+        margin-bottom: 1em;
+        height: 14em;
+        object-fit: cover;
+        object-position: bottom center;
+        opacity: 1;
+    }
+    #event_section > div > div >.div1 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+    }
+    #event_section > div > div >hr {
+        width: 100%;
+        background-color: rgba(255, 252, 252, 0.103);
+        height: 1.6px;
+        border: none;
+        margin: .9em 0px;
+    }
+    #event_section > div > div >.div2 {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+
+    }
+    #event_section > div > div >.div1 > div:nth-child(1){
+        display: flex;
+        flex-direction: column;
+        justify-content: left;
+        align-items: start;
+    }
+    #event_section > div > div >.div1 > div:nth-child(2){
+        display: flex;
+        flex-direction: row;
+        justify-content:left;
+        align-items: end;
+        column-gap: .4em;
+    }
+    #event_section > div > div >.div1 > div:nth-child(1) > b {
+        font-size: 1.35em;
+        color: #f0f0f0;
+    }
+    #event_section > div > div >.div1 > div:nth-child(1) > span {
+        font-weight: 500;
+        color: rgb(216, 216, 216);
+        margin-top: 4px;
+    }
+    #event_section > div > div >.div1 > div:nth-child(2) > b {
+        font-size: 1.6em;
+        color: #f0f0f0;
+    }
+    #event_section > div > div >.div1 > div:nth-child(2) > span {
+        font-size: .8em;
+        font-weight: 500;
+        color: #d8d8d8;
+
+    }
+    #event_section > div > div >.div2 > span {
+        font-size: .95em;
+        font-weight: 500;
+        color: #d8d8d8;
+
+    }
+    @media screen and (max-width:650px) {
+        #event_section >div > div{
+            width: 433px;
+        }
+    }

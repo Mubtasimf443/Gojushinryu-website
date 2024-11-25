@@ -37,6 +37,7 @@ let dirName = path.dirname(__filename);
 
 //environment setup
 connectDB() ;
+
 app.use(helmet({
     contentSecurityPolicy :{
         directives :{

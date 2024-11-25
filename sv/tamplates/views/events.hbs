@@ -21,7 +21,7 @@ Insha Allah,  By His Marcy I will Gain Success
         <h1>Events </h1>
     </div>
     <div id="events_sec">
-       {{#each events}}
+       {{!-- {{#each events}}
         <div class="event">
         <div  style="
         background: url({{this.thumb}});
@@ -52,9 +52,28 @@ Insha Allah,  By His Marcy I will Gain Success
             </div>
         </div>
       </div>
+       {{/each }} --}}
+       {{#each events}}
+       <div class="event">
+            <img src="{{this.thumb}}" alt="event image of {{>company_name}}">
+            <div class="div1">
+                <div>
+                    <h2>{{this.title}}</h2>
+                    <span> {{this.organizerCountry}}</span>
+                </div>
+                <div>
+                    <span>{{this.month}}</span>
+                    <b>{{this.date}}</b>
+                </div>
+            </div>
+            <p>{{this.description}}</p>
+            <hr>
+            <div class="div2">
+                <span>{{this.participatingCountry}} </span>
+                <span>{{this.participatingAtletes}} </span>                       
+            </div>
+        </div>
        {{/each }}
-        
-     
     {{!-- 
 
     <div class="event">

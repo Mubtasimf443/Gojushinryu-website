@@ -2,10 +2,10 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ   
 Insha Allah,  By the marcy of Allah,  I will gain success
 */
-
+{
 window.addEventListener('load',e=> setTimeout(
     function (event) {
-            fetch('http://localhost:4000/api/api_s/testimonials/home')
+            fetch(window.localStorage.origin+'/api/api_s/testimonials/home')
             .then(res=> res.json())
             .then(
                 function (response) {
@@ -33,3 +33,4 @@ window.addEventListener('load',e=> setTimeout(
                 }
             )
         }, 1000))
+}

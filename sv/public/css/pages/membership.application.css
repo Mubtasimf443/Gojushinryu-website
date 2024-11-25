@@ -4,13 +4,17 @@ InshaAllah, By his marcy I will Gain Success
 */
 
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+.currency{
+    font-family: "Roboto",sans-serif;
+}
+
 
 :root{
   --inp-border-color:black;
   --inp-box-hieght:2.7em;
   --form--transition:all 1s ease;
 }
-
 
 
 input{
@@ -602,6 +606,9 @@ body{
     color:var(--main-cl);
     font-weight: 600;
   }
+  #payment-info-form input {
+   font-family: "Roboto"
+  }
   #payment-info-form>.paymetn-btn-div{
     display: flex;
     flex-direction: row;
@@ -685,6 +692,8 @@ body{
   font-weight: 500;
   text-transform: capitalize;
   }
+
+
 .main-color-border-btn{
   background: white;
   color: var(--main-cl);

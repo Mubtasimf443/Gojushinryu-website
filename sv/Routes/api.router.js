@@ -9,7 +9,7 @@ import { UplaodImageApiIn25Minutes } from '../_lib/api/UplaodImageApiIn25Minutes
 import AdminCheckMidleware from '../_lib/midlewares/AdminCheckMidleware.js';
 import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
 import { CreateACourseApi, deleteCourseApi, findCourseEnrollments, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
-import { adminEventUplaodAPI, deleteEvent, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
+import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails } from '../_lib/model_base_function/Product.js';
 import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, RemoveFromBanedUserFunction } from '../_lib/model_base_function/user.js';
@@ -58,6 +58,7 @@ apiRouter.get('/get-user-membership',userCheck,getUserMembershipJS)
 apiRouter.get('/get-user-courses',userCheck,getUserEnrolledCourseApi)
 apiRouter.get('/testimonials', getTestimonials)
 apiRouter.get('/testimonials/home', testinmonialsForHomePage)
+apiRouter.get('/events/home', eventsHome)
 
 
 //Post Route
