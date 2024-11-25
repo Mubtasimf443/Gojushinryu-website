@@ -5,7 +5,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
 {
 window.addEventListener('load',e=> setTimeout(
     function (event) {
-            fetch(window.localStorage.origin+'/api/api_s/testimonials/home')
+            fetch(window.location.origin+'/api/api_s/testimonials/home')
             .then(res=> res.json())
             .then(
                 function (response) {

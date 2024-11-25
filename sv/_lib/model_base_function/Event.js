@@ -163,7 +163,6 @@ export async function eventPageNavigation(req,res) {
   try {
     let events = await Events.find({});
     // console.log(events);
-    
     for (let i = 0; i < events.length; i++) {
       let {title,thumb,eventDate, organizerCountry,participatingCountry,participatingAtletes,description } = events[0];
       events.push({
@@ -303,7 +302,21 @@ export async function eventsHome(req,res) {
     if (data.length===1 || data.length===2) {
       arr=data.map(el => {
         let {title,organizerCountry, participatingCountry,participatingAtletes ,description,thumb}=el;
-        let month = new Date(el.eventDate).getMonth();
+        let month = (e => {
+          let m=new Date(el.eventDate).getMonth();
+          if (m === 0) return 'Jan'
+          if (m === 1) return 'Feb'
+          if (m === 2) return 'Mar'
+          if (m === 3) return 'Apr'
+          if (m === 4) return 'May'
+          if (m === 5) return 'June'
+          if (m === 6) return 'July'
+          if (m === 7 ) return 'Aug'
+          if (m === 8) return 'Sep'
+          if (m === 9) return 'Oct'
+          if (m === 10) return 'Nov'
+          if (m === 11) return 'Dec'
+        })();
         let date= new Date(el.eventDate).getDate();
         return {
           thumb ,
@@ -327,10 +340,23 @@ export async function eventsHome(req,res) {
         let obj=data.find(el => el.Date === element);
         responsneArray.push(obj)
       }
-  
       arr=responsneArray.map(el => {
         let {title,organizerCountry, participatingCountry,participatingAtletes,description ,thumb}=el;
-        let month = new Date(el.eventDate).getMonth();
+        let month = (e => {
+          let m=new Date(el.eventDate).getMonth();
+          if (m === 0) return 'Jan'
+          if (m === 1) return 'Feb'
+          if (m === 2) return 'Mar'
+          if (m === 3) return 'Apr'
+          if (m === 4) return 'May'
+          if (m === 5) return 'June'
+          if (m === 6) return 'July'
+          if (m === 7 ) return 'Aug'
+          if (m === 8) return 'Sep'
+          if (m === 9) return 'Oct'
+          if (m === 10) return 'Nov'
+          if (m === 11) return 'Dec'
+        })();
         let date= new Date(el.eventDate).getDate();
         return {
           thumb ,

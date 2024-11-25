@@ -53,7 +53,7 @@ InshaAllah, By his marcy I will Gain Success
         background: #7777775b;
         border-radius:10px ;
         box-shadow: 0px 0px 10px rgba(255, 255, 255, 0.178);
-       z-index: 100; 
+        z-index: 100; 
        filter: none;
        border: .3px solid #7e7e7e;
     }
@@ -62,7 +62,7 @@ InshaAllah, By his marcy I will Gain Success
         margin-bottom: 1em;
         height: 14em;
         object-fit: cover;
-        object-position: bottom center;
+        object-position: center center;
         opacity: 1;
     }
     #event_section > div > div >.div1 {
@@ -101,7 +101,7 @@ InshaAllah, By his marcy I will Gain Success
         align-items: end;
         column-gap: .4em;
     }
-    #event_section > div > div >.div1 > div:nth-child(1) > b {
+    #event_section > div > div >.div1 > div:nth-child(1) > b ,h3{
         font-size: 1.35em;
         color: #f0f0f0;
     }
@@ -130,4 +130,40 @@ InshaAllah, By his marcy I will Gain Success
         #event_section >div > div{
             width: 433px;
         }
+    }
+
+    @keyframes skeleton_event {
+        0%{
+            opacity: .6;
+        }
+        100%{
+            opacity: .95;
+        }
+    }
+    
+    #event_section > div > div > .event_skeleton_image  {
+        width: 100%;
+        margin-bottom: 1em;
+        height: 14em;
+        object-fit: cover;
+        object-position: center center;
+        background-color: rgb(216, 216, 216);
+        color: rgb(216, 216, 216);
+        animation-name:skeleton_event ;
+        animation-duration: 1500ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease;
+    }
+    #event_section .event_box .event_skeleton_name {
+        background-color: rgb(216, 216, 216);
+        color: rgb(216, 216, 216);
+        animation-name:skeleton_event ;
+        animation-duration: 1500ms;
+        animation-iteration-count: infinite;
+        animation-timing-function: ease;
+    }
+    #event_section .event_box p {
+        font-size: 13px;
+       font-weight: 400;
+       color: rgb(216, 216, 216);
     }

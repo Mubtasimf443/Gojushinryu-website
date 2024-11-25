@@ -64,7 +64,7 @@ i{
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.167);
    z-index: 100; 
    filter: none;
-height: 459px;
+height: 465px;
 }
 .event > img {
     width: 100%;
@@ -84,10 +84,16 @@ height: 459px;
 }
 .event >hr {
     width: 100%;
-    background-color: black;
+    background-color: #444444;
     height: 1.6px;
     border: none;
     margin: .4em 0px .9em 0em;
+}
+
+.event p {
+    color :#2e2e2e;
+    font-size: 15px;
+    margin-top: .4em;
 }
 .event >.div2 {
     display: flex;
@@ -97,13 +103,13 @@ height: 459px;
     width: 100%;
 
 }
-.event >.div1 > div:nth-child(1){
+.event >.div1 > div{
     display: flex;
     flex-direction: column;
     justify-content: left;
     align-items: start;
 }
-.event >.div1 > div:nth-child(2){
+.event >.div1 > time{
     display: flex;
     flex-direction: row;
     justify-content:left;
@@ -125,12 +131,12 @@ height: 459px;
     content: 'In';
     color:  black;
 }
-.event >.div1 > div:nth-child(2) > b {
+.event >.div1 >time> b {
     font-size: 1.6em;
     color:  var(--main-cl);
     font-weight: 500;
 }
-.event >.div1 > div:nth-child(2) > span {
+.event >.div1 > time> span {
     font-size: .8em;
     font-weight: 500;
     color:black;
@@ -152,11 +158,6 @@ height: 459px;
     color:  black;
 }
 
-.event p {
-    color :rgb(51, 51, 51);
-    font-size: 14px;
-    margin-top: .4em;
-}
 
 @media screen and (max-width:650px) {
     .event{
