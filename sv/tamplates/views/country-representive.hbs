@@ -1,0 +1,137 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apply to become a Country Representative</title>
+    <meta name="description"
+        content="Become a Country Representative of {{company_name}} and Goju shin Ryu International Martial Arts">
+    <meta name="keywords"
+        content="Country Representative  {{company_name}},Country Representative  Goju shin Ryu International Martial Arts,Martial Art Country Representative,Martial Art Country Representative of {{company_name}}">
+    {{>Links}}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script defer src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="/css/pages/country-representive.css">
+    <script defer src="/js/country-representive.js"></script>
+</head>
+
+<body>
+    {{>Header}}
+    <main>
+
+        <section>
+
+
+            <div id="form" class="container-fluid px-1 py-5 mx-auto">
+
+
+                <div class="row d-flex justify-content-center">
+
+
+                    <div class="col-xl-7 col-lg-8 col-md-9 col-11 text-center">
+
+                        <h3>
+                            Become A Country Representative
+                        </h3>
+                        {{!-- <p class="blue-text">
+                            Just answer a few questions
+                            <br>
+                            so that we can personalize the right experience for you.
+                        </p> --}}
+
+
+                        <div class="card">
+
+
+                            <h5 success_status class="text-center mb-4">
+                                Fill the form for Becoming a Representative
+                            </h5>
+
+
+                            <form class="form-card" onsubmit="formSubmit(event)" >
+
+                                <div class="row justify-content-between text-left">
+                                    <div class="form-group col-sm-6 flex-column d-flex">
+                                        <label class="form-control-label px-3">Full name<span class="text-danger">
+                                                *</span></label>
+                                        <input type="text" id="fname" name="name" placeholder="Enter your Full name" required>
+                                    </div>
+
+                                    <div class="form-group col-sm-6 flex-column d-flex">
+                                        <label class="form-control-label px-3">Date of Birth<span class="text-danger">
+                                                *</span></label>
+                                        <input type="text" onblur="this.type=`text`" onfocus="this.type=`date`"
+                                            id="dob" name="dob" placeholder="Enter your Birth Date" required >
+                                    </div>
+                                </div>
+
+                                <div class="row justify-content-between text-left">
+                                    <div class="form-group col-sm-6 flex-column d-flex">
+                                        <label class="form-control-label px-3"> email<span class="text-danger">
+                                                *</span></label>
+                                        <input type="text" id="email" name="email" placeholder="Enter Your Email" required>
+                                    </div>
+                                    <div class="form-group col-sm-6 flex-column d-flex">
+                                        <label class="form-control-label px-3">Phone number<span class="text-danger">
+                                                *</span></label>
+                                        <input type="number" id="phone" name="phone" placeholder="Enter Your Phone Number" required>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-between text-left">
+                                    <div class="form-group col-sm-6 flex-column d-flex">
+                                        <label class="form-control-label px-3" >Upload Your Image<span class="text-danger">
+                                                *</span></label>
+                                        <input type="file" id="image" accept="image/*" name="image" required placeholder="Write your Job Title" >
+                                    </div>
+                                <div class="form-group col-sm-6 flex-column d-flex">
+                                    <label for="country">Select Your Country</label>
+                                    <select name="country" class="form-control" id="country">
+                                        <option value="USA">USA</option>
+                                        <option value="India">India</option>
+                                        <option value="Canada">Canada</option>
+                                        <option value="Australia">Australia</option>
+                                        <option value="South Korea">South Korea</option>
+                                        <option value="Germany">Germany</option>
+                                        <option value="China">China</option>
+                                        <option value="Brazil">Brazil</option>
+                                        <option value="United Kingdom">United Kingdom</option>
+                                        <option value="UAE">UAE</option>
+                                        <option value="Italy">Italy</option>
+                                        <option value="Switzerland">Switzerland</option>
+                                        <option value="Netherlands">Netherlands</option>
+                                        <option value="Sweden">Sweden</option>
+                                        <option value="Singapore">Singapore</option>
+                                        <option value="Russia">Russia</option>
+                                        <option value="Argentina">Argentina</option>
+                                        <option value="Japan">Japan</option>
+                                        <option value="South Africa">South Africa</option>
+                                        <option value="Bangladesh">Bangladesh</option>
+                                        <option value="Pakistan">Pakistan</option>
+                                        <option value="Vietnam">Vietnam</option>
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="row justify-content-between text-left">
+                                    <div class="form-group col-12 flex-column d-flex">
+                                        <label for="decription" class="form-control-label px-3">Write about Becoming Representative at Gojushinryu International Martial Arts </label>
+                                        <textarea class="form-control " required id="decription" name="decription" placeholder="write about  Becoming Representative...." ></textarea>
+                                    </div>
+                                </div>
+                                <div class="row justify-content-end">
+                                    <div class="form-group col-sm-6"> 
+                                        <button type="submit" class="btn-block btn-primary">
+                                            Apply 
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    {{>Footer}}
+</body>
+
+</html>

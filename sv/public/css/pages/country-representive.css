@@ -1,0 +1,95 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+Insha Allah,  By His Marcy I will Gain Success 
+*/ 
+
+body{
+    color: #000;
+    overflow-x: hidden;
+    height: 100%;
+  
+}
+
+section {
+    /* background-image: url("/img/samurai4.jpg");
+    background-position: center left;
+    background-size: cover;
+    background-repeat:no-repeat;
+    border-image-slice: fill 1;
+    border-image-source: linear-gradient(to right,
+     rgba(0, 0, 0, 0.474) ,
+     rgba(0, 0, 0, 0.712),
+    rgba(0, 0, 0, 0.5)); */
+    height: 800px;
+  
+}
+
+h3 {
+    color: white;
+    margin-top: 40px;
+} 
+.card{
+    padding: 30px 40px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+    border: none !important;
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2)
+}
+.blue-text{
+    color: #00BCD4
+}
+.form-control-label{
+    margin-bottom: 0
+}
+input, textarea, button{
+    padding: 8px 15px;
+    border-radius: 5px !important;
+    margin: 5px 0px;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    font-size: 18px !important;
+    font-weight: 300
+}
+
+select {
+    
+}
+input:focus, textarea:focus{
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    border: 1px solid #00BCD4;
+    outline-width: 0;
+    font-weight: 400
+}
+.btn-block{
+    text-transform: uppercase;
+    font-size: 15px !important;
+    font-weight: 400;
+    height: 43px;
+   cursor: pointer
+}
+.btn-block:hover{
+    color: #fff !important
+}
+button:focus{
+    -moz-box-shadow: none !important;
+    -webkit-box-shadow: none !important;
+    box-shadow: none !important;
+    outline-width: 0
+}
+
+#form {
+    margin-bottom: -200px;
+    background-image: url("/img/samurai4.jpg");
+    background-position: center left;
+    background-size: cover;
+    background-repeat:no-repeat;
+    border-image-slice: fill 1;
+    border-image-source: linear-gradient(to right,
+     rgba(0, 0, 0, 0.474) ,
+     rgba(0, 0, 0, 0.712),
+    rgba(0, 0, 0, 0.5));
+    height: 600px;
+   
+}

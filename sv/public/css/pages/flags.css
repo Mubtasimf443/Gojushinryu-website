@@ -1,0 +1,125 @@
+/* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ   Insha Allah,  BY Allahs Marcy,  I will Gain success  */ 
+
+*{
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+#banner{
+    height: 90vh;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+     background: url('/img/samurai4.jpg');
+     background-position: bottom left;
+     background-size: cover;
+     background-repeat:no-repeat;
+     border-image-slice: fill 1;
+     border-image-source: linear-gradient(to right,
+      rgba(0, 0, 0, 0.474) ,
+      rgba(0, 0, 0, 0.712),
+     rgba(0, 0, 0, 0.5));
+     color: white;
+     row-gap: 12px;
+     padding-top: 80px;
+     text-align: center;
+     box-sizing: content-box;
+   
+}
+#banner h1{
+     font-size: 27px;
+     text-transform: uppercase;
+     word-spacing:4.5px;
+}
+#banner p {
+     font-size: 15px;
+     color: #fff;
+     width: 500px;
+     word-spacing: 3px;
+     text-wrap: wrap;
+}
+@media screen and (max-width: 510px) {
+    #banner p {
+       width: 400px;
+    }
+}
+#banner button {
+     background: var(--main-cl);
+     color: #000000;
+     font-style: 15px;
+     word-spacing: 3px;
+     padding: 14px 20px;
+     border:none ;
+     text-transform: uppercase;
+     font-weight: 600;
+}
+
+   #banner a {
+    color: black;
+    text-decoration: none;
+   }
+
+
+   .flags{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    row-gap: 40px;
+    column-gap: 30px;
+    padding: 50px 0px;
+    height: fit-content;
+   }
+    
+@media screen and (max-width :865px) {
+    .flags{
+        padding: 40px 0px;
+    }
+}
+@media screen and (max-width :575px) {
+    .flags{
+        padding: 30px 0px;
+    }
+}
+   .flag {
+    width: 400px;
+   height: fit-content;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
+    padding: 20px 14px;
+    row-gap: 14px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+   }
+
+   .flag img {
+    width:95% ;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
+    margin-top: -12px;
+    height: 200px;
+    object-fit: cover;
+    object-position: center center;
+   }
+   .flag h2 {
+    text-transform: capitalize;
+   }
+   .flag button {
+    background-color: var(--main-cl);
+    border: none;
+    color: black;
+    font-size: 15px;
+    font-weight: 500;
+    padding: 10px 15px;
+    border: none;
+   }
+   .flag a {
+    color: black;
+    text-decoration: none;
+   }

@@ -32,54 +32,54 @@ input {
 
 
 #banner{
- height: 90vh;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: url('/img/samurai4.jpg');
-  background-position: bottom left;
-  background-size: cover;
-  background-repeat:no-repeat;
-  border-image-slice: fill 1;
-  border-image-source: linear-gradient(to right,
-   rgba(0, 0, 0, 0.474) ,
-   rgba(0, 0, 0, 0.712),
-  rgba(0, 0, 0, 0.5));
-  color: white;
-  row-gap: 12px;
-  padding-top: 80px;
-  text-align: center;
-  box-sizing: content-box;
-
-}
-#banner h1{
-  font-size: 27px;
-  text-transform: uppercase;
-  word-spacing:4.5px;
-}
-#banner p {
-  font-size: 15px;
-  color: #fff;
-  width: 500px;
-  word-spacing: 3px;
-  text-wrap: wrap;
-}
-@media screen and (max-width: 510px) {
-  #banner p {
-    width: 400px;
-  }
-}
-#banner button {
-  background: var(--main-cl);
-  color: #000000;
-  font-style: 15px;
-  word-spacing: 3px;
-  padding: 14px 20px;
-  border:none ;
-  text-transform: uppercase;
-  font-weight: 600;
-}
+  height: 90vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+   background: url('/img/samurai4.jpg');
+   background-position: bottom left;
+   background-size: cover;
+   background-repeat:no-repeat;
+   border-image-slice: fill 1;
+   border-image-source: linear-gradient(to right,
+    rgba(0, 0, 0, 0.474) ,
+    rgba(0, 0, 0, 0.712),
+   rgba(0, 0, 0, 0.5));
+   color: white;
+   row-gap: 12px;
+   padding-top: 80px;
+   text-align: center;
+   box-sizing: content-box;
+ 
+ }
+ #banner h1{
+   font-size: 27px;
+   text-transform: uppercase;
+   word-spacing:4.5px;
+ }
+ #banner p {
+   font-size: 15px;
+   color: #fff;
+   width: 500px;
+   word-spacing: 3px;
+   text-wrap: wrap;
+ }
+ @media screen and (max-width: 510px) {
+   #banner p {
+     width: 400px;
+   }
+ }
+ #banner button {
+   background: var(--main-cl);
+   color: #000000;
+   font-style: 15px;
+   word-spacing: 3px;
+   padding: 14px 20px;
+   border:none ;
+   text-transform: uppercase;
+   font-weight: 600;
+ }
 
 
 .contact-sec {

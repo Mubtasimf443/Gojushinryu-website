@@ -1,1422 +1,1370 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Control Panal</title>
- <!-- ImportTANT links -->
-    <link rel="Icon" href="/img/link_icon.png">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="/css/root.css">
-    <link rel="stylesheet" href="/css/control_panal/massage.css">
-    <link rel="stylesheet" href="/css/control_panal/index.css">
-    <link rel="stylesheet" href="/css/control_panal/form.section.css">
-    <link rel="stylesheet" href="/css/control_panal/massageList.css">
-    <link rel="stylesheet" href="/css/control_panal/live-chat-box-conatainer.css">
-    <link rel="stylesheet" href="/css/control_panal/order.list.css">
-    <link rel="stylesheet" href="/css/control_panal/user.list.css">
-    <link rel="stylesheet" href="/css/control_panal/member.list.css">  
-    <link rel="stylesheet" href="/css/control_panal/gm.list.css">  
-    <link rel="stylesheet" href="/css/control_panal/product.list.css">
-    <link rel="stylesheet" href="/css/control_panal/popup.css">
-    <link rel="stylesheet" href="/css/control_panal/courses.css">
-    <link rel="stylesheet" href="/css/control_panal/course_enroll_ments.css">
-    <link rel="stylesheet" href="/css/control_panal/settings.css">
-    <link rel="stylesheet" href="/css/control_panal/Testimonials.css">
-    <link rel="stylesheet" href="/css/control_panal/share.media.css">
-    
 
-    <script defer src="/js/control panal/gm.js"></script>
-    <script defer src="/js/control panal/c.panal.js"></script>
-    <script defer src="/js/control panal/Upload.product.js"></script>
-    <script defer src="/js/control panal/User.js"></script>
-    <script defer src="/js/control panal/Member.js"></script>
-    <script defer src="/js/control panal/course.js"></script>
-    <script defer src="/js/control panal/Product.js"></script>
-    <script defer src="/js/control panal/notication.js"></script>
-    <script defer src="/js/control panal/order.js"></script>
-    <script defer src="/js/control panal/massage.user.list.js"></script>
-    <script defer src="/js/control panal/control.panal.user.massage.js"></script>
-    <script defer src="/js/control panal/gm.massase.group.js"></script>
-    <script defer src="/js/control panal/course.enrollments.js"></script>
-    <script defer src="/js/control panal/uplaod.post.js"></script>
-    <script defer src="/js/control panal/settings.js"></script>
-    <script defer src="/js/control panal/Testimonials.js"></script>
-    <script defer src="/js/control panal/uplaod.event.js"></script>
-    <script defer src="/js/control panal/share.media.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control Panal</title>
+  <!-- ImportTANT links -->
+  <link rel="Icon" href="/img/link_icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/root.css">
+  <link rel="stylesheet" href="/css/control_panal/massage.css">
+  <link rel="stylesheet" href="/css/control_panal/index.css">
+  <link rel="stylesheet" href="/css/control_panal/form.section.css">
+  <link rel="stylesheet" href="/css/control_panal/massageList.css">
+  <link rel="stylesheet" href="/css/control_panal/live-chat-box-conatainer.css">
+  <link rel="stylesheet" href="/css/control_panal/order.list.css">
+  <link rel="stylesheet" href="/css/control_panal/user.list.css">
+  <link rel="stylesheet" href="/css/control_panal/member.list.css">
+  <link rel="stylesheet" href="/css/control_panal/gm.list.css">
+  <link rel="stylesheet" href="/css/control_panal/product.list.css">
+  <link rel="stylesheet" href="/css/control_panal/popup.css">
+  <link rel="stylesheet" href="/css/control_panal/courses.css">
+  <link rel="stylesheet" href="/css/control_panal/course_enroll_ments.css">
+  <link rel="stylesheet" href="/css/control_panal/settings.css">
+  <link rel="stylesheet" href="/css/control_panal/Testimonials.css">
+  <link rel="stylesheet" href="/css/control_panal/share.media.css">
+
+
+  <script defer src="/js/control panal/gm.js"></script>
+  <script defer src="/js/control panal/c.panal.js"></script>
+  <script defer src="/js/control panal/Upload.product.js"></script>
+  <script defer src="/js/control panal/User.js"></script>
+  <script defer src="/js/control panal/Member.js"></script>
+  <script defer src="/js/control panal/course.js"></script>
+  <script defer src="/js/control panal/Product.js"></script>
+  <script defer src="/js/control panal/notication.js"></script>
+  <script defer src="/js/control panal/order.js"></script>
+  <script defer src="/js/control panal/massage.user.list.js"></script>
+  <script defer src="/js/control panal/control.panal.user.massage.js"></script>
+  <script defer src="/js/control panal/gm.massase.group.js"></script>
+  <script defer src="/js/control panal/course.enrollments.js"></script>
+  <script defer src="/js/control panal/uplaod.post.js"></script>
+  <script defer src="/js/control panal/settings.js"></script>
+  <script defer src="/js/control panal/Testimonials.js"></script>
+  <script defer src="/js/control panal/uplaod.event.js"></script>
+  <script defer src="/js/control panal/share.media.js"></script>
 
 
 </head>
+
 <body>
 
-<!------------------------ product PopUp ------------------------------>
-<div id="popup_for_membership_data" 
-style="display: none;"
- class="popup_c">
-  <div class="popup_order_action_form">
-  <h2>Membership Data</h2>
+  <!------------------------ product PopUp ------------------------------>
+  <div id="popup_for_membership_data" style="display: none;" class="popup_c">
+    <div class="popup_order_action_form">
+      <h2>Membership Data</h2>
 
-   <div class="input-box">
-      <label>membership name </label>
-      <input disabled value="" placeholder="membership_name" type="text">
-    </div>
-
-   <div class="input-box">
-      <label>membership company</label>
-      <input disabled value="" placeholder="membership_company" type="text">
-    </div>
-    <div class="input-box">
-      <label>membership type</label>
-      <input disabled value="" placeholder="membership_type" type="text">
-    </div>
-  
-
-   <div class="input-box">
-      <label>First Name</label>
-      <input disabled value="" placeholder="fname" type="text">
-    </div>
-    
-   <div class="input-box">
-      <label>Last Name</label>
-      <input disabled value="" placeholder="lname" type="text">
-    </div>
-    
-   <div class="input-box">
-      <label>Email </label>
-      <input disabled value="" placeholder="email" type="text">
-    </div>
-    
-   <div class="input-box">
-      <label>phone</label>
-      <input disabled value="" placeholder="phone" type="text">
-    </div>
-    
-   <div class="input-box">
-      <label>Date of Birth</label>
-      <input disabled value="" placeholder="Date of Birth" type="text">
-    </div>
-
-
-     <div class="input-box">
-      <label>Country</label>
-      <input disabled value="" placeholder="country" type="text">
-    </div>
-
-     <div class="input-box">
-      <label>City</label>
-      <input disabled value="" placeholder="City" type="text">
-    </div>
-    
-     <div class="input-box">
-      <label>City</label>
-      <input disabled value="" placeholder="City" type="text">
-    </div>
-
-     <div class="input-box">
-      <label>District</label>
-      <input disabled value="" placeholder="district" type="text">
-    </div>
-
-     <div class="input-box">
-      <label>Postcode</label>
-      <input disabled value="" placeholder="postcode" type="text">
-    </div>
-
-     <div class="input-box">
-      <label>Gender</label>
-      <input disabled value="" placeholder="gender" type="text">
-    </div>
-
-     <div class="input-box">
-      <label>Doju Name</label>
-      <input disabled value="" placeholder="doju_Name" type="text">
-    </div>
-
-
-    <div class="input-box">
-      <label>Instructor</label>
-      <input disabled value="" placeholder="instructor" type="text">
-    </div>
-    
-    
-    <div class="input-box">
-      <label>Current Grade</label>
-      <input disabled value="" placeholder="current_grade" type="text">
-    </div>
-
-    <div class="input-box">
-      <label>Previous Injury</label>
-      <input disabled value="" placeholder="previous_injury" type="text">
-    </div>
-
-    <div class="input-box">
-      <label>Is previous Member</label>
-      <input disabled value="" placeholder="is_previous_member" type="text">
-    </div>
-
-    <div class="input-box">
-      <label>membership expiring Date</label>
-      <input disabled value="" placeholder="membership_expiring_date" type="text">
-    </div>
-    <div class="input-box">
-      <label>Experience Level</label>
-      <input disabled value="" placeholder="experience_level" type="text">
-    </div>
-    
-    <div class="input-box">
-      <label>has violance charge</label>
-      <input disabled value="" placeholder="has_violance_charge" type="text">
-    </div>
-    
-    <div class="input-box">
-      <label>Violance Charge </label>
-      <input disabled value="" placeholder="violance_charge" type="text">
-    </div>
-  
-<div class="input-box">
-      <label>has permanent injury</label>
-      <input disabled value="" placeholder="has_permanent_injury" type="text">
-    </div>
-   
-    <div class="input-box">
-      <label>Permanent Disabillity</label>
-      <input disabled value="" placeholder="permanent_disabillity" type="text">
-    </div>
-    
-    
-
-   
-    <div class="pp_btn_box">
-      <button class="popup-close-btn">
-        Close
-      </button>
-    
-    </div>
-
-  </div>
-</div>
-
-<!------------------------ order PopUp ------------------------------>
-<div id="popup_order_action" style="display: none;" class="popup_c">
-  <div class="popup_order_action_form">
-  <h2>
- See Order
-  </h2> 
-   <div class="input-box">
-      <label>Reciever Name</label>
-      <input disabled value="Reciever Name" placeholder="Reciever Name" type="text">
-    </div>
-    <div class="input-box">
-      <label>R. Number</label>
-      <input disabled value="R. Number" placeholder="R. Number" type="text">
-    </div> 
-    <div class="input-box">
-      <label>B. Email</label>
-      <input disabled value="Buyer Email" placeholder="Buyer Email" type="text">
-    </div>
- <div class="input-box">
-      <label>Country</label>
-      <input disabled value="India" placeholder="country"  type="text">
-    </div>
-    <div class="input-box">
-      <label>District</label>
-      <input disabled value="Delhi" placeholder="district" type="text">
-    </div>
-    <div class="input-box">
-      <label>City</label>
-      <input disabled value="London" placeholder="city" type="text">
-    </div>
-    <div class="input-box">
-      <label>
-        Street/Village/road No
-      </label>
-      <input disabled value="Moulovi Road No. 48" placeholder="street" type="text">
-    </div>
-    <div class="input-box">
-      <label>Post Code</label>
-      <input disabled value="4544"  placeholder="postcode"  type="text">
-    </div>
-    <div class="txt-box">
-      <label>Notes</label>
-      <textarea value="Under Contruction" placeholder="notes" disabled></textarea>
-    </div>
-
-    <div class="input-box">
-      <label>Order Id</label>
-      <input disabled value="9384386982"  placeholder="Order Id" type="text">
-    </div>
-    <div class="input-box">
-      <label>Quantity</label>
-      <input disabled value="7"  placeholder="quantity" type="text">
-    </div>
-   
-     <div class="input-box">
-      <label>Product Value</label>
-      <input disabled value="93$" placeholder="Product Value"  type="text">
-    </div>
-
-    <div class="input-box">
-      <label>Shipping</label>
-      <input disabled value="93$" placeholder="total shipping"  type="text">
-    </div>
-
-    <div class="input-box">
-      <label>Total Price</label>
-      <input disabled value="93$" placeholder="total"  type="text">
-    </div>
-   
-   
-
-  <table>
-    <tr>
-      
-      <th>No</th>
-      <th>Image</th>
-      <th>name</th>
-      <th>quantity</th>
-      <th>size</th>
-      <th>price</th>
-    </tr>
-    
-  </table>
-
-    <h2>Action</h2>
-    <div class="input-box ">
-      <label for="">Mark </label>
-      <select pp_select>
-        <option value="pending">Pending</option>
-        <option value="processing">In Process </option>
-        <option value="completed">Completed</option>
-        <option value="cancelled">Cancelled</option>
-      </select>
-      </div> 
-    <div class="txt-box c-reason-box" >
-      <label>Cancell Reason</label>
-      <textarea placeholder="If you want to cancel the order then you have to give the write the reasson .And Buyer will get a notification that order is cancel"  class="cancel_notes" ></textarea>
-    </div>
-
-
-
-    <div class="pp_btn_box">
-      <button class="popup-close-btn">
-        Close
-      </button class="popup-close-btn">
-     
-    </div>
-
-  </div>
-
-
-
-
-</div>
-
-<!------------------------ product PopUp ------------------------------>
-<div id="popup_product_action" 
-style="display: none;"
- class="popup_c">
-  <div class="popup_order_action_form">
-  <h2>
- Product Action
-  </h2> 
-   <div class="input-box">
-      <label>Name</label>
-      <input  value="Martial Art Cloths" type="text">
-    </div>
-    <div class="input-box">
-      <label>Stock</label>
-      <input  value="7" type="text">
-    </div>
-    <div class="input-box">
-      <label> Price</label>
-      <input value="93$" type="text">
-    </div>
-    <div class="txt-box">
-      <label>Description</label>
-      <textarea value="Under Contruction" ></textarea>
-    </div>
-    <div class="input-box">
-      <label for="">Cetegory </label>
-      <select name="" id="">
-        <option value="">Cloth</option>
-        <option value="">weapons</option>
-      </select>
+      <div class="input-box">
+        <label>membership name </label>
+        <input disabled value="" placeholder="membership_name" type="text">
       </div>
-    <div class="pp_btn_box">
-      <button class="popup-close-btn">
-        Close
-      </button>
-      <button class="popup-close-btn">
-  Save
-      </button>
-    </div>
 
-  </div>
-</div>
-
-<!------------------------ GM PopUp ------------------------------>
-<div 
-id="popup_GM_action" 
- style="display: none;" 
- class="popup_c"
- >
-  <div class="popup_order_action_form">
-  <h2>
- GM Action
-  </h2> 
-   <div class="input-box">
-      <label>Name</label>
-      <input  value="Dr. Vikram Kapoor" type="text">
-    </div>
-     <div class="txt-box">
-      <label>Bio</label>
-      <textarea ></textarea>
-    </div>
-    <div class="input-box">
-      <label>ID</label>
-      <input  value="vikramkapoor" type="text">
-    </div>
-    <div class="input-box">
-      <label> Password</label>
-      <input value="93$e443d" type="text">
-    </div>
-  
-  <div class="input-box">
-      <label> Restrict Account</label>
-<select name="" id="">
-  <option value="">False</option>
-  <option value="">True</option>
-</select>
-    </div>
-
-   
-   
-    <div class="pp_btn_box">
-      <button class="popup-close-btn">
-        Close
-      </button>
-      <button class="popup-close-btn">
-  Save
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<!------------------------ user PopUp ------------------------------>
-<div id="popup_user_action" 
-style="display: none;"
- class="popup_c">
-  <div class="popup_order_action_form">
-  <h2>
-   User Action
-  </h2> 
-   <div class="input-box">
-      <label>Name</label>
-      <input disabled>
-    </div>
-     <div class="input-box">
-      <label>Email</label>
-      <input disabled >
-    </div>
-     <div class="input-box">
-      <label>Phone</label>
-      <input disabled >
-    </div>
-    <div class="input-box">
-      <label>Country</label>
-      <input disabled >
-    </div>
-    <div class="input-box">
-      <label>ID</label>
-      <input disabled >
-    </div>
-    <div class="input-box">
-      <label> Restrict Account</label>
-<select name="" id="">
-  <option value="">False</option>
-  <option value="">True</option>
-</select>
-    </div>
-
-     <div class="pp_btn_box">
-      <button  class="popup-close-btn" >Close</button>
-      <button class="user-save-btn">Save</button>
-    </div>
-
-  </div>
-</div>
-
-<!------------------------ create product size PopUp ------------------------------>
-<div id="edit_product_size_popup" 
-style="display: none;"
- class="popup_c">
-  <div class="popup_order_action_form">
-  <h2>
- Size Action
-  </h2> 
-   <div class="input-box">
-      <label>Size Name</label>
-      <input  
-      value="m"
-      placeholder="M size" 
-      type="text">
-    </div>
-    <div class="input-box">
-      <label> Price</label>
-      <input  
-      value="23"
-      placeholder="20 USD" 
-      type="number">
-    </div>
- 
-   
- 
-     <div class="pp_btn_box">
-      <button class="popup-close-btn">
-        Close
-      </button>
-      <button class="popup-save-btn">
-  Save
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<!------------------------update product size PopUp ------------------------------>
-<div id="edit_product_size_popup_for_updating" 
-style="display: none;"
- class="popup_c" targetedDIV=""
- >
-  <div class="popup_order_action_form">
-  <h2>
- Size Action
-  </h2> 
-   <div class="input-box">
-      <label>Size Name</label>
-      <input  
-      value="0"
-      placeholder="M size" 
-      type="text">
-    </div>
-     <div class="input-box">
-      <label> Price</label>
-      <input  
-      value="0"
-      placeholder="30 DOLAR" 
-      type="number">
-    </div>
-  
-   
- 
-     <div class="pp_btn_box">
-     
-      <button class="popup-save-btn">
-  Save
-      </button>
-    </div>
-
-  </div>
-</div>
-
-<!------------------------ Start The Page ------------------------------>
-<Header>
-   <h1>Control Panal</h1>
-</Header>
-<main>
-
-<section id="ct-corner">
-    <div class="sidebar-div">
-  <div class="st-nav-main">
-    <h2>options</h2>
-    <a id="massage_href">Massages<button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="GrandMaster_massage">GM Massage<button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="notification_href" >Create Notification<button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="upload_post_href">Upload Post<button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="uplaod_product_href">Uplaod Product <button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="course_href" style="display: none;"> Course <button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="share_media_href" >Share To Social Media<button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="uplaod_event_href" >Upload Event<button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="order_href" >Orders<button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="user_page_href">User's <button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="gm_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="member_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="course_enrolments_href">Course EnrollMents<button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="Testimonials_href">Testimonials<button><i class="fa-solid fa-angle-right"></i></button></a>
-  <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
-
-<style>
-  button,a ,i{
-    cursor: pointer;
-  }
-</style>
-  </div>
-  
-  </div>
-  <div class="ct_main">
-    <div class="heading_sec">
-      <h2 main-h2 > Create Notification </h2>
-    </div>
-    <!-----------------------Gm massage ----------------------------->
-    <div ct_section style="display: none;" targetedElement="GrandMaster_massage" id="grandMaster_massages_container"  class="chat-box-container">
-    <h2>Massages</h2>
-    <div class="chat-box">
-    <div class="chat-massage-cobtainer">
-     
-    </div>
-    <div class="send-chat-massage-containar">
-     <textarea placeholder="Write a massage" name="" id=""></textarea>
-     <button class="send-chat-massage-containar-btn">
-       Send
-     </button>
-    </div>
-  </div>
-  
-  </div>
-    <!-----------------------St massage massage list ----------------------------->
-
-<div ct_section style="display: none;" targetedElement="massage_href" class="massage-list-box">
-<div class="massages">
-  <div class="massage">
-    10 Massages
-  </div>
- 
-</div>
-
-</div>
-    <!-----------------------St live massage ----------------------------->
-
-   <div ct_section
-   style="display: none;"
-   id="student_massages_container_for_live_massage"
-   class="live-chat-box-container"
-   >
-<div class="st-massager-info">
-  <img src="/img/samurai.jpg"  massager_image alt="">
-  <b massager_name >
-    Mubtasim Fuad 
-  </b>
-</div>
-  <div class="chat-box">
-    <div class="chat-massage-cobtainer">
-      
-      <div class="t-massage">
-        <div class="massage">
-          <b class="sender-name">
-            Varun Jettly
-          </b>
-          <p class="sender-p">
-            Sir, Wellcome to Our Website 
-          </p>
-        </div>
-        <span class="massage-time"></span>
+      <div class="input-box">
+        <label>membership company</label>
+        <input disabled value="" placeholder="membership_company" type="text">
       </div>
-      <div class="f-massage">
-       <div class="massage">
-         <b class="sender-name">You</b>
-           <p class="sender-p">
-            I am making something, and Show you how it will work...
-           </p>
-         </div>
+      <div class="input-box">
+        <label>membership type</label>
+        <input disabled value="" placeholder="membership_type" type="text">
+      </div>
+
+
+      <div class="input-box">
+        <label>First Name</label>
+        <input disabled value="" placeholder="fname" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Last Name</label>
+        <input disabled value="" placeholder="lname" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Email </label>
+        <input disabled value="" placeholder="email" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>phone</label>
+        <input disabled value="" placeholder="phone" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Date of Birth</label>
+        <input disabled value="" placeholder="Date of Birth" type="text">
+      </div>
+
+
+      <div class="input-box">
+        <label>Country</label>
+        <input disabled value="" placeholder="country" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>City</label>
+        <input disabled value="" placeholder="City" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>City</label>
+        <input disabled value="" placeholder="City" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>District</label>
+        <input disabled value="" placeholder="district" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Postcode</label>
+        <input disabled value="" placeholder="postcode" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Gender</label>
+        <input disabled value="" placeholder="gender" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Doju Name</label>
+        <input disabled value="" placeholder="doju_Name" type="text">
+      </div>
+
+
+      <div class="input-box">
+        <label>Instructor</label>
+        <input disabled value="" placeholder="instructor" type="text">
+      </div>
+
+
+      <div class="input-box">
+        <label>Current Grade</label>
+        <input disabled value="" placeholder="current_grade" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Previous Injury</label>
+        <input disabled value="" placeholder="previous_injury" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Is previous Member</label>
+        <input disabled value="" placeholder="is_previous_member" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>membership expiring Date</label>
+        <input disabled value="" placeholder="membership_expiring_date" type="text">
+      </div>
+      <div class="input-box">
+        <label>Experience Level</label>
+        <input disabled value="" placeholder="experience_level" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>has violance charge</label>
+        <input disabled value="" placeholder="has_violance_charge" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Violance Charge </label>
+        <input disabled value="" placeholder="violance_charge" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>has permanent injury</label>
+        <input disabled value="" placeholder="has_permanent_injury" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Permanent Disabillity</label>
+        <input disabled value="" placeholder="permanent_disabillity" type="text">
+      </div>
+
+
+
+
+      <div class="pp_btn_box">
+        <button class="popup-close-btn">
+          Close
+        </button>
 
       </div>
+
     </div>
-    <div class="send-chat-massage-containar">
-     <textarea placeholder="Write a massage" sendMassageTextArrea name="" id=""></textarea>
-     <button style="transition: all .6s ease;" class="send-chat-massage-containar-btn">
-       Send
-     </button>
-    </div>
-  </div>
-  
   </div>
 
- 
-    <!-----------------------Upload Notification ----------------------------->
- 
-<div id="upload-Notification-conatiner"
-targetedElement="notification_href"
-style="display: none;" ct_section class="form-section">
-  
-   
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Title</label>
-     <input type="Text" name="Title" id="s-sec-name-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp">Description</label>
-     <input type="Text" name="Description" id="s-sec-bio-inp">
-   </div>
-    <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp">Type</label>
-     <select >
-      <option value="mail">Mail Notification</option>
-      <option value="basic">Basic Notification</option> 
-     </select>
-   </div>
-   <div class="s-sec-btn-box">
-     <button notification_btn > Send</button>
-   </div>
- </div>
-    <!-----------------------Upload Product ----------------------------->
-    <div id="upload-Product-conatiner"targetedElement="uplaod_product_href" style="display: none;" ct_section class="form-section">
-      <div class="upload_sec_event_tumb_img_inp_box">
-        <h4>
-          Thumnail
-        </h4>
-        <label for="upload_sec_event_tumb_img_inp_for_uploading_the_products">
-          <b>Click To Upload <br>
-          Thumbnail
-          </b>
+  <!------------------------ order PopUp ------------------------------>
+  <div id="popup_order_action" style="display: none;" class="popup_c">
+    <div class="popup_order_action_form">
+      <h2>
+        See Order
+      </h2>
+      <div class="input-box">
+        <label>Reciever Name</label>
+        <input disabled value="Reciever Name" placeholder="Reciever Name" type="text">
+      </div>
+      <div class="input-box">
+        <label>R. Number</label>
+        <input disabled value="R. Number" placeholder="R. Number" type="text">
+      </div>
+      <div class="input-box">
+        <label>B. Email</label>
+        <input disabled value="Buyer Email" placeholder="Buyer Email" type="text">
+      </div>
+      <div class="input-box">
+        <label>Country</label>
+        <input disabled value="India" placeholder="country" type="text">
+      </div>
+      <div class="input-box">
+        <label>District</label>
+        <input disabled value="Delhi" placeholder="district" type="text">
+      </div>
+      <div class="input-box">
+        <label>City</label>
+        <input disabled value="London" placeholder="city" type="text">
+      </div>
+      <div class="input-box">
+        <label>
+          Street/Village/road No
         </label>
-        <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp_for_uploading_the_products">
-  </div>
-  <div 
-  id="product_upload_container_product_images_contaioner"
-   class="upload_sec_env_img_inp_box">
-    
-    <label for="upload_sec_product_image_inp_for_uploading_the_products">
-      Upload Images
-    </label>
-    <input 
-    style="display: none" 
-    type="file" 
-    id="upload_sec_product_image_inp_for_uploading_the_products">
-    
-  </div> 
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Product Name</label>
-     <input type="Text"  placeholder="Write name of the equipment"    inp_for_product_name id="s-sec-name-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp">Product Description</label>
-     <textarea placeholder="Write the description of the equipment"  inp_for_product_des></textarea>
-   </div>
-  
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp"> Cetegory</label>
-     <Select inp_for_product_cetegory_select>
-      <option value="weapons">weapons</option>
-      <option value="Cloth">Cloth</option>
-     </Select>
-   </div>
-    <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Price Style</label>
-     <Select price_style_select>
-      <option value="per_price">Per Product</option>
-      <option value="per_size">Price by Size</option>
-     </Select>
-   </div>
-    
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp"> size</label>
-     <input type="Text" name="" placeholder="write size like 400grams" size_pp id="s-sec-name-inp">
-   </div>
-  
- <h4 style="display: none;">Size</h4>
-  <div style="display: none;" prosizeUploadContainern class="class-upload-size-and-price-container">
-     <div prosizeUploader class="upload-size-div">
-      <i class="fa-solid fa-upload"></i>
-     </div>
-  </div>
-  
-    <div class="s-sec-input-box">
-     <label >Saling Country</label>
-     <Select CountrySelect_select >
-      <option value="both">Both</option>
-      <option value="india">INDIA</option>
-      <option value="canada">CANADA</option>
-     </Select>
-   </div>
-  <div class="s-sec-input-box">
-    <label for="s-sec-name-inp"> Price </label>
-    <input type="number"    name="" price_pp placeholder="write Price like 80.00$" id="s-sec-name-inp">
-  </div>
-  
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Delivray Charge <sup> India </sup> </label>
-     <input type="number" placeholder="10.00$ delivery charge" inp_for_product_delivary_india name="" id="s-sec-name-inp">
-   </div>
-  <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Delivray Charge <sup> canada </sup> </label>
-     <input type="number" placeholder="10.00$ delivery charge"   inp_for_product_delivary_canada id="s-sec-name-inp">
-   </div>
+        <input disabled value="Moulovi Road No. 48" placeholder="street" type="text">
+      </div>
+      <div class="input-box">
+        <label>Post Code</label>
+        <input disabled value="4544" placeholder="postcode" type="text">
+      </div>
+      <div class="txt-box">
+        <label>Notes</label>
+        <textarea value="Under Contruction" placeholder="notes" disabled></textarea>
+      </div>
 
-   <div class="s-sec-btn-box">
-     <button uploadTheProductBtn > Upload</button>
-   </div>
-   </div>
-   <!-----------------------Upload Post ----------------------------->
+      <div class="input-box">
+        <label>Order Id</label>
+        <input disabled value="9384386982" placeholder="Order Id" type="text">
+      </div>
+      <div class="input-box">
+        <label>Quantity</label>
+        <input disabled value="7" placeholder="quantity" type="text">
+      </div>
 
-<div id="upload-post-conatiner" targetedElement="upload_post_href" style="display: none;" ct_section class="form-section">
-   
- <div class="upload_sec_event_tumb_img_inp_box">
-     <h4>
-       Thumnail
-     </h4>
-    <label for="upload_post_thumb">
-      <b>Click To Upload <br>
-      Thumbnail
-      </b>
-    </label>
-    <input multiple="false" style="display: none" type="file" id="upload_post_thumb">
-   
+      <div class="input-box">
+        <label>Product Value</label>
+        <input disabled value="93$" placeholder="Product Value" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Shipping</label>
+        <input disabled value="93$" placeholder="total shipping" type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Total Price</label>
+        <input disabled value="93$" placeholder="total" type="text">
+      </div>
+
+
+
+      <table>
+        <tr>
+
+          <th>No</th>
+          <th>Image</th>
+          <th>name</th>
+          <th>quantity</th>
+          <th>size</th>
+          <th>price</th>
+        </tr>
+
+      </table>
+
+      <h2>Action</h2>
+      <div class="input-box ">
+        <label for="">Mark </label>
+        <select pp_select>
+          <option value="pending">Pending</option>
+          <option value="processing">In Process </option>
+          <option value="completed">Completed</option>
+          <option value="cancelled">Cancelled</option>
+        </select>
+      </div>
+      <div class="txt-box c-reason-box">
+        <label>Cancell Reason</label>
+        <textarea
+          placeholder="If you want to cancel the order then you have to give the write the reasson .And Buyer will get a notification that order is cancel"
+          class="cancel_notes"></textarea>
+      </div>
+
+
+
+      <div class="pp_btn_box">
+        <button class="popup-close-btn">
+          Close
+        </button class="popup-close-btn">
+
+      </div>
+
+    </div>
+
+
+
+
   </div>
-  <div images__ class="upload_sec_env_img_inp_box">
-    
-    <label for="upload_p_images_input">
-      Upload Images
 
-       <input 
-    style="display: none" 
-    type="file"
-    id="upload_p_images_input">
-    </label>
-   
-    
+  <!------------------------ product PopUp ------------------------------>
+  <div id="popup_product_action" style="display: none;" class="popup_c">
+    <div class="popup_order_action_form">
+      <h2>
+        Product Action
+      </h2>
+      <div class="input-box">
+        <label>Name</label>
+        <input value="Martial Art Cloths" type="text">
+      </div>
+      <div class="input-box">
+        <label>Stock</label>
+        <input value="7" type="text">
+      </div>
+      <div class="input-box">
+        <label> Price</label>
+        <input value="93$" type="text">
+      </div>
+      <div class="txt-box">
+        <label>Description</label>
+        <textarea value="Under Contruction"></textarea>
+      </div>
+      <div class="input-box">
+        <label for="">Cetegory </label>
+        <select name="" id="">
+          <option value="">Cloth</option>
+          <option value="">weapons</option>
+        </select>
+      </div>
+      <div class="pp_btn_box">
+        <button class="popup-close-btn">
+          Close
+        </button>
+        <button class="popup-close-btn">
+          Save
+        </button>
+      </div>
+
+    </div>
   </div>
-   
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Title</label>
-     <input type="Text" placeholder="title" id="s-sec-name-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp">Description</label>
-     <textarea type="Text" placeholder="description" id="s-sec-bio-inp"></textarea>
-   </div>
 
-   <div class="s-sec-btn-box">
-     <button uplaod_btn
-     style="
+  <!------------------------ GM PopUp ------------------------------>
+  <div id="popup_GM_action" style="display: none;" class="popup_c">
+    <div class="popup_order_action_form">
+      <h2>
+        GM Action
+      </h2>
+      <div class="input-box">
+        <label>Name</label>
+        <input value="Dr. Vikram Kapoor" type="text">
+      </div>
+      <div class="txt-box">
+        <label>Bio</label>
+        <textarea></textarea>
+      </div>
+      <div class="input-box">
+        <label>ID</label>
+        <input value="vikramkapoor" type="text">
+      </div>
+      <div class="input-box">
+        <label> Password</label>
+        <input value="93$e443d" type="text">
+      </div>
+
+      <div class="input-box">
+        <label> Restrict Account</label>
+        <select name="" id="">
+          <option value="">False</option>
+          <option value="">True</option>
+        </select>
+      </div>
+
+
+
+      <div class="pp_btn_box">
+        <button class="popup-close-btn">
+          Close
+        </button>
+        <button class="popup-close-btn">
+          Save
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!------------------------ user PopUp ------------------------------>
+  <div id="popup_user_action" style="display: none;" class="popup_c">
+    <div class="popup_order_action_form">
+      <h2>
+        User Action
+      </h2>
+      <div class="input-box">
+        <label>Name</label>
+        <input disabled>
+      </div>
+      <div class="input-box">
+        <label>Email</label>
+        <input disabled>
+      </div>
+      <div class="input-box">
+        <label>Phone</label>
+        <input disabled>
+      </div>
+      <div class="input-box">
+        <label>Country</label>
+        <input disabled>
+      </div>
+      <div class="input-box">
+        <label>ID</label>
+        <input disabled>
+      </div>
+      <div class="input-box">
+        <label> Restrict Account</label>
+        <select name="" id="">
+          <option value="">False</option>
+          <option value="">True</option>
+        </select>
+      </div>
+
+      <div class="pp_btn_box">
+        <button class="popup-close-btn">Close</button>
+        <button class="user-save-btn">Save</button>
+      </div>
+
+    </div>
+  </div>
+
+  <!------------------------ create product size PopUp ------------------------------>
+  <div id="edit_product_size_popup" style="display: none;" class="popup_c">
+    <div class="popup_order_action_form">
+      <h2>
+        Size Action
+      </h2>
+      <div class="input-box">
+        <label>Size Name</label>
+        <input value="m" placeholder="M size" type="text">
+      </div>
+      <div class="input-box">
+        <label> Price</label>
+        <input value="23" placeholder="20 USD" type="number">
+      </div>
+
+
+
+      <div class="pp_btn_box">
+        <button class="popup-close-btn">
+          Close
+        </button>
+        <button class="popup-save-btn">
+          Save
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!------------------------update product size PopUp ------------------------------>
+  <div id="edit_product_size_popup_for_updating" style="display: none;" class="popup_c" targetedDIV="">
+    <div class="popup_order_action_form">
+      <h2>
+        Size Action
+      </h2>
+      <div class="input-box">
+        <label>Size Name</label>
+        <input value="0" placeholder="M size" type="text">
+      </div>
+      <div class="input-box">
+        <label> Price</label>
+        <input value="0" placeholder="30 DOLAR" type="number">
+      </div>
+
+
+
+      <div class="pp_btn_box">
+
+        <button class="popup-save-btn">
+          Save
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!------------------------ Start The Page ------------------------------>
+  <Header>
+    <h1>Control Panal</h1>
+  </Header>
+  <main>
+
+    <section id="ct-corner">
+      <div class="sidebar-div">
+        <div class="st-nav-main">
+          <h2>options</h2>
+          <a id="massage_href">Massages<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="GrandMaster_massage">GM Massage<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="notification_href">Create Notification<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="upload_post_href">Upload Post<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="uplaod_product_href">Uplaod Product <button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="course_href" style="display: none;"> Course <button><i
+                class="fa-solid fa-angle-right"></i></button></a>
+          <a id="share_media_href">Share To Social Media<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="uplaod_event_href">Upload Event<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="order_href">Orders<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="user_page_href">User's <button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="gm_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="member_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="course_enrolments_href">Course EnrollMents<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="Testimonials_href">Testimonials<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
+
+          <style>
+            button,
+            a,
+            i {
+              cursor: pointer;
+            }
+          </style>
+        </div>
+
+      </div>
+      <div class="ct_main">
+        <div class="heading_sec">
+          <h2 main-h2> Create Notification </h2>
+        </div>
+        <!-----------------------Gm massage ----------------------------->
+        <div ct_section style="display: none;" targetedElement="GrandMaster_massage" id="grandMaster_massages_container"
+          class="chat-box-container">
+          <h2>Massages</h2>
+          <div class="chat-box">
+            <div class="chat-massage-cobtainer">
+
+            </div>
+            <div class="send-chat-massage-containar">
+              <textarea placeholder="Write a massage" name="" id=""></textarea>
+              <button class="send-chat-massage-containar-btn">
+                Send
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <!-----------------------St massage massage list ----------------------------->
+
+        <div ct_section style="display: none;" targetedElement="massage_href" class="massage-list-box">
+          <div class="massages">
+            <div class="massage">
+              10 Massages
+            </div>
+
+          </div>
+
+        </div>
+        <!-----------------------St live massage ----------------------------->
+
+        <div ct_section style="display: none;" id="student_massages_container_for_live_massage"
+          class="live-chat-box-container">
+          <div class="st-massager-info">
+            <img src="/img/samurai.jpg" massager_image alt="">
+            <b massager_name>
+              Mubtasim Fuad
+            </b>
+          </div>
+          <div class="chat-box">
+            <div class="chat-massage-cobtainer">
+
+              <div class="t-massage">
+                <div class="massage">
+                  <b class="sender-name">
+                    Varun Jettly
+                  </b>
+                  <p class="sender-p">
+                    Sir, Wellcome to Our Website
+                  </p>
+                </div>
+                <span class="massage-time"></span>
+              </div>
+              <div class="f-massage">
+                <div class="massage">
+                  <b class="sender-name">You</b>
+                  <p class="sender-p">
+                    I am making something, and Show you how it will work...
+                  </p>
+                </div>
+
+              </div>
+            </div>
+            <div class="send-chat-massage-containar">
+              <textarea placeholder="Write a massage" sendMassageTextArrea name="" id=""></textarea>
+              <button style="transition: all .6s ease;" class="send-chat-massage-containar-btn">
+                Send
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+
+        <!-----------------------Upload Notification ----------------------------->
+
+        <div id="upload-Notification-conatiner" targetedElement="notification_href" style="display: none;" ct_section
+          class="form-section">
+
+
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Title</label>
+            <input type="Text" name="Title" id="s-sec-name-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-bio-inp">Description</label>
+            <input type="Text" name="Description" id="s-sec-bio-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-bio-inp">Type</label>
+            <select>
+              <option value="mail">Mail Notification</option>
+              <option value="basic">Basic Notification</option>
+            </select>
+          </div>
+          <div class="s-sec-btn-box">
+            <button notification_btn> Send</button>
+          </div>
+        </div>
+        <!-----------------------Upload Product ----------------------------->
+        <div id="upload-Product-conatiner" targetedElement="uplaod_product_href" style="display: none;" ct_section
+          class="form-section">
+          <div class="upload_sec_event_tumb_img_inp_box">
+            <h4>
+              Thumnail
+            </h4>
+            <label for="upload_sec_event_tumb_img_inp_for_uploading_the_products">
+              <b>Click To Upload <br>
+                Thumbnail
+              </b>
+            </label>
+            <input multiple="false" style="display: none" type="file"
+              id="upload_sec_event_tumb_img_inp_for_uploading_the_products">
+          </div>
+          <div id="product_upload_container_product_images_contaioner" class="upload_sec_env_img_inp_box">
+
+            <label for="upload_sec_product_image_inp_for_uploading_the_products">
+              Upload Images
+            </label>
+            <input style="display: none" type="file" id="upload_sec_product_image_inp_for_uploading_the_products">
+
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Product Name</label>
+            <input type="Text" placeholder="Write name of the equipment" inp_for_product_name id="s-sec-name-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-bio-inp">Product Description</label>
+            <textarea placeholder="Write the description of the equipment" inp_for_product_des></textarea>
+          </div>
+
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp"> Cetegory</label>
+            <Select inp_for_product_cetegory_select>
+              <option value="weapons">weapons</option>
+              <option value="Cloth">Cloth</option>
+            </Select>
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Price Style</label>
+            <Select price_style_select>
+              <option value="per_price">Per Product</option>
+              <option value="per_size">Price by Size</option>
+            </Select>
+          </div>
+
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp"> size</label>
+            <input type="Text" name="" placeholder="write size like 400grams" size_pp id="s-sec-name-inp">
+          </div>
+
+          <h4 style="display: none;">Size</h4>
+          <div style="display: none;" prosizeUploadContainern class="class-upload-size-and-price-container">
+            <div prosizeUploader class="upload-size-div">
+              <i class="fa-solid fa-upload"></i>
+            </div>
+          </div>
+
+          <div class="s-sec-input-box">
+            <label>Saling Country</label>
+            <Select CountrySelect_select>
+              <option value="both">Both</option>
+              <option value="india">INDIA</option>
+              <option value="canada">CANADA</option>
+            </Select>
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp"> Price </label>
+            <input type="number" name="" price_pp placeholder="write Price like 80.00$" id="s-sec-name-inp">
+          </div>
+
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Delivray Charge <sup> India </sup> </label>
+            <input type="number" placeholder="10.00$ delivery charge" inp_for_product_delivary_india name=""
+              id="s-sec-name-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Delivray Charge <sup> canada </sup> </label>
+            <input type="number" placeholder="10.00$ delivery charge" inp_for_product_delivary_canada
+              id="s-sec-name-inp">
+          </div>
+
+          <div class="s-sec-btn-box">
+            <button uploadTheProductBtn> Upload</button>
+          </div>
+        </div>
+        <!-----------------------Upload Post ----------------------------->
+
+        <div id="upload-post-conatiner" targetedElement="upload_post_href" style="display: none;" ct_section
+          class="form-section">
+
+          <div class="upload_sec_event_tumb_img_inp_box">
+            <h4>
+              Thumnail
+            </h4>
+            <label for="upload_post_thumb">
+              <b>Click To Upload <br>
+                Thumbnail
+              </b>
+            </label>
+            <input multiple="false" style="display: none" type="file" id="upload_post_thumb">
+
+          </div>
+          <div images__ class="upload_sec_env_img_inp_box">
+
+            <label for="upload_p_images_input">
+              Upload Images
+
+              <input style="display: none" type="file" id="upload_p_images_input">
+            </label>
+
+
+          </div>
+
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Title</label>
+            <input type="Text" placeholder="title" id="s-sec-name-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-bio-inp">Description</label>
+            <textarea type="Text" placeholder="description" id="s-sec-bio-inp"></textarea>
+          </div>
+
+          <div class="s-sec-btn-box">
+            <button uplaod_btn style="
      background-color: black;
-     color:white"
-     >Upload</button>
-   </div>
+     color:white">Upload</button>
+          </div>
 
- </div>
-   <!-----------------------order list ----------------------------->
+        </div>
+        <!-----------------------order list ----------------------------->
 
-<div ct_section targetedElement="order_href" style="display: none;"
- class="order-list-box">
+        <div ct_section targetedElement="order_href" style="display: none;" class="order-list-box">
 
-<table>
-  <tr>
-    <th>
-      No
-    </th>
-     <th>
-      Reciever
-    </th>
-    <th>
-      Date
-    </th>
-    <th>
-      Price
-    </th> 
-     <th>
-      Status
-    </th>
-    <th>
-      Action
-    </th>
+          <table>
+            <tr>
+              <th>
+                No
+              </th>
+              <th>
+                Reciever
+              </th>
+              <th>
+                Date
+              </th>
+              <th>
+                Price
+              </th>
+              <th>
+                Status
+              </th>
+              <th>
+                Action
+              </th>
 
-  </tr>
+            </tr>
 
-</table>
+          </table>
 
 
-</div>
- <!-----------------------User list ----------------------------->
+        </div>
+        <!-----------------------User list ----------------------------->
 
-<div ct_section 
-style="display: none;"
-id="list-of-user"
+        <div ct_section style="display: none;" id="list-of-user" targetedElement="user_page_href" class="user-list-box">
 
-targetedElement="user_page_href" class="user-list-box">
-
-<div class="users">
-  <div length class="user">
-    User 
-  </div>
-
- 
- 
-</div>
-
-</div>
+          <div class="users">
+            <div length class="user">
+              User
+            </div>
 
 
-   <!-----------------------Member List list ----------------------------->
 
-<div ct_section 
-style="display: none;" 
-id="list-of-member"
-targetedElement="member_href" class="member-list-box">
-<table>
-  <tr>
-    <th width="10%">No</th>
-    <th width="16%">images</th>
-    <th width="">Name</th>
-    <th width="20%">Membership</th>
-    <th width="12.5%">Date</th>
-    <th width="13.5%">Action</th>
+          </div>
 
-  </tr>
-</table>
- 
- 
-</div>
-
-  
-
-   <!----------------------- Grand Master list ----------------------------->
-
-<div ct_section style="display: none;" targetedElement="gm_href" id="list-of-gm" class="gm-list-box">
+        </div>
 
 
-<table>
+        <!-----------------------Member List list ----------------------------->
 
-  <tr>
-    <th width="16%">Image</th>
-    <th width="28%" >Name</th>
-    <th width="40%" >Organization</th>
-    <th width="16%">Action</th>
-  </tr>
-  
+        <div ct_section style="display: none;" id="list-of-member" targetedElement="member_href"
+          class="member-list-box">
+          <table>
+            <tr>
+              <th width="10%">No</th>
+              <th width="16%">images</th>
+              <th width="">Name</th>
+              <th width="20%">Membership</th>
+              <th width="12.5%">Date</th>
+              <th width="13.5%">Action</th>
 
-
-</table>
-
-
-<div class="form-section">
- 
- <strong> Add Grand Master </strong>
+            </tr>
+          </table>
 
 
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Name</label>
-     <input type="Text" placeholder="name">
-   </div>
-  
-
-   <div class="s-sec-input-box">
-     <label >email</label>
-     <input type="Text" placeholder="email" >
-   </div>
-   
-   <div class="s-sec-input-box">
-     <label >Organization</label>
-     <input type="Text" placeholder="Organiztaion" >
-   </div>
-
-   <div class="s-sec-input-box">
-     <label >Username</label>
-     <input type="text" placeholder="for login and should be unique" >
-   </div>
-   
-   <div class="s-sec-input-box">
-     <label >password</label>
-     <input type="password" placeholder="******" >
-   </div>
-   
-   <div class="s-sec-btn-box">
-     <button style="background-color: black;color:white" upload_gm_btn >Add</button>
-   </div>
-</div>
+        </div>
 
 
-</div>
+
+        <!----------------------- Grand Master list ----------------------------->
+
+        <div ct_section style="display: none;" targetedElement="gm_href" id="list-of-gm" class="gm-list-box">
 
 
-   <!----------------------- product list ----------------------------->
+          <table>
 
-<div ct_section style="display: none;" targetedElement="product_href" class="product-list-box">
-<div class="products">
-  <div class="product">
-     Products
-  </div>
- 
- 
-</div>
-
-</div>
- 
+            <tr>
+              <th width="16%">Image</th>
+              <th width="28%">Name</th>
+              <th width="40%">Organization</th>
+              <th width="16%">Action</th>
+            </tr>
 
 
-<!-------------------------- course list -------------------------->
 
-<div ct_section style="display: none;"  targetedElement="course_href"  id="couses-list-and-uplaod-container" >
- 
- 
-  <table>
-    <tr>
-      <th width="20%" >Image</th>
-      <th width="45%">name</th>
-      <th  width="15%" >Price</th>
-      <th  width="20%" >Action</th>
-    </tr>
-    {{!--
-     <tr>
-      <td><img src="/img/join.jpg" alt=""></td>
-      <td>
-        <strong>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem nesciunt 
-        </strong>
-      </td>
-      <td>
-        <span class="price">20.00$</span>
-      </td>
-      <td> <button class="action">Action</button></td>
-    </tr> 
-    --}}
-
-  </table>
-
-<div class="form-section">
-     
- <div class="upload_sec_event_tumb_img_inp_box">
-     <h4>
-       Thumnail
-     </h4>
-    <label for="course-thumb-inp">
-      <b>Click To Upload <br>
-      Thumbnail
-      </b>
-    </label>
-    <input multiple="false" style="display: none" type="file" id="course-thumb-inp">
-   
-  </div>
-  <div id="images_container" class="upload_sec_env_img_inp_box">
-    
-    <label for="_images_inp">
-      Upload Images
-    </label>
-    <input 
-    style="display: none" 
-    type="file"
-    id="_images_inp">
-    
-  </div>
-
-   
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Title</label>
-     <input type="Text" name="Title" id="s-sec-name-inp">
-   </div>
-  
-   <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp">Description</label>
-     <input type="Text" name="Description" id="s-sec-bio-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp">Price</label>
-     <input type="number" name="Price" id="s-sec-bio-inp">
-   </div>
-   
-   <div class="s-sec-input-box">
-     <label for="dateInput">Class's Dates</label>
-     <input type="Text" id="dateInput">
-   </div>
-
-  <div class="s-sec-input-box">
-     <label for="dateInput">Duration</label>
-     <input type="Text" placeholder="6 Months" id="course_duration_inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="dateInput">Senior Start Time</label>
-     <input  type="time" id="SeniorStartTime">
-   </div>
-
-   <div class="s-sec-input-box">
-     <label for="dateInput">Senior End Time</label>
-     <input  type="time" id="SeniorEndTime">
-   </div>
-
-   <div class="s-sec-input-box">
-     <label for="dateInput">Junior Start Time</label>
-     <input type="time" id="juniorStartTime">
-   </div>
-
- <div class="s-sec-input-box">
-     <label for="dateInput">Junior End Time</label>
-     <input type="time" id="juniorEndTime">
-   </div>
+          </table>
 
 
-   <div class="s-sec-btn-box">
-     <button style="background-color: black;color:white" upload_course_btn >Upload</button>
-   </div>
-</div>
+          <div class="form-section">
+
+            <strong> Add Grand Master </strong>
+
+
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">Name</label>
+              <input type="Text" placeholder="name">
+            </div>
+
+
+            <div class="s-sec-input-box">
+              <label>email</label>
+              <input type="Text" placeholder="email">
+            </div>
+
+            <div class="s-sec-input-box">
+              <label>Organization</label>
+              <input type="Text" placeholder="Organiztaion">
+            </div>
+
+            <div class="s-sec-input-box">
+              <label>Username</label>
+              <input type="text" placeholder="for login and should be unique">
+            </div>
+
+            <div class="s-sec-input-box">
+              <label>password</label>
+              <input type="password" placeholder="******">
+            </div>
+
+            <div class="s-sec-btn-box">
+              <button style="background-color: black;color:white" upload_gm_btn>Add</button>
+            </div>
+          </div>
+
+
+        </div>
+
+
+        <!----------------------- product list ----------------------------->
+
+        <div ct_section style="display: none;" targetedElement="product_href" class="product-list-box">
+          <div class="products">
+            <div class="product">
+              Products
+            </div>
+
+
+          </div>
+
+        </div>
+
+
+
+        <!-------------------------- course list -------------------------->
+
+        <div ct_section style="display: none;" targetedElement="course_href" id="couses-list-and-uplaod-container">
+
+
+          <table>
+            <tr>
+              <th width="20%">Image</th>
+              <th width="45%">name</th>
+              <th width="15%">Price</th>
+              <th width="20%">Action</th>
+            </tr>
+            {{!--
+            <tr>
+              <td><img src="/img/join.jpg" alt=""></td>
+              <td>
+                <strong>
+                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Autem nesciunt
+                </strong>
+              </td>
+              <td>
+                <span class="price">20.00$</span>
+              </td>
+              <td> <button class="action">Action</button></td>
+            </tr>
+            --}}
+
+          </table>
+
+          <div class="form-section">
+
+            <div class="upload_sec_event_tumb_img_inp_box">
+              <h4>
+                Thumnail
+              </h4>
+              <label for="course-thumb-inp">
+                <b>Click To Upload <br>
+                  Thumbnail
+                </b>
+              </label>
+              <input multiple="false" style="display: none" type="file" id="course-thumb-inp">
+
+            </div>
+            <div id="images_container" class="upload_sec_env_img_inp_box">
+
+              <label for="_images_inp">
+                Upload Images
+              </label>
+              <input style="display: none" type="file" id="_images_inp">
+
+            </div>
+
+
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">Title</label>
+              <input type="Text" name="Title" id="s-sec-name-inp">
+            </div>
+
+            <div class="s-sec-input-box">
+              <label for="s-sec-bio-inp">Description</label>
+              <input type="Text" name="Description" id="s-sec-bio-inp">
+            </div>
+            <div class="s-sec-input-box">
+              <label for="s-sec-bio-inp">Price</label>
+              <input type="number" name="Price" id="s-sec-bio-inp">
+            </div>
+
+            <div class="s-sec-input-box">
+              <label for="dateInput">Class's Dates</label>
+              <input type="Text" id="dateInput">
+            </div>
+
+            <div class="s-sec-input-box">
+              <label for="dateInput">Duration</label>
+              <input type="Text" placeholder="6 Months" id="course_duration_inp">
+            </div>
+            <div class="s-sec-input-box">
+              <label for="dateInput">Senior Start Time</label>
+              <input type="time" id="SeniorStartTime">
+            </div>
+
+            <div class="s-sec-input-box">
+              <label for="dateInput">Senior End Time</label>
+              <input type="time" id="SeniorEndTime">
+            </div>
+
+            <div class="s-sec-input-box">
+              <label for="dateInput">Junior Start Time</label>
+              <input type="time" id="juniorStartTime">
+            </div>
+
+            <div class="s-sec-input-box">
+              <label for="dateInput">Junior End Time</label>
+              <input type="time" id="juniorEndTime">
+            </div>
+
+
+            <div class="s-sec-btn-box">
+              <button style="background-color: black;color:white" upload_course_btn>Upload</button>
+            </div>
+          </div>
 
 
 
 
 
 
-</div>
+        </div>
 
-<!---------------------------- course enrollments ----------------------------->
-<div ct_section style="display: none;"  targetedElement="course_enrolments_href"  id="couses-enrollment-list-container" >
- 
- 
-  <table>
-    <tr>
-      <th>No</th>
-      <th width="30%" >Course</th>
-      <th width="27%">Student</th>
-      <th  width="15%" >Date</th>
-      <th  width="20%" >Price</th>
-    </tr>
-
-  </table>
-</div>
+        <!---------------------------- course enrollments ----------------------------->
+        <div ct_section style="display: none;" targetedElement="course_enrolments_href"
+          id="couses-enrollment-list-container">
 
 
+          <table>
+            <tr>
+              <th>No</th>
+              <th width="30%">Course</th>
+              <th width="27%">Student</th>
+              <th width="15%">Date</th>
+              <th width="20%">Price</th>
+            </tr>
 
-   <!----------------------- Settings ----------------------------->
+          </table>
+        </div>
 
-<div id="settings-conatiner" targetedElement="settings_href" style="display: none;" ct_section class="form-section">
-   <strong>Dates of Course</strong>
-   
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Online Classes</label>
-     <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}" id="o-class-date">
-   </div>
-    <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Regular Classes</label>
-     <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}" id="r-class-date">
-   </div>
-    <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Woments Defence Classes</label>
-     <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_womens_defence_class}}" id="w-class-date">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp"> home video url </label>
-     <input type="Text" placeholder="like http://cloudinary/video/****" value="{{home_video_url}}" id="h-video-url-inp" >
-   </div>
-   <strong>Authenticated Media</strong>
 
-   <div class="auth_div">
-    <div class="icon_div">
-      <img src="/icon/youtube.png" alt="youtube icon">
-      <b>Youtube</b>
-      <i yt_status_icon class="fa-solid fa-close"></i>
-    </div>
-    <button auth_btn_youtube >Refresh</button>
-   </div>
-   
-   <div class="auth_div">
-    <div class="icon_div">
-      <img src="/icon/linkedin.png" alt="linkedin icon">
-      <b>Linkedin</b>
-      <i linkedin_status_icon class="fa-solid fa-check"></i>
-    </div>
-    <button auth_btn_linkedin >Refresh</button>
-   </div>
 
-   <div class="auth_div">
-    <div class="icon_div">
-      <img src="/icon/tiktok.png" alt="tiktok icon">
-      <b>Tiktok</b>
-      <i tiktok_status_icon class="fa-solid fa-check"></i>
-    </div>
-    <button auth_btn_tiktok >Refresh</button>
-   </div>
+        <!----------------------- Settings ----------------------------->
 
-   <div class="s-sec-btn-box">
-     <button save_btn
-     style="
+        <div id="settings-conatiner" targetedElement="settings_href" style="display: none;" ct_section
+          class="form-section">
+          <strong>Dates of Course</strong>
+
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Online Classes</label>
+            <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}"
+              id="o-class-date">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Regular Classes</label>
+            <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}"
+              id="r-class-date">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Woments Defence Classes</label>
+            <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_womens_defence_class}}"
+              id="w-class-date">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp"> home video url </label>
+            <input type="Text" placeholder="like http://cloudinary/video/****" value="{{home_video_url}}"
+              id="h-video-url-inp">
+          </div>
+          <strong>Authenticated Media</strong>
+
+          <div class="auth_div">
+            <div class="icon_div">
+              <img src="/icon/youtube.png" alt="youtube icon">
+              <b>Youtube</b>
+              <i yt_status_icon class="fa-solid fa-close"></i>
+            </div>
+            <button auth_btn_youtube>Refresh</button>
+          </div>
+
+          <div class="auth_div">
+            <div class="icon_div">
+              <img src="/icon/linkedin.png" alt="linkedin icon">
+              <b>Linkedin</b>
+              <i linkedin_status_icon class="fa-solid fa-check"></i>
+            </div>
+            <button auth_btn_linkedin>Refresh</button>
+          </div>
+
+          <div class="auth_div">
+            <div class="icon_div">
+              <img src="/icon/tiktok.png" alt="tiktok icon">
+              <b>Tiktok</b>
+              <i tiktok_status_icon class="fa-solid fa-check"></i>
+            </div>
+            <button auth_btn_tiktok>Refresh</button>
+          </div>
+
+          <div class="s-sec-btn-box">
+            <button save_btn style="
      transition: all .5s ease;
     background-color:black;
      color:white;
-     opacity :0.6;"
-     >Save</button>
+     opacity :0.6;">Save</button>
 
 
-   </div>
+          </div>
 
- </div>
-
-
-
-  <!-----------------------Upload Event ----------------------------->
-
-<div 
-  id="upload-event-conatiner"
-  targetedElement="uplaod_event_href" 
-  style="display: none;"
-  ct_section 
-  class="form-section"
-  >
-   
- <div class="upload_sec_event_tumb_img_inp_box">
-     <h4>
-       Thumnail
-     </h4>
-    <label for="upload_event_thumb_input">
-      <b>Click To Upload <br>
-      Thumbnail
-      </b>
-    </label>
-    <input multiple="false" style="display: none" type="file" id="upload_event_thumb_input">
-   
-  </div>
-  <div 
-  id="product_upload_container_product_images_contaioner"
-   class="upload_sec_env_img_inp_box">
-    
-    <label for="event_image_upload_input">
-      Upload Images
-    </label>
-    <input 
-    style="display: none" 
-    type="file" 
-    id="event_image_upload_input">
-    
-  </div> 
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Event Title</label>
-     <input type="Text"  placeholder="Write the Event Title"    inp_for_product_name id="s-sec-name-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp">Event Description</label>
-     <textarea placeholder="Write the description of the event" inp_for_product_des></textarea>
-   </div>
-  <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Event Date</label>
-     <input type="date"  placeholder="Event Date" inp_for_product_name id="s-sec-name-inp">
-   </div>
-   <div class="s-sec-btn-box">
-     <button uploadEventButton > Upload</button>
-   </div>
- </div>
+        </div>
 
 
-<!----------------------- share to social media ----------------------------->
+
+        <!-----------------------Upload Event ----------------------------->
+
+        <div id="upload-event-conatiner" targetedElement="uplaod_event_href" style="display: none;" ct_section
+          class="form-section">
+
+          <div class="upload_sec_event_tumb_img_inp_box">
+            <h4>
+              Thumnail
+            </h4>
+            <label for="upload_event_thumb_input">
+              <b>Click To Upload <br>
+                Thumbnail
+              </b>
+            </label>
+            <input multiple="false" style="display: none" type="file" id="upload_event_thumb_input">
+
+          </div>
+          <div id="product_upload_container_product_images_contaioner" class="upload_sec_env_img_inp_box">
+
+            <label for="event_image_upload_input">
+              Upload Images
+            </label>
+            <input style="display: none" type="file" id="event_image_upload_input">
+
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Event Title</label>
+            <input type="Text" placeholder="Write the Event Title" inp_for_product_name id="s-sec-name-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-bio-inp">Event Description</label>
+            <textarea placeholder="Write the description of the event" inp_for_product_des></textarea>
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Event Date</label>
+            <input type="date" placeholder="Event Date" inp_for_product_name id="s-sec-name-inp">
+          </div>
+          <div class="s-sec-btn-box">
+            <button uploadEventButton> Upload</button>
+          </div>
+        </div>
 
 
-<div style="display: none;" ct_section id="share-media-conatiner" targetedElement="share_media_href">
-  <div share_video_container  class="form-section">
-  <strong>Uplaod Video</strong>
-
-  <div class="video_inp_div">
-    <label for="social_media_video_uplaod_input">
-      <input type="file" accept="video/mp4" id="social_media_video_uplaod_input" style="display: none;">
-      <i class="fa-solid fa-cloud-arrow-up"></i>
-      <strong>Uplaod Video</strong>
-    </label>
-  </div>
-  
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Title</label>
-     <input type="Text" title_of_the_post placeholder="Write name of the title of the post"   id="s-sec-name-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp"> Description</label>
-     <textarea description_of_the_post placeholder="Write the description of the Description of the post" ></textarea>
-   </div>
-   <div class="tags_div">
-    <ul class="tags">
-      
-    </ul>
-    <textarea name="" tags_textarea placeholder="write the tags"></textarea>
-   </div>
-   <div class="form_icon_grid">
-     <label class="icon_label_box" for="check-input-vid-yt">
-      <img src="/icon/youtube.png" alt="">
-      <input type="checkbox" checked id="check-input-vid-yt">
-   </label>
-   <label class="icon_label_box" for="check-input-vid-fb">
-    <img src="/icon/facebook.png" alt="">
-    <input type="checkbox" checked name="" id="check-input-vid-fb">
-   </label>
-   <label class="icon_label_box" for="check-input-vid-ttk">
-    <img src="/icon/tiktok.png" alt="">
-    <input type="checkbox" checked name="" id="check-input-vid-ttk">
-   </label>
-  <label class="icon_label_box" for="check-input-vid-istr">
-    <img src="/icon/instragram.png" alt="">
-    <input type="checkbox" checked name="" id="check-input-vid-istr">
-  </label>
-   <label class="icon_label_box" for="check-input-vid-twitter">
-    <img src="/icon/twitter.png" alt="">
-    <input type="checkbox" checked name="" id="check-input-vid-twitter">
-   </label>
-   <label class="icon_label_box" for="check-input-vid-link">
-    <img src="/icon/linkedin.png" alt="">
-    <input type="checkbox" checked name="" id="check-input-vid-link">
-   </label>
-   </div>
- 
-
-   <div class="s-sec-btn-box">
-     <button uploadshareblePostBtn > Upload</button>
-   </div>
-  </div>
-  <div share_image_container  class="form-section">
-  <strong>Uplaod Image</strong>
-  
-  <div 
-  id="product_upload_container_product_images_contaioner"
-   class="upload_sec_env_img_inp_box">
-    
-    <label for="social_media_share_image_input">
-      Upload Images
-    </label>
-    <input 
-    style="display: none" 
-    type="file" 
-    id="social_media_share_image_input">
-    
-  </div> 
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">description</label>
-     <input type="text"  placeholder="Write name of the description of the post"   id="s-sec-name-inp">
-   </div>
- 
- <div class="form_icon_grid">
-     <label class="icon_label_box" for="check-input-img-yt">
-      <img src="/icon/youtube.png" alt="">
-      <input type="checkbox" checked id="check-input-img-yt">
-   </label>
-   <label class="icon_label_box" for="check-input-img-fb">
-    <img src="/icon/facebook.png" alt="">
-    <input type="checkbox" checked name="" id="check-input-img-fb">
-   </label>
-   <label class="icon_label_box" for="check-input-img-ttk">
-    <img src="/icon/tiktok.png" alt="">
-    <input type="checkbox" checked name="" id="check-input-img-ttk">
-   </label>
-  <label class="icon_label_box" for="check-input-img-istr">
-    <img src="/icon/instragram.png" alt="">
-    <input type="checkbox" checked name="" id="check-input-img-istr">
-  </label>
-   <label class="icon_label_box" for="check-input-img-twitter">
-    <img src="/icon/twitter.png" alt="">
-    <input type="checkbox" checked name="" id="check-input-img-twitter">
-   </label>
-   <label class="icon_label_box" for="check-input-img-link">
-    <img src="/icon/linkedin.png" alt="">
-    <input type="checkbox" checked name="" id="check-input-img-link">
-   </label>
-   </div>
- 
-   <div class="s-sec-btn-box" >
-     <button uploadshareblePostBtn > Upload</button>
-   </div>
-  </div>
-
-</div>
-  
-<!-------------------------- Testimonials ----------------------------->
- 
- 
-<div 
-  id="Testimonials-conatiner"
-  targetedElement="Testimonials_href" 
-  style="display: none;"
-  ct_section 
-
-  >
-
-  <table>
-    <tr>
-      <th>Image</th>
-      <th>Appreciator</th>
-      <th>Appreciator job role</th>
-      <th>edit</th>
-      <th>Delete</th>
-
-    </tr>
-    <tr>
-   
-    </tr>
-  </table>
-
-<div id="edit_testimonial_popup"
- style="display: none;" 
- class="popup_c">
- <div class="popup_order_action_form">
-
-  <h2>
-    Edit Testimonials
-  </h2>
-  {{!-- 
-  <strong>Image</strong>
-  <div class="change-image">
-    <input type="file" >
-    <label></label>
-  </div> 
-  --}}
-  <div class="input-box">
-    <label >Appreciator</label>
-    <input type="text" placeholder="Appreciator Name">
-  </div>
-  <div class="input-box">
-    <label for="">Appreciator Job Position</label>
-    <input type="text" placeholder="Appreciator Job Position">
-  </div>
-  <div class="txt-box">
-    <label for="">Appreciation</label>
-    <textarea name="" placeholder="Appreciation" id=""></textarea>
-  </div>
-
-    <div class="pp_btn_box">
-      <button  class="popup-close-btn" >Close</button>
-      {{!-- <button class="user-save-btn">Save</button> --}}
-    </div>
-    </div>
-</div>
+        <!----------------------- share to social media ----------------------------->
 
 
-   <div
-     class="form-section"
-   >
-   <div class="upload_sec_event_tumb_img_inp_box">
-     <h4>
-      Post a Testimonials
-     </h4>
-    <label for="upload_testimonial_images">
-      <b>Click To Upload <br>
-      Appreciator Image
-      </b>
-    </label>
-    <input multiple="false" style="display: none" type="file" id="upload_testimonial_images">
-   
-  </div>
+        <div style="display: none;" ct_section id="share-media-conatiner" targetedElement="share_media_href">
+          <div share_video_container class="form-section">
+            <strong>Uplaod Video</strong>
 
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Appreciator</label>
-     <input type="Text" placeholder="Write the name of Appreciator" name_of_Appreciator id="s-sec-name-inp">
-   </div>
-    <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Positon</label>
-     <input type="Text" placeholder="Write the job Positon of Appreciator" Positon_of_Appreciator id="s-sec-name-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp">Appreciation</label>
-     <textarea placeholder="Write the Appreciation" Appreciation></textarea>
-   </div>
- 
-   <div class="s-sec-btn-box">
-     <button uploadTestimonialsButton > Upload</button>
-   </div>
-   </div>
+            <div class="video_inp_div">
+              <label for="social_media_video_uplaod_input">
+                <input type="file" accept="video/mp4" id="social_media_video_uplaod_input" style="display: none;">
+                <i class="fa-solid fa-cloud-arrow-up"></i>
+                <strong>Uplaod Video</strong>
+              </label>
+            </div>
 
- </div>
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">Title</label>
+              <input type="Text" title_of_the_post placeholder="Write name of the title of the post"
+                id="s-sec-name-inp">
+            </div>
+            <div class="s-sec-input-box">
+              <label for="s-sec-bio-inp"> Description</label>
+              <textarea description_of_the_post
+                placeholder="Write the description of the Description of the post"></textarea>
+            </div>
+            <div class="tags_div">
+              <ul class="tags">
+
+              </ul>
+              <textarea name="" tags_textarea placeholder="write the tags"></textarea>
+            </div>
+            <div class="form_icon_grid">
+              <label class="icon_label_box" for="check-input-vid-yt">
+                <img src="/icon/youtube.png" alt="">
+                <input type="checkbox" checked id="check-input-vid-yt">
+              </label>
+              <label class="icon_label_box" for="check-input-vid-fb">
+                <img src="/icon/facebook.png" alt="">
+                <input type="checkbox" checked name="" id="check-input-vid-fb">
+              </label>
+              <label class="icon_label_box" for="check-input-vid-ttk">
+                <img src="/icon/tiktok.png" alt="">
+                <input type="checkbox" checked name="" id="check-input-vid-ttk">
+              </label>
+              <label class="icon_label_box" for="check-input-vid-istr">
+                <img src="/icon/instragram.png" alt="">
+                <input type="checkbox" checked name="" id="check-input-vid-istr">
+              </label>
+              <label class="icon_label_box" for="check-input-vid-twitter">
+                <img src="/icon/twitter.png" alt="">
+                <input type="checkbox" checked name="" id="check-input-vid-twitter">
+              </label>
+              <label class="icon_label_box" for="check-input-vid-link">
+                <img src="/icon/linkedin.png" alt="">
+                <input type="checkbox" checked name="" id="check-input-vid-link">
+              </label>
+            </div>
+
+
+            <div class="s-sec-btn-box">
+              <button uploadshareblePostBtn> Upload</button>
+            </div>
+          </div>
+          <div share_image_container class="form-section">
+            <strong>Uplaod Image</strong>
+
+            <div id="product_upload_container_product_images_contaioner" class="upload_sec_env_img_inp_box">
+
+              <label for="social_media_share_image_input">
+                Upload Images
+              </label>
+              <input style="display: none" type="file" id="social_media_share_image_input">
+
+            </div>
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">description</label>
+              <input type="text" placeholder="Write name of the description of the post" id="s-sec-name-inp">
+            </div>
+
+            <div class="form_icon_grid">
+              <label class="icon_label_box" for="check-input-img-yt">
+                <img src="/icon/youtube.png" alt="">
+                <input type="checkbox" checked id="check-input-img-yt">
+              </label>
+              <label class="icon_label_box" for="check-input-img-fb">
+                <img src="/icon/facebook.png" alt="">
+                <input type="checkbox" checked name="" id="check-input-img-fb">
+              </label>
+              <label class="icon_label_box" for="check-input-img-ttk">
+                <img src="/icon/tiktok.png" alt="">
+                <input type="checkbox" checked name="" id="check-input-img-ttk">
+              </label>
+              <label class="icon_label_box" for="check-input-img-istr">
+                <img src="/icon/instragram.png" alt="">
+                <input type="checkbox" checked name="" id="check-input-img-istr">
+              </label>
+              <label class="icon_label_box" for="check-input-img-twitter">
+                <img src="/icon/twitter.png" alt="">
+                <input type="checkbox" checked name="" id="check-input-img-twitter">
+              </label>
+              <label class="icon_label_box" for="check-input-img-link">
+                <img src="/icon/linkedin.png" alt="">
+                <input type="checkbox" checked name="" id="check-input-img-link">
+              </label>
+            </div>
+
+            <div class="s-sec-btn-box">
+              <button uploadshareblePostBtn> Upload</button>
+            </div>
+          </div>
+
+        </div>
+
+        <!-------------------------- Testimonials ----------------------------->
+
+
+        <div id="Testimonials-conatiner" targetedElement="Testimonials_href" style="display: none;" ct_section>
+
+          <table>
+            <tr>
+              <th>Image</th>
+              <th>Appreciator</th>
+              <th>Appreciator job role</th>
+              <th>edit</th>
+              <th>Delete</th>
+
+            </tr>
+            <tr>
+
+            </tr>
+          </table>
+
+          <div id="edit_testimonial_popup" style="display: none;" class="popup_c">
+            <div class="popup_order_action_form">
+
+              <h2>
+                Edit Testimonials
+              </h2>
+              {{!--
+              <strong>Image</strong>
+              <div class="change-image">
+                <input type="file">
+                <label></label>
+              </div>
+              --}}
+              <div class="input-box">
+                <label>Appreciator</label>
+                <input type="text" placeholder="Appreciator Name">
+              </div>
+              <div class="input-box">
+                <label for="">Appreciator Job Position</label>
+                <input type="text" placeholder="Appreciator Job Position">
+              </div>
+              <div class="txt-box">
+                <label for="">Appreciation</label>
+                <textarea name="" placeholder="Appreciation" id=""></textarea>
+              </div>
+
+              <div class="pp_btn_box">
+                <button class="popup-close-btn">Close</button>
+                {{!-- <button class="user-save-btn">Save</button> --}}
+              </div>
+            </div>
+          </div>
+
+
+          <div class="form-section">
+            <div class="upload_sec_event_tumb_img_inp_box">
+              <h4>
+                Post a Testimonials
+              </h4>
+              <label for="upload_testimonial_images">
+                <b>Click To Upload <br>
+                  Appreciator Image
+                </b>
+              </label>
+              <input multiple="false" style="display: none" type="file" id="upload_testimonial_images">
+
+            </div>
+
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">Appreciator</label>
+              <input type="Text" placeholder="Write the name of Appreciator" name_of_Appreciator id="s-sec-name-inp">
+            </div>
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">Positon</label>
+              <input type="Text" placeholder="Write the job Positon of Appreciator" Positon_of_Appreciator
+                id="s-sec-name-inp">
+            </div>
+            <div class="s-sec-input-box">
+              <label for="s-sec-bio-inp">Appreciation</label>
+              <textarea placeholder="Write the Appreciation" Appreciation></textarea>
+            </div>
+
+            <div class="s-sec-btn-box">
+              <button uploadTestimonialsButton> Upload</button>
+            </div>
+          </div>
+
+        </div>
 
 
 
 
- </div>
-</section>
+      </div>
+    </section>
 
 
-</main>    
+  </main>
 
 </body>
+
 </html>
