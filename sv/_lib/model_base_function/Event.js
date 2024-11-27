@@ -20,7 +20,6 @@ let dirname = path.dirname(__filename);
 
 export async function UploadEventApi(req, res) {
     try {
-     
       let DontSuffortMime = false;
       let options =  {
         uploadDir :

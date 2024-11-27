@@ -133,29 +133,29 @@ function formSubmit(event) {
         form.append('email', email.value);
         form.append('name',name.value);
         form.append('country',country.selectedOptions[0].value);
-        form.append('decription',decription.value);
+        form.append('description',decription.value);
         form.append('phone',phone.value);
         form.append('dob',dob.value);
-        
-        let requestUrl=window.location.origin+'/api/l-api'
+        form.append('image', img)
+        let requestUrl=window.location.origin+'/api/l-api/upload-coutntry-representative';
         fetch(requestUrl, {
             method :'POST',
             body:form
         })
-        .then(function (reeponse) {
+        .then(function (response) {
             if (response.status ===201) {
-                document.querySelector('success_status').innerHTML='Thank You , Your Application was successfully recieved';
-                document.querySelector('success_status').style.color='green';
+                document.querySelector('[success_status]').innerHTML='Thank You , Your Application was successfully recieved';
+                document.querySelector('[success_status]').style.color='green';
                 setTimeout(() => {
-                    window.location.replace('/')
+                     window.location.replace('/')
                 }, 3000);
                 return;
             }
             if (response.status !==201) {
-                document.querySelector('success_status').innerHTML='Sorry , But failed to Submit application ,Please Try again';
-                document.querySelector('success_status').style.color='red';
+                document.querySelector('[success_status]').innerHTML='Sorry , But failed to Submit application ,Please Try again';
+                document.querySelector('[success_status]').style.color='red';
                 setTimeout(() => {
-                    window.location.replace('/')
+                     window.location.reload()
                 }, 3000);
                 return;
             }

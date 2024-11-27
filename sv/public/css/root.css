@@ -48,3 +48,7 @@ main{
 body{
     background: whitesmoke;
 }
+a {
+    color: inherit;
+    text-decoration: none;
+}

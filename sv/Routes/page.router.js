@@ -104,6 +104,7 @@ pageRouter.get('/accounts/:name',async (req,res)=>{
     if (req.params.name === 'student') return StudentCornerPageRoute(req,res)
 })
 pageRouter.get('/become-a-country-representative',(req,res)=>res.render('country-representive'));
+pageRouter.get('/our-country-representatives',(req,res)=>res.render('representatives'));
 
 pageRouter.get('/course/:name',async (req,res) => {
     try {

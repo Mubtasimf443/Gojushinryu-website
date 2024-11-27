@@ -12,6 +12,7 @@ import { stripeOrderApi } from "../_lib/api/stripe.checkout.api.js";
 import { stripeCourseBuyAPiJs } from "../_lib/api/stripe.course.buy.api.js";
 import { membershipMidleWareStripe, stripeMembershipFunction } from "../_lib/api/membership.srtipe.api.js";
 import { uplaodPostAPiFucntion } from "../_lib/model_base_function/Post.js";
+import { uploadCountryRepresentativeApi } from "../_lib/model_base_function/CountryRepresentatives.js";
 
 const LargeApiRouter = Router();
 
@@ -28,7 +29,7 @@ LargeApiRouter.post('/stripe-checkout',userCheck,stripeOrderApi)
 LargeApiRouter.post('/stripe-membership-api',userCheck,membershipMidleWareStripe,stripeMembershipFunction)
 LargeApiRouter.post('/stripe-course-purchase-api',userCheck,stripeCourseBuyAPiJs)
 LargeApiRouter.post('/uplaod-post',uplaodPostAPiFucntion)
-
+LargeApiRouter.post('/upload-coutntry-representative',uploadCountryRepresentativeApi)
 
 
 

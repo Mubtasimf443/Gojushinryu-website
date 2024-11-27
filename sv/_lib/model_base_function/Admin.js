@@ -1,5 +1,9 @@
-/*بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ*/
-/* Insha Allah,  Allah loves s enough for me */
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ﷺ 
+Insha Allah,  Allah is enough for me
+*/
+
+
 import { ADMIN_EMAIL, JWT_SECRET_KEY } from "../utils/env.js";
 import { Admin } from "../models/Admin.js";
 import jwt from 'jsonwebtoken'
