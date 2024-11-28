@@ -84,7 +84,7 @@ export async function uploadCountryRepresentativeApi(req,res) {
                     dateOfBirth: dob,
                     country: country,
                     phone: phone,
-                    decription: description,
+                    description: description,
                     thumbUrl: imageUrl
                 });
 
@@ -100,5 +100,94 @@ export async function uploadCountryRepresentativeApi(req,res) {
 
     } catch (error) {
         console.error(error)
+    }
+}
+
+export async function getCountryRepresentatives(req ,res) {
+    try {
+        let data=await CountryRepresentatives.find({});
+        data= data.filter(function (element) {
+            if (element.approved_by_admin===true) {
+                return element
+            }
+        });
+
+        data=data.map(el => {
+            let {name ,id, description,email,thumbUrl,country }=el;
+            return {
+                name ,
+                description,
+                email,
+                thumbUrl,
+                country,
+                id,
+                shortDescription:el.description.length <120 ? el.description : el.description.substring(0,120)
+            }
+        }) ;
+       
+        return res.status(200).json({data})
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500)
+    }
+}
+
+
+export async function getCountryRepresentativesForAdmin(req ,res) {
+    try {
+        let data=await CountryRepresentatives.find({});
+        data=data.map(el => {
+            let {name , description,email,thumbUrl,country ,approved_by_admin,id}=el;
+            return {
+                approved_by_admin,
+                name ,
+                description,
+                email,
+                thumbUrl,
+                country,
+                id,
+                shortDescription:el.description.length <120 ? el.description : el.description.substring(0,120)
+            }
+        });
+
+        return res.status(200).json({data})
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500)
+    }
+}
+
+
+export async function allowRepresentative(req,res) {
+    try {
+        let {id} =req.body;
+        id=Number(id);
+        if (id.toString()==='NaN') return res.sendStatus(400);
+        let representative =await CountryRepresentatives.findOne({id});
+        if (!representative) return res.sendStatus(400);
+        representative.approved_by_admin=true;
+        await representative.save();
+        return res.sendStatus(200)
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500)
+    }
+}
+
+
+
+export async function disAllowRepresentative(req,res) {
+    try {
+        let {id} =req.body;
+        id=Number(id);
+        if (id.toString()==='NaN') return res.sendStatus(400);
+        let representative =await CountryRepresentatives.findOne({id});
+        if (!representative) return res.sendStatus(400);
+        representative.approved_by_admin=false;
+        await representative.save();
+        return res.sendStatus(200)
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(500)
     }
 }

@@ -30,8 +30,7 @@
   <link rel="stylesheet" href="/css/control_panal/settings.css">
   <link rel="stylesheet" href="/css/control_panal/Testimonials.css">
   <link rel="stylesheet" href="/css/control_panal/share.media.css">
-
-
+  <link rel="stylesheet" href="/css/control_panal/countryrepresentative.css">
   <script defer src="/js/control panal/gm.js"></script>
   <script defer src="/js/control panal/c.panal.js"></script>
   <script defer src="/js/control panal/Upload.product.js"></script>
@@ -50,7 +49,7 @@
   <script defer src="/js/control panal/Testimonials.js"></script>
   <script defer src="/js/control panal/uplaod.event.js"></script>
   <script defer src="/js/control panal/share.media.js"></script>
-
+  <script defer src="/js/control panal/countryrepresentative.js"></script>
 
 </head>
 
@@ -201,7 +200,8 @@
     </div>
   </div>
 
-  <!------------------------ order PopUp ------------------------------>
+  <!-------------------------- order PopUp ------------------------------>
+  
   <div id="popup_order_action" style="display: none;" class="popup_c">
     <div class="popup_order_action_form">
       <h2>
@@ -299,7 +299,9 @@
         <label>Cancell Reason</label>
         <textarea
           placeholder="If you want to cancel the order then you have to give the write the reasson .And Buyer will get a notification that order is cancel"
-          class="cancel_notes"></textarea>
+          class="cancel_notes">
+          
+          </textarea>
       </div>
 
 
@@ -528,6 +530,7 @@
           <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="course_enrolments_href">Course EnrollMents<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="Testimonials_href">Testimonials<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="Country_Representative_href">Country Representative<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
           <style>
@@ -844,8 +847,6 @@
         <!----------------------- Grand Master list ----------------------------->
 
         <div ct_section style="display: none;" targetedElement="gm_href" id="list-of-gm" class="gm-list-box">
-
-
           <table>
 
             <tr>
@@ -1269,8 +1270,6 @@
         </div>
 
         <!-------------------------- Testimonials ----------------------------->
-
-
         <div id="Testimonials-conatiner" targetedElement="Testimonials_href" style="display: none;" ct_section>
 
           <table>
@@ -1355,7 +1354,25 @@
           </div>
 
         </div>
+<!-------------------------- Country Representative ----------------------------->
+  <div id="Country_Representative_container" targetedElement="Country_Representative_href" style="display: none;" ct_section>
 
+          <table>
+            <tr>
+              <th width="5%">No</th>
+              <th width="10%">Image</th>
+              <th width="16%">Name</th>
+              <th width="10%">Country</th>
+              <th width="40%">description</th>
+              <th width="10%">Active</th>
+            </tr>
+            <tr>
+
+            </tr>
+          </table>
+
+          
+        </div>
 
 
 

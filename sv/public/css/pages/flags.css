@@ -88,7 +88,7 @@
 }
    .flag {
     width: 400px;
-   height: fit-content;
+    height: fit-content;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
     padding: 20px 14px;
     row-gap: 14px;

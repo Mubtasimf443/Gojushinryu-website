@@ -90,9 +90,10 @@ pageRouter.get('/media/:name',(req,res) => {
     if (req.params.name === 'video') return res.render('video');
     if (req.params.name==="events") return eventPageNavigation(req,res)
     if (req.params.name === "post") return postPageNavigation(req,res)
-   
     if (req.params.name==="images") return res.render('images');    
 })
+
+
 pageRouter.get('/countries',(req,res) => res.render('flags'))
 pageRouter.get('/media/:name/:id',(req,res) => {
     if (req.params.name === "post") return givePostDetailsFunction(req,res)
@@ -132,17 +133,4 @@ pageRouter.get('/course/:name',async (req,res) => {
 })
 
 
-
-
-
 export {pageRouter}
-
-
-
-
-
-
-
-
-
-

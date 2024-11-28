@@ -1,0 +1,123 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+
+*{
+   margin: 0px;
+   padding: 0px;
+    box-sizing: border-box;
+}
+.banner {
+    height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: url('/img/samurai4.jpg');
+    background-position: bottom left;
+    background-size: cover;
+    background-repeat:no-repeat;
+    border-image-slice: fill 1;
+    border-image-source: linear-gradient(to right,
+    rgba(0, 0, 0, 0.474) ,
+    rgba(0, 0, 0, 0.712),
+    rgba(0, 0, 0, 0.5));
+    color: white;
+    row-gap: 12px;
+    padding-top: 80px;
+    text-align: center;
+    box-sizing: content-box;
+}
+#banner h1{
+    font-size: 27px;
+    text-transform: uppercase;
+    word-spacing:4.5px;
+  }
+  #banner p {
+    font-size: 15px;
+    color: #fff;
+    width: 500px;
+    word-spacing: 3px;
+    text-wrap: wrap;
+  }
+  @media screen and (max-width: 510px) {
+    #banner p {
+      width: 400px;
+    }
+  }
+  #banner button {
+    background: var(--main-cl);
+    color: #000000;
+    font-style: 15px;
+    word-spacing: 3px;
+    padding: 14px 20px;
+    border:none ;
+    text-transform: uppercase;
+    font-weight: 600;
+   
+  }
+ 
+  .Representatives {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+   justify-content: center;
+   align-items: center;
+   column-gap: 35px;
+   row-gap: 40px;
+   padding: 50px 20px;
+  }
+ .Representatives .Representative {
+    width: 430px;
+    height: 430px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
+    padding: 20px 14px;
+    row-gap: 6px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: nowrap;
+    overflow: hidden;
+ }
+ .Representative .img1 {
+    width:100% ;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
+    margin-top: -12px;
+    height: 230px;
+    object-fit: cover;
+    object-position: center center;
+ }
+
+ .Representative .img2 {
+   
+    width: 60px;
+    height: 60px;
+    margin-top:-30px;
+    object-fit: cover;
+    object-position: center center;
+    border-radius: 50%;
+ }
+
+ .Representative h3 {
+    font-weight: 600;
+ }
+
+ 
+ .Representative h3 {
+    font-weight: 600;
+ }
+
+ .Representative b::before {
+   content:"For ";
+   color: var(--main-cl);
+   font-style: italic;
+   font-weight: 600;
+ }
+ .Representative b{
+   font-size: 17px;
+   font-weight: 500;
+ }

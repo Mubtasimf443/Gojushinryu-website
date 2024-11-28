@@ -33,6 +33,7 @@ import {
     getTestimonials,deleteTestimonials,
     testinmonialsForHomePage 
 } from "../_lib/model_base_function/Testimonials.js";
+import { allowRepresentative, disAllowRepresentative, getCountryRepresentatives, getCountryRepresentativesForAdmin } from "../_lib/model_base_function/CountryRepresentatives.js";
 
 
 
@@ -59,7 +60,8 @@ apiRouter.get('/get-user-courses',userCheck,getUserEnrolledCourseApi)
 apiRouter.get('/testimonials', getTestimonials)
 apiRouter.get('/testimonials/home', testinmonialsForHomePage)
 apiRouter.get('/events/home', eventsHome)
-
+apiRouter.get('/country-representative',getCountryRepresentatives)
+apiRouter.get('/country-representative-for-admin',getCountryRepresentativesForAdmin)
 
 //Post Route
 apiRouter.post('/contact' , Contact_us_api_Function)
@@ -83,6 +85,8 @@ apiRouter.put('/remove-from-bann-user', RemoveFromBanedUserFunction);
 apiRouter.put('/update-order-status', updateOrderStatus);
 apiRouter.put('/remove-notification-form-database',userCheck,removeNotificationFromDatabase)
 apiRouter.put('/change-settings', changeSettingsAPI)
+apiRouter.put('/allow-representative',allowRepresentative);
+apiRouter.put('/disAllow-representative',disAllowRepresentative);
 
 
 //Delete
