@@ -12,6 +12,7 @@ import { UploadImageToCloudinary } from "../Config/cloudinary.js";
 import Awaiter, { waidTillFileLoad } from "awaiter.js";
 import mergesort from "../utils/algorithms.js";
 import CountryRepresentatives from "../models/countryRepresentative.js";
+import { representativeJoiningAllertEmailForAdmin, representativeJoiningMail } from "../mail/country-representatives.mail.js";
 
 //var
 const __filename = fileURLToPath(import.meta.url);
@@ -124,12 +125,18 @@ export async function getCountryRepresentatives(req ,res) {
                 shortDescription:el.description.length <120 ? el.description : el.description.substring(0,120)
             }
         }) ;
-       
-        return res.status(200).json({data})
+        res.status(200).json({data})
+        await representativeJoiningAllertEmailForAdmin().catch(error => log(error))
+        await representativeJoiningMail({
+            to :email,
+            name :name,
+            country :country
+        }).catch(error => console.error(error))
+        return ;
     } catch (error) {
         console.error(error);
         return res.sendStatus(500)
-    }
+    } 
 }
 
 
