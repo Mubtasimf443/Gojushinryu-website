@@ -9,11 +9,13 @@ let name = document.getElementById("fname"),
     phone = document.getElementById("phone"),
     image = document.getElementById("image"),
     country = document.getElementById("country"),
-    decription= document.getElementById("decription");
+    decription= document.getElementById("decription")
+    button=document.getElementById('apply-btn'),
+    notRequesting=true
+    ;
 
 function isEmty(dom) {
     let value;
-
     if (dom.tagName==='SELECT'){
         value=dom.selectedOptions[0].value
         if (!value) {
@@ -24,9 +26,7 @@ function isEmty(dom) {
         }
         return value;
     }
-
     value=dom.value;
-
     if (!value) {
         throw {
             massage:'Value is emty',
@@ -36,7 +36,6 @@ function isEmty(dom) {
 
     return value
 }
-
 function isEmail(dom) {
     let value=dom.value;
     if (value.includes('@')===false ||value.includes('.')===false ) {
@@ -47,7 +46,6 @@ function isEmail(dom) {
     }
     return value
 }
-
 function isNumber(dom) {
     if (Number(dom.value).toString() ==='NaN') {
         throw {
@@ -57,12 +55,10 @@ function isNumber(dom) {
     } 
     return dom.value
 }
-
 function checkNumber(value) {
     if (Number(value).toString()==='NaN') return false
     if (Number(value).toString()!=='NaN') return true
 }
-
 function isDate(dom) {
     let value =dom.value;
     if (!value.includes('-')) {
@@ -109,7 +105,7 @@ document.querySelector('select').selectedOptions[0].value
 function formSubmit(event) {
     event.preventDefault()
     try{
-        
+        if (!notRequesting) return
         let img=image.files[0];
         if (
             img.type !==`image/jpg` &&
@@ -138,6 +134,8 @@ function formSubmit(event) {
         form.append('dob',dob.value);
         form.append('image', img)
         let requestUrl=window.location.origin+'/api/l-api/upload-coutntry-representative';
+        notRequesting=false;
+        button.style.opacity=.65;
         fetch(requestUrl, {
             method :'POST',
             body:form
@@ -159,6 +157,10 @@ function formSubmit(event) {
                 }, 3000);
                 return;
             }
+        })
+        .finally(function() {
+            notRequesting=true;
+            button.style.opacity=1;
         })
 
     } catch (error) {

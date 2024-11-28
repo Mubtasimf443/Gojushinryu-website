@@ -71,7 +71,8 @@ InshaAllah, By his marcy I will Gain Success
   }
  .Representatives .Representative {
     width: 430px;
-    height: 430px;
+    min-height: 430px;
+    max-height: max-content;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
     padding: 20px 14px;
     row-gap: 6px;
@@ -81,7 +82,6 @@ InshaAllah, By his marcy I will Gain Success
     justify-content: flex-start;
     align-items: center;
     flex-wrap: nowrap;
-    overflow: hidden;
  }
  .Representative .img1 {
     width:100% ;
@@ -111,8 +111,8 @@ InshaAllah, By his marcy I will Gain Success
     font-weight: 600;
  }
 
- .Representative b::before {
-   content:"For ";
+ .Representative b:not(.skeleliton_name):before {
+   content:"From ";
    color: var(--main-cl);
    font-style: italic;
    font-weight: 600;
@@ -121,3 +121,75 @@ InshaAllah, By his marcy I will Gain Success
    font-size: 17px;
    font-weight: 500;
  }
+
+ 
+ .Representative  .skeleliton_image1{
+  width:100% ;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
+  margin-top: -12px;
+  height: 230px;
+  object-fit: cover;
+  object-position: center center;
+  background-color: var(--sceliton-color);
+  color: var(--sceliton-color);
+  animation-name:skeleliton_animation ;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+  animation-duration: 1400ms;
+  
+
+}
+.skeleliton_image2{
+  width: 60px;
+  height: 60px;
+  margin-top:-30px;
+  object-fit: cover;
+  object-position: center center;
+  border-radius: 50%;
+  background-color: var(--sceliton-color);
+  color: var(--sceliton-color);
+  animation-name:skeleliton_animation ;
+  animation-timing-function: ease-in;
+  animation-iteration-count: infinite;
+  animation-duration: 1400ms;
+  height: 60px;
+  width: 60px;
+
+}
+
+.skeleliton_txt{
+  height: 200px;
+  background: var(--sceliton-color);
+  animation-name:skeleliton_animation ;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 1400ms;
+  width: 100%;
+  color: var(--sceliton-color);
+}
+
+.skeleliton_name{
+
+  background: var(--sceliton-color);
+  animation-name:skeleliton_animation ;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 1400ms;
+  color: var(--sceliton-color);
+}
+
+.skeleliton_hr {
+  background: var(--sceliton-color);
+  animation-name:skeleliton_animation ;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-duration: 1400ms;
+}
+@keyframes skeleliton_animation {
+  0%{
+      opacity: .7;
+  }
+  100%{
+      opacity: 1;
+  }
+} 
