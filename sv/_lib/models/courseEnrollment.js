@@ -3,7 +3,7 @@
 By his marcy,  I will gain success
 */
 
-import mongoose,{Schema,model} from 'mongoose'
+import mongoose,{Schema,model} from 'mongoose' 
 
 let courseEnrollmentSchema =new Schema({
     id:{
@@ -11,6 +11,8 @@ let courseEnrollmentSchema =new Schema({
         require :true,  
         default :Date.now
     },
+    course_name :String,
+    course_price :Number,
     course_id :{
         type :Number,//mongoose.SchemaTypes.ObjectId,
         //ref :"Course",
@@ -26,7 +28,6 @@ let courseEnrollmentSchema =new Schema({
     student_district :String ,
     student_postcode :Number ,
     Date :Date,
-    course_price :Number,
     paid :{
         type :Boolean,
         require :true,  

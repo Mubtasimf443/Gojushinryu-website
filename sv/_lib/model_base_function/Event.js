@@ -19,105 +19,124 @@ const __filename = fileURLToPath(import.meta.url);
 let dirname = path.dirname(__filename);
 
 export async function UploadEventApi(req, res) {
-    try {
-      let DontSuffortMime = false;
-      let options =  {
-        uploadDir :
-            path.resolve(dirname , '../../temp/images') ,
-        maxFiles : 11,
-        allowEmptyFiles:false,
-        maxFileSize:4*1024*1024,
-        filter :(file) => {
+  try {
+    let DontSuffortMime = false;
+    let options = {
+      uploadDir:
+        path.resolve(dirname, '../../temp/images'),
+      maxFiles: 11,
+      allowEmptyFiles: false,
+      maxFileSize: 4 * 1024 * 1024,
+      filter: (file) => {
         if (
-        file.mimetype === 'image/png' 
-        || file.mimetype === 'image/jpg' 
-        || file.mimetype === 'image/jpeg'   
-        || file.mimetype === 'image/webp' )  return true
-        DontSuffortMime =true
-        return false 
-        },
-        filename : () => Date.now() +'_' + Math.floor(Math.random()*10000) + '.jpg'
-      }
-      await formidable(options).parse(req, async (error,feilds , files) => {
-        try {
-          if (DontSuffortMime ===true) throw 'error , Donot soffourt this type of files '
-          if (error) { 
-            log({error});
-            return res.status(500).json({error :'Unknown error'});
-          }
-          // log(files)
-          // log(feilds);
+          file.mimetype === 'image/png'
+          || file.mimetype === 'image/jpg'
+          || file.mimetype === 'image/jpeg'
+          || file.mimetype === 'image/webp') return true
+        DontSuffortMime = true
+        return false
+      },
+      filename: () => Date.now() + '_' + Math.floor(Math.random() * 10000) + '.jpg'
+    }
+    await formidable(options).parse(req, async (error, feilds, files) => {
+      try {
+        if (DontSuffortMime === true) throw 'error , Donot soffourt this type of files '
+        if (error) {
+          log({ error });
+          return res.status(500).json({ error: 'Unknown error' });
+        }
+        // log(files)
+        // log(feilds);
 
 
-          //condition check 
-          if (!files.thumb) throw 'thumb is not define ';
-          if (!files.images) throw 'thumb is not define ';
-          if (!files.images.length===0) throw 'thumb is not define '
-          if (!feilds.title) throw 'title is is not define '
-          if (!feilds.description) throw 'description is is not define '
-          if (!feilds.author) throw 'author is is not define '
-          if (!feilds.gm_id) throw 'author is is not define '
-          if (!feilds.eventDate) throw 'event date is is not define '
-          let title =await repleCaracter(feilds.title[0]);
-          let description =await repleCaracter(feilds.description[0]);
-          let author =await repleCaracter(feilds.author[0]);
-          let gm_id =await repleCaracter(feilds.gm_id[0])
-          let eventDate =feilds.eventDate[0];
-          eventDate =Number(eventDate);
-          if (eventDate.toString() ==='NaN') return Alert('event date is not correct',res)
+        //condition check 
+        if (!files.thumb) throw 'thumb is not define ';
+        if (!files.images) throw 'thumb is not define ';
+        if (!files.images.length === 0) throw 'thumb is not define '
+        if (!feilds.title) throw 'title is is not define '
+        if (!feilds.description) throw 'description is is not define '
+        if (!feilds.author) throw 'author is is not define '
+        if (!feilds.gm_id) throw 'author is is not define '
+        if (!feilds.eventDate) throw 'event date is is not define '
+        if (!feilds.organizerCountry) throw 'organizerCountry is is not define '
+        if (!feilds.participatingCountry) throw 'participatingCountry is is not define '
+        if (!feilds.participatingAtletes) throw 'participatingAtletes is is not define '
 
-          log(`//condition check pass`)
-          let gm =await GM.findOne({_id :gm_id})
-          if (!gm) throw 'Their is no gm ';
 
-          
-          // await waidTillFileLoad({
-          //   filePath: files.images[files.images.length-1].filepath
-          // });
-          await Awaiter(3000)
+        let title = await repleCaracter(feilds.title[0]);
+        let description = await repleCaracter(feilds.description[0]);
+        let author = await repleCaracter(feilds.author[0]);
+        let gm_id = await repleCaracter(feilds.gm_id[0])
+        let eventDate = feilds.eventDate[0];
+        let organizerCountry = await repleCaracter(feilds.organizerCountry[0]);
+        let participatingCountry = feilds.participatingCountry[0];
+        let participatingAtletes = feilds.participatingAtletes[0];
 
-          
-          let thumb =await UploadImageToCloudinary(path.resolve(files.thumb[0].filepath)).then(({image,error})=> {
-            if (image) return image.url
-            if (error) throw 'cloudianry error'
-          })
-          let images=[];
-         
-          
-          for (let i = 0; i < files.images.length; i++) {
-            const image = await UploadImageToCloudinary(path.resolve(dirname,'../../temp/images/'+files.images[0].newFilename))
-            .then(({image,error}) => {
+
+        eventDate = Number(eventDate);
+        participatingCountry=Number(participatingCountry);
+        participatingAtletes=Number(participatingAtletes);
+
+
+        if (eventDate.toString() === 'NaN') return Alert('event date is not correct', res)
+        if (participatingCountry.toString() === 'NaN') return Alert('participatingCountry is not correct', res)
+        if (participatingAtletes.toString() === 'NaN') return Alert('participatingAtletes is not correct', res)
+        
+        log(`//condition check pass`)
+        let gm = await GM.findOne({ _id: gm_id })
+        if (!gm) throw 'Their is no gm ';
+
+
+        // await waidTillFileLoad({
+        //   filePath: files.images[files.images.length-1].filepath
+        // });
+        await Awaiter(3000)
+
+
+        let thumb = await UploadImageToCloudinary(path.resolve(files.thumb[0].filepath)).then(({ image, error }) => {
+          if (image) return image.url
+          if (error) throw 'cloudianry error'
+        })
+        let images = [];
+
+
+        for (let i = 0; i < files.images.length; i++) {
+          const image = await UploadImageToCloudinary(path.resolve(dirname, '../../temp/images/' + files.images[0].newFilename))
+            .then(({ image, error }) => {
               if (image) return image.url
               if (error) throw 'cloudianry error'
             });
-            images.push({image})
-          }
-
-          log('//image uplaoded')
-
-          let event=await Events.create({
-            title, 
-            description ,
-            author, 
-            thumb,
-            images ,
-            gm_writer :gm._id,
-            eventDate,
-          })
-
-          return res.sendStatus(201);
-        } catch (error) {
-          log({error})
-          res.sendStatus(400)
+          images.push({ image })
         }
-      })
-  } catch (e ) {
-    log({error :'server error '+ e})
+
+        log('//image uplaoded')
+
+        let event = await Events.create({
+          title,
+          description,
+          author,
+          thumb,
+          images,
+          gm_writer: gm._id,
+          eventDate,
+          organizerCountry,
+          participatingAtletes,
+          participatingCountry
+        })
+
+        return res.sendStatus(201);
+      } catch (error) {
+        log({ error })
+        res.sendStatus(400)
+      }
+    })
+  } catch (e) {
+    log({ error: 'server error ' + e })
     res.sendStatus(400)
   }
 
 }
-  
+
 
 
 
@@ -200,37 +219,35 @@ export async function eventPageNavigation(req,res) {
   }
 }
 
-export async function adminEventUplaodAPI(req,res) {
+export async function adminEventUplaodAPI(req, res) {
   try {
     let DontSuffortMime = false;
     checkOrCreateTempDir()
-    let options =  {
-      uploadDir :path.resolve(dirname , '../../temp/images') ,
-      maxFiles : 11,
-      allowEmptyFiles:false,
-      maxFileSize:4*1024*1024,
-      filter :(file) => {
-      if (
-      file.mimetype === 'image/png' 
-      || file.mimetype === 'image/jpg' 
-      || file.mimetype === 'image/jpeg'   
-      || file.mimetype === 'image/webp' )  return true
-      DontSuffortMime =true
-      return false 
+    let options = {
+      uploadDir: path.resolve(dirname, '../../temp/images'),
+      maxFiles: 11,
+      allowEmptyFiles: false,
+      maxFileSize: 4 * 1024 * 1024,
+      filter: (file) => {
+        if (
+          file.mimetype === 'image/png'
+          || file.mimetype === 'image/jpg'
+          || file.mimetype === 'image/jpeg'
+          || file.mimetype === 'image/webp') return true
+        DontSuffortMime = true
+        return false
       },
-      filename : () => Date.now() +'_' + Math.floor(Math.random()*10000) + '.jpg'
+      filename: () => Date.now() + '_' + Math.floor(Math.random() * 10000) + '.jpg'
     }
-    await formidable(options).parse(req, async (error,feilds , files) => {
-
-
+    await formidable(options).parse(req, async (error, feilds, files) => {
       try {
-        
-        if (DontSuffortMime ===true) throw 'error , Donot soffourt this type of files '
-        if (error) { 
-          log({error});
-          return res.status(500).json({error :'Unknown error'});
+
+        if (DontSuffortMime === true) throw 'error , Donot soffourt this type of files '
+        if (error) {
+          log({ error });
+          return res.status(500).json({ error: 'Unknown error' });
         }
-     
+
 
         //condition check 
         if (!files.thumb) throw 'thumb is not define ';
@@ -239,51 +256,62 @@ export async function adminEventUplaodAPI(req,res) {
         if (!feilds.title) throw 'title is is not define '
         if (!feilds.description) throw 'description is is not define '
         if (!feilds.eventDate) throw 'event date is is not define '
-        let title =await repleCaracter(feilds.title[0]);
-        let description =await repleCaracter(feilds.description[0]);
-        let eventDate =feilds.eventDate[0];
-        eventDate =Number(eventDate);
+        if (!feilds.organizerCountry) throw 'organizerCountry is is not define '
+        if (!feilds.participatingCountry) throw 'participatingCountry is is not define '
+        if (!feilds.participatingAtletes) throw 'participatingAtletes is is not define '
+        let title = await repleCaracter(feilds.title[0]);
+        let description = await repleCaracter(feilds.description[0]);
+        let eventDate = feilds.eventDate[0];
+        let organizerCountry = await repleCaracter(feilds.organizerCountry[0]);
+        let participatingCountry = feilds.participatingCountry[0];
+        let participatingAtletes = feilds.participatingAtletes[0];
+        eventDate = Number(eventDate);
+        participatingCountry=Number(participatingCountry);
+        participatingAtletes=Number(participatingAtletes);
 
+        if (eventDate.toString() === 'NaN') return Alert('event date is not correct', res)
+        if (participatingCountry.toString() === 'NaN') return Alert('participatingCountry is not correct', res)
+        if (participatingAtletes.toString() === 'NaN') return Alert('participatingAtletes is not correct', res)
+        
 
-
-        if (eventDate.toString() ==='NaN') return Alert('event date is not correct',res)
-       
-       
-        let thumb =await UploadImageToCloudinary(files.thumb[0].filepath).then(({image,error})=> {
+        let thumb = await UploadImageToCloudinary(files.thumb[0].filepath).then(({ image, error }) => {
           if (image) return image.url
           if (error) throw 'cloudianry error'
         })
 
-        let images=[];
-        
+        let images = [];
+
         for (let i = 0; i < files.images.length; i++) {
           const image = await UploadImageToCloudinary(files.images[i].filepath)
-          .then(({image,error})=> {
-            if (image) return image.url
-            if (error) throw 'cloudianry error'
-          });
-          images.push({image})
+            .then(({ image, error }) => {
+              if (image) return image.url
+              if (error) throw 'cloudianry error'
+            });
+          images.push({ image })
         }
         log('//image uplaoded')
 
         let event = await Events.create({
-          title, 
-          description ,
-          author :"SENSEI VARUN JETTLY", 
+          title,
+          description,
+          author: "SENSEI VARUN JETTLY",
           thumb,
-          images ,
+          images,
           eventDate,
-          admin_writen :true
+          admin_writen: true,
+          participatingAtletes,
+          participatingCountry,
+          organizerCountry
         })
 
         return res.sendStatus(201);
       } catch (error) {
-        log({error})
+        log({ error })
         res.sendStatus(400)
       }
     })
-  } catch (e ) {
-    log({error :'server error '+ e})
+  } catch (e) {
+    log({ error: 'server error ' + e })
     res.sendStatus(400)
   }
 }

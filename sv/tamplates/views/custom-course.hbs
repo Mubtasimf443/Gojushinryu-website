@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom GojuShinRyu Course </title>
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="notranslate">
+    {{>Links}}
+    <meta name="googlebot-news" content="nosnippet">
+    <link rel="stylesheet" href="/css/pages/customCourse.css">
+    <script src="/js/pages/custom.course.js" defer></script>
+    <script>
+        const customCourseId = {{ customCourseId }};
+    </script>
+</head>
+<body>
+    {{>whiteHeader}}
+    
+        
+    <div style="display: none;" class="pop-c">
+        <div class="pop">
+            <strong>Fill the Form </strong>
+            <input type="text" id="dob" onblur="(this.type ='text')" onfocus="(this.type='date')" placeholder="Date of Birth">
+            <input type="text" value="" id="country"  placeholder="country" >
+            <input type="text" value="" id="city"  placeholder="city" >
+            <input type="text" value="" id="district" placeholder="district" >
+            <input type="number" value="" id="postcode" placeholder="postcode" >
+            <button class="purchase-btn">Purchase For {{price}}$</button>
+            <div class="pop-close">
+                &times;
+            </div>
+        </div>
+        
+    </div>
+    
+    <main>
+        <section class="course-container">
+
+            <div class="card">
+                <div class="card1">
+                    <div class="only-for">Only For &nbsp;<span class="price">{{price}}.00$</span> </div>
+                    <h2>
+                        {{name}}
+                    </h2>
+                    <p>
+                        {{description}}
+                    </p>
+                    <div class="stars">
+                        <div class="star">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="star">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="star">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="star">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                        <div class="star">
+                            <i class="fa-solid fa-star"></i>
+                        </div>
+                    </div>
+                    <button
+                    onclick=""
+                    class="enroll-now">
+                        Enroll Now 
+                    </button>
+                    
+                    <div style="display: none;" class="btns">
+                        <span>Choose Payment Method</span>
+                        <button class="paypal">Paypal</button>
+                        <button class="visa">Visa</button>
+                    </div>
+                </div>
+                <div class="card2">
+                    <img src="{{img}}" alt="course image">
+                </div>
+            </div>
+
+
+
+        </section>
+<script>
+    document.querySelector('.enroll-now').onclick= function demo(event) {event.preventDefault();document.querySelector(`.btns`).style.display=document.querySelector(`.btns`).style.display ==='none'? 'initial' :'none'}
+</script>
+
+
+    </main>
+    {{>Footer}}
+</body>
+</html>

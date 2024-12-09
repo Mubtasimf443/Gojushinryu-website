@@ -217,7 +217,7 @@ function calculateTotal(params) {
   for (let i = 0; i < userInfo.membeship_array.length; i++) {
     let {membership,company}=userInfo.membeship_array[i] ;
     memberships=memberships+`${i===0?'':' + '}${membership} (${company})`;
-    cost+=membership.toLowerCase()==='annual'?75:150;
+    cost+=membership.toLowerCase()==='annual'?75:250;
   }
   setValue(`[payment_membership_total]`,cost +'.00$');
   setValue(`[payment_membership_cost]`,cost +'.00$');

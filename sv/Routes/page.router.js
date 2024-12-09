@@ -7,8 +7,8 @@ import { addMinPageRoute } from "../_lib/model_base_function/Admin.js";
 import { GMCornerPageRoute } from "../_lib/model_base_function/gm.js";
 import { StudentCornerPageRoute } from "../_lib/model_base_function/user.js";
 import { fileRateLimter } from "../_lib/Config/express-slow-down.js";
-import {FindCourseApi} from '../_lib/model_base_function/Course.js'
-import {findProductPageNavigation ,findProductDetails} from '../_lib/model_base_function/Product.js'
+import { FindCourseApi } from '../_lib/model_base_function/Course.js'
+import { findProductPageNavigation, findProductDetails } from '../_lib/model_base_function/Product.js'
 import { checkoutPageMidleware } from "../_lib/midlewares/chackoutPageMildleware.js";
 import userCheck, { userCheckAndNavigation } from "../_lib/midlewares/User.check.js";
 import { MembershipPageNavigation } from "../_lib/midlewares/membership.page.js";
@@ -16,121 +16,122 @@ import { coursePageNavigation } from "../_lib/midlewares/course.page.navigation.
 import { eventPageNavigation } from "../_lib/model_base_function/Event.js";
 import { givePostDetailsFunction, postPageNavigation } from "../_lib/model_base_function/Post.js";
 import { Settings } from "../_lib/models/settings.js";
-
+import { dayCatch7, longCatch, longCatch24 } from "../_lib/midlewares/catching.js";
+import customLinkPage from "../_lib/model_base_function/customLink.js";
 
 let pageRouter = Router();
 
 
 pageRouter.use(fileRateLimter)
+// pageRouter.use(
+// })
 
-pageRouter.get('/home',async (req, res) => { 
+pageRouter.get('/home',longCatch24, async (req, res) => {
     try {
-        let settings=await Settings.findOne({});
+        let settings = await Settings.findOne({});
         if (!settings) throw 'error !settings'
-        let {home_video_url}=settings;
-        
+        let { home_video_url } = settings;
         if (!home_video_url) throw 'error :!home_video_url'
-        res.render('home',{
-        home_video_url
-        }) 
+        res.render('home', {
+            home_video_url
+        })
     } catch (error) {
-        console.log({error});
+        console.log({ error });
         res.render('home')
     }
 })
 // pageRouter.get('/course', FindCourseApi)
 
-pageRouter.get('/courses',(req,res) => res.render('course-selling-page'))
-pageRouter.get('/courses/date',async (req,res) => {
+pageRouter.get('/courses',longCatch24, (req, res) => res.render('course-selling-page'))
+pageRouter.get('/courses/date',longCatch24, async (req, res) => {
     try {
-        let settings=await Settings.findOne({})
-        return res.render('calender',{
-            date_of_womens_defence_class:settings.date_of_womens_defence_class.date ?? '',
-            date_of_regular_class:settings.date_of_regular_class.date ?? '',
-            date_of_online_class:settings.date_of_online_class.date ?? ''
-          }) 
+        let settings = await Settings.findOne({})
+        return res.render('calender', {
+            date_of_womens_defence_class: settings.date_of_womens_defence_class.date ?? '',
+            date_of_regular_class: settings.date_of_regular_class.date ?? '',
+            date_of_online_class: settings.date_of_online_class.date ?? ''
+        })
     } catch (error) {
-        console.log({error});
+        console.log({ error });
     }
 })
 
-pageRouter.get('/Membership-application',userCheckAndNavigation, MembershipPageNavigation)
-pageRouter.get('/about-us/goju-shin-ryu', (req, res) => res.render('about-us-gsr'))
-pageRouter.get('/about-us/school-of-traditional-martial-arts', (req, res) => res.render('about-us-smta'))
-pageRouter.get('/about-us/testimonials', (req, res) => res.render('testimonials'))
+pageRouter.get('/Membership-application', userCheckAndNavigation, MembershipPageNavigation)
+pageRouter.get('/about-us/goju-shin-ryu',dayCatch7 ,(req, res) => res.render('about-us-gsr'))
+pageRouter.get('/about-us/school-of-traditional-martial-arts',dayCatch7, (req, res) => res.render('about-us-smta'))
+pageRouter.get('/about-us/testimonials', longCatch24,(req, res) => res.render('testimonials'))
 // pageRouter.get('/dates',(req,res)=>res.render('calender'))
-pageRouter.get('/auth/:name',(req,res)=> {
+pageRouter.get('/auth/:name', dayCatch7,(req, res) => {
     if (req.params.name === 'register') return res.render('sign-up');
     if (req.params.name === 'sign-up') return res.render('sign-up');
     if (req.params.name === 'login') return res.render('login');
     if (req.params.name === 'sign-in') return res.render('login');
     if (req.params.name === 'reset-password') return res.render('reset-user-password');
     if (req.params.name === 'otp-varification') {
-       // console.log(req.cookies.vft);
+        // console.log(req.cookies.vft);
         if (!req.cookies.vft) return res.status(400).render('notAllowed');
-        jwt.verify(req.cookies.vft,JWT_SECRET_KEY,(err,data)=> {
+        jwt.verify(req.cookies.vft, JWT_SECRET_KEY, (err, data) => {
             if (err) return res.status(400).render('notAllowed');
             return res.render('varification')
         })
     }
     if (req.params.name === 'reset-password') return res.render('reset-password');
 })
-pageRouter.get('/contact',(req,res)=>res.render('contact'))
-pageRouter.get('/shop/equipments/:id',findProductDetails)
-pageRouter.get('/shop/:name',(req,res)=> {
-    let {name,cetegory,id}=req.params
+pageRouter.get('/contact', dayCatch7,(req, res) => res.render('contact'))
+pageRouter.get('/shop/equipments/:id', findProductDetails)
+pageRouter.get('/shop/:name', (req, res) => {
+    let { name, cetegory, id } = req.params
     if (name === 'cart') return res.render('cart');
     if (name === 'fevorites') return res.render('fevorites');
-    if (name === 'checkout') return checkoutPageMidleware(req,res); 
+    if (name === 'checkout') return checkoutPageMidleware(req, res);
 });
 pageRouter.get('/shop', findProductPageNavigation);
-pageRouter.get('/control-panal',addMinPageRoute);
-pageRouter.get('/media/:name',(req,res) => {   
+pageRouter.get('/control-panal', addMinPageRoute);
+pageRouter.get('/media/:name', dayCatch7,(req, res) => {
     if (req.params.name === 'videos') return res.render('video');
     if (req.params.name === 'video') return res.render('video');
-    if (req.params.name==="events") return eventPageNavigation(req,res)
-    if (req.params.name === "post") return postPageNavigation(req,res)
-    if (req.params.name==="images") return res.render('images');    
+    if (req.params.name === "events") return eventPageNavigation(req, res)
+    if (req.params.name === "post") return postPageNavigation(req, res)
+    if (req.params.name === "images") return res.render('images');
 })
+pageRouter.get('/custom-links/:type/:unique_id',customLinkPage);
 
-
-pageRouter.get('/countries',(req,res) => res.render('flags'))
-pageRouter.get('/media/:name/:id',(req,res) => {
-    if (req.params.name === "post") return givePostDetailsFunction(req,res)
+pageRouter.get('/countries', dayCatch7,(req, res) => res.render('flags'))
+pageRouter.get('/media/:name/:id', (req, res) => {
+    if (req.params.name === "post") return givePostDetailsFunction(req, res)
 })
-pageRouter.get('/about-us/organization-charts',(req,res)=>res.render('OurOrganaizationChart'))
-pageRouter.get('/alliance',(req,res)=> res.render('alli'))
-pageRouter.get('/accounts/:name',async (req,res)=>{
-    if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req,res)
-    if (req.params.name === 'student') return StudentCornerPageRoute(req,res)
+pageRouter.get('/about-us/organization-charts', longCatch24, (req, res) => res.render('OurOrganaizationChart'))
+pageRouter.get('/alliance',  dayCatch7,(req, res) => res.render('alli'))
+pageRouter.get('/accounts/:name', async (req, res) => {
+    if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req, res)
+    if (req.params.name === 'student') return StudentCornerPageRoute(req, res)
 })
-pageRouter.get('/become-a-country-representative',(req,res)=>res.render('country-representive'));
-pageRouter.get('/our-country-representatives',(req,res)=>res.render('representatives'));
+pageRouter.get('/become-a-country-representative', (req, res) => res.render('country-representive'));
+pageRouter.get('/our-country-representatives',longCatch24, (req, res) => res.render('representatives'));
 
-pageRouter.get('/course/:name',async (req,res) => {
+pageRouter.get('/course/:name',longCatch24, async (req, res) => {
     try {
-        let settings=await Settings.findOne({})
-        let name =req.params.name;
-        let date='';
-        if (name === 'regular-classes') {
-            date=settings.date_of_regular_class.date;
-            return res.render('course__regular__class',{date})
+        let settings = await Settings.findOne({})
+        let name = req.params.name;
+        let date = '';
+        if (name.toLowerCase() === 'regular-classes') {
+            date = settings.date_of_regular_class.date;
+            return res.render('course__regular__class', { date })
         }
-        if (name === 'Online-classes') {
-            date=settings.date_of_online_class.date;
-            return res.render('course__online__class',{date})
+        if (name.toLowerCase() === 'online-classes') {
+            date = settings.date_of_online_class.date;
+            return res.render('course__online__class', { date })
         }
-         if (name === 'women-fitness-classes') {
-            date=settings.date_of_womens_defence_class.date;
-            return res.render('course__womens_seminars',{date})
+        if (name.toLowerCase() === 'women-fitness-classes') {
+            date = settings.date_of_womens_defence_class.date;
+            return res.render('course__womens_seminars', { date })
         }
-        if (name === 'our-seminars') return res.render('course_our_seminar')
-        if (name === 'bhangar-fitness-classes-for-all-ages') return res.render('course__banghar__fitness__class')    
+        if (name.toLowerCase() === 'our-seminars') return res.render('course_our_seminar')
+        if (name.toLowerCase() === 'bhangar-fitness-classes-for-all-ages') return res.render('course__banghar__fitness__class');
+        
     } catch (error) {
-        console.log({error});
+        console.log({ error });
     }
-  
+
 })
-
-
-export {pageRouter}
+export { pageRouter }

@@ -6,10 +6,17 @@ import axios from 'axios'
 import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_LINK, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from '../env.js';
 import { log, Success } from '../smallUtils.js';
 
-export async function createPaypalPayment({items,total ,productToatal,shipping ,success_url,cancell_url}) {
-   
+export async function createPaypalPayment(
+    {
+        items,
+        total,
+        productToatal,
+        shipping,
+        success_url,
+        cancell_url
+    }     
+    ) {   
     try {
-        
         if (items instanceof Array === false) throw new Error("Items is not a array");
         for (let index = 0; index < items.length; index++) {
             const {name ,description ,quantity, unit_amount} =await items[index];
@@ -24,7 +31,7 @@ export async function createPaypalPayment({items,total ,productToatal,shipping ,
                 throw new Error("check currency_code,value"); 
             }
             if (currency_code !=='USD') throw new Error("currency_code is not USD"); 
-            if (typeof value !=='string') throw new Error("value is not string"); 
+            if (typeof value !== 'string') throw new Error("value is not string"); 
         }
         
        

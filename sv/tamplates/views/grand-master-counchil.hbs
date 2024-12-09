@@ -12,7 +12,7 @@ Insha Allah,  By Your Marcy Ya Allah
   <title>
     Grand Master Counchil - Goju Shin Ryu International Martial Arts
   </title>
-      {{>Links}}
+  {{>Links}}
   <link rel="stylesheet" href="/css/Grand-master-counchil/grand-master-couchil.css">
   <link rel="stylesheet" href="/css/Grand-master-counchil/gm-event-box.css">
   <link rel="stylesheet" href="/css/Grand-master-counchil/gm-note.css">
@@ -27,10 +27,10 @@ Insha Allah,  By Your Marcy Ya Allah
   <script defer src="/js/gm/notes.js"></script>
 
 
-<script>
- var gmName=`{{name}}`;
- var gmID='{{_id}}';
-</script>
+  <script>
+    var gmName = `{{name}}`;
+    var gmID = '{{_id}}';
+  </script>
 
 
 
@@ -58,8 +58,8 @@ Insha Allah,  By Your Marcy Ya Allah
       <textarea type="text" id="notes-description-inp"></textarea>
     </div>
     <div class="btns">
-      <button close >Close</button>
-      <button create >Save</button>
+      <button close>Close</button>
+      <button create>Save</button>
     </div>
   </div>
 </div>
@@ -71,219 +71,217 @@ Insha Allah,  By Your Marcy Ya Allah
 
 
   {{>whiteHeader}}
-<main>
-  
-<section id="grand-master-counchil">
-  <div class="sidebar-div">
+  <main>
 
-  
-  <div class="gm-bio">
-    <img src="{{image}}" alt="">
-    <h2>{{name}}</h2>
-    <p>
-    {{!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi omnis, volupt --}}
-    {{bio}}
-    </p>
-    <b class="gm-country">
-     {{organization}}
-  </b>
-    <div class="icons">
-      
-    </div>
-  </div>
-  <div class="gm-nav-main">
-    <h2>Counchil</h2>
-    <nav class="sidebar_nav">
-      <a class="navigation" id="massage_href" >
-        Massage
-      </a>
-      <a class="navigation" id="events_href"  href="">
-        Events
-      </a>
-      <a class="navigation" id="notes_href"  href="">
-        Notes
-      </a>
-      <a class="navigation" id="settings_href"  href="">
-        Settings
-      </a>
-    </nav>
-  </div>
-</div>
-
- <div class="gm-main">
-  <div class="gm_main_heading">
-    <h2> Grand Master Counchil </h2>
-    <span>
-    <button id="upload-event-button">  Upload Event</button>
-    <button id="upload-note-button">Create A Note</button>
-    </span>
-
-   </div>
+    <section id="grand-master-counchil">
+      <div class="sidebar-div">
 
 
+        <div class="gm-bio">
+          <img src="{{image}}" alt="">
+          <h2>{{name}}</h2>
+          <p>
+            {{!-- Lorem ipsum dolor sit amet consectetur adipisicing elit. Quasi omnis, volupt --}}
+            {{bio}}
+          </p>
+          <b class="gm-country">
+            {{organization}}
+          </b>
+          <div class="icons">
 
-  <!------------------------ chat box ----------------------------------->
-  <div gm_section style="display: none;"  class="chat-box-container">
-  <h2>Chat's</h2>
-  <div class="chat-box">
-    <div class="chat-massage-cobtainer">
-  
-    </div>
-    <div class="send-chat-massage-containar">
-     <textarea placeholder="Write a massage" name="" id=""></textarea>
-     <button class="send-chat-massage-containar-btn">
-       Send
-     </button>
-    </div>
-  </div>
-  
-  </div>
-  <!------------------------ event box ----------------------------------->
-
-  <div gm_section class="gm-event-box">
-   <div class="env-box-header">
-     <h3>Events</h3>
-   </div>
-   <div class="events">
-     </div>
-
-</div>
-
-  <!------------------------ notes box ----------------------------------->
-
-<div gm_section style="display: none;" class="notes-section">
-    <h2>Notes</h2>
-    <div class="notes-container">
-      <div class="notes">
-        <div class="notes-div-1">
-          <h2>
-            Developing the Ui
-          </h2>
-          <div class="notes-icon"> 
-            <button>
-              <i class="fa-solid fa-trash"></i>
-            </button>
           </div>
         </div>
-        <p></p>
+        <div class="gm-nav-main">
+          <h2>Counchil</h2>
+          <nav class="sidebar_nav">
+            <a class="navigation" id="massage_href">
+              Massage
+            </a>
+            <a class="navigation" id="events_href" href="">
+              Events
+            </a>
+            <a class="navigation" id="notes_href" href="">
+              Notes
+            </a>
+            <a class="navigation" id="settings_href" href="">
+              Settings
+            </a>
+          </nav>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!------------------------ settings box ----------------------------------->
+      <div class="gm-main">
+        <div class="gm_main_heading">
+          <h2> Grand Master Counchil </h2>
+          <span>
+            <button id="upload-event-button"> Upload Event</button>
+            <button id="upload-note-button">Create A Note</button>
+          </span>
 
-
-<div gm_section style="display: none;" class="settings-section">
-   <h2>Info</h2>
-   <div class="img-inp-box">
-     <label for="s-sec-profile-input">
-       <input id="s-sec-profile-input" style="display: none" type="file">
-     </label>
-     <b>Profile Image</b>
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Name</label>
-     <input type="Text" name="" value="{{name}}" id="s-sec-name-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp">bio</label>
-     <input type="Text" name="" value="{{bio}}" id="s-sec-bio-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-country-inp">Organization</label>
-     <input type="Text" name="" value="{{organization}}" id="s-sec-organization-inp">
-   </div>
-
-   <h2>Credentials</h2>
-   <div class="s-sec-input-box">
-     <label for="s-sec-user-id-inp">UserName</label>
-     <input type="Text" name="" value="{{username}}" id="s-sec-user-id-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-country-inp">
-       Password
-     </label>
-     <input type="password" name="" id="s-sec-pass-inp">
-   </div>
-   <div class="s-sec-btn-box">
-     <button style="display: none;">Cancel</button>
-     <button save_settings > Save</button>
-   </div>
- </div>
- 
+        </div>
 
 
-  <!------------------------ upload event box ----------------------------------->
+
+        <!------------------------ chat box ----------------------------------->
+        <div gm_section style="display: none;" class="chat-box-container">
+          <h2>Chat's</h2>
+          <div class="chat-box">
+            <div class="chat-massage-cobtainer">
+
+            </div>
+            <div class="send-chat-massage-containar">
+              <textarea placeholder="Write a massage" name="" id=""></textarea>
+              <button class="send-chat-massage-containar-btn">
+                Send
+              </button>
+            </div>
+          </div>
+
+        </div>
+        <!------------------------ event box ----------------------------------->
+
+        <div gm_section class="gm-event-box">
+          <div class="env-box-header">
+            <h3>Events</h3>
+          </div>
+          <div class="events">
+          </div>
+
+        </div>
+
+        <!------------------------ notes box ----------------------------------->
+
+        <div gm_section style="display: none;" class="notes-section">
+          <h2>Notes</h2>
+          <div class="notes-container">
+            <div class="notes">
+              <div class="notes-div-1">
+                <h2>
+                  Developing the Ui
+                </h2>
+                <div class="notes-icon">
+                  <button>
+                    <i class="fa-solid fa-trash"></i>
+                  </button>
+                </div>
+              </div>
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <!------------------------ settings box ----------------------------------->
 
 
-<div gm_section style="display: none;" class="event_upload_sec">
-   <div class="upload_sec_event_tumb_img_inp_box">
-     <h4>
-       Thumnail
-     </h4>
-    <label for="upload_sec_event_tumb_img_inp">
-      <b>Click To Upload <br>
-      Thumbnail
-      </b>
-    </label>
-    <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp">
-   
-  </div>
-  <b>Upload Image</b>
-  <div class="upload_sec_env_img_inp_box">
-    
-    <label for="upload_sec_env_img_inp">
-      Upload Images
-    </label>
-    <input 
-    style="display: none" 
-    type="file"
-    id="upload_sec_env_img_inp">
-    
-  </div>
-  <div class="event-upload-input-box">
-    <label for="event-upload-input-box-title--inp">Title</label>
-    <input 
-    type="text" 
-    placeholder="Write the event Title"
-    id="event-upload-input-box-title--inp"
-    >
+        <div gm_section style="display: none;" class="settings-section">
+          <h2>Info</h2>
+          <div class="img-inp-box">
+            <label for="s-sec-profile-input">
+              <input id="s-sec-profile-input" style="display: none" type="file">
+            </label>
+            <b>Profile Image</b>
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Name</label>
+            <input type="Text" name="" value="{{name}}" id="s-sec-name-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-bio-inp">bio</label>
+            <input type="Text" name="" value="{{bio}}" id="s-sec-bio-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-country-inp">Organization</label>
+            <input type="Text" name="" value="{{organization}}" id="s-sec-organization-inp">
+          </div>
 
-  </div>
-  <div class="event-upload-input-box">
-    <label for="event-upload-input-box-Description--inp">Description</label>
-    <textarea 
-    type="text"
-    placeholder="Write the event Description"
-    id="event-upload-input-box-Description--inp"
-    ></textarea>
-  </div>
-
- <div class="event-upload-input-box">
-    <label for="event-upload-input-box-title--inp">Event Date</label>
-    <input 
-    type="date"
-    placeholder="Write the event Date"
-    id="event-upload-input-box-title--inp"
-    >
-
-  </div>
-
- 
-
-  
-<div class="upload_event_btn_box">
-    <button style="display: none;"> Cencel</button>
-    <button uplaod_event_btn >Upload</button>
-  </div>
-  
-</div>
+          <h2>Credentials</h2>
+          <div class="s-sec-input-box">
+            <label for="s-sec-user-id-inp">UserName</label>
+            <input type="Text" name="" value="{{username}}" id="s-sec-user-id-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-country-inp">
+              Password
+            </label>
+            <input type="password" name="" id="s-sec-pass-inp">
+          </div>
+          <div class="s-sec-btn-box">
+            <button style="display: none;">Cancel</button>
+            <button save_settings> Save</button>
+          </div>
+        </div>
 
 
-</section>
 
-</main>
-{{>Footer}}
+        <!------------------------ upload event box ----------------------------------->
+
+
+        <div gm_section style="display: none;" class="event_upload_sec">
+          <div class="upload_sec_event_tumb_img_inp_box">
+            <h4>
+              Thumnail
+            </h4>
+            <label for="upload_sec_event_tumb_img_inp">
+              <b>Click To Upload <br>
+                Thumbnail
+              </b>
+            </label>
+            <input multiple="false" style="display: none" type="file" id="upload_sec_event_tumb_img_inp">
+
+          </div>
+          <b>Upload Image</b>
+          <div class="upload_sec_env_img_inp_box">
+            <label for="upload_sec_env_img_inp">
+              Upload Images
+            </label>
+            <input style="display: none" type="file" id="upload_sec_env_img_inp">
+
+          </div>
+          <div class="event-upload-input-box">
+            <label for="event-upload-input-box-title--inp">Title</label>
+            <input type="text" placeholder="Write the event Title" id="event-upload-input-box-title--inp">
+
+          </div>
+          <div class="event-upload-input-box">
+            <label for="event-upload-input-box-Description--inp">Description</label>
+            <textarea type="text" placeholder="Write the event Description"
+              id="event-upload-input-box-Description--inp"></textarea>
+          </div>
+
+          <div class="event-upload-input-box">
+            <label for="event-upload-input-box-title--inp">Event Date</label>
+            <input type="date" placeholder="Write the event Date" id="event-upload-input-box-title--inp">
+          </div>
+          
+          <div class="event-upload-input-box">
+            <label for="event-upload-input-box-title--inp">Organizing Country</label>
+            <input type="text" placeholder="Organizing Country" id="event-upload-input-box-title--inp">
+          </div>
+          
+          <div class="event-upload-input-box">
+            <label for="event-upload-input-box-title--inp">Particapating Country</label>
+            <input type="number" placeholder="Particapating Country" id="event-upload-input-box-title--inp">
+          </div>
+
+          <div class="event-upload-input-box">
+            <label for="event-upload-input-box-title--inp">Particapating Atletes</label>
+            <input type="number" placeholder="Organizing Atletes" id="event-upload-input-box-title--inp">
+          </div>
+
+
+
+          <div class="upload_event_btn_box">
+            <button style="display: none;"> Cencel</button>
+            <button uplaod_event_btn>Upload</button>
+          </div>
+
+        </div>
+
+
+    </section>
+
+  </main>
+  {{>Footer}}
 </body>
 
 </html>

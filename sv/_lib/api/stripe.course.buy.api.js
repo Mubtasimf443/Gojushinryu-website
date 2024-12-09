@@ -16,34 +16,34 @@ import { course_purchase_admin_email, course_purchase_user_email } from "../mail
 export async function stripeCourseBuyAPiJs(req,res) {
     let coursesArray=[
         {
-        name :'Regular classes',
-        description :"Join Our Regular Martial Art classes",
-        price :200,
-        id :1
+            name: 'Regular classes',
+            description: "Join Our Regular Martial Art classes",
+            price: 200,
+            id: 1
         },
         {
-        name :'Online Martial classes',
-        description :"Join Our Online Martial Art classes",
-        price :200,
-        id :2
+            name: 'Online Martial classes',
+            description: "Join Our Online Martial Art classes",
+            price: 200,
+            id: 2
         },
         {
-        name :"Martial Art Seminars",
-        description :"Join Our Martial Art Seminars",
-        price :200,
-        id :3
+            name: "Martial Art Seminars",
+            description: "Join Our Martial Art Seminars",
+            price: 200,
+            id: 3
         },
         {
-        name :'Women Defence classes',
-        description :"Join Our Women Defence classes",
-        price :200,
-        id :4
+            name: 'Women Defence classes',
+            description: "Join Our Women Defence classes",
+            price: 200,
+            id: 4
         },
         {
-        name :'Bhangar Fitness Class for all ages',
-        description :"Join Our  Bhangar Fitness Class for all ages",
-        price :200,
-        id :5
+            name: 'Bhangar Fitness Class for all ages',
+            description: "Join Our  Bhangar Fitness Class for all ages",
+            price: 200,
+            id: 5
         }
     ];
     try {
@@ -80,10 +80,10 @@ export async function stripeCourseBuyAPiJs(req,res) {
 
 
         let user =await User.findById(user_info._id);
-        user.country =  user.country ? user.country:country;
-        user.city=user.city ? user.city:city;
-        user.district=user.district ? user.district:district;
-        user.postCode = user.postCode ? user.postCode :postcode ;
+        user.country =  user.country ??country;
+        user.city=user.city ?? city;
+        user.district=user.district ?? district;
+        user.postCode = user.postCode ?? postcode ;
         await user.save();
 
 
@@ -97,6 +97,7 @@ export async function stripeCourseBuyAPiJs(req,res) {
 
         log('//database CourseEnrollments')
         let courseEnrollMent =new CourseEnrollments({
+            course_name:course.name,
             name:course.name,
             course_id :course.id,
             student_id :user_info._id,
@@ -143,7 +144,7 @@ export async function stripeCourseBuyAPiJs(req,res) {
         courseEnrollMent.payment_method ='stripe';
         courseEnrollMent.stripe_session_id = data.id;
         await courseEnrollMent.save()
-        return res.status(200).json({
+        return res.status(200).json({ 
             success:true,
             link :data.url
         });

@@ -1,0 +1,70 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+Insha Allah,  By His Marcy I will Gain Success 
+*/
+
+#banner {
+    background-image: url('/img/samurai4.jpg');
+    background-position: center center;
+    background-size: cover;
+    background-repeat:no-repeat;
+    border-image-slice: fill 1;
+    border-image-source: linear-gradient(to right,
+     rgba(0, 0, 0, 0.474) ,
+     rgba(0, 0, 0, 0.712),
+    rgba(0, 0, 0, 0.5));
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction:column;
+    row-gap: 13px;
+    justify-content: center;
+    align-items: center;
+}
+
+#banner p {
+    color: #a0a5a0;
+    width: 500px;
+    text-align: center;
+}
+.web-btn {
+    background-color: var(--main-cl); 
+    /* border: none;
+    border-radius: 6px; */
+    color: #000;
+}
+
+.web-bg {
+    background-color: whitesmoke;
+}
+
+form, .web-form-size  {
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.247);
+}
+@media screen and (min-width:575px){
+    form, .web-form-size  {
+        width: 90%;
+    }
+}
+
+@media screen and (min-width:765px){
+    form, .web-form-size {
+        width: 670px;
+    }
+}
+
+@media screen and (min-width:1000px){
+    form, .web-form-size  {
+        width: 730px;
+    }
+}
+
+.form-floating {
+    width: 90%;
+}
+
+select::-ms-expand {
+    color: black;
+}
+

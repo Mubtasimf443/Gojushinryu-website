@@ -54,70 +54,74 @@ Insha Allah,  By the marcy of Allah,  I will gain success
   
 
     let notUplaoding=true;
-    uploadEventButton.addEventListener('click',async e => {
+    uploadEventButton.addEventListener('click', async e => {
         try {
             if (!thumb) throw new Error("thumb Date is undefined");
-            if (images.length===0) throw 'images length 0'
+            if (images.length === 0) throw 'images length 0'
             e.preventDefault()
             if (!notUplaoding) return
             let title = v(`[placeholder="Write the Event Title"]`)
             let description = v(`[placeholder="Write the description of the event"]`);
-            let eventDate = container.querySelector(`[placeholder="Event Date"]`).valueAsNumber;
+            let
+                eventDate = container.querySelector(`[placeholder="Event Date"]`).valueAsNumber,
+                organizerCountry = v(`[placeholder="Organizing Country"]`),
+                participatingCountry = Number(v(`[placeholder="Particapating Country"]`)),
+                participatingAtletes = Number(v(`[placeholder="Particapating Atletes"]`));
+
             if (!eventDate) throw new Error("Event Date is undefined");
-            
+
             console.log({
-                eventDate,title,description,thumb,images
+                eventDate, title, description, thumb, images
             });
 
 
-            let formData =new FormData();
-            formData.append('title',title);
-            formData.append('description',description);
-            formData.append('thumb',thumb);
-            formData.append('eventDate',eventDate)
-            for (let i = 0; i < images.length; i++) formData.append(`images`, images[i]);  
-           
-            uploadEventButton.style.opacity =.6;
-            let res =await fetch(window.location.origin +'/api/api_s/admin-event-upload-api', {
-                method :'POST',
-                body :formData
+            let formData = new FormData();
+            formData.append('title', title);
+            formData.append('description', description);
+            formData.append('organizerCountry', organizerCountry);
+            formData.append('participatingCountry', participatingCountry);
+            formData.append('participatingAtletes', participatingAtletes);
+            formData.append('thumb', thumb);
+            formData.append('eventDate', eventDate)
+            for (let i = 0; i < images.length; i++) formData.append(`images`, images[i]);
+
+            uploadEventButton.style.opacity = .6;
+            let res = await fetch(window.location.origin + '/api/api_s/admin-event-upload-api', {
+                method: 'POST',
+                body: formData
             });
-            if (res.status ===201) {
-                uploadEventButton.style.background='green';
-                uploadEventButton.innerHTML='Success';            
+            
+            if (res.status === 201) {
+                uploadEventButton.style.background = 'green';
+                uploadEventButton.innerHTML = 'Success';
+                setTimeout(() => {
+                    window.location.reload();
+                }, 2000);
             }
-            if (res.status !==201) {
-                uploadEventButton.style.background='red';
-                uploadEventButton.innerHTML='Failed';            
+            if (res.status !== 201) {
+                uploadEventButton.style.background = 'red';
+                uploadEventButton.innerHTML = 'Failed';
             }
             // setTimeout(() => window.location.reload(), 3000);
         } catch (error) {
-            console.log({error});   
+            console.log({ error });
         } finally {
-            uploadEventButton.style.opacity =1;
+            uploadEventButton.style.opacity = 1;
         }
-
     })
     //function
     function v(htmlElementSelector) {
-        let simbolerror='You can not use <,>,{,},[,],",,$'+ "`," + '"' ;
-        let el=container.querySelector(htmlElementSelector);
+        let simbolerror = 'You can not use <,>,{,},[,],",,$' + "`," + '"';
+        let el = container.querySelector(htmlElementSelector);
         if (!el) throw new Error(`can not find using ${htmlElementSelector}`);
-        let value=el.value;
+        let value = el.value;
         if (!value) {
-            el.style.outline='2px solid red';
+            el.style.outline = '2px solid red';
             throw new Error(simbolerror);
         }
-        if (value.includes('{')) {
-            el.style.outline='2px solid red';
-            throw new Error(simbolerror);
-        }
-        if (value.includes('}')) {
-            el.style.outline='2px solid red';
-            throw new Error(simbolerror);
-        }
+        
         return value
-    } 
+    }
 
 
 

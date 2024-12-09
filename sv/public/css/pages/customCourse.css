@@ -1,0 +1,235 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+InshaAllah ,  By Allahs Marcy,  I will gain Success
+*/
+*{
+    box-sizing: border-box;
+}
+.course-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.course-container .card {
+   
+    display: flex;
+    align-items: start;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    padding: 40px 30px;
+    background-color: #fff;
+    margin: 40px 0px;
+    box-shadow: 0px 0px 10px #ccc;
+    row-gap: 26px;
+}
+.card .card1{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    row-gap: 8px;
+    width: 440px;
+}
+.card2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 400px;
+}
+.card .card2 img{
+    width: 100%;
+    height: 340px;
+    object-fit:cover;
+    object-position: center center;
+}
+
+
+.course-container .card .enroll-now {
+    background-color: var(--main-cl);
+    padding: 10px ;
+    font-size: 15px;
+    color: black;
+    font-weight: 500;
+    border: none;
+}
+.stars {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;   
+    margin: 5px 0px;
+}
+
+.card h2 {
+    font-weight: 500;
+    font-size: 27.5px;
+}
+
+.card p {
+    font-size: 17.5px;
+}
+.card .only-for {
+    font-size: 14px;
+    font-weight: 500;
+}
+.card .price{
+    color: white;
+    background: var(--main-cl);
+    border-radius: 10px;
+    padding: 2px 6px;
+    font-size: 14px;
+} 
+
+.fa-solid.fa-star{
+    /* background-color: var(--main-cl); */
+    color: var(--main-cl);
+}
+.card .btns{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    column-gap: 8px;
+}
+.paypal{
+    background-color:navy;
+    font-size: 15px;
+    color: white;
+    font-weight: 500;
+    border: none;
+    width: 80px;
+    height: 34px;
+}
+.visa{
+    background-color:black;
+    font-size: 15px;
+    color: white;
+    font-weight: 500;
+    border: none;
+    width: 80px;
+    height: 34px;
+}
+
+.btns span{
+    font-size: 16px;
+    font-weight: 500;
+    color: darkslategrey ;
+}
+
+@media screen and (max-width:840px ) and (min-width :300px) {
+    .card {
+        flex-direction: column-reverse;
+        justify-content: center;
+        justify-content: center;
+    }
+    .card {
+        width: auto;
+    }
+}
+
+@media screen and (max-width :940px ) and (min-width:841px) {
+    .card {
+        width: auto;
+        flex-direction: row;   
+        justify-content: space-between;
+    }
+    .card .card1 {
+        width: 380px;
+    }
+    .card h2 {
+        font-size:25.5px ;
+    }
+    .card .card2 {
+        width: 350px;
+    }
+    .card2 .card2 img {
+        width: 340px;
+        height: 340px;
+    }
+    .card p {
+        font-size: 16.5px;
+    }
+    .card  p {
+        font-size: 16px;
+    }
+}
+
+
+@media screen and (min-width :941px) {
+    .card {
+        width: auto;
+        min-height: 370px;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.pop-c {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.56);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.pop{
+    width: 500px;
+    min-height: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 15px;
+    row-gap: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.336);
+    position: relative;
+}
+.pop strong{
+    font-size: 24px;
+}
+.pop input{
+    width: 430px;
+    height: 45px;
+    background-color: #dad9d7;
+    border: none;
+    outline: none;
+    border-radius: 3px;
+    padding: 0px 10px;
+}
+.pop button {
+    background: var(--main-cl);
+    color: black;
+    height: 40px;
+    width: 430px;
+    border: none;
+    transition: all .9s ease-in-out;
+    font-weight: 500;
+}
+.pop-close {
+    right: 14px;
+    top: 7px;
+    position: absolute;
+    font-size: 25px;
+    color: black;
+    font-weight: 600;
+}
+
+
+input[class="is-valid"]{
+    border: 2px solid green;
+}
+input[class="is-invalid"]{
+    border: 2px solid red;
+}
+
+button[disabled]{
+    opacity: .6;
+}

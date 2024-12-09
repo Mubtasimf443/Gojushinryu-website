@@ -1,0 +1,118 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+
+
+
+.customLinksContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    row-gap: 40px;
+    padding: 20px 20px;
+    font-family: "Libre Franklin",sans-serif;
+    font-size: 17.5px;
+}
+
+.customLinksContainer form {
+    width: 800px;
+    background-color: white;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.274);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.customLinksContainer form h3 {
+    margin-bottom: 10px;
+}
+.customLinksContainer .input-box {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 50px;
+}
+
+.customLinksContainer .input-box input, select{
+   width: 60%;
+   height:35px;
+   background-color: rgb(234, 237, 240);
+   border: none;
+   outline: none;
+   padding: 4px 10px;
+}
+
+.customLinksContainer .generated-link{
+    color: rebeccapurple;
+}
+
+.customLinksContainer button {
+    padding: 10px;
+    border: none;
+    background-color: black;
+    color: white;
+}
+
+
+
+.customLinksContainer > table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+
+}
+
+.customLinksContainer table th{
+    border: 1px solid #000;
+    text-align: left;
+    padding: 10px 12px; 
+    background-color:black;
+    color: white;
+  }
+
+
+  .customLinksContainer table td {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 10px 12px;
+    background: white;
+    text-wrap: wrap;
+  }
+
+
+  .customLinksContainer table td img {
+    max-width:90% ;
+    object-fit: contain;
+    object-position: top left;
+    max-height:80px ;
+  }
+
+
+  .customLinksContainer table tr:nth-child(1){
+    background: var(--main-cl);
+  }
+
+
+  .customLinksContainer table tr{
+    background-color: #ffffff;
+  }
+
+  .customLinksContainer table button{
+    background: inherit;
+    border: none;
+    font-size: 14px;
+    color: white;
+    background: #000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 8px 14px;
+}
+

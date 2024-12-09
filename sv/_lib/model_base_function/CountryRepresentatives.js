@@ -65,7 +65,9 @@ export async function uploadCountryRepresentativeApi(req,res) {
                 let description = await repleCaracter(feilds.description[0]);
                 
                 //awaiting for 3 seconds
+                log('awaiting time starts from ' +new Date().toLocaleTimeString())
                 let awaiter=await Awaiter(3000)
+                log('awaiting time end from ' +new Date().toLocaleTimeString())
 
 
                 

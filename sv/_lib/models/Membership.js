@@ -67,5 +67,4 @@ let Membershipschema = new mongoose.Schema({
 
 
 
-const Memberships = mongoose.model('Membership',Membershipschema);
-export {Memberships}
+export const Memberships = mongoose.model('Membership',Membershipschema);

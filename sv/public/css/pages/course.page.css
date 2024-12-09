@@ -69,7 +69,16 @@ body {
   font-size: .95em;
 }
 
-.heading_section > button {
+.heading_section button {
+  color: white;
+  background: goldenrod;
+  border: none;
+  font-size: .9em;
+  border-radius:3px; 
+  width: 10em;
+  height: 2.8em;
+}
+.heading_section a{
   color: white;
   background: goldenrod;
   border: none;
@@ -166,7 +175,10 @@ body {
   font-size:1.14em;
   border: none;
   border-radius :4px;
- 
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 .btn-div > span {
   font-size:1.26em;

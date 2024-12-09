@@ -34,6 +34,8 @@ import {
     testinmonialsForHomePage 
 } from "../_lib/model_base_function/Testimonials.js";
 import { allowRepresentative, disAllowRepresentative, getCountryRepresentatives, getCountryRepresentativesForAdmin } from "../_lib/model_base_function/CountryRepresentatives.js";
+import { deleteCustomLink, disableCustomLink, enableCustomLink, findCustomLinks } from "../_lib/model_base_function/customLink.js";
+// import { customMembershipApi } from "../_lib/model_base_function/custom-course-memberhsip.js";
 
 
 
@@ -62,6 +64,7 @@ apiRouter.get('/testimonials/home', testinmonialsForHomePage)
 apiRouter.get('/events/home', eventsHome)
 apiRouter.get('/country-representative',getCountryRepresentatives)
 apiRouter.get('/country-representative-for-admin',getCountryRepresentativesForAdmin)
+apiRouter.get('/custom-link',findCustomLinks);
 
 //Post Route
 apiRouter.post('/contact' , Contact_us_api_Function)
@@ -75,6 +78,8 @@ apiRouter.post('/find-membership-data',findMemberShipdata)
 apiRouter.post('/get-gm-events',getGmEvents)
 apiRouter.post('/admin-event-upload-api', adminEventUplaodAPI);
 apiRouter.post('/testimonials', createTestimonials)
+// apiRouter.post('/custom-membership', customMembershipApi)
+
 
 //Update
 apiRouter.put('/Update-User-Data',ChangeuserData);
@@ -87,7 +92,8 @@ apiRouter.put('/remove-notification-form-database',userCheck,removeNotificationF
 apiRouter.put('/change-settings', changeSettingsAPI)
 apiRouter.put('/allow-representative',allowRepresentative);
 apiRouter.put('/disAllow-representative',disAllowRepresentative);
-
+apiRouter.put('/custom-link/enable', enableCustomLink);
+apiRouter.put('/custom-link/disable', disableCustomLink);
 
 //Delete
 apiRouter.delete('/delete-product',DeleteProduct)
@@ -95,7 +101,7 @@ apiRouter.delete('/delete-grand-master-account',DeleteGMAccount)
 apiRouter.delete('/delete-user-account',DeleteUserAccount)
 apiRouter.delete('/delete-event', deleteEvent)
 apiRouter.delete('/testimonials', deleteTestimonials)
-
+apiRouter.delete('/custom-link', deleteCustomLink)
 
 //payments
 apiRouter.get('/paypal-order-success', OrderSuccessPaypalApi)

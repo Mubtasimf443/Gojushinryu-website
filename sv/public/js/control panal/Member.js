@@ -55,7 +55,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
                 <b>${i+1}</b>
                 </td>
                 <td>
-                <img src="${thumb}" alt=""></td>
+                <img src="${thumb?? '/img/avatar.png'}" alt=""></td>
                 <td>
                 <strong>
                  ${name} 
@@ -132,8 +132,6 @@ Insha Allab,  By the marcy of Allah,  I will gain success
                         permanent_disabillity  ,
                         has_permanent_injury        
                       } =data;
-
-
                       function sip(selector,value){//sip means set input value
                         try {
                           popup.querySelector(selector).setAttribute('value',value?value:'No Data')
@@ -173,15 +171,13 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 
                   } catch (error) {
                     log(error);
-                    e.target.style.background=red;
+                    e.target.style.background='red';
                     e.target.innerHTML='Error';
                   } finally {
                     fethingData= false;
                     e.target.style.opacity=1;
                   }
                 })
-
-
                 tr.querySelector('select').addEventListener('change',e => {
                   let id= e.target.selectedOptions[0].getAttribute('m_id');
                   let cbtnID=e.target.selectedOptions[0].getAttribute('c_btn')

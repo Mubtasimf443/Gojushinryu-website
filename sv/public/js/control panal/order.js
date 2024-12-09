@@ -17,7 +17,6 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         fetch(window.location.origin + '/api/api_s/find-order')
         .then(e => e.json() )
         .then(async data=> {
-            console.log(data);
             array=data.data;
             if (!array) return 
             OrderData=array;

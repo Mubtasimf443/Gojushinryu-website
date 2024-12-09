@@ -1,0 +1,198 @@
+{{!--
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ﷺ
+Insha Allah, By His Marcy I will Gain Success
+--}}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Membership </title>
+    <meta name="robots" content="noindex">
+    <meta name="googlebot" content="notranslate">
+    <meta name="googlebot-news" content="nosnippet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    {{>Links}}
+
+    <link rel="stylesheet" href="/css/pages/custom-membership.css">
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+</head>
+
+<body>
+    {{>Header}}
+    <main>
+        <div 
+            id="banner" >
+            <h1 class="h2">
+                Membership
+            </h1>
+            <p >
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorum ducimus est mollitia delectus eligendi
+                accusamus eaque maxime, error a suscipit laborum magni eius perferendis expedita aspernatur voluptate
+                quibusdam aperiam unde!
+            </p>
+            <a href="#form" class="btn btn-warning p-2 px-3">Enroll Now</a>
+
+
+        </div>
+
+        <div class="container-fluid d-flex flex-column justify-content-center align-items-center web-bg p-5 text-wrap">
+            
+            <div class="card  text-center mb-4 p-3 web-form-size ">
+                <div class="card-body">
+                    <div class="fs-5 mb-2">
+                        {{membership_name}} Membership
+                    </div>
+                    <div class="card-text mb-2">
+                        Enroll the {{membership_type}} membership for {{membership_price}}$ before {{expiringDate}}
+                    </div>
+                    <a href="#form" class="btn btn-warning text-dark px-3">
+                        Enroll Membership Now
+                    </a>
+                </div>
+            
+            </div>
+            <form action="" id="form" class="bg-white lex-sm-grow-1 py-4  px-4">
+                
+                <strong class="h5 ">Fill the form to get The Membership</strong>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input value="test" type="text" class="form-control" id="input-fname" placeholder="example">
+                    <label  for="floatingInput">Fisrt Name</label>
+                </div>
+
+                <div class="form-floating w-100 mb-3">
+                    <input value="test" type="text" class="form-control" id="input-lname" placeholder="example">
+                    <label  for="floatingPassword">Last Name</label>
+                </div>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input value="mubtasimf443@gmail.com"  type="email"  class="form-control" id="input-email"  placeholder="example">
+                    <label for="floatingInput">Personal Email</label>
+                </div>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input type="date" value="10/10/2010" class="form-control" id="input-dob"  placeholder="example">
+                    <label for="floatingInput">date of birth</label>
+                </div>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input type="number" value="183" class="form-control" id="input-phone"  placeholder="example">
+                    <label for="floatingInput">Personal Number</label>
+                </div>
+                <div class="form-floating w-100 my-3 ">
+                    <input type="text" value="384" class="form-control" id="input-country"  placeholder="example">
+                    <label for="floatingInput">Present Address - Country</label>
+                </div>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input type="text"  value="384" class="form-control" id="input-city"  placeholder="example">
+                    <label for="floatingInput">Present Address - City</label>
+                </div>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input type="text"  value="384" class="form-control" id="input-district"  placeholder="example">
+                    <label for="floatingInput">Present Address - District</label>
+                </div>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input type="text"  value="384" class="form-control" id="input-postCode"  placeholder="example">
+                    <label for="floatingInput">Postal Code</label>
+                </div>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input type="text"  value="384" class="form-control" id="input-dojo-name"  placeholder="example">
+                    <label for="floatingInput">Dojo Name</label>
+                </div>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input type="text"  value="384" class="form-control" id="input-instructor"  placeholder="example">
+                    <label for="floatingInput">Instructor</label>
+                </div>
+                
+                <select class="form-select form-select-lg fs-6 py-3 mb-3" id="select-gender" aria-label="Default select example">
+                    <option selected value="">Your Gender?</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input type="text" class="form-control"  value="384"  id="input-current-grade"  placeholder="example">
+                    <label for="floatingInput">Current Grade <sup>(Kyu or Dan grade)</sup></label>
+                </div>
+
+                <select class="form-select form-select-lg py-3  fs-6 mb-3" id="select-experience" aria-label="Default select example">
+                    <option selected value="">Your Experience?</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Senior">Senior</option>
+                </select>
+
+                <select class="form-select form-select-lg py-3  fs-6 mb-3" id="select-previeuse-member-statement" aria-label="Default select example">
+                    <option selected value="">Are You A previous member?(if renewing)</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                 <div class="form-floating w-100 my-3 ">
+                    <input  type="date" class="form-control" id="input-Membership-Expiring-Date"  placeholder="example">
+                    <label for="floatingInput">Membership Expiring Date</label>
+                </div>
+                <select class="form-select form-select-lg py-3  fs-6 mb-3" id="select-violance-charge" aria-label="Default select example">
+                    <option selected value="">Have You ever been Convicted On the Charge Of Violence?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <select class="form-select form-select-lg py-3  fs-6 mb-3" id="select-parmanent-injury-statement" aria-label="Default select example">
+                    <option selected value="">Do you Have any type of permanent Injury or Disability?</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+                <div class="form-floating w-100 my-3 d-none" id="violance-charge-input-div">
+                    <input  value="384" type="text" class="form-control" id="input-violance-charge"  placeholder="example">
+                    <label for="floatingInput">Describe your previous violance charge?(if you Have)</label>
+                </div>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input type="text"   value="384" class="form-control" id="input-parmanent-injury"  placeholder="example">
+                    <label for="floatingInput">Describe your Parmanent Injury or Disability?(if you Have)</label>
+                    
+                </div>
+
+                <div class="form-floating w-100 my-3 ">
+                    <input type="text" class="form-control "  value="384" id="input-previousDisabilty"  placeholder="example">
+                    <label for="floatingInput">Previous Injury or Disabilty?</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" value="" id="role1" >
+                    <label class="form-check-label" for="role1">
+                      I clearly Understand that Practice of martial arts is entirely At my Risk
+                    </label>
+                </div>
+                <div class="form-check my-2">
+                    <input class="form-check-input" type="checkbox" value=""  id="role2">
+                    <label class="form-check-label" for="role2">
+                      If accepted by the association , I undertake to abide by the rules and Article of the Goju ryo kyokai including any ammendents that maybe made during my period of membership
+                    </label>
+                </div>
+                <div class="container">
+                    <div class="btn-group w-100">
+                        <button id="btn-paypal" value="paypal" type="button" class="btn btn-primary w-auto" disabled>Pay With Paypal</button>
+                        <button id="btn-visa" value="stripe" type="button" class="btn btn-dark w-auto" disabled>Pay with Visa Card</button>
+                    </div>
+                </div>
+                
+            </form>
+        </div>
+
+    </main>
+    {{>Footer}}
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+   <script src="/js/pages/customMembershipLink.js"></script>
+   <script>
+    const CustomMembershipId ={{CustomMembershipId}};
+   </script>
+</body>
+
+</html>

@@ -206,6 +206,11 @@ padding:15px 26px;
 
 .description-div {
   padding:  0.75em 0em .7em 0em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  row-gap: 20px;
 }
 .description-div > p {
   color: rgba(0, 0, 0, 0.849);
@@ -215,6 +220,17 @@ padding:15px 26px;
   font-size:1.06em;
   line-height: 1.6em;
 }
+
+.description-div > ul {
+  font-size: 1.06em;
+  row-gap: 1.3em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  list-style-position: inside;
+}
+
 .dt-h2{
   font-weight: 600;
   font-size: 20px;

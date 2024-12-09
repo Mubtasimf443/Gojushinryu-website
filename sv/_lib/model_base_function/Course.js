@@ -144,19 +144,26 @@ export async function deleteCourseApi(req,res) {
   }
   
 }
-
-
+function returnStudentName(user) {
+  if (!user) return 'Unknown Name '
+  let { last_name, first_name } = user;
+  return `${first_name} ${last_name}`
+}
 export async function findCourseEnrollments(req,res) {
   try {
     let enrollments=await CourseEnrollments.find({});
     if (enrollments.length===0) return res.sendStatus(304)
     for (let i = 0; i < enrollments.length; i++) {
-      let {course_name,student_id,price} = enrollments[0];
-      let studentName =await User.findById(student_id).then(({last_name,first_name}) => `${first_name} ${last_name}`);     
-      let date =  enrollments[0].Date.toDateString();//=enrollments[0].Date.substring(0,10);
-      enrollments.push({no :i+1,date,course_name,studentName, price});
-      enrollments.shift()
+      if (enrollments[0].activated ===true && enrollments[0].paid ===true) {
+        let {course_name,student_id,course_price} = enrollments[0];
+        let date = enrollments[0].Date.toDateString();//=enrollments[0].Date.substring(0,10);
+        let studentName = await User.findById(student_id).then(returnStudentName);     
+        enrollments.push({no :i+1,date,course_name,studentName,price :course_price});
+      }
+      enrollments.shift();
     }
+
+    
     return res.status(200).json({ enrollments })
   } catch (error) {
     log({error})

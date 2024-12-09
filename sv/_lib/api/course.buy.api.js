@@ -85,14 +85,14 @@ export async function courseBuyPaypalApi(req,res) {
 
 
         let course=coursesArray.find(({id})=> id==course_id)//await Course.findOne({id : course_id});
-        // if (!course) throw 'Can not find course'
+        if (!course) throw 'Can not find course'
 
         let price =await MakePriceString(course.price);
 
     
         log('//database CourseEnrollments')
         let courseEnrollMent =new CourseEnrollments({
-            // name:course.title,
+            course_name :course.name,
             course_id :course.id ,
             student_id :user_info._id,
             Date : new Date(),
@@ -110,7 +110,7 @@ export async function courseBuyPaypalApi(req,res) {
         paypalItemsObject.name =course.name//course.title.length >100? course.title.substring(0,100):course.title,
         paypalItemsObject.description =course.description//course.description.length >100? course.description.substring(0,100):course.description,
         paypalItemsObject.quantity=1 ;
-        
+         
 
         paypalItemsObject.unit_amount={ 
             currency_code:'USD',

@@ -4,6 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Control Panal</title>
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="notranslate">
+  <meta name="googlebot-news" content="nosnippet">
   <!-- ImportTANT links -->
   <link rel="Icon" href="/img/link_icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -31,6 +34,8 @@
   <link rel="stylesheet" href="/css/control_panal/Testimonials.css">
   <link rel="stylesheet" href="/css/control_panal/share.media.css">
   <link rel="stylesheet" href="/css/control_panal/countryrepresentative.css">
+  <link rel="stylesheet" href="/css/control_panal/customLinksContainer.css">
+  
   <script defer src="/js/control panal/gm.js"></script>
   <script defer src="/js/control panal/c.panal.js"></script>
   <script defer src="/js/control panal/Upload.product.js"></script>
@@ -50,6 +55,7 @@
   <script defer src="/js/control panal/uplaod.event.js"></script>
   <script defer src="/js/control panal/share.media.js"></script>
   <script defer src="/js/control panal/countryrepresentative.js"></script>
+  <script defer src="/js/control panal/custom.link.js"></script>
 
 </head>
 
@@ -531,6 +537,8 @@
           <a id="course_enrolments_href">Course EnrollMents<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="Testimonials_href">Testimonials<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="Country_Representative_href">Country Representative<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="customLinks_href">Create custom Offers<button><i class="fa-solid fa-angle-right"></i></button></a>
+          
           <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
           <style>
@@ -835,7 +843,6 @@
               <th width="20%">Membership</th>
               <th width="12.5%">Date</th>
               <th width="13.5%">Action</th>
-
             </tr>
           </table>
 
@@ -1140,16 +1147,32 @@
           </div>
           <div class="s-sec-input-box">
             <label for="s-sec-name-inp">Event Title</label>
-            <input type="Text" placeholder="Write the Event Title" inp_for_product_name id="s-sec-name-inp">
+            <input type="Text" placeholder="Write the Event Title"  id="s-sec-name-inp">
           </div>
           <div class="s-sec-input-box">
             <label for="s-sec-bio-inp">Event Description</label>
-            <textarea placeholder="Write the description of the event" inp_for_product_des></textarea>
+            <textarea placeholder="Write the description of the event" ></textarea>
           </div>
           <div class="s-sec-input-box">
             <label for="s-sec-name-inp">Event Date</label>
-            <input type="date" placeholder="Event Date" inp_for_product_name id="s-sec-name-inp">
+            <input type="date" placeholder="Event Date"  id="s-sec-name-inp">
           </div>
+
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Organizing Country</label>
+            <input type="text" placeholder="Organizing Country"  id="s-sec-name-inp">
+          </div>
+          
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Particapating Country</label>
+            <input type="number" placeholder="Particapating Country"  id="s-sec-name-inp">
+          </div>
+          
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Particapating Atletes</label>
+            <input type="number" placeholder="Particapating Atletes"  id="s-sec-name-inp">
+          </div>
+
           <div class="s-sec-btn-box">
             <button uploadEventButton> Upload</button>
           </div>
@@ -1354,8 +1377,8 @@
           </div>
 
         </div>
-<!-------------------------- Country Representative ----------------------------->
-  <div id="Country_Representative_container" targetedElement="Country_Representative_href" style="display: none;" ct_section>
+        <!-------------------------- Country Representative ----------------------------->
+        <div id="Country_Representative_container" targetedElement="Country_Representative_href" style="display: none;" ct_section>
 
           <table>
             <tr>
@@ -1373,8 +1396,85 @@
 
           
         </div>
+        
+        <section class="customLinksContainer" style="display: none;"  targetedElement="customLinks_href" ct_section >
+          
+          <table style="font-size: 14.5px;">
+            <tr>
+              <th>Name</th>
+              <th width="30%" style="text-wrap: wrap;">Link</th>
+              <th>Expiring Date</th>
+              <th>Price</th>
+              <th>Status</th>
+              <th>Action</th>
+            </tr>
+
+            
+          </table>
 
 
+          <form id="custom-link-generator">
+            <h3>Make a custom Discount Link</h3>
+            <div class="input-box">
+              <label for="custom-link-select">Type</label>
+              <select name="" id="custom-link-select">
+                <option value="Membership">Membership</option>
+                <option value="Course">Course</option>
+              </select>
+            </div>
+            <div class="custom-link-course">
+              <div class="input-box">
+                <label for="">Course Name</label>
+                <select course_name name="" id="">
+                  <option value="Our Regular classes">Our Regular classes</option>
+                  <option value="Our Online classes">Our Online classes</option>
+                  <option value="Our Seminar's">Our Seminar's</option>
+                  <option value="Our Women Defence classes">Our Women Defence classes</option>
+                  <option value="Bhangra Fitness Class for all ages">Bhangra Fitness Class for all ages</option>
+                </select>
+              </div>
+              <div class="input-box">
+                <label>Course Price</label>
+                <input course_price type="number" placeholder="Course Price">
+              </div>
+            </div>
+          
+            <div class="custom-link-memberships">
+              <div class="input-box">
+                <label for="custom-link-membership-type">Membership Type</label>
+                <select membership_type id="custom-link-membership-type">
+                  <option value="Annual">Annual</option>
+                  <option value="LifeTime">LifeTime</option>
+                </select>
+              </div>
+              <div class="input-box">
+                <label for="custom-link-membership-organization-name">Membership Organization Name</label>
+                <select membership_organization_name id="custom-link-membership-organization-name">
+                  <option value="Goju Shin Ryu International Metial Arts">Goju Shin Ryu International Metial Arts</option>
+                  <option value="School of Traditional Martial Arts International">School of Traditional Martial Arts
+                    International</option>
+                </select>
+              </div>
+              <div class="input-box">
+                <label>Price</label>
+                <input type="number" membership_price placeholder="new Price of Membership ">
+              </div>
+            </div>
+            <div class="input-box">
+              <label for="">Sender Email</label>
+              <input type="text" custom-link-reciever-email placeholder="please give the Email list of recievers">
+            </div>
+            <div class="input-box">
+              <label for="">Expiring Date</label>
+              <input type="date" custom-link-expiring-date placeholder="Expiring Date of the link">
+            </div>
+            <div class="generated-link"></div>
+            <div class="input-box">
+              <button class="Generate-link-btn">Generate</button>
+            </div>
+          
+          </form>
+        </section>
 
       </div>
     </section>
