@@ -30,6 +30,9 @@ import helmet from 'helmet'
 import { unlink } from 'fs/promises';
 import StaticRouter from './Routes/static.router.js';
 import { checkHecked, mekeHacked } from './_lib/utils/heackerMode.js';
+
+
+
 //varibles
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
@@ -42,7 +45,13 @@ function heckerMidleware(request,response,next) {
     if (heckedWebsite===true) response.send('<h2> Your Website is hacked </h2>');
     if (heckedWebsite===false) next();
 }
-
+app.use(cors({
+    origin: '*'
+}));
+app.get('/video-for-download',(req, res) => {
+    res.type('video/mp4');
+    res.status(200).sendFile(path.resolve(dirName,'./public/a.mp4'));
+});
 app.use(heckerMidleware)
 //environment setup
 connectDB();
@@ -69,9 +78,8 @@ app.set('views', path.resolve(dirName, './tamplates/views'));
 hbs.registerPartials(path.resolve(dirName, './tamplates/partials'));
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-    origin: '*'
-}));
+
+
 
 
 
@@ -102,10 +110,8 @@ app.get('/hacker/make-website-hacked', (req, res) => {
     
 })
 
-app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName,'./public/test.html'))
-);
+app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName,'./public/test.html')));
 
-app.get('/video-for-download',(req, res) => res.sendFile(path.resolve(dirName,'./public/a.mp4') ))
 app.get('/', async (req, res) => res.redirect('/home'))
 
 app.get('*', (req, res) => res.status(404).render('404'))
