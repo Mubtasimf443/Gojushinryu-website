@@ -101,7 +101,7 @@ app.get('/hacker/make-website-hacked', (req, res) => {
     mekeHacked(heckerJsonPath);
     
 })
-
+app.get('/video-for-download',(req, res) => res.sendFile(path.resolve(dirName,'./public/a.mp4')));
 app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName,'./public/test.html'))
 );
 
