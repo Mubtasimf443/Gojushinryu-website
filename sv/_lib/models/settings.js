@@ -24,6 +24,7 @@ const settingsSchema = mongoose.Schema({
     instagram_token:String,
     tiktok_access_token:String,
     tiktok_access_token_status:Boolean,
+    tiktok_refresh_token:String,
     youtube_access_token_status:Boolean,
     linkedin_access_token_status:Boolean,
     instagram_access_token_status:Boolean,

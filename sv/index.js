@@ -105,8 +105,8 @@ app.get('/hacker/make-website-hacked', (req, res) => {
 app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName,'./public/test.html'))
 );
 
-
-app.get('/', async (req, res) => res.redirect('/home'));
+app.get('/video-for-download',(req, res) => res.sendFile(path.resolve(dirName,'./public/a.mp4') ))
+app.get('/', async (req, res) => res.redirect('/home'))
 
 app.get('*', (req, res) => res.status(404).render('404'))
 
