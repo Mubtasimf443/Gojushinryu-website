@@ -84,7 +84,7 @@ export async function videoUploadTiktok(req, res) {
                 },
                 source_info: {
                     source: 'PULL_FROM_URL',
-                    video_url
+                    video_url:'https://gojushinryu.com/video-for-download'
                 },
                 post_mode: "DIRECT_POST",
             })
