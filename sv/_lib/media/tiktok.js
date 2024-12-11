@@ -159,3 +159,38 @@ export async function tiktokCallback(req, res) {
     }
 
 }
+
+
+
+export async function testVideoUpload(req,res) {
+    try {
+        let settings = await Settings.findOne({});
+        if (!settings) throw 'server_video_upload_error: settings is null'
+        if (!settings.tiktok_access_token_status) throw 'server_video_upload_error: tiktok access token status is false'
+        let response = await fetch('https://open.tiktokapis.com/v2/post/publish/video/init/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': ` Bearer ${settings.tiktok_access_token}`
+            },
+            body: JSON.stringify({
+                post_info: {
+                    title: 'Test video upload',
+                    privacy_level: 'PUBLIC_TO_EVERYONE',
+                    video_cover_timestamp_ms: 1000
+                },
+                source_info: {
+                    source: 'PULL_FROM_URL',
+                    video_url:'https://gojushinryu.com/video-for-download'
+                },
+                post_mode: "DIRECT_POST",
+            })
+        });
+        response = await response.json();
+        log(response);
+        if (typeof response !== 'object') return res.json(response)
+        
+    } catch (error) {
+        console.error(error)
+    }
+}
