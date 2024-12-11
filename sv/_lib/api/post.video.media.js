@@ -6,10 +6,10 @@ InshaAllah, By his marcy I will Gain Success
 
 import formidable from "formidable"
 import path from "path";
-import {fileURLToPath} from 'url';
+import { fileURLToPath } from 'url';
 import { unlink } from "fs/promises";
 import { log } from "console";
-import { BASE_URL } from "../utils/env.js";
+import { APP_AUTH_TOKEN, BASE_URL } from "../utils/env.js";
 import fetch from "node-fetch";
 import { FV_PAGE_ACCESS_TOKEN } from "../utils/env.js";
 
@@ -20,46 +20,46 @@ const __filename = fileURLToPath(import.meta.url);
 let dirname = path.dirname(__filename);
 
 
-export async function uploadVideoToMultimediaApi(req,res) {
+export async function uploadVideoToMultimediaApi(req, res) {
     try {
         let DontSuffortMime = false;
-        let options ={
-            uploadDir :path.resolve(dirname , '../../temp/video') ,
-            maxFiles : 10,
-            allowEmptyFiles:false,
-            maxFileSize:4*1024*1024,
-            filter :(file) => {
-                if ( file.mimetype === 'video/mp4'  )  return true
-            DontSuffortMime =true
-            return false 
+        let options = {
+            uploadDir: path.resolve(dirname, '../../temp/video'),
+            maxFiles: 10,
+            allowEmptyFiles: false,
+            maxFileSize: 4 * 1024 * 1024,
+            filter: (file) => {
+                if (file.mimetype === 'video/mp4') return true
+                DontSuffortMime = true
+                return false
             },
-            filename : () => Date.now() +'_' + Math.floor(Math.random()*1000) + '.mp4'
+            filename: () => Date.now() + '_' + Math.floor(Math.random() * 1000) + '.mp4'
         }
-        await formidable(options).parse(req , async (err, feilds,files) => {
+        await formidable(options).parse(req, async (err, feilds, files) => {
             try {
                 if (err) {
-                    console.log({err});
+                    console.log({ err });
                     return res.sendStatus(400);
                 }
                 if (DontSuffortMime) return res.sendStatus(400)
-                let {description,title,tags}=feilds;
-                let {video}=files;
-               
-                if (!description || !tags || !video || !title ) throw 'error , !massage || !video || title is not define'
-                if (description.length === 0 ) throw 'error , description.length ===0 is not define'
-                if (title.length === 0 ) throw 'error , title.length ===0 is not define'
-                if (video.length !== 1 ) throw 'error , video.length !== 1 is not define'
-                if (tags.length ===0 ) throw 'error , tags.length ===0 is not define'
-                console.log({feilds});
-                
+                let { description, title, tags } = feilds;
+                let video = files.video;
+
+                if (!description || !tags || !video || !title) throw 'error , !massage || !video || title is not define'
+                if (description.length === 0) throw 'error , description.length ===0 is not define'
+                if (title.length === 0) throw 'error , title.length ===0 is not define'
+                if (video.length !== 1) throw 'error , video.length !== 1 is not define'
+                if (tags.length === 0) throw 'error , tags.length ===0 is not define'
+                console.log({ feilds });
+
                 // title =title[0].toString();
-    
-                let statusObject={
-                    facebook:false,
-                    twiter:false,
-                    integram:false,
-                    linkedin:false,
-                    youtube:false,
+
+                let statusObject = {
+                    facebook: false,
+                    twiter: false,
+                    integram: false,
+                    linkedin: false,
+                    youtube: false,
                 };
                 /********************************** Uplaod to facebook  ***************************/
                 // try {
@@ -89,13 +89,26 @@ export async function uploadVideoToMultimediaApi(req,res) {
                 //     })
                 // })
                 // if (response.status===200) statusObject.youtube=true;
-    
+
                 /********************************** Uplaod to x  ***************************/
+
+                fetch(BASE_URL + '/api/media-api/tiktok/video-upload', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        title:title[0].toString(),
+                        video_url: BASE_URL + '/api/file/temp/video/'+ video[0].newFilename
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json',
+                        "authorization":APP_AUTH_TOKEN
+                    }
+                })
+
                 /********************************** Uplaod to linkedin  ***************************/
                 /********************************** Uplaod to instegram  ***************************/
-    
 
-                log({status:statusObject})
+
+                // log({ status: statusObject })
                 return res.sendStatus(201)
             } catch (error) {
                 console.log(error);
@@ -103,7 +116,7 @@ export async function uploadVideoToMultimediaApi(req,res) {
             }
         })
     } catch (error) {
-        console.log({error});
+        console.log({ error });
     }
 }
 
@@ -111,7 +124,7 @@ export async function uploadVideoToMultimediaApi(req,res) {
 
 
 function uploadVideoToYoutube() {
-    
+
 }
 
 

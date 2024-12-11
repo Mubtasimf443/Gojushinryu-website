@@ -19,6 +19,7 @@ const PORT = 3000;
 
 const redirect_uri='https://localhost:3000/callback/'
 
+
 // Step 1: Redirect user to TikTok for authentication
 app.get('/auth', (req, res) => {
     const authUrl = `https://www.tiktok.com/v2/auth/authorize?`+`client_key=${TIKTOK_CLIENT_KEY}&`
