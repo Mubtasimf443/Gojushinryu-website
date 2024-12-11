@@ -1,354 +1,450 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms and Conditions</title>
-   
-<link rel="Icon" href="/img/link_icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"> 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-<link rel="stylesheet" href="/css/header.css">
-<link rel="stylesheet" href="/css/footer.css">
-<link rel="stylesheet" href="/css/dropdown.css">
-<link rel="stylesheet" href="/css/root.css">
-<script src="/js/header.js" defer></script>
 
-<style>
-  *{
-      padding:0px;
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms and Conditions</title>
+
+  <link rel="Icon" href="/img/link_icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link rel="stylesheet" href="/css/header.css">
+  <link rel="stylesheet" href="/css/footer.css">
+  <link rel="stylesheet" href="/css/dropdown.css">
+  <link rel="stylesheet" href="/css/root.css">
+  <script src="/js/header.js" defer></script>
+
+  <style>
+    * {
+      padding: 0px;
       margin: 0px;
       box-sizing: border-box;
-      font-family:"Libre Franklin",Arial;
-  }
-  main {
+      font-family: "Libre Franklin", Arial;
+    }
+    main {
       display: flex;
-      flex-direction: row;
-      justify-content: center;
-      align-items: start; 
-      min-height: 80vh;
-      padding: 20px;
-  }
-  article {
-      width: 600px;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 30px 10px;
+    }
+    article {
+      max-width: 775px;
+      min-width: 475px;
+      width: fit-content;
+      height: fit-content;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+      row-gap: 30px;
+    }
+
+    .card{
       display: flex;
       flex-direction: column;
       justify-content: center;
-      align-items: center;
-      padding: 10px;
-      row-gap: 10px;
-  }
-  h1{
-      font-size: 27px;
-      font-weight: 600;
-  }
-  p{
-      font-size: 14.5px;
-      word-spacing: 3px;
-      line-height: 1.4;
-      text-align: justify ;
-  }
-</style>
+      align-items: start;
+      row-gap: 13px;
+      width: 100%;
+      list-style-position: inside;
+    }
+    .card-title{
+      font-size: 22px;
+      font-weight: 500;
+    }
+    .card-break{
+      height: 2px;
+      width: 100%;
+      background-color: rgb(112, 112, 112);
+    }
+    
+    .card-description {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+   
+  </style>
 
 
 </head>
+
 <body>
 
-    <style>
-        #header{
-   position: static;
-   background: white;
-   box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.007) , 0px 0px 0px rgba(0, 0, 0, 0.007) ,0px 0px 10px rgba(0, 0, 0, 0.07) ,0px 0px 0px rgba(0, 0, 0, 0.007) ;
- }
-  #header > nav > div > a {
-   color: black;
-  } 
-   </style>
-   
-   
-   <!-------------------- Header ------------------------------->
-      
-   <header>
-     <div id="top-bar">
-     
+  <style>
+    #header {
+      position: static;
+      background: white;
+      box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.007), 0px 0px 0px rgba(0, 0, 0, 0.007), 0px 0px 10px rgba(0, 0, 0, 0.07), 0px 0px 0px rgba(0, 0, 0, 0.007);
+    }
 
-     </div>
-     <div main_header id="header">
-    <div class="hd-icon-div">
-     <img class="hd-icon" src="" alt="logo">
+    #header>nav>div>a {
+      color: black;
+    }
+  </style>
+
+
+  <!-------------------- Header ------------------------------->
+
+  <header>
+    <div id="top-bar">
+
+
     </div>
-   <nav class="header-nav-div">
-     <div class="nv-div"><a href="/">Home</a></div>
-     <div id="lt-header-nav-course-anchor-div" class="nv-div">
-       <a href="#"> Courses</a>
-       <div class="dropdown">
-         <a href="/courses">Course</a>
-         <hr>
-         <a href="/courses/date">Dates</a>
-       </div>
-     </div>
-     <div class="nv-div"><a href="/Membership-application">Membership</a></div>
-     <div class="nv-div"><a href="/allience">Alliance</a></div>
+    <div main_header id="header">
+      <div class="hd-icon-div">
+        <img class="hd-icon" src="" alt="logo">
+      </div>
+      <nav class="header-nav-div">
+        <div class="nv-div"><a href="/">Home</a></div>
+        <div id="lt-header-nav-course-anchor-div" class="nv-div">
+          <a href="#"> Courses</a>
+          <div class="dropdown">
+            <a href="/courses">Course</a>
+            <hr>
+            <a href="/courses/date">Dates</a>
+          </div>
+        </div>
+        <div class="nv-div"><a href="/Membership-application">Membership</a></div>
+        <div class="nv-div"><a href="/allience">Alliance</a></div>
 
-     <div id="lt-header-nav-shop-anchor-div" class="nv-div">
-       <a tabindex="2">Shop</a>
-       <nav class="dropdown">
-     <a href="/shop">
-     Equipment
-     </a>
-     <hr>
-     <a href="/shop/fevorites">
-     Fevorites
-     </a>
-     <hr>
-      <a href="/shop/cart">
-     Cart
-     </a>
-     <hr>
-     <a href="/shop/checkout">
-     Checkout
-     </a>
- </nav>
-     </div>
+        <div id="lt-header-nav-shop-anchor-div" class="nv-div">
+          <a tabindex="2">Shop</a>
+          <nav class="dropdown">
+            <a href="/shop">
+              Equipment
+            </a>
+            <hr>
+            <a href="/shop/fevorites">
+              Fevorites
+            </a>
+            <hr>
+            <a href="/shop/cart">
+              Cart
+            </a>
+            <hr>
+            <a href="/shop/checkout">
+              Checkout
+            </a>
+          </nav>
+        </div>
 
 
 
 
-     <div id="about-us-header-nav-div-link-anchor-div" class="nv-div">
-       <a href="#">About Us
-     </a>
-       <nav class="dropdown" id="about_us_dropdown">
-     <a href="/about-us/goju-shin-ryo"> School  of Traditional Martial Arts</a>
-     <hr>
-     <a href="/about-us/school-of-tradistional-martial-arts">Goju Shin Ryu</a>
-     <hr>
-     <a href="/about-us/organization-charts">Organization Chart</a>
- </nav>
-     </div>
+        <div id="about-us-header-nav-div-link-anchor-div" class="nv-div">
+          <a href="#">About Us
+          </a>
+          <nav class="dropdown" id="about_us_dropdown">
+            <a href="/about-us/goju-shin-ryo"> School of Traditional Martial Arts</a>
+            <hr>
+            <a href="/about-us/school-of-tradistional-martial-arts">Goju Shin Ryu</a>
+            <hr>
+            <a href="/about-us/organization-charts">Organization Chart</a>
+          </nav>
+        </div>
 
-    <div id="lt-header-nav-accounts-anchor-div" class="nv-div">
-       <a href="#">Accounts</a>
-       <div class="dropdown">
+        <div id="lt-header-nav-accounts-anchor-div" class="nv-div">
+          <a href="#">Accounts</a>
+          <div class="dropdown">
+            <a href="/accounts/grand-master-counchil">Grand Master</a>
+            <hr>
+            <a href="/accounts/student">Students</a>
+          </div>
+        </div>
+
+        <div id="lt-header-nav-media-anchor-div" class="nv-div">
+          <a href="#">Media</a>
+          <div class="dropdown">
+            <a href="/media/post">Post</a>
+            <hr>
+            <a href="/media/events">Events</a>
+            <hr>
+            <a href="/media/images">Images</a>
+            <hr>
+            <a href="/media/video">Videos</a>
+          </div>
+        </div>
+      </nav>
+      <div class="hd-btn-div">
+        <button>
+          <a style="text-decoration:none; color: inherit;background:inherit;font-size:inherit;font-weight:inherit"
+            href="/contact">
+            Contact Us
+          </a>
+        </button>
+      </div>
+
+      <div class="m_nav_i">
+        <i style="color: #000;" class="fa-solid fa-align-right"></i>
+      </div>
+
+
+      <div mobileNab class="m_nav">
+
+        <button mobile_nab_close>&times;</button>
+        <strong>goju shin ryo</strong>
+        <a class="mna" href="/home">home</a>
+        <span class="mna dropd">Courses
+          <a href="/courses">Course</a>
+          <a href="/courses/date">Date</a>
+        </span>
+        <a href="/Membership-application" class="mna">Membership</a>
+        <a href="/allience" class="mna">allience</a>
+
+        <span class="mna dropd">Shop
+          <a href="/shop">
+            Equipment
+          </a>
+          <a href="/shop/fevorites">
+            Fevorites
+          </a>
+          <a href="/shop/cart">
+            Cart
+          </a>
+          <a href="/shop/checkout">
+            Checkout
+          </a>
+        </span>
+        <span class="mna dropd">
+          About us
+          <a href="/about-us/goju-shin-ryo">goju shin ryo</a>
+          <a href="/about-us/school-of-tradistional-martial-arts">school of tradistional martial arts</a>
+          <a href="/about-us/organization-charts">Organization Chart</a>
+
+        </span>
+        <span class="mna dropd">
+          Accounts
+          <a href="/accounts/student">Student</a>
           <a href="/accounts/grand-master-counchil">Grand Master</a>
-          <hr>
-          <a href="/accounts/student">Students</a>
-       </div>
-     </div>
+        </span>
 
-           <div id="lt-header-nav-media-anchor-div" class="nv-div">
-       <a href="#">Media</a>
-       <div class="dropdown">
+        <span class="mna dropd">Media
           <a href="/media/post">Post</a>
-          <hr>
           <a href="/media/events">Events</a>
-          <hr>
-          <a href="/media/images">Images</a>
-          <hr>
           <a href="/media/video">Videos</a>
-       </div>
-     </div>
-    </nav>
-    <div class="hd-btn-div">
-     <button>
-         <a 
-         style="text-decoration:none; color: inherit;background:inherit;font-size:inherit;font-weight:inherit"
-          href="/contact">
-       Contact Us
-       </a>
-     </button>
+          <a href="/media/images">Images</a>
+        </span>
+
+        <a href="/contact" class="mna">
+          Contact Us
+        </a>
+      </div>
     </div>
 
-    <div  class="m_nav_i">
-     <i style="color: #000;" class="fa-solid fa-align-right"></i>
-    </div>
-
-
-    <div mobileNab class="m_nav">
-
-     <button mobile_nab_close>&times;</button>
-     <strong>goju shin ryo</strong>
-     <a class="mna" href="/home">home</a>
-     <span class="mna dropd">Courses
-       <a href="/courses">Course</a>
-       <a href="/courses/date">Date</a>
-     </span>
-     <a href="/Membership-application" class="mna">Membership</a>
-     <a href="/allience" class="mna">allience</a>
-    
-     <span class="mna dropd">Shop
-      <a href="/shop">
-     Equipment
-     </a>
-     <a href="/shop/fevorites">
-     Fevorites
-     </a>
-      <a href="/shop/cart">
-     Cart
-     </a>
-     <a href="/shop/checkout">
-     Checkout
-     </a>
-     </span>
-     <span class="mna dropd" >
-        About us
-       <a href="/about-us/goju-shin-ryo">goju shin ryo</a>
-       <a href="/about-us/school-of-tradistional-martial-arts">school of tradistional martial arts</a>
-       <a href="/about-us/organization-charts">Organization Chart</a>
-     
-     </span>
-     <span class="mna dropd" >
-       Accounts
-       <a href="/accounts/student">Student</a>
-       <a href="/accounts/grand-master-counchil">Grand Master</a>
-     </span>
-
-     <span class="mna dropd">Media
-       <a href="/media/post">Post</a>
-       <a href="/media/events">Events</a>
-       <a href="/media/video">Videos</a>
-       <a href="/media/images">Images</a> 
-     </span>
-
-    <a href="/contact"  class="mna">
-     Contact Us
-    </a>
-    </div>
- </div>
- 
   </header>
 
-<script>
+  <script>
 
 
-document.querySelector('.fa-align-right').addEventListener('click', e => {
- document.querySelector('[main_header]').querySelector('[mobileNab]').classList.add('visible');
-})
+    document.querySelector('.fa-align-right').addEventListener('click', e => {
+      document.querySelector('[main_header]').querySelector('[mobileNab]').classList.add('visible');
+    })
 
 
-document.querySelector(`[mobile_nab_close]`).addEventListener('click', e => {
- document.querySelector('[main_header]').querySelector('[mobileNab]').classList.remove('visible');
-})
+    document.querySelector(`[mobile_nab_close]`).addEventListener('click', e => {
+      document.querySelector('[main_header]').querySelector('[mobileNab]').classList.remove('visible');
+    })
 
-</script>
+  </script>
 
+<main>
+  <article>
+    <div class="card">
+      <h1 class="card-title">
+        Terms and Conditions
+      </h1>
+      <p class="card-description">
+        Welcome to GojuShinRyu.com. By accessing and using this website, you agree to comply with and be bound by the
+        following terms and conditions. If you do not agree to these terms, please refrain from using our website.
+      </p>
+      <hr class="card-break">
+    </div>
 
-  <main>
+    <div class="card">
+      <h1 class="card-title">1. Acceptance of Terms</h1>
+      <p class="card-description">By using GojuShinRyu.com, you confirm that you are at least 18 years old or have the consent of a parent or guardian to use the website. Your continued use of the website indicates your acceptance of these terms.</p>
+      <hr class="card-break">
+    </div>
 
-    
-<article>
-        <h1> Terms and Conditions</h1>
-        <p>
-           
-            
+    <ul class="card">
+      <h2 class="card-title" >2. Website Use</h2>
+      <li class="card-description">The content provided on this website is for informational purposes only and is subject to change without notice.</li>
+      <li class="card-description">Unauthorized use of this website may result in a claim for damages and/or be a criminal offense.</li>
+      <li class="card-description">You are responsible for ensuring that your use of this website complies with all applicable laws and regulations.</li>
+      <hr class="card-break">
+    </ul>
+    <ul class="card">
+      <h2 class="card-title" >3. Intellectual Property</h2>
+      <li class="card-description">All content on this website, including text, graphics, logos, images, videos, and materials, is the property of GojuShinRyu.com or its licensors.</li>
+      <li class="card-description">You may not reproduce, distribute, or otherwise use any material from this website without prior written consent.</li>
+      <hr class="card-break">
+    </ul>
+    <ul class="card">
+      <h2 class="card-title" > 4. Membership and Services</h2>
+      <li class="card-description">Any membership or training program offered through GojuShinRyu.com is subject to separate agreements and terms.</li>
+      <li class="card-description">Fees and payment terms for classes, seminars, or events will be outlined during the registration process.</li>
+      <ul class="card card-description">
+        We reserve the 3. Intellectual Property
+        <li class=" card-description">All content on this website, including text, graphics, logos, images, videos, and materials, is the property of GojuShinRyu.com or its licensors.</li>
+        <li class="card-description">You may not reproduce, distribute, or otherwise use any material from this website without prior written consent.</li>
+      </ul>
+      <hr class="card-break">
+    </ul>
+    <ul class="card">
+      <h2 class="card-title" >5. Liability Disclaimer</h2>
+      <li class="card-description">The information and services provided on this website are offered "as is" without any warranties, express or implied.</li>
+      <li class="card-description">GojuShinRyu.com is not liable for any injury, loss, or damage resulting from participation in martial arts training or reliance on information provided on this website.</li>
+      <hr class="card-break">
+    </ul>
 
-At <strong>Goju Shin Ryu</strong>,
+    <ul class="card">
+      <h2 class="card-title">6. User Conduct</h2>
+      <li class="card-description">You agree not to engage in any activity that disrupts or interferes with the website’s functionality.</li>
+      <li class="card-description">You are prohibited from uploading or transmitting any harmful, offensive, or illegal content through this website.</li>
+      <hr class="card-break">
+    </div>
 
+    <div class="card">
+      <h2 class="card-title">7. Third-Party Links</h2>
+      <p class="card-description">This website may contain links to third-party websites. These links are provided for your convenience and do not signify endorsement. GojuShinRyu.com has no control over the content of these external websites and assumes no responsibility for them.</p>
+      <hr class="card-break">
+    </div>
 
-These Terms and Conditions govern your use of our website, services, and products. By accessing or using our website, you agree to comply with and be bound by these terms.
-<br>
-<br>
-Please read these Terms and Conditions carefully before using our site. They outline important information regarding your rights, obligations, and legal responsibilities when interacting with our content, making purchases, or using any of our services.
-<br>
-<br>
-If you do not agree with any part of these terms, please refrain from using our website. We reserve the right to modify or update these Terms and Conditions at any time without prior notice, so we encourage you to review them regularly.
-<br>
-<br>
+    <div class="card">
+      <h2 class="card-title">8. Privacy Policy</h2>
+      <p class="card-description">Your use of this website is also governed by our Privacy Policy, which explains how we collect, use, and protect your information.</p>
+      <hr class="card-break">
+    </div>
 
-If you have any questions about our use of cookies, feel free to <a href="/contact">contact us</a>.
-        </p>
-    </article>
+    <div class="card">
+      <h2 class="card-title">9. Amendments</h2>
+      <p class="card-description">We reserve the right to update or modify these terms at any time without prior notice. It is your responsibility to review these terms periodically for changes.</p>     
+      <hr class="card-break">
+    </div>
 
+    <div class="card">
+      <h2 class="card-title">10. Governing Law</h2>
+      <p class="card-description">These terms and conditions are governed by and construed in accordance with the laws of [Your Jurisdiction]. Any disputes arising out of or related to these terms will be subject to the exclusive jurisdiction of the courts in that jurisdiction.</p>
+      <hr class="card-break">
+    </div>
+
+    <div class="card">
+      <h2 class="card-title">11. Contact Us</h2>
+      <Address class="card-description">For any questions or concerns about these terms, please contact us at:
+      
+        Goju Shin Ryu Martial Arts Academy
+        <br>
+        Email: stma1323@gmail.com
+        <br>
+        Phone: +1 587-577-1323
+        <br>
+        Address : Edmonton, AB, Canada, Alberta
+      </Address>
+      <hr class="card-break">
+      <p  class="card-description">Thank you for visiting GojuShinRyu.com!</p>
+    </div>
+
+  </article>
 </main>
 
 
-<!----------------------- Footer -------------------------->
-<footer>
-  <div class="ft_div1">
+  <!----------------------- Footer -------------------------->
+  <footer>
+    <div class="ft_div1">
       <div class="div1">
-          <img src="/img/n.png" alt="">
-          <p>
-              To those who are serious about studying technical and traditional martial arts please contact us in confidence to enquire about joining our school.
-          </p>
+        <img src="/img/n.png" alt="">
+        <p>
+          To those who are serious about studying technical and traditional martial arts please contact us in confidence
+          to enquire about joining our school.
+        </p>
       </div>
       <div class="div2">
-          <div class="d1">
-              <h3>About us</h3>
-              <a href="/home">Home</a>
-              <a href="/about-us/goju-shin-ryo">Goju Shin Ryu</a>
-              <a href="/about-us/school-of-tradistional-martial-arts"> School of Traditional Martial Arts</a>
-              <a href="/about-us/organization-charts">Organization Charts</a>
-              <a href="/allience">Alliance</a>             
-              <a href="/auth/sign-up">Sign Up</a>
-              <a href="/auth/sign-in">Sign In</a>
-              <a href="/contact">Contact Us</a>
-          </div>
-          <div class="d2">
-              <h3>Quick Links</h3>
-              <a href="/courses">Courses</a>
-              <a href="/courses/date">Course Date</a>
-              <a href="/shop">Equipments</a>
-              <a href="/Membership-application">Membership</a>
-              <a href="/media/events">Events</a>
-              <a href="/media/post"> Post</a>
-              <a href="/media/images">Images</a>
-              <a href="/media/video">Video</a>
-          </div>
-          <div class="d3">
-              <h3>
-                  Get In Touch
-              </h3>
-              <p>
-                  IUKMF HQs M-6, Saket, New Delhi, Delhi 110017, India
-              </p>       
-              <div id="ft_social_icon_div">
-                  <a href="http://">
-                      <img src="/icon/facebook.png" alt="">
-                  </a>  
-                  <a href="http://">
-                      <img src="/icon/twitter.png" alt="" >
-                  </a>
-                  <a href="http://">
-                      <img src="/icon/youtube.png" alt="">
-                  </a>
-                  <a href="http://">
-                     <img src="/icon/instragram.png" alt="">
-                  </a>
-                
-                  <a href="http://">
-                      <img src="/icon/linkedin.png" alt="">
-                  </a>
-                    
+        <div class="d1">
+          <h3>About us</h3>
+          <a href="/home">Home</a>
+          <a href="/about-us/goju-shin-ryo">Goju Shin Ryu</a>
+          <a href="/about-us/school-of-tradistional-martial-arts"> School of Traditional Martial Arts</a>
+          <a href="/about-us/organization-charts">Organization Charts</a>
+          <a href="/allience">Alliance</a>
+          <a href="/auth/sign-up">Sign Up</a>
+          <a href="/auth/sign-in">Sign In</a>
+          <a href="/contact">Contact Us</a>
+        </div>
+        <div class="d2">
+          <h3>Quick Links</h3>
+          <a href="/courses">Courses</a>
+          <a href="/courses/date">Course Date</a>
+          <a href="/shop">Equipments</a>
+          <a href="/Membership-application">Membership</a>
+          <a href="/media/events">Events</a>
+          <a href="/media/post"> Post</a>
+          <a href="/media/images">Images</a>
+          <a href="/media/video">Video</a>
+        </div>
+        <div class="d3">
+          <h3>
+            Get In Touch
+          </h3>
+          <p>
+            IUKMF HQs M-6, Saket, New Delhi, Delhi 110017, India
+          </p>
+          <div id="ft_social_icon_div">
+            <a href="http://">
+              <img src="/icon/facebook.png" alt="">
+            </a>
+            <a href="http://">
+              <img src="/icon/twitter.png" alt="">
+            </a>
+            <a href="http://">
+              <img src="/icon/youtube.png" alt="">
+            </a>
+            <a href="http://">
+              <img src="/icon/instragram.png" alt="">
+            </a>
 
-              </div>
+            <a href="http://">
+              <img src="/icon/linkedin.png" alt="">
+            </a>
+
+
           </div>
+        </div>
       </div>
-    
-  </div>
-  <hr>
-  <div class="ft_div2">
-    <h5>
-        All &copy; Copyright's are reserved at Goju Shin Ryu 
-    </h5>
-    <div>
-         <a href="/pages/terms_condition.html">
-          Terms & Conditions
-         </a> |
-         <a href="/pages/privacy_policy.html">
-          Privacy policy
-         </a> |
-         <a href="/pages/cookie_policy.html">
-          Cookie policy
-         </a>
+
     </div>
-  </div>
-  
+    <hr>
+    <div class="ft_div2">
+      <h5>
+        All &copy; Copyright's are reserved at Goju Shin Ryu
+      </h5>
+      <div>
+        <a href="/pages/terms_condition.html">
+          Terms & Conditions
+        </a> |
+        <a href="/pages/privacy_policy.html">
+          Privacy policy
+        </a> |
+        <a href="/pages/cookie_policy.html">
+          Cookie policy
+        </a>
+      </div>
+    </div>
 
-</footer>
 
-   
+  </footer>
+
+
 
 
 </body>
+
 </html>
