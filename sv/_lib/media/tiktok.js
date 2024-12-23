@@ -10,6 +10,7 @@ import {Settings} from '../models/settings.js'
 import formidable from "formidable";
 import path from 'path'
 import { fileURLToPath } from "url";
+import { settingsAsArray, settingsAsString } from "../model_base_function/Settings.js";
 
 const __dirname=path.dirname(fileURLToPath(import.meta.url));
 
@@ -63,6 +64,7 @@ export async function getAccessToken(code) {
 }
 
 let BASE_URL='https://gojushinryu.com'
+
 export async function videoUploadTiktok(req, res) {
     try {
         if (req.headers['authorization'] !== APP_AUTH_TOKEN) return res.sendStatus(401);
@@ -79,7 +81,7 @@ export async function videoUploadTiktok(req, res) {
             body: JSON.stringify({
                 post_info: {
                     title: title,
-                    privacy_level: 'PUBLIC_TO_EVERYONE',
+                    privacy_level: 'FOLLOWER_OF_CREATOR',
                     video_cover_timestamp_ms: 1000
                 },
                 source_info: {
@@ -108,8 +110,6 @@ export async function videoUploadTiktok(req, res) {
         return res.sendStatus(500)
     }
 }
-
-
 
 export async function checkVideoUploadStatus(publish_id, user_access_token) {
     if (!publish_id) throw 'publish_id is undefined '
@@ -176,7 +176,7 @@ export async function testVideoUpload(req,res) {
             body: JSON.stringify({
                 post_info: {
                     title: 'Test video upload',
-                    privacy_level: 'PUBLIC_TO_EVERYONE',
+                    privacy_level: 'SELF_ONLY',
                     video_cover_timestamp_ms: 1000
                 },
                 source_info: {
@@ -192,5 +192,88 @@ export async function testVideoUpload(req,res) {
         
     } catch (error) {
         console.error(error)
+        return res.json({error})
+    }
+}
+
+
+export async function refreshTiktokToken(req,res) {
+    try {
+        let settings =await Settings.findOne({});
+        
+        if (!settings)  throw ''
+        if (!settings) throw 'server_video_upload_error: settings is null'
+        if (!settings.tiktok_access_token_status) throw 'server_video_upload_error: tiktok access token status is false' 
+
+
+        let response=await fetch('https://open-api.tiktok.com/oauth/refresh_token/', {
+            method:'POST',
+            headers :{
+                'Content-Type':'application/json',
+            },
+            body :JSON.stringify({
+                client_key :TIKTOK_CLIENT_KEY,
+                grant_type :"refresh_token",
+                refresh_token:settings.tiktok_refresh_token
+            })
+        });
+        response=await response.json();
+        log(response);
+        if (response.massage==='error') {
+            throw response.data
+        }
+
+        if (response.data?.access_token && response.data?.refresh_token) {
+            settings.tiktok_access_token=response.data.access_token;
+            settings.tiktok_refresh_token = response.data.refresh_token;
+            await settings.save();
+            return res.json({
+                hasError :false ,
+                success :true ,
+                massage :"Tiktok access token updated"
+            })
+        }
+    } catch (error) {
+        console.error(error)
+        if (typeof error ==='object') {
+            return res.json({
+                hasError :true ,
+                error :error
+            })
+        }
+        res.json({
+            hasError:true,
+            error :{
+                massage :error
+            }
+        })
+    }
+}
+
+
+export async function tiktokUserInfo(req,res) {
+    try {
+        let [access_token,status]=await settingsAsArray(['tiktok_access_token','tiktok_access_token_status']);
+        if (!access_token || !status) throw 'access token was not found'
+        let response=await fetch('https://open.tiktokapis.com/v2/post/publish/creator_info/query/',{
+            method :"POST",
+            headers :{
+                'Content-Type': 'application/json; charset=UTF-8',
+                'Authorization':' Bearer '+access_token
+            }
+        });
+        response=await response.json();
+        return res.json({
+            response
+        })
+    } catch (error) {
+        console.error(error);
+        if (typeof error === 'object') return res.json({ hasError: true, error });
+        return res.json({
+            hasError :true , 
+            error :{
+                massage :error
+            }
+        })
     }
 }

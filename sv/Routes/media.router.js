@@ -10,16 +10,18 @@ import { uploadVideoToMultimediaApi } from "../_lib/api/post.video.media.js";
 // import twitterRouter from "../_lib/media/router.js/twitter.js";
 import linkedinRouter from "../_lib/media/router.js/linkedin.js";
 import fb_media_router from "../_lib/media/router.js/facebook.router.js";
+import instagramRouter from '../_lib/media/router.js/instagram.router.js'
+import morgan from "morgan";
 
 let mediaRouter =Router();
-mediaRouter.use('/youtube', YouTubeRouter)
-mediaRouter.use('/tiktok',tiktokRouter)
-mediaRouter.use('/linkedin',linkedinRouter)
+mediaRouter.use('/youtube', YouTubeRouter);
+mediaRouter.use('/tiktok',tiktokRouter);
+mediaRouter.use('/linkedin',morgan('dev'), linkedinRouter);
 // mediaRouter.use('/twitter',twitterRouter)
-mediaRouter.use('/facebook',fb_media_router )
-
-mediaRouter.get('/status', mediaStatus)
-mediaRouter.post('/upload-video', uploadVideoToMultimediaApi)
+mediaRouter.use('/facebook',fb_media_router );
+mediaRouter.use('/instagram',instagramRouter);
+mediaRouter.get('/status', mediaStatus);
+mediaRouter.post('/upload-video', uploadVideoToMultimediaApi);
 
 export default mediaRouter
 

@@ -18,16 +18,25 @@ const settingsSchema = mongoose.Schema({
     home_video_url:String,
     youtube_refresh_token:String,
     youtube_token:String,
+    //meta products
     fb_access_token_enroll_date:Number,
     fb_access_token:String,
+    fb_page_id :String,
+    fb_page_access_token:String,
+    instagram_access_token_status:Boolean,
+    fb_access_token_status:Boolean,
+    instagram_user_id:String,
+    fb_user_id:String,
+
     linkedin_access_token:String,
+    linkedin_organization:String,
+    linkedin_refresh_token:String,
     instagram_token:String,
     tiktok_access_token:String,
     tiktok_refresh_token :String,
     tiktok_access_token_status:Boolean,
     youtube_access_token_status:Boolean,
     linkedin_access_token_status:Boolean,
-    instagram_access_token_status:Boolean,
    
 });
 

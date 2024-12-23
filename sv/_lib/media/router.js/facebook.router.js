@@ -6,332 +6,188 @@ By Allah's Marcy I will gain success , Insha Allah
 import { Router } from "express";
 import { log, makeUrlWithParams } from "string-player";
 import { FV_PAGE_ACCESS_TOKEN, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_GRAPH_API, FACEBOOK_GRAPH_VERSION, FB_PAGE_ID, FACEBOOK_VIDEO_UPLOAD_TIMEOUT} from "../../utils/env.js";
-import fetch from 'node-fetch'
+import fetch from 'node-fetch';
 import { resolve ,dirname} from 'path';
-import fs from 'fs'
 // import FormData from "form-data";
-import { settingsAsString } from "../../model_base_function/Settings.js";
-let fb_media_router =Router();
-import {Settings} from '../../models/settings.js'
+import { getSettings, settingsAsArray, settingsAsString } from "../../model_base_function/Settings.js";
+let router =Router();
+import {Settings} from '../../models/settings.js';
 import { fileURLToPath } from "url";
-import  request  from "request";
-import uploadVideo from "../../../s.js";
+import Facebook from "../Facebook.js";
+import dotenv from 'dotenv'
+import catchError ,{ namedErrorCatching } from "../../utils/catchError.js";
+dotenv.config();
+import request from '../../utils/fetch.js'
 
-fb_media_router.post('/image', facebookImageUpload)
-fb_media_router.post('/video', videoFacebookApi)
-fb_media_router.post('/refresh-token',refresh_tokenApi )
-fb_media_router.post('/chunk',async (req,res)=>{
+
+const fb=new Facebook({
+    client_id :FACEBOOK_APP_ID,
+    client_secret :FACEBOOK_APP_SECRET,
+    redirect_uri :process.env.FACEBOOK_REDIRECT_URI,
+})
+
+let __dirname = dirname(fileURLToPath(import.meta.url));
+
+
+router.get('/auth', async (req, res) => {
     try {
-        res.sendStatus(200);
-        await uploadVideo()
+        let authUrl = fb.getAuthUrl();
+        res.json({
+            authUrl
+        })
     } catch (error) {
-        console.error({error});
+        console.error(error);
+        catchError(res, error);
     }
-} )
+});
 
-/************************----------- Image Upload Api -----------************************/
-async function facebookImageUpload(req,res) {
-    let {url, message}=req.body;
-    if ((url instanceof Array)===false) return res.sendStatus(400)
-    if (typeof message !== 'string') return res.sendStatus(400)
+
+router.get('/callback', async (req, res) => {
     try {
-        let FV_PAGE_ACCESS_TOKEN=await settingsAsString('fb_access_token');
-        let tokenDate=await settingsAsString('fb_access_token_enroll_date');
-        if (!FV_PAGE_ACCESS_TOKEN || !tokenDate) {
-            throw new Error('!FV_PAGE_ACCESS_TOKEN || !tokenDate')
-        }
-        updateFacebookApiAccessToken(tokenDate)
-        let facebookImagesId=[];
-        for (let i = 0; i < url.length; i++) {
-            const el = url[i];
-            let link= makeUrlWithParams(FACEBOOK_GRAPH_API + '/' +FACEBOOK_GRAPH_VERSION+'/'+ FB_PAGE_ID +'/photos', {}, true); 
-            log({link})
-            let response= await fetch(link, {
-                method :'POST',
-                headers :{
-                    "Content-Type":'application/json'
-                },
-                body : JSON.stringify({
-                    url :el,
-                    published :false,
-                    access_token:FV_PAGE_ACCESS_TOKEN
-                })
-            });
-            let status=response.status;
-            response=await response.json();
-            log(response)
-            if (  status>199 &&status<= 299 ) {//throw 'Error , failed uplaod data'
-                if (response.id) facebookImagesId.push({media_fbid:response.id})
-            }      
-        }
-        if (facebookImagesId.length===0) throw 'No image was updated'
-        let response=await fetch(`https://graph.facebook.com/${FACEBOOK_GRAPH_VERSION}/${FB_PAGE_ID}/feed`,{
-            method :'POST',
-            headers :{
-                "Content-Type":'application/json'
-            },
-            body :JSON.stringify({
-                published :true ,
-                message,
-                attached_media:facebookImagesId,
-                access_token:FV_PAGE_ACCESS_TOKEN
-            })
-        });
-        console.log((await response.json()));
-        if (response.status <= 299 && response.status >199) {
-            return res.sendStatus(200)
-        }
-        if (response.status>299) {
-            return res.sendStatus(200)
-        }
-    } catch (error) {
-        console.log({ error : 'facebook error //' + error});
-        res.sendStatus(500)
-    }
-}
-
-/************************----------- Video Upload Api -----------************************/
-
-async function videoFacebookApi(req,res) {
-    let {title,description,filename}=req.body;  
-    try {
-        if (typeof title        !==  'string' ) throw 'title is null'
-        if (typeof description  !==  'string' ) throw 'description is null'
-        if (typeof filename     !==  'string' ) throw 'filename is null'
-
-        let access_token = await settingsAsString('fb_access_token');
-        let tokenDate    = await settingsAsString('fb_access_token_enroll_date');
-
-        if ( !access_token || !tokenDate) {
-            throw new Error('!FV_PAGE_ACCESS_TOKEN || !tokenDate')
-        }
-
-        updateFacebookApiAccessToken(tokenDate);
-
-
-        let videoPath=resolve(dirname(fileURLToPath(import.meta.url)), '../../../public/12345678910.mp4');
+        let { code } = req.query;
+        if (!code) return res.status(400).send("Authorization code missing");
+        let access_token = await fb.getAccessToken(code);
+    
         
-        filename=Math.floor(Math.random()*100000000)+'.mp4';
-        log('// file upload session started')
-        let session=await initInializeVideoUploadSession({
-            file_name:filename,
-            file_length:fs.statSync(videoPath).size,
-            file_type:"video/mp4",
-            access_token
+        let user_id=await fb.getUserID(access_token);
+
+        let page=await fb.getPages(user_id,access_token);
+
+        let P = new fb.Page({ 
+            pageid: page.id, 
+            page_accessToken: page.access_token
         });
 
-
-        log('// file uploading started')
-        let file_handle= await uploadAVideoFile({
-            session,
-            access_token,
-            videoPath,
-            filename,    
-        });
-
-
-        log('// video post started')
-        await request.post(makeUrlWithParams('https://graph.facebook.com'+'/'+FACEBOOK_GRAPH_VERSION+'/'+FB_PAGE_ID+'/videos',{}),
-            {
-            headers :{
-                "Content-Type": "multipart/form-data",
-                "accept": "*/*"
-            },
-            formData :{
-                title,
-                description,
-                access_token,
-                fbuploader_video_file_chunk:file_handle
-            }
-        }, uploadToFacebook );
-
-
-        async function uploadToFacebook(error, response, body) {
-            try {    
-                if (error) {
-                    console.error(error)
-                    return res.sendStatus(500)
-                }
-                if (body) {
-                    body=await JSON.parse(body)
-                    if (body.id) {
-                        console.log({body});
-                        console.log('//video upload completed');
-                        
-                        return res.sendStatus(201)
-                    }
-                    if (body.error) {
-                        console.error({...body.error});
-                        return res.sendStatus(400)
-                    }
-                    console.log({body});
-                    return res.sendStatus(200)
-                }
-                return res.sendStatus(200)
-            } catch (error) {
-                console.log({error});
-                return res.sendStatus(500)
-            }  
-        }
-    } catch (error) {
-        log({error})
-        return res.sendStatus(500)
-    }
-}
-
-async function initInializeVideoUploadSession({file_name,file_length,file_type,access_token}) {
-    let url =makeUrlWithParams(`${FACEBOOK_GRAPH_API}/${FACEBOOK_GRAPH_VERSION}/${FACEBOOK_APP_ID}/uploads`,{
-        file_name,
-        file_length,
-        file_type,
-        access_token
-    });
-    log({url})
-    let res=await fetch(url, {
-        method :'POST'
-    });
-    res=await res.json();
-    if (!res.id) {
-        console.log(res);
-        throw 'Can not facebook token'
-    }
-    return res.id
-}
-
-async function uploadAVideoFile(options) {
-    let prom= new Promise( async(resolve, reject) => {
-
-        let {
-            session,
-            access_token,
-            videoPath,
-            filename
-        }=options;
-
+        let Instagram_id=await P.getLinkedInstagramAccounts(); 
         
-        let file=fs.readFileSync(videoPath);
-        const array=new Uint8Array(file)
-        // let blob=new Blob([file], {
-        //     type :'video/mp4',
-        //     name :filename
-        // });
-        // let form =new FormData();
-        // form.append(`@${filename}`, fs.createReadStream(videoPath))
-        let url =makeUrlWithParams(`${FACEBOOK_GRAPH_API}/${FACEBOOK_GRAPH_VERSION}/${session}`,{})
-        log({url});
+        let settings=await getSettings();
+        settings.fb_access_token_status=true;
+        settings.instagram_access_token_status=true;
+        settings.instagram_user_id=Instagram_id;
+        settings.fb_access_token_enroll_date=Date.now();
+        settings.fb_access_token=access_token;
+        settings.fb_page_access_token=page.access_token;
+        settings.fb_page_id=page.id;
+        settings.fb_user_id=user_id;
+        log({
+            access_token,
+            user_id,
+            page_id:page.id,
+            page_access_token:page.access_token,
+            Instagram_id
+        })
+        await settings.save();
+        return res.sendStatus(200)
+    } catch (error) {
+        console.error(error);
+        catchError(res, error);
+    }
+});
 
+
+router.post('/upload/images',async function (req,res) {
+    try {
+        let pageArray=await settingsAsArray(["fb_access_token_status", "fb_page_id", "fb_page_access_token"]);
+        if(pageArray[0]===false) namedErrorCatching('auth_error', 'Facebook is not authenticated');
+        if(!pageArray[1]) namedErrorCatching('auth_error', 'Facebook page id is not set');
+        if(!pageArray[2]) namedErrorCatching('auth_error', 'Facebook page access token is not set');
+    
+
+        let P=new fb.Page({
+            pageid :pageArray[1],
+            page_accessToken:pageArray[2]
+        });
+
+        let {url,caption}=req.body;
+        if (!url || typeof caption !== 'string') namedErrorCatching('missing_parameter', 'url or caption missing');
+        if (!Array.isArray(url)) namedErrorCatching('invalid_parameter', 'url must be an array');
+        if (url.length < 1) namedErrorCatching('invalid_parameter', 'url array must have at least one element');
+        if (url.length > 10) namedErrorCatching('invalid_parameter', 'url array must have at most 10 elements');
+        if (caption.length > 1000) namedErrorCatching('invalid_parameter', 'caption must be at most 1000 characters');
+
+        let facebookImagesId = [];
+
+        for (let i = 0; (i < url.length && i <=9); i++) {
+            let media_fbid=await P.uploadPhoto(url[i]).then(id=> id.media_fbid).catch(error => namedErrorCatching('upload photo error', error));
+            log({media_fbid});
+            facebookImagesId.push({media_fbid});
+        }
+
+        let post_id=await P.postWithImages(facebookImagesId,caption);
+
+        return res.json({post_id});
+    } catch (error) {
+        console.error(error);
+        return catchError(res, error);
+    }
+});
+
+
+
+router.post('/upload/video',
+    async function (req,res) {
+       
         try {
+            let {url,caption}=req.body;
+            if (typeof url !=='string') namedErrorCatching('perameter error', 'url is not a string');
+            if (typeof caption !=='string') namedErrorCatching('perameter error', 'caption is not a string');
+            if (url.length> 300 || url.length < 15) namedErrorCatching('perameter error', 'url is very large or very small');
+            if (caption.length> 1000 || caption.length < 5) namedErrorCatching('perameter error', 'caption is very large or very small');
+            let pageArray=await settingsAsArray(["fb_access_token_status", "fb_page_id", "fb_page_access_token"]);
+            if(pageArray[0]===false) namedErrorCatching('auth_error', 'Facebook is not authenticated');
+            if(!pageArray[1]) namedErrorCatching('auth_error', 'Facebook page id is not set');
+            if (!pageArray[2]) namedErrorCatching('auth_error', 'Facebook page access token is not set');
 
-            await request(url , {
-                method :'POST',
-                headers :{
-                    'Authorization':'OAuth '+access_token,
-                    'file_offset' :'0',
-                    'Accapt':"video/mp4",
-                    'Cache-Control': 'no-cache',
-                    'Content-Type' : 'video/mp4',
-                    'Content-Disposition': 'attachment; filename=' + filename,
-                    'Content-Length':fs.statSync(videoPath).size.toString(),
-                    'Connection':'close',
-                    'Accept-Encoding':'gzip,deflate, br',
-                    'User-Agent':'nodejs/20.15.0'
-                },
-                host :"graph.facebook.com",
-                body:array,
-                encoding :null
-            },responseCallBack);
+            let P = new fb.Page({
+                pageid: pageArray[1],
+                page_accessToken: pageArray[2]
+            });
 
-            
+            let id= await P.uploadVideo({
+                file_url :url,
+                description :caption
+            });
 
-            function responseCallBack(error , response, data) {
-                data=JSON.parse(data);
-               
-                if (data.h) {
-
-                    log(data.h)
-                    let timeOut;
-                    function deleTimeOut(h) {
-                        log('//200 seconds has been done');
-                        clearTimeout(timeOut);
-                        resolve(h);
-                    }
-                    log('waiting for '+ (FACEBOOK_VIDEO_UPLOAD_TIMEOUT/60000)+' minutes')
-                    timeOut=setTimeout( e => deleTimeOut(data.h) , FACEBOOK_VIDEO_UPLOAD_TIMEOUT)
-                }
-                if (!data.h) throw new Error('File Handler is not define')
-            }
-
+            return res.json({id});
 
         } catch (error) {
-            log({error})
-            throw 'line 237'
+            console.error(error);
+            return catchError(res,error);
         }
-    })
-    let h=await prom.then(h => h)
-    return h
-  
-}
+    }
+)
 
-/************************------------ Refresh Facebook Api access token -----------************************/
 
-async function refresh_token(token) {
-   
+router.get('/upload/feed', async function (req, res) {
+    req.body.message='api..';
     try {
-        let url= makeUrlWithParams('https://graph.facebook.com/v21.0/oauth/access_token', {
-            grant_type: 'fb_exchange_token',
-            client_id: FACEBOOK_APP_ID,
-            client_secret: FACEBOOK_APP_SECRET,
-            fb_exchange_token: token
+        let pageArray = await settingsAsArray(["fb_access_token_status", "fb_page_id", "fb_page_access_token"]);
+        if (pageArray[0] === false) namedErrorCatching('auth_error', 'Facebook is not authenticated');
+        if (!pageArray[1]) namedErrorCatching('auth_error', 'Facebook page id is not set');
+        if (!pageArray[2]) namedErrorCatching('auth_error', 'Facebook page access token is not set');
+
+        if (typeof req.body.message !== 'string') namedErrorCatching('missing_parameter', 'message is not a string');
+        if (!req.body.message) namedErrorCatching('missing_parameter', 'message is missing');
+        if (req.body.message.length > 1000) namedErrorCatching('invalid_parameter', 'message must be at most 1000 characters');
+        if (req.body.message.length <5) namedErrorCatching('invalid_parameter', 'message must be at least 5 characters');
+        
+        let response = await request.post(`https://graph.facebook.com/v21.0/${pageArray[1]}/feed`,
+            {
+                message: req.body.message,
+                access_token: pageArray[2],
+            }, 
+            {
+            headers: {
+                'Content-Type': 'application/json',
+            }
         });
-        let response=await fetch(url);
-        response=await response.json();
-       
-        if (response.access_token) {
-            await Settings.findOne({})
-            .then(async data => {
-                if (!data) return
-                data.fb_access_token =response.access_token;
-                data.instagram_token =response.access_token;
-                data.fb_access_token_enroll_date =Date.now();
-                await data.save()  
-                log('data is saved')
-            })   
-            
-            return true
-        }
-        if (!response.access_token) {
-            log({...response})    
-            return false 
-        }
+        if (response.id) return res.json({id:response.id});
+        if (response.error) throw response.error;
+        throw response;
 
     } catch (error) {
-        console.log({error});      
-        return false
+        return catchError(res, error);
     }
-}
+})
 
-async function refresh_tokenApi(req,res) {
-    let {token}=req.body;
-    if (typeof token !== 'string') {
-        return res.sendStatus(400)
-    } 
-    let status= await refresh_token(token);
-    status ? res.sendStatus(200) : res.sendStatus(500) 
-}
-
-async function updateFacebookApiAccessToken(date) {
-    date = Date.now()-date;
-    log({date});
-    date=date/1000;
-    date=date/60;
-    date=date/60;
-    date=date/24;
-    log({date});
-    if (date >= 40) {
-        let token=await settingsAsString('fb_access_token');
-        await refresh_token(token).catch(error => console.error({error}))
-    }
-    if (date<40) return console.log('date is less then 40');
-}
-
-export default fb_media_router
+export default router

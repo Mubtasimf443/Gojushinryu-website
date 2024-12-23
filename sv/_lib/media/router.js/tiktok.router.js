@@ -4,7 +4,13 @@ By Allah's Marcy I will gain success , Insha Allah
 */
 
 import { Router } from "express";
-import { redirectionURLFunction, testVideoUpload, tiktokCallback, videoUploadTiktok } from "../tiktok.js";
+import { 
+    redirectionURLFunction, 
+    refreshTiktokToken, 
+    testVideoUpload, 
+    tiktokCallback, 
+    tiktokUserInfo, 
+    videoUploadTiktok } from "../tiktok.js";
 import morgan from "morgan";
 
 
@@ -15,4 +21,6 @@ TikTokRouter.get('/get-code', (req, res) => res.redirect(redirectionURLFunction(
 TikTokRouter.get('/refresh', () => {})
 TikTokRouter.post('/video-upload',morgan('dev'), videoUploadTiktok);
 TikTokRouter.get('/test-video-uplaod', testVideoUpload)
+TikTokRouter.get('/refresh-token', refreshTiktokToken);
+TikTokRouter.get('/get-user-info', tiktokUserInfo)
 export default TikTokRouter;
