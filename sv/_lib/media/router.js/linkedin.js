@@ -21,54 +21,80 @@ import { fileURLToPath } from "url";
 const __dirname=dirname(fileURLToPath(import.meta.url));
 const linkedinRouter=Router();
 
-linkedinRouter.post('/uplaod/images',uploadImages);
-linkedinRouter.post('/upload/video',async function (req,res) {
+linkedinRouter.post('/uplaod/images', async function uploadImages(req, res) {
     try {
-        let 
-        title = (typeof req.body.title === 'string' ? req.body.title : ''),
-        video = (typeof req.body.video === 'string' ? req.body.video : ''),
-        [accessToken,accessTokenStatus, organization] =await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status","linkedin_organization"]),
-        linkedin=new Linkedin({});
+        let
+            images = (req.body.images instanceof Array ? req.body.images : []),
+            title = (typeof req.body.title === 'string' ? req.body.title : ''),
+            [accessToken, accessTokenStatus, organization] = await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status", "linkedin_organization"]);
+        if (!accessTokenStatus || !accessToken || !organization) return res.sendStatus(401);
+        if (images.length === 0) namedErrorCatching('perameter-error', 'images is a emty array');
+        if (!title) namedErrorCatching('perameter-error', 'title is emty');
+        let linkedin = new Linkedin({});
+        let mediaData = await linkedin.page.initAndUploadMultipleImages({
+            accessToken,
+            organization,
+            images,
+            title
+        });
+        await linkedin.page.postWithMedia(accessToken, organization, mediaData, title);
+        return res.sendStatus(201);
+    } catch (error) {
+        catchError(res, error)
+    }
+});
+linkedinRouter.post('/upload/video', async function (req, res) {
+    try {
+        let
+            title = (typeof req.body.title === 'string' ? req.body.title : ''),
+            video = (typeof req.body.video === 'string' ? req.body.video : ''),
+            [accessToken, accessTokenStatus, organization] = await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status", "linkedin_organization"]),
+            linkedin = new Linkedin({});
         if (!accessTokenStatus || !accessToken || !organization) return res.sendStatus(401);
         if (!title) namedErrorCatching('perameter-error', 'title is emty');
         if (!video) namedErrorCatching('perameter-error', 'video is emty');
         video = path.resolve(__dirname, `../../../temp/video/${video}`);
         if (!existsSync(video)) namedErrorCatching('perameter-error', "video does not exist");
-        let {asset,uploadUrl}=await linkedin.page.initVideo({
+        let { asset, uploadUrl } = await linkedin.page.initVideo({
             accessToken,
-            organization_urn:organization
+            organization_urn: organization
         });
-        await linkedin.page.uploadVideo(uploadUrl,readFileSync(video),accessToken);
-        let id =await linkedin.page.finishVideoUpload(asset,accessToken,organization,title);
+        await linkedin.page.uploadVideo(uploadUrl, readFileSync(video), accessToken);
+        let id = await linkedin.page.finishVideoUpload(asset, accessToken, organization, title);
         return res.sendStatus(201);
     } catch (error) {
+        catchError(res, error);
+    }
+});
+linkedinRouter.post('/upload/feed',async function (req,res) {
+    try {
+        let {accessToken,organization}=await getLinkedinData(),message=req.body.message;
+        if (typeof message !== 'string') namedErrorCatching('perameter-error', 'message is not a string');
+        if (message.length>1300) namedErrorCatching('perameter-error', 'message is too large');
+        if (message.length < 5) namedErrorCatching('perameter-error', 'message is too small');
+        let linkedin = new Linkedin({});
+        let post_id=await linkedin.page.uploadTEXT({
+            accessToken,
+            organization,
+            text :message,
+        });
+        return res.json({post_id});
+    } catch (error) {
+        console.error(error);
         catchError(res,error);
     }
-} );
-linkedinRouter.post('/upload/feed', )
+});
+
+async function getLinkedinData() {
+    let [accessToken, accessTokenStatus, organization] = await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status", "linkedin_organization"]);
+    if (!accessTokenStatus || !accessToken || !organization) namedErrorCatching('auth_error', 'linkedin is not authenticated');
+    return {
+        organization,
+        accessToken
+    }
+}
+
+
 
 
 export default linkedinRouter
-
-async function uploadImages(req,res) {
-    try {
-        let 
-            images = (req.body.images instanceof Array ? req.body.images : []),
-            title = (typeof req.body.title === 'string' ? req.body.title : ''),
-            [accessToken,accessTokenStatus, organization] =await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status","linkedin_organization"]);
-        if (!accessTokenStatus || !accessToken || !organization) return res.sendStatus(401);
-        if (images.length === 0) namedErrorCatching('perameter-error', 'images is a emty array');
-        if (!title) namedErrorCatching('perameter-error', 'title is emty');
-        let linkedin=new Linkedin({});
-        let mediaData=await linkedin.page.initAndUploadMultipleImages({
-            accessToken ,
-            organization,
-            images,
-            title
-        });
-        await linkedin.page.postWithMedia(accessToken,organization,mediaData,title);
-        return res.sendStatus(201);
-    } catch (error) {
-        catchError(res,error)
-    }
-}

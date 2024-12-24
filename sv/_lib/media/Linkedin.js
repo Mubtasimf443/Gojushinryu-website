@@ -294,6 +294,37 @@ export default  class Linkedin {
                 namedErrorCatching('failed to post media with images' ,response.error ?? response );
             }
             return response.id ;
+        },
+        uploadTEXT:async function ({accessToken,organization,text,visibility}) {
+            let response = await request.post(
+                'https://api.linkedin.com/v2/ugcPosts',
+                {
+                    author: organization, // Your organization URN
+                    lifecycleState: 'PUBLISHED',
+                    specificContent: {
+                        "com.linkedin.ugc.ShareContent": {
+                            shareCommentary: {
+                                text: text
+                            },
+                            "shareMediaCategory": "NONE"
+                        }
+                    },
+                    visibility: {
+                        "com.linkedin.ugc.MemberNetworkVisibility": visibility ?? "PUBLIC"
+                    }
+                },
+                {
+                    headers: {
+                        Authorization: `Bearer ${accessToken}`,
+                        'Content-Type': 'application/json',
+                    },
+                }
+            );
+
+            if (response.id) return response.id;
+            if (!response.id && response.error) throw response.error;
+            throw response;
+            
         }
     }
 }
