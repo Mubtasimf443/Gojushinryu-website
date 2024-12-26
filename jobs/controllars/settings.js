@@ -39,8 +39,14 @@ const settingsSchema =new mongoose.Schema({
     tiktok_access_token_status:Boolean,
     youtube_access_token_status:Boolean,
     linkedin_access_token_status:Boolean,
-    last_modification_date:Date
-   
+    //modification dates are use to track jobs are working or not
+    last_modification_date:Number,
+    last_modification_date_as_date:Date,
+    last_modification_date_as_Number:Number,
+    last_modification_date_as_Day:String,
+    last_modification_date_as_Hour:String,
+    last_modification_date_as_minute:String,
+
 });
 
 

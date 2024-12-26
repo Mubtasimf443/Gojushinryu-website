@@ -3,6 +3,7 @@
 
 import { log } from 'string-player';
 import Settings from './settings.js';
+import { namedErrorCatching } from './error.handle.js';
 
 
 
@@ -49,8 +50,33 @@ export async function setSettings(name ,value) {
     return true;
 }
 
+export async function setSettingsAsArray({keys,values}={keys:[],values:[]}){
+    if (!(Array.isArray(keys) && Array.isArray(values))) namedErrorCatching('keys-values-error','keys and values should be a array')
+    if (keys.length !== values.length) throw 'keys and length shoud be same';
+    let settings=await Settings.findOne({});
+    if (!settings) throw new Error("settings is null");
+    
+    for (let i = 0; i < keys.length; i++) {
+        if (!keys[i]) {
+            delete keys[i];
+            delete values[i];
+        }
+    }
+
+    for (let i = 0; i < keys.length; i++) {
+        const key = keys[i], value= (!values[i] ? null : values[i]);
+        settings[key]=value;
+    }
+
+    await settings.save().catch(
+        function(error) {
+            return console.error(error);
+        }
+    );
+}
 export async function getSettings(params) {
     let settings=await Settings.findOne({});
     if (!settings) throw new Error("settings is null");
     return settings;
 }
+
