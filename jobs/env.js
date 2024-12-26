@@ -1,0 +1,9 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
+import {config} from 'dotenv'
+config();
+
+export const DATABASE =process.env.DATABASE;

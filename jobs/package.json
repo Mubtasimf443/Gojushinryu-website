@@ -1,0 +1,20 @@
+{
+  "name": "jobs",
+  "version": "1.0.0",
+  "main": "jobs.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon jobs.js --ignore controllars/"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "mongoose": "^8.9.2",
+    "node-fetch": "^3.3.2",
+    "string-player": "^1.0.6"
+  },
+  "type": "module"
+}
