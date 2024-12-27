@@ -18,8 +18,13 @@ const settingsSchema =new mongoose.Schema({
         date :String,
     },
     home_video_url:String,
+
+    //youtube
     youtube_refresh_token:String,
     youtube_token:String,
+    youtube_access_token_status:Boolean,
+
+
     //meta products
     fb_access_token_enroll_date:Number,
     fb_access_token:String,
@@ -29,16 +34,18 @@ const settingsSchema =new mongoose.Schema({
     fb_access_token_status:Boolean,
     instagram_user_id:String,
     fb_user_id:String,
+    instagram_token:String,
 
+    //linkedin
     linkedin_access_token:String,
     linkedin_organization:String,
     linkedin_refresh_token:String,
-    instagram_token:String,
+    linkedin_access_token_status:Boolean,
+    
+    //tiktok
     tiktok_access_token:String,
     tiktok_refresh_token :String,
     tiktok_access_token_status:Boolean,
-    youtube_access_token_status:Boolean,
-    linkedin_access_token_status:Boolean,
     //modification dates are use to track jobs are working or not
     last_modification_date:Number,
     last_modification_date_as_date:Date,

@@ -23,7 +23,7 @@ export async function settingsAsArray(array) {
     let newArray=[];
     for (let i = 0; i < array.length; i++) {
         const element = array[i];
-        if (!settings[element]) throw new Error("Invalid element "+element);
+        if (settings[element] ===undefined ) throw new Error("Invalid element "+element);
         newArray.push(settings[element]);
     }
     return newArray
