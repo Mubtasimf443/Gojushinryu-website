@@ -70,9 +70,9 @@ async function updateYoutube() {
             })
             .then(e => log('youtube token updated at '+(new Date().getHours()  < 13 ? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM' ) ));
             return;
-        } else {
+        } else if (!data?.credentials?.access_token &&  !data.credentials?.refresh_token) {
             log(data);
-            throw data;
+            throw {...data};
         };
     } catch (error) {
         async function deleteYoutube(error) {
