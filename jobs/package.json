@@ -13,6 +13,7 @@
   "dependencies": {
     "dotenv": "^16.4.7",
     "googleapis": "^144.0.0",
+    "lib-tiktok-api": "^1.0.6",
     "mongoose": "^8.9.2",
     "node-fetch": "^3.3.2",
     "string-player": "^1.0.6"

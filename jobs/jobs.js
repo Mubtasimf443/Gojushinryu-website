@@ -10,9 +10,10 @@ import request from "./controllars/fetch.js";
 import Settings from "./controllars/settings.js";
 import { getSettings, setSettings, setSettingsAsArray, settingsAsArray } from "./controllars/settings.util.js";
 import Facebook from "./controllars/media/facebook.js";
-import { FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_REDIRECT_URI, LINKEDIN_KEY, LINKEDIN_REDIRECT_URI, LINKEDIN_SECRET, YOUTUBE_KEY, YOUTUBE_REDIRECT_URI, YOUTUBE_SECRET } from "./env.js";
+import { FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_REDIRECT_URI, LINKEDIN_KEY, LINKEDIN_REDIRECT_URI, LINKEDIN_SECRET, TIKTOK_KEY, TIKTOK_REDIRECT_URI, TIKTOK_SECRET, YOUTUBE_KEY, YOUTUBE_REDIRECT_URI, YOUTUBE_SECRET } from "./env.js";
 import {google} from 'googleapis'
 import Linkedin from "./controllars/media/linkedin.js";
+import Tiktok from "lib-tiktok-api";
 
 
 
@@ -27,7 +28,52 @@ async function Main() {
         })
         // await updateFacebook();
         // await updateYoutube();
-        await updateLinkedin();
+        // await updateLinkedin();
+        await updateTiktok();
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+async function updateTiktok(params) {
+    try {
+        let {access_token,refresh_token}=await Settings.findOne({}).then(
+            function (set) {
+                if (!set.tiktok_access_token_status) throw 'tiktok does not have a access token';
+                if (!set.tiktok_access_token || !set.tiktok_refresh_token) throw 'tiktok does not have a access token or refresh_token';
+                return {
+                    refresh_token :set.tiktok_refresh_token,
+                    access_token :set.tiktok_access_token
+                }
+            }
+        )
+        let tiktok=new Tiktok({
+            key :TIKTOK_KEY,
+            secret :TIKTOK_SECRET,
+            redirect_uri :TIKTOK_REDIRECT_URI,
+            scope :['user.info.basic','video.upload','video.publish']
+        });
+        let user =new tiktok.Account(access_token ,refresh_token);
+        let data=await user.updateTokens({app_key :TIKTOK_KEY});
+        if (data.message ==='success') {
+            data =data.data;
+            if (data.access_token && data.refresh_token  ) {
+                let set =await getSettings();
+                set.tiktok_access_token =data.access_token ;
+                set.tiktok_refresh_token =data.refresh_token ;
+                set.tiktok_access_token_status =true ;
+                await set.save()
+                log('tiktok tokens updated....');
+                return;
+            }
+        }
+        if (data.message ==='error') {
+            if (data.data?.description && data.data?.error_code ) throw ({error : {code :data.data?.error_code ,description:data.data?.description  }});
+            if (data.data?.description) throw ({error :{description  :data.data?.description }});
+            if (data.data) throw ({error :{description  :data.data }});
+            throw data;
+        }
     } catch (error) {
         console.error(error);
     }
@@ -69,7 +115,6 @@ async function updateLinkedin(params) {
         return ;
     }
 }
-
 async function updateYoutube() {
     try {
         let [status, token, refresh_token]=await settingsAsArray(['youtube_access_token_status', 'youtube_token' , 'youtube_refresh_token']);
@@ -109,8 +154,6 @@ async function updateYoutube() {
         await deleteYoutube()
     }
 }
-
-
 async function updateFacebook() { 
     try {
         let [status, status_instagram, access_token, page_access_token, ig_id, page_id, user_id] = await settingsAsArray(['fb_access_token_status', 'instagram_access_token_status', 'fb_access_token', 'fb_page_access_token', 'instagram_user_id', 'fb_page_id', 'fb_user_id']);
