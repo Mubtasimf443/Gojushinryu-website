@@ -15,9 +15,9 @@ await connectDB();
 
 app.get('/main',async function (req,res) {
     try {
-        res.sendStatus(200);
-        log('event triger on ' + (new Date().getHours()  < 13? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM'  ))
-        await Main()
+        res.status(200).send('success fully tokens are being updated Alhamdulillah');
+        log('event triger on ' + (new Date().getHours()  < 13? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM'  ));
+        await Main();
     } catch (error) {
         console.error(error);
     }
