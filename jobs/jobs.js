@@ -18,22 +18,80 @@ import Tiktok from "lib-tiktok-api";
 
 
 
-Main();
-async function Main() {
+
+export default  async function Main() {
     try {
-        await connectDB();
+
+        await updateYoutube();
+        if ((new Date().getHours()) === 10 ) {
+            await updateFacebook();
+            await updateLinkedin();
+            await updateTiktok();
+        }
+
         await setSettingsAsArray({
             keys :["last_modification_date", "last_modification_date_as_date", "last_modification_date_as_Number", "last_modification_date_as_Day", 'last_modification_date_as_Hour', 'last_modification_date_as_minute'],
             values :[new Date().getDate(),new Date() , Date.now(),new Date().getDay(),new Date().getHours(), new Date().getMinutes()]
-        })
-        // await updateFacebook();
-        // await updateYoutube();
-        // await updateLinkedin();
-        await updateTiktok();
+        });
+
     } catch (error) {
         console.error(error);
     }
 }
+
+
+async function updateYoutube() {
+    try {
+        let [status, token, refresh_token]=await settingsAsArray(['youtube_access_token_status', 'youtube_token' , 'youtube_refresh_token']);
+
+        if (!status) throw 'their is no permision to post on youtube';
+        
+        let googleclient=new google.auth.OAuth2(YOUTUBE_KEY,YOUTUBE_SECRET,YOUTUBE_REDIRECT_URI);
+
+        googleclient.setCredentials({
+            access_token :token,
+            refresh_token :refresh_token
+        });
+        let data=await googleclient.refreshAccessToken();
+        if (data?.credentials?.access_token && data.credentials?.refresh_token) {
+            await Settings.findOneAndUpdate({},{
+                youtube_refresh_token:data.credentials.refresh_token,
+                youtube_token:data?.credentials?.access_token,
+                youtube_access_token_status :true
+            })
+            .then(e => log('youtube token updated at :'+( (new Date().getHours()  < 13) ? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM' )));
+            return ;
+        } else if (data?.credentials?.access_token &&  !data.credentials?.refresh_token) {
+            log('refresh token old is being use on youtube jobs')
+            await Settings.findOneAndUpdate({},{
+                youtube_refresh_token:refresh_token,
+                youtube_token:data?.credentials?.access_token,
+                youtube_access_token_status :true
+            })
+            .then(e => log('youtube token updated at '+(new Date().getHours()  < 13 ? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM' ) ));
+            return;
+        } else {
+            log(data);
+            throw data;
+        };
+    } catch (error) {
+        async function deleteYoutube(error) {
+            log(error);
+            try {
+                await Settings.findOneAndUpdate({},{
+                    youtube_refresh_token:null,
+                    youtube_token:null,
+                    youtube_access_token_status :false
+                })
+                .then(e => log('youtube tokens deleted at'+log('youtube token updated at '+ (new Date().getHours()  < 13? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM' )) ));
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        await deleteYoutube(error)
+    }
+}
+
 
 
 async function updateTiktok(params) {
@@ -64,7 +122,7 @@ async function updateTiktok(params) {
                 set.tiktok_refresh_token =data.refresh_token ;
                 set.tiktok_access_token_status =true ;
                 await set.save()
-                log('tiktok tokens updated....');
+                log('tiktok tokens updated at ' +(new Date().getHours()  < 13? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM' ));
                 return;
             }
         }
@@ -76,15 +134,26 @@ async function updateTiktok(params) {
         }
     } catch (error) {
         console.error(error);
+        async function deleteTokens(params) {
+            try {
+                let set = await getSettings({});
+                set.tiktok_access_token_status = false;
+                set.tiktok_refresh_token = null;
+                set.tiktok_access_token = null;
+                await set.save();
+                log(`tiktok tokens removed at ${(new Date().getHours() < 13 ? new Date().getHours() + ' AM' : (new Date().getHours() - 12) + ' PM')}`);
+            } catch (error) {
+                console.log(error);
+            }
+        }
+        await deleteTokens();
     }
 }
-
 async function updateLinkedin(params) {
     try {
         let settings = await Settings.findOne({});
         if (!settings) throw 'their is no settings'
-        
-        if (!settings.linkedin_refresh_token) namedErrorCatching('auth_error', 'there is no linkedin_refresh_token')
+        if (!settings.linkedin_refresh_token || !settings.linkedin_access_token_status) namedErrorCatching('auth_error', 'there is no linkedin_refresh_token');
 
         let linkedin=new Linkedin({
             key:LINKEDIN_KEY,
@@ -93,71 +162,32 @@ async function updateLinkedin(params) {
         });
        
         let {access_token,refresh_token}=await linkedin.exchangeAccessToken(settings.linkedin_refresh_token);
-        log({access_token,refresh_token});
-        await Settings.findByIdAndUpdate({}, {
+
+        await Settings.findOneAndUpdate({}, {
             linkedin_access_token_status:true,
             linkedin_access_token :access_token,
             linkedin_refresh_token :refresh_token
         })
-        .then(e => log('linkedin data updated...'));
-
-
+        .then(e => log('linkedin data updated at '+(new Date().getHours()  < 13? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM' )))
+        .catch(e => {throw 'linkedin error , bugs in linkedin.exchangeAccessToken'})
     } catch (error) {
         console.error(error);
         async function deleteLinkedinData(params) {
             await Settings.findOneAndUpdate({}, {
-                // linkedin_access_token :null,
+                linkedin_access_token :null,
                 linkedin_access_token_status:false,
-                // linkedin_refresh_token :null,
+                linkedin_refresh_token :null,
                 // linkedin_organization :null
-            }).then(e => log('linkedin data deleted...'));
+            }).then(e => log('linkedin data deleted at' +(new Date().getHours()  < 13? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM' )));
         }
         return ;
-    }
-}
-async function updateYoutube() {
-    try {
-        let [status, token, refresh_token]=await settingsAsArray(['youtube_access_token_status', 'youtube_token' , 'youtube_refresh_token']);
-        log({status, token, refresh_token});
-        if (!status) {
-            throw 'their is no permision to post on youtube'
-        }
-        let googleclient=new google.auth.OAuth2(YOUTUBE_KEY,YOUTUBE_SECRET,YOUTUBE_REDIRECT_URI);
-
-        googleclient.setCredentials({
-            access_token :token,
-            refresh_token :refresh_token
-        });
-        let data=await googleclient.refreshAccessToken();
-        if (data?.credentials?.access_token) {
-            await Settings.findOneAndUpdate({},{
-                youtube_refresh_token:data.credentials.refresh_token,
-                youtube_token:data?.credentials?.access_token,
-                youtube_access_token_status :false
-            })
-            .then(e => log('youtube data updated...'));
-        }
-
-    } catch (error) {
-        async function deleteYoutube() {
-            try {
-                await Settings.findOneAndUpdate({},{
-                    youtube_refresh_token:null,
-                    youtube_token:null,
-                    youtube_access_token_status :false
-                })
-                .then(e => log('youtube data deleted...'));
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        await deleteYoutube()
     }
 }
 async function updateFacebook() { 
     try {
         let [status, status_instagram, access_token, page_access_token, ig_id, page_id, user_id] = await settingsAsArray(['fb_access_token_status', 'instagram_access_token_status', 'fb_access_token', 'fb_page_access_token', 'instagram_user_id', 'fb_page_id', 'fb_user_id']);
-        if (!access_token) throw 'there is no access_token'
+        
+        if (!access_token || !status) throw 'there is no access_token'
         let fb=new Facebook({
             client_id :FACEBOOK_APP_ID,
             client_secret :FACEBOOK_APP_SECRET,
@@ -166,8 +196,10 @@ async function updateFacebook() {
         });
         let new__access_token=await fb.exchangeAccessToken(access_token);
         let new__user_id=await fb.getUserID(new__access_token);
-        let new__page_id_and_token=await fb.getPages(new__user_id, new__access_token);
-        let new_page_id=new__page_id_and_token.id , new__page_access_token=new__page_id_and_token.access_token;
+        let new__P=await fb.getPages(new__user_id, new__access_token);
+        let
+            new_page_id = new__P.id,
+            new__page_access_token = new__P.access_token;
         let P=new fb.Page({
             pageid :new_page_id,
             page_accessToken : new__page_access_token
@@ -184,12 +216,7 @@ async function updateFacebook() {
             instagram_user_id: new__ig_id,
             instagram_token: new__access_token
         })
-        .then(
-            function() {
-                log('facebook tokens saved....')
-            }
-        )
-        ;
+        .then(e => log('facebook tokens updated at ' +  (new Date().getHours()  < 13? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM' )));
 
     } catch (error) {
         console.error(error);
@@ -205,11 +232,7 @@ async function updateFacebook() {
                     instagram_user_id :null,
                     instagram_token :null
                 })
-                .then(
-                    function() {
-                        log('facebook tokens and data are removed......');
-                    }
-                )
+                .then(e => log('facebook tokens and data are removed at '+(new Date().getHours()  < 13? new Date().getHours()+ ' AM':(new Date().getHours()-12)+' PM' )))
                 
             } catch (error) {
                 console.error(error);
