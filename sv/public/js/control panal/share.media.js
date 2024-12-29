@@ -87,7 +87,7 @@ function makeItred(selector) {
             v.loop=true;
             v.controls=true;
             return
-        }
+        } 
     }
     tags_textarea.addEventListener('keypress', 
         async function (e) {

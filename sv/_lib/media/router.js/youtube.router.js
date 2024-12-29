@@ -39,7 +39,7 @@ YouTubeRouter.get('/refresh', async function (req, res)  {
         console.error(error);
         catchError(res,error)
     }
-})
+});
 
 YouTubeRouter.get('/log-out', async function (req, res) {
     try {

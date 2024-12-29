@@ -5,7 +5,7 @@ By his marcy,  I will gain success
 
 import mongoose from 'mongoose';
 
-const Adminschema = mongoose.Schema({
+const Adminschema =new mongoose.Schema({
   name : String,
   fname:String,
   lname : String,

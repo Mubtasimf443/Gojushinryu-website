@@ -20,6 +20,7 @@ let mediaRouter =Router();
 mediaRouter.post('/upload-video', uploadVideoToMultimediaApi);
 mediaRouter.post('/upload-images',uploadImagesToMultimediaApi );
 
+
 mediaRouter.use(morgan('dev'));
 mediaRouter.get('/status', mediaStatus);
 
