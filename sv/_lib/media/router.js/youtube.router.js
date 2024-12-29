@@ -8,11 +8,9 @@ import eventEmiter from 'node:events'
 import { createRequire } from "node:module";
 import { YOUTUBE_CLIENT_ID as client_id, YOUTUBE_CLIENT_SECRET as client_secret, YOUTUBE_API_REDIRECT_URL as redirect_uri } from '../../../_lib/utils/env.js';
 import { log } from "string-player";
-import { CronJob } from 'cron';
 import path from 'path'
 import { fileURLToPath } from "node:url";
 import { dirname, resolve } from "node:path";
-import { checkOrCreateTempDir } from "../../utils/dir.js";
 import { Settings } from "../../models/settings.js"
 import catchError from "../../utils/catchError.js";
 import { getSettings } from "../../model_base_function/Settings.js";
