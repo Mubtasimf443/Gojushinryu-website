@@ -10,7 +10,8 @@ import { fileURLToPath } from 'url'
 import { unlink } from "fs/promises";
 import { ImageUrl } from "../models/imageUrl.js";
 import { BASE_URL } from "../utils/env.js";
-import { checkOrCreateTempDir } from "../utils/dir.js";
+import Awaiter from "awaiter.js";
+
 
 //var
 const __filename = fileURLToPath(import.meta.url);
@@ -18,9 +19,9 @@ let dirname = path.dirname(__filename);
 
 
 export async function UplaodImageApiIn25Minutes(req, res) {
+
     try {
         let DontSuffortMime = false;
-        checkOrCreateTempDir();
         let options = {
             uploadDir:
                 path.resolve(dirname, '../../temp/images'),
@@ -38,15 +39,20 @@ export async function UplaodImageApiIn25Minutes(req, res) {
             },
             filename: () => Date.now() + '_' + Math.floor(Math.random() * 10000) + '.jpg'
         };
+
         formidable(options).parse(req, async (err, feilds, file) => {
             // console.log('not uploaded ===== '+DontSuffortMime);
             if (DontSuffortMime === true) return res.json({ error: 'We do not suppot this type of file' });
+
             if (err) {
                 log(err);
                 return res.json({ error: 'Unknown error' });
             }
+
             log('uploaded')
+
             if (!file.img) return res.json({ error: 'You can not access To this service' })
+
             if (file.img.length > 1) {
                 (function () {
                     file.img.forEach(el => unlink(el.filepath)
@@ -55,17 +61,33 @@ export async function UplaodImageApiIn25Minutes(req, res) {
                 })()
                 return res.json({ error: 'You can not access To this service' })
             }
+
             if (file.img[0].size > (1.5 * 1024 * 1024)) {
                 unlink(file.img[0].filepath)
                     .then(() => { })
                     .catch(e => log(e))
                 return res.json({ error: 'Image Is to  Big' })
             }
+
             let newImageurl = new ImageUrl({
                 url: BASE_URL + '/api/file/temp/' + file.img[0].newFilename,
                 urlpath: file.img[0].filepath,
-                active: false
+                active: false,
+                id :Date.now()
             });
+
+            if ((await ImageUrl.findOne({ id: newImageurl.id })) !== null) {
+                log('another image with the same id so replacing the id ')
+                newImageurl.id = newImageurl.id * 999 + (newImageurl.id - (Math.floor(Math.random() * 1000)));
+                if ((await ImageUrl.findOne({ id: newImageurl.id })) !== null) {
+                    newImageurl.id =newImageurl.id * 999 + (newImageurl.id - (Math.floor(Math.random() * 1000)));
+                    if ((await ImageUrl.findOne({ id: newImageurl.id })) !== null) {
+                        log("server error , finding lots of image with a same id , that why this error");
+                        return res.status(500).json({ error: "server error , finding lots of image with a same id , that why this error" })
+                    }
+                }
+            }
+
             let urlpath = await newImageurl.save().then(({ urlpath }) => urlpath).catch(e => { log(e); return null })
             if (!urlpath) {
                 return res.json({ error: 'Unknown error' });
@@ -76,6 +98,7 @@ export async function UplaodImageApiIn25Minutes(req, res) {
             res.status(200).json({
                 success: true,
                 link: BASE_URL + '/api/file/temp/' + file.img[0].newFilename,
+                image_id: newImageurl.id
             });
 
             setTimeout(

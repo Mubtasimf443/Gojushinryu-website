@@ -6,11 +6,16 @@ By his marcy,  I will gain success
 import mongoose from "mongoose";
 
 
-let imgUrlSchema= mongoose.Schema({
+let imgUrlSchema=new mongoose.Schema({
     url :String,
     urlpath :String,
     active:Boolean,
+    id :{
+        type :Number ,
+        default :Date.now
+    }
 })
 
- const ImageUrl = mongoose.model('imageUrl', imgUrlSchema);
- export  {ImageUrl}
+
+export const ImageUrl = mongoose.model('imageUrl', imgUrlSchema);
+  

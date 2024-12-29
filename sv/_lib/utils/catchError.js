@@ -20,12 +20,12 @@ export default function catchError(res, error) {
 export function namedErrorCatching(name, error) {
     if (typeof error !== 'object') {
         throw {
-            name,
+            type: name,
             massage :error
         }
     }
     throw {
-        name,
+        type: name,
         ...error
     }
 } 

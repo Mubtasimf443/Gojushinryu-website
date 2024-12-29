@@ -31,7 +31,8 @@ import { changeSettingsAPI } from "../_lib/api/change.settings.api.js";
 import { 
     createTestimonials,
     getTestimonials,deleteTestimonials,
-    testinmonialsForHomePage 
+    testinmonialsForHomePage, 
+    createTestimonialsWithoutImage
 } from "../_lib/model_base_function/Testimonials.js";
 import { allowRepresentative, disAllowRepresentative, getCountryRepresentatives, getCountryRepresentativesForAdmin } from "../_lib/model_base_function/CountryRepresentatives.js";
 import { deleteCustomLink, disableCustomLink, enableCustomLink, findCustomLinks } from "../_lib/model_base_function/customLink.js";
@@ -78,6 +79,7 @@ apiRouter.post('/find-membership-data',findMemberShipdata)
 apiRouter.post('/get-gm-events',getGmEvents)
 apiRouter.post('/admin-event-upload-api', adminEventUplaodAPI);
 apiRouter.post('/testimonials', createTestimonials)
+apiRouter.post('/testimonials-second-api', createTestimonialsWithoutImage);
 // apiRouter.post('/custom-membership', customMembershipApi)
 
 

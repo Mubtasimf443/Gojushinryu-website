@@ -1314,6 +1314,8 @@
 
             </tr>
           </table>
+          
+          {{!-- Popup --}}
 
           <div id="edit_testimonial_popup" style="display: none;" class="popup_c">
             <div class="popup_order_action_form">
@@ -1347,6 +1349,8 @@
               </div>
             </div>
           </div>
+          
+          {{!-- Form --}}
 
 
           <div class="form-section">
@@ -1359,30 +1363,32 @@
                   Appreciator Image
                 </b>
               </label>
-              <input multiple="false" style="display: none" type="file" id="upload_testimonial_images">
+              <input multiple="false" style="display: none" type="file" accept="image/*" id="upload_testimonial_images">
 
             </div>
 
-            <div class="s-sec-input-box">
+            <div class="s-sec-input-box" style="position: relative;">
               <label for="s-sec-name-inp">Appreciator</label>
               <input type="Text" placeholder="Write the name of Appreciator" name_of_Appreciator id="s-sec-name-inp">
+              <span class="mention" style="position: absolute; bottom:-20px;right:9px;color:red;font: size 10px;"></span>
             </div>
-            <div class="s-sec-input-box">
+            <div class="s-sec-input-box" style="position: relative;">
               <label for="s-sec-name-inp">Positon</label>
               <input type="Text" placeholder="Write the job Positon of Appreciator" Positon_of_Appreciator
                 id="s-sec-name-inp">
+              <span class="mention" style="position: absolute; bottom:-20px;right:9px;color:red;font: size 10px;"></span>
             </div>
-            <div class="s-sec-input-box">
+            <div class="s-sec-input-box" style="position: relative;">
               <label for="s-sec-bio-inp">Appreciation</label>
               <textarea placeholder="Write the Appreciation" Appreciation></textarea>
+              <span class="mention" style="position: absolute; bottom:-20px;right:9px;color:red;font: size 10px;"></span>
             </div>
-
             <div class="s-sec-btn-box">
               <button uploadTestimonialsButton> Upload</button>
             </div>
           </div>
-
         </div>
+
         <!-------------------------- Country Representative ----------------------------->
         <div id="Country_Representative_container" targetedElement="Country_Representative_href" style="display: none;"
           ct_section>
