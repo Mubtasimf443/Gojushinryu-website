@@ -23,7 +23,7 @@ const fb=new Facebook({
     client_id :FACEBOOK_APP_ID,
     client_secret :FACEBOOK_APP_SECRET,
     redirect_uri :BASE_URL +'/api/media-api/facebook/callback',
-})
+});
 
 let __dirname = dirname(fileURLToPath(import.meta.url));
 
@@ -190,10 +190,10 @@ router.post('/upload/video',
 )
 
 
-router.get('/upload/feed', async function (req, res) {
-    req.body.message='api..';
+router.post('/upload/feed', async function (req, res) {
     try {
         let pageArray = await settingsAsArray(["fb_access_token_status", "fb_page_id", "fb_page_access_token"]);
+       
         if (pageArray[0] === false) namedErrorCatching('auth_error', 'Facebook is not authenticated');
         if (!pageArray[1]) namedErrorCatching('auth_error', 'Facebook page id is not set');
         if (!pageArray[2]) namedErrorCatching('auth_error', 'Facebook page access token is not set');

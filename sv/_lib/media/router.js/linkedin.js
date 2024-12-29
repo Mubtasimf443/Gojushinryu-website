@@ -13,9 +13,8 @@ import path, { dirname } from "path";
 const require=createRequire(import.meta.url);
 import { fileURLToPath } from "url";
 import { log } from "string-player";
-import { LINKEDIN_KEY,LINKEDIN_SECRET , LINKEDIN_REDIRECT_URI } from "../../utils/env.js";
+import { LINKEDIN_KEY,LINKEDIN_SECRET , LINKEDIN_REDIRECT_URI, APP_AUTH_TOKEN } from "../../utils/env.js";
 import { Settings } from "../../models/settings.js";
-
 
 
 const __dirname=dirname(fileURLToPath(import.meta.url));
@@ -153,13 +152,12 @@ router.post('/upload/feed',async function (req,res) {
         if (typeof message !== 'string') namedErrorCatching('perameter-error', 'message is not a string');
         if (message.length>1300) namedErrorCatching('perameter-error', 'message is too large');
         if (message.length < 5) namedErrorCatching('perameter-error', 'message is too small');
-        let linkedin = new Linkedin({});
-        let post_id=await linkedin.page.uploadTEXT({
+        let post_id=await Linkedin.page.uploadTEXT({
             accessToken,
             organization,
             text :message,
         });
-        return res.json({post_id});
+        return res.status(201).json({post_id});
     } catch (error) {
         console.error(error);
         catchError(res,error);

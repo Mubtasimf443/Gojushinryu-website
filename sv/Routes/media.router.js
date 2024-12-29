@@ -14,12 +14,13 @@ import instagramRouter from '../_lib/media/router.js/instagram.router.js'
 import morgan from "morgan";
 import { uploadImagesToMultimediaApi } from "../_lib/api/post.image.media.js";
 import { APP_AUTH_TOKEN } from "../_lib/utils/env.js";
+import postFeed from "../_lib/api/post.feed.js";
 
 let mediaRouter =Router();
 
 mediaRouter.post('/upload-video', uploadVideoToMultimediaApi);
 mediaRouter.post('/upload-images',uploadImagesToMultimediaApi );
-
+mediaRouter.post('/upload/text',postFeed );
 
 mediaRouter.use(morgan('dev'));
 mediaRouter.get('/status', mediaStatus);
