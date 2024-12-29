@@ -5,7 +5,7 @@ By Allah's Marcy I will gain success , Insha Allah
 
 import { Router } from "express";
 import { log, makeUrlWithParams } from "string-player";
-import { FV_PAGE_ACCESS_TOKEN, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_GRAPH_API, FACEBOOK_GRAPH_VERSION, FB_PAGE_ID, FACEBOOK_VIDEO_UPLOAD_TIMEOUT} from "../../utils/env.js";
+import { FV_PAGE_ACCESS_TOKEN, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_GRAPH_API, FACEBOOK_GRAPH_VERSION, FB_PAGE_ID, FACEBOOK_VIDEO_UPLOAD_TIMEOUT, BASE_URL, APP_AUTH_TOKEN} from "../../utils/env.js";
 import fetch from 'node-fetch';
 import { resolve ,dirname} from 'path';
 // import FormData from "form-data";
@@ -19,11 +19,10 @@ import catchError ,{ namedErrorCatching } from "../../utils/catchError.js";
 dotenv.config();
 import request from '../../utils/fetch.js'
 
-
 const fb=new Facebook({
     client_id :FACEBOOK_APP_ID,
     client_secret :FACEBOOK_APP_SECRET,
-    redirect_uri :process.env.FACEBOOK_REDIRECT_URI,
+    redirect_uri :BASE_URL +'/api/media-api/facebook/callback',
 })
 
 let __dirname = dirname(fileURLToPath(import.meta.url));
@@ -31,12 +30,8 @@ let __dirname = dirname(fileURLToPath(import.meta.url));
 
 router.get('/auth', async (req, res) => {
     try {
-        let authUrl = fb.getAuthUrl();
-        res.json({
-            authUrl
-        })
+        return res.redirect(fb.getAuthUrl());
     } catch (error) {
-        console.error(error);
         catchError(res, error);
     }
 });
@@ -47,8 +42,8 @@ router.get('/callback', async (req, res) => {
         let { code } = req.query;
         if (!code) return res.status(400).send("Authorization code missing");
         let access_token = await fb.getAccessToken(code);
-    
-        
+        access_token=await fb.exchangeAccessToken(access_token);
+        log('token exchange.... '+access_token);
         let user_id=await fb.getUserID(access_token);
 
         let page=await fb.getPages(user_id,access_token);
@@ -77,13 +72,49 @@ router.get('/callback', async (req, res) => {
             Instagram_id
         })
         await settings.save();
-        return res.sendStatus(200)
+        return res.redirect('/control-panal');
     } catch (error) {
         console.error(error);
         catchError(res, error);
     }
 });
 
+
+router.delete('/log-out',async function (req, res) {
+    try {
+        let set=await getSettings();
+        
+        //status
+        set.fb_access_token_status =false;
+        set.instagram_access_token_status =false;
+
+        //ids
+        set.fb_user_id =null;
+        set.fb_page_id =null;
+        set.instagram_user_id=null;
+
+        //tokens
+        set.fb_access_token=null;
+        set.fb_page_access_token=null;
+        set.instagram_token=null;
+
+        await set.save();
+        
+        res.sendStatus(204);
+
+    } catch (error) {
+        console.error(error);
+        catchError(res, error)
+    }
+});
+router.use(
+    function (req, res, next) {
+        if (req.headers['authorization'] !== APP_AUTH_TOKEN) {
+            log("Auth error , You are not recognized.......");
+            return res.status(401).json({ error: 'You are not recognized', type: "auth_error" })
+        } else next();
+    }
+)
 
 router.post('/upload/images',async function (req,res) {
     try {
@@ -99,10 +130,11 @@ router.post('/upload/images',async function (req,res) {
         });
 
         let {url,caption}=req.body;
+        
         if (!url || typeof caption !== 'string') namedErrorCatching('missing_parameter', 'url or caption missing');
         if (!Array.isArray(url)) namedErrorCatching('invalid_parameter', 'url must be an array');
         if (url.length < 1) namedErrorCatching('invalid_parameter', 'url array must have at least one element');
-        if (url.length > 10) namedErrorCatching('invalid_parameter', 'url array must have at most 10 elements');
+        if (url.length > 300) namedErrorCatching('invalid_parameter', 'url array must have at most 300 elements');
         if (caption.length > 1000) namedErrorCatching('invalid_parameter', 'caption must be at most 1000 characters');
 
         let facebookImagesId = [];
@@ -115,7 +147,7 @@ router.post('/upload/images',async function (req,res) {
 
         let post_id=await P.postWithImages(facebookImagesId,caption);
 
-        return res.json({post_id});
+        return res.status(201).json({post_id});
     } catch (error) {
         console.error(error);
         return catchError(res, error);
@@ -126,9 +158,9 @@ router.post('/upload/images',async function (req,res) {
 
 router.post('/upload/video',
     async function (req,res) {
-       
         try {
             let {url,caption}=req.body;
+            log(req.body);
             if (typeof url !=='string') namedErrorCatching('perameter error', 'url is not a string');
             if (typeof caption !=='string') namedErrorCatching('perameter error', 'caption is not a string');
             if (url.length> 300 || url.length < 15) namedErrorCatching('perameter error', 'url is very large or very small');
@@ -148,7 +180,7 @@ router.post('/upload/video',
                 description :caption
             });
 
-            return res.json({id});
+            return res.status(201).json({id});
 
         } catch (error) {
             console.error(error);
@@ -181,7 +213,7 @@ router.get('/upload/feed', async function (req, res) {
                 'Content-Type': 'application/json',
             }
         });
-        if (response.id) return res.json({id:response.id});
+        if (response.id) return res.status(201).json({id:response.id});
         if (response.error) throw response.error;
         throw response;
 

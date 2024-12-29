@@ -8,10 +8,11 @@ import path from "path";
 import { fileURLToPath } from 'url';
 import { unlink } from "fs/promises";
 import { log } from "console";
-import { BASE_URL } from "../utils/en.js";
-import fetch from "node-fetch";
-import { FV_PAGE_ACCESS_TOKEN } from "../utils/env.js";
 
+import fetch from "node-fetch";
+import { APP_AUTH_TOKEN,  FV_PAGE_ACCESS_TOKEN ,BASE_URL} from "../utils/env.js";
+import request from "../utils/fetch.js";
+import catchError from "../utils/catchError.js";
 
 
 //var
@@ -22,7 +23,6 @@ let dirname = path.dirname(__filename);
 
 export async function uploadImagesToMultimediaApi(req, res) {
     let DontSuffortMime = false;
-    checkOrCreateTempDir()
     let options = {
         uploadDir: path.resolve(dirname, '../../temp/images'),
         maxFiles: 10,
@@ -38,88 +38,154 @@ export async function uploadImagesToMultimediaApi(req, res) {
         },
         filename: () => Date.now() + '_' + Math.floor(Math.random() * 1000) + '.jpg'
     }
-    try {
+    try { 
         await formidable(options).parse(req, async (error, feilds, files) => {
-            if (error) return res.sendStatus(400);
-            if (DontSuffortMime) return res.sendStatus(400)
-            let { message } = feilds;
-            let { images } = files;
-            if (!message || !images) throw 'error , !massage || !images is not define'
-            if (message.length === 0 || images.length === 0) throw 'error , massage.length ===0 || images.length===0 is not define'
-            message = message[0].toString();
-            let url = [];
-            for (let i = 0; i < images.length; i++) url.push(BASE_URL + '/api/file/temp/' + images[i].newFilename);
-
-            let statusObject = {
-                facebook: false,
-                youtube: false,
-                x: false,
-                linkedin: false,
-                instegram: false
-            }
-            /********************************** Uplaod to facebook  ***************************/
             try {
-                let facebookImagesId = [];
-                for (let i = 0; i < url.length; i++) {
-                    const el = url[i];
-                    let res = await fetch('https://graph.facebook.com/me/photos', {
-                        method: 'POST',
-                        headers: {
-                            "Content-Type": 'application/json'
-                        },
-                        body: JSON.stringify({
-                            published: false,
-                            url: el,
-                            access_token: FV_PAGE_ACCESS_TOKEN
-                        })
-                    });
-                    if (res.status === 200) {//throw 'Error , failed uplaod data'
-                        res = await res.json();
-                        facebookImagesId.push({ fbclid: res.id })
-                    }
+                if (error) return res.sendStatus(400);
+                if (DontSuffortMime) return res.sendStatus(400)
+                let { message } = feilds;
+                // log(feilds);
+                // log(files);
+                let { images } = files;
+                if (!message || !images) throw 'error , !massage || !images is not define'
+                if (message.length === 0 || images.length === 0) throw 'error , massage.length ===0 || images.length===0 is not define'
+                message = message[0].toString();
+                let url = [];
+                for (let i = 0; i < images.length; i++) url.push(`https://gojushinryu.com/api/file/temp/` + images[i].newFilename);
+
+                let statusObject = {
+                    facebook: false,
+                    linkedin: false,
+                    instegram: false,
+                    tiktok: false
                 }
-                if (facebookImagesId.length === 0) throw 'No image was updated'
-                let res = await fetch('https://graph.facebook.com/me/feed', {
-                    method: 'POST',
-                    headers: {
-                        "Content-Type": 'application/json'
-                    },
-                    body: JSON.stringify({
-                        published: false,
-                        message,
-                        images: facebookImagesId,
-                        access_token: FV_PAGE_ACCESS_TOKEN
-                    })
-                });
-                if (res.status === 200) statusObject.facebook = true;
+                /********************************** Uplaod to facebook  ***************************/
+                 statusObject.facebook = await UploadToFacebook(url, message);
+                /********************************** Uplaod to youtube  ***************************/
+                  statusObject.instegram = await uploadToInstagram(url, message)
+                /********************************** Uplaod to linkedin  ***************************/
+                statusObject.linkedin = await uploadToLinkedin(images.map(img=> img.newFilename ), message);
+                /********************************** Uplaod to instegram  ***************************/
+                statusObject.tiktok = await uploadToTiktok(url, message);
+
+                return res.status(201).json(statusObject);
             } catch (error) {
-                console.log({ error: 'facebook error //' + error });
+                console.error(error);
+                catchError(res,error)
             }
-            /********************************** Uplaod to youtube  ***************************/
-            /********************************** Uplaod to x  ***************************/
-            /********************************** Uplaod to linkedin  ***************************/
-            /********************************** Uplaod to instegram  ***************************/
         });
+
     } catch (error) {
-        log({ error })
+        log('last error......')
+        log(error )
         return res.sendStatus(500)
     }
 }
 
 
 
-function facebook(params) {
-
+async function uploadToTiktok(images, caption) {
+    for (let i = 0; i < images.length; i++) {
+        let img= images.shift();
+        images.push(BASE_URL + '/api/file/temp/' +img);
+    }
+    let response=await request.post(
+      ( BASE_URL+ `/api/media-api/tiktok/images`), 
+      {
+        images,
+        caption
+      },
+      {
+        headers :{
+            'authorization' :APP_AUTH_TOKEN
+        },
+        giveDetails:true,
+      }
+    );
+    log(response)
+    if (response.status===201) {
+        console.log('successFully upload to tiktok...........');
+        return true;
+    } else return false;
 }
 
 
-function instagram(params) {
 
+async function UploadToFacebook(url = [], caption = "No caption") {
+    let response=await request.post(
+        BASE_URL + '/api/media-api/facebook/upload/images',
+        {
+            caption,
+            url :url
+        },
+        {
+            headers: {
+                Authorization:APP_AUTH_TOKEN
+            },
+            giveDetails:true
+        }
+    );
+  
+    if (response.status===201) {
+        console.log('successFully upload to facebook');
+        return true
+    }
+    else return false
 }
 
-function linkedin() {
 
+async function uploadToInstagram(url = [], caption = "No caption") {
+    let uploadUrl;
+    if (url.length < 2 ) uploadUrl=BASE_URL+'/api/media-api/instagram/upload/single/image';
+    if (url.length >= 2) uploadUrl=BASE_URL + '/api/media-api/instagram/upload/images';
+    uploadUrl=BASE_URL + '/api/media-api/instagram/upload/images';
+    let response=await request.post(
+        uploadUrl,
+        {
+            caption,
+            images: url.map((el, index) => {
+                if (index < 10) return el
+            }),
+            image_url:url[0]
+        },
+        {
+            headers: {
+                Authorization:APP_AUTH_TOKEN
+            },
+            giveDetails:true
+        }
+    );
+    log(response);
+    if (response.status===201) {
+        console.log('successFully upload to instagram');
+        return true
+    }
+    else return false
 }
-function tiktok(params) {
 
+
+
+
+async function uploadToLinkedin(images=[],title="No caption" ) {
+    for (let i = 0; i < images.length  ; i++) {
+        const img = images.shift();
+        if (i <=9) images.push(img);
+    }
+    let response=await fetch(BASE_URL + '/api/media-api/linkedin/uplaod/images', {
+        method :'POST',
+        body :JSON.stringify({
+            images,
+            title
+        }),
+        headers: {
+            Authorization:APP_AUTH_TOKEN,
+            "Content-Type" :"application/json"
+        }
+    });
+    if (response.status===201) {
+        console.log('successFully upload to linkedin');
+        return true
+    }
+    else return false
 }
+

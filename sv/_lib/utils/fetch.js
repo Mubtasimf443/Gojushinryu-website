@@ -6,12 +6,13 @@ InshaAllah, By his marcy I will Gain Success
 import fetch from "node-fetch";
 import { log } from "string-player";
 
-export async function POST(url,json={},options={ headers :{},params:undefined,giveDetails :undefined}) {
+export async function POST(url,json={},options={ headers :{"Content-Type" :"application/json"},params:undefined,giveDetails :undefined}) {
     if (!options) options={};
     if (typeof options.headers !== 'object') options.headers = {};
     if (typeof options.params === 'object') {
         url=url+'?'+(new URLSearchParams(options.params)).toString()
     }
+    options.headers["Content-Type"]= options.headers["Content-Type"] ?? "application/json";
     let response=await fetch(url, {
         method :'POST',
         headers :options.headers,

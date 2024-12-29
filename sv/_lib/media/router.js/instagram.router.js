@@ -31,7 +31,7 @@ router.post('/upload/single/image', async function (req,res) {
         
         let post_id=await instagram.publishCreation(creation_id);
 
-        return res.json({post_id});
+        return res.status(201).json({post_id});
     } catch (error) {
         console.error(error);
         return catchError(res, error);
@@ -42,7 +42,9 @@ router.post('/upload/single/image', async function (req,res) {
 
 router.post('/upload/images', async function (req,res) {
     try {
-        let {images,caption}=await req.body;
+        let {images,caption}= req.body;
+        log(req.body);
+       
         if (!Array.isArray(images)) namedErrorCatching('perameter error', "perameter images is not a array")
         if (images.length <2 ||images.length >10 ) namedErrorCatching('perameter error', "perameter images can not have more or less then 1 or 10 item")
         if (!caption) throw 'missing perametar caption'
@@ -55,7 +57,7 @@ router.post('/upload/images', async function (req,res) {
             images,
             caption
         });
-        return res.json({post_id});
+        return res.status(201).json({post_id});
     } catch (error) {
         console.error(error);
         return catchError(res, error);
@@ -73,7 +75,7 @@ router.post('/upload/video', async function (req,res) {
         let creation_id=await instagram.uploadReel({video_url,caption});
         await instagram.checkFinishUploadOrNot(creation_id, 100);
         let post_id=await instagram.publishCreation(creation_id);
-        return res.json({post_id});
+        return res.status(201).json({post_id});
     } catch (error) {
         console.error(error);
         return catchError(res, error);

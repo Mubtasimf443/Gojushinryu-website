@@ -201,7 +201,6 @@ export async function refreshTiktokToken(req,res) {
     try {
         let settings =await Settings.findOne({});
         
-        if (!settings)  throw ''
         if (!settings) throw 'server_video_upload_error: settings is null'
         if (!settings.tiktok_access_token_status) throw 'server_video_upload_error: tiktok access token status is false' 
 
@@ -277,3 +276,4 @@ export async function tiktokUserInfo(req,res) {
         })
     }
 }
+

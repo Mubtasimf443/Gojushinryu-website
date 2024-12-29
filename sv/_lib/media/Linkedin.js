@@ -12,10 +12,37 @@ import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import fetch from "node-fetch";
 const __dirname =path.dirname(fileURLToPath(import.meta.url));
 export default  class Linkedin {
-    constructor({key ,secret,redirect_uri}) {
+    constructor({key ,secret,redirect_uri , scopes}) {
         this.key=key;
         this.secret=secret;
         this.redirect_uri=redirect_uri;
+        this.scopes=scopes ?? [`profile`,`email`,`w_member_social`];
+    }
+    getAuthUrl(){
+        let client_id = this.key, redirect_uri = this.redirect_uri, scope = this.scopes;
+        let params = (new URLSearchParams({
+            response_type: 'code',
+            client_id,
+            redirect_uri,
+            scope
+        })).toString();
+        return `https://www.linkedin.com/oauth/v2/authorization?${params}`;
+    }
+    async getAccessToken(code){
+        let params=(new URLSearchParams({
+            grant_type: 'authorization_code',
+            code:code,
+            redirect_uri: this.redirect_uri,
+            client_id: this.key,
+            client_secret: this.secret,
+        })).toString()
+        let res=await request.post(`https://www.linkedin.com/oauth/v2/accessToken?${params}`);
+        if (res.access_token && res.refresh_token ) {
+            return ({
+                access_token:res.access_token,
+                refresh_token:res.refresh_token
+            });
+        } else throw res;
     }
     getUserURN=async function getUserURN(access_token) {
         try {
@@ -34,8 +61,52 @@ export default  class Linkedin {
             throw 'user urn gaining error'
         }
     }
-    exchangeAccessToken=async function (accessToken,refreshToken) {
-        
+    async getPageIds(access_token) {
+        let params=(new URLSearchParams({q: 'roleAssignee'})).toString();
+        let response=await fetch('https://api.linkedin.com/v2/organizationalEntityAcls?'+params , {
+            headers: {
+                Authorization: `Bearer ${access_token}`,
+                "X-Restli-Protocol-Version": "2.0.0"
+            },
+        });
+        let data=await response.json().catch(e => ({error :'can not parse json data'}));
+        if (Array.isArray(data.elements) ) {
+            if (data.elements.length>=1) {
+                let org=[];
+                for (let i = 0; i < data.elements.length; i++) {
+                    let {state,role,organizationalTarget}=data.elements[i];
+                    if (state === 'APPROVED') { 
+                        if (role === 'ADMINISTRATOR') { 
+                            if (organizationalTarget) {
+                                org.push(organizationalTarget)
+                            }
+                        }
+                    }
+                }
+                if (org.length >=1) return org;
+                if (org.length ===0) return undefined;
+            } else return undefined;
+        } 
+        throw data
+    } 
+    async exchangeAccessToken(refresh_token) {
+        let client_id = this.key, client_secret = this.secret, grant_type = 'refresh_token';
+        let body = (new URLSearchParams({ client_id, client_secret, grant_type, refresh_token })).toString();
+        let response = await fetch('https://www.linkedin.com/oauth/v2/accessToken', {
+            method: 'POST',
+            body: body,
+            headers: {
+                "Content-Type": "application/x-www-form-urlencoded"
+            }
+        });
+        response = await response.json().catch(e => {return ({ error: "can't parse json" })});
+        if (response.access_token && response.refresh_token) {
+            return ({
+                access_token: response.access_token,
+                refresh_token: response.refresh_token
+            });
+        }
+        throw response;
     }
     page={
         initVideo:async function ({accessToken, organization_urn}) {

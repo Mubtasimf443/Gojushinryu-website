@@ -9,8 +9,12 @@ import path from "path";
 import { fileURLToPath } from 'url'
 import { unlink } from "fs/promises";
 import { ImageUrl } from "../models/imageUrl.js";
-import { BASE_URL } from "../utils/env.js";
+import { APP_AUTH_TOKEN, BASE_URL } from "../utils/env.js";
 import { checkOrCreateTempDir } from "../utils/dir.js";
+import fetch from "node-fetch";
+import catchError, { namedErrorCatching } from "../utils/catchError.js";
+import request from "../utils/fetch.js";
+
 
 //var
 const __filename = fileURLToPath(import.meta.url);
@@ -38,64 +42,33 @@ export async function UplaodImageApi(req, res) {
             filename: () => Date.now() + '_' + Math.floor(Math.random() * 1000) + '.jpg'
         };
         await formidable(options).parse(req, async (err, feilds, file) => {
-            console.log('not uploaded ===== ' + DontSuffortMime);
-            if (DontSuffortMime === true) return res.json({ error: 'We do not suppot this type of file' })
-            if (err) {
-                log(err);
-                return res.json({ error: 'Unknown error' });
-            }
-            if (!file.img) return res.json({ error: 'You can not access To this service' })
-            if (file.img.length > 1) {
-                (function () {
-                    file.img.forEach(el => unlink(el.filepath)
-                        .then(() => { })
-                        .catch(e => log(e)))
-                })()
-                return res.json({ error: 'You can not access To this service' })
-            }
-            if (file.img[0].size > (1.5 * 1024 * 1024)) {
-                unlink(file.img[0].filepath)
-                    .then(() => { })
-                    .catch(e => log(e))
-                return res.json({ error: 'Image Is to  Big' })
-            }
-            let newImageurl = new ImageUrl({
-                url: BASE_URL + '/api/file/temp/' + file.img[0].newFilename,
-                urlpath: file.img[0].filepath,
-                active: false
-            });
-            //  newImageurl.save().then(e => log(e)).catch(e=> log(err))
-            let SavedImageUrl;
             try {
-                SavedImageUrl = await newImageurl.save();
+                console.log('not uploaded ===== ' + DontSuffortMime);
+                if (DontSuffortMime === true) return res.json({ error: 'We do not suppot this type of file' })
+                if (err) {
+                    log(err);
+                    return res.json({ error: 'Unknown error' });
+                }
+                if (!feilds.caption) namedErrorCatching('perameter_error', 'caption is not found');
+                if (!file.images) namedErrorCatching('perameter_error', 'images is not found');
+                if (typeof feilds.caption[0]!=='string') namedErrorCatching('perameter_error', 'caption is not string');
+                if (!file.images[0].filepath) namedErrorCatching('perameter_error', 'images is not valid file');
+                let  caption=feilds.caption[0];
+                if (caption.length > 1000 || caption.length < 5) namedErrorCatching('perameter_error', 'caption is too big or small');
 
-            } catch (err) {
-                log(err)
-                return res.json({ error: 'Unknown error' });
+                let images=new Array();
+                for (let i = 0; i < file.images.length; i++) file.images[i].filepath && images.push(file.images[i].newFilename)
+                   
+                
+                
+
+            } catch (error) {
+                console.error(error);
+                catchError(res,error)
             }
-            res.status(200).json({
-                success: true,
-                link: SavedImageUrl.url
-            })
-            setTimeout(
-                () => {
-                    ImageUrl.findOne({
-                        urlpath: file.img[0].filepath
-                    })
-                        .then(image => {
-                            if (image) {
-                                unlink(image.urlpath).catch(e => log(e));
-                                if (!image.active) ImageUrl.findOneAndDelete({ urlpath: image.urlpath }).catch(e => log(e))
-                            }
-                        })
-                        .catch(e => {
-                            log(e)
-                        })
-                }, 600000)
         })
     } catch (error) {
         log({ error })
-        // return res.sendStatus(500)
+
     }
 }
-

@@ -5,10 +5,11 @@ Insha Allah,  By the marcy of Allah,  I will gain success
 
 */
 
+
 {
 let mainContainer=document.querySelector(`[targetedElement="share_media_href"]`);
 
-function makeItred(selector) {
+function makeItred(selector) { 
     selector.style.border='2px solid red';
     selector.addEventListener('change', e => selector.style.border ='none');
 }
@@ -24,6 +25,7 @@ function makeItred(selector) {
     let uploading=false;
     let tags=[];
     btn.addEventListener('click', uploadVideo);
+  
     async function uploadVideo() {
         if (uploading) return
         let title =vConatiner.querySelector(`[title_of_the_post]`).value;
@@ -88,7 +90,7 @@ function makeItred(selector) {
         }
     }
     tags_textarea.addEventListener('keypress', 
-        function (e) {
+        async function (e) {
             if (e.key==='Enter') {
                 let value=tags_textarea.value.replace(`
 `,'');
@@ -110,6 +112,8 @@ function makeItred(selector) {
                     
                 }
                 li.addEventListener('click', e=> removeTags(e.target, value))
+                console.log(tags);
+                tags_textarea.value='';
             }
         }
     )
@@ -123,21 +127,24 @@ function makeItred(selector) {
     imgInput.addEventListener('change',imgChange);
     btn.addEventListener('click', imageUpload)
     let uploading=false;
+   
+   
     async function imageUpload() {
         if (uploading) return
         let text=imgConatiner.querySelector(`[type="text"]`).value ;
         if (!text) {
             console.log('emty text');
-            makeItred(imgConatiner.querySelector(`[type="text"]`))
+            makeItred(imgConatiner.querySelector(`[type="text"]`));
             return 
         }
+        if (text?.length < 5 || text?.length > 1000) return alert('caption is too big or too short')
         if (img.length===0) {
             log('emty  image')
             return alert('Must Upload a Image')
         }
         let form =new FormData();
-        form.append('images', img);
-        form.append('text', text);
+        for (let i = 0; i < img.length; i++) form.append('images', img[i]);
+        form.append('message', text);
         btn.style.transition='all .6s ease';
         try {
             uploading=true;
@@ -163,51 +170,64 @@ function makeItred(selector) {
             btn.style.opacity=1; 
         }
     }
-    function imgChange(e) {
-        if (
-            e.target.files[0].type !== 'image/png'
-            && e.target.files[0].type !== 'image/jpg'
-            && e.target.files[0].type !== 'image/jpeg'
-            && e.target.files[0].type !== 'image/webp'
-        ) return
-        if (img.find(el => el.name === e.target.files[0].name)) return
-        if (img.length >= 5) return
 
-        img.push(e.target.files[0]);
-        let label=document.createElement('label');
-        let url=URL.createObjectURL(e.target.files[0]);
-        let btn=document.createElement('button');
-        label.style.position='relative';
-        label.style.background=`url(${url})`;
-        label.style.backgroundSize=`cover`;
-        label.style.backgroundPosition=`center`;
-        label.style.backgroundRepeat=`no-repeat`;
-        label.setAttribute('image_name', e.target.files[0].name);
-        btn.style.position='absolute';
-        btn.innerHTML='&times;'
-        btn.style.background='rgba(0,0,0,0.1)';
-        btn.style.borderRadius='50%';
-        btn.style.height='30px';
-        btn.style.width='30px';
-        btn.style.color='#fff';
-        btn.style.fontSize='19px';
-        btn.style.top='7px';
-        btn.style.right='8px';
-        btn.style.border='none';
-        btn.setAttribute('parent_image_name', e.target.files[0].name);
-        label.append(btn);
-        imgConatiner.querySelector('[class="upload_sec_env_img_inp_box"]').appendChild(label);
-        label.querySelector('button').addEventListener('click',
-            function (e) {
-                e.preventDefault();
-                let imgName=e.target.getAttribute('parent_image_name');
-                img=img.filter(el=> el.name !== imgName);
-                let selector=`[image_name="${imgName}"]`;
-                let label=imgConatiner.querySelector('[class="upload_sec_env_img_inp_box"]').querySelector(selector);
-                if (label) label.remove();
+
+    function imgChange(e) {
+        if (img.find(el => el.name === e.target.files[0].name)) return
+        if (img.length >=10) return
+        let files=[];
+        for (let i = 0; i < e.target.files.length; i++) {
+            if (e.target.files[i].type.toString().includes('image/') === true) {
+                let name = e.target.files[i].name;
+                let check = img.find(
+                    function (element) {
+                        if (element?.name === name) return element
+                    }
+                );
+                if (check === undefined) {
+                    if (img.length <10) {
+                        files.push(e.target.files[i]);
+                        img.push(e.target.files[i]);
+                    }
+                }
             }
-        )
-        return     
+        }
+
+        for (let i = 0; i < files.length; i++) {
+            let label = document.createElement('label');
+            let url = URL.createObjectURL(files[i]);
+            let btn = document.createElement('button');
+            label.style.position = 'relative';
+            label.style.background = `url(${url})`;
+            label.style.backgroundSize = `cover`;
+            label.style.backgroundPosition = `center`;
+            label.style.backgroundRepeat = `no-repeat`;
+            label.setAttribute('image_name', files[i].name);
+            btn.style.position = 'absolute';
+            btn.innerHTML = '&times;'
+            btn.style.background = 'rgba(0,0,0,0.1)';
+            btn.style.borderRadius = '50%';
+            btn.style.height = '30px';
+            btn.style.width = '30px';
+            btn.style.color = '#fff';
+            btn.style.fontSize = '19px';
+            btn.style.top = '7px';
+            btn.style.right = '8px';
+            btn.style.border = 'none';
+            btn.setAttribute('parent_image_name', e.target.files[i].name);
+            label.append(btn);
+            imgConatiner.querySelector('[class="upload_sec_env_img_inp_box"]').appendChild(label);
+            label.querySelector('button').addEventListener('click',
+                function (e) {
+                    e.preventDefault();
+                    let imgName = e.target.getAttribute('parent_image_name');
+                    img = img.filter(el => el.name !== imgName);
+                    let selector = `[image_name="${imgName}"]`;
+                    let label = imgConatiner.querySelector('[class="upload_sec_env_img_inp_box"]').querySelector(selector);
+                    if (label) label.remove();
+                }
+            )
+        };  
     } 
 }
 

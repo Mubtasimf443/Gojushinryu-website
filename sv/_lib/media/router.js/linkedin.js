@@ -3,31 +3,108 @@
 By Allah's Marcy I will gain success , Insha Allah
 */
 
-import { query, Router } from "express";
-import { LINKEDIN_KEY,LINKEDIN_SECRET,LINKEDIN_REDIRECT_URI, LINKEDIN_PERSON_URN } from "../../utils/env.js";
+import { Router } from "express";
 import {createRequire} from 'module'
-import { log } from "string-player";
-import { Settings } from "../../models/settings.js";
 import { existsSync, fstat, readFileSync } from "fs";
-import { settingsAsArray } from "../../model_base_function/Settings.js";
+import { getSettings, setSettingsAsArray, settingsAsArray } from "../../model_base_function/Settings.js";
 import catchError, { namedErrorCatching } from "../../utils/catchError.js";
-import Linkedin from "../Linkedin.js";
+import Client from "../Linkedin.js";
 import path, { dirname } from "path";
 const require=createRequire(import.meta.url);
-const axios = require('axios');
-
 import { fileURLToPath } from "url";
+import { log } from "string-player";
+import { LINKEDIN_KEY,LINKEDIN_SECRET , LINKEDIN_REDIRECT_URI } from "../../utils/env.js";
+import { Settings } from "../../models/settings.js";
+
+
 
 const __dirname=dirname(fileURLToPath(import.meta.url));
-const linkedinRouter=Router();
+const router=Router();
 
-linkedinRouter.post('/uplaod/images', async function uploadImages(req, res) {
+let Linkedin=new Client({
+    key:LINKEDIN_KEY,
+    secret:LINKEDIN_SECRET,
+    redirect_uri:LINKEDIN_REDIRECT_URI ,
+    scopes:[
+        `profile`,
+        `email`,
+        `w_member_social`,
+        'openid',
+        'r_organization_social',
+        'rw_organization_admin',
+        'w_member_social',
+        "w_organization_social",
+        'r_basicprofile',
+        'r_organization_admin',
+    ]
+})
+
+
+router.get('/auth', function(req, res) {
+    res.redirect(Linkedin.getAuthUrl())
+});
+
+router.get('/auth-callback',async function(req, res) {
+    try {
+        if (!req.query.code) throw 'perameter code is not define'
+        let {access_token,refresh_token}=await Linkedin.getAccessToken(req.query.code);
+        let db__keys=["linkedin_access_token","linkedin_refresh_token"],db__values=[access_token,refresh_token];
+        let pages =await Linkedin.getPageIds(access_token);
+        if (Array.isArray(pages) && pages?.length >=1) {
+            db__keys=[...db__keys ,"linkedin_organization" ,"linkedin_access_token_status"];
+            db__values=[...db__values ,pages[0] ,true];
+            let saved =await setSettingsAsArray({keys :db__keys , values :db__values}).then(e => true).catch(e => false)
+            return (
+                saved  ? res.redirect('/control-panal') : res.status(400).send(`<h1>Sorry Failed to parse your data</h1>`)
+            )
+        } 
+        if (!Array.isArray(pages)) throw 'can not get page access token'
+    } catch (error) {
+        console.error(error);
+        catchError(res,error)
+    }
+} )
+
+
+ 
+router.get('/log-out' ,async function(req,res) {
+    try {
+        let set=await getSettings();
+        set.linkedin_access_token_status=false;
+        set.linkedin_access_token=null;
+        set.linkedin_refresh_token=null;
+        await set.save();
+        res.sendStatus(204);
+        return;
+    } catch (error) {
+        console.error(error);
+        catchError(res,error)
+    }
+})
+
+router.use(function (req, res, next) {
+        if (req.headers['authorization'] !== APP_AUTH_TOKEN) {
+            log("Auth error , You are not recognized.......");
+            return res.status(401).json({ error: 'You are not recognized', type: "auth_error" })
+        } else next();
+    })
+
+
+router.post('/uplaod/images', async function uploadImages(req, res) {
     try {
         let
             images = (req.body.images instanceof Array ? req.body.images : []),
             title = (typeof req.body.title === 'string' ? req.body.title : ''),
             [accessToken, accessTokenStatus, organization] = await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status", "linkedin_organization"]);
         if (!accessTokenStatus || !accessToken || !organization) return res.sendStatus(401);
+        for (let i = 0; i < images.length; i++) {
+            let name=images.shift();
+            if (typeof name ==='string' && name) {
+                let condition=existsSync(path.resolve(__dirname, '../../../temp/images/'+name));
+                if (condition) images.push(name);
+                if (!condition) log(`file name :${name} does not exist`);
+            }
+        }
         if (images.length === 0) namedErrorCatching('perameter-error', 'images is a emty array');
         if (!title) namedErrorCatching('perameter-error', 'title is emty');
         let linkedin = new Linkedin({});
@@ -43,7 +120,9 @@ linkedinRouter.post('/uplaod/images', async function uploadImages(req, res) {
         catchError(res, error)
     }
 });
-linkedinRouter.post('/upload/video', async function (req, res) {
+
+
+router.post('/upload/video', async function (req, res) {
     try {
         let
             title = (typeof req.body.title === 'string' ? req.body.title : ''),
@@ -53,7 +132,7 @@ linkedinRouter.post('/upload/video', async function (req, res) {
         if (!accessTokenStatus || !accessToken || !organization) return res.sendStatus(401);
         if (!title) namedErrorCatching('perameter-error', 'title is emty');
         if (!video) namedErrorCatching('perameter-error', 'video is emty');
-        video = path.resolve(__dirname, `../../../temp/video/${video}`);
+        video = path.resolve(__dirname, `../../../temp/video/${ "birds.mp4" || video }`);
         if (!existsSync(video)) namedErrorCatching('perameter-error', "video does not exist");
         let { asset, uploadUrl } = await linkedin.page.initVideo({
             accessToken,
@@ -66,7 +145,9 @@ linkedinRouter.post('/upload/video', async function (req, res) {
         catchError(res, error);
     }
 });
-linkedinRouter.post('/upload/feed',async function (req,res) {
+
+
+router.post('/upload/feed',async function (req,res) {
     try {
         let {accessToken,organization}=await getLinkedinData(),message=req.body.message;
         if (typeof message !== 'string') namedErrorCatching('perameter-error', 'message is not a string');
@@ -97,4 +178,5 @@ async function getLinkedinData() {
 
 
 
-export default linkedinRouter
+
+export default router
