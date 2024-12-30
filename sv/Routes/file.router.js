@@ -9,6 +9,7 @@ import { ApiRateLimter, fileRateLimter } from "../_lib/Config/express-slow-down.
 import express from "express";
 import { existsSync, fstat } from "fs";
 import morgan from "morgan";
+import Awaiter from "awaiter.js";
 
 
 
@@ -19,28 +20,28 @@ let fileRouter = Router();
 fileRouter.use(fileRateLimter);
 fileRouter.use(express.static(path.resolve(dirName,'../public/')));
 fileRouter.use(morgan('dev'));
-fileRouter.get('/temp/:name',(req, res) => {
+fileRouter.get('/temp/:name',async (req, res) => {
     try {
-        log(req.params.name)
+        await Awaiter(500);
         let location=path.resolve(dirName,  '../temp/images/' + req.params.name);
-        log({location})
-        return res.status(200).sendFile(location)
+        if (existsSync(location)) return res.status(200).sendFile(location);
+        if (!existsSync(location)) return res.sendStatus(204)
     } catch (error) {
-        log(error)
-        return res.sendStatus(404)
+        console.error(error);
+        return res.sendStatus(204)
     }
 })
 
 
-fileRouter.get('/temp-video/:name',(req, res) => {
+fileRouter.get('/temp-video/:name',async(req, res) => {
     try {
+        await Awaiter(500);
         let location=path.resolve(dirName,  '../temp/video/' + req.params.name);
-        let ex=existsSync(location)
-        if (ex) return res.status(200).sendFile(location)
-        if (!ex) return res.sendStatus(304)
+        if (existsSync(location)) return res.status(200).sendFile(location);
+        if (!existsSync(location)) return res.sendStatus(204);
     } catch (error) {
-        log(error)
-        return res.sendStatus(404)
+        console.error(error);
+        return res.sendStatus(204)
     }
 })
 
