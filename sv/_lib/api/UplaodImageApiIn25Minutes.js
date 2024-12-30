@@ -11,6 +11,7 @@ import { unlink } from "fs/promises";
 import { ImageUrl } from "../models/imageUrl.js";
 import { BASE_URL } from "../utils/env.js";
 import Awaiter from "awaiter.js";
+import catchError from "../utils/catchError.js";
 
 
 //var
@@ -40,7 +41,7 @@ export async function UplaodImageApiIn25Minutes(req, res) {
             filename: () => Date.now() + '_' + Math.floor(Math.random() * 10000) + '.jpg'
         };
 
-        formidable(options).parse(req, async (err, feilds, file) => {
+        await formidable(options).parse(req, async (err, feilds, file) => {
             // console.log('not uploaded ===== '+DontSuffortMime);
             if (DontSuffortMime === true) return res.json({ error: 'We do not suppot this type of file' });
 
@@ -95,7 +96,7 @@ export async function UplaodImageApiIn25Minutes(req, res) {
 
             // let SavedImageUrl;
 
-            res.status(200).json({
+            res.status(201).json({
                 success: true,
                 link: BASE_URL + '/api/file/temp/' + file.img[0].newFilename,
                 image_id: newImageurl.id
@@ -119,7 +120,11 @@ export async function UplaodImageApiIn25Minutes(req, res) {
             //agter 25 minutes ,Image will be delated
         })
     } catch (error) {
-        console.log({ error });
+        try {
+            catchError(res, error)
+        } catch (e) {
+            console.error(e);
+        }
     }
 }
 
