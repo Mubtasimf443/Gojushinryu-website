@@ -48,10 +48,12 @@ function heckerMidleware(request, response, next) {
 app.use(cors({
     origin: '*'
 }));
+
 app.get('/video-for-download', (req, res) => {
     res.type('video/mp4');
-    res.status(200).sendFile(path.resolve(dirName, './public/a.mp4'));
+    res.status(200).sendFile(path.resolve(dirName, './public/video/a.mp4'));
 });
+
 app.use(heckerMidleware)
 //environment setup
 connectDB();

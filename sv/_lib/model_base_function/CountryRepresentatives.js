@@ -128,12 +128,12 @@ export async function getCountryRepresentatives(req ,res) {
             }
         }) ;
         res.status(200).json({data})
-        await representativeJoiningAllertEmailForAdmin().catch(error => log(error))
-        await representativeJoiningMail({
-            to :email,
-            name :name,
-            country :country
-        }).catch(error => console.error(error))
+        // await representativeJoiningAllertEmailForAdmin().catch(error => log(error))
+        // await representativeJoiningMail({
+        //     to :email,
+        //     name :name,
+        //     country :country
+        // }).catch(error => console.error(error))
         return ;
     } catch (error) {
         console.error(error);

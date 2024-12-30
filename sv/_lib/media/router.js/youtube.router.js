@@ -22,14 +22,14 @@ const { google } = require('googleapis');
 
 //variables 
 let ytEvents = new eventEmiter();
-let YouTubeRouter = Router();
+let router = Router();
 let yt_token = ''
 let __dirName = path.dirname(fileURLToPath(import.meta.url))
 
 
 
 //route's
-YouTubeRouter.get('/refresh', async function (req, res)  { 
+router.get('/refresh', async function (req, res)  { 
     try {        
         let status = await refresh_token();
         return (status ? res.sendStatus(200) :res.sendStatus(400)); 
@@ -39,7 +39,7 @@ YouTubeRouter.get('/refresh', async function (req, res)  {
     }
 });
 
-YouTubeRouter.get('/log-out', async function (req, res) {
+router.get('/log-out', async function (req, res) {
     try {
         let set=await getSettings();
         set.youtube_access_token_status=false ;
@@ -53,17 +53,10 @@ YouTubeRouter.get('/log-out', async function (req, res) {
         catchError(res,error)
     }
 });
-YouTubeRouter.get('/generate-youtube-access-token-code', getYoutubeAccessToken);
-YouTubeRouter.get('/callback', saveAccessToken);
-YouTubeRouter.post('/upload-video', uploadVideoOnYoutube)
 
 
 
-
-export default YouTubeRouter
-
-//functions
-async function getYoutubeAccessToken(req, res) {
+router.get('/generate-youtube-access-token-code', async function getYoutubeAccessToken(req, res) {
     let oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uri);
     try {
         const authUrl = await oAuth2Client.generateAuthUrl({
@@ -76,10 +69,10 @@ async function getYoutubeAccessToken(req, res) {
         log({ error })
         return res.status(500).json({ error: 'server error, can not perform the task' })
     }
-}
+});
 
 
-async function saveAccessToken(req, res) {
+router.get('/callback', async function saveAccessToken(req, res) {
     let oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uri);
     try {
         let { code } = req.query;
@@ -93,7 +86,7 @@ async function saveAccessToken(req, res) {
                     return res.sendStatus(400);
                 }
                 yt_token = token;
-                log({token});
+                log({ token });
                 let settings = await Settings.findOne({}).catch(e => {
                     log(e);
                     return null
@@ -117,23 +110,24 @@ async function saveAccessToken(req, res) {
         log({ error })
         return res.sendStatus(500)
     }
-}
+});
 
 
 
-async function uploadVideoOnYoutube(req, res) {
-   
+
+router.post('/upload-video', async function uploadVideoOnYoutube(req, res) {
     try {
         let { name, title, description, tags } = req.body;
-        console.log({ name });
+
+
         if (!name) return res.sendStatus(400);
         if (!title) return res.sendStatus(400);
         if (!description) return res.sendStatus(400);
         if (!tags || tags instanceof Array === false) return res.sendStatus(400);
-        if (!fs.existsSync(name)) return res.sendStatus(400);
+        let videoPath = path.resolve(__dirName, '../../../temp/video/'+name)
+        if (!fs.existsSync(videoPath)) return res.sendStatus(400);
 
 
-        log('youtube video upload started')
         let oAuth2Client = new google.auth.OAuth2(client_id, client_secret, redirect_uri);
         let settings = await Settings.findOne({});
         if (!settings) throw 'error , settings is null'
@@ -141,12 +135,11 @@ async function uploadVideoOnYoutube(req, res) {
         if (!youtube_access_token_status) return res.sendStatus(400);
 
         oAuth2Client.setCredentials({
-            access_token:youtube_token,
+            access_token: youtube_token,
             refresh_token: youtube_refresh_token
         });
 
-        
-        let videoPath = path.resolve(name)
+
         async function uploadVideo(res) {
             try {
                 const youtube = google.youtube({ version: 'v3', auth: oAuth2Client });
@@ -163,33 +156,40 @@ async function uploadVideoOnYoutube(req, res) {
                     media: {
                         body: fs.createReadStream(videoPath), // Path to your video file
                     },
-                };
-                let respones = await youtube.videos.insert(options);
-                console.log('Video uploaded successfully! Video');
-                return 200
+                };                
+                let isuploaded = await youtube.videos.insert(options);
+                return isuploaded.status;
             } catch (error) {
-                console.log({ error });
+                console.log( error );
                 return 400
             }
         }
         let status = await uploadVideo(res);
-        return res.sendStatus(status === 200 ? 201 :400)
+        return res.sendStatus(status === 200 ? 201 : 400)
 
     } catch (error) {
-        log({ error })
-        return res.sendStatus(400)
+        catchError(res,error)
     }
-}
+})
+
+
+
+
+export default router
+
+//functions
+
+
 
 
 async function refresh_token() {
     try {
-        let {refresh_token,access_token}=await Settings.findOne({}).then(
-            function(settings) {
+        let { refresh_token, access_token } = await Settings.findOne({}).then(
+            function (settings) {
                 if (!settings) throw 'settings is not available...';
-                else if ( settings.youtube_refresh_token && settings.youtube_token) {
+                else if (settings.youtube_refresh_token && settings.youtube_token) {
                     return ({
-                        refresh_token:settings.youtube_refresh_token,
+                        refresh_token: settings.youtube_refresh_token,
                         access_token: settings.youtube_token
                     });
                 } else {
@@ -203,18 +203,18 @@ async function refresh_token() {
             refresh_token
         });
 
-        let data=await oAuth2Client.refreshAccessToken();
-        if (data.credentials?.access_token&& data.credentials?.refresh_token ) {
-            let s=await getSettings();
-            s.youtube_access_token_status=true;
-            s.youtube_refresh_token=data.credentials?.refresh_token ;
-            s.youtube_token=data.credentials?.access_token;
+        let data = await oAuth2Client.refreshAccessToken();
+        if (data.credentials?.access_token && data.credentials?.refresh_token) {
+            let s = await getSettings();
+            s.youtube_access_token_status = true;
+            s.youtube_refresh_token = data.credentials?.refresh_token;
+            s.youtube_token = data.credentials?.access_token;
             await s.save();
             return true;
         }
         else return false
     } catch (error) {
-        console.error( error);
+        console.error(error);
         return false;
     }
 }
