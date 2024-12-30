@@ -61,13 +61,13 @@ export async function uploadImagesToMultimediaApi(req, res) {
                 }
                 
                 /********************************** Uplaod to facebook  ***************************/
-                //  statusObject.facebook = await UploadToFacebook(url, message);
+                 statusObject.facebook = await UploadToFacebook(url, message);
                 /********************************** Uplaod to youtube  ***************************/
                 statusObject.instegram = await uploadToInstagram(url, message)
                 /********************************** Uplaod to linkedin  ***************************/
-                // statusObject.linkedin = await uploadToLinkedin(images.map(img=> img.newFilename ), message);
+                statusObject.linkedin = await uploadToLinkedin(images.map(img=> img.newFilename ), message);
                 /********************************** Uplaod to instegram  ***************************/
-                // statusObject.tiktok = await uploadToTiktok(url, message);
+                statusObject.tiktok = await uploadToTiktok(url, message);
 
                 log(statusObject);
                 return res.status(201).json(statusObject);
