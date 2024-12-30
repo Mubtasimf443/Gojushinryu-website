@@ -92,10 +92,12 @@ router.use(function (req, res, next) {
 router.post('/uplaod/images', async function uploadImages(req, res) {
     try {
         let
-            images = (req.body.images instanceof Array ? req.body.images : []),
-            title = (typeof req.body.title === 'string' ? req.body.title : ''),
-            [accessToken, accessTokenStatus, organization] = await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status", "linkedin_organization"]);
+            images = ( Array.isArray( req.body.images )  ? req.body.images : []),
+            title = (typeof req.body.title === 'string' ? req.body.title : '');
         
+        if (images.length === 0) namedErrorCatching('perameter-error', 'images is a emty array');
+
+        let [accessToken, accessTokenStatus, organization] = await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status", "linkedin_organization"]);
         if (!accessTokenStatus || !accessToken || !organization) return res.sendStatus(401);
         
         for (let i = 0; i < images.length; i++) {
@@ -117,10 +119,10 @@ router.post('/uplaod/images', async function uploadImages(req, res) {
             title
         });
 
-        await Linkedin.page.initAndUploadMultipleImages(accessToken, organization, mediaData, title);
+        await Linkedin.page.postWithMedia(accessToken, organization, mediaData, title);
 
         return res.sendStatus(201);
-        
+
     } catch (error) {
         catchError(res, error)
     }

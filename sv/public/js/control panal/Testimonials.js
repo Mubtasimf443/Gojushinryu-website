@@ -116,7 +116,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
             if (res.status===201) {
                 event.target.style.background = 'green';
                 event.target.innerHTML='success';
-                // window.location.reload();
+                setTimeout(() => window.location.reload(), 2000);
             } 
             if (res.status!==201) {
                 console.log((await res.json().catch( e => "failed to parse json data")))
