@@ -40,7 +40,7 @@ export async function UplaodImageApiIn25Minutes(req, res) {
             },
             filename: () => Date.now() + '_' + Math.floor(Math.random() * 10000) + '.jpg'
         };
-
+        await Awaiter(200);
         await formidable(options).parse(req, async (err, feilds, file) => {
             // console.log('not uploaded ===== '+DontSuffortMime);
             if (DontSuffortMime === true) return res.json({ error: 'We do not suppot this type of file' });
