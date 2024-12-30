@@ -144,7 +144,7 @@ router.post('/upload/video', async function (req, res) {
         });
         await Linkedin.page.uploadVideo(uploadUrl, readFileSync(video), accessToken);
         let id = await Linkedin.page.finishVideoUpload(asset, accessToken, organization, title);
-        log({linkedin_video_id:id});
+        // log({linkedin_video_id:id});
         return res.sendStatus(201);
     } catch (error) {
         catchError(res, error);

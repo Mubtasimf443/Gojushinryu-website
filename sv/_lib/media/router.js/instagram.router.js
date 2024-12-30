@@ -79,10 +79,10 @@ router.post('/upload/images', async function (req,res) {
 router.post('/upload/video', async function (req,res) {
     try {
         let {video_url,caption}=req.body;
-        if (typeof video_url !=='string') throw 'video_url is not a string'
-        if (typeof caption !=='string') throw 'video_url is not a string'
-        if ( caption.length >1000) throw ' perametar caption is too large or too short'
-        if ( caption.length <5) throw ' perametar caption is too large or too short'
+        if (typeof video_url !=='string') throw 'video_url is not a string';
+        if (typeof caption !=='string') throw 'video_url is not a string';
+        if ( caption.length >1000) throw ' perametar caption is too large or too short';
+        if ( caption.length <5) throw ' perametar caption is too large or too short';
         let instagram=await getInstagram();
         let creation_id=await instagram.uploadReel({video_url,caption});
         await instagram.checkFinishUploadOrNot(creation_id, 100);

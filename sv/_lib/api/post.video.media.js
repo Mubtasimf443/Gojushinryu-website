@@ -68,9 +68,9 @@ export async function uploadVideoToMultimediaApi(req, res) {
 
                 // statusObject.youtube=await uploadToYoutube({title, description, tags, video :video.newFilename} )
                 // statusObject.facebook=await uploadToFacebook( video.newFilename , description);
-                statusObject.linkedin=await uploadToLinkedin(description, video.newFilename);
-                // statusObject.integram=await uploadToInstagram( BASE_URL+`/api/file/temp-video/`+ video.newFilename ,description)
-                // statusObject.tiktok=await uploadToTiktok(BASE_URL+`/api/file/temp-video/`)
+                // statusObject.linkedin=await uploadToLinkedin(description, video.newFilename);
+                statusObject.integram=await uploadToInstagram( BASE_URL+`/api/file/temp-video/`+ video.newFilename ,description)
+                statusObject.tiktok=await uploadToTiktok(BASE_URL+`/api/file/temp-video/`+ video.newFilename  )
                 
                 log(statusObject);
                 return res.sendStatus(201)
@@ -90,7 +90,7 @@ export async function uploadVideoToMultimediaApi(req, res) {
 
 async function uploadToInstagram(video_url,caption) {
     let response=await request.post(
-        BASE_URL+`api/media-api/instagram/upload/video`,  
+        BASE_URL+`/api/media-api/instagram/upload/video`,  
         {
             video_url,
             caption
@@ -130,7 +130,7 @@ async function uploadToLinkedin(title ,video) {
 
 async function uploadToTiktok(video_url) {
     let response=await request.post(
-        'BASE_URL+`api/media-api/tiktok/tiktok',
+        BASE_URL+`/api/media-api/tiktok/tiktok`,
         {
             video_url
         },
