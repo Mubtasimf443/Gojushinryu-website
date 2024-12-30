@@ -59,6 +59,7 @@ export async function uploadImagesToMultimediaApi(req, res) {
                     instegram: false,
                     tiktok: false
                 }
+                
                 /********************************** Uplaod to facebook  ***************************/
                  statusObject.facebook = await UploadToFacebook(url, message);
                 /********************************** Uplaod to youtube  ***************************/
@@ -68,6 +69,7 @@ export async function uploadImagesToMultimediaApi(req, res) {
                 /********************************** Uplaod to instegram  ***************************/
                 statusObject.tiktok = await uploadToTiktok(url, message);
 
+                log(statusObject);
                 return res.status(201).json(statusObject);
             } catch (error) {
                 console.error(error);
@@ -102,7 +104,7 @@ async function uploadToTiktok(images, caption) {
         giveDetails:true,
       }
     );
-    log(response)
+    // log(response)
     if (response.status===201) {
         console.log('successFully upload to tiktok...........');
         return true;
@@ -155,7 +157,7 @@ async function uploadToInstagram(url = [], caption = "No caption") {
             giveDetails:true
         }
     );
-    log(response);
+    // log(response);
     if (response.status===201) {
         console.log('successFully upload to instagram');
         return true

@@ -9,10 +9,22 @@ import catchError, { namedErrorCatching } from "../../utils/catchError.js";
 import Instagram from "../instegram.js";
 import { settingsAsArray } from "../../model_base_function/Settings.js";
 import { log } from "string-player";
+import { APP_AUTH_TOKEN } from "../../utils/env.js";
 
 let router=Router();
 
 
+router.use(function(req,res,next) {
+    try {
+        if (req.headers['authorization'] ===APP_AUTH_TOKEN) return next();
+        else {
+            log("authorization failed in instagram api's...");
+            return res.sendStatus(401);
+        }
+    } catch (error) {
+        catchError(res,error)
+    }
+})
 
 router.post('/upload/single/image', async function (req,res) {
     try {
