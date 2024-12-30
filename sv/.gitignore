@@ -8,3 +8,5 @@ temp/images/*
 /twitter.json
 /s.js
 /_lib/midlewares
+!/temp/video/.test.txt
+!/temp/images/.test.txt
