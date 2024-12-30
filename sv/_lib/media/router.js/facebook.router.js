@@ -107,6 +107,8 @@ router.delete('/log-out',async function (req, res) {
         catchError(res, error)
     }
 });
+
+
 router.use(
     function (req, res, next) {
         if (req.headers['authorization'] !== APP_AUTH_TOKEN) {
@@ -156,15 +158,21 @@ router.post('/upload/images',async function (req,res) {
 
 
 
-router.post('/upload/video',
-    async function (req,res) {
+router.post('/upload/video', async function (req,res) {
         try {
+
+            
             let {url,caption}=req.body;
             log(req.body);
+
+
             if (typeof url !=='string') namedErrorCatching('perameter error', 'url is not a string');
             if (typeof caption !=='string') namedErrorCatching('perameter error', 'caption is not a string');
-            if (url.length> 300 || url.length < 15) namedErrorCatching('perameter error', 'url is very large or very small');
-            if (caption.length> 1000 || caption.length < 5) namedErrorCatching('perameter error', 'caption is very large or very small');
+            if (url.length > 300 || url.length < 15) namedErrorCatching('perameter error', 'url is very large or very small');
+            if (caption.length > 1000) caption= caption.substring(0,1000);
+            if ( caption.length < 5) namedErrorCatching('perameter error', 'caption is very large or very small');
+            
+            
             let pageArray=await settingsAsArray(["fb_access_token_status", "fb_page_id", "fb_page_access_token"]);
             if(pageArray[0]===false) namedErrorCatching('auth_error', 'Facebook is not authenticated');
             if(!pageArray[1]) namedErrorCatching('auth_error', 'Facebook page id is not set');

@@ -66,9 +66,9 @@ export async function uploadVideoToMultimediaApi(req, res) {
                     tiktok:false,
                 };
 
-                statusObject.youtube=await uploadToYoutube({title, description, tags, video :video.newFilename} )
-                // statusObject.facebook=await uploadToFacebook( video.newFilename , description);
-                // statusObject.linkedin=await uploadToLinkedin(description, video.newFilename);
+                // statusObject.youtube=await uploadToYoutube({title, description, tags, video :video.newFilename} )
+                statusObject.facebook=await uploadToFacebook( video.newFilename , description);
+                //statusObject.linkedin=await uploadToLinkedin(description, video.newFilename);
                 // statusObject.integram=await uploadToInstagram( BASE_URL+`/api/file/temp-video/`+ video.newFilename ,description)
                 // statusObject.tiktok=await uploadToTiktok(BASE_URL+`/api/file/temp-video/`)
                 
@@ -85,28 +85,6 @@ export async function uploadVideoToMultimediaApi(req, res) {
     }
 }
 
-
-async function uploadToYoutube({title, video, description, tags}) {
-    let response = await request.post(
-        BASE_URL + '/api/media-api/youtube/upload-video',
-        {
-            name :video ,
-            title ,
-            tags,
-            description
-        },
-        {
-            headers: {
-                Authorization: APP_AUTH_TOKEN
-            },
-            giveDetails: true
-        }
-    )
-    if (response.status===201) {
-        log('video uploaded to youtube.....');
-        return true
-    } else return false
-}
 
 
 async function uploadToFacebook(filename , caption) {
@@ -151,7 +129,6 @@ async function uploadToInstagram(video_url,caption) {
     } else return false
 }
 
-
 async function uploadToLinkedin(title ,video) {
     let response=await request.post(
         BASE_URL+`api/media-api/linkedin/upload/video`,  
@@ -172,8 +149,6 @@ async function uploadToLinkedin(title ,video) {
     } else return false
 }
 
-
-
 async function uploadToTiktok(video_url) {
     let response=await request.post(
         'BASE_URL+`api/media-api/tiktok/tiktok',
@@ -193,7 +168,24 @@ async function uploadToTiktok(video_url) {
     } else return false
 }
 
-
-
-
-
+async function uploadToYoutube({title, video, description, tags}) {
+    let response = await request.post(
+        BASE_URL + '/api/media-api/youtube/upload-video',
+        {
+            name :video ,
+            title ,
+            tags,
+            description
+        },
+        {
+            headers: {
+                Authorization: APP_AUTH_TOKEN
+            },
+            giveDetails: true
+        }
+    )
+    if (response.status===201) {
+        log('video uploaded to youtube.....');
+        return true
+    } else return false
+}

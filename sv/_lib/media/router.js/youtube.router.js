@@ -165,8 +165,7 @@ router.post('/upload-video', async function uploadVideoOnYoutube(req, res) {
             }
         }
         let status = await uploadVideo(res);
-        return res.sendStatus(status === 200 ? 201 : 400)
-
+        return res.sendStatus(status === 200 ? 201 : 400);
     } catch (error) {
         catchError(res,error)
     }
