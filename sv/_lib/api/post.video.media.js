@@ -110,7 +110,7 @@ async function uploadToInstagram(video_url,caption) {
 
 async function uploadToLinkedin(title ,video) {
     let response=await request.post(
-        BASE_URL+`api/media-api/linkedin/upload/video`,  
+        BASE_URL+`/api/media-api/linkedin/upload/video`,  
         {
             title,
             video
