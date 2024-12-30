@@ -69,7 +69,7 @@ export async function uploadVideoToMultimediaApi(req, res) {
                 // statusObject.youtube=await uploadToYoutube({title, description, tags, video :video.newFilename} )
                 // statusObject.facebook=await uploadToFacebook( video.newFilename , description);
                 // statusObject.linkedin=await uploadToLinkedin(description, video.newFilename);
-                statusObject.integram=await uploadToInstagram( BASE_URL+`/api/file/temp-video/`+ video.newFilename ,description)
+                // statusObject.integram=await uploadToInstagram( BASE_URL+`/api/file/temp-video/`+ video.newFilename ,description)
                 statusObject.tiktok=await uploadToTiktok(BASE_URL+`/api/file/temp-video/`+ video.newFilename  )
                 
                 log(statusObject);

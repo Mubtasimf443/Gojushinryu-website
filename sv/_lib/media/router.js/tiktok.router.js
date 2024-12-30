@@ -73,7 +73,8 @@ router.post('/tiktok',async function(req,res) {
         if (!req.body.video_url) namedErrorCatching('perameter_missing', 'video_url is missing');
         if (typeof req.body.video_url!=='string') namedErrorCatching('perameter_missing', 'video_url is not a string');
         if ( req.body.video_url.length > 300 || req.body.video_url.length < 15 ) namedErrorCatching('perameter_missing', 'video_url is to small or too large');
-        let [status,access_token]=await settingsAsArray['tiktok_access_token_status', 'tiktok_access_token'];
+        
+        let [status,access_token]=await settingsAsArray(['tiktok_access_token_status', 'tiktok_access_token']);
         if (!status) namedErrorCatching('auth_error', 'user not authenticated');
         let user=new tiktok.Account(access_token);
         let response=await user.initVideoOnInbox(req.body.video_url);
