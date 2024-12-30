@@ -16,6 +16,7 @@ import Tiktok from "lib-tiktok-api";
 import { TIKTOK_CLIENT_KEY, TIKTOK_CLIENT_SECRET, TIKTOK_REDIRECT_URI } from "../../utils/env.js";
 import catchError, { namedErrorCatching } from "../../utils/catchError.js";
 import { getSettings, setSettings, settingsAsArray } from "../../model_base_function/Settings.js";
+import { log } from "string-player";
 
 const router =Router();
 
@@ -78,6 +79,7 @@ router.post('/tiktok',async function(req,res) {
         if (!status) namedErrorCatching('auth_error', 'user not authenticated');
         let user=new tiktok.Account(access_token);
         let response=await user.initVideoOnInbox(req.body.video_url);
+        
         log(response);
         return res.status(201).json(response);
     } catch (error) {
