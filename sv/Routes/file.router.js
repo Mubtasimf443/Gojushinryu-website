@@ -8,6 +8,7 @@ import path from "path";
 import { ApiRateLimter, fileRateLimter } from "../_lib/Config/express-slow-down.js";
 import express from "express";
 import { existsSync, fstat } from "fs";
+import morgan from "morgan";
 
 
 
@@ -17,6 +18,7 @@ let fileRouter = Router();
 
 fileRouter.use(fileRateLimter);
 fileRouter.use(express.static(path.resolve(dirName,'../public/')));
+fileRouter.use(morgan('dev'));
 fileRouter.get('/temp/:name',(req, res) => {
     try {
         log(req.params.name)
