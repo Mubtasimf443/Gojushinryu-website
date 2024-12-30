@@ -22,7 +22,6 @@ fileRouter.use(express.static(path.resolve(dirName,'../public/')));
 fileRouter.use(morgan('dev'));
 fileRouter.get('/temp/:name',async (req, res) => {
     try {
-        await Awaiter(200);
         let location=path.resolve(dirName,  '../temp/images/' + req.params.name);
         if (existsSync(location)) return res.status(200).sendFile(location);
         if (!existsSync(location)) return res.sendStatus(204)
@@ -35,7 +34,6 @@ fileRouter.get('/temp/:name',async (req, res) => {
 
 fileRouter.get('/temp-video/:name',async(req, res) => {
     try {
-        await Awaiter(200);
         let location=path.resolve(dirName,  '../temp/video/' + req.params.name);
         if (existsSync(location)) return res.status(200).sendFile(location);
         if (!existsSync(location)) return res.sendStatus(204);
