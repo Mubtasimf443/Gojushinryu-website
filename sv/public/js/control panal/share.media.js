@@ -51,6 +51,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                     btn.style.background = 'green';
                     btn.style.borderColor = 'green';
                     btn.innerHTML = 'Complete';
+                    // setTimeout(() => window.location.reload(), 2000);
                 }
                 if (res.status !== 201) throw 'Error in creating a post'
             } catch (error) {
@@ -159,6 +160,8 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                             btn.style.background = 'green';
                             btn.style.borderColor = 'green';
                             btn.innerHTML = 'Complete';
+                            setTimeout(() => window.location.reload(), 2000);
+
                         } else {
                             throw (await res.json().catch(e => ('failed to parse json')));
                         }
@@ -189,6 +192,8 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                     btn.style.background = 'green';
                     btn.style.borderColor = 'green';
                     btn.innerHTML = 'Complete';
+                    setTimeout(() => window.location.reload(), 2000);
+
                 }
                 if (res.status !== 201) {
                     throw 'Error in creating a post'

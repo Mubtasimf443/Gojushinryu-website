@@ -67,8 +67,8 @@ export async function uploadVideoToMultimediaApi(req, res) {
                 };
 
                 // statusObject.youtube=await uploadToYoutube({title, description, tags, video :video.newFilename} )
-                statusObject.facebook=await uploadToFacebook( video.newFilename , description);
-                //statusObject.linkedin=await uploadToLinkedin(description, video.newFilename);
+                // statusObject.facebook=await uploadToFacebook( video.newFilename , description);
+                statusObject.linkedin=await uploadToLinkedin(description, video.newFilename);
                 // statusObject.integram=await uploadToInstagram( BASE_URL+`/api/file/temp-video/`+ video.newFilename ,description)
                 // statusObject.tiktok=await uploadToTiktok(BASE_URL+`/api/file/temp-video/`)
                 
@@ -86,27 +86,6 @@ export async function uploadVideoToMultimediaApi(req, res) {
 }
 
 
-
-async function uploadToFacebook(filename , caption) {
-    log({filename});
-    let response=await request.post(
-        BASE_URL +'/api/media-api/facebook/upload/video',
-        {
-            url : BASE_URL +'/api/file/temp-video/'+filename,
-            caption:caption
-        },
-        {
-            headers: {
-                Authorization: APP_AUTH_TOKEN
-            },
-            giveDetails:true
-        }
-    );
-    if (response.status===201) {
-        log('video uploaded to facebook.....');
-        return true
-    } else return false
-}
 
 
 async function uploadToInstagram(video_url,caption) {
@@ -186,6 +165,28 @@ async function uploadToYoutube({title, video, description, tags}) {
     )
     if (response.status===201) {
         log('video uploaded to youtube.....');
+        return true
+    } else return false
+}
+
+
+async function uploadToFacebook(filename , caption) {
+    log({filename});
+    let response=await request.post(
+        BASE_URL +'/api/media-api/facebook/upload/video',
+        {
+            url : BASE_URL +'/api/file/temp-video/'+filename,
+            caption:caption
+        },
+        {
+            headers: {
+                Authorization: APP_AUTH_TOKEN
+            },
+            giveDetails:true
+        }
+    );
+    if (response.status===201) {
+        log('video uploaded to facebook.....');
         return true
     } else return false
 }

@@ -63,8 +63,6 @@ router.get('/auth-callback',async function(req, res) {
         catchError(res,error)
     }
 } )
-
-
  
 router.get('/log-out' ,async function(req,res) {
     try {
@@ -138,7 +136,7 @@ router.post('/upload/video', async function (req, res) {
         if (!accessTokenStatus || !accessToken || !organization) return res.sendStatus(401);
         if (!title) namedErrorCatching('perameter-error', 'title is emty');
         if (!video) namedErrorCatching('perameter-error', 'video is emty');
-        video = path.resolve(__dirname, `../../../temp/video/${ "birds.mp4" || video }`);
+        video = path.resolve(__dirname, `../../../temp/video/${video}`);
         if (!existsSync(video)) namedErrorCatching('perameter-error', "video does not exist");
         let { asset, uploadUrl } = await Linkedin.page.initVideo({
             accessToken,
@@ -146,6 +144,7 @@ router.post('/upload/video', async function (req, res) {
         });
         await Linkedin.page.uploadVideo(uploadUrl, readFileSync(video), accessToken);
         let id = await Linkedin.page.finishVideoUpload(asset, accessToken, organization, title);
+        log({linkedin_video_id:id});
         return res.sendStatus(201);
     } catch (error) {
         catchError(res, error);
