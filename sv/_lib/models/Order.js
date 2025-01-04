@@ -5,7 +5,7 @@ By his marcy,  I will gain success
 
 import mongoose from 'mongoose';
 
-const schema = mongoose.Schema({
+const schema =new mongoose.Schema({
   id :{
     type : Number,
     required :true,
@@ -159,5 +159,5 @@ const schema = mongoose.Schema({
 
 
 
- const Orders = mongoose.model('orders', schema);
- export {Orders}
+export const Orders = mongoose.model('orders', schema);
+export default Orders 

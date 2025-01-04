@@ -658,7 +658,9 @@
           </div>
         </div>
         <!-----------------------Upload Product ----------------------------->
-        <div id="upload-Product-conatiner" targetedElement="uplaod_product_href" style="display: none;" ct_section
+        <div id="upload-Product-conatiner" targetedElement="uplaod_product_href" 
+        {{!-- style="display: none;"  --}}
+        ct_section
           class="form-section">
           <div class="upload_sec_event_tumb_img_inp_box">
             <h4>
@@ -673,12 +675,14 @@
               id="upload_sec_event_tumb_img_inp_for_uploading_the_products">
           </div>
           <div id="product_upload_container_product_images_contaioner" class="upload_sec_env_img_inp_box">
-
+        
             <label for="upload_sec_product_image_inp_for_uploading_the_products">
               Upload Images
             </label>
+        
+        
             <input style="display: none" type="file" id="upload_sec_product_image_inp_for_uploading_the_products">
-
+        
           </div>
           <div class="s-sec-input-box">
             <label for="s-sec-name-inp">Product Name</label>
@@ -688,7 +692,7 @@
             <label for="s-sec-bio-inp">Product Description</label>
             <textarea placeholder="Write the description of the equipment" inp_for_product_des></textarea>
           </div>
-
+        
           <div class="s-sec-input-box">
             <label for="s-sec-name-inp"> Cetegory</label>
             <Select inp_for_product_cetegory_select>
@@ -696,52 +700,29 @@
               <option value="Cloth">Cloth</option>
             </Select>
           </div>
-          <div class="s-sec-input-box">
-            <label for="s-sec-name-inp">Price Style</label>
-            <Select price_style_select>
-              <option value="per_price">Per Product</option>
-              <option value="per_size">Price by Size</option>
-            </Select>
-          </div>
-
-          <div class="s-sec-input-box">
-            <label for="s-sec-name-inp"> size</label>
-            <input type="Text" name="" placeholder="write size like 400grams" size_pp id="s-sec-name-inp">
-          </div>
-
-          <h4 style="display: none;">Size</h4>
-          <div style="display: none;" prosizeUploadContainern class="class-upload-size-and-price-container">
-            <div prosizeUploader class="upload-size-div">
-              <i class="fa-solid fa-upload"></i>
+          <div class="size_price_container">
+            <strong>Add Size and Price</strong>
+            <table class="size_price_table">
+              <tr is_head="yes">
+                <th width="10%">No</th>
+                <th  width="25%">Size</th>
+                <th width="25%">Price</th>
+                <th width="20%">Edit</th>
+                <th width="20%">Delete</th>
+              </tr>
+         
+            </table>
+            <div class="add_size_price">
+              <input type="text" placeholder="SIZE">
+              <input type="number" placeholder="PRICE">
+              <button class="add_size_price_btn"> ADD</button>
             </div>
           </div>
-
-          <div class="s-sec-input-box">
-            <label>Saling Country</label>
-            <Select CountrySelect_select>
-              <option value="both">Both</option>
-              <option value="india">INDIA</option>
-              <option value="canada">CANADA</option>
-            </Select>
-          </div>
-          <div class="s-sec-input-box">
-            <label for="s-sec-name-inp"> Price </label>
-            <input type="number" name="" price_pp placeholder="write Price like 80.00$" id="s-sec-name-inp">
-          </div>
-
-          <div class="s-sec-input-box">
-            <label for="s-sec-name-inp">Delivray Charge <sup> India </sup> </label>
-            <input type="number" placeholder="10.00$ delivery charge" inp_for_product_delivary_india name=""
-              id="s-sec-name-inp">
-          </div>
-          <div class="s-sec-input-box">
-            <label for="s-sec-name-inp">Delivray Charge <sup> canada </sup> </label>
-            <input type="number" placeholder="10.00$ delivery charge" inp_for_product_delivary_canada
-              id="s-sec-name-inp">
-          </div>
-
+        
+        
+        
           <div class="s-sec-btn-box">
-            <button uploadTheProductBtn> Upload</button>
+            <button uploadTheProductBtn style="border: 2.2px solid black;font-size:18px;"> Upload</button>
           </div>
         </div>
         <!-----------------------Upload Post ----------------------------->

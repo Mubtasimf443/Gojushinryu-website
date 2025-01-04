@@ -4,240 +4,330 @@ InshaAllah, By Allah's Will,  I will earn success
 */
 
 
-.form-section{
-    width:100%;
-    background: #fff;
-    border-radius: 8px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
-    padding:30px 15px 30px 15px  ;
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    justify-content: flex-start;
-    row-gap:30px;
-  }
-  
-  .form-section > h2 {
-    font-size: 20px;
-    font-size: 20px;
-    font-weight: 500;
-    line-height:24px;
-  }
-  
-  .form-section > .img-inp-box{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    row-gap: 14px;
-    width: 100%;
-    padding: 7px 0px;
-  }
-  .form-section  >.img-inp-box > label {
-    background: #000;
-    width: 100px ;
-    height: 100px;
-    border-radius :50%;
-    background-size: cover;
-    background-repeat: none;
-    background-position: top center;
-  }
-  .form-section  >.s-sec-input-box> label::after{
-    content: "*";
-    color: var(--main-cl);
-    display: inline;
-    font-weight: 600;
-  }
-  .form-section > .s-sec-input-box{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    width: 100%;
-  }
-  
-  
-  .form-section > .s-sec-input-box > input,select{
-    background: rgba(0, 0, 0, 0.08);
-    border: none;
-    height: 34px;
-    width: 66%;
-    outline: none;
-    padding: 10px;
-  }
-  .form-section > .s-sec-input-box > textarea{
-    min-height: 60px;
-    max-height: 400px;
-    background: rgba(0, 0, 0, 0.08);
-    border: none;
-    height: 34px;
-    width: 66%;
-    outline: none;
-    resize: vertical;
-    padding: 10px;
-  }
+.form-section {
+  width: 100%;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+  padding: 30px 15px 30px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: flex-start;
+  row-gap: 30px;
+}
 
-  .form-section >.s-sec-input-box > label {
-    font-weight: 500;
-    font-size :16.5px;
-  }
-  
-  .form-section > .s-sec-btn-box {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: center;
-    column-gap: 10px
-  }
-  .form-section > .s-sec-btn-box > button{
-    width :70px;
-    height: 35px;
-    background: #fff;
-    color: var(--main-cl);
-    border: 2px solid var(--main-cl);
-    font-weight: 500;
-  
-  }
-  .form-section >  .s-sec-btn-box > button:nth-child(2) {
-    background: var(--main-cl);
-    color: #fff;
-    
-    
-  }
- 
-  .form-section > .upload_sec_env_img_inp_box {
-    display: flex;
-    flex-direction: row;
-    justify-content: left;
-    align-items: start;
-    flex-wrap:wrap;
-    row-gap: 20px;
-    width: 100%;
-    padding:10px 10px;
-    column-gap: 20px;
-    overflow-y: hidden;
-    overflow-x:scroll ;
-    scrollbar-width: none;
-    border: 2px solid lightgrey;
-    border-radius:5px;
-  }
-  .form-section > .upload_sec_env_img_inp_box > label {
-    border: 2px solid lightgrey;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    color:black;
-    width: 150px;
-    height: 150px;
-    border-radius :7px;
-  }
-  .form-section > .upload_sec_event_tumb_img_inp_box >.event_section_event_image_upload_image {
-    width: 150px;
-    height: 150px;
-    border-radius :7px;
-    object-fit: contain;
-  }
+.form-section>h2 {
+  font-size: 20px;
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 24px;
+}
 
-  
-  .form-section >.upload_sec_event_tumb_img_inp_box {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: start;
-    row-gap: 13px;
-    width: 100%;
-    padding: 7px 0px;
-  }
-  .form-section > .upload_sec_event_tumb_img_inp_box > label {
-    background: rgba(0, 0, 0, 0.3);
-    width: 100%;
-    height: 280px;
-    border-radius :0%;
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    display: flex;
-    flex-direction: center;
-    justify-content: center;
-    align-items: center;
-    color: #fff;
-    font-weight: 500;
-    height: 150px;
-    border-image-slice: fill 1 ;
-    border-image-source: linear-gradient(to left,  rgba(0, 0, 0, 0.35),  rgba(0, 0, 0, 0.35) );
-    cursor: pointer;
-  }
-  .form-section > .upload_sec_event_tumb_img_inp_box > label > b {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-  }
+.form-section>.img-inp-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  row-gap: 14px;
+  width: 100%;
+  padding: 7px 0px;
+}
 
-   .form-section > .class-upload-size-and-price-container {
-    display: flex;
-    flex-direction: row;
-    justify-content:left;
-    align-items: center;
-    flex-wrap: wrap;
-    width: 100%;
-    column-gap: 10px;
-    row-gap: 10px;
-    padding:13px ;
-    border: 2px solid rgba(0, 0, 0, 0.103);
-border-radius: 7px;
-max-height: fit-content;
-   }
+.form-section>.img-inp-box>label {
+  background: #000;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background-size: cover;
+  background-repeat: none;
+  background-position: top center;
+}
 
-   .form-section > .class-upload-size-and-price-container>div:not(.upload-size-div) {
-    display:flex;
-    flex-direction:column ;
-    min-height: 130px;
-    width:130px;
-    padding: 10px;
-    justify-content: flex-start;
-    align-items: start;
-    row-gap: 4px;
-    box-sizing: border-box;
-    border: 2px solid rgba(0, 0, 0, 0.103);
-    border-radius: 7px;
+.form-section>.s-sec-input-box>label::after {
+  content: "*";
+  color: var(--main-cl);
+  display: inline;
+  font-weight: 600;
+}
 
-   }
-
-   .form-section > .class-upload-size-and-price-container>.upload-size-div{
-    display: flex;
-    flex-direction:column ;
-    justify-content: center;
-    align-items: center;
-    box-sizing: content-box;
-    min-height: 130px;
-    width:130px;
-    border: 2px solid rgba(0, 0, 0, 0.103);
-    border-radius: 7px;
-
-   }
-   .form-section > .class-upload-size-and-price-container>.upload-size-div >.p-box{
-    display: flex;
-    flex-direction: row;
-    font-weight: 500;
-   }
-
-   .form-section > .class-upload-size-and-price-container> div:not(.upload-size-div ) >.p-box>span:nth-child(1){
-    font-size: 10px;
-    font-weight: 500;
-   }
+.form-section>.s-sec-input-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
 
 
-.form-section > .class-upload-size-and-price-container>div:not(.upload-size-div ) >.btn-box{
+.form-section>.s-sec-input-box>input,.form-section>.s-sec-input-box >select {
+  background: rgba(0, 0, 0, 0.08);
+  border: none;
+  height: 34px;
+  width: 66%;
+  outline: none;
+  padding: 10px;
+}
+
+.form-section>.s-sec-input-box>textarea {
+  min-height: 60px;
+  max-height: 400px;
+  background: rgba(0, 0, 0, 0.08);
+  border: none;
+  height: 34px;
+  width: 66%;
+  outline: none;
+  resize: vertical;
+  padding: 10px;
+}
+
+.form-section>.s-sec-input-box>label {
+  font-weight: 500;
+  font-size: 16.5px;
+}
+
+.form-section>.s-sec-btn-box {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  column-gap: 10px
+}
+
+.form-section>.s-sec-btn-box>button {
+  width: 70px;
+  height: 35px;
+  background: #fff;
+  color: var(--main-cl);
+  border: 2px solid var(--main-cl);
+  font-weight: 500;
+
+}
+
+.form-section>.s-sec-btn-box>button:nth-child(2) {
+  background: var(--main-cl);
+  color: #fff;
+
+
+}
+
+.form-section>.upload_sec_env_img_inp_box {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: start;
+  flex-wrap: wrap;
+  row-gap: 20px;
+  width: 100%;
+  padding: 10px 10px;
+  column-gap: 20px;
+  overflow-y: hidden;
+  overflow-x: scroll;
+  scrollbar-width: none;
+  border: 2px solid lightgrey;
+  border-radius: 5px;
+}
+
+.form-section>.upload_sec_env_img_inp_box>label {
+  border: 2px solid lightgrey;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  color: black;
+  width: 150px;
+  height: 150px;
+  border-radius: 7px;
+}
+
+.form-section>.upload_sec_event_tumb_img_inp_box>.event_section_event_image_upload_image {
+  width: 150px;
+  height: 150px;
+  border-radius: 7px;
+  object-fit: contain;
+}
+
+
+.form-section>.upload_sec_event_tumb_img_inp_box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  row-gap: 13px;
+  width: 100%;
+  padding: 7px 0px;
+}
+
+.form-section>.upload_sec_event_tumb_img_inp_box>label {
+  background: rgba(0, 0, 0, 0.3);
+  width: 100%;
+  height: 280px;
+  border-radius: 0%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: 500;
+  height: 150px;
+  border-image-slice: fill 1;
+  border-image-source: linear-gradient(to left, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35));
+  cursor: pointer;
+}
+
+.form-section>.upload_sec_event_tumb_img_inp_box>label>b {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.form-section>.class-upload-size-and-price-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  flex-wrap: wrap;
+  width: 100%;
+  column-gap: 10px;
+  row-gap: 10px;
+  padding: 13px;
+  border: 2px solid rgba(0, 0, 0, 0.103);
+  border-radius: 7px;
+  max-height: fit-content;
+}
+
+.form-section>.class-upload-size-and-price-container>div:not(.upload-size-div) {
+  display: flex;
+  flex-direction: column;
+  min-height: 130px;
+  width: 130px;
+  padding: 10px;
+  justify-content: flex-start;
+  align-items: start;
+  row-gap: 4px;
+  box-sizing: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.103);
+  border-radius: 7px;
+
+}
+
+.form-section>.class-upload-size-and-price-container>.upload-size-div {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+  min-height: 130px;
+  width: 130px;
+  border: 2px solid rgba(0, 0, 0, 0.103);
+  border-radius: 7px;
+
+}
+
+.form-section>.class-upload-size-and-price-container>.upload-size-div>.p-box {
+  display: flex;
+  flex-direction: row;
+  font-weight: 500;
+}
+
+.form-section>.class-upload-size-and-price-container>div:not(.upload-size-div)>.p-box>span:nth-child(1) {
+  font-size: 10px;
+  font-weight: 500;
+}
+
+
+.form-section>.class-upload-size-and-price-container>div:not(.upload-size-div)>.btn-box {
   display: flex;
   flex-direction: row;
   column-gap: 10px;
 }
-   .form-section > .class-upload-size-and-price-container>div:not(.upload-size-div ) >.btn-box > i{
-    color: #000;
-    font-size: 17px;
-   }
 
+.form-section>.class-upload-size-and-price-container>div:not(.upload-size-div)>.btn-box>i {
+  color: #000;
+  font-size: 17px;
+}
+
+
+.form-section .size_price_container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  align-items: start;
+  justify-content: flex-start;
+  box-sizing: border-box;
+  width: 100%;
+}
+.form-section .size_price_container strong{
+  text-transform: uppercase;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.form-section .size_price_container .add_size_price{
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  justify-content: space-between;
+  column-gap: 10px;
+  width: 100%;
+}
+
+.form-section .size_price_container .add_size_price input {
+  width: 40%;
+  height:42px ;
+  border:none;
+  background-color: #e7e7e7;
+  font-size:  15.8px;
+  padding: 6px 10px;
+  outline: none;
+}
+.form-section .size_price_container .add_size_price button{
+  background: #000;
+  color: #fff;
+  font-size: 15.8px;
+  border:none;
+  font-weight: 500;
+  height: 42px;
+  width: 15%;
+  text-transform: uppercase;
+}
+.form-section .size_price_container table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  margin: 7px 0px;
+}
+
+.form-section .size_price_container table tr{
+  width: 100%;
+
+}
+.form-section .size_price_container table th{
+  padding-left: 8px;
+  border: 1px solid white;
+  background: #000;
+  height: 38px;
+  color: white;
+  text-align: left;
+}
+
+.form-section .size_price_container table td {
+  height: 38px;
+  padding-left: 8px;
+  border: 1px solid #ccc;
+  text-align: left;
+  width: auto;
+}
+.form-section .size_price_container table input{
+  outline: none;
+  border: none;
+  background: inherit;
+  width: fit-content;
+}
 

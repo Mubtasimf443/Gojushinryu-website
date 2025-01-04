@@ -25,7 +25,7 @@
     "nodemailer": "^6.9.15",
     "nodemon": "^3.1.4",
     "request": "^2.88.2",
-    "string-player": "^1.0.3",
+    "string-player": "^1.1.8",
     "stripe": "^17.2.0"
   },
   "name": "gojushinryu.com-website",
