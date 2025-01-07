@@ -97,9 +97,6 @@ let schema = new mongoose.Schema({
         required:true,
         default:0
     },
-    orders:[{
-        id :{ type:mongoose.SchemaTypes.ObjectId, ref:'orders'},
-    }],
     banned :{
         type :Boolean,
         default :false,

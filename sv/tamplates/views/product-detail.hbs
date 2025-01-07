@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="title" content="{{metaname}}">
     <meta name="description" content="{{metaDescription}}">
-    <meta name="keywords" content="{{metaname}}, Goju shin Ryu Store  ,Martial Art equipments,buy Martial Art equipments ">
+    <meta name="keywords"
+        content="{{metaname}}, Goju shin Ryu Store  ,Martial Art equipments,buy Martial Art equipments ">
     <meta property="og:url" content="http://localhost:4000/shop/equipments/{{id}}">
     <meta property="og:site_name" content="Goju Shin Ryu Store">
     <meta property="og:type" content="website">
@@ -13,93 +15,96 @@
     <meta property="og:description" content="{{metaDescription}}">
     <meta property="og:image" content="{{thumb}}">
     <title>
-Buy - {{name}} - form {{>company_name}}
-    
+        Buy - {{name}} - form {{>company_name}}
+
     </title>
 
- {{>Links}}
+    {{>Links}}
 
     <link rel="stylesheet" href="/css/shop/product-detail.css">
 </head>
+
 <body>
 
-{{>whiteHeader}}
-{{>shopheader}}
+    {{>whiteHeader}}
+    {{>shopheader}}
 
-<!-- 
+    <!-- 
 {{prod}}
  -->
     <main>
 
- 
-    <div class="container">
-        <!-- Main Product Section -->
-        <div class="product-page">
-            <!-- Main Image -->
-            <div class="product-image">
-                <img src="{{thumb}}" alt="Main Product Image" id="main-image">
-            </div>
 
-            <!-- Product Information -->
-            <div class="product-details">
-                <!-- Product Name -->
-                <h1 class="product-name">{{name}}</h1>
-                <!-- Price -->
-                <p class="product-price"></p>
-            
-          <!-- Size Options -->
-          <div class="row">
-            <button class="add-to-cart">Add to Cart</button>
-              <div class="product-size">
-                    <select style="display: none;" name="size" id="size">
-                        {{!-- <option value="small">Small</option>
-                        <option value="medium">Medium</option>
-                        <option value="large">Large</option>
-                        <option value="xl">XL</option> --}}
-                    </select>
-                </div> 
-          </div>
-            
-
-                <!-- Description -->
-                <div class="product-description">
-                    <h2>Description</h2>
-                    <hr>
-                    {{!-- <p>{{description}}</p> --}}
-                    <p></p>
-                    <script>
-                      
-                    </script>
+        <div class="container">
+            <!-- Main Product Section -->
+            <div class="product-page">
+                <!-- Main Image -->
+                <div class="product-image">
+                    <img src="{{thumb}}" alt="Main Product Image" id="main-image">
                 </div>
 
+                <!-- Product Information -->
+                <div class="product-details">
+                    <!-- Product Name -->
+                    <h1 class="product-name">{{name}}</h1>
+                    <!-- Price -->
+                    <p class="product-price"></p>
 
-      
+                    <!-- Size Options -->
+                    <div class="row">
+                        <button class="add-to-cart">Add to Cart</button>
+                        <div class="product-size">
+                            <select style="display: none;" name="size" id="size">
+                                {{!-- <option value="small">Small</option>
+                                <option value="medium">Medium</option>
+                                <option value="large">Large</option>
+                                <option value="xl">XL</option> --}}
+                            </select>
+                        </div>
+                    </div>
 
 
-                <!-- Add to Cart Button -->
+                    <!-- Description -->
+                    <div class="product-description">
+                        <h2>Description</h2>
+                        <hr>
+                        {{!-- <p>{{description}}</p> --}}
+                        <p></p>
+                        <script></script>
+                    </div>
+
+                    <div class="product-size-details">
+                        <h2>Size and Details</h2>
+                        <hr>
+                        <p></p>
+                        <script></script>
+                    </div>
+
+                    <!-- Add to Cart Button -->
+                </div>
+            </div>
+
+            <!-- Thumbnail Images Section -->
+            <h3>More Image</h3>
+            <div class="thumbnail-images">
+                {{#each images}}
+                <img src="{{this}}" alt="Thumbnail 1" class="thumb">
+                {{!-- <img src="/img/product2.jpg" alt="Thumbnail 2" class="thumb">
+                <img src="/img/product3.jpg" alt="Thumbnail 3" class="thumb"> --}}
+                {{/each}}
             </div>
         </div>
 
-        <!-- Thumbnail Images Section -->
-        <h3>More Image</h3>
-        <div class="thumbnail-images">
-            {{#each images}}
-            <img src="{{this}}" alt="Thumbnail 1" class="thumb">
-            {{!-- <img src="/img/product2.jpg" alt="Thumbnail 2" class="thumb">
-            <img src="/img/product3.jpg" alt="Thumbnail 3" class="thumb"> --}}
-            {{/each}}
-        </div>
-    </div>
+    </main>
 
-   </main>
-
-{{>Footer}}
+    {{>Footer}}
 
 
 
-<script>
-    var id = Number({{id}});
-</script>
-<script defer src="/js/shop/product_details.js"></script>
+    <script>
+        var id = Number({{ id }});
+    </script>
+    <script defer src="/js/shop/product_details.js"></script>
 </body>
+
 </html>

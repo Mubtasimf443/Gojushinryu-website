@@ -6,10 +6,11 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 
 
 let descriptionElment = document.querySelector(`[class="product-description"]`).querySelector('p');
-let selectEl =document.querySelector('#size');
-let priceEl =document.querySelector('.product-price');
-let addToCardElement =document.querySelector(`[class="add-to-cart"]`);
-var name ;
+let sizeDetailsElement=document.querySelector(`[class="product-size-details"]`).querySelector('p');
+let selectEl = document.querySelector('#size');
+let priceEl = document.querySelector('.product-price');
+let addToCardElement = document.querySelector(`[class="add-to-cart"]`);
+var name;
 var description;
 var cetegory;
 var thumb;
@@ -18,126 +19,107 @@ var images;
 var selling_style;
 var selling_price;
 var size_and_price;
-let df_size;
-let df_price;
-let product;
+let df_size, df_price, product,sizeDetails;
 
-selectEl.addEventListener("change",(e) => {
-  let option= e.target.selectedOptions[0];
-  df_size=option.value;
-  df_price=option.getAttribute('price');
-  priceEl.innerHTML='$'+df_price +'<sup>'+df_size+'</sup>';
+
+selectEl.addEventListener("change", (e) => {
+    let option = e.target.selectedOptions[0];
+    df_size = option.value;
+    df_price = option.getAttribute('price');
+    priceEl.innerHTML = '$' + df_price + '<sup>' + df_size + '</sup>';
 })
 
 
-window.addEventListener('load',async e =>{
-    let json =await JSON.stringify({id});
-    
-    fetch(window.location.origin+'/api/api_s/give-product-details',{
-        method :'Post',
-        headers:{
-            "Content-Type":"application/json",
-        },
-        body:json
-    })
-    .then(e=> e.json())
-    .then(({prod,error}) =>
-    {
+window.addEventListener('load', async function () {
+    try {
+        let res= await fetch(window.location.origin + `/api/api_s/get-product-from-query?id=${id}`)
+        let response=await res.json();
+        let error = response.error, prod = response.product;
         if (error) {
-             console.log('error'+ error);
-            return 
+            console.log('error' + error);
+            return;
         }
         if (prod) {
-            // log(prod)
-          product =prod;
-          images =prod.images;
-          name =prod.name;
-          id =prod.id;
-          description =prod.description;
-          selling_style =prod.selling_style;
-          selling_price=prod.selling_price;
-          size_and_price=prod.size_and_price;
-          if (selling_style === 'per_price') {
-            df_size = prod.size;
-            df_price=prod.price;      
-          }
-          if (selling_style !== 'per_price') {
-            df_size=size_and_price[0].size;
-            log('df_size' + df_size);
-            df_price=size_and_price[0].price;
-          }
-          LoadUi();
+            product = prod;
+            images = prod.images;
+            name = prod.name;
+            id = prod.id;
+            description = prod.description;
+            df_size = prod.SizeAndPrice[0].size;
+            df_price = prod.SizeAndPrice[0].price;
+            size_and_price=prod.SizeAndPrice;
+            sizeDetails=prod.sizeDetails;
+            LoadUi();
         }
+
+
+    } catch (error) {
+        console.error(error);
     }
-    )
-    .catch(e =>console.log(e) )
 })
 
 function LoadUi() {
-   log(selling_style)
     descriptionElment.innerHTML = description;
-    if (selling_style ==='per_price'){
-        priceEl.innerHTML='$'+ df_price;
-    }
-    if (selling_style !=='per_price'){
-        priceEl.innerHTML='$'+ size_and_price[0].price;
-        size_and_price.forEach(({size,price})=> {
-            selectEl.innerHTML = selectEl.innerHTML + `<option value="${size}" price="${price}" >${size}</option>`;
-        });
-        selectEl.style.display='flex';
-    }
-    
-
+    sizeDetailsElement.innerHTML= sizeDetails;
+    priceEl.innerHTML = '$' + df_price;
+    priceEl.innerHTML = '$' + size_and_price[0].price;
+    size_and_price.forEach(function (el) {
+        selectEl.innerHTML += `<option value="${el.size}" price="${el.price}" >${el.size}</option>`;
+    });
+    selectEl.style.display = 'flex';
 }
 
-addToCardElement.addEventListener('click',e => {
- (async e => {
- if (addedProduct.length === 0) {
-    addedProduct.push({//added products form header.js shop header
-        prod :product,
-        quantity :1,
-        id :id ,
-        df_size:df_size,
-        df_price:Number(df_price)
-    })
-    addToStorage(addedProduct) // addToStorage form shop header.js 
-    log('/added to emty array')
-    return 
- }
- let check = addedProduct.findIndex(el => el.id ===id);
- if (check > -1) {
-    addedProduct= addedProduct.map(el => {
-        if (el.id !== id) return el
-        if (el.id === id) {
-            el.df_size = df_size;
-            el.df_price=Number(df_price);
-            el.quantity =el.quantity+1;
-            return el
-        } 
-    });
-    addToStorage(addedProduct) // addToStorage form shop header.js 
-    log('/incluedes to inclueding array')
 
-    // setTimeout(() => {
-    //     window.location.replace("/shop/cart")
-    // }, 1000);
-    return    
 
- } 
- if (check===-1) {
-    addedProduct.push({//added products form header.js shop header
-        prod :product,
-        quantity :1,
-        id :id ,
-        df_size:df_size,
-        df_price: Number(df_price)
-    })
-    log('/incluedes to big array')
-    return addToStorage(addedProduct) // addToStorage form shop header.js
- }
-})(e)
-.then(e => setTimeout(() => {  window.location.assign('/shop/cart')}, 700) )
-.catch(e => log(e))
+
+addToCardElement.addEventListener('click', e => {
+    (async e => {
+        if (addedProduct.length === 0) {
+            addedProduct.push({//added products form header.js shop header
+                prod: product,
+                quantity: 1,
+                id: id,
+                df_size: df_size,
+                df_price: Number(df_price)
+            })
+            addToStorage(addedProduct) // addToStorage form shop header.js 
+            log('/added to emty array')
+            return
+        }
+        let check = addedProduct.findIndex(el => el.id === id);
+        if (check > -1) {
+            addedProduct = addedProduct.map(el => {
+                if (el.id !== id) return el
+                if (el.id === id) {
+                    el.df_size = df_size;
+                    el.df_price = Number(df_price);
+                    el.quantity = el.quantity + 1;
+                    return el
+                }
+            });
+            addToStorage(addedProduct) // addToStorage form shop header.js 
+            log('/incluedes to inclueding array')
+
+            // setTimeout(() => {
+            //     window.location.replace("/shop/cart")
+            // }, 1000);
+            return
+
+        }
+        if (check === -1) {
+            addedProduct.push({//added products form header.js shop header
+                prod: product,
+                quantity: 1,
+                id: id,
+                df_size: df_size,
+                df_price: Number(df_price)
+            })
+            log('/incluedes to big array')
+            return addToStorage(addedProduct) // addToStorage form shop header.js
+        }
+    })(e)
+        .then(e => setTimeout(() => { window.location.assign('/shop/cart') }, 700))
+        .catch(e => log(e))
 
 }
 );

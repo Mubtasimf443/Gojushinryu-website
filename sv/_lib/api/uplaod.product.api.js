@@ -6,11 +6,11 @@ import { log, Success } from '../utils/smallUtils.js';
 import { UploadImageToCloudinary } from '../Config/cloudinary.js';
 import { ImageUrl } from '../models/imageUrl.js';
 import { Product } from '../models/Products.js';
-import { isnota, validate } from 'string-player';
+import { isnota, repleCrAll, validate } from 'string-player';
 
 export  async function UploadProductApi(req,res) { 
     try {
-        console.log(req.body);
+        // console.log(req.body);
      
         function alert(params) {
           return res.status(400).json({error:params})
@@ -23,12 +23,14 @@ export  async function UploadProductApi(req,res) {
             thumb,
             cetegory,
             images,
-            SizeAndPrice
+            SizeAndPrice,
+            sizeDetails,
         } =req.body;
 
-        let testArray=[ name, description,thumb,cetegory  ] ;
+
+        let testArray=[ name, description,thumb,cetegory ,sizeDetails ] ;
         let index= await testArray.findIndex(el => !el );
-        console.log(index);
+        // console.log(index);
 
         if (index !== -1 ) return alert('please give all the data') ;
 
@@ -38,6 +40,9 @@ export  async function UploadProductApi(req,res) {
 
         if (validate.isArray(SizeAndPrice)===false) return alert('Invalid size and price');
         if (SizeAndPrice.length===0) return alert('Invalid size and price');
+
+            
+        [name, description, cetegory, sizeDetails] = repleCrAll([name, description, cetegory, sizeDetails]);
 
         for (let i = 0; i < SizeAndPrice.length; i++) {
             if (isnota.object(SizeAndPrice[i])) return alert(`Invalid size and price in SizeAndPrice[${i}]`);
@@ -63,9 +68,10 @@ export  async function UploadProductApi(req,res) {
         let newImageArray = await uploadImages(images,err)
         if (err) return alert('Please Do not use corrupted image');
 
+        
 
 
-        log({newImageArray}) ;
+        // log({newImageArray}) ;
 
 
         await Product.create({
@@ -76,7 +82,8 @@ export  async function UploadProductApi(req,res) {
             thumb,
             images: newImageArray,
             date: new Date(Date.now()).getDate() + '-' + new Date().getMonth() + '-' + new Date().getFullYear(),
-            SizeAndPrice
+            SizeAndPrice,
+            sizeDetails
         })
             .catch(
                 function (e) {

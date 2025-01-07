@@ -9,7 +9,7 @@
   <meta name="googlebot-news" content="nosnippet">
   <!-- ImportTANT links -->
   <link rel="icon" href="/img/6060.png">
-<link rel="shortcut" href="/img/6060.png">
+  <link rel="shortcut" href="/img/6060.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -218,65 +218,84 @@
       </h2>
       <div class="input-box">
         <label>Reciever Name</label>
-        <input disabled value="Reciever Name" placeholder="Reciever Name" type="text">
+        <input disabled value="Reciever Name" placeholder="R.Name" type="text">
       </div>
+
       <div class="input-box">
-        <label>R. Number</label>
-        <input disabled value="R. Number" placeholder="R. Number" type="text">
+        <label>Reciever Number</label>
+        <input disabled value="R. Number" placeholder="R.Number" type="text">
       </div>
+
       <div class="input-box">
-        <label>B. Email</label>
+        <label>Reciever Email</label>
+        <input disabled value="R.Email" placeholder="R.Email" type="text">
+      </div>
+
+
+      <div class="input-box">
+        <label>Buyer Email</label>
         <input disabled value="Buyer Email" placeholder="Buyer Email" type="text">
       </div>
+
       <div class="input-box">
-        <label>Country</label>
+        <label>Shipping Country</label>
         <input disabled value="India" placeholder="country" type="text">
       </div>
       <div class="input-box">
-        <label>District</label>
+        <label>Shipping District</label>
         <input disabled value="Delhi" placeholder="district" type="text">
       </div>
       <div class="input-box">
-        <label>City</label>
+        <label>Shipping City</label>
         <input disabled value="London" placeholder="city" type="text">
       </div>
       <div class="input-box">
-        <label>
-          Street/Village/road No
-        </label>
-        <input disabled value="Moulovi Road No. 48" placeholder="street" type="text">
+        <label>Shipping Street/Village</label>
+        <input disabled value="undefined" placeholder="street" type="text">
       </div>
       <div class="input-box">
-        <label>Post Code</label>
-        <input disabled value="4544" placeholder="postcode" type="text">
+        <label>Shipping zipcode</label>
+        <input disabled value="undefined" placeholder="postcode" type="text">
       </div>
       <div class="txt-box">
-        <label>Notes</label>
-        <textarea value="Under Contruction" placeholder="notes" disabled></textarea>
+        <label>Buyer Notes</label>
+        <textarea value="undefined" placeholder="notes" disabled></textarea>
       </div>
 
       <div class="input-box">
         <label>Order Id</label>
-        <input disabled value="9384386982" placeholder="Order Id" type="text">
-      </div>
-      <div class="input-box">
-        <label>Quantity</label>
-        <input disabled value="7" placeholder="quantity" type="text">
+        <input disabled value="undefined" placeholder="Order Id" type="text">
       </div>
 
       <div class="input-box">
-        <label>Product Value</label>
-        <input disabled value="93$" placeholder="Product Value" type="text">
+        <label>Quantity</label>
+        <input disabled value="undefined" placeholder="quantity" type="text">
       </div>
+
+      <div class="input-box">
+        <label>Total Product Price</label>
+        <input value="" placeholder="TotalProductPrice" type="text" disabled>
+      </div>
+
+
 
       <div class="input-box">
         <label>Shipping</label>
-        <input disabled value="93$" placeholder="total shipping" type="text">
+        <input value="" placeholder="total shipping" type="number">
       </div>
+
+
+      <div class="input-box">
+        <label>Tax</label>
+        <input value="" placeholder="tax" type="number">
+      </div>
+
+
+
 
       <div class="input-box">
         <label>Total Price</label>
-        <input disabled value="93$" placeholder="total" type="text">
+        <input value="0" placeholder="total" type="number" disabled>
       </div>
 
 
@@ -293,24 +312,24 @@
         </tr>
 
       </table>
-
       <h2>Action</h2>
       <div class="input-box ">
         <label for="">Mark </label>
-        <select pp_select>
-          <option value="pending">Pending</option>
-          <option value="processing">In Process </option>
-          <option value="completed">Completed</option>
-          <option value="cancelled">Cancelled</option>
+        <select pp_select disabled>
+
+          <option value="Pending" style="display: none;">Pending</option>
+          <option value="Payment Needed" style="display:none">Payment Needed</option>
+          <option value="Completed" style="display: none;">Completed </option>
+          <option value="In Process" style="display: none;">In Process </option>
+          <option value="In Delivery" style="display: none;">In Delivery </option>
+          <option value="Cancelled" style="display: none;">Cancelled</option>
         </select>
       </div>
       <div class="txt-box c-reason-box">
         <label>Cancell Reason</label>
         <textarea
           placeholder="If you want to cancel the order then you have to give the write the reasson .And Buyer will get a notification that order is cancel"
-          class="cancel_notes">
-
-          </textarea>
+          class="cancel_notes"></textarea>
       </div>
 
 
@@ -330,27 +349,34 @@
   </div>
 
   <!------------------------ product PopUp ------------------------------>
-  <div id="popup_product_action" style="display: none;" class="popup_c">
+  <div style="display: none;" class="popup_c" id="popup_product_action" >
+
     <div class="popup_order_action_form">
+
       <h2>
         Product Action
       </h2>
+
       <div class="input-box">
         <label>Name</label>
         <input value="Martial Art Cloths" type="text">
       </div>
+
       <div class="input-box">
         <label>Stock</label>
         <input value="7" type="text">
       </div>
+
       <div class="input-box">
         <label> Price</label>
         <input value="93$" type="text">
       </div>
+
       <div class="txt-box">
         <label>Description</label>
         <textarea value="Under Contruction"></textarea>
       </div>
+
       <div class="input-box">
         <label for="">Cetegory </label>
         <select name="" id="">
@@ -358,6 +384,8 @@
           <option value="">weapons</option>
         </select>
       </div>
+
+
       <div class="pp_btn_box">
         <button class="popup-close-btn">
           Close
@@ -658,9 +686,9 @@
           </div>
         </div>
         <!-----------------------Upload Product ----------------------------->
-        <div id="upload-Product-conatiner" targetedElement="uplaod_product_href" 
-        {{!-- style="display: none;"  --}}
-        ct_section
+
+
+        <div id="upload-Product-conatiner" targetedElement="uplaod_product_href" style="display: none;" ct_section
           class="form-section">
           <div class="upload_sec_event_tumb_img_inp_box">
             <h4>
@@ -675,14 +703,14 @@
               id="upload_sec_event_tumb_img_inp_for_uploading_the_products">
           </div>
           <div id="product_upload_container_product_images_contaioner" class="upload_sec_env_img_inp_box">
-        
+
             <label for="upload_sec_product_image_inp_for_uploading_the_products">
               Upload Images
             </label>
-        
-        
+
+
             <input style="display: none" type="file" id="upload_sec_product_image_inp_for_uploading_the_products">
-        
+
           </div>
           <div class="s-sec-input-box">
             <label for="s-sec-name-inp">Product Name</label>
@@ -692,7 +720,10 @@
             <label for="s-sec-bio-inp">Product Description</label>
             <textarea placeholder="Write the description of the equipment" inp_for_product_des></textarea>
           </div>
-        
+          <div class="s-sec-input-box">
+            <label for="s-sec-bio-inp">Size Details</label>
+            <textarea placeholder="Write the details of the equipment size" inp_for_product_size_details></textarea>
+          </div>
           <div class="s-sec-input-box">
             <label for="s-sec-name-inp"> Cetegory</label>
             <Select inp_for_product_cetegory_select>
@@ -705,12 +736,12 @@
             <table class="size_price_table">
               <tr is_head="yes">
                 <th width="10%">No</th>
-                <th  width="25%">Size</th>
+                <th width="25%">Size</th>
                 <th width="25%">Price</th>
                 <th width="20%">Edit</th>
                 <th width="20%">Delete</th>
               </tr>
-         
+
             </table>
             <div class="add_size_price">
               <input type="text" placeholder="SIZE">
@@ -718,9 +749,9 @@
               <button class="add_size_price_btn"> ADD</button>
             </div>
           </div>
-        
-        
-        
+
+
+
           <div class="s-sec-btn-box">
             <button uploadTheProductBtn style="border: 2.2px solid black;font-size:18px;"> Upload</button>
           </div>
@@ -770,8 +801,7 @@
 
         </div>
         <!-----------------------order list ----------------------------->
-
-        <div ct_section targetedElement="order_href" style="display: none;" class="order-list-box">
+        <div ct_section targetedElement="order_href" {{!--style="display: none;" --}} class="order-list-box">
 
           <table>
             <tr>
@@ -1090,7 +1120,7 @@
             <button auth_btn_tiktok style="background-color: black;">Login</button>
           </div>
 
-           <div class="auth_div"> 
+          <div class="auth_div">
             <div class="icon_div">
               <img src="/icon/facebook.png" alt="tiktok icon">
               <b>Facebook</b>
@@ -1100,7 +1130,8 @@
           </div>
 
           <div class="s-sec-btn-box">
-            <button save_btn style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
+            <button save_btn
+              style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
           </div>
 
         </div>
@@ -1295,7 +1326,7 @@
 
             </tr>
           </table>
-          
+
           {{!-- Popup --}}
 
           <div id="edit_testimonial_popup" style="display: none;" class="popup_c">
@@ -1330,7 +1361,7 @@
               </div>
             </div>
           </div>
-          
+
           {{!-- Form --}}
 
 
@@ -1351,18 +1382,21 @@
             <div class="s-sec-input-box" style="position: relative;">
               <label for="s-sec-name-inp">Appreciator</label>
               <input type="Text" placeholder="Write the name of Appreciator" name_of_Appreciator id="s-sec-name-inp">
-              <span class="mention" style="position: absolute; bottom:-20px;right:9px;color:red;font: size 10px;"></span>
+              <span class="mention"
+                style="position: absolute; bottom:-20px;right:9px;color:red;font: size 10px;"></span>
             </div>
             <div class="s-sec-input-box" style="position: relative;">
               <label for="s-sec-name-inp">Positon</label>
               <input type="Text" placeholder="Write the job Positon of Appreciator" Positon_of_Appreciator
                 id="s-sec-name-inp">
-              <span class="mention" style="position: absolute; bottom:-20px;right:9px;color:red;font: size 10px;"></span>
+              <span class="mention"
+                style="position: absolute; bottom:-20px;right:9px;color:red;font: size 10px;"></span>
             </div>
             <div class="s-sec-input-box" style="position: relative;">
               <label for="s-sec-bio-inp">Appreciation</label>
               <textarea placeholder="Write the Appreciation" Appreciation></textarea>
-              <span class="mention" style="position: absolute; bottom:-20px;right:9px;color:red;font: size 10px;"></span>
+              <span class="mention"
+                style="position: absolute; bottom:-20px;right:9px;color:red;font: size 10px;"></span>
             </div>
             <div class="s-sec-btn-box">
               <button uploadTestimonialsButton> Upload</button>

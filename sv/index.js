@@ -73,6 +73,7 @@ app.use(helmet({
     },
 
 }))
+
 app.use(StaticRouter)
 // app.use(express.static(path.resolve(dirName, './public/')));
 app.set('view engine', 'hbs');

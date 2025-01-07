@@ -1,68 +1,68 @@
-import { log } from "string-player";
-import {connectDB} from './_lib/Config/ConnectDb.js'
-import CountryRepresentatives from "./_lib/models/countryRepresentative.js";
-import { mailer } from "./_lib/utils/mailer.js";
-import { ADMIN_EMAIL, FROM_EMAIL } from "./_lib/utils/env.js";
 /*
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
 InshaAllah, By his marcy I will Gain Success 
 */
-await connectDB();
 
-const express = require('express');
-const formidable = require('formidable');
-const tf = require('@tensorflow/tfjs');
-const mobilenet = require('@tensorflow/tfjs-models').mobilenet;
+import { log } from 'console';
+import {createRequire} from 'module'
+import path, { resolve } from 'path';
+import { fileURLToPath } from 'url';
+import { Product } from './_lib/models/Products.js';
+import Awaiter from 'awaiter.js';
+import mongoose from 'mongoose';
+import { SDATABASE } from './_lib/utils/env.js';
+const require =createRequire(import.meta.url);
+const __dirname =path.dirname(fileURLToPath(import.meta.url))
 
-const app = express();
-const port = 3000;
 
-// Load the pre-trained MobileNet model
-let model;
-async function loadModel() {
-  model = await mobilenet.load();
-  console.log('MobileNet model loaded');
-}
+await mongoose.connect(SDATABASE)
 
-loadModel(); // Initialize the model loading
-
-// Middleware for parsing multipart/form-data requests
-app.post('/upload', (req, res) => {
-  const form = new formidable.IncomingForm();
-  form.uploadDir = "./uploads";
-  form.keepExtensions = true;
-  form.maxFileSize = 10 * 1024 * 1024; // 10 MB
-
-  form.parse(req, (err, fields, files) => {
-    if (err) {
-      console.error("Error uploading file:", err);
-      return res.status(500).send({ message: 'Error uploading file' });
+let data = [
+    {
+        _id: { '$oid': '673f19fe75cf765c942243e0' },
+        id: 1732188670309,
+        name: 'Gojushin Ryu Jacket',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem obcaecati sequi voluptate tempore ullam iure voluptates odio sint, reprehenderit eaque autem! Ab voluptas cumque ipsam dignissimos temporibus possimus, aliquid eum!\n',
+        cetegory: 'weapons',
+        thumb: 'http://res.cloudinary.com/dmuf5ducu/image/upload/v1732188667/1732188666871.jpg',
+        images: [
+            'http://res.cloudinary.com/dmuf5ducu/image/upload/v1732188667/1732188667603.jpg',
+            'http://res.cloudinary.com/dmuf5ducu/image/upload/v1732188668/1732188668122.jpg',
+            'http://res.cloudinary.com/dmuf5ducu/image/upload/v1732188668/1732188668638.jpg',
+            'http://res.cloudinary.com/dmuf5ducu/image/upload/v1732188669/1732188669150.jpg',
+            'http://res.cloudinary.com/dmuf5ducu/image/upload/v1732188669/1732188669863.jpg'
+        ],
+        date: '21-10-2024',
+        selling_country: 'both',
+        selling_style: 'per_price',
+        price: '60',
+        size_and_price: [],
+        size: '400gram',
+        delivery_charge_in_india: 100,
+        delivery_charge_in_canada: 100,
+        __v: 0
     }
+];
 
-    console.log("File uploaded successfully:", files);
-    const uploadedFile = files.file;
 
-    // Pre-process the image for the model
-    const img = tf.browser.fromPixels(uploadedFile.path);
-    const resizedImg = tf.image.resizeBilinear(img, [224, 224]); // MobileNet input size
-    const normalizedImg = resizedImg.toFloat().div(255);
-    const batchedImg = normalizedImg.expandDims(0);
 
-    // Make predictions using the pre-trained MobileNet model
-    model.classify(batchedImg).then(predictions => {
-      const { className, probability } = predictions[0];
-      console.log(`Prediction: ${className} (${probability.toFixed(2)})`);
-
-      // Simple classification as "dog" or "cat" based on the pre-trained model's output
-      const classification = className.includes('dog') ? 'dog' : className.includes('cat') ? 'cat' : 'unknown';
-      res.send({ classification, confidence: probability.toFixed(2) });
-    }).catch(err => {
-      console.error("Error making prediction:", err);
-      res.status(500).send({ message: 'Error making prediction' });
-    });
-  });
-});
-
-app.listen(port, () => {
-  console.log(`Server listening on port ${port}`);
-});
+for (let i = 0; i < data.length; i++) {
+    if (i===0) {
+        let d=data[i]
+        await Awaiter(10);
+        (new Product({
+            name :d.name,
+            description :d.description,
+            cetegory :d.cetegory,
+            thumb :d.thumb,
+            images :d.images,
+            sizeDetails :d.size ,
+            SizeAndPrice: [
+                {
+                    size : "400gram" ,
+                    price : Number(d.price)
+                },
+            ]
+        })).save()
+    }
+}

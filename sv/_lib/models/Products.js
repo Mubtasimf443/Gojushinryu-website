@@ -25,6 +25,7 @@ const productschema = new mongoose.Schema({
   thumb: {
     type: String,
   },
+  sizeDetails:String,
   images: [String],
   SizeAndPrice: [{
     size: String,

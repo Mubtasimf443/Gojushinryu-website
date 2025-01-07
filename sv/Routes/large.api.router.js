@@ -18,6 +18,7 @@ import CustomLink from "../_lib/models/customLink.js";
 import { log } from "string-player";
 import { createCustomLink } from "../_lib/model_base_function/customLink.js";
 import { customCoursePurchaseApi } from "../_lib/api/custom.course.api.js";
+import { createOrder } from "../_lib/model_base_function/order.js";
 
 const LargeApiRouter = Router();
 
@@ -30,15 +31,14 @@ LargeApiRouter.use(morgan('dev'))
 
 //post
 LargeApiRouter.post('/custom-link',createCustomLink)
-LargeApiRouter.post('/paypal-checkout', userCheck,OrderApiPaypal);
 LargeApiRouter.post('/paypal-membership-purchase', userCheck,MembershipApidataCheckMidleware ,paypalMembershipFunction);
 LargeApiRouter.post('/paypal-course-purchase-api',userCheck,courseBuyPaypalApi);
-LargeApiRouter.post('/stripe-checkout',userCheck,stripeOrderApi)
 LargeApiRouter.post('/stripe-membership-api',userCheck,membershipMidleWareStripe,stripeMembershipFunction)
 LargeApiRouter.post('/stripe-course-purchase-api',userCheck,stripeCourseBuyAPiJs)
 LargeApiRouter.post('/uplaod-post',uplaodPostAPiFucntion)
 LargeApiRouter.post('/upload-coutntry-representative',uploadCountryRepresentativeApi)
 LargeApiRouter.post('/custom-membership', userCheck, customMembershipApi)
 LargeApiRouter.post('/custom-course', userCheck, customCoursePurchaseApi)
+LargeApiRouter.post('/order/create', userCheck, createOrder)
 
 export default LargeApiRouter;

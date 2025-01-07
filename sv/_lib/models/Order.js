@@ -5,158 +5,137 @@ By his marcy,  I will gain success
 
 import mongoose from 'mongoose';
 
-const schema =new mongoose.Schema({
-  id :{
-    type : Number,
-    required :true,
-    default:Date.now
-  },
-  date:{
-    type: String,
-    required: true
-  },
-  buyer :{
-    id :{
-    type:mongoose.SchemaTypes.ObjectId,
-    ref :'User',
-    required:true
-    },
-    email :{
-      type :String,
-      required:true
-    },
-  },
-  reciever :{
-    name :{
+const
+  extraDatas = {
+    order_status: {
       type: String,
-      required: true
+      default: "Pending"
+      // 5 status of the orders
+      // Pending
+      // In Process
+      // In Delivery
+      // Completed
+      // Payment Needed
+      // Cancelled
     },
-    phone:{
-      type: String,
-      required: true
+    isCancelled: {
+      type: Boolean,
+      default: false
     },
-    country  :{
-      type: String,
-      required: true
+    cancelReason: {
+      type: String
     },
-    district  :{
-      type: String,
-      required: true
+    activated: {
+      type: Boolean,
+      default: false,
     },
-    city  :{
-      type: String,
-      required: true
+    trash: {
+      default: false,
+      type: Boolean
     },
-    street:{
+    reciever_notes: {
       type: String,
-      required: true
-    } ,
-    postcode :{
-      type: Number,
-      required: true
+    }, 
+    isCompleted :{
+      default: false,
+      type: Boolean
     }
   },
-  reciever_notes :{
-    type:String,
-    required: true
+  reciever = {
+    name: String,
+    phone: String,
+    email: String,
+    fname: String, 
+    lname: String
   },
-  total :{
-    type: String, 
-    required: true
-  },
-  total_product_price :{
-    type: String, 
-    required: true
-  },
-  shipping_cost:{
-    type: String,
-    required: true
-  },
-  shiping_items:[{
-    _id :{
+  buyer = {
+    id: {
       type: mongoose.SchemaTypes.ObjectId,
-      ref:'products', 
-      required: true
+      ref: 'User',
     },
-    item_name:{
-      type: String, 
-      required: true
+    email: String,
+    phone: String,
+    name :String,
+    fname :String,
+    lname :String,
+  },
+  shiping_items = [{
+    _id: {
+      type: mongoose.SchemaTypes.ObjectId,
+      ref: 'products',
     },
-    quantity: {
-      type: Number,
-      required: true
-    },
-    per_price: {
-      type: Number,
-      required: true
-    },
-    size :{
-      type :String,
-      required :true
-    },
-    shipping:{
-      type :Number,
-      required :true
-    },
-    total_price:{
-      type: Number,
-      required: true
-    }
+    thumb:String,
+    name: String,
+    quantity: Number,
+    price: Number,
+    size: String,
+    url: String,
+    total: Number,
+    id :Number
   }],
-  payment_method :{
-    type: String,
-    required: true,
+  reciever_address = {
+    country: String,
+    district: String,
+    city: String,
+    road_no: String,
+    zipcode: Number,
   },
-  paypal_order_id :String,
-  stripe_Token :String,
-  order_status :{
-    type: String,
-    required: true,
-    default:"pending"
+  amountData = {
+    total: {
+      type: String,
+    },
+    total_product_price: {
+      type: String,
+    },
+    shipping_cost: {
+      type: String,
+    },
+    tax:String,
   },
-  isCancelled:{
-    type:Boolean,
-    required:true,
-    default:false
+  adminApproved = {
+    activationTime: {
+      type: Date,
+    },
+    status: {
+      type: Boolean,
+      default: false,
+    }
   },
-  cancelReason:{
-    type:String
-  } ,
-  activated :{
-    type :Boolean,
-    default :false,
-    required :true
-  },
+  paymentInfo = {
+    payment_method: {
+      type: String,
+      default: 'none'
+    },
+    paypal_token: String,
+    string_token: String,
+    payment_done_date: {
+      type: Date,
+    },
+    payment_status: {
+      type: Boolean,
+      default: false
+    }
+  };
 
-  trash:Boolean
+
+const schema = new mongoose.Schema({
+  id: {
+    type: Number,
+    default: Date.now
+  },
+  date: {
+    type: String,
+    default: (e => new Date())
+  },
+  buyer: buyer,
+  reciever: reciever,
+  reciever_address: reciever_address,
+  shiping_items: shiping_items,
+  amountData: amountData,
+  adminApproved: adminApproved,
+  paymentInfo: paymentInfo,
+  ...extraDatas
 });
-
-/************************I worked hard to prevent dql injection****************************/
-// schema.methods.checkSQLInjection =function() {
-//   if (this.name.includes('{')) return false 
-//   if (this.delevering_country.includes('{')) return false 
-//   if (this.delevering_city.includes('{')) return false 
-//   if (this.delevering_district.includes('{')) return false 
-//   if (this.delevering_house_address.includes('{')) return false 
-//   if (this.reciever_name.includes('{')) return false
-//   if (this.reciever_email.includes('{')) return false 
-//   if (this.name.includes('{')) return false 
-//   if (this.currency.includes('{')) return false
-//   if (
-//     (function (){
-//     let defaultSend = false;
-//     for (var i = 0; i < this.shiping_items.length; i++) {
-//       if (shiping_items[i].item_name.includes('{')) defaultSend = true
-//       if (shiping_items[i].per_price.includes('{')) defaultSend =true
-//       if (shiping_items[i].total_price.includes('{') ) defaultSend = true 
-//       return defaultSend
-//     }
-//    })()
-//     ) return false
-    
-//   return true
-// }
-
 
 
 export const Orders = mongoose.model('orders', schema);

@@ -66,7 +66,7 @@ body {
 }
 
 
-.product-description{
+.product-description , .product-size-details{
     row-gap: 6px;
     display: flex;
     flex-direction: column;
@@ -75,10 +75,15 @@ body {
     padding: auto;
     line-height:1.65;
     word-spacing: 3px;
-   
 
 }
+
 .product-description hr {
+    height: 2px;
+    background: #000;
+    width: 100%;
+}
+.product-size-details hr {
     height: 2px;
     background: #000;
     width: 100%;

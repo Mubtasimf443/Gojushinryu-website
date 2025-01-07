@@ -14,6 +14,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
     let inp_for_product_name = uploadProductConatiner.querySelector('[inp_for_product_name]')
     let inp_for_product_des = uploadProductConatiner.querySelector('[inp_for_product_des]')
     let inp_for_product_cetegory_select = uploadProductConatiner.querySelector('[inp_for_product_cetegory_select]')
+    let inp_for_product_size_details=uploadProductConatiner.querySelector(`[inp_for_product_size_details]`);
     let sizeAndPrice=[];
     /*****************************  image upload **********************************/
 
@@ -151,33 +152,18 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         let cetegory = inp_for_product_cetegory_select.selectedOptions[0].value;
         let thumb = ThumbUrl;
         let images = productImageUrlArrays;
-     
+        let sizeDetails=inp_for_product_size_details.value;
+
         if (sizeAndPrice.length ===0) return alert('please give the info of size and price');
         if (!name || name?.trim() === '') return alert('please give the info of name ');
         if (!description || description?.trim() === '') return alert('please give the info of description ');
         if (!cetegory || cetegory?.trim() === '') return alert('please give the info of cetegory ');
+        if (!sizeDetails || sizeDetails?.trim() === '') return alert('please give the info of sizeDetails ');
         if (thumb.trim()==='') return alert('please upload thumbneil of the product');
         if (images.length=== 0) return alert('please upload images of the product');
         
 
-        console.log(size_and_price);
-
-
-        let jsonObject = await JSON.stringify({
-            name,
-            description,
-            cetegory,
-            thumb,
-            images,
-            SizeAndPrice: sizeAndPrice.map(
-                function(el) {
-                    return ({
-                        size :el.size ,
-                        price :el.price
-                    });
-                }
-            )
-        })
+        
         uploadTheProductBtn.style.opacity = .7;
         uploadingStatus = true;
         let url = window.location.origin + '/api/api_s/upload-product';
@@ -187,7 +173,22 @@ Insha Allab,  By the marcy of Allah,  I will gain success
             headers: {
                 "Content-Type": "application/json"
             },
-            body: jsonObject
+            body: JSON.stringify({
+                name,
+                description,
+                cetegory,
+                thumb,
+                images,
+                SizeAndPrice: sizeAndPrice.map(
+                    function(el) {
+                        return ({
+                            size :el.size ,
+                            price :el.price
+                        });
+                    }
+                ),
+                sizeDetails,
+            })
         })
             .then(res => res.json())
             .then(({ error, success }) => {
