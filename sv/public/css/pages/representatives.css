@@ -47,6 +47,7 @@ InshaAllah, By his marcy I will Gain Success
       width: 400px;
     }
   }
+
   #banner button {
     background: var(--main-cl);
     color: #000000;
@@ -71,8 +72,8 @@ InshaAllah, By his marcy I will Gain Success
   }
  .Representatives .Representative {
     width: 430px;
-    min-height: 430px;
-    max-height: max-content;
+    min-height: 530px;
+    max-height: 530px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
     padding: 20px 14px;
     row-gap: 6px;
@@ -87,9 +88,9 @@ InshaAllah, By his marcy I will Gain Success
     width:100% ;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.253);
     margin-top: -12px;
-    height: 230px;
+    height: 345px;
     object-fit: cover;
-    object-position: center center;
+    object-position: top center;
  }
 
  .Representative .img2 {

@@ -33,7 +33,8 @@ h3 {
     margin-top: 20px;
     margin-bottom: 40px;
     border: none !important;
-    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2)
+    box-shadow: 0 6px 12px 0 rgba(0,0,0,0.2);
+
 }
 .blue-text{
     color: #00BCD4
@@ -48,7 +49,7 @@ input, textarea, button{
     box-sizing: border-box;
     border: 1px solid #ccc;
     font-size: 18px !important;
-    font-weight: 300
+    font-weight: 300;
 }
 
 select {
