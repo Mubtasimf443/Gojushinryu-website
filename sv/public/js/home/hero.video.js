@@ -28,3 +28,10 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 //          video.setAttribute('src','/video/mobile.mp4' );
 //         })   
 // })
+
+
+
+document.querySelector('#hero_content').querySelector('a').addEventListener('focus', function(e) {
+    e.preventDefault();
+    window.location.assign('/contact');
+})

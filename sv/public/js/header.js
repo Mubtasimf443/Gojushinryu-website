@@ -35,6 +35,8 @@ function loadH3(params) {
       setTimeout(e=> h3.remove(),21000);
       setTimeout(loadH3, 10000);
 }
+
+
 window.addEventListener('load',e => {
     loadH3();
 });
