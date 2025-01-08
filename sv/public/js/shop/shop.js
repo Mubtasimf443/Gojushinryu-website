@@ -10,14 +10,6 @@ const currency = `<span style="font-family:"Roboto"sans-serif;" class="currency"
 window.addEventListener('load', () => LoadProducs());
 
 
-productContainer.addEventListener('click', e => {
-    console.log(e.target);
-    if (e.target.className === 'add-to-cart') {
-        e.preventDefault();
-        e.stopPropagation();
-        addToCard(e);
-    }
-})
 
 
 //function
@@ -59,14 +51,41 @@ async function LoadProducs(params) {
                             <img src="${thumb}" alt="Martial Art Equiment  no ${index}" class="product_img">
                             <h5>${name?.length > 55 ?name.substring(0, 55):name }</h5>
                             <p>${description.length > 70 ? description.substring(0,70) : description}</p>
+
                             <div class="price">${currency}${df_price}</div>
-                            <button df-size="${df_size}" df-price="${df_price}" prod-id="${id}" class="add-to-cart">Add to Cart</button>
+                            <div class="btns">
+                                <button df-size="${df_size}" df-price="${df_price}" prod-id="${id}" class="add-to-cart">Add to Cart</button>
+                                <select class="product-size-and-prize-select ">
+                                    ${SizeAndPrice.map(function ({ size, price }) {
+                                       return (`<option product-price="${price}" product-size="${size}"}">${size}</option>`);
+                                    })}
+                                </select>
+                            </div>
                         </a>`;
                         insertionHtml = prod + insertionHtml;
                     }
                     productContainer.innerHTML = insertionHtml;
-
-
+                    productContainer.querySelectorAll('select').forEach(
+                        function(element) {
+                            element.addEventListener('click', e => e.preventDefault());
+                            element.addEventListener('change', function(e) {
+                                let size = e.target.selectedOptions[0].getAttribute('product-size');
+                                let price = e.target.selectedOptions[0].getAttribute('product-price');
+                                e.target.parentNode.querySelector('button').setAttribute('df-size',size);
+                                e.target.parentNode.querySelector('button').setAttribute('df-price',price);
+                                
+                            })
+                        }
+                    );
+                    productContainer.querySelectorAll('.add-to-cart').forEach(
+                        function(el){
+                            el.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                e.stopPropagation();
+                                addToCard(e);
+                            })
+                        }
+                    );
                 }
             })
         .catch(e => console.log(e));

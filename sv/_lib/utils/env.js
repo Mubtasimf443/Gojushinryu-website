@@ -54,5 +54,3 @@ export const FACEBOOK_APP_SECRET=process.env.FACEBOOK_APP_SECRET
 export const APP_AUTH_TOKEN=process.env.APP_AUTH_TOKEN
 export const TEST_DATABASE=process.env.TEST_DATABASE
 export const FACEBOOK_VIDEO_UPLOAD_TIMEOUT=Number(process.env.FACEBOOK_VIDEO_UPLOAD_TIMEOUT);
-
-console.log({ADMIN_PHONE});

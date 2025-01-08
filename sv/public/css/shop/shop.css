@@ -91,18 +91,36 @@ body {
 .price {
     font-size: 15.5px;
     color: var(--main-cl);
-    margin: 12px 0;
+    margin-top:  12px;
+
 }
 
+.btns {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    flex-wrap: wrap;
+    column-gap: 10px;
+    row-gap: 10px;
+}
+
+.product-size-and-prize-select {
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    padding: 10px 14px;
+}
 .add-to-cart {
     background-color: var(--main-cl);
     border: none;
-    padding: 12px 24px;
+    padding: 10px 15px;
     border-radius: 8px;
     cursor: pointer;
-    font-size: 15.5px;
+    font-size: 14px;
     transition: background-color 0.3s;
 }
+
 .add-to-cart:hover {
     background-color: #e6d200;
 }
