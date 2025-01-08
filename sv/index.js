@@ -115,6 +115,11 @@ app.get('/hacker/make-website-hacked', (req, res) => {
 })
 
 app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName, './public/test.html')));
+app.get('/hello2', (req, res) => {
+    console.log('base url is : '+ req.url);
+    res.send(req.url)
+});
+
 
 app.get('/', async (req, res) => res.redirect('/home'))
 

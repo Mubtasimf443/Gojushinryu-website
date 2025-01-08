@@ -4,18 +4,10 @@ By Allah's Marcy I will gain success , Insha Allah
 */
 
 import { Router } from "express";
-import { 
-    redirectionURLFunction, 
-    refreshTiktokToken, 
-    testVideoUpload, 
-    tiktokCallback, 
-    tiktokUserInfo, 
-    videoUploadTiktok } from "../tiktok.js";
-import morgan from "morgan";
 import Tiktok from "lib-tiktok-api";
 import { TIKTOK_CLIENT_KEY, TIKTOK_CLIENT_SECRET, TIKTOK_REDIRECT_URI } from "../../utils/env.js";
 import catchError, { namedErrorCatching } from "../../utils/catchError.js";
-import { getSettings, setSettings, settingsAsArray } from "../../model_base_function/Settings.js";
+import { getSettings, settingsAsArray } from "../../model_base_function/Settings.js";
 import { log } from "string-player";
 
 const router =Router();
@@ -26,7 +18,7 @@ let tiktok=new Tiktok({
     scope:['user.info.basic','video.upload','video.publish'],
     secret:TIKTOK_CLIENT_SECRET,
     redirect_uri :TIKTOK_REDIRECT_URI
-})
+});
 
 router.get('/auth',async function (req,res){
     return res.redirect(tiktok.getAuthUrl());

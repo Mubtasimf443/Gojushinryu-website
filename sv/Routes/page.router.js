@@ -54,18 +54,46 @@ pageRouter.get('/courses/date',longCatch24, async (req, res) => {
     } catch (error) {
         console.log({ error });
     }
-})
+});
 
-pageRouter.get('/Membership-application', userCheckAndNavigation, MembershipPageNavigation)
+pageRouter.get('/Membership-application',userCheckAndNavigation, MembershipPageNavigation)
 pageRouter.get('/about-us/goju-shin-ryu',dayCatch7 ,(req, res) => res.render('about-us-gsr'))
 pageRouter.get('/about-us/school-of-traditional-martial-arts',dayCatch7, (req, res) => res.render('about-us-smta'))
 pageRouter.get('/about-us/testimonials', longCatch24,(req, res) => res.render('testimonials'))
 // pageRouter.get('/dates',(req,res)=>res.render('calender'))
 pageRouter.get('/auth/:name', dayCatch7,(req, res) => {
-    if (req.params.name === 'register') return res.render('sign-up');
-    if (req.params.name === 'sign-up') return res.render('sign-up');
-    if (req.params.name === 'login') return res.render('login');
-    if (req.params.name === 'sign-in') return res.render('login');
+    if (req.params.name === 'register') {
+        let forwardto=req.query.forwardto;
+        if (!forwardto) return res.render('sign-up', { redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: false });
+        if (forwardto === 'membership_page') return res.render('sign-up', { redirectToMembershipPage: true, redirectToCoursePage: false, redirectToCheckoutPage: false});
+        if (forwardto === 'checkout_page') return res.render('sign-up', {redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: true });
+        if (forwardto === 'course_page') return res.render('sign-up', { redirectToMembershipPage: false, redirectToCoursePage: true, redirectToCheckoutPage: false });
+        else return res.render('sign-up', { redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: false });
+    }
+    if (req.params.name === 'sign-up') {
+        let forwardto=req.query.forwardto;
+        if (!forwardto) return res.render('sign-up', { redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: false });
+        if (forwardto === 'membership_page') return res.render('sign-up', { redirectToMembershipPage: true, redirectToCoursePage: false, redirectToCheckoutPage: false});
+        if (forwardto === 'checkout_page') return res.render('sign-up', {redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: true });
+        if (forwardto === 'course_page') return res.render('sign-up', { redirectToMembershipPage: false, redirectToCoursePage: true, redirectToCheckoutPage: false });
+        else return res.render('sign-up', { redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: false });
+    };
+    if (req.params.name === 'login') {
+        let forwardto=req.query.forwardto;
+        if (!forwardto) return res.render('login', { redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: false });
+        if (forwardto === 'membership_page') return res.render('login', { redirectToMembershipPage: true, redirectToCoursePage: false, redirectToCheckoutPage: false});
+        if (forwardto === 'checkout_page') return res.render('login', {redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: true });
+        if (forwardto === 'course_page') return res.render('login',{ redirectToMembershipPage: false, redirectToCoursePage: true, redirectToCheckoutPage: false });
+        else return res.render('login', { redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: false });
+    };
+    if (req.params.name === 'sign-in') {
+        let forwardto=req.query.forwardto;
+        if (!forwardto) return res.render('login', { redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: false });
+        if (forwardto === 'membership_page') return res.render('login', { redirectToMembershipPage: true, redirectToCoursePage: false, redirectToCheckoutPage: false});
+        if (forwardto === 'checkout_page') return res.render('login', {redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: true });
+        if (forwardto === 'course_page') return res.render('login',{ redirectToMembershipPage: false, redirectToCoursePage: true, redirectToCheckoutPage: false });
+        else return res.render('login', { redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: false });
+    }
     if (req.params.name === 'reset-password') return res.render('reset-user-password');
     if (req.params.name === 'otp-varification') {
         // console.log(req.cookies.vft);
@@ -85,6 +113,7 @@ pageRouter.get('/shop/:name', (req, res) => {
     if (name === 'fevorites') return res.render('fevorites');
     if (name === 'checkout') return checkoutPageMidleware(req, res);
 });
+
 pageRouter.get('/shop', findProductPageNavigation);
 pageRouter.get('/control-panal', addMinPageRoute);
 pageRouter.get('/media/:name', dayCatch7,(req, res) => {

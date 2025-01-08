@@ -14,9 +14,12 @@ function negativeNotice(text) {
 }
 
 
-let Joining=false;
-secondaryBtn.addEventListener('click', e=> {
+let Joining = false;
+secondaryBtn.addEventListener('click', e => {
   e.preventDefault();
+  if (redirectToMembershipPage === true) return window.location.assign('/auth/login?forwardto=membership_page');
+  if (redirectToCoursePage === true) return window.location.assign('/auth/login?forwardto=course_page');
+  if (redirectToCheckoutPage === true) return window.location.assign('/auth/login?forwardto=checkout_page');
   window.location.assign('/auth/sign-in')
 })
 primaryBtn.addEventListener('click',  async(e) => {

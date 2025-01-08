@@ -57,7 +57,7 @@ export async function MembershipApidataCheckMidleware(req, res, next) {
                 value: '250.00'
             }
         },
-    ]
+    ];
     let {
         fname,
         lname,

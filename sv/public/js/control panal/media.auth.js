@@ -104,7 +104,7 @@
         updating :false,
         async login(event) {
             event.preventDefault();
-            window.location.replace('/api/media-api/tiktok/auth');
+            window.open('/api/media-api/tiktok/auth');
         },
         async logout(event) {
             event.preventDefault();

@@ -11,7 +11,6 @@ body {
 }
 
 
-
 #Hero_section {
     text-align: center;
     position: relative;
@@ -34,6 +33,7 @@ body {
     background: linear-gradient(to right, rgba(0, 0, 0, 0.295), rgba(0, 0, 0, 0.5));
 }
 
+
 #wrapper_video {
     left: 0%;
     top: 0%;
@@ -47,8 +47,6 @@ body {
     justify-content: center;
     align-items: center;
 }
-
-
 
 
 #hvideo {
