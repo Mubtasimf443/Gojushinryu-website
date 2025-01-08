@@ -87,7 +87,6 @@ async function addToCard(e) {
         return window.location.assign('/shop/cart')
     }
     if (!check) {
-
         let prod = productDataArray.find(el => el.id == id);
         if (!prod) { return }
         addedProduct.push({

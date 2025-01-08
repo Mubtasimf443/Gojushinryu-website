@@ -14,6 +14,7 @@ let orderSummary=document.querySelector('.order-summary');
 let items=document.querySelector('.items');
 let total=document.querySelector('.total');
 let PlaceOrderButton=document.querySelector('.PlaceOrderButton');
+let requesting=false ;
 
 window.addEventListener('load',async e => {
     
@@ -151,6 +152,7 @@ document.querySelectorAll('input').forEach(
 
 PlaceOrderButton.addEventListener('click',async function (event) {
     event.preventDefault();
+    if (requesting===true) return alert('Wait till order is placed successfully...');
     try {
         let object = {
             reciver: {
@@ -181,6 +183,8 @@ PlaceOrderButton.addEventListener('click',async function (event) {
                 } 
             )       
         }
+        PlaceOrderButton.style.opacity=0.7;
+        requesting=true;
         let response =await fetch(window.location.origin+'/api/l-api/order/create' , {
             method :'POST',
             body:JSON.stringify(object),
@@ -188,7 +192,8 @@ PlaceOrderButton.addEventListener('click',async function (event) {
                 'Content-Type':"application/json"
             }
         });
-
+        PlaceOrderButton.style.opacity=1;
+        requesting=false;
         let popup_box=document.querySelector('.bg_popup');
         let popup=document.querySelector('.bg_popup').querySelector('.popup');
         let popup_title = popup.querySelector('b');

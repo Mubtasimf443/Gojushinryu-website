@@ -8,8 +8,8 @@ import replaceCarecter, { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, Success, log } from "../utils/smallUtils.js";
 import express from "express";
 import { Product } from "../models/Products.js";
-import { sendAdminOrderNotification, sendOrderConfirmationEmail, sendPaymentRequestEmail, sendShippingNotificationEmail } from "../mail/order.mail.js";
-import { BASE_URL, FROM_EMAIL } from "../utils/env.js";
+import { sendAdminOrderNotification, sendOrderCancellationEmail, sendOrderConfirmationEmail, sendPaymentRequestEmail, sendShippingNotificationEmail } from "../mail/order.mail.js";
+import { BASE_URL, FROM_EMAIL,ADMIN_EMAIL, ADMIN_PHONE } from "../utils/env.js";
 
 
 
@@ -57,15 +57,30 @@ export async function updateOrderStatus(req, res) {
 export async function cancelOrder(req, res) {
     try {
         let id = req.query.id, cancelReason = req.query.cancelReason;
+       
         if (validate.isUndefined(id)) namedErrorCatching('parameter error', 'please give a order id');
         if (validate.isNaN(Number(id))) namedErrorCatching('parameter error', 'invalid order id');
         if (validate.isUndefined(cancelReason) || isnota.string(cancelReason)) namedErrorCatching('parameter error', 'invalid cancelReason');
         if (!tobe.minMax(cancelReason, 10, 1300)) namedErrorCatching('parameter error', 'cancelReason is too big or small');
         let order = await Orders.findOne({ id: Number(id) });
         if (validate.isNull(order)) namedErrorCatching('parameter error', 'no order exist in the id of ' + id);
+        
         order.isCancelled = true;
         order.order_status = "Cancelled";
         order.cancelReason=cancelReason;
+
+        sendOrderCancellationEmail({
+            buyerEmail :order.buyer.email,
+            contactInfo: { email: ADMIN_EMAIL, phone :ADMIN_PHONE},
+            refundStatus: order.isShippingAndTaxAdded === true ? true : false,
+            orderId:order.id,
+            orderDetails: order.shiping_items.map(function (el) {
+                return ({ name: el.name, price: Number(el.price).toFixed(2) });
+            }),
+            cancellationReason :order.cancelReason,
+            total : order.isShippingAndTaxAdded ===true?  order.amountData.total : order.amountData.total_product_price
+        });
+
         await order.save();
         return res.sendStatus(204);
     } catch (error) {
@@ -98,7 +113,7 @@ export async function OrderInPaymentNeeded(req, res) {
         order.adminApproved.status=true;
         order.adminApproved.activationTime=new Date();
         order.activated=true;
-
+        order.isShippingAndTaxAdded=true;
         if (validate.isNaN(Number(order.amountData.total))) throw namedErrorCatching('internal error', `order.amountData.total is a NaN`);
 
         order.amountData.shipping_cost
@@ -119,7 +134,6 @@ export async function OrderInPaymentNeeded(req, res) {
     }
 }
 
-
 export async function orderInProcess(req, res) {
     try {
         let id = req.query.id;
@@ -134,7 +148,6 @@ export async function orderInProcess(req, res) {
         catchError(res, error);
     }
 }
-
 
 export async function orderInDelivery(req, res) {
     try {
@@ -155,8 +168,6 @@ export async function orderInDelivery(req, res) {
     }
 }
 
-
-
 export async function orderIsCompleted(req, res) {
     try {
         let id = req.query.id;
@@ -172,9 +183,6 @@ export async function orderIsCompleted(req, res) {
         catchError(res, error);
     }
 }
-
-
-
 
 export async function findUserOrder(req, res) {
     try {
@@ -197,7 +205,6 @@ export async function findUserOrder(req, res) {
        catchError(res,e);
     }
 }
-
 
 export async function createOrder(req, res) {
     try {

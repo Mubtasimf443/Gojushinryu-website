@@ -29,6 +29,10 @@ const
       type: Boolean,
       default: false,
     },
+    isShippingAndTaxAdded :{
+      default: false,
+      type: Boolean
+    },
     trash: {
       default: false,
       type: Boolean

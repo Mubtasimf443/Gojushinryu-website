@@ -167,6 +167,7 @@ export async function sendShippingNotificationEmail({buyerEmail, orderId, tracki
 
 export async function sendAdminOrderNotification({ customerName, customerEmail, orderId, orderDetails, totalAmount}) {
     try {
+        const shopName="GojushinRyu Shop";
         const info = await mailer.sendMail({
             from: FROM_EMAIL, // Sender info
             to:ADMIN_EMAIL , // Admin's email address
@@ -194,7 +195,7 @@ export async function sendAdminOrderNotification({ customerName, customerEmail, 
                         <tbody>
                             ${orderDetails.map(item => `
                                 <tr>
-                                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">${item.productName}</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid #ddd;">${item.name}</td>
                                     <td style="padding: 8px; border-bottom: 1px solid #ddd;">$${item.price}</td>
                                 </tr>
                             `).join('')}
@@ -209,7 +210,7 @@ export async function sendAdminOrderNotification({ customerName, customerEmail, 
 
                     <p>Please take the necessary steps to process this order.</p>
                     
-                    <p style="margin-top: 20px;">Best regards,<br>The <strong>Your Store Name</strong> Team</p>
+                    <p style="margin-top: 20px;">Best regards,<br>The <strong>${shopName}</strong> Team</p>
                     
                     <hr style="border: 0; border-top: 1px solid #ddd; margin: 20px 0;" />
                     <p style="font-size: 12px; color: #777;">
@@ -222,5 +223,57 @@ export async function sendAdminOrderNotification({ customerName, customerEmail, 
         console.log('Admin notification email sent:', info.messageId);
     } catch (error) {
         console.error('Error sending admin notification email:', error);
+    }
+};
+
+
+export async function sendOrderCancellationEmail({buyerEmail, orderId, orderDetails, refundStatus, cancellationReason, contactInfo,total}) {
+    try {
+        const shopName="GojushinRyu Shop";
+        const info = await mailer.sendMail({
+            from: FROM_EMAIL, // Sender info
+            to: buyerEmail, // Buyer's email address
+            subject: `Order Cancellation Notification - Order #${orderId}`, // Subject line
+            text: `Your order has been canceled.`, // Plain text body
+            html: `
+                <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                    <h2 style="color: #FF0000;">Order Cancellation Notification</h2>
+                    <p>Dear Customer,</p>
+                    <p>We regret to inform you that your order <strong>#${orderId}</strong> has been canceled. Below are the details of the canceled order:</p>
+                    
+                    <h3 style="color: #FF0000;">Order Details:</h3>
+                    <ul style="list-style: none; padding: 0;">
+                        ${orderDetails.map(item => `
+                            <li style="margin-bottom: 8px;">✔️ ${item.name} - $${item.price}</li>
+                        `).join('')}
+                    </ul>
+
+                    <p><strong>Total Amount:</strong> $${total}</p>
+                    
+                    <h3 style="color: #FF0000;">Reason for Cancellation:</h3>
+                    <p>${cancellationReason}</p>
+
+                    <p>${refundStatus  ? 'A full refund has been initiated and will be credited to your original payment method within 5-7 business days.' : 'No charges were made for this order.'}</p>
+
+                    <p>If you have questions about this cancellation or need assistance with your refund, please don’t hesitate to contact us:</p>
+                    <ul style="list-style: none; padding: 0;">
+                        <li>📧 Email: <a href="mailto:${contactInfo.email}" style="color: #4CAF50;">${contactInfo.email}</a></li>
+                        <li>📞 Phone: ${contactInfo.phone}</li>
+                    </ul>
+                    
+                    <p style="margin-top: 20px;">We sincerely apologize for any inconvenience caused and appreciate your understanding.</p>
+                    <p>Best regards,<br>The <strong>${shopName}</strong> Team</p>
+                    
+                    <hr style="border: 0; border-top: 1px solid #ddd; margin: 20px 0;" />
+                    <p style="font-size: 12px; color: #777;">
+                        This email is sent automatically. Please do not reply directly to this email.
+                    </p>
+                </div>
+            `, // HTML body
+        });
+
+        console.log('Order cancellation email sent:', info.messageId);
+    } catch (error) {
+        console.error('Error sending order cancellation email:', error);
     }
 };
