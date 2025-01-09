@@ -89,13 +89,14 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                 appreciator,
                 appreciation_position
             })
+            
             if (!appreciator) namedErrorCatching('[name_of_Appreciator]', 'appreciator is emty string or undefined');
             if (!appreciation_position) namedErrorCatching('[Positon_of_Appreciator]', 'appreciation_position is emty string or undefined');
             if (!appreciation) namedErrorCatching('[Appreciation]', 'appreciation is emty string  or undefined');
 
             if (appreciator.trim().length  > 100 || appreciator.trim().length < 4) namedErrorCatching('[name_of_Appreciator]', 'appreciator length is too big or short, minumum length should be 4 and max should be 100');
             if (appreciation_position.trim().length > 100 || appreciation_position.trim().length < 4) namedErrorCatching('[Positon_of_Appreciator]', 'appreciation_position length is too big or short, minumum length should be 4 and max should be 100');
-            if (appreciation.trim().length > 1000 || appreciation.trim().length < 50) namedErrorCatching('[Appreciation]', 'appreciation length is too big or short, minumum length should be 50 and max should be 1000');
+            if (appreciation.trim().length > 2500 || appreciation.trim().length < 50) namedErrorCatching('[Appreciation]', 'appreciation length is too big or short, minumum length should be 50 and max should be 2500');
     
             if (!imageID) return alert('please an image of appreciator');
 

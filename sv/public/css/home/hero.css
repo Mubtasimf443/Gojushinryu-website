@@ -67,7 +67,7 @@ body {
     align-items: center;
     row-gap: 0.5em;
     position: absolute;
-    z-index: 1000;
+    z-index: 3;
 }
 
 
@@ -75,7 +75,7 @@ body {
     color: white;
     opacity: .86;
     font-size: 1.7em;
-    z-index: 20;
+    z-index: 3;
 }
 
 #hero_content>h1 {
@@ -83,7 +83,7 @@ body {
     color: rgb(255, 255, 255);
     font-size: 3.1vw;
     font-weight: var(--first-fw);
-    z-index: 200;
+    z-index: 3;
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
@@ -94,8 +94,8 @@ body {
 #hero_content>b {
     font-size: 1.7vw;
     color: rgb(255, 255, 255);
-    z-index: 100;
-    opacity: .93;
+    z-index: 3;
+    opacity: .9;
     margin-top: 1vh;
     text-transform: uppercase;
     font-weight: 600;

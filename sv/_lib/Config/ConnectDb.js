@@ -13,6 +13,6 @@ export const connectDB = async() => {
        await mongoose.connect(SDATABASE);
        console.log('db connected...');
     } catch (error) {
-        log(error)
+        log(error);
     }  
 }

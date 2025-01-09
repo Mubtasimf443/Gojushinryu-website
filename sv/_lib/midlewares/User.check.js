@@ -43,13 +43,15 @@ export const userCheckAndNavigation = async (req, res, next) => {
     try {
         let { rft } = req.cookies;
         if (!rft) {
-            if (req.url === '/Membership-application') return res.redirect('/auth/sign-up?forwardto=membership_page');
+            if ( req.url === `/membership-application/school-of-traditional-martial-arts`) return res.redirect('/auth/sign-up?forwardto=membership_page');
+            if (req.url === "/membership-application/goju-shin-ryu" ) return res.redirect('/auth/sign-up?forwardto=membership_page&membership_type=gojushinryu');
             else return res.redirect('/auth/sign-up');
         }
         await jwt.verify(rft, JWT_SECRET_KEY, async (err, data) => {
             if (err) {
                 log(err)
-                if (req.url === '/Membership-application') return res.redirect('/auth/login?forwardto=membership_page');
+                if (req.url === `/membership-application/school-of-traditional-martial-arts`) return res.redirect('/auth/login?forwardto=membership_page');
+                if (req.url === "/membership-application/goju-shin-ryu") return res.redirect('/auth/login?forwardto=membership_page&membership_type=gojushinryu');
                 return res.redirect('/auth/sign-in')
             }
             if (data) {

@@ -1,126 +1,143 @@
-    {{!--     
-بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+{{!--
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ﷺ
 InshaAllah, By his marcy I will Gain Success
-  --}}
-    
-    <style>
-         #header{
+--}}
+
+<style>
+  #header {
     position: static;
     background: white;
-    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.007) , 0px 0px 0px rgba(0, 0, 0, 0.007) ,0px 0px 10px rgba(0, 0, 0, 0.07) ,0px 0px 0px rgba(0, 0, 0, 0.007) ;
+    box-shadow: 0px 0px 0px rgba(0, 0, 0, 0.007), 0px 0px 0px rgba(0, 0, 0, 0.007), 0px 0px 10px rgba(0, 0, 0, 0.07), 0px 0px 0px rgba(0, 0, 0, 0.007);
   }
-   #header > nav > div > a {
-    color: black;
-   } 
-    </style>
-    
-    
-    <!-------------------- Header ------------------------------->
-       
-    <header>
-      <div id="top-bar">
-      
 
-      </div>
-      <div main_header id="header">
-     <div class="hd-icon-div">
+  #header>nav>div>a {
+    color: black;
+  }
+</style>
+
+
+<!-------------------- Header ------------------------------->
+
+<header>
+  <div id="top-bar">
+
+
+  </div>
+  <div main_header id="header">
+    <div class="hd-icon-div">
       <img class="hd-icon" src="" alt="logo">
-     </div>
+    </div>
     <nav class="header-nav-div">
       <div class="nv-div"><a href="/">Home</a></div>
+      <div class="nv-div"><a href="/courses">Course</a></div>
+
+
+      {{!-- 
+      
       <div id="lt-header-nav-course-anchor-div" class="nv-div">
         <a href="#"> Courses</a>
         <div class="dropdown">
-          <a href="/courses">Course</a>
-          <hr>
-          <a href="/courses/date">Dates</a>
+        <a href="/courses">Course</a>
+        <hr>
+        <a href="/courses/date">Dates</a>
         </div>
+
+      </div> 
+      --}}
+      <div id="lt-header-nav-course-anchor-div" class="nv-div">
+        <a href="#">Membership</a>
+        <div class="dropdown" style="width: 270px;" >
+          <a href="/membership-application/school-of-traditional-martial-arts">School Of Traditional Martial Arts</a>
+          <hr>
+          <a href="/membership-application/goju-shin-ryu">Goju Shin Ryu</a>
+        </div>
+      
       </div>
-      <div class="nv-div"><a href="/Membership-application">Membership</a></div>
+
+      
       {{!-- <div class="nv-div"><a href="/dates"> Dates</a></div> --}}
       <div class="nv-div"><a href="/alliance">Alliance</a></div>
 
       <div id="lt-header-nav-shop-anchor-div" class="nv-div">
         <a tabindex="2">Shop</a>
         <nav class="dropdown">
-      <a href="/shop">
-      Equipment
-      </a>
-      <hr>
-      <a href="/shop/fevorites">
-      Fevorites
-      </a>
-      <hr>
-       <a href="/shop/cart">
-      Cart
-      </a>
-      <hr>
-      <a href="/shop/checkout">
-      Checkout
-      </a>
-  </nav>
+          <a href="/shop">
+            Equipment
+          </a>
+          <hr>
+          <a href="/shop/fevorites">
+            Fevorites
+          </a>
+          <hr>
+          <a href="/shop/cart">
+            Cart
+          </a>
+          <hr>
+          <a href="/shop/checkout">
+            Checkout
+          </a>
+        </nav>
       </div>
 
 
-      {{!-- 
+      {{!--
       <div class="nv-div"><a href="/grand-master-counchil">GM Counchil</a></div>
-       --}}
+      --}}
 
 
       <div id="about-us-header-nav-div-link-anchor-div" class="nv-div">
         <a href="#">About Us
-      </a>
+        </a>
         <nav class="dropdown" id="about_us_dropdown">
-      <a href="/about-us/goju-shin-ryu"> School  of Traditional Martial Arts</a>
-      <hr>
-      <a href="/about-us/school-of-traditional-martial-arts">Goju Shin Ryu</a>
-      <hr>
-      <a href="/about-us/organization-charts">Organization Chart</a>
-      <hr>
-      <a href="/about-us/testimonials">Testimonials</a>
+          <a href="/about-us/goju-shin-ryu"> School of Traditional Martial Arts</a>
+          <hr>
+          <a href="/about-us/school-of-traditional-martial-arts">Goju Shin Ryu</a>
+          <hr>
+          <a href="/about-us/organization-charts">Organization Chart</a>
+          <hr>
+          <a href="/about-us/testimonials">Testimonials</a>
 
-  </nav>
+        </nav>
       </div>
 
-     <div id="lt-header-nav-accounts-anchor-div" class="nv-div">
+      <div id="lt-header-nav-accounts-anchor-div" class="nv-div">
         <a href="#">Accounts</a>
         <div class="dropdown">
-           <a href="/accounts/grand-master-counchil">Grand Master</a>
-           <hr>
-           <a href="/accounts/student">Students</a>
+          <a href="/accounts/grand-master-counchil">Grand Master</a>
+          <hr>
+          <a href="/accounts/student">Students</a>
         </div>
       </div>
 
-            <div id="lt-header-nav-media-anchor-div" class="nv-div">
+      <div id="lt-header-nav-media-anchor-div" class="nv-div">
         <a href="#">Media</a>
         <div class="dropdown">
-           <a href="/media/post">Post</a>
-           <hr>
-           <a href="/media/events">Events</a>
-           <hr>
-           <a href="/media/images">Images</a>
-           <hr>
-           <a href="/media/video">Videos</a>
+          <a href="/media/post">Post</a>
+          <hr>
+          <a href="/media/events">Events</a>
+          <hr>
+          <a href="/media/images">Images</a>
+          <hr>
+          <a href="/media/video">Videos</a>
         </div>
       </div>
       {{!-- <div class="nv-div"><a href="">Blog</a></div> --}}
-     </nav>
-     <div class="hd-btn-div">
+    </nav>
+    <div class="hd-btn-div">
       <button>
-          <a 
-          style="text-decoration:none; color: inherit;background:inherit;font-size:inherit;font-weight:inherit"
-           href="/contact">
-        Contact Us
+        <a style="text-decoration:none; color: inherit;background:inherit;font-size:inherit;font-weight:inherit"
+          href="/contact">
+          Contact Us
         </a>
       </button>
-     </div>
+    </div>
 
-     <div  class="m_nav_i">
+    <div class="m_nav_i">
       <i style="color: #000;" class="fa-solid fa-align-right"></i>
-     </div>
+    </div>
 
 
-     <div mobileNab class="m_nav">
+    <div mobileNab class="m_nav">
 
       <button mobile_nab_close>&times;</button>
       <strong>goju shin ryo</strong>
@@ -131,31 +148,31 @@ InshaAllah, By his marcy I will Gain Success
       </span>
       <a href="/Membership-application" class="mna">Membership</a>
       <a href="/alliance" class="mna">Alliance</a>
-     
+
       <span class="mna dropd">Shop
-       <a href="/shop">
-      Equipment
-      </a>
-      <a href="/shop/fevorites">
-      Fevorites
-      </a>
-       <a href="/shop/cart">
-      Cart
-      </a>
-      <a href="/shop/checkout">
-      Checkout
-      </a>
+        <a href="/shop">
+          Equipment
+        </a>
+        <a href="/shop/fevorites">
+          Fevorites
+        </a>
+        <a href="/shop/cart">
+          Cart
+        </a>
+        <a href="/shop/checkout">
+          Checkout
+        </a>
       </span>
-      <span class="mna dropd" >
-         About us
+      <span class="mna dropd">
+        About us
         <a href="/about-us/goju-shin-ryu">goju shin ryo</a>
         <a href="/about-us/school-of-traditional-martial-arts">school of tradistional martial arts</a>
         <a href="/about-us/organization-charts">Organization Chart</a>
         <a href="/about-us/testimonials">Testimonials</a>
 
-      
+
       </span>
-      <span class="mna dropd" >
+      <span class="mna dropd">
         Accounts
         <a href="/accounts/student">Student</a>
         <a href="/accounts/grand-master-counchil">Grand Master</a>
@@ -165,27 +182,27 @@ InshaAllah, By his marcy I will Gain Success
         <a href="/media/post">Post</a>
         <a href="/media/events">Events</a>
         <a href="/media/video">Videos</a>
-        <a href="/media/images">Images</a> 
+        <a href="/media/images">Images</a>
       </span>
 
-     <a href="/contact"  class="mna">
-      Contact Us
-     </a>
-     </div>
+      <a href="/contact" class="mna">
+        Contact Us
+      </a>
+    </div>
   </div>
-  
-   </header>
+
+</header>
 
 <script>
- 
- 
-document.querySelector('.fa-align-right').addEventListener('click', e => {
-  document.querySelector('[main_header]').querySelector('[mobileNab]').classList.add('visible');
-})
 
 
-document.querySelector(`[mobile_nab_close]`).addEventListener('click', e => {
-  document.querySelector('[main_header]').querySelector('[mobileNab]').classList.remove('visible');
-})
+  document.querySelector('.fa-align-right').addEventListener('click', e => {
+    document.querySelector('[main_header]').querySelector('[mobileNab]').classList.add('visible');
+  })
+
+
+  document.querySelector(`[mobile_nab_close]`).addEventListener('click', e => {
+    document.querySelector('[main_header]').querySelector('[mobileNab]').classList.remove('visible');
+  })
 
 </script>

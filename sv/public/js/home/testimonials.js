@@ -12,7 +12,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                         let { data } = response;
                         let testimonials = document.querySelectorAll('.testimonial');
                         for (let i = 0; i < 2; i++) {
-                            testimonials[i].querySelector('p').innerHTML = data[i].appreciation;
+                            testimonials[i].querySelector('p').innerHTML = data[i].appreciation.length > 460 ? data[i].appreciation.substring(0, 460) + `...&nbsp;&nbsp;<a href="/about-us/testimonials#testimonial-no-${data[i].date}" style="color:var(--main-cl) ; font-weight :400;font-style:italic">Read More</a>` :   data[i].appreciation;
                             testimonials[i].querySelector('strong').innerHTML = data[i].appreciator;
                             testimonials[i].querySelector('img').src = data[i].appreciator_image_url;
                             testimonials[i].querySelector('span').innerHTML = data[i].appreciation_position;
