@@ -6,12 +6,13 @@
     <title> Membership Application | {{>company_name}} </title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     {{>Links}}
+     <meta name="description" content="Choose between our Annual or Lifetime membership at the School of Traditional Martial Arts International . Enjoy expert training, a supportive community, and lifelong access to master timeless martial arts skills.">
+    <meta name="keywords" content="Annual or Lifetime membership at the School of Traditional Martial Arts International, Annual or Lifetime membership at the Goju Shin Ryu International Martial arts">
     <link rel='stylesheet' type='text/css' media='screen' href='/css/pages/membership.application.css'>
     <script defer src="/js/Membership.page.js"></script>
-
-
-    <meta name="description" content="Choose between our Annual or Lifetime membership at the School of Traditional Martial Arts International . Enjoy expert training, a supportive community, and lifelong access to master timeless martial arts skills.">
-    <meta name="keywords" content="Annual or Lifetime membership at the School of Traditional Martial Arts International, Annual or Lifetime membership at the Goju Shin Ryu International Martial arts">
+    <link rel="stylesheet" href="/css/membership/Applicant-info-form.css">
+    <link rel="stylesheet" href="/css/membership/payment-info-form.css">
+    <link rel="stylesheet" href="/css/membership/question-info-form.css">
 </head>
 <body>
 {{>Header}}
@@ -184,7 +185,9 @@
     </label>
   
         </span>
-         <span>
+         {{!-- 
+        <span>
+            
             <label  membershipValue="LifeTime"  membershipOrganization="gojushinryu" default-membership="true" id="lifetime-membership-box"  class="membership">
 
             <div>
@@ -220,7 +223,8 @@
             <span>Goju Shin Ryu</span>
             </label>
   
-        </span>
+        </span> 
+        --}}
       </div>
  <div id="applicant-form-btn-div">
    <button id="applicant-form-btn">

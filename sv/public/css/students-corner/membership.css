@@ -2,79 +2,76 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
 Insha Allah,  By your Marcy Ya Allah
 */
-
-*{
-    box-sizing: border-box;
+* {
+  box-sizing: border-box;
 }
 
-
-.membership-box{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: start;
-    row-gap: 20px;
-    width: 650px;
+.membership-box {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  row-gap: 20px;
+  width: 650px;
 }
 
 @media screen and (max-width:600px) {
-    .membership-box{
+  .membership-box {
     width: 470px;
-    }
+  }
 }
 
-.membership-box table{
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+.membership-box table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
 }
 
-.membership-box table th{
-    border: 1px solid var(--main-cl);
-    text-align: left;
-    padding: 10px 12px; 
-    background-color:var(--main-cl);
-    color: white;
-  }
-
-
- .membership-box table td {
-    border: 1px solid #ccc;
-    text-align: left;
-    padding: 10px 12px;
-    background: inherit;
-    text-wrap: wrap;
-  }
-
-
- .membership-box table td img {
-    max-width:90% ;
-    object-fit: contain;
-    object-position: top left;
-    max-height:80px ;
-  }
-
-
- .membership-box table tr:nth-child(1){
-    background: var(--main-cl);
-  }
-
-
- .membership-box table tr{
-    background-color: #ffffff;
-  }
-
- .membership-box table button{
-    background: inherit;
-    border: none;
-    font-size: 14px;
-    color: white;
-    background: #000;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    box-sizing: content-box;
-    padding: 8px 14px;
+.membership-box table th {
+  border: 1px solid var(--main-cl);
+  text-align: left;
+  padding: 10px 12px;
+  background-color: var(--main-cl);
+  color: white;
 }
 
+
+.membership-box table td {
+  border: 1px solid #ccc;
+  text-align: left;
+  padding: 10px 12px;
+  background: inherit;
+  text-wrap: wrap;
+}
+
+
+.membership-box table td img {
+  max-width: 90%;
+  object-fit: contain;
+  object-position: top left;
+  max-height: 80px;
+}
+
+
+.membership-box table tr:nth-child(1) {
+  background: var(--main-cl);
+}
+
+
+.membership-box table tr {
+  background-color: #ffffff;
+}
+
+.membership-box table button {
+  background: inherit;
+  border: none;
+  font-size: 14px;
+  color: white;
+  background: #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+  padding: 8px 14px;
+}

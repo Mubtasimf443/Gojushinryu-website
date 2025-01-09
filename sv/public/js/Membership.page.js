@@ -56,13 +56,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   var permanentDisabillityInput = document.querySelector('#inp--pr--disabillity');
   var previousInjuryInput = document.querySelector('#inp--previous-injury');
   let policy1Input = document.getElementById('policy-1-inp');
-  let policy2Input = document.getElementById('policy-2-inp');
-  // let creditCardName =document.querySelector(`[id="inp--credit-card-name"]`)
-  // let creditCardNumber =document.querySelector(`[id="inp--credit-card-number"]`)
-  // let creditCardCVV =document.querySelector(`[id="inp--credit-card-cvv"]`)
-  // let creditCardExpiryDate =document.querySelector(`[id="inp--credit-card-exp-date"]`)
-  //values
-  //let membershipValue ='Annual';
+  let policy2Input = document.getElementById('policy-2-inp') ;
 
   var userInfo = {
     fname: '',
@@ -219,8 +213,8 @@ Insha Allah,  By Allahs Marcy,  I willearn success
       memberships = memberships + `${i === 0 ? '' : ' + '}${membership} (${company})`;
       cost += membership.toLowerCase() === 'annual' ? 75 : 250;
     }
-    let taxRate=5/100;
-    let tax =cost *taxRate;
+    let taxRate = 5 / 100;
+    let tax = cost * taxRate;
 
     setValue(`[payment_membership_total]`, (cost + tax).toFixed(2) + '$');
     setValue(`[payment_membership_cost]`, cost.toFixed(2) + '$');
@@ -420,27 +414,29 @@ Insha Allah,  By Allahs Marcy,  I willearn success
 
   /*----------- event delegation and  listener ----------*/
   document.addEventListener('click', e => {
-    //aplicant info continue btn
-    if (e.target.id === 'applicant-form-btn') return changeFormLayout(true);
-    //q form back btn
-    if (e.target.id === 'q-box-back-btn') return changeFormLayout(false);
-    //q form continue btn
-    if (e.target.id === 'q-box-cn-btn') return changeFormLayout(true);
-    //q form back btn
-    if (e.target.id === 'payment-back-btn') return changeFormLayout(false);
-    //payment form continue btn
-    if (e.target.id === 'payment-Continue-btn') return changeFormLayout(true);
-    //success go it btn
-    if (e.target.id === 'successGotItBtn') return window.location.assign('/')
+    {
+      //aplicant info continue btn
+      if (e.target.id === 'applicant-form-btn') return changeFormLayout(true);
+      //q form back btn
+      if (e.target.id === 'q-box-back-btn') return changeFormLayout(false);
+      //q form continue btn
+      if (e.target.id === 'q-box-cn-btn') return changeFormLayout(true);
+      //q form back btn
+      if (e.target.id === 'payment-back-btn') return changeFormLayout(false);
+      //payment form continue btn
+      if (e.target.id === 'payment-Continue-btn') return changeFormLayout(true);
+      //success go it btn
+      if (e.target.id === 'successGotItBtn') return window.location.assign('/');
+      //  yes or no statements
+      if (e.target.className === 'yes-no-div') return ChangeYesNoStatenent(e.target);
+      if (e.target.parentNode.className === 'yes-no-div') return ChangeYesNoStatenent(e.target.parentNode);
+      if (e.target.parentNode.parentNode.className === 'yes-no-div') return ChangeYesNoStatenent(e.target.parentNode.parentNode);
+    }
     //membership
     if (e.target.className === 'membership') return changeMembership(e.target);
     if (e.target.parentNode.className === 'membership') return changeMembership(e.target.parentNode);
     if (e.target.parentNode.parentNode.className === 'membership') return changeMembership(e.target.parentNode.parentNode);
-    //  yes or no statements
-    if (e.target.className === 'yes-no-div') return ChangeYesNoStatenent(e.target);
-    if (e.target.parentNode.className === 'yes-no-div') return ChangeYesNoStatenent(e.target.parentNode);
-    if (e.target.parentNode.parentNode.className === 'yes-no-div') return ChangeYesNoStatenent(e.target.parentNode.parentNode);
-
+  
   })
 
   policy1Input.addEventListener('change', e => {
@@ -461,25 +457,6 @@ Insha Allah,  By Allahs Marcy,  I willearn success
 
   document.getElementById('paypal-payment-btn').addEventListener('click', e => paypalMembershipFunction(e))
   document.getElementById('credit-card-payment-Continue-btn').addEventListener('click', e => stripeMembershipFunction(e))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }/*----------- form scope finished ----------*/

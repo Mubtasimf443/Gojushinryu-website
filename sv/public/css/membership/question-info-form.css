@@ -1,0 +1,164 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ ﷺ
+InshaAllah ,  By The Marcy Of Allah ,  I will Gain Success
+*/
+
+
+  /************ Question answer form   ************/
+  #question-info-form{
+    display: none;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items:start;
+    width: 90%;
+    row-gap: 1em;
+    padding-top: 1em;
+    position: relative;
+    right: -110%;
+    transition: var(--form--transition);
+  }
+  #question-info-form > .column_y_n_question{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 3.2em;
+  }
+ 
+  #question-info-form > .column_y_n_question >label {
+    color: #000;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  #question-info-form >.column_y_n_question >span{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: right;
+    column-gap:1em;
+
+  }
+  #question-info-form > .column_y_n_question > span >.inp-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 6em;
+
+  }
+  #question-info-form > .column_y_n_question > span >.inp-div >input{
+    width: 100%;
+  }
+  #question-info-form > .column_y_n_question > span > .yes-no-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    /* border: 2px solid rgba(0, 0, 0, 0.507); */
+    border-radius: 5px;
+    min-width: 5em;
+    width: fit-content;
+    height: 2.5em;
+    column-gap: .5em; 
+    font-weight: 500;
+  }
+  #question-info-form > .column_y_n_question > span >.yes-no-div > .check-div {
+    width:1.2em;
+    height:1.2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid var(--main-cl);
+    border-radius: 50%;
+    margin-left: .5em;
+    font-size: 1em;
+    font-weight: 500;
+  }
+  @media screen and (max-width :670px) {
+    #question-info-form > .column_y_n_question{
+      flex-direction: column;
+      width: 100%;
+      align-items: start;
+      row-gap:8px;
+      height: fit-content;
+      margin: 5px 0px;
+    }
+  }
+  #question-info-form > .column_y_n_question > span >.yes-no-div > .check-div >i {
+    font-size: 1em;
+    color:var(--main-cl);
+    font-weight: 600;
+  }
+  #question-info-form > .question-text-div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 3.2em;
+  }
+  #question-info-form > .question-text-div>label{
+    font-weight: 500;
+    color: black;
+  }
+  #question-info-form > .question-text-div>input{
+    width: 20em;
+    background: rgb(235, 235, 235);
+    border: none;
+    border-radius: 6px;
+    height:2.5em ;
+    width: 33em;
+  }
+  @media screen and (max-width :670px) {
+    #question-info-form > .question-text-div{
+      flex-direction: column;
+      row-gap:8px;
+      height: fit-content;
+      margin: 5px 0px;
+    }
+    #question-info-form > .question-text-div>label{
+      width: 100%;
+      text-align: left;
+    }
+    #question-info-form > .question-text-div>input{
+      width: 100%;
+    }
+  
+  }
+  #q-box-btn-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    column-gap: 1em;
+  }
+  #q-box-btn-div>button:nth-child(1){
+    background: white;
+    color: var(--main-cl);
+    border: 2px solid var(--main-cl);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius:5px ;
+    width: 6em;
+    height: 2.5em;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
+  #q-box-btn-div>button:nth-child(2){
+    background:  var(--main-cl);
+    color:white;
+    border: 2px solid var(--main-cl);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    border-radius:5px ;
+    width: 6em;
+    height: 2.5em;
+    font-weight: 500;
+    text-transform: capitalize;
+  }
