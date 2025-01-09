@@ -13,6 +13,18 @@ function negativeNotice(text) {
   notice_text.style.textTransform = 'capitalize';
 }
 
+document.querySelectorAll('input').forEach(
+  function (el) {
+    function removeNotice() {
+      notice_text.style.color = 'whitesmoke';
+      notice_text.style.fontSize = '.3px';
+      notice_text.innerHTML = null;
+    }
+    el.addEventListener('change', function () {
+      removeNotice();
+    });
+  }
+);
 
 let Joining = false;
 secondaryBtn.addEventListener('click', e => {

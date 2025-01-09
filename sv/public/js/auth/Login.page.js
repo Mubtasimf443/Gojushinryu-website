@@ -8,12 +8,27 @@ InshaAllah, By his Marcy I will Gain Success
   let ps = document.getElementById('---inp--ps');//password
   let loginBtn = document.getElementById('login');
   let notice_text = document.querySelector('#notice_text');
+  
   function negativeNotice(text) {
     notice_text.style.color = 'red';
     notice_text.style.fontSize = '19px';
     notice_text.innerHTML = text;
     notice_text.style.textTransform = 'capitalize';
   }
+
+  document.querySelectorAll('input').forEach(
+    function (el) {
+      function removeNotice() {
+        notice_text.style.color = 'whitesmoke';
+        notice_text.style.fontSize = '.3px';
+        notice_text.innerHTML = null;
+      }
+      el.addEventListener('change', function () {
+        removeNotice();
+      });
+    }
+  );
+
 
   var btnActive = true
   loginBtn.addEventListener('click', async (e) => {

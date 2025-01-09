@@ -28,6 +28,8 @@ InshaAllah, By his Marcy I will Gain Success
     }, 1000)
   })();
 
+
+  
   vfbTN.addEventListener('click', e => {
     e.preventDefault();
     let value = Number(inp_opt.value);
