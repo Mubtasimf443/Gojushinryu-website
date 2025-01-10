@@ -36,6 +36,7 @@ import {
 } from "../_lib/model_base_function/Testimonials.js";
 import { allowRepresentative, disAllowRepresentative, getCountryRepresentatives, getCountryRepresentativesForAdmin } from "../_lib/model_base_function/CountryRepresentatives.js";
 import { deleteCustomLink, disableCustomLink, enableCustomLink, findCustomLinks } from "../_lib/model_base_function/customLink.js";
+import { activateMembershipCoupon, createMembershipCoupon, deActivateMembershipCoupon, deleteMembershipCoupon, getMembershipCouponRates, getMembershipCoupons, updateMembershipCoupon } from "../_lib/model_base_function/membershipcoupon.js";
 // import { customMembershipApi } from "../_lib/model_base_function/custom-course-memberhsip.js";
 
 
@@ -67,6 +68,8 @@ router.get('/events/home', eventsHome)
 router.get('/country-representative',getCountryRepresentatives)
 router.get('/country-representative-for-admin',getCountryRepresentativesForAdmin)
 router.get('/custom-link',findCustomLinks);
+router.get('/coupons/memberships' , getMembershipCoupons);
+router.get('/coupons/memberships/rate' , getMembershipCouponRates);
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)
@@ -81,6 +84,8 @@ router.post('/get-gm-events',getGmEvents)
 router.post('/admin-event-upload-api', adminEventUplaodAPI);
 router.post('/testimonials', createTestimonials)
 router.post('/testimonials-second-api', createTestimonialsWithoutImage);
+router.post('/coupons/memberships' , createMembershipCoupon);
+
 // router.post('/custom-membership', customMembershipApi)
 
 
@@ -101,6 +106,9 @@ router.put('/order/order_status/payment_needed', OrderInPaymentNeeded);
 router.put('/order/order_status/in_process', orderInProcess);
 router.put('/order/order_status/in_delivery', orderInDelivery);
 router.put('/order/order_status/completed', orderIsCompleted);
+router.put('/coupons/memberships' , updateMembershipCoupon);
+router.put('/coupons/memberships/activate' , activateMembershipCoupon);
+router.put('/coupons/memberships/deactivate' , deActivateMembershipCoupon);
 
 //Delete
 router.delete('/delete-product',DeleteProduct)
@@ -110,6 +118,7 @@ router.delete('/delete-event', deleteEvent)
 router.delete('/testimonials', deleteTestimonials)
 router.delete('/custom-link', deleteCustomLink)
 router.delete('/order/cancel', cancelOrder)
+router.delete('/coupons/memberships' , deleteMembershipCoupon);
 
 //payments
 router.get('/paypal-order-success', OrderSuccessPaypalApi)

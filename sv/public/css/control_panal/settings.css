@@ -3,6 +3,15 @@
 Insha Allah,  By your Marcy Ya Allah
 */
 
+.settings-container-main{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    row-gap: 50px;
+    width: 100%;
+    height: max-content;
+}
 #settings-conatiner .auth_div {
     display: flex;
     flex-direction: row;
@@ -42,3 +51,105 @@ Insha Allah,  By your Marcy Ya Allah
     border-radius: 5px;
 }
 
+#settings-of-coupons-container {
+    width: 100%;
+    background: white;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    row-gap: 10px;
+}
+
+#settings-of-coupons-container table {
+    width: 100%;
+    border-collapse: collapse;
+}
+#settings-of-coupons-container table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+#settings-of-coupons-container table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+#settings-of-coupons-container table th {
+    background-color: #000;
+    color: white;
+}
+#settings-of-coupons-container table .btn {
+    padding: 6px 12px;
+    margin: 2px;
+    border: none;
+    color: white;
+    cursor: pointer;
+    border-radius: 4px;
+}
+#settings-of-coupons-container table .btn-edit {
+    background-color: #4CAF50;
+}
+
+#settings-of-coupons-container table input{
+    width:80px;
+    height: 34px;
+}
+
+#settings-of-coupons-container table input[type="text"]{
+    width:130px;
+}
+#settings-of-coupons-container table .btn-delete {
+    background-color: #f44336;
+}
+#settings-of-coupons-container table .btn:hover {
+    opacity: 0.8;
+}
+
+
+#settings-of-coupons-container table button[title="Deactivate"] {
+    background-color: red;
+}
+
+#settings-of-coupons-container table button[title="activate"]{
+    background: green;
+}
+
+
+#settings-of-coupons-container form {
+    width: 100%;
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: top;
+    height: auto;
+}
+#settings-of-coupons-container label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+#settings-of-coupons-container form input[type="text"],input[type="number"],input[type="date"] {
+    width: 140px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+}
+#settings-of-coupons-container form button {
+    width: 130px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+
+}
+#settings-of-coupons-container button:hover {
+    background-color: #45a049;
+}

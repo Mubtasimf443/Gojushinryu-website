@@ -1,5 +1,4 @@
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,14 +9,10 @@
   <!-- ImportTANT links -->
   <link rel="icon" href="/img/6060.png">
   <link rel="shortcut" href="/img/6060.png">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"
-    rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
-    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
-    crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/root.css">
   <link rel="stylesheet" href="/css/control_panal/massage.css">
   <link rel="stylesheet" href="/css/control_panal/index.css">
@@ -37,7 +32,6 @@
   <link rel="stylesheet" href="/css/control_panal/share.media.css">
   <link rel="stylesheet" href="/css/control_panal/countryrepresentative.css">
   <link rel="stylesheet" href="/css/control_panal/customLinksContainer.css">
-
   <script defer src="/js/control panal/gm.js"></script>
   <script defer src="/js/control panal/media.auth.js"></script>
   <script defer src="/js/control panal/c.panal.js"></script>
@@ -59,6 +53,8 @@
   <script defer src="/js/control panal/share.media.js"></script>
   <script defer src="/js/control panal/countryrepresentative.js"></script>
   <script defer src="/js/control panal/custom.link.js"></script>
+  <script defer src="/js/control panal/custom.link.js"></script>
+  <script defer src="/js/control panal/couponsSettings.js"></script>
 
 </head>
 
@@ -801,7 +797,7 @@
 
         </div>
         <!-----------------------order list ----------------------------->
-        <div ct_section targetedElement="order_href" {{!--style="display: none;" --}} class="order-list-box">
+        <div ct_section targetedElement="order_href" style="display: none;"  class="order-list-box">
 
           <table>
             <tr>
@@ -1067,76 +1063,109 @@
 
         <!----------------------- Settings ----------------------------->
 
-        <div id="settings-conatiner" targetedElement="settings_href" style="display: none;" ct_section
-          class="form-section">
-          <strong>Dates of Course</strong>
+<div class="settings-container-main" targetedElement="settings_href" style="display: flex;" ct_section>
+  <div id="settings-conatiner"  class="form-section">
+    <strong>Dates of Course</strong>
 
-          <div class="s-sec-input-box">
-            <label for="s-sec-name-inp">Online Classes</label>
-            <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}"
-              id="o-class-date">
-          </div>
-          <div class="s-sec-input-box">
-            <label for="s-sec-name-inp">Regular Classes</label>
-            <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}"
-              id="r-class-date">
-          </div>
-          <div class="s-sec-input-box">
-            <label for="s-sec-name-inp">Woments Defence Classes</label>
-            <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_womens_defence_class}}"
-              id="w-class-date">
-          </div>
-          <div class="s-sec-input-box">
-            <label for="s-sec-name-inp"> home video url </label>
-            <input type="Text" placeholder="like http://cloudinary/video/****" value="{{home_video_url}}"
-              id="h-video-url-inp">
-          </div>
-          <strong>Authenticated Media</strong>
+    <div class="s-sec-input-box">
+      <label for="s-sec-name-inp">Online Classes</label>
+      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}"
+        id="o-class-date">
+    </div>
+    <div class="s-sec-input-box">
+      <label for="s-sec-name-inp">Regular Classes</label>
+      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}"
+        id="r-class-date">
+    </div>
+    <div class="s-sec-input-box">
+      <label for="s-sec-name-inp">Woments Defence Classes</label>
+      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_womens_defence_class}}"
+        id="w-class-date">
+    </div>
+    <div class="s-sec-input-box">
+      <label for="s-sec-name-inp"> home video url </label>
+      <input type="Text" placeholder="like http://cloudinary/video/****" value="{{home_video_url}}"
+        id="h-video-url-inp">
+    </div>
+    <strong>Authenticated Media</strong>
 
-          <div class="auth_div">
-            <div class="icon_div">
-              <img src="/icon/youtube.png" alt="youtube icon">
-              <b>Youtube</b>
-              {{!-- <i yt_status_icon class="fa-solid fa-close"></i> --}}
-            </div>
-            <button auth_btn_youtube style="background-color: black;">Login</button>
-          </div>
+    <div class="auth_div">
+      <div class="icon_div">
+        <img src="/icon/youtube.png" alt="youtube icon">
+        <b>Youtube</b>
+        {{!-- <i yt_status_icon class="fa-solid fa-close"></i> --}}
+      </div>
+      <button auth_btn_youtube style="background-color: black;">Login</button>
+    </div>
 
-          <div class="auth_div">
-            <div class="icon_div">
-              <img src="/icon/linkedin.png" alt="linkedin icon">
-              <b>Linkedin</b>
-              {{!-- <i linkedin_status_icon class="fa-solid fa-check"></i> --}}
-            </div>
-            <button auth_btn_linkedin style="background-color: black;">Login</button>
-          </div>
+    <div class="auth_div">
+      <div class="icon_div">
+        <img src="/icon/linkedin.png" alt="linkedin icon">
+        <b>Linkedin</b>
+        {{!-- <i linkedin_status_icon class="fa-solid fa-check"></i> --}}
+      </div>
+      <button auth_btn_linkedin style="background-color: black;">Login</button>
+    </div>
 
-          <div class="auth_div">
-            <div class="icon_div">
-              <img src="/icon/tiktok.png" alt="tiktok icon">
-              <b>Tiktok</b>
-              {{!-- <i tiktok_status_icon class="fa-solid fa-check"></i> --}}
-            </div>
-            <button auth_btn_tiktok style="background-color: black;">Login</button>
-          </div>
+    <div class="auth_div">
+      <div class="icon_div">
+        <img src="/icon/tiktok.png" alt="tiktok icon">
+        <b>Tiktok</b>
+        {{!-- <i tiktok_status_icon class="fa-solid fa-check"></i> --}}
+      </div>
+      <button auth_btn_tiktok style="background-color: black;">Login</button>
+    </div>
 
-          <div class="auth_div">
-            <div class="icon_div">
-              <img src="/icon/facebook.png" alt="tiktok icon">
-              <b>Facebook</b>
-              {{!-- <i facebook_status_icon class="fa-solid fa-check"></i> --}}
-            </div>
-            <button auth_btn_facebook style="background-color: black;">Login</button>
-          </div>
+    <div class="auth_div">
+      <div class="icon_div">
+        <img src="/icon/facebook.png" alt="tiktok icon">
+        <b>Facebook</b>
+        {{!-- <i facebook_status_icon class="fa-solid fa-check"></i> --}}
+      </div>
+      <button auth_btn_facebook style="background-color: black;">Login</button>
+    </div>
 
-          <div class="s-sec-btn-box">
-            <button save_btn
-              style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
-          </div>
+    <div class="s-sec-btn-box">
+      <button save_btn style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
+    </div>
 
-        </div>
+  </div>
 
-
+  <div id="settings-of-coupons-container">
+    <strong>Coupon Details</strong>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Code</th>
+                <th>Rate (%)</th>
+                <th>Expiration Date</th>
+                <th>Actions</th>
+                <th>Status</th>
+            </tr>
+        </thead>
+        <tbody>
+            
+        </tbody>
+    </table>
+    <strong>Create Coupon</strong>
+    <form id="couponForm">
+      {{!-- <label for="couponName">Coupon Name</label> --}}
+      <input type="text" couponName name="couponName" placeholder="coupon name" maxlength="20" minlength="1">
+    
+      {{!-- <label for="couponCode">Coupon Code</label> --}}
+      <input type="text" couponCode  placeholder="coupon code" maxlength="20" minlength="1">
+    
+      {{!-- <label for="couponRate">Rate (%)</label> --}}
+      <input type="number" couponRate placeholder="discount rate" min="0" max="75" value="0" >
+    
+      {{!-- <label for="expirationDate">Expiration Date</label> --}}
+      <input type="text" expirationDate  placeholder="Expiration Date" onblur="(this.type='text')" onfocus="(this.type='date')" >
+    
+      <button add_coupon_btn >Add</button>
+    </form>
+  </div>
+</div>
 
         <!-----------------------Upload Event ----------------------------->
 

@@ -3,15 +3,15 @@
 Insha Allah,  Allah is enough for me
 */
 
-import { validate } from "string-player";
+import { log, validate } from "string-player";
 import catchError, { namedErrorCatching } from "../utils/catchError.js";
-import MembershipCoupons from "../models/membershipcoupon";
+import MembershipCoupons from "../models/membershipcoupon.js";
 import {request,response} from 'express'
 
 export async function createMembershipCoupon(req = request, res = response) {
     try {
         let { name, code, rate ,expiringDate} = req.body;
-
+        log(req.body);
         if (validate.isEmty(name)) namedErrorCatching('parameter-error', 'name is not define');
         if (validate.isEmty(code)) namedErrorCatching('parameter-error', 'code is not define');
         if (validate.isNaN(Number(rate))) namedErrorCatching('parameter-error', 'rate is not a number');
@@ -38,8 +38,8 @@ export async function createMembershipCoupon(req = request, res = response) {
         if (previousCouponIsTheSameCode !== null) namedErrorCatching('database error', 'can not use the same name another time');
 
         let coupon = new MembershipCoupons({ name, code, rate, expiringDate });
-        await coupon.save();
-        res.sendStatus(400);
+        coupon=await coupon.save();
+        res.status(201).json(coupon);
         return;
     } catch (error) {
         catchError(res, error);
@@ -47,7 +47,7 @@ export async function createMembershipCoupon(req = request, res = response) {
 }
 
 
-export async function getCouponRates(req = request, res = response) {
+export async function getMembershipCouponRates(req = request, res = response) {
     try {
         let code = req.query.code;
         if (!code) namedErrorCatching('parametar error', 'name parameter is not define');
@@ -72,9 +72,9 @@ export async function deleteMembershipCoupon(req = request, res = response) {
         let id = req.query.id; id = Number(id);
         if (validate.isNaN(id)) namedErrorCatching('parameter error', 'id is not a number');
         if (id.toString().length >= 32) namedErrorCatching('parameter error', 'id is not valid');
-        let membershipCoupon=await MembershipCoupons.findOne({id});
-        if (membershipCoupon!== null) {
-            await MembershipCoupons.findOneAndDelete({id});
+        let membershipCoupon = await MembershipCoupons.findOne({ id });
+        if (membershipCoupon !== null) {
+            await MembershipCoupons.findOneAndDelete({ id });
             return res.sendStatus(202);
         } else return res.sendStatus(204);
     } catch (error) {
@@ -87,12 +87,13 @@ export async function deleteMembershipCoupon(req = request, res = response) {
 export async function updateMembershipCoupon(req = request, res = response) {
     try {
         let { name, code, rate, expiringDate, id } = req.body;
-
+        console.log(req.body);
+        
         if (validate.isEmty(name)) namedErrorCatching('parameter-error', 'name is not define');
         if (validate.isEmty(code)) namedErrorCatching('parameter-error', 'code is not define');
         if (validate.isNaN(Number(rate))) namedErrorCatching('parameter-error', 'rate is not a number');
         if (validate.isNaN(Number(expiringDate))) namedErrorCatching('parameter-error', 'expiringDate is not a number');
-        if (validate.isNaN(Number(id))) namedErrorCatching('parameter-error', 'expiringDate is not a number');
+        if (validate.isNaN(Number(id))) namedErrorCatching('parameter-error', 'id is not a number');
 
         if (name.trim().length === 0) namedErrorCatching('parameter-error', 'name is too short');
         if (code.trim().length === 0) namedErrorCatching('parameter-error', 'code is too short');
@@ -108,23 +109,63 @@ export async function updateMembershipCoupon(req = request, res = response) {
         if (id.toString().length >= 32) namedErrorCatching('parameter-error', 'expiringDate is not valid');
 
         [name, code, expiringDate, id] = [name.toLowerCase(), code.toUpperCase(), Math.floor(Number(expiringDate)), Math.floor(Number(id))];
+        let updatedObject={name, code, expiringDate, id};
 
         let previousCouponIsTheSameName = await MembershipCoupons.findOne({ name });
-        if (previousCouponIsTheSameName !== null) namedErrorCatching('database error', 'can not use the same name another time');
+        if (previousCouponIsTheSameName !== null) delete updatedObject.name;
 
         let previousCouponIsTheSameCode = await MembershipCoupons.findOne({ code });
-        if (previousCouponIsTheSameCode !== null) namedErrorCatching('database error', 'can not use the same name another time');
+        if (previousCouponIsTheSameCode !== null) delete updatedObject.code;
+        
+        await MembershipCoupons.findOneAndUpdate({ id }, updatedObject);
+        return res.sendStatus(202);
 
-        let coupon =await MembershipCoupons.findOne({id});
+    } catch (error) {
+        catchError(res, error);
+    }
+}
 
-        if (coupon !== null) {
-            coupon.name=name ;
-            coupon.rate=rate;
-            coupon.expiringDate=expiringDate;
-            coupon.code =code;
-            await coupon.save();
+
+
+export async function activateMembershipCoupon(req = request, res = response) {
+    try {
+        let id = req.query.id; id = Number(id);
+        if (validate.isNaN(id)) namedErrorCatching('parameter error', 'id is not a number');
+        if (id.toString().length >= 32) namedErrorCatching('parameter error', 'id is not valid');
+        let membershipCoupon=await MembershipCoupons.findOne({id});
+        if (membershipCoupon!== null) {
+            membershipCoupon.activated=true;
+            await membershipCoupon.save();
             return res.sendStatus(202);
-        } else return res.sendStatus(204)
+        } else return res.sendStatus(204);
+    } catch (error) {
+        catchError(res, error);
+    }
+}
+
+
+
+export async function deActivateMembershipCoupon(req = request, res = response) {
+    try {
+        let id = req.query.id; id = Number(id);
+        if (validate.isNaN(id)) namedErrorCatching('parameter error', 'id is not a number');
+        if (id.toString().length >= 32) namedErrorCatching('parameter error', 'id is not valid');
+        let membershipCoupon=await MembershipCoupons.findOne({id});
+        if (membershipCoupon!== null) {
+            membershipCoupon.activated=false;
+            await membershipCoupon.save();
+            return res.sendStatus(202);
+        } else return res.sendStatus(204);
+    } catch (error) {
+        catchError(res, error);
+    }
+}
+
+
+export async function getMembershipCoupons(req = request, res = response) {
+    try {
+        let data =await MembershipCoupons.find({});
+        return res.status(200).json(data);
     } catch (error) {
         catchError(res, error);
     }

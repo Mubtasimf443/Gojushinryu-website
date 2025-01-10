@@ -99,7 +99,6 @@ async function navigateToCpanal(req, res) {
             if (!key) return res.render('notAllowed')
             Admin.findOne({ email: ADMIN_EMAIL })
                 .then(async admin => {
-                    // if (key !==admin.Secret_Key) return res.render('notAllowed')
                     let settings = await Settings.findOne({});
                     
                     return res.render('control-panal', {
