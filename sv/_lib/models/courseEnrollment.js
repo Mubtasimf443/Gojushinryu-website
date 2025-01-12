@@ -13,39 +13,52 @@ let courseEnrollmentSchema =new Schema({
     },
     course_name :String,
     course_price :Number,
+
     course_id :{
-        type :Number,//mongoose.SchemaTypes.ObjectId,
-        //ref :"Course",
+        type :Number,
         require :true
     },
-    student_id :{
-        type :mongoose.SchemaTypes.ObjectId,
-        ref :"User",
-        require :true
-    },
+
+    student_name :String,
+    student_email :String,
+    student_phone :String,
     student_city :String ,
     student_country :String ,
     student_district :String ,
     student_postcode :Number ,
-    Date :Date,
+    Date: { type: Date, default: Date.now },
+   
     paid :{
         type :Boolean,
         require :true,  
         default :false
     },
+   
     activated :{
         type :Boolean,
         require :true,  
         default :false
     },
+
     payment_method :String,
     paypal_token:String,
     stripe_session_id:String,
-    date_as_Number:{
+
+
+
+    apply_date:{
         type :Number ,
         default :Date.now
+    },
+
+    paymentYears:[String],
+    paidMonths : [String],
+    notPaidMonths:[String],
+    paymentThisMonth :{
+        isPaid:Boolean,
+        paidDate :Date,
     }
-})
+});
 
 export const CourseEnrollments=model('CourseEnrollments',courseEnrollmentSchema)
 

@@ -15,6 +15,9 @@ const settingsSchema =new mongoose.Schema({
     date_of_womens_defence_class:{
         date :String,
     },
+    fees_of_reqular_class :Number,
+    fees_of_Bhangra_fitness:Number,
+    gst_rate :Number ,
     home_video_url:String,
     youtube_refresh_token:String,
     youtube_token:String,

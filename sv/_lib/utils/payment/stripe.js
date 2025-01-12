@@ -6,15 +6,16 @@ InshaAllah, By his marcy I will Gain Success
 
 
 import Stripe from 'stripe';
-import { STRIPE_SECRET_KEY } from '../env.js';
-const str = new Stripe(STRIPE_SECRET_KEY);
+import { STRIPE_SECRET_KEY ,T_STRIPE_KEY} from '../env.js';
+import { namedErrorCatching } from '../catchError.js';
+const str = new Stripe(T_STRIPE_KEY);
 
 export default class StripePay {
     constructor(options = { success_url: "", cancel_url: "" }) {
         this.success_url = options.success_url;
         this.cancel_url = options.cancel_url;
     }
-    async checkOut({ line_items, shipping_amount, line_items }) {
+    async checkOut({  shipping_amount, line_items }) {
         const session = await str.checkout.sessions.create({
             payment_method_types: ['card'],
             mode: 'payment',
@@ -36,11 +37,13 @@ export default class StripePay {
             line_items: line_items
         })
 
-        if (session.url) {
+        if (session.url && session.id) {
             return ({
                 url: session.url,
                 id: session.id
             })
+        } else {
+            throw 'sorry , failed to create stripe payment'
         }
     }
 }

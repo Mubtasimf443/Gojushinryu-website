@@ -37,6 +37,8 @@ import {
 import { allowRepresentative, disAllowRepresentative, getCountryRepresentatives, getCountryRepresentativesForAdmin } from "../_lib/model_base_function/CountryRepresentatives.js";
 import { deleteCustomLink, disableCustomLink, enableCustomLink, findCustomLinks } from "../_lib/model_base_function/customLink.js";
 import { activateMembershipCoupon, createMembershipCoupon, deActivateMembershipCoupon, deleteMembershipCoupon, getMembershipCouponRates, getMembershipCoupons, updateMembershipCoupon } from "../_lib/model_base_function/membershipcoupon.js";
+import { courseContactApi } from "../_lib/course/course.Purchase.Api.js";
+import { coursePurchaseCancelPaypal, coursePurchaseCancelStripe, coursePurchaseSuccessPaypal, coursePurchaseSuccessStripe } from "../_lib/course/coursePurchase.success.api.js";
 // import { customMembershipApi } from "../_lib/model_base_function/custom-course-memberhsip.js";
 
 
@@ -70,6 +72,10 @@ router.get('/country-representative-for-admin',getCountryRepresentativesForAdmin
 router.get('/custom-link',findCustomLinks);
 router.get('/coupons/memberships' , getMembershipCoupons);
 router.get('/coupons/memberships/rate' , getMembershipCouponRates);
+router.get('/course/purchase/paypal/success', coursePurchaseSuccessPaypal);
+router.get('/course/purchase/paypal/cancel', coursePurchaseCancelPaypal);
+router.get('/course/purchase/stripe/success', coursePurchaseSuccessStripe);
+router.get('/course/purchase/stripe/cancel', coursePurchaseCancelStripe);
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)
@@ -85,7 +91,7 @@ router.post('/admin-event-upload-api', adminEventUplaodAPI);
 router.post('/testimonials', createTestimonials)
 router.post('/testimonials-second-api', createTestimonialsWithoutImage);
 router.post('/coupons/memberships' , createMembershipCoupon);
-
+router.post('/course/apply/contact', courseContactApi );
 // router.post('/custom-membership', customMembershipApi)
 
 

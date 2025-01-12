@@ -1,7 +1,7 @@
 /*  بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  Insha Allah */
 
 
-import { Router } from "express"
+import {  Router } from "express"
 import { LargeAPIRateLimiter } from "../_lib/Config/RateLimiter.js";
 import userCheck from "../_lib/midlewares/User.check.js";
 import { OrderApiPaypal } from "../_lib/api/OrderAPi.js";
@@ -19,26 +19,28 @@ import { log } from "string-player";
 import { createCustomLink } from "../_lib/model_base_function/customLink.js";
 import { customCoursePurchaseApi } from "../_lib/api/custom.course.api.js";
 import { createOrder } from "../_lib/model_base_function/order.js";
+import { coursePurchaseApi } from "../_lib/course/course.Purchase.Api.js";
 
-const LargeApiRouter = Router();
+const router = Router();
 
 
-// LargeApiRouter.use(LargeAPIRateLimiter);//this will stop attackers form giving a huge request in this large api's
-LargeApiRouter.use(function(req,res,next){
+// Outer.use(LargeAPIRateLimiter);//this will stop attackers form giving a huge request in this large api's
+router.use(function(req,res,next){
     log(req.baseUrl);next()
 })
-LargeApiRouter.use(morgan('dev'))
+router.use(morgan('dev'))
 
 //post
-LargeApiRouter.post('/custom-link',createCustomLink)
-LargeApiRouter.post('/paypal-membership-purchase', userCheck,MembershipApidataCheckMidleware ,paypalMembershipFunction);
-LargeApiRouter.post('/paypal-course-purchase-api',userCheck,courseBuyPaypalApi);
-LargeApiRouter.post('/stripe-membership-api',userCheck,membershipMidleWareStripe,stripeMembershipFunction)
-LargeApiRouter.post('/stripe-course-purchase-api',userCheck,stripeCourseBuyAPiJs)
-LargeApiRouter.post('/uplaod-post',uplaodPostAPiFucntion)
-LargeApiRouter.post('/upload-coutntry-representative',uploadCountryRepresentativeApi)
-LargeApiRouter.post('/custom-membership', userCheck, customMembershipApi)
-LargeApiRouter.post('/custom-course', userCheck, customCoursePurchaseApi)
-LargeApiRouter.post('/order/create', userCheck, createOrder)
+router.post('/custom-link',createCustomLink)
+router.post('/paypal-membership-purchase', userCheck,MembershipApidataCheckMidleware ,paypalMembershipFunction);
+router.post('/paypal-course-purchase-api',userCheck,courseBuyPaypalApi);
+router.post('/stripe-membership-api',userCheck,membershipMidleWareStripe,stripeMembershipFunction)
+router.post('/stripe-course-purchase-api',userCheck,stripeCourseBuyAPiJs)
+router.post('/uplaod-post',uplaodPostAPiFucntion)
+router.post('/upload-coutntry-representative',uploadCountryRepresentativeApi)
+router.post('/custom-membership', userCheck, customMembershipApi)
+router.post('/custom-course', userCheck, customCoursePurchaseApi)
+router.post('/order/create', userCheck, createOrder)
+router.post('/course/purchase', coursePurchaseApi);
 
-export default LargeApiRouter;
+export default router;

@@ -5,6 +5,11 @@ InshaAllah ,  By Allahs Marcy,  I will gain Success
 
 body {
   background: whitesmoke;
+  color: #333;
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 #banner{
   height: 90vh ;
@@ -95,7 +100,7 @@ body {
 }
 
 .heading-sec{
-  padding: 3em 0em 0em 0em;
+  padding: 2em 0em 0em 0em;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -104,84 +109,345 @@ body {
 .heading-sec>h2{
   color: black;
   text-transform: capitalize;
-  font-size: 2.4em;
-}
-#course_section {
-  padding: 1.4em 0em 4em 0em ;
-  min-height: 30em;
-  height: fit-content;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  column-gap : 3em;
-  row-gap: 2em;
-}
-#course_section >.course-box{
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: start;
-  width:350px;
-  min-height: 300px;
-  height: fit-content;
-  background: #fff;
-  box-shadow: 0px 0px 10px #00000014;
-  padding: 1em 1em 2em 1em;
-  row-gap: 0.5em;
-  border-radius: 7px;
-}
-#course_section >.course-box> img {
-  width: 100%;
-  border-radius: 4px;
-  object-fit: cover;
-  object-position: top center;
-  height: 260px;
-}
-.c-cetegory{
-  margin-top: .45em;
-  color: goldenrod;
-  font-size:.9em;
+  font-size: 2em;
   font-weight: 600;
-  text-transform: uppercase;
-}
-.c-name{
-  color:black;
-  font-size :1.4em;
-  text-transform: capitalize;
-  text-align: left;
-  font-weight: 600;
-}
-.course-box >.c-enrollment{
-  color :rgba(0, 0, 0, 0.623);
-  font-weight: 500;
-  text-transform: capitalize;
-}
-.btn-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  margin-top: .4em;
+  font-family: 'Arial', Helvetica, sans-serif;
 }
 
-.btn-div >.btn {
-  color: #fff;
-  background: goldenrod;
-  width: 8em;
-  height: 2.3em;
-  font-size:1.14em;
-  border: none;
-  border-radius :4px;
+
+
+
+.course-container {
   display: flex;
+  justify-content: center;
   flex-direction: row;
+  align-items: center;
+  flex-wrap: wrap;
+  column-gap: 40px;
+  padding: 40px 20px  80px 20px;
+  row-gap: 40px;
+}
+   /* Course Card Container */
+   .course-card {
+    display: flex;
+    flex-direction: column;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    max-width: 400px;
+    height: 568px;
+}
+
+.course-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+}
+
+/* Card Image */
+.course-card .card-image img {
+    width: 100%;
+    /* height: auto; */
+    display: block;
+    object-fit: cover;
+    object-position: top center;
+    height: 280px;
+}
+
+/* Card Content */
+.course-card .card-content {
+    padding: 20px;
+    text-align: left;
+}
+
+.course-card .card-content h3 {
+    font-size:24px;
+    color: #333;
+    margin-bottom: 10px;
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.course-card .card-content p {
+    font-size: 0.95rem;
+    color: #666;
+    margin-bottom: 15px;
+    line-height: 1.5;
+}
+
+.course-card .btns {
+  display: flex;
+  gap:10px;
+}
+/* Course Features */
+.course-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.course-features li {
+    font-size: 0.9rem;
+    color: #444;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.course-features li i {
+    font-size: 1rem;
+    color: #4a90e2;
+}
+
+/* Enroll Button */
+.course-card button{
+    padding: 10px 15px;
+    font-size: 1rem;
+    color: black;
+    background: var(--main-cl);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.course-card button:hover {
+    background: #da8d09;
+}
+
+
+ /* Popup General Styles */
+ .popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  padding: 30px;
+  z-index: 1000;
+  width: 90%;
+  max-width: 500px;
+  visibility: hidden;
+  opacity: 0;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  overflow-inline: scroll;
+  scrollbar-width: none;
+}
+
+.popup.active {
+  visibility: visible;
+  opacity: 1;
+}
+
+/* Title and Info */
+.popup h2 {
+  font-size: 1.8rem;
+  margin-bottom: 10px;
+  color: #444;
+  text-align: center;
+}
+
+.popup .form-info {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 20px;
+  text-align: center;
+  line-height: 1.5;
+}
+
+/* Form Layout */
+.popup-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  overflow: scroll;
+  overflow-inline: scroll;
+  scrollbar-width: none;
+}
+
+/* Smaller Input Fields */
+.popup-form input {
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  transition: border-color 0.3s;
+}
+
+.popup-form input:focus {
+  outline: none;
+  border-color: #4a90e2;
+}
+
+/* Buttons */
+.popup-form button {
+  padding: 10px 15px;
+  border-radius: 6px;
+  border: none;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+
+.popup-form button[type="submit"] {
+  background: #4a90e2;
+  color: #fff;
+  transition: background 0.3s;
+}
+
+.popup-form button[type="submit"]:hover {
+  background: #357ac8;
+}
+
+.popup-form .close-popup {
+  background: #f5f5f5;
+  color: #555;
+}
+
+/* Payment Buttons */
+.payment-buttons {
+  display: flex;
+  gap: 15px;
+  margin: 20px 0;
+}
+
+.payment-buttons button {
+  padding: 10px 15px;
+  background: var(--main-cl);
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.payment-buttons button:hover {
+  background: #da8d09;
+}
+
+/* Price Display */
+.price-display {
+  font-size: 1rem;
+  color: #444;
+  margin: 15px 0;
+}
+
+.admin-contact-info {
+  font-size: 0.9rem;
+  color: #555;
+  background: #f9f9f9;
+  padding: 10px;
+  border-radius: 6px;
+  margin-bottom: 20px;
+}
+
+
+/*  success contact form popup */
+ /* Base Popup Styling */
+ .sc_popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 0.3s, opacity 0.3s ease-in-out;
 }
-.btn-div > span {
-  font-size:1.26em;
-  font-weight: 500;
-  color:rgba(0, 0, 0, 0.623) ;
+
+.sc_popup.show {
+  visibility: visible;
+  opacity: 1;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Popup Content */
+.sc_popup .popup-content {
+  background: #ffffff;
+  border-radius: 12px;
+  max-width: 400px;
+  padding: 20px;
+  text-align: center;
+  position: relative;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.3);
+  animation: popupSlideIn 0.4s ease-out;
+}
+
+@keyframes popupSlideIn {
+  from {
+       transform: translateY(-50px);
+       opacity: 0;
+  }
+
+  to {
+       transform: translateY(0);
+       opacity: 1;
+  }
+}
+
+/* Close Button */
+.sc_popup  .close-popup {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  font-size: 1.5rem;
+  color: #888;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.sc_popup .close-popup:hover {
+  color: #333;
+}
+
+/* Popup Icon */
+.sc_popup .popup-icon {
+  font-size: 3rem;
+  color: var(--main-cl);
+  margin-bottom: 15px;
+}
+
+/* Popup Heading */
+.sc_popup .popup-content h2 {
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Popup Text */
+.sc_popup .popup-content p {
+  font-size: 1rem;
+  color: #555;
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+/* Popup Button */
+.sc_popup .popup-button {
+  padding: 10px 20px;
+  font-size: 1rem;
+  color: #fff;
+  background: var(--main-cl);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.sc_popup .popup-button:hover {
+  background:#da8d09;
 }

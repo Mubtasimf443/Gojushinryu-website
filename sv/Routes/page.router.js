@@ -18,6 +18,7 @@ import { givePostDetailsFunction, postPageNavigation } from "../_lib/model_base_
 import { Settings } from "../_lib/models/settings.js";
 import { dayCatch7, longCatch, longCatch24 } from "../_lib/midlewares/catching.js";
 import customLinkPage from "../_lib/model_base_function/customLink.js";
+import { settingsAsArray } from "../_lib/model_base_function/Settings.js";
 
 let pageRouter = Router();
 
@@ -42,7 +43,24 @@ pageRouter.get('/home',longCatch24, async (req, res) => {
 })
 // pageRouter.get('/course', FindCourseApi)
 
-pageRouter.get('/courses',longCatch24, (req, res) => res.render('course-selling-page'))
+pageRouter.get('/courses',async (req, res) => {
+    try {
+        let settings=await Settings.findOne({});
+        res.render('course-selling-page', {
+            globlal_fees_of_regular_class:settings.fees_of_reqular_class , 
+            globlal_fees_of_bhangra_fitness:settings.fees_of_Bhangra_fitness,
+            gst_rate : settings.gst_rate
+        })
+    } catch (error) {
+        console.error(error);
+        res.render('course-selling-page',{
+            globlal_fees_of_regular_class:125 , 
+            globlal_fees_of_bhangra_fitness:100,
+            gst_rate : 5
+        });
+    }
+})
+
 pageRouter.get('/courses/date',longCatch24, async (req, res) => {
     try {
         let settings = await Settings.findOne({})

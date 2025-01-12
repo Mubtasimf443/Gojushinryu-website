@@ -1,3 +1,8 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By his marcy I will Gain Success 
+*/
+
 import Twit from 'twit'
 import fs from 'fs'
 import {

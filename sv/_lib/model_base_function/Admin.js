@@ -105,7 +105,10 @@ async function navigateToCpanal(req, res) {
                         date_of_womens_defence_class: settings.date_of_womens_defence_class.date ?? '',
                         date_of_regular_class: settings.date_of_regular_class.date ?? '',
                         date_of_online_class: settings.date_of_online_class.date ?? '',
-                        home_video_url: settings.home_video_url ?? ''
+                        fees_of_reqular_class:settings.fees_of_reqular_class,
+                        fees_of_Bhangra_fitness:settings.fees_of_Bhangra_fitness,
+                        home_video_url: settings.home_video_url ?? '',
+                        gst_rate :settings.gst_rate
                     })
                 })
                 .catch(e => {

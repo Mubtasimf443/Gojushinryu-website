@@ -26,7 +26,9 @@ Insha Allab,  By the marcy of Allah,  I will gain success
   <meta name="keywords"
     content="courses of  School of Traditional Martial Arts , courses of  Goju Shin Ryu International Martial Arts ">
   {{>Links}}
+
   <link rel="stylesheet" href="/css/pages/course.page.css" type="text/css" />
+  <script src="/js/pages/course.page.js" defer></script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -37,6 +39,12 @@ Insha Allab,  By the marcy of Allah,  I will gain success
   </style>
 
 </head>
+
+<script>
+  let globlal_fees_of_regular_class = {{globlal_fees_of_regular_class}};
+  let globlal_fees_of_bhangra_fitness = {{globlal_fees_of_bhangra_fitness}};
+  let gst_rate = {{gst_rate}};
+</script>
 
 <body>
   {{>Header}}
@@ -56,103 +64,187 @@ Insha Allab,  By the marcy of Allah,  I will gain success
     <section class="heading-sec">
       <h2>Our Courses</h2>
     </section>
-    <section id="course_section">
 
-      <article class="course-box">
-        <img src="/img/2821.jpg" alt="image of martial course">
-        <b class="c-cetegory">
-          Karate
-        </b>
-        <h4 class="c-name">
-          Join Our Regular classes
-        </h4>
-        {{!-- <span class="c-enrollment">
-          500+ joined Students
-        </span> --}}
-        <div class="btn-div">
-          <a class="btn" href="/course/regular-classes">Enroll Now</a>
-          <span class="currency">200.00$</span>
+    <section class="course-container">
+
+      {{!-- Course 1 --}}
+      <div class="course-card" data-popup="type1" id="course-our-regular-classes">
+        <div class="card-image">
+          <img src="/img/2821.jpg" alt="Course Name" />
         </div>
-      </article>
-
-      <article class="course-box">
-        <img src="/img/img1.webp" alt="image of martial course">
-        <b class="c-cetegory">
-          Karate
-        </b>
-        <h4 class="c-name">
-          Join Our Online classes
-        </h4>
-        {{!-- <span class="c-enrollment">
-          500+ joined Students
-        </span> --}}
-        <div class="btn-div">
-          <a class="btn" href="/course/online-classes">Enroll Now</a>
-          <span class="currency">200.00$</span>
+        <div class="card-content">
+          <h3>Join Our Regular classes</h3>
+          <p>Master self-defense and fitness with our regular martial arts training for all skill levels.</p>
+          <ul class="course-features">
+            <li> <i class="icon-level"></i>Level: Beginner to Pro</li>
+            <li><i class="icon-duration"></i> classes:2 classes week</li>
+            <li fees1><i class="icon-price"></i> Fees:loading... </li>
+          </ul>
+          <div class="btns">
+            <button class="enroll-btn">Enroll Now</button>
+            <button class="details-btn">Details</button>
+          </div>
         </div>
-      </article>
+      </div>
 
-      <article class="course-box">
-        <img src="/img/abs-slide/slide32.jpg" alt="image of martial course">
-        <b class="c-cetegory">
-          Karate
-        </b>
-        <h4 class="c-name">
-          Join Our Seminar's
-        </h4>
-        {{!-- <span class="c-enrollment">
-          500+ joined Students
-        </span> --}}
-        <div class="btn-div">
-          <a class="btn" href="/course/our-seminars">Enroll Now</a>
-          <span class="currency">200.00$</span>
+
+      {{!-- Course 2 --}}
+      <div class="course-card" data-popup="type1" id="Our-Online-Martial-Art-Classes">
+        <div class="card-image">
+          <img src="/img/img1.webp" alt="Course Name" />
         </div>
-      </article>
-      <article class="course-box">
-        <img src="/img/12334.jpg" alt="image of martial course">
-        <b class="c-cetegory">
-          Karate
-        </b>
-        <h4 class="c-name">
-          Join Our Women Defence classes
-        </h4>
-        {{!-- <span class="c-enrollment">
-          500+ joined Students
-        </span> --}}
-        <div class="btn-div">
-          <a class="btn" href="/course/women-fitness-classes">Enroll Now</a>
-          <span class="currency">200.00$</span>
+        <div class="card-content">
+          <h3>Our Online Martial Art Classes</h3>
+          <p>Train from home with expert-led online martial arts classes at your own pace.</p>
+          <ul class="course-features">
+            <li> <i class="icon-level"></i>Level: Beginner to Pro</li>
+            <li><i class="icon-duration"></i> classes:2 classes week</li>
+            <li><i class="icon-level"></i>Fees :Contact To Grand Master for fees</li>
+          </ul>
+          <div class="btns">
+            <button class="enroll-btn">Contact Us </button>
+            <button class="details-btn">Details</button>
+          </div>
         </div>
-      </article>
-      <article class="course-box">
-        <img src="/img/3101.jpg" alt="image of martial course">
-        <b class="c-cetegory">
-          Karate
-        </b>
-        <h4 class="c-name">
-          Bhangra Fitness Class for all ages
-        </h4>
-        {{!-- <span class="c-enrollment">
-          500+ joined Students
-        </span> --}}
-        <div class="btn-div">
-          <a class="btn" href="/course/bhangar-fitness-classes-for-all-ages">Enroll Now</a>
-          <span class="currency">200.00$</span>
+      </div>
+
+
+      {{!-- Course 3 --}}
+      <div class="course-card" data-popup="type1" id="Our-Seminars">
+        <div class="card-image">
+          <img src="/img/abs-slide/slide32.jpg" alt="Course Name" />
         </div>
-      </article>
+        <div class="card-content">
+          <h3>Our Seminars</h3>
+          <p>Deepen your martial arts knowledge through our expert-led seminars.</p>
+          <ul class="course-features">
+            <li> <i class="icon-level"></i>Level: Beginner to Pro</li>
+            <li><i class="icon-level"></i>Fees :Contact To Grand Master for fees</li>
+          </ul>
+          <button class="enroll-btn">Contact Us </button>
 
+        </div>
+      </div>
 
+      {{!-- Course 4 --}}
+      <div class="course-card" data-popup="type1" id="our-women-defence-classes">
+        <div class="card-image">
+          <img src="/img/12334.jpg" alt="Course Name" />
+        </div>
+        <div class="card-content">
+          <h3>Our Women Defence Classes</h3>
+          <p>Learn practical self-defense techniques in a supportive environment.</p>
+          <ul class="course-features">
+            <li> <i class="icon-level"></i>Level: Beginner to Pro</li>
+            <li><i class="icon-duration"></i> classes:2 classes week</li>
+            <li><i class="icon-level"></i>Fees :Contact To Grand Master for fees</li>
+          </ul>
+          <div class="btns">
+            <button class="enroll-btn">Contact Us </button>
+            <button class="details-btn">Details</button>
+          </div>
+        </div>
+      </div>
 
-
-
-
+      {{!-- Course 5 --}}
+      <div class="course-card" data-popup="type1" id="Bhangra-Fitness-Class-for-All-Ages">
+        <div class="card-image">
+          <img src="/img/3101.jpg" alt="Course Name" />
+        </div>
+        <div class="card-content">
+          <h3>Bhangra Fitness Class for All Ages</h3>
+          <p>A fun and energetic Bhangra fitness class for all ages to stay active and fit.</p>
+          <ul class="course-features">
+            <li> <i class="icon-level"></i>Level: Beginner to Pro</li>
+            <li fees4><i class="icon-level"></i>Fees :loading...</li>
+          </ul>
+          <button class="enroll-btn">Enroll Now</button>
+        </div>
+      </div>
     </section>
 
   </main>
 
-  <script>
 
-  </script>
+
+  <!-- Popup for Type 1 (Course Registration) -->
+  <div id="popup-type1" class="popup hidden" mode="">
+    <form class="popup-form">
+      <h2>Register for the Course</h2>
+      <p class="form-info" style="display: none;"></p>
+      <input type="text" placeholder="Your Name" required />
+      <input type="tel" placeholder="Your Phone Number" required />
+      <input type="email" placeholder="Your Email" required />
+      <input type="text" placeholder="Country" required />
+      <input type="text" placeholder="District" required />
+      <input type="text" placeholder="City" required />
+      <input type="text" placeholder="Road No/ Village" required />
+      <input type="number" placeholder="zipcode" required />
+
+      <p class="price-display">
+        Price: $<span id="base-price">100</span><br>
+        GST (5%): $<span id="gst-amount">18</span><br>
+        Total: $<span id="total-price">118</span>
+      </p>
+
+      <h3>Choose Payment Method</h3>
+      <div class="payment-buttons">
+        <button type="button" id="paypal-btn">Pay with PayPal</button>
+        <button type="button" id="stripe-btn">Pay with Stripe</button>
+      </div>
+
+      <button type="button" class="close-popup">Close</button>
+    </form>
+  </div>
+
+
+
+  <!-- Popup for Type 2 (Contact Admin) -->
+  <div id="popup-type2" class="popup hidden">
+    <form class="popup-form">
+      <h2>Contact Admin</h2>
+      <p class="form-info">
+
+        If you want to discuss about  fees or course enrollment Contact your Grand Master or request assistance using
+        the form.
+
+      </p>
+
+      <p class="admin-contact-info">
+        <strong>Email:</strong>gojushinryu@gmail.com
+        <br>
+        <strong>Phone:</strong> +1 587-577-1323
+      </p>
+
+      <input type="text" id="contact-name" placeholder="Your Name" title="give your name" required />
+      <input type="tel" id="contact-number" placeholder="Your Phone Number" title="give your Phone Number" required />
+      <input type="email" id="contact-email" placeholder="Your Email" title="give your Email" required />
+      <input type="text" id="contact-Country" placeholder="Country" title="give your Country" required />
+      <input type="text" id="contact-City" placeholder="City" title="give your City" required />
+      <input type="text" id="contact-District" placeholder="District" title="give your District" required />
+      <input type="text" id="contact-Road"  placeholder="Road No/ Village" title="give your Road No/ Village" required />
+      <input type="text" id="contact-zipcode" placeholder="zipcode" title="give your zipcode" required />
+
+      <button id="contact-popup-btn">Request Contact</button>
+      <button  class="close-popup">Close</button>
+    </form>
+  </div>
+
+
+{{!-- success contact form popup --}}
+     <div id="confirmation-popup" class="sc_popup hidden">
+          <div class="popup-content">
+               <button style="position: absolute;top: 15px;right: 15px;font-size: 1.5rem; color: #888;background: none;border: none;cursor: pointer;transition: color 0.3s ease;" >&times;</button>
+               <div class="popup-icon">
+                    <i class="icon-checkmark">&#10004;</i>
+               </div>
+               <h2>Form Submitted Successfully!</h2>
+               <p>Your contact request has been submitted. The teacher will review your application and get back to you
+                    shortly. Thank you for reaching out!</p>
+              <button style="padding: 10px 20px;font-size: 1rem;color:#fff; background:#4caf50;border:none;border-radius: 8px;cursor: pointer;transition:background 0.3s ease;" >Close</button>
+          </div>
+     </div>
+
   {{>Footer}}
 </body>
 

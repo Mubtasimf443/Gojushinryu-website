@@ -24,9 +24,8 @@ By his marcy,  I will gain success
                         <td>${course_name}</td>
                         <td>${studentName}</td>
                         <td>${date}</td>
-                        <td>${price}</td>
-                        
-                        `
+                        <td>${price}</td> 
+                        `;
                         container.querySelector('table').appendChild(tr);
                     }
                 }

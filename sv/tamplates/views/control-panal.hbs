@@ -1065,28 +1065,51 @@
 
 <div class="settings-container-main" targetedElement="settings_href" style="display: flex;" ct_section>
   <div id="settings-conatiner"  class="form-section">
-    <strong>Dates of Course</strong>
 
-    <div class="s-sec-input-box">
-      <label for="s-sec-name-inp">Online Classes</label>
-      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}"
-        id="o-class-date">
-    </div>
-    <div class="s-sec-input-box">
-      <label for="s-sec-name-inp">Regular Classes</label>
-      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}"
-        id="r-class-date">
-    </div>
-    <div class="s-sec-input-box">
-      <label for="s-sec-name-inp">Woments Defence Classes</label>
-      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_womens_defence_class}}"
-        id="w-class-date">
-    </div>
+    
     <div class="s-sec-input-box">
       <label for="s-sec-name-inp"> home video url </label>
       <input type="Text" placeholder="like http://cloudinary/video/****" value="{{home_video_url}}"
         id="h-video-url-inp">
     </div>
+    <strong>Dates of Course</strong>
+
+    <div class="s-sec-input-box">
+      <label for="s-sec-name-inp">Online Classes</label>
+      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}" id="o-class-date">
+    </div>
+
+    <div class="s-sec-input-box">
+      <label for="s-sec-name-inp">Regular Classes</label>
+      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}" id="r-class-date">
+    </div>
+
+
+    <div class="s-sec-input-box">
+      <label for="s-sec-name-inp">Woments Defence Classes</label>
+      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_womens_defence_class}}" id="w-class-date">
+    </div>
+
+    
+    <strong>Fees Of course</strong>
+    <div class="s-sec-input-box">
+      <label for="s-sec-name-inp">Regular Classes</label>
+      <input type="number" placeholder="Fees" value="{{fees_of_reqular_class}}" id="fees_of_reqular_class">
+    </div>
+    
+    <div class="s-sec-input-box">
+      <label for="s-sec-name-inp">Bhangra Fitness Class for All Ages</label>
+      <input type="number" placeholder="Fees" value="{{fees_of_Bhangra_fitness}}" id="fees_of_Bhangra_fitness">
+    </div>
+    
+ 
+    <strong>Others</strong>
+    
+    <div class="s-sec-input-box">
+      <label for="s-sec-name-inp">GST RATE (%)</label>
+      <input type="number" placeholder="Fees" value="{{gst_rate}}" id="gst_rate">
+    </div>
+
     <strong>Authenticated Media</strong>
 
     <div class="auth_div">
@@ -1124,6 +1147,8 @@
       </div>
       <button auth_btn_facebook style="background-color: black;">Login</button>
     </div>
+    
+   
 
     <div class="s-sec-btn-box">
       <button save_btn style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
@@ -1132,7 +1157,7 @@
   </div>
 
   <div id="settings-of-coupons-container">
-    <strong>Coupon Details</strong>
+    <strong>Membership Coupon Details</strong>
     <table>
         <thead>
             <tr>
@@ -1165,6 +1190,8 @@
       <button add_coupon_btn >Add</button>
     </form>
   </div>
+
+  
 </div>
 
         <!-----------------------Upload Event ----------------------------->
