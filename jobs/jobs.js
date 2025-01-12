@@ -14,8 +14,8 @@ import { FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_REDIRECT_URI, LINKEDIN_K
 import {google} from 'googleapis'
 import Linkedin from "./controllars/media/linkedin.js";
 import Tiktok from "lib-tiktok-api";
-
-
+import { ImageUrl } from "./controllars/imageUrl.js";
+import express from 'express'
 
 
 
@@ -242,5 +242,20 @@ async function updateFacebook() {
     }
 }
 
-
+export async function deleteImageUrlsAfter24Hour(req=express.request,res=express.response){
+    try {
+        res.sendStatus(204);
+        let urls = await ImageUrl.find({});
+        for (let i = 0; i < urls.length; i++) {
+            const id = urls[i].id;
+            if ((Date.now() - id)  > (24 *60*60*1000)) {
+                await ImageUrl.findByIdAndDelete(urls[i]._id)
+                .then(el => console.log('deleted image url id is ' + el._id))
+                .catch(el => console.error(el));
+            }
+        }
+    } catch (error) {
+        console.error(error);
+    }
+}
 

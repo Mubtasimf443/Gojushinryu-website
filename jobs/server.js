@@ -5,7 +5,7 @@ InshaAllah, By his marcy I will Gain Success
 
 
 import express from 'express'
-import Main from './jobs.js';
+import Main, { deleteImageUrlsAfter24Hour } from './jobs.js';
 import { log } from 'string-player';
 import { connectDB } from './controllars/ConnectDb.js';
 import fetch from 'node-fetch';
@@ -61,5 +61,6 @@ app.get('/loop', function (req,res) {
    res.send('looping......')
 });
 
+app.get('/delete-image-url-after-24-hours', deleteImageUrlsAfter24Hour);
 
 app.listen(3000 ,e => log('thank you Allah') )
