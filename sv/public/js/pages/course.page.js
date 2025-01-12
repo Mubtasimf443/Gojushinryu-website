@@ -16,7 +16,6 @@ let
     let course = document.querySelector(`[id="course-our-regular-classes"]`);
     let enrollBtn = course.querySelector('.enroll-btn');
 
-
     enrollBtn.addEventListener('click', function (event) {
         event.preventDefault();
         popup1.classList.add('active');
@@ -24,7 +23,14 @@ let
         popup1.querySelector(`#base-price`).innerHTML = Number(globlal_fees_of_regular_class).toFixed(2);
         popup1.querySelector(`#gst-amount`).innerHTML = Number((globlal_fees_of_regular_class * (gst_rate / 100))).toFixed(2);
         popup1.querySelector(`#total-price`).innerHTML = globlal_fees_of_regular_class + (globlal_fees_of_regular_class * (gst_rate / 100));
-    })
+    });
+
+    let detailsBtn=course.querySelector('.details-btn');
+    detailsBtn.addEventListener('click', function(event){
+        event.preventDefault();
+        return setPopupDetails(`[detailspopup1]`,dates_of_regular_class )
+    });
+
 }
 { //our online classes
     let course = document.querySelector(`[id="Our-Online-Martial-Art-Classes"]`);
@@ -33,7 +39,14 @@ let
         event.preventDefault();
         popup2.classList.add('active');
         popup2.setAttribute('mode', '2');
-    })
+    });
+
+    let detailsBtn=course.querySelector('.details-btn');
+    detailsBtn.addEventListener('click', function(event){
+        event.preventDefault();
+        return setPopupDetails(`[detailspopup2]`,dates_of_online_classes )
+    });
+
 }
 
 
@@ -54,6 +67,11 @@ let
         popup2.classList.add('active');
         popup2.setAttribute('mode', '4');
     })
+    let detailsBtn=course.querySelector('.details-btn');
+    detailsBtn.addEventListener('click', function(event){
+        event.preventDefault();
+        return setPopupDetails(`[detailspopup4]`,dates_of_women_defence_classes );
+    });
 
 }
 
@@ -263,3 +281,65 @@ window.addEventListener('load', function (event) {
     cards[4].querySelector(`[fees4]`).innerHTML = ` Fees:$${total.toFixed(2)} ($${globlal_fees_of_bhangra_fitness.toFixed(2)} + 5% gst)`;
 
 });
+
+
+function setPopupDetails(query , dateString) {
+    let popup=document.querySelector(query);
+    popup.style.display = 'block';
+    popup.querySelector('#close-detailspopup-btn').addEventListener('click', function (event =new Event('click')) {
+        event.preventDefault();
+        popup.style.display = 'none';
+    });
+    const calendarBody = popup.querySelector(`#calendar tbody`);
+    const currentDate = new Date();
+    const year = currentDate.getFullYear();
+    const month = currentDate.getMonth();
+
+    // Get the first day of the month (0 = Sunday, 1 = Monday, ...)
+    const firstDayOfMonth = new Date(year, month, 1).getDay();
+    // Get the number of days in the current month
+    const daysInMonth = new Date(year, month + 1, 0).getDate();
+    // Clear existing rows
+    calendarBody.innerHTML = '';
+
+    let day = 1; // Start from the first day of the month
+        for (let row = 0; day <= daysInMonth; row++) {
+        const tr = document.createElement('tr');
+        for (let col = 0; col < 7; col++) {
+            const td = document.createElement('td');
+
+            // Check if we are at the beginning of the month
+            if (row === 0 && col < firstDayOfMonth) {
+                // Empty cells for days before the first of the month
+                td.innerHTML = '';
+            } else if (day <= daysInMonth) {
+                // Fill in the day
+                td.innerHTML = day;
+                td.classList.add('calendar-day'); // Add a class for styling
+
+                function checkCol(col = 1, date = '') {
+                    let array = date.split(',');
+                    array = array.map(function (el) { return Number(el) });
+                    for (let i = 0; i < array.length; i++) {
+                        const element = array[i];
+                        if (element === col) return true;
+                    }
+                    return false;
+                }
+                // Example: Highlight weekends (optional)
+                if (checkCol(col, dateString)) {
+                    td.classList.add('active');
+                }
+
+                day++;
+            } else {
+                // Empty cells after the last day of the month
+                td.innerHTML = '';
+            }
+
+            tr.appendChild(td);
+        }
+        calendarBody.appendChild(tr);
+    }
+}
+

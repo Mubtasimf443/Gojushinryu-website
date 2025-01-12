@@ -19,6 +19,7 @@ import { Settings } from "../_lib/models/settings.js";
 import { dayCatch7, longCatch, longCatch24 } from "../_lib/midlewares/catching.js";
 import customLinkPage from "../_lib/model_base_function/customLink.js";
 import { settingsAsArray } from "../_lib/model_base_function/Settings.js";
+import { log } from "string-player";
 
 let pageRouter = Router();
 
@@ -49,7 +50,10 @@ pageRouter.get('/courses',async (req, res) => {
         res.render('course-selling-page', {
             globlal_fees_of_regular_class:settings.fees_of_reqular_class , 
             globlal_fees_of_bhangra_fitness:settings.fees_of_Bhangra_fitness,
-            gst_rate : settings.gst_rate
+            gst_rate : settings.gst_rate,
+            dates_of_regular_class:settings.date_of_regular_class.date ?? '0,1',
+            dates_of_women_defence_classes: settings.date_of_womens_defence_class.date ?? '0,1',
+            dates_of_online_classes: settings.date_of_online_class.date ?? '0,1',
         })
     } catch (error) {
         console.error(error);
@@ -63,12 +67,13 @@ pageRouter.get('/courses',async (req, res) => {
 
 pageRouter.get('/courses/date',longCatch24, async (req, res) => {
     try {
-        let settings = await Settings.findOne({})
+        let settings = await Settings.findOne({});
+        
         return res.render('calender', {
             date_of_womens_defence_class: settings.date_of_womens_defence_class.date ?? '',
             date_of_regular_class: settings.date_of_regular_class.date ?? '',
-            date_of_online_class: settings.date_of_online_class.date ?? ''
-        })
+            date_of_online_class: settings.date_of_online_class.date ?? '',
+        });
     } catch (error) {
         console.log({ error });
     }

@@ -38,13 +38,16 @@ Insha Allab,  By the marcy of Allah,  I will gain success
     }
   </style>
 
-</head>
-
 <script>
   let globlal_fees_of_regular_class = {{globlal_fees_of_regular_class}};
   let globlal_fees_of_bhangra_fitness = {{globlal_fees_of_bhangra_fitness}};
   let gst_rate = {{gst_rate}};
+  let dates_of_regular_class=`{{dates_of_regular_class}}`;
+  let dates_of_women_defence_classes=`{{dates_of_women_defence_classes}}`;
+  let dates_of_online_classes="{{dates_of_online_classes}}";
 </script>
+</head>
+
 
 <body>
   {{>Header}}
@@ -244,6 +247,218 @@ Insha Allab,  By the marcy of Allah,  I will gain success
               <button style="padding: 10px 20px;font-size: 1rem;color:#fff; background:#4caf50;border:none;border-radius: 8px;cursor: pointer;transition:background 0.3s ease;" >Close</button>
           </div>
      </div>
+
+
+
+<!-- Popup details popup -->
+<div detailspopup1 id="detailspopup-overlay">
+    <div id="detailspopup-container">
+        <!-- Popup Header -->
+        <div id="detailspopup-header">
+            <h2>Course Details</h2>
+            <button id="close-detailspopup-btn">&times;</button>
+        </div>
+
+        <!-- Popup Content -->
+        <div id="detailspopup-content">
+            <p><strong>Course Name:</strong>Our Martial Art Regular Classes</p>
+            <p>
+                <strong>Description:</strong> Our flagship Regular Classes are the cornerstone of our academy, meticulously designed to cater to individuals of all skill levels—from beginners to advanced practitioners. Our expert instructors bring years of experience and deep-rooted knowledge to teach traditional martial arts forms, practical self-defense techniques, and advanced sparring methods.
+            </p>
+
+            <h3>Class Dates</h3>
+            <table class="calendar" id="calendar">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td class="active">4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+<!-- Popup details popup -->
+<div detailspopup2 id="detailspopup-overlay">
+    <div id="detailspopup-container">
+        <!-- Popup Header -->
+        <div id="detailspopup-header">
+            <h2>Course Details</h2>
+            <button id="close-detailspopup-btn">&times;</button>
+        </div>
+
+        <!-- Popup Content -->
+        <div id="detailspopup-content">
+            <p><strong>Course Name:</strong> Our Martial Art Online Classes</p>
+            <p>
+                <strong>Description:</strong> Embracing the digital age, our Online Classes allow students worldwide to access world-class martial arts training from the comfort of their homes. Whether you’re a beginner or a seasoned martial artist, our virtual sessions are carefully crafted to provide an authentic experience.
+            </p>
+            
+            <h3>Class Dates</h3>
+
+            <table class="calendar" id="calendar">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td class="active">4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{{!-- 
+<!-- Popup details popup -->
+<div detailspopup3 id="detailspopup-overlay">
+    <div id="detailspopup-container">
+        <!-- Popup Header -->
+        <div id="detailspopup-header">
+            <h2>Course Details</h2>
+            <button id="close-detailspopup-btn">&times;</button>
+        </div>
+
+        <!-- Popup Content -->
+        <div id="detailspopup-content">
+            <p><strong>Course Name:</strong> Our Seminars</p>
+            <p>
+                <strong>Description:</strong> Our Seminars are exclusive, one-of-a-kind learning opportunities that go beyond traditional classroom settings. Conducted by our senior instructors and special guest martial arts masters, these seminars are designed to deepen your knowledge and refine your skills.
+            </p>
+
+           
+
+        </div>
+    </div>
+</div> --}}
+<!-- Popup details popup -->
+<div detailspopup4 id="detailspopup-overlay">
+    <div id="detailspopup-container">
+        <!-- Popup Header -->
+        <div id="detailspopup-header">
+            <h2>Course Details</h2>
+            <button id="close-detailspopup-btn">&times;</button>
+        </div>
+
+        <!-- Popup Content -->
+        <div id="detailspopup-content">
+            <p><strong>Course Name:</strong> Our Women’s Defense Martial Classes</p>
+            <p>
+                <strong>Description:</strong> Empowerment lies at the heart of our Women’s Defense Martial Classes, a specialized program tailored to address the unique challenges women face in today’s world. These classes emphasize practical self-defense techniques and situational awareness to build confidence and personal safety.
+            </p>
+
+            <h3>Class Dates</h3>
+            <table class="calendar" id="calendar">
+                <thead>
+                    <tr>
+                        <th>Sun</th>
+                        <th>Mon</th>
+                        <th>Tue</th>
+                        <th>Wed</th>
+                        <th>Thu</th>
+                        <th>Fri</th>
+                        <th>Sat</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td>1</td>
+                        <td>2</td>
+                        <td>3</td>
+                        <td class="active">4</td>
+                        <td>5</td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td>7</td>
+                        <td>8</td>
+                        <td>9</td>
+                        <td>10</td>
+                        <td>11</td>
+                        <td>12</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+{{!-- 
+<!-- Popup details popup -->
+<div detailspopup5 id="detailspopup-overlay">
+    <div id="detailspopup-container">
+        <!-- Popup Header -->
+        <div id="detailspopup-header">
+            <h2>Course Details</h2>
+            <button id="close-detailspopup-btn">&times;</button>
+        </div>
+
+        <!-- Popup Content -->
+        <div id="detailspopup-content">
+            <p><strong>Course Name:</strong> Advanced Web Development</p>
+            <p>
+                <strong>Description:</strong> For those seeking a fun, high-energy workout, our Bhangra Fitness Classes combine traditional Punjabi dance with modern fitness routines. Suitable for all ages and fitness levels, this program blends culture, cardio, and rhythm into an exhilarating experience.
+            </p>
+
+            
+
+        </div>
+    </div>
+</div> --}}
 
   {{>Footer}}
 </body>
