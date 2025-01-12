@@ -8,7 +8,7 @@ InshaAllah, By his marcy I will Gain Success
 import Stripe from 'stripe';
 import { STRIPE_SECRET_KEY ,T_STRIPE_KEY} from '../env.js';
 import { namedErrorCatching } from '../catchError.js';
-const str = new Stripe(T_STRIPE_KEY);
+const str = new Stripe(STRIPE_SECRET_KEY);
 
 export default class StripePay {
     constructor(options = { success_url: "", cancel_url: "" }) {

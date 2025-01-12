@@ -11,8 +11,9 @@ import { sendCourseApplicationEmail } from "../mail/courseContact.mail.js";
 import { CourseEnrollments } from "../models/courseEnrollment.js";
 import { Settings } from "../models/settings.js";
 import PaypalPayment from "../utils/payment/PaypalPayment.js";
-import { BASE_URL, PAYPAL_CLIENT_ID, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
+import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
 import StripePay from "../utils/payment/stripe.js";
+
 
 export async function coursePurchaseApi(req = request, res = response) {
     try {
@@ -63,9 +64,9 @@ export async function coursePurchaseApi(req = request, res = response) {
 
         if (payment_method === 'paypal') {
             let paypal = new PaypalPayment({
-                client_id: T_PAYPAL_CLIENT_ID,
-                client_secret: T_PAYPAL_SECRET,
-                mode: 'sandbox',
+                client_id: PAYPAL_CLIENT_ID,
+                client_secret: PAYPAL_SECRET,
+                mode: 'live',
                 success_url: BASE_URL + '/api/api_s/course/purchase/paypal/success/',
                 cancel_url: BASE_URL + '/api/api_s/course/purchase/paypal/cancel/',
                 brand_name: 'School od Traditonal Martial Arts'
@@ -124,8 +125,6 @@ export async function coursePurchaseApi(req = request, res = response) {
         catchError(res, error)
     }
 }
-
-
 export async function courseContactApi(req = request, res = response) {
     try {
         let { name, phone, email, country, city, district, zipcode, road_no, mode } = req.body;

@@ -237,8 +237,10 @@ body {
   visibility: hidden;
   opacity: 0;
   transition: opacity 0.3s ease, visibility 0.3s ease;
-  overflow-inline: scroll;
+  overflow-y: scroll;
   scrollbar-width: none;
+  scroll-behavior: smooth;
+  scrollbar-color: #ccc;
 }
 
 .popup.active {
@@ -252,6 +254,7 @@ body {
   margin-bottom: 10px;
   color: #444;
   text-align: center;
+
 }
 
 .popup .form-info {
@@ -267,9 +270,7 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow: scroll;
-  overflow-inline: scroll;
-  scrollbar-width: none;
+  
 }
 
 /* Smaller Input Fields */

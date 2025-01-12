@@ -205,7 +205,7 @@
     </div>
   </div>
 
-  <!-------------------------- order PopUp ------------------------------>
+  {{!-- -------------------------- order PopUp ------------------------------ --}}
 
   <div id="popup_order_action" style="display: none;" class="popup_c">
     <div class="popup_order_action_form">
@@ -272,30 +272,18 @@
         <label>Total Product Price</label>
         <input value="" placeholder="TotalProductPrice" type="text" disabled>
       </div>
-
-
-
       <div class="input-box">
         <label>Shipping</label>
         <input value="" placeholder="total shipping" type="number">
       </div>
-
-
       <div class="input-box">
         <label>Tax</label>
         <input value="" placeholder="tax" type="number">
       </div>
-
-
-
-
       <div class="input-box">
         <label>Total Price</label>
         <input value="0" placeholder="total" type="number" disabled>
       </div>
-
-
-
       <table>
         <tr>
 
@@ -1044,26 +1032,83 @@
         </div>
 
         <!---------------------------- course enrollments ----------------------------->
-        <div ct_section style="display: none;" targetedElement="course_enrolments_href"
-          id="couses-enrollment-list-container">
-
-
-          <table>
-            <tr>
-              <th>No</th>
-              <th width="30%">Course</th>
-              <th width="27%">Student</th>
-              <th width="15%">Date</th>
-              <th width="20%">Price</th>
-            </tr>
-
+        <div ct_section targetedElement="course_enrolments_href" class="courses-enrollment-list-container" id="couses-enrollment-list-container">
+  
+  
+          <div class="popup_c">
+            <div class="popup_order_action_form">
+              <div class="popup_header">
+                enrollment Details
+                <button class="close-btn " onclick="closePopup()">&times;</button>
+              </div>
+              <div class="popup_content">
+                <div class="input-box">
+                  <label>Student Name</label>
+                  <input disabled value="Student Name" placeholder="Student Name" type="text">
+                </div>
+                <div class="input-box">
+                  <label>Student Number</label>
+                  <input disabled value="Student Number" placeholder="Student Number" type="text">
+                </div>
+                <div class="input-box">
+                  <label>Student Email</label>
+                  <input disabled value="Student Email" placeholder="Student Email" type="text">
+                </div>
+        
+                <div class="input-box">
+                  <label>Student Address</label>
+                  <input disabled value="Student Address" placeholder="Student Address" type="text">
+                </div>
+        
+                <table>
+          
+                    <tr>
+                      <th>Date</th>
+                      <th>Payment Amount</th>
+                      <th>Paid</th>
+                      <th>Payment Date</th>
+                    </tr>
+                    <tr>
+                      <td>January 2024</td>
+                      <td>$100.00</td>
+                      <td>Paid</td>
+                      <td>02/02/2024</td>
+                    </tr>
+                </table>
+        
+                <div class="btn-group">
+                  <button class="closebtn">Close</button>
+                  <button paymentRequest >Payment Request</button>
+                  <Button Delete>Delete</Button>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <table class="main_table">
+            <thead>
+              <tr>
+                <th>Enrollment ID</th>
+                <th>Course Name</th>
+                <th>Student Name</th>
+                <th>Paid This Month</th>
+                <th>Enrollment Status</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+         
+        
+            
+            </tbody>
           </table>
+        
         </div>
 
 
         <!----------------------- Settings ----------------------------->
 
-<div class="settings-container-main" targetedElement="settings_href" style="display: flex;" ct_section>
+<div class="settings-container-main" targetedElement="settings_href" style="display: none;" ct_section>
   <div id="settings-conatiner"  class="form-section">
 
     

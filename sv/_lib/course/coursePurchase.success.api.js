@@ -40,13 +40,19 @@ export async function coursePurchaseSuccessPaypal(req = request, res = response)
 
         courseEnrollment.activated = true;
         courseEnrollment.paid = true;
-        courseEnrollment.paymentThisMonth = {
-            isPaid: true,
-            paidDate: new Date(Date.now())
+        courseEnrollment.paymentsData.push({
+            id: (new Date().getMonth() < 9 ? "0" + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + "-" + new Date().getFullYear(),
+            month : new Date().toLocaleString('default', { month: 'long' }) ,
+            Year : new Date().getFullYear(),
+            date : new Date().getDate(),
+            paid: true,
+            payment_date : Date.now(),
+            paidAmount : courseEnrollment.course_price.toFixed(2)
+        });
+        courseEnrollment.paymentThisMonth={
+            isPaid :true,
+            paidDate :new Date()
         }
-        courseEnrollment.paidMonths.push(new Date().toLocaleString('default', { month: 'long' }));
-        if (new Date().getMonth() == 11) courseEnrollment.paymentYears.push(new Date().getFullYear().toString());
-
         courseEnrollment = await courseEnrollment.save();
 
         let gst_rate=await settingsAsString('gst_rate');
@@ -109,13 +115,19 @@ export async function coursePurchaseSuccessStripe(req = request, res = response)
 
         courseEnrollment.activated = true;
         courseEnrollment.paid = true;
-        courseEnrollment.paymentThisMonth = {
-            isPaid: true,
-            paidDate: new Date(Date.now())
+        courseEnrollment.paymentsData.push({
+            id: (new Date().getMonth() < 9 ? "0" + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + "-" + new Date().getFullYear(),
+            month : new Date().toLocaleString('default', { month: 'long' }) ,
+            Year : new Date().getFullYear(),
+            date : new Date().getDate(),
+            paid: true,
+            payment_date : Date.now(),
+            paidAmount : courseEnrollment.course_price.toFixed(2)
+        });
+        courseEnrollment.paymentThisMonth={
+            isPaid :true,
+            paidDate :new Date()
         }
-        courseEnrollment.paidMonths.push(new Date().toLocaleString('default', { month: 'long' }));
-        if (new Date().getMonth() == 11) courseEnrollment.paymentYears.push(new Date().getFullYear().toString());
-
         courseEnrollment = await courseEnrollment.save();
 
         let { student_name, student_email, course_name, course_price, apply_date, } = courseEnrollment;

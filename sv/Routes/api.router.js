@@ -8,7 +8,7 @@ import { ChangeuserData, changeUserPasswordAPI } from '../_lib/api/Change.userDa
 import { UplaodImageApiIn25Minutes } from '../_lib/api/UplaodImageApiIn25Minutes.js';
 import AdminCheckMidleware from '../_lib/midlewares/AdminCheckMidleware.js';
 import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
-import { CreateACourseApi, deleteCourseApi, findCourseEnrollments, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
+import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEnrollments, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
 import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery } from '../_lib/model_base_function/Product.js';
@@ -125,6 +125,7 @@ router.delete('/testimonials', deleteTestimonials)
 router.delete('/custom-link', deleteCustomLink)
 router.delete('/order/cancel', cancelOrder)
 router.delete('/coupons/memberships' , deleteMembershipCoupon);
+router.delete('/course/enrollments' , deleteCourseEnrollment);
 
 //payments
 router.get('/paypal-order-success', OrderSuccessPaypalApi)

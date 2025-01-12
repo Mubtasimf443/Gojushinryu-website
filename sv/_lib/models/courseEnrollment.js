@@ -51,11 +51,18 @@ let courseEnrollmentSchema =new Schema({
         default :Date.now
     },
 
-    paymentYears:[String],
-    paidMonths : [String],
-    notPaidMonths:[String],
+    paymentsData: [{
+        id: String,
+        payment_date: Date,
+        paidAmount :String,
+        month :String,
+        Year :Number,
+        date : Number,
+        paid : Boolean
+    }],
+
     paymentThisMonth :{
-        isPaid:Boolean,
+        isPaid: { type: Boolean, default: false },
         paidDate :Date,
     }
 });

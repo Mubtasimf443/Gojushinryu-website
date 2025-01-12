@@ -14,60 +14,260 @@ Insha Allah,  By your Marcy Ya Allah
     width: 100%;
 }
 
+/* Popup */
 
-#couses-enrollment-list-container > table{
-    font-family: arial, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
+:root {
+  --popup-bg: white;
+  --popup-overlay: rgba(0, 0, 0, 0.6);
+  --popup-accent: black;
+  --popup-accent-hover: #45a049;
+  --popup-text: black;
+  --popup-border: #777;
+  --popup-shadow: rgba(0, 0, 0, 0.2);
+  --popup-font: 'Arial', sans-serif;
 }
 
-#couses-enrollment-list-container th{
-    border: 1px solid #000;
-    text-align: left;
-    padding: 10px 12px; 
-    background-color:black;
-    color: white;
-  }
-
-
-  #couses-enrollment-list-container td {
-    border: 1px solid #ccc;
-    text-align: left;
-    padding: 10px 12px;
-    background: inherit;
-    text-wrap: wrap;
-  }
-
-
-  #couses-enrollment-list-container td img {
-    max-width:90% ;
-    object-fit: contain;
-    object-position: top left;
-    max-height:80px ;
-  }
-
-
-  #couses-enrollment-list-container tr:nth-child(1){
-    background: var(--main-cl);
-  }
-
-
-  #couses-enrollment-list-container tr{
-    background-color: #ffffff;
-
-  }
-
-  #couses-enrollment-list-container button{
-    background: inherit;
-    border: none;
-    font-size: 14px;
-    color: white;
-    background: #000;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    box-sizing: content-box;
-    padding: 8px 14px;
+#couses-enrollment-list-container .popup_c {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--popup-overlay);
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
 }
 
+#couses-enrollment-list-container .popup_c.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+#couses-enrollment-list-container .popup_c .popup_order_action_form {
+  background: var(--popup-bg);
+  color: var(--popup-text);
+  width: 90%;
+  max-width: 800px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px var(--popup-shadow);
+  /* overflow: scroll; */
+  position: relative;
+  animation: popup-slide-in 0.4s ease-in-out;
+  
+}
+
+@keyframes popup-slide-in {
+  from {
+      transform: scale(0.9);
+      opacity: 0;
+  }
+  to {
+      transform: scale(1);
+      opacity: 1;
+  }
+}
+
+#couses-enrollment-list-container .popup_c .popup_header {
+  background: var(--popup-accent);
+  color: white;
+  padding: 1em;
+  font-size: 1.5em;
+  text-align: center;
+  position: relative;
+  width: 100%;
+}
+
+#couses-enrollment-list-container .popup_c .popup_header .close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.2em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+#couses-enrollment-list-container .popup_c .popup_header .close-btn:hover {
+  color: #ddd;
+}
+
+#couses-enrollment-list-container .popup_c .popup_content {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+  width: 100%;
+}
+
+#couses-enrollment-list-container .popup_c .popup_content .input-box,
+#couses-enrollment-list-container .popup_c .popup_content .txt-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#couses-enrollment-list-container .popup_content .input-box label,
+#couses-enrollment-list-container .popup_content .txt-box label {
+  flex: 1;
+  margin-right: 10px;
+  font-size: 1em;
+  color: var(--popup-text);
+}
+
+#couses-enrollment-list-container .popup_content .input-box input,
+#couses-enrollment-list-container .popup_content .txt-box textarea {
+  flex: 2;
+  padding: 10px;
+  border: 1px solid var(--popup-border);
+  border-radius: 8px;
+  font-size: 1em;
+  outline: none;
+}
+
+#couses-enrollment-list-container .popup_content .txt-box textarea {
+  resize: vertical;
+  height: 80px;
+}
+
+#couses-enrollment-list-container .popup_content table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  color: black;
+}
+
+#couses-enrollment-list-container .popup_content table th,
+#couses-enrollment-list-container .popup_content table td {
+  text-align: left;
+  padding: 12px;
+  border: 1px solid var(--popup-border);
+}
+
+#couses-enrollment-list-container .popup_content table th {
+  background: var(--popup-accent);
+  color: white;
+}
+
+#couses-enrollment-list-container .popup_content table td img {
+  max-height: 80px;
+  object-fit: cover;
+}
+
+#couses-enrollment-list-container .popup_content .btn-group {
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 10px;
+}
+
+#couses-enrollment-list-container .popup_content .btn-group button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+#couses-enrollment-list-container .popup_content .btn-group button:first-child {
+  background: var(--popup-border);
+  color: var(--popup-text);
+}
+
+#couses-enrollment-list-container .popup_content .btn-group button:first-child:hover {
+  background: #555;
+}
+
+#couses-enrollment-list-container .popup_content .btn-group button:nth-child(2) {
+  background: green;
+  color: white;
+}
+
+#couses-enrollment-list-container .popup_content .btn-group button:nth-child(2):hover {
+  background:darkgreen ;
+}
+
+
+#couses-enrollment-list-container .popup_content .btn-group button:nth-child(3) {
+  background: red;
+  color: white;
+}
+
+#couses-enrollment-list-container .popup_content .btn-group button:nth-child(3):hover {
+  background: darkred;
+}
+
+
+
+
+
+
+
+
+
+.courses-enrollment-list-container table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 30px;
+}
+
+.courses-enrollment-list-container > table th,td {
+  padding: 15px 20px;
+  text-align: left;
+  font-size: 16px;
+}
+
+
+/* .courses-enrollment-list-container */
+.courses-enrollment-list-container>table>thead{
+  background-color: #000;
+  color: #fff;
+  font-weight: bold;
+}
+.courses-enrollment-list-container>table>tbody{
+  background-color: white;
+}
+
+.courses-enrollment-list-container>table>tbody>tr:nth-child(even) {
+  background-color: #f4f4f4;
+}
+
+
+.courses-enrollment-list-container tr:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+ .courses-enrollment-list-container  .view-button {
+  padding: 8px 15px;
+  background-color: #000;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.courses-enrollment-list-container .view-button:hover {
+  background-color: #555;
+}
+
+.courses-enrollment-list-container .status {
+  font-weight: bold;
+}
+
+.courses-enrollment-list-container .status.active {
+  color: green;
+}
+
+.courses-enrollment-list-container .status.inactive {
+  color: red;
+}

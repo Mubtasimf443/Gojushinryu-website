@@ -1,6 +1,7 @@
 /*بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ*/
 /* Insha Allah,  Allah loves s enough for me */
 
+import express from "express";
 import { UploadImageToCloudinaryFromImageUrl } from "../Config/cloudinary.js";
 import Course from "../models/Course.js";
 import { CourseEnrollments } from "../models/courseEnrollment.js";
@@ -9,6 +10,7 @@ import { User } from "../models/user.js";
 import { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
 import { makeTimeString, mekeLinkString } from "../utils/string.manipolation.js";
+import catchError, { namedErrorCatching } from "../utils/catchError.js";
 
 
 
@@ -149,24 +151,27 @@ function returnStudentName(user) {
   let { last_name, first_name } = user;
   return `${first_name} ${last_name}`
 }
-export async function findCourseEnrollments(req,res) {
+export async function findCourseEnrollments(req, res) {
   try {
-    let enrollments=await CourseEnrollments.find({});
-    if (enrollments.length===0) return res.sendStatus(304)
-    for (let i = 0; i < enrollments.length; i++) {
-      if (enrollments[0].activated ===true && enrollments[0].paid ===true) {
-        let {course_name,student_id,course_price} = enrollments[0];
-        let date = enrollments[0].Date.toDateString();//=enrollments[0].Date.substring(0,10);
-        let studentName = await User.findById(student_id).then(returnStudentName);     
-        enrollments.push({no :i+1,date,course_name,studentName,price :course_price});
-      }
-      enrollments.shift();
-    }
-
-    
-    return res.status(200).json({ enrollments })
+    let enrollments = await CourseEnrollments.find().where('activated').equals(true).where('paid').equals(true);
+    if (enrollments.length === 0) return res.sendStatus(304)
+    return res.status(200).json({ enrollments });
   } catch (error) {
-    log({error})
+    log({ error })
     res.sendStatus(400)
+  }
+}
+export async function deleteCourseEnrollment(req = express.request, res = express.response) {
+  try {
+    let id = Number(req.query.id);
+    if (id.toString() === 'NaN') namedErrorCatching('parameter error', 'id is a NaN');
+    if (id.toString().length < 5 || id.toString().length > 50) namedErrorCatching('parameter error', 'id is invalid');
+    let enrollment = await CourseEnrollments.findOne({ id });
+    if (enrollment !== null) {
+      await CourseEnrollments.findOneAndDelete({ id });
+      return res.sendStatus(202);
+    } else return res.sendStatus(400);
+  } catch (error) {
+    catchError(res, error)
   }
 }
