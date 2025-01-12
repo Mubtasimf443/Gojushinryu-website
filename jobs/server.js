@@ -9,11 +9,12 @@ import Main, { deleteImageUrlsAfter24Hour } from './jobs.js';
 import { log } from 'string-player';
 import { connectDB } from './controllars/ConnectDb.js';
 import fetch from 'node-fetch';
+import morgan from 'morgan';
 
 
 const app =express();
 await connectDB();
-
+app.use(morgan('dev'));
 
 app.get('/keep-live', async (req, res) => {
     try {
