@@ -22,10 +22,10 @@ let aboutUsHeaderNav=document.querySelector('#about-us-header-nav-div-link-ancho
 headerIcon.setAttribute('src' ,'/img/header_icon1.png') ;
 
 function loadH3(params) { 
-  
       let h3=  document.createElement('h3');
-      h3.innerText = 'Book Your First Class Free / School of  Traditional Martial Arts' ;
+      h3.innerHTML = '<a href="/courses" > Book Your First Class</a>&nbsp;Free / School of  Traditional Martial Arts' ;
       topBar.appendChild(h3);
+      h3.querySelector('a').style.textDecoration='underline';
       h3.style.right='-50vw';
       setTimeout(e=> {
 
