@@ -26,7 +26,7 @@ export async function postPageNavigation(req,res) {
             posts.push({
                 title :(title.length >100 ? title.substring(0,100) :title),
                 description :(description.length >140 ? description.substring(0,140) : description),
-                date :date.toDateString() ,
+                date :new Date(date).toDateString() ,
                 link :BASE_URL +'/media/post/'+dateAsNumber,
                 thumb,
             });

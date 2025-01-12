@@ -39,6 +39,7 @@ import { deleteCustomLink, disableCustomLink, enableCustomLink, findCustomLinks 
 import { activateMembershipCoupon, createMembershipCoupon, deActivateMembershipCoupon, deleteMembershipCoupon, getMembershipCouponRates, getMembershipCoupons, updateMembershipCoupon } from "../_lib/model_base_function/membershipcoupon.js";
 import { courseContactApi } from "../_lib/course/course.Purchase.Api.js";
 import { coursePurchaseCancelPaypal, coursePurchaseCancelStripe, coursePurchaseSuccessPaypal, coursePurchaseSuccessStripe } from "../_lib/course/coursePurchase.success.api.js";
+import { noCache } from "../_lib/midlewares/catching.js";
 // import { customMembershipApi } from "../_lib/model_base_function/custom-course-memberhsip.js";
 
 
@@ -48,7 +49,7 @@ let router =Router()
 
 //midlewares
 router.use(morgan('dev'))
-
+router.use(noCache)
 
 
 //get

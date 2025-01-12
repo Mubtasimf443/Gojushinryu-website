@@ -154,7 +154,6 @@ function returnStudentName(user) {
 export async function findCourseEnrollments(req, res=express.response) {
   try {
     let enrollments = await CourseEnrollments.find().where('activated').equals(true).where('paid').equals(true);
-    res.set('Cache-Control', 'no-cache');
     if (enrollments.length === 0) return res.sendStatus(204);
     return res.status(200).json({ enrollments });
   } catch (error) {

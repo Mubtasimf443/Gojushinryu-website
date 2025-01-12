@@ -38,3 +38,8 @@ export function dayCatch7(req,res,next) {
     res.set('Cache-Control', 'public, max-age=604800');
     next()
 }
+
+export async function noCache(req,res,next) {
+   res.set('Cache-Control', 'no-cache');
+   next();
+}

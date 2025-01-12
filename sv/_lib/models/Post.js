@@ -8,7 +8,7 @@ By his marcy,  I will gain success
 import mongoose from 'mongoose';
 
 
-const pSchema = mongoose.Schema({
+const pSchema =new mongoose.Schema({
   title : {
     type : String,  
     required :true
