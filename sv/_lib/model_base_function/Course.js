@@ -151,10 +151,11 @@ function returnStudentName(user) {
   let { last_name, first_name } = user;
   return `${first_name} ${last_name}`
 }
-export async function findCourseEnrollments(req, res) {
+export async function findCourseEnrollments(req, res=express.response) {
   try {
     let enrollments = await CourseEnrollments.find().where('activated').equals(true).where('paid').equals(true);
-    if (enrollments.length === 0) return res.sendStatus(304)
+    res.set('Cache-Control', 'no-cache');
+    if (enrollments.length === 0) return res.sendStatus(204);
     return res.status(200).json({ enrollments });
   } catch (error) {
     log({ error })
