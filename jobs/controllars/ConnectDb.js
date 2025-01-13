@@ -11,7 +11,7 @@ import { DATABASE, TEST_DATABASE } from "../env.js";
 
 export const connectDB = async() => {
     try {
-       await mongoose.connect(TEST_DATABASE);
+       await mongoose.connect(DATABASE);
        console.log('db connect...');
     } catch (error) {
         log(error)
