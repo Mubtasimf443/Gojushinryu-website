@@ -407,7 +407,7 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
                     await sendPaymentRequest(student, paymentLink, dueDate);
                     element.paymentsData[existIndex].lastPaymentRequestSendDate = Date.now();
                     await element.save();
-                    console.log('this month payment request is done at ' + new Date(Date.now()));
+                    console.log('this month payment request is done at ' + new Date(Date.now()).toLocaleString());
                     studentData.push({
                         name: element.student_name,
                         email: element.student_email,
@@ -415,12 +415,11 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
                         totalFees: element.course_price + settings.gst_rate
                     });
                 } else {
-                    console.log('this month payment request is done at '+ new Date(element.paymentsData[existIndex].lastPaymentRequestSendDate));
+                    console.log('this month payment request is done at '+ new Date(element.paymentsData[existIndex].lastPaymentRequestSendDate).toLocaleString() );
                 }
             }
         }
-        await sendAdminNotification(studentData );
-
+        studentData.length !== 0 && await sendAdminNotification(studentData);
     } catch (error) {
         console.error(error);
     }
