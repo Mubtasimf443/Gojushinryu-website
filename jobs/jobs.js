@@ -310,6 +310,7 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
                 const tableRows = studentsData
                 .map(student => `
                     <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">#${student.id}</td>
                         <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${student.name}</td>
                         <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${student.email}</td>
                         <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${student.courseName}</td>
@@ -331,6 +332,7 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
                         <table style="border-collapse: collapse; width: 100%; margin-top: 20px; font-size: 14px;">
                             <thead>
                                 <tr style="background-color: #f2f2f2;">
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">EnrollMent Id</th>
                                     <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Student Name</th>
                                     <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
                                     <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Course Name</th>
@@ -359,12 +361,13 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
     
                 console.log('Admin notification email sent:', info.messageId);
             } catch (error) {
-                console.error('Error sending admin notification email:', error);
+                console.error('Error sending admin notification email:' );
+                console.error( error);
             }
         };
         let ernollments=await CourseEnrollments.find().where('activated').equals('true');
         let settings=await Settings.findOne({});
-        if (ernollments.length===0) return res.sendStatus(204);
+        if (ernollments.length===0) return;
         for (let i = 0; i < ernollments.length; i++) {
             let element = ernollments[i];
 
@@ -392,10 +395,11 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
                 await sendPaymentRequest(student, paymentLink, dueDate);
                 console.log('This Month Payment Request Is Send To the user name :'+ element.student_name);
                 studentData.push({
+                    id : element.id,
                     name: element.student_name,
                     email: element.student_email,
                     courseName :element.course_name,
-                    totalFees: element.course_price + settings.gst_rate
+                    totalFees: element.course_price + (element.course_price * (settings.gst_rate / 100)),
                 });
             }
             if (existIndex !== -1) {
@@ -409,10 +413,11 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
                     await element.save();
                     console.log('this month payment request is done at ' + new Date(Date.now()).toLocaleString());
                     studentData.push({
+                        id: element.id,
                         name: element.student_name,
                         email: element.student_email,
-                        courseName :element.course_name,
-                        totalFees: element.course_price + settings.gst_rate
+                        courseName: element.course_name,
+                        totalFees: element.course_price + (element.course_price * (settings.gst_rate / 100)),
                     });
                 } else {
                     console.log('this month payment request is done at '+ new Date(element.paymentsData[existIndex].lastPaymentRequestSendDate).toLocaleString() );
@@ -420,6 +425,105 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
             }
         }
         studentData.length !== 0 && await sendAdminNotification(studentData);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+
+
+export async function notifyAboutNotPaidStudents(req=express.request,res=express.response) {
+    try {
+        res.sendStatus(202);
+        let studentData = [];
+        let settings=await Settings.findOne({});
+        let ernollments=await CourseEnrollments.find().where('activated').equals('true');
+        for (let i = 0; i < ernollments.length; i++) {
+            let element = ernollments[i];
+            let id = (new Date().getMonth() < 9 ? "0" + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + "-" + new Date().getFullYear()
+            let existIndex= element.paymentsData.findIndex(function (element) {
+                if (element.id ===id) return element;
+            });
+            if (existIndex !== -1) {
+                if(element.paymentsData[existIndex].paid === false) {
+                    studentData.push({
+                        id :element.id,
+                        name :element.student_name,
+                        email :element.student_email,
+                        courseName :element.course_name,
+                        totalFees : element.course_price + (element.course_price * (settings.gst_rate / 100))
+                    })
+                } 
+            }
+        }
+        const sendUnpaidFeesNotification = async ( unpaidStudents) => {
+            try {
+                // Generate table rows dynamically based on unpaid student data
+
+                let month =new Date().toLocaleString('default', { month: 'long' });
+                let year = new Date().getFullYear();
+                const tableRows = unpaidStudents
+                    .map(student => `
+                        <tr>
+                            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">#${student.id}</td>
+                            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${student.name}</td>
+                            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${student.email}</td>
+                            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${student.courseName}</td>
+                            <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">$${student.totalFees.toFixed(2)}</td>
+                        </tr>
+                    `)
+                    .join('');
+        
+                const info = await mailer.sendMail({
+                    from: FROM_EMAIL, // Sender info
+                    to: ADMIN_EMAIL, // Admin's email address
+                    subject: `Unpaid Fees Report - ${month} ${year}`, // Subject line
+                    html: `
+                        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                            <h2 style="color: #FF5722;">Unpaid Fees Report</h2>
+                            <p>Dear Admin,</p>
+                            <p>The following students have not completed their fee payments for <strong>${month} ${year}</strong>. Please take the necessary actions:</p>
+                            
+                            <table style="border-collapse: collapse; width: 100%; margin-top: 20px; font-size: 14px;">
+                                <thead>
+                                    <tr style="background-color: #f2f2f2;">
+                                        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">EnrollMent Id</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Student Name</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Course Name</th>
+                                        <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Total Fees</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    ${tableRows}
+                                </tbody>
+                            </table>
+        
+                            <p><strong>Total Unpaid Students:</strong> ${unpaidStudents.length}</p>
+        
+                            <p>If you have any questions or require further assistance, feel free to contact us:</p>
+                            <ul style="list-style: none; padding: 0;">
+                                <li>📧 Email: <a href="mailto:support@yourmartialarts.com" style="color: #4CAF50;">support@yourmartialarts.com</a></li>
+                                <li>📞 Phone: +1-800-123-4567</li>
+                            </ul>
+        
+                            <p>Thank you for keeping track of student payments.</p>
+                            
+                            <p>Best regards,<br>The <strong>Your Martial Arts School</strong> Automation Team</p>
+                        </div>
+                    `, // HTML body
+                });
+        
+                console.log('Unpaid fees notification email sent:', info.messageId);
+            } catch (error) {
+                console.error('Error sending unpaid fees notification email:', error);
+            }
+        };
+        
+
+        
+        studentData.length !== 0 && await sendUnpaidFeesNotification(studentData);
+        
     } catch (error) {
         console.error(error);
     }
