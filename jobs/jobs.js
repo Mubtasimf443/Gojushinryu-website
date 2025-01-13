@@ -5,18 +5,19 @@ InshaAllah, By his marcy I will Gain Success
 
 import { log } from "string-player";
 import { connectDB } from "./controllars/ConnectDb.js";
-import { namedErrorCatching } from "./controllars/error.handle.js";
+import catchError, { namedErrorCatching } from "./controllars/error.handle.js";
 import request from "./controllars/fetch.js";
-import Settings from "./controllars/settings.js";
 import { getSettings, setSettings, setSettingsAsArray, settingsAsArray } from "./controllars/settings.util.js";
 import Facebook from "./controllars/media/facebook.js";
-import { FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_REDIRECT_URI, LINKEDIN_KEY, LINKEDIN_REDIRECT_URI, LINKEDIN_SECRET, TIKTOK_KEY, TIKTOK_REDIRECT_URI, TIKTOK_SECRET, YOUTUBE_KEY, YOUTUBE_REDIRECT_URI, YOUTUBE_SECRET } from "./env.js";
+import { ADMIN_EMAIL, ADMIN_PHONE, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, FACEBOOK_REDIRECT_URI, FROM_EMAIL, LINKEDIN_KEY, LINKEDIN_REDIRECT_URI, LINKEDIN_SECRET, ORGANIZATION_NAME, TIKTOK_KEY, TIKTOK_REDIRECT_URI, TIKTOK_SECRET, WEBSITE_ORIGIN, YOUTUBE_KEY, YOUTUBE_REDIRECT_URI, YOUTUBE_SECRET } from "./env.js";
 import {google} from 'googleapis'
 import Linkedin from "./controllars/media/linkedin.js";
 import Tiktok from "lib-tiktok-api";
 import { ImageUrl } from "./controllars/imageUrl.js";
 import express from 'express'
-
+import { CourseEnrollments } from "./controllars/courseEnrollment.js";
+import { mailer } from "./controllars/utils/mailer.js";
+import { Settings } from "./controllars/settings.js";
 
 
 export default  async function Main() {
@@ -91,9 +92,6 @@ async function updateYoutube() {
         await deleteYoutube(error)
     }
 }
-
-
-
 async function updateTiktok(params) {
     try {
         let {access_token,refresh_token}=await Settings.findOne({}).then(
@@ -242,6 +240,8 @@ async function updateFacebook() {
     }
 }
 
+
+/* Course Enrollment jobs */
 export async function deleteImageUrlsAfter24Hour(req=express.request,res=express.response){
     try {
         res.sendStatus(204);
@@ -259,3 +259,169 @@ export async function deleteImageUrlsAfter24Hour(req=express.request,res=express
     }
 }
 
+export async function requestCourseEnrollMentPayment(req=express.request,res=express.response) {
+    try {
+        let studentData = [];
+        res.sendStatus(202);
+        async function sendPaymentRequest(student = { email: undefined, name: undefined }, paymentLink , dueDate) {
+            try {
+                const info = await mailer.sendMail({
+                    from: FROM_EMAIL, // Sender info
+                    to: student.email, // Student's email address
+                    subject: `Monthly Fee Payment Request - Due by ${dueDate}`, // Subject line
+                    text: `Your monthly fee payment is due.`, // Plain text body
+                    html: `
+                            <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                                <h2 style="color: #4CAF50;">Monthly Fee Payment Request</h2>
+                                <p>Dear ${student.name},</p>
+                                <p>We hope this message finds you well and you’re enjoying your journey in martial arts training at <strong>${ORGANIZATION_NAME}</strong>.</p>
+                                <p>This is a gentle reminder that your monthly training fee is due by <strong>${dueDate}</strong>. Please use the link below to complete your payment:</p>
+                                
+                                <div style="margin: 20px 0; text-align: center;">
+                                    <a href="${paymentLink}" style="background-color: #4CAF50; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; font-size: 16px;">
+                                        Pay Now
+                                    </a>
+                                </div>
+            
+                                <p>We value your commitment to your training and look forward to seeing your continued progress.</p>
+                                
+                                <p>If you have any questions or face any difficulties making the payment, feel free to contact us:</p>
+                                <ul style="list-style: none; padding: 0;">
+                                    <li>📧 Email: <a href="mailto:${ADMIN_EMAIL}" style="color: #4CAF50;">${ADMIN_EMAIL}</a></li>
+                                    <li>📞 Phone:${ADMIN_PHONE}</li>
+                                </ul>
+            
+                                <p>Thank you for being a part of our martial arts family!</p>
+                                
+                                <p>Best regards,<br>The <strong>${ORGANIZATION_NAME}</strong> Team</p>
+                            </div>
+                        `, // HTML body
+                });
+                // console.log('Monthly fee request email sent:', info.messageId);
+            } catch (error) {
+                console.error('Error sending monthly fee request email:');
+                console.error(error);
+            }
+        }
+        async function sendAdminNotification(studentsData =studentData) {
+            try {
+                let month =new Date().toLocaleString('default', { month: 'long' });
+                let year = new Date().getFullYear();
+                const tableRows = studentsData
+                .map(student => `
+                    <tr>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${student.name}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${student.email}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">${student.courseName}</td>
+                        <td style="border: 1px solid #ddd; padding: 8px; text-align: left;">$${student.totalFees.toFixed(2)}</td>
+                    </tr>
+                `)
+                .join('');
+    
+            const info = await mailer.sendMail({
+                from: FROM_EMAIL, // Sender info
+                to: ADMIN_EMAIL, // Admin's email address
+                subject: `Monthly Payment Request Summary - ${month} ${year}`, // Subject line
+                html: `
+                    <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                        <h2 style="color: #4CAF50;">Monthly Payment Request Summary</h2>
+                        <p>Dear Admin,</p>
+                        <p>This is to inform you that payment request emails for <strong>${month} ${year}</strong> have been successfully sent to the following students:</p>
+                        
+                        <table style="border-collapse: collapse; width: 100%; margin-top: 20px; font-size: 14px;">
+                            <thead>
+                                <tr style="background-color: #f2f2f2;">
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Student Name</th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Email</th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Course Name</th>
+                                    <th style="border: 1px solid #ddd; padding: 8px; text-align: left;">Total Fees</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${tableRows}
+                            </tbody>
+                        </table>
+    
+                        <p><strong>Total Students Notified:</strong> ${studentsData.length}</p>
+    
+                        <p>If you have any questions or require further details, please contact us:</p>
+                        <ul style="list-style: none; padding: 0;">
+                            <li>📧 Email: <a href="mailto:${ADMIN_EMAIL}" style="color: #4CAF50;">${ADMIN_EMAIL}</a></li>
+                            <li>📞 Phone:${ADMIN_PHONE}</li>
+                        </ul>
+    
+                        <p>Thank you for ensuring the smooth operation of our systems.</p>
+                        
+                        <p>Best regards,<br>The <strong>${ORGANIZATION_NAME}</strong> Automation Team</p>
+                    </div>
+                `, // HTML body
+            });
+    
+                console.log('Admin notification email sent:', info.messageId);
+            } catch (error) {
+                console.error('Error sending admin notification email:', error);
+            }
+        };
+        let ernollments=await CourseEnrollments.find().where('activated').equals('true');
+        let settings=await Settings.findOne({});
+        if (ernollments.length===0) return res.sendStatus(204);
+        for (let i = 0; i < ernollments.length; i++) {
+            let element = ernollments[i];
+
+            let id = (new Date().getMonth() < 9 ? "0" + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + "-" + new Date().getFullYear()
+           
+            let existIndex= element.paymentsData.findIndex(function (element) {
+                if (element.id ===id) return element;
+            });
+            if (existIndex === -1) {
+                element.paymentsData.push({
+                    id:id ,
+                    month : new Date().toLocaleString('default', { month: 'long' }) ,
+                    Year : new Date().getFullYear(),
+                    date : new Date().getDate(),
+                    paid: false,
+                    payment_date :null,
+                    paidAmount : null,
+                    lastPaymentRequestSendDate :Date.now()
+                });
+                element = await element.save();
+                let student ={ email: element.student_email, name: element.student_name };
+                let current=new Date();
+                let dueDate=new Date(current.getFullYear(), current.getMonth() , 10).toDateString();
+                let paymentLink = WEBSITE_ORIGIN + '/api/api_s/course/enrollments/payment/this-month?id=' + element.id;
+                await sendPaymentRequest(student, paymentLink, dueDate);
+                console.log('This Month Payment Request Is Send To the user name :'+ element.student_name);
+                studentData.push({
+                    name: element.student_name,
+                    email: element.student_email,
+                    courseName :element.course_name,
+                    totalFees: element.course_price + settings.gst_rate
+                });
+            }
+            if (existIndex !== -1) {
+                if (element.paymentsData[existIndex].paid === false && (Date.now() - element.paymentsData[existIndex].lastPaymentRequestSendDate) > (3 * 24 * 60 * 60 * 1000)) {
+                    let student ={ email: element.student_email, name: element.student_name };
+                    let current=new Date();
+                    let dueDate=new Date(current.getFullYear(), current.getMonth() , 10).toDateString();
+                    let paymentLink = WEBSITE_ORIGIN + '/api/api_s/course/enrollments/payment/this-month?id=' + element.id;
+                    await sendPaymentRequest(student, paymentLink, dueDate);
+                    element.paymentsData[existIndex].lastPaymentRequestSendDate = Date.now();
+                    await element.save();
+                    console.log('this month payment request is done at ' + new Date(Date.now()));
+                    studentData.push({
+                        name: element.student_name,
+                        email: element.student_email,
+                        courseName :element.course_name,
+                        totalFees: element.course_price + settings.gst_rate
+                    });
+                } else {
+                    console.log('this month payment request is done at '+ new Date(element.paymentsData[existIndex].lastPaymentRequestSendDate));
+                }
+            }
+        }
+        await sendAdminNotification(studentData );
+
+    } catch (error) {
+        console.error(error);
+    }
+}
