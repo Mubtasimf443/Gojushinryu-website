@@ -12,7 +12,7 @@ import { CourseEnrollments } from "../models/courseEnrollment.js";
 import { validate } from "string-player";
 import { Settings } from "../models/settings.js";
 import PaypalPayment from "../utils/payment/PaypalPayment.js";
-import { BASE_URL, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
+import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
 import StripePay from "../utils/payment/stripe.js";
 let __dirname =path.dirname(fileURLToPath(import.meta.url));
 
@@ -280,8 +280,9 @@ export async function MonthlyFeesRequestPayPal(req=request, res=response) {
         let GST = (await Settings.findOne({}))?.gst_rate ?? 5;
       
         let payment =new PaypalPayment({
-            client_id :T_PAYPAL_CLIENT_ID,
-            client_secret :T_PAYPAL_SECRET,
+            client_id :PAYPAL_CLIENT_ID,
+            client_secret :PAYPAL_SECRET,
+            mode :'live',
             success_url :BASE_URL+'/api/api_s/course/enrollments/payment/this-month/pay/paypal/success',
             cancel_url : BASE_URL+'/api/api_s/course/enrollments/payment/this-month/pay/paypal/cancel'
         });
