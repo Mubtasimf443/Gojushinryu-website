@@ -40,6 +40,8 @@ import { activateMembershipCoupon, createMembershipCoupon, deActivateMembershipC
 import { courseContactApi } from "../_lib/course/course.Purchase.Api.js";
 import { coursePurchaseCancelPaypal, coursePurchaseCancelStripe, coursePurchaseSuccessPaypal, coursePurchaseSuccessStripe } from "../_lib/course/coursePurchase.success.api.js";
 import { noCache } from "../_lib/midlewares/catching.js";
+import { courseEnrollmentPaymentRequestApi } from "../_lib/course/ce.payment.request.js";
+import MonthlyCourseEnrollMentFees from "../_lib/course/MonthlyFeesPage.js";
 // import { customMembershipApi } from "../_lib/model_base_function/custom-course-memberhsip.js";
 
 
@@ -77,6 +79,15 @@ router.get('/course/purchase/paypal/success', coursePurchaseSuccessPaypal);
 router.get('/course/purchase/paypal/cancel', coursePurchaseCancelPaypal);
 router.get('/course/purchase/stripe/success', coursePurchaseSuccessStripe);
 router.get('/course/purchase/stripe/cancel', coursePurchaseCancelStripe);
+
+router.get('/course/enrollments/payment/this-month', MonthlyCourseEnrollMentFees.MonthlyFeesRequestPage);
+router.get('/course/enrollments/payment/this-month/pay/paypal', MonthlyCourseEnrollMentFees.MonthlyFeesRequestPayPal);
+router.get('/course/enrollments/payment/this-month/pay/stripe',  MonthlyCourseEnrollMentFees.MonthlyFeesRequestStripe);
+router.get('/course/enrollments/payment/this-month/pay/paypal/success', MonthlyCourseEnrollMentFees.MonthlyFeesRequestSuccessPaypal);
+router.get('/course/enrollments/payment/this-month/pay/paypal/cancel', MonthlyCourseEnrollMentFees.MonthlyFeesRequestCancelPaypal);
+router.get('/course/enrollments/payment/this-month/pay/stripe/success',  MonthlyCourseEnrollMentFees.MonthlyFeesRequestSuccessStripe);
+router.get('/course/enrollments/payment/this-month/pay/stripe/cancel',  MonthlyCourseEnrollMentFees.MonthlyFeesRequestCancelStripe);
+
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)
@@ -116,6 +127,7 @@ router.put('/order/order_status/completed', orderIsCompleted);
 router.put('/coupons/memberships' , updateMembershipCoupon);
 router.put('/coupons/memberships/activate' , activateMembershipCoupon);
 router.put('/coupons/memberships/deactivate' , deActivateMembershipCoupon);
+router.put('/course/enrollments/payment-request' , courseEnrollmentPaymentRequestApi);
 
 //Delete
 router.delete('/delete-product',DeleteProduct)

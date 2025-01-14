@@ -25,7 +25,7 @@ export async function postPageNavigation(req,res) {
             const {title,description,thumb,dateAsNumber,date} = posts[i];
             posts.push({
                 title :(title.length >100 ? title.substring(0,100) :title),
-                description :(description.length >140 ? description.substring(0,140) : description),
+                description :(description.length >140 ? description.substring(0,140)  : description),
                 date :new Date(date).toDateString() ,
                 link :BASE_URL +'/media/post/'+dateAsNumber,
                 thumb,

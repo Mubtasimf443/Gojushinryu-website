@@ -109,7 +109,7 @@ By his marcy,  I will gain success
         e.preventDefault();
         let id =e.target.getAttribute('enrollment_id');
         let mode =e.target.getAttribute('mode');
-        if (!id) return ;
+        if (!id) return ; 
         if (mode === 'Paid') return;
         e.target.style.opacity=.65;
         fetch(window.location.origin + `/api/api_s/course/enrollments/payment-request?id=${id}`, { method: 'PUT' })

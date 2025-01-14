@@ -62,7 +62,7 @@ export default class PaypalPayment {
         try {
             for (let i = 0; i < items.length; i++) {
                 let itm = items.shift();
-                if (validate.isEmty(itm.name || validate.isNotA.string(itm))) throw `items[${i}].name is emty or not a string`;
+                if (validate.isEmty(itm.name ) || validate.isNotA.string(itm.name)) throw `items[${i}].name is emty or not a string`;
                 if (validate.isNaN(itm.quantity) || validate.isNotA.num(itm.quantity)) throw `items[${i}].quantity is not a number or NaN`;
                 if (validate.isNotA.object(itm.unit_amount) || validate.isArray(itm.unit_amount)) throw `items[${i}].unit_amount is not a object`;
                 if (validate.isEmty(itm.unit_amount.currency_code) || validate.isNotA.string(itm.unit_amount.currency_code)) throw `items[${i}].unit_amount.currency_code is emty or not a string`;

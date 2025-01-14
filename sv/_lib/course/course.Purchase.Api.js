@@ -64,9 +64,9 @@ export async function coursePurchaseApi(req = request, res = response) {
 
         if (payment_method === 'paypal') {
             let paypal = new PaypalPayment({
-                client_id: PAYPAL_CLIENT_ID,
-                client_secret: PAYPAL_SECRET,
-                mode: 'live',
+                client_id: T_PAYPAL_CLIENT_ID,
+                client_secret: T_PAYPAL_SECRET,
+                // mode: 'live',
                 success_url: BASE_URL + '/api/api_s/course/purchase/paypal/success/',
                 cancel_url: BASE_URL + '/api/api_s/course/purchase/paypal/cancel/',
                 brand_name: 'School od Traditonal Martial Arts'
@@ -125,6 +125,7 @@ export async function coursePurchaseApi(req = request, res = response) {
         catchError(res, error)
     }
 }
+
 export async function courseContactApi(req = request, res = response) {
     try {
         let { name, phone, email, country, city, district, zipcode, road_no, mode } = req.body;
@@ -163,4 +164,3 @@ export async function courseContactApi(req = request, res = response) {
         catchError(res, error)
     }
 }
-

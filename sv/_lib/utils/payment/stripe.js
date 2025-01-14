@@ -8,14 +8,14 @@ InshaAllah, By his marcy I will Gain Success
 import Stripe from 'stripe';
 import { STRIPE_SECRET_KEY ,T_STRIPE_KEY} from '../env.js';
 import { namedErrorCatching } from '../catchError.js';
-const str = new Stripe(STRIPE_SECRET_KEY);
+const str = new Stripe(T_STRIPE_KEY);
 
 export default class StripePay {
     constructor(options = { success_url: "", cancel_url: "" }) {
         this.success_url = options.success_url;
         this.cancel_url = options.cancel_url;
     }
-    async checkOut({  shipping_amount, line_items }) {
+    async checkOut({ shipping_amount, line_items } = { shipping_amount: undefined, line_items: [{ price_data: { currency: undefined, product_data: { name: undefined }, unit_amount: undefined }, quantity: undefined }] }) {
         const session = await str.checkout.sessions.create({
             payment_method_types: ['card'],
             mode: 'payment',

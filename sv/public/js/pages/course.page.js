@@ -118,7 +118,7 @@ document.querySelectorAll('.close-popup').forEach(
         try {
             e.preventDefault();
             let payment_method = (e.target.id === 'paypal-btn' ? 'paypal' : 'stripe'), mode = popup1.getAttribute('mode');
-            let [name, phone, email, country, city, district, zipcode, road_no] = [v.t('[placeholder="Your Name"]'), v.t('[placeholder="Your Phone Number"]'), v.t('[placeholder="Your Email"]'), v.t('[placeholder="Country"]'), v.t('[placeholder="City"]'), v.t('[placeholder="District"]'), v.n('[placeholder="zipcode"]'), v.t('[placeholder="Road No/ Village"')];
+            let [name, phone, email, country, city, district, zipcode, road_no] = [v.t('[placeholder="Your Name"]'), v.t('[placeholder="Your Phone Number"]'), v.t('[placeholder="Your Email"]'), v.t('[placeholder="Country"]'), v.t('[placeholder="City"]'), v.t('[placeholder="District"]'), v.n('[placeholder="Post-code"]'), v.t('[placeholder="Road No/ Village"')];
             btn.style.opacity = .7;
             requesting = true;
             let response = await fetch(window.location.origin + '/api/l-api/course/purchase/', {
@@ -164,7 +164,7 @@ document.querySelectorAll('.close-popup').forEach(
             event.preventDefault();
             if (requesting) return;
             let v = returnV(popup2);
-            let [name, phone, email, country, city, district, zipcode, road_no] = [v.t('[placeholder="Your Name"]'), v.t('[placeholder="Your Phone Number"]'), v.t('[placeholder="Your Email"]'), v.t('[placeholder="Country"]'), v.t('[placeholder="City"]'), v.t('[placeholder="District"]'), v.n('[placeholder="zipcode"]'), v.t('[placeholder="Road No/ Village"')];
+            let [name, phone, email, country, city, district, zipcode, road_no] = [v.t('[placeholder="Your Name"]'), v.t('[placeholder="Your Phone Number"]'), v.t('[placeholder="Your Email"]'), v.t('[placeholder="Country"]'), v.t('[placeholder="City"]'), v.t('[placeholder="District"]'), v.n('[placeholder="Post-code"]'), v.t('[placeholder="Road No/ Village"')];
             let mode = popup2.getAttribute('mode');
             contactBtn.style.opacity = .75;
             requesting = true;
