@@ -19,8 +19,7 @@ export async function findOrders(req, res) {
             .where('isCancelled').equals(false)
             .where("order_status").ne('Cancelled')
             .sort({id:-1})
-            .limit(10)
-            .skip(0);
+            .limit(10);
         if (orders) return res.status(200).json({ success: true, data: orders })
     } catch (error) {
         console.error(error);

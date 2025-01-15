@@ -111,7 +111,7 @@ const
       default: 'none'
     },
     paypal_token: String,
-    string_token: String,
+    stripe_session_id: String,
     payment_done_date: {
       type: Date,
     },
@@ -131,6 +131,7 @@ const schema = new mongoose.Schema({
     type: String,
     default: (e => new Date())
   },
+  
   buyer: buyer,
   reciever: reciever,
   reciever_address: reciever_address,

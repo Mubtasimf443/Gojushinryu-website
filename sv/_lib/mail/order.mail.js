@@ -145,7 +145,7 @@ export async function sendShippingNotificationEmail({buyerEmail, orderId, tracki
 
                    `<p>Please note that the delivery timeframe is estimated to be 7-10 days from the shipping date. You can track your package using the link above.</p>
                     
-                    <p>If you have any questions or need further assistance, feel free to contact us at <a href="mailto:support@yourstore.com">support@yourstore.com</a>.</p>
+                    <p>If you have any questions or need further assistance, feel free to contact us at <a href="mailto:${ADMIN_EMAIL}">${ADMIN_EMAIL}</a>.</p>
                     
                     <p style="margin-top: 20px;">Thank you for shopping with us. We hope you enjoy your purchase!</p>
                     <p>Best regards,<br>The <strong>${shopName}</strong> Team</p>
@@ -251,7 +251,7 @@ export async function sendOrderCancellationEmail({buyerEmail, orderId, orderDeta
                     <p><strong>Total Amount:</strong> $${total}</p>
                     
                     <h3 style="color: #FF0000;">Reason for Cancellation:</h3>
-                    <p>${cancellationReason}</p>
+                    <p> <b>Cancel Reason:&nbsp;</b> ${cancellationReason}</p>
 
                     <p>${refundStatus  ? 'A full refund has been initiated and will be credited to your original payment method within 5-7 business days.' : 'No charges were made for this order.'}</p>
 

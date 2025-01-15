@@ -11,7 +11,6 @@ Insha Allah,  By the marcy of Allah,  I will gain success
     const v =new( class {
         constructor(container=document){
             this.container=container;
-            console.log(this.container);
             
         }
         t(val){
@@ -260,7 +259,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                 response=await response.json().catch(function(error){
                     return ({error :'failed parse json data'});
                 });
-                console.log(response);
+                // console.log(response);
                 setTimeout(() => {
                     btn.innerHTML = 'Add';
                     btn.style.background = '#4CAF50';

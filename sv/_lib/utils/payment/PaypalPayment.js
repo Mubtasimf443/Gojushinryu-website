@@ -5,7 +5,7 @@ InshaAllah, By his marcy I will Gain Success
 
 import axios from 'axios';
 import fetch from 'node-fetch';
-import { MakePriceStringSync, validate } from 'string-player';
+import { isnota, MakePriceStringSync, validate } from 'string-player';
 
 
 export default class PaypalPayment {
@@ -61,29 +61,14 @@ export default class PaypalPayment {
             currency_code = options.currency_code || this.currency_code || 'USD';
         try {
             for (let i = 0; i < items.length; i++) {
-                let itm = items.shift();
-                if (validate.isEmty(itm.name ) || validate.isNotA.string(itm.name)) throw `items[${i}].name is emty or not a string`;
-                if (validate.isNaN(itm.quantity) || validate.isNotA.num(itm.quantity)) throw `items[${i}].quantity is not a number or NaN`;
-                if (validate.isNotA.object(itm.unit_amount) || validate.isArray(itm.unit_amount)) throw `items[${i}].unit_amount is not a object`;
-                if (validate.isEmty(itm.unit_amount.currency_code) || validate.isNotA.string(itm.unit_amount.currency_code)) throw `items[${i}].unit_amount.currency_code is emty or not a string`;
-                if (validate.isEmty(itm.unit_amount.value) || validate.isNotA.string(itm.unit_amount.value)) throw `items[${i}].unit_amount.value is emty or not a string`;
-                items.push({
-                    name: itm.name,
-                    quantity: itm.quantity,
-                    unit_amount: {
-                        currency_code: itm.unit_amount.currency_code,
-                        value: itm.unit_amount.value
-                    }
-                })
+                let { name, quantity, unit_amount } = items.shift();
+                if (!name || isnota.string(name)) throw `items[${i}].name is emty or not a string`;
+                if (quantity <= 0 || isnota.num(quantity)) throw `items[${i}].quantity is not a number or NaN`;
+                if (!unit_amount?.value || isnota.string(unit_amount?.value)) throw `items[${i}].unit_amount.value is emty or not a string`;
+                unit_amount.currency_code = unit_amount.currency_code ?? 'USD';
+                items.push({ name, quantity, unit_amount })
             }
-        } catch (error) {
-            throw ({
-                paypalError: {
-                    type: "Items_checking_error",
-                    description: error
-                }
-            })
-        }
+        } catch (error) { this.paypalError("Items_checking_error", error) }
 
         let response=await fetch(this.api_link +'/v2/checkout/orders' ,{
             method :'POST',
@@ -126,14 +111,7 @@ export default class PaypalPayment {
             if (validate.isNotA.object(link)===false && link?.href) {
                 return ({link :link.href,token :response.id});
             } 
-        } else {
-            throw ({
-                paypalError:{
-                    ...response
-                }
-            });
-        }
-
+        } else this.paypalError(response)
     }
 
     async checkOutWithShipping(options ={currency_code,shipping , items: [{ name: '',  unit_amount: { currency_code: '', value: '0', }, quantity: '0' }] }) {
@@ -147,20 +125,25 @@ export default class PaypalPayment {
         if (validate.isNaN(shipping)) throw 'shipping is not a number';
 
         for (let i = 0; i < options.items.length; i++) {
-            productTotal += parseInt(options.items[i]?.unit_amount?.value);
+            productTotal += parseInt(options.items[i]?.unit_amount?.value) * parseInt(options.items[i].quantity);
             if (validate.isNaN(productTotal)) throw 'items[i].unit_amount.value is not correct in the index '+i;
         }
 
         let link=await this.createPayment({
             accessToken :accessToken,
             items :options.items,
-            total :MakePriceStringSync( productTotal +shipping ),
-            productToatal :MakePriceStringSync(productTotal),
-            shipping :MakePriceStringSync(shipping),
+            total :( productTotal +shipping ).toFixed(2),
+            productToatal :productTotal.toFixed(2),
+            shipping :shipping.toFixed(2),
             currency_code :options.currency_code || 'USD',
             success_url :this.success_url,
             cancel_url :this.cancel_url
         });
         return link;
+    }
+
+    paypalError(type, description) {
+        if (description === undefined) throw ({ paypalError: { ...type } });
+        else throw ({ paypalError: { type, description } })
     }
 }

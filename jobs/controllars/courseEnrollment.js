@@ -59,7 +59,10 @@ let courseEnrollmentSchema =new Schema({
         Year :Number,
         date : Number,
         paid : Boolean,
-        lastPaymentRequestSendDate : Number
+        lastPaymentRequestSendDate : Number,
+        paypal_token :String,
+        stripe_session_id :String,
+        payment_method :String,
     }],
 
     paymentThisMonth :{

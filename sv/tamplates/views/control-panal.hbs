@@ -32,6 +32,10 @@
   <link rel="stylesheet" href="/css/control_panal/share.media.css">
   <link rel="stylesheet" href="/css/control_panal/countryrepresentative.css">
   <link rel="stylesheet" href="/css/control_panal/customLinksContainer.css">
+  <script>
+    var global_gst_rate =Number('{{global_gst_rate}}') || 5;
+ //   global_gst_rate = global_gst_rate.toString() === 'NaN' ? 5 : global_gst_rate; 
+  </script>
   <script defer src="/js/control panal/gm.js"></script>
   <script defer src="/js/control panal/media.auth.js"></script>
   <script defer src="/js/control panal/c.panal.js"></script>
@@ -785,7 +789,9 @@
 
         </div>
         <!-----------------------order list ----------------------------->
-        <div ct_section targetedElement="order_href" style="display: none;"  class="order-list-box">
+        <div ct_section targetedElement="order_href" 
+        {{!-- style="display: none;"  --}}
+         class="order-list-box">
 
           <table>
             <tr>
@@ -803,6 +809,9 @@
               </th>
               <th>
                 Status
+              </th>
+              <th>
+                Is Paid?
               </th>
               <th>
                 Action
@@ -1032,7 +1041,7 @@
         </div>
 
         <!---------------------------- course enrollments ----------------------------->
-        <div ct_section targetedElement="course_enrolments_href" class="courses-enrollment-list-container" id="couses-enrollment-list-container">
+        <div ct_section style="display: none;" targetedElement="course_enrolments_href" class="courses-enrollment-list-container" id="couses-enrollment-list-container">
   
   
           <div class="popup_c">

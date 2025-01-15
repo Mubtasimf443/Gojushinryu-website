@@ -15,11 +15,9 @@ import { DeleteProduct, FindProduct, findProductImage, giveProductDetails, produ
 import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, RemoveFromBanedUserFunction } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
-import { OrderCancellPaypalApi, OrderSuccessPaypalApi } from "../_lib/api/OrderAPi.js";
 import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/api/MembershipApi.js";
 import { courseBuyCancellPaypalApi, courseBuySuccessPaypalApi } from "../_lib/api/course.buy.api.js";
 import { notificationApi, notificationMailApi } from "../_lib/api/notification.api.js";
-import { stripeOrderCancellApi, stripeOrderSuccessApi } from "../_lib/api/stripe.checkout.api.js";
 import { cancelOrder, findOrders, findUserOrder, orderInDelivery, OrderInPaymentNeeded, orderInProcess, orderIsCompleted, updateOrderStatus } from "../_lib/model_base_function/order.js";
 import { findMemberShipdata } from "../_lib/model_base_function/membership.js";
 import userCheck from "../_lib/midlewares/User.check.js";
@@ -42,7 +40,9 @@ import { coursePurchaseCancelPaypal, coursePurchaseCancelStripe, coursePurchaseS
 import { noCache } from "../_lib/midlewares/catching.js";
 import { courseEnrollmentPaymentRequestApi } from "../_lib/course/ce.payment.request.js";
 import MonthlyCourseEnrollMentFees from "../_lib/course/MonthlyFeesPage.js";
-// import { customMembershipApi } from "../_lib/model_base_function/custom-course-memberhsip.js";
+import orderPayment from '../_lib/api/orderPayment.js'
+
+
 
 
 
@@ -79,7 +79,6 @@ router.get('/course/purchase/paypal/success', coursePurchaseSuccessPaypal);
 router.get('/course/purchase/paypal/cancel', coursePurchaseCancelPaypal);
 router.get('/course/purchase/stripe/success', coursePurchaseSuccessStripe);
 router.get('/course/purchase/stripe/cancel', coursePurchaseCancelStripe);
-
 router.get('/course/enrollments/payment/this-month', MonthlyCourseEnrollMentFees.MonthlyFeesRequestPage);
 router.get('/course/enrollments/payment/this-month/pay/paypal', MonthlyCourseEnrollMentFees.MonthlyFeesRequestPayPal);
 router.get('/course/enrollments/payment/this-month/pay/stripe',  MonthlyCourseEnrollMentFees.MonthlyFeesRequestStripe);
@@ -87,7 +86,10 @@ router.get('/course/enrollments/payment/this-month/pay/paypal/success', MonthlyC
 router.get('/course/enrollments/payment/this-month/pay/paypal/cancel', MonthlyCourseEnrollMentFees.MonthlyFeesRequestCancelPaypal);
 router.get('/course/enrollments/payment/this-month/pay/stripe/success',  MonthlyCourseEnrollMentFees.MonthlyFeesRequestSuccessStripe);
 router.get('/course/enrollments/payment/this-month/pay/stripe/cancel',  MonthlyCourseEnrollMentFees.MonthlyFeesRequestCancelStripe);
-
+router.get('/order/payment/paypal/:id/success', orderPayment.OrderPaymentPaypalSuccess);
+router.get('/order/payment/stripe/:id/success', orderPayment.OrderPaymentStripeSuccess);
+router.get('/order/payment/paypal/:id/cancel', orderPayment.OrderPaymentPaypalCancel);
+router.get('/order/payment/stripe/:id/cancel', orderPayment.OrderPaymentStripeCancel);
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)
@@ -141,14 +143,11 @@ router.delete('/coupons/memberships' , deleteMembershipCoupon);
 router.delete('/course/enrollments' , deleteCourseEnrollment);
 
 //payments
-router.get('/paypal-order-success', OrderSuccessPaypalApi)
-router.get('/paypal-order-cancel', OrderCancellPaypalApi);
+
 router.get('/paypal-membership-success',membershipSuccessPaypalApi);
 router.get('/paypal-membership-cancel',membershipCancellPaypalApi);
 router.get('/paypal-course-buy-success',courseBuySuccessPaypalApi)
 router.get('/paypal-course-buy-cancell',courseBuyCancellPaypalApi)
-router.get('/stripe-order-success',stripeOrderSuccessApi)
-router.get('/stripe-order-cancel', stripeOrderCancellApi)
 router.get('/stripe-course-purchase-success',courseBuySuccessStripeApi)
 router.get('/stripe-course-purchase-cancel',courseBuyCancellStripeApi)
 router.get('/stripe-membership-success',stripeMembershipSuccessFunction);

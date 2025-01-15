@@ -39,7 +39,7 @@ export async function adminVaification(req, res) {
                 .then(async () => {
                     let cpat = await jwt.sign({ key }, JWT_SECRET_KEY, {});
                     res.cookie('cpat', cpat, {
-                        expires: new Date(Date.now() + 1000 * 60 * 60 * 24),
+                        expires: new Date(Date.now() + 1000 * 60 * 60 * 72),
                         sameSite: true,
                         httpOnly: true
                     }).status(200).json({
@@ -108,7 +108,8 @@ async function navigateToCpanal(req, res) {
                         fees_of_reqular_class:settings.fees_of_reqular_class,
                         fees_of_Bhangra_fitness:settings.fees_of_Bhangra_fitness,
                         home_video_url: settings.home_video_url ?? '',
-                        gst_rate :settings.gst_rate
+                        gst_rate :settings.gst_rate,
+                        global_gst_rate : settings.gst_rate
                     })
                 })
                 .catch(e => {

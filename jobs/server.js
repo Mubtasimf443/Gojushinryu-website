@@ -11,6 +11,9 @@ import { connectDB } from './controllars/ConnectDb.js';
 import fetch from 'node-fetch';
 import morgan from 'morgan';
 
+/* 
+git add .; git commit -m 'jobs : production 1 ' ; git push origin main
+*/
 
 const app =express();
 await connectDB();

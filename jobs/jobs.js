@@ -240,8 +240,6 @@ async function updateFacebook() {
     }
 }
 
-
-/* Course Enrollment jobs */
 export async function deleteImageUrlsAfter24Hour(req=express.request,res=express.response){
     try {
         res.sendStatus(204);
@@ -258,6 +256,9 @@ export async function deleteImageUrlsAfter24Hour(req=express.request,res=express
         console.error(error);
     }
 }
+
+/* Course Enrollment jobs */
+
 
 export async function requestCourseEnrollMentPayment(req=express.request,res=express.response) {
     try {
@@ -387,6 +388,9 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
                     paidAmount : null,
                     lastPaymentRequestSendDate :Date.now()
                 });
+                element.paymentThisMonth ={
+                    isPaid :false
+                }
                 element = await element.save();
                 let student ={ email: element.student_email, name: element.student_name };
                 let current=new Date();
@@ -410,6 +414,9 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
                     let paymentLink = WEBSITE_ORIGIN + '/api/api_s/course/enrollments/payment/this-month?id=' + element.id;
                     await sendPaymentRequest(student, paymentLink, dueDate);
                     element.paymentsData[existIndex].lastPaymentRequestSendDate = Date.now();
+                    element.paymentThisMonth ={
+                        isPaid :false
+                    }
                     await element.save();
                     console.log('this month payment request is done at ' + new Date(Date.now()).toLocaleString());
                     studentData.push({
@@ -429,8 +436,6 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
         console.error(error);
     }
 }
-
-
 
 export async function notifyAboutNotPaidStudents(req=express.request,res=express.response) {
     try {
