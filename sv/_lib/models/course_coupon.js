@@ -14,7 +14,7 @@ const schema = new mongoose.Schema({
     name: {
         type: String,
         required: true
-    },
+    }, 
     id: {
         type: Number,
         default: Date.now

@@ -3,15 +3,15 @@
 Insha Allah,  By the marcy of Allah,  I will gain success
 */
 {
-    let container =document.querySelector('#settings-of-coupons-container');
+    let container =document.querySelector('#settings-of-course-coupons-container');
     let table =container.querySelector('table');
     let seen=false;
     let couponsAsArray=[];
-    const apiBaseUrl =window.location.origin+'/api/api_s/coupons/memberships';
+    const apiBaseUrl =window.location.origin+'/api/api_s/coupons/course';
+  
     const v =new( class {
         constructor(container=document){
             this.container=container;
-            
         }
         t(val){
             val =this.container.querySelector(val);
@@ -53,6 +53,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
             return val.valueAsNumber;
         }
     })(container)
+ 
     let observer =new IntersectionObserver(
         async function (entries) {
             if (entries[0].isIntersecting && seen === false) {
@@ -68,9 +69,10 @@ Insha Allah,  By the marcy of Allah,  I will gain success
 
     observer.observe(container);
 
-    function organizeTable() {
-        couponsAsArray.forEach(function(el,) {
-            if (el.expiringDate <= Date.now()) {
+
+    function deactivateExpiredCoupon() {
+        couponsAsArray.forEach(function(el,i) {
+            if (el.expiringDate <= Date.now() && el.activated) {
                 fetch(apiBaseUrl +`/deactivate?id=${el.id}` ,{method:'PUT'});
                 couponsAsArray[i].activated=false;
                 const tm = setTimeout(function () {
@@ -78,7 +80,10 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                     clearTimeout(tm);
                 }, 2000);
             }
-        })
+        });
+    }
+    function organizeTable() {
+        deactivateExpiredCoupon();
         let tbody=table.querySelector('tbody');
         tbody.innerHTML=null;
         let insertionHtml=``;
@@ -135,19 +140,24 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                     }
                     if (btn.getAttribute('state') === 'save') {
                         let inputs = tr.querySelectorAll('input');
-                        let 
-                        name = inputs[0].value, 
-                        code = inputs[1].value, 
-                        rate = inputs[2].valueAsNumber;
+                        let
+                            name = inputs[0].value,
+                            code = inputs[1].value,
+                            rate = inputs[2].valueAsNumber;
                         inputs[3].type = 'date';
                         expiringDate = inputs[3].valueAsNumber;
+                      
                         if (name.trim().length === 0) return inputs[0].style.outline = '2px solid red';
                         if (code.trim().length === 0) return inputs[1].style.outline = '2px solid red';
                         code = code.toUpperCase();
+                      
                         inputs[1].value = code;
                         if (rate < 1 || rate > 75) return inputs[2].style.outline = '2px solid red';
                         rate = rate / 100;
-                        if (expiringDate < Date.now()) return inputs[3].style.outline = '2px solid red';
+                        if (expiringDate < Date.now()) { 
+                            alert(expiringDate)
+                            return inputs[3].style.outline = '2px solid red';
+                        }
                         inputs.forEach(el => (el.disabled = true));
                         couponsAsArray = couponsAsArray.map(
                             function (el) {
@@ -172,7 +182,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                         }
                         btn.innerHTML = `<i class="fa-solid fa-pen-to-square" title="Save"></i> `;
                         btn.setAttribute('state', 'edit');
-                        return;
+                        return organizeTable();
                     }
                 }
                 element.addEventListener('click', edit);

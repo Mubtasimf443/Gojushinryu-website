@@ -74,6 +74,7 @@ export async function UplaodImageApiIn25Minutes(req, res) {
                 url: BASE_URL + '/api/file/temp/' + file.img[0].newFilename,
                 urlpath: file.img[0].filepath,
                 active: false,
+                fileName : file.img[0].newFilename,
                 id :Date.now()
             });
 

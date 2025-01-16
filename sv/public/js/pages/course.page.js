@@ -9,7 +9,7 @@ let
     popup1 = document.querySelector('#popup-type1'),
     popup2 = document.querySelector('#popup-type2'),
     modeMap = new Map([[1, 'Our Regular classes']], [[2, 'Online Martial Art Classes']], [[3, 'Our Seminars']], [[4, 'Our Women Defence Classes']], [[5, 'Bhangra Fitness Class for All Ages']]);
-
+    let studentImage=undefined;
 
 /******************************* Courses  ******************************/
 { //regular classes
@@ -100,6 +100,15 @@ document.querySelectorAll('.close-popup').forEach(
                         element.querySelectorAll('input').forEach(function (input) { input.value = null });
                         element.setAttribute('mode', "");
                         element.classList.remove('active');
+                        let fileInput=element.querySelector('input[type="file"');
+                        let img= element.querySelector('.student-image');
+                        if (img && fileInput) {
+                            img.style.display = 'none'; 
+                            let newFileInput=document.createElement('input');
+                            newFileInput.type='file';
+                            fileInput.replaceWith(newFileInput);
+                            studentImage=undefined;
+                        }
                     }
                 }
             );
@@ -113,17 +122,42 @@ document.querySelectorAll('.close-popup').forEach(
     const v = returnV(popup1);
     let requesting = false;
     let paypalbtn = popup1.querySelector('[id="paypal-btn"]'), stripebtn = popup1.querySelector('[id="stripe-btn"]');
+    let coupon='', isValidCoupon=false;
+  
+  
     async function registerCourse(e = new Event('click')) {
-        let btn = e.target; if (requesting) { return }; btn.style.transition = 'opacity .7s ease';
+        let btn = e.target;
+        if (requesting) return; 
+        btn.style.transition = 'opacity .7s ease';
         try {
             e.preventDefault();
+            
             let payment_method = (e.target.id === 'paypal-btn' ? 'paypal' : 'stripe'), mode = popup1.getAttribute('mode');
-            let [name, phone, email, country, city, district, zipcode, road_no] = [v.t('[placeholder="Your Name"]'), v.t('[placeholder="Your Phone Number"]'), v.t('[placeholder="Your Email"]'), v.t('[placeholder="Country"]'), v.t('[placeholder="City"]'), v.t('[placeholder="District"]'), v.n('[placeholder="Post-code"]'), v.t('[placeholder="Road No/ Village"')];
+            let [name, email, phone, dob, address, postalCode] = [v.t('#name'), v.t('#email'), v.t('#phone'), v.t('#dob'), v.t('#address'), v.t('#postalCode')];
+            let [hasDisability, hasBadMedical, sex, hasViolence, purpose] = [v.s('#hasDisability'), v.s('#hasBadMedical'), v.s('#sex'), v.s('#hasViolence'), v.t('#purpose')];
+            let disabilityDetails = undefined;
+          
+            if (hasDisability === 'Yes' || hasBadMedical === 'Yes') {
+                disabilityDetails = v.t('#disabilityDetails');
+            }
+
+            if (studentImage === undefined) {
+                popup1.querySelector('[type="file"]').style.outline = '2px solid red';
+                popup1.querySelector('[type="file"]').addEventListener('change',
+                    function () {
+                        popup1.querySelector('[type="file"]').style.outline = 'none';
+                    }
+                );
+                throw new Error("Student Image Is undefined");
+            }
+
+
             btn.style.opacity = .7;
             requesting = true;
+
             let response = await fetch(window.location.origin + '/api/l-api/course/purchase/', {
                 method: 'POST',
-                body: JSON.stringify({ name, phone, email, country, city, district, zipcode, payment_method, road_no, mode }),
+                body: JSON.stringify({ name, email, phone, dob, address, postalCode, studentImage, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, payment_method, mode }),
                 headers: { 'Content-Type': 'application/json' }
             });
             if (response.status === 201) {
@@ -153,6 +187,57 @@ document.querySelectorAll('.close-popup').forEach(
 
     paypalbtn.addEventListener('click', registerCourse);
     stripebtn.addEventListener('click', registerCourse);
+
+    let couponTimeOut=undefined;
+    popup1.querySelector('input#coupon').addEventListener('change',function ()  { 
+        coupon = popup1.querySelector('input#coupon').value ;
+        if (coupon.trim()) {
+            clearTimeout(couponTimeOut);
+            let parameters = (new URLSearchParams({ coupon: coupon.trim() })).toString();
+            couponTimeOut = setTimeout(async function () {
+                let response = await fetch(window.location.origin + '/api/api_s/coupons/courses/get-rates?' + parameters);
+                if (response.status === 200) {
+                    let { rate } = (await response.json());
+                    isValidCoupon = true;
+                    let basePrice = Number(globlal_fees_of_regular_class);
+                    basePrice = basePrice - (basePrice * rate);
+                    popup1.querySelector(`#base-price`).innerHTML = basePrice.toFixed(2);
+                    popup1.querySelector(`#gst-amount`).innerHTML = (basePrice * (gst_rate / 100)).toFixed(2);
+                    popup1.querySelector(`#total-price`).innerHTML = basePrice + (basePrice * (gst_rate / 100));
+                    popup1.querySelector('input#coupon').style.outline = '1px solid green';
+                    setTimeout(() => { popup1.querySelector('input#coupon').style.outline = 'none'; }, 1500);
+                }
+            }, 500);
+        }
+    })
+
+    popup1.querySelector('input[type="file"]').addEventListener('change',async function (e) {
+        if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
+            e.target.files[0]=null;
+            popup1.querySelector('.student-image').style.display = 'none';
+            let newFileInput=document.createElement('input');
+            newFileInput.type='file';
+            popup1.querySelector('input[type="file"]').replaceWith(newFileInput);
+            return alert('Please upload an Image');
+        }
+        // let url =URL.createObjectURL(e.target.files[0]);
+         let img= popup1.querySelector('.student-image');
+        img.src='/img/spinner.svg';
+        img.setAttribute('style', 'object-fit: contain;object-position: center center;')
+        let form =new FormData();
+        form.append('img', e.target.files[0]);
+        const response=await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form });
+        if (response.status ===201) {
+            let link=(await response.json()).link;
+            img.src=link;
+            img.setAttribute('style', 'object-fit: contain;object-position: center center;');
+            studentImage=link;
+        } else {
+            img.setAttribute('style', 'display:none');
+        }
+    });
+    
+   
 }
 
 
@@ -263,24 +348,23 @@ function returnV(doc) {
             }
             return val.valueAsNumber;
         }
+        s(select){
+            let s=document.querySelector(select);
+            if (!s) throw ('select is not a html element');
+            if (!s.selectedOptions[0]?.value?.trim()) {
+                s.style.outline='2px solid red';
+                function makeredselect() {
+                    s.style.outline='none';
+                    s.removeEventListener('change', makeredselect);
+                }
+                s.addEventListener('change', makeredselect);
+                throw ("Nothing is selected on select options");
+            }
+            return s.selectedOptions[0].value?.trim();
+        }
     }
     return (new V(doc));
 }
-
-
-window.addEventListener('load', function (event) {
-    let cards = this.document.querySelectorAll('.course-card');
-
-    //regular classes
-    let total = globlal_fees_of_regular_class + (globlal_fees_of_regular_class * (gst_rate / 100));
-    cards[0].querySelector(`[fees1]`).innerHTML = ` Fees:$${total.toFixed(2)} ($${globlal_fees_of_regular_class.toFixed(2)} + 5% gst)`;
-
-
-    // Bhangra Fitness Class for All Ages
-    total = globlal_fees_of_bhangra_fitness + (globlal_fees_of_bhangra_fitness * (gst_rate / 100));
-    cards[4].querySelector(`[fees4]`).innerHTML = ` Fees:$${total.toFixed(2)} ($${globlal_fees_of_bhangra_fitness.toFixed(2)} + 5% gst)`;
-
-});
 
 
 function setPopupDetails(query , dateString) {

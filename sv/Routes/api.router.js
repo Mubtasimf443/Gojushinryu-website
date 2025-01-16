@@ -41,6 +41,7 @@ import { noCache } from "../_lib/midlewares/catching.js";
 import { courseEnrollmentPaymentRequestApi } from "../_lib/course/ce.payment.request.js";
 import MonthlyCourseEnrollMentFees from "../_lib/course/MonthlyFeesPage.js";
 import orderPayment from '../_lib/api/orderPayment.js'
+import { activateCourseCoupon, createCourseCoupon, deActivateCourseCoupon, deleteCourseCoupon, getCourseCouponRates, getCourseCoupons, updateCourseCoupon } from "../_lib/model_base_function/courseCoupon.js";
 
 
 
@@ -75,6 +76,8 @@ router.get('/country-representative-for-admin',getCountryRepresentativesForAdmin
 router.get('/custom-link',findCustomLinks);
 router.get('/coupons/memberships' , getMembershipCoupons);
 router.get('/coupons/memberships/rate' , getMembershipCouponRates);
+router.get('/coupons/course' , getCourseCoupons);
+router.get('/coupons/course/rate' , getCourseCouponRates);
 router.get('/course/purchase/paypal/success', coursePurchaseSuccessPaypal);
 router.get('/course/purchase/paypal/cancel', coursePurchaseCancelPaypal);
 router.get('/course/purchase/stripe/success', coursePurchaseSuccessStripe);
@@ -105,6 +108,7 @@ router.post('/admin-event-upload-api', adminEventUplaodAPI);
 router.post('/testimonials', createTestimonials)
 router.post('/testimonials-second-api', createTestimonialsWithoutImage);
 router.post('/coupons/memberships' , createMembershipCoupon);
+router.post('/coupons/course' , createCourseCoupon);
 router.post('/course/apply/contact', courseContactApi );
 // router.post('/custom-membership', customMembershipApi)
 
@@ -129,6 +133,10 @@ router.put('/order/order_status/completed', orderIsCompleted);
 router.put('/coupons/memberships' , updateMembershipCoupon);
 router.put('/coupons/memberships/activate' , activateMembershipCoupon);
 router.put('/coupons/memberships/deactivate' , deActivateMembershipCoupon);
+router.put('/coupons/course' , updateCourseCoupon);
+router.put('/coupons/course/activate' , activateCourseCoupon);
+router.put('/coupons/course/deactivate' , deActivateCourseCoupon);
+
 router.put('/course/enrollments/payment-request' , courseEnrollmentPaymentRequestApi);
 
 //Delete
@@ -140,6 +148,7 @@ router.delete('/testimonials', deleteTestimonials)
 router.delete('/custom-link', deleteCustomLink)
 router.delete('/order/cancel', cancelOrder)
 router.delete('/coupons/memberships' , deleteMembershipCoupon);
+router.delete('/coupons/course' , deleteCourseCoupon);
 router.delete('/course/enrollments' , deleteCourseEnrollment);
 
 //payments

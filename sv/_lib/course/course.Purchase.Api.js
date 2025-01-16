@@ -5,7 +5,7 @@ InshaAllah, By his marcy I will Gain Success
 
 
 import { request, response } from "express";
-import { tobe, validate } from "string-player";
+import { repleCaracter, repleCrAll, tobe, validate } from "string-player";
 import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import { sendCourseApplicationEmail } from "../mail/courseContact.mail.js";
 import { CourseEnrollments } from "../models/courseEnrollment.js";
@@ -17,50 +17,64 @@ import StripePay from "../utils/payment/stripe.js";
 
 export async function coursePurchaseApi(req = request, res = response) {
     try {
-        let { name, phone, email, country, city, district, zipcode, road_no, mode, payment_method } = req.body;
+        let { studentImage, name, phone, email, postalCode, dob, address, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, mode, payment_method } = req.body;
 
-        [zipcode] = [Number(zipcode)];
-
-        if (validate.isEmty(name)) namedErrorCatching('parameter error', 'name is emty');
-        if (validate.isEmty(phone)) namedErrorCatching('parameter error', 'phone is emty');
-        if (validate.isEmty(email)) namedErrorCatching('parameter error', 'email is emty');
-
-        if (validate.isEmty(country)) namedErrorCatching('parameter error', 'country is emty');
-        if (validate.isEmty(city)) namedErrorCatching('parameter error', 'city is emty');
-        if (validate.isEmty(district)) namedErrorCatching('parameter error', 'district is emty');
-        if (validate.isEmty(road_no)) namedErrorCatching('parameter error', 'road_no is emty');
-        if (validate.isNaN(zipcode)) namedErrorCatching('parameter error', 'zipcode is emty or not a number');
-
-        if (mode !== '1' && mode !== '5') namedErrorCatching('parameter error', 'mode is emty');
-        if (payment_method !== 'paypal' && payment_method !== 'stripe') namedErrorCatching('parameter error', 'mode is emty');
-
-        if (!validate.isEmail(email)) namedErrorCatching('parameter error', 'email is not a email');
-
-        if (!tobe.minMax(name, 3, 30)) namedErrorCatching('parameter error', 'name is too short or too big');
-        if (!tobe.minMax(country, 3, 30)) namedErrorCatching('parameter error', 'country is too short or too big');
-        if (!tobe.minMax(city, 3, 30)) namedErrorCatching('parameter error', 'city is too short or too big');
-        if (!tobe.minMax(district, 3, 30)) namedErrorCatching('parameter error', 'district is too short or too big');
-        if (!tobe.minMax(road_no, 3, 30)) namedErrorCatching('parameter error', 'road_no is too short or too big');
-        if (zipcode < 30 || zipcode > 1000000) namedErrorCatching('parameter error', 'zipcode is too short or too big');
+        {
+            if (validate.isEmty(name)) namedErrorCatching('parameter error', 'name is emty');
+            if (validate.isEmty(phone)) namedErrorCatching('parameter error', 'phone is emty');
+            if (validate.isEmty(email)) namedErrorCatching('parameter error', 'email is emty');
+            if (validate.isEmty(postalCode)) namedErrorCatching('parameter error', 'postalCode is emty');
+            if (validate.isEmty(studentImage)) namedErrorCatching('parameter error', 'studentImage is emty');
+            if (validate.isEmty(dob)) namedErrorCatching('parameter error', 'dob is emty');
+            if (validate.isEmty(address)) namedErrorCatching('parameter error', 'address is emty');
+            if (validate.isEmty(hasDisability)) namedErrorCatching('parameter error', 'hasDisability is emty');
+            // if (validate.isEmty(disabilityDetails)) namedErrorCatching('parameter error', 'disabilityDetails is emty');
+            if (validate.isEmty(hasBadMedical)) namedErrorCatching('parameter error', 'hasBadMedical is emty');
+            if (validate.isEmty(purpose)) namedErrorCatching('parameter error', 'hasBadMedical is emty');
+            if (validate.isEmty(sex)) namedErrorCatching('parameter error', 'hasBadMedical is emty');
+            if (validate.isEmty(hasViolence)) namedErrorCatching('parameter error', 'hasBadMedical is emty');    
+        }
+        {
+            if (mode !== '1' && mode !== '5') namedErrorCatching('parameter error', 'mode is emty');
+            if (payment_method !== 'paypal' && payment_method !== 'stripe') namedErrorCatching('parameter error', 'mode is emty');
+            if (!validate.isEmail(email)) namedErrorCatching('parameter error', 'email is not a email');
+            if (hasDisability !== 'Yes' && hasDisability !== 'No') namedErrorCatching('parameter error', 'hasDisability is invalid');
+            if (hasBadMedical !== 'Yes' && hasBadMedical !== 'No') namedErrorCatching('parameter error', 'hasBadMedical is invalid');
+            if (hasViolence !== 'Yes' && hasViolence !== 'No') namedErrorCatching('parameter error', 'hasViolence is invalid');
+            if (sex !== 'Male' && sex !== 'Female') namedErrorCatching('parameter error', 'sex is invalid');
+            [name, phone, postalCode, dob, address, purpose] = repleCrAll([name, phone, postalCode, dob, address, purpose]);
+        }
 
         let courses = new Map([['1', '  Regular Martial Arts classes'], ['5', `Bhangra Fitness Class for All Ages`]]);
-
-        let settings = await Settings.findOne({});
+        let settings = await Settings.findOne ({});
         let course_price = (mode === '1' ? settings.fees_of_reqular_class : settings.fees_of_Bhangra_fitness);
 
+       
         let courseEnrollment = new CourseEnrollments({
             course_id: Number(mode),
             course_name: courses.get(mode),
             course_price: course_price,
             payment_method: payment_method,
-            student_city: city,
-            student_country: country,
-            student_district: district,
+            student_image :studentImage,
             student_email: email,
             student_name: name,
             student_phone: phone,
-            student_postcode: zipcode
+            student_address :address,
+            student_dob :dob,
+            student_postcode : postalCode,
+            student_sex :sex,
+            additional_details :{
+                hasBadMedical,
+                hasDisability,
+                hasViolence
+            }
         });
+        if (hasDisability === 'Yes' || hasBadMedical === 'Yes' ) {
+            if (typeof disabilityDetails === 'string') {
+                courseEnrollment.additional_details.disabilityDetails=await repleCaracter(disabilityDetails)
+            }
+        }
+
 
         if (payment_method === 'paypal') {
             let paypal = new PaypalPayment({
@@ -85,6 +99,7 @@ export async function coursePurchaseApi(req = request, res = response) {
             });
 
             if (paymentInfo.link && paymentInfo.token) {
+                courseEnrollment.payment_method ='paypal';
                 courseEnrollment.paypal_token = paymentInfo.token;
                 await courseEnrollment.save();
                 res.status(201).json({ url: paymentInfo.link });
@@ -115,7 +130,7 @@ export async function coursePurchaseApi(req = request, res = response) {
                 ]
             });
 
-            
+            courseEnrollment.payment_method='stripe';
             courseEnrollment.stripe_session_id =paymentInfo.id;
             await courseEnrollment.save();
             res.status(201).json({ url: paymentInfo.url });

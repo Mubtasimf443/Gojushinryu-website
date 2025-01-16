@@ -5,6 +5,17 @@ By his marcy,  I will gain success
 
 import mongoose, { Schema, model } from 'mongoose'
 
+
+const Student ={
+    student_name: String,
+    student_email: String,
+    student_phone: String,
+    student_address:String,
+    student_postcode: String,
+    student_sex: String,
+    student_dob:String,
+    student_image :String,
+}
 let courseEnrollmentSchema = new Schema({
     id: {
         type: Number,
@@ -13,19 +24,19 @@ let courseEnrollmentSchema = new Schema({
     },
     course_name: String,
     course_price: Number,
-
+    ...Student,
     course_id: {
         type: Number,
         require: true
     },
+    additional_details: {
+        hasDisability: String,
+        hasViolence: String,
+        hasBadMedical: String,
+        disabilityDetails:String,
+        purpose:String
+    },
 
-    student_name: String,
-    student_email: String,
-    student_phone: String,
-    student_city: String,
-    student_country: String,
-    student_district: String,
-    student_postcode: Number,
     Date: { type: Date, default: Date.now },
 
     paid: {

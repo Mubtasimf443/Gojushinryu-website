@@ -27,7 +27,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
   {{>Links}}
 
   <link rel="stylesheet" href="/css/pages/course.page.css" type="text/css" />
-  <script src="/js/pages/course.page.js" defer></script>
+  <script src="/js/pages/course.page.js" defer ></script>
 
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
@@ -171,31 +171,85 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 
   <!-- Popup for Type 1 (Course Registration) -->
   <div id="popup-type1" class="popup hidden" mode="">
-    <form class="popup-form">
-      <h2>Register for the Course</h2>
-      <p class="form-info" style="display: none;"></p>
-      <input type="text" placeholder="Your Name" required />
-      <input type="tel" placeholder="Your Phone Number" required />
-      <input type="email" placeholder="Your Email" required />
-      <input type="text" placeholder="Country" required />
-      <input type="text" placeholder="District" required />
-      <input type="text" placeholder="City" required />
-      <input type="text" placeholder="Road No/ Village" required />
-      <input type="number" placeholder="Post-code" required />
+    <form class="popup-form" id="admissionForm">
+      <h2>Admission Form</h2>
+      <p class="form-info">Please fill in the details below to complete the admission process.</p>
+      <img class="student-image" src="" alt="" style="display: none;">
 
+      <label for="studentImage"> Student Image</label>
+      <input type="file" id="studentImage"
+       {{!-- name="studentImage"  --}}
+       accept="image/*" required>
+      <label for="name">Name</label>
+      <input type="text" id="name" name="name" placeholder="Enter Full Name" required>
+      <label for="name">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="Enter Full Name" required>
+        <label for="phone">Phone Number</label>
+      <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" required>
+ 
+      <label for="dob">Date of Birth</label>
+      <input type="date" id="dob" name="dob" required>
+  
+     
+      <label for="address">Address</label>
+      <textarea id="address" name="address" rows="3" placeholder="Enter Address" required></textarea>
+  
+      <label for="postalCode">Postal Code</label>
+      <input type="text" id="postalCode" name="postalCode" placeholder="Enter Postal Code" required>
+  
+    
+  
+      <label for="sex">Gender</label>
+      <select id="sex" name="sex" required>
+        <option value="">Select</option>
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+       
+      </select>
+  
+      <label for="violence">Convicted of Violence</label>
+      <select id="hasViolence" name="hasViolence" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+  
+      <label for="medical">Medical Conditions That Will Effect You</label>
+      <select id="hasBadMedical" name="hasBadMedical" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+  
+      <label for="disability">Disability</label>
+      
+      <select id="hasDisability" name="hasDisability" required>
+        <option value="">Select</option>
+        <option value="Yes">Yes</option>
+        <option value="No">No</option>
+      </select>
+  
+      <label for="details">If Have Disability then Provide details</label>
+      <textarea id="disabilityDetails" name="disabilityDetails" rows="3" placeholder="Provide details"></textarea>
+  
+      <label for="purpose">Purpose for Joining Karate</label>
+      <textarea id="purpose" name="purpose" rows="3" placeholder="Explain your purpose" required></textarea>
+      
+      <label for="phone">Coupon</label>
+      <input type="Text" id="coupon" name="coupon" placeholder="Enter the Coupon To get Discount" required>
+      
       <p class="price-display">
-        Price: $<span id="base-price">100</span><br>
-        GST (5%): $<span id="gst-amount">18</span><br>
-        Total: $<span id="total-price">118</span>
+        Price: $<span id="base-price">Loading...</span><br>
+        GST (5%): $<span id="gst-amount">Loading...</span><br>
+        Total: $<span id="total-price">Loading...</span>
       </p>
 
       <h3>Choose Payment Method</h3>
       <div class="payment-buttons">
-        <button type="button" id="paypal-btn">Pay with PayPal</button>
-        <button type="button" id="stripe-btn">Pay with Stripe</button>
+        <button type="button" id="paypal-btn" type="submit" >Pay with PayPal</button>
+        <button type="button" id="stripe-btn"  type="submit">Pay with Stripe</button>  
       </div>
-
-      <button type="button" class="close-popup">Close</button>
+      <button type="button" class="close-popup" onclick="closePopup()">Close</button>
     </form>
   </div>
 
@@ -460,6 +514,24 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 </div> --}}
 
   {{>Footer}}
-</body>
+  <script>
+
+
+    (function (event) {
+      let cards = this.document.querySelectorAll('.course-card');
+
+      //regular classes
+      let total = globlal_fees_of_regular_class + (globlal_fees_of_regular_class * (gst_rate / 100));
+      cards[0].querySelector(`[fees1]`).innerHTML = ` Fees:$${total.toFixed(2)} ($${globlal_fees_of_regular_class.toFixed(2)} + 5% gst)`;
+
+
+      // Bhangra Fitness Class for All Ages
+      total = globlal_fees_of_bhangra_fitness + (globlal_fees_of_bhangra_fitness * (gst_rate / 100));
+      cards[4].querySelector(`[fees4]`).innerHTML = ` Fees:$${total.toFixed(2)} ($${globlal_fees_of_bhangra_fitness.toFixed(2)} + 5% gst)`;
+
+    })();
+
+  </script>
+  </body>
 
 </html>
