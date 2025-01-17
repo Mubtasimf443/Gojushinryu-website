@@ -213,12 +213,12 @@ export async function MonthlyFeesRequestPage(req=request, res=response) {
     
             <div class="payment-options">
                 <button onclick="payWithStripe()">
-                    <a href="/api/api_s/course/enrollments/payment/this-month/pay/stripe?id={{id}}" style="color: inherit;text-decoration: none;">
+                    <a href="/api/api_s/course/enrollments/payment/this-month/pay/stripe?id={{id}}" style="color: inherit;text-decoration: none;width:100%;height:100%;">
                         Pay with Stripe
                     </a>
                 </button>
                 <button onclick="payWithPaypal()">
-                    <a href="/api/api_s/course/enrollments/payment/this-month/pay/paypal?id={{id}}" style="color: inherit;text-decoration: none;">
+                    <a   href="/api/api_s/course/enrollments/payment/this-month/pay/paypal?id={{id}}" style="color: inherit;text-decoration: none;width:100%;height:100%;">
                         Pay with PayPal
                     </a>
                 </button>
@@ -233,7 +233,12 @@ export async function MonthlyFeesRequestPage(req=request, res=response) {
     {{>Footer}}
 
 <script>
-  
+    function payWithPaypal(){
+        window.open("/api/api_s/course/enrollments/payment/this-month/pay/paypal?id={{id}}")
+    }
+    function payWithStripe(){
+        window.open("/api/api_s/course/enrollments/payment/this-month/pay/stripe?id={{id}}")
+    }
 </script>
 </body>
 
@@ -243,6 +248,8 @@ export async function MonthlyFeesRequestPage(req=request, res=response) {
         `);
         let header = fs.readFileSync(path.resolve(__dirname, '../../tamplates/partials/whiteHeader.hbs'), 'utf-8');
         let footer = fs.readFileSync(path.resolve(__dirname, '../../tamplates/partials/Footer.hbs'), 'utf-8');
+        html = html.replace('{{id}}', enrollment.id);
+        html = html.replace('{{id}}', enrollment.id);
         html = html.replace('{{id}}', enrollment.id);
         html = html.replace('{{id}}', enrollment.id);
         html = html.replace('{{id}}', enrollment.id);
@@ -370,22 +377,19 @@ export async function MonthlyFeesRequestSuccessPaypal(req=request, res=response)
     try {
         let token =req.query.token;
         if (!token || token?.length < 5 || token?.length > 300 || typeof token !== 'string') throw 'paypal token is not valid';
-        let enrollment = await CourseEnrollments.find()
-            .where('activated').equals(true)
-            .where('paid').equals(true);
-        if (enrollment.length === 0) return res.send('Sorry , this feature will not work as not student has purchased a course')
-        let existIndex = enrollment.findIndex(
-            function (el) {
-                if (el.paymentsData.length === 0) return;
-                for (let i = 0; i < el.paymentsData.length; i++) {
-                    const { paypal_token,paid } = el.paymentsData[i];
-                    if (paypal_token === token && paid === false) return el;
-                    if (paypal_token === token && paid !== false) {
-                        console.log('This Month fee is paid...');
-                    }
+        let enrollment = await CourseEnrollments.find().where('activated').equals(true).where('paid').equals(true);
+        if (enrollment.length === 0) return res.send('Sorry , this feature will not work as not student has purchased a course');
+        
+        let existIndex = enrollment.findIndex(function (el) {
+            if (el.paymentsData.length === 0) return;
+            for (let i = 0; i < el.paymentsData.length; i++) {
+                const { paypal_token, paid } = el.paymentsData[i];
+                if (paypal_token === token && paid === false) return el;
+                if (paypal_token === token && paid !== false) {
+                    console.log('This Month fee is paid...');
                 }
             }
-        );
+        });
 
         if (existIndex===-1) {
             res.status(400).send('there is no course enrollment data in your request');
@@ -402,6 +406,7 @@ export async function MonthlyFeesRequestSuccessPaypal(req=request, res=response)
                 return el;
             } else return el;
         });
+
         enrollment[existIndex].paymentThisMonth = { isPaid: true, paidDate: new Date() };
         await enrollment[existIndex].save();
         return res.status(202).send(MonthlyFeesSuccessPage({
@@ -443,7 +448,7 @@ export async function MonthlyFeesRequestSuccessStripe(req = request, res = respo
         let GST = (await Settings.findOne({}))?.gst_rate ?? 5;
 
         enrollment[existIndex].paymentsData = enrollment[existIndex].paymentsData.map(function (el) {
-            if (el.paypal_token === token) {
+            if (el.stripe_session_id === session_id) {
                 el.paid = true;
                 el.payment_date = new Date();
                 el.paidAmount = (enrollment[existIndex].course_price + enrollment[existIndex].course_price * (GST / 100)).toFixed(2);

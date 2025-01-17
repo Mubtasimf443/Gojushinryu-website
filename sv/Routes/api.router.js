@@ -26,12 +26,7 @@ import { checkGM } from "../_lib/midlewares/gm.midleware.js";
 import { courseBuyCancellStripeApi, courseBuySuccessStripeApi, stripeCourseBuyAPiJs } from "../_lib/api/stripe.course.buy.api.js";
 import { stripeMembershipCancelFunction, stripeMembershipSuccessFunction } from "../_lib/api/membership.srtipe.api.js";
 import { changeSettingsAPI } from "../_lib/api/change.settings.api.js";
-import { 
-    createTestimonials,
-    getTestimonials,deleteTestimonials,
-    testinmonialsForHomePage, 
-    createTestimonialsWithoutImage
-} from "../_lib/model_base_function/Testimonials.js";
+import { createTestimonials, getTestimonials, deleteTestimonials, testinmonialsForHomePage, createTestimonialsWithoutImage } from "../_lib/model_base_function/Testimonials.js";
 import { allowRepresentative, disAllowRepresentative, getCountryRepresentatives, getCountryRepresentativesForAdmin } from "../_lib/model_base_function/CountryRepresentatives.js";
 import { deleteCustomLink, disableCustomLink, enableCustomLink, findCustomLinks } from "../_lib/model_base_function/customLink.js";
 import { activateMembershipCoupon, createMembershipCoupon, deActivateMembershipCoupon, deleteMembershipCoupon, getMembershipCouponRates, getMembershipCoupons, updateMembershipCoupon } from "../_lib/model_base_function/membershipcoupon.js";

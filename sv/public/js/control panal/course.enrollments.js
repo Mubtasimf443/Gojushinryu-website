@@ -59,11 +59,19 @@ By his marcy,  I will gain success
                 });
                 if (course === undefined) return;
                 let inputs = popup.querySelectorAll('input');
+                let textareas = popup.querySelectorAll('textarea');
                 inputs[0].value = course.student_name;
                 inputs[1].value = course.student_phone;
                 inputs[2].value = course.student_email;
-                inputs[3].value = (course.student_postcode + ',' + course.student_city + ',' + course.student_district + ',' + course.student_country);
-               
+                inputs[3].value = (course.student_postcode + ',' + course.student_address);
+                inputs[4].value = course.student_dob;
+                inputs[5].value = course.student_sex;
+                inputs[6].value = course.additional_details?.hasViolence;
+                inputs[7].value = course.additional_details?.hasBadMedical;
+                inputs[8].value = course.additional_details?.hasDisability;
+                textareas[0].value=course.additional_details?.disabilityDetails;
+                textareas[1].value=course.additional_details?.purpose;
+
                 let insertionHtml = ``;
                 for (let i = 0; i < course.paymentsData.length; i++) {
                     const { payment_date, paidAmount, month, Year, date, paid } = course.paymentsData[i];

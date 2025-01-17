@@ -51,6 +51,7 @@ export async function getMembershipCouponRates(req = request, res = response) {
     try {
         let code = req.query.code;
         if (!code) namedErrorCatching('parametar error', 'name parameter is not define');
+        [code]=repleCrAll([code]);
         code = code.toUpperCase();
         let coupon = await MembershipCoupons.findOne({ code });
         if (coupon === null) namedErrorCatching('database error', 'no coupon exist');

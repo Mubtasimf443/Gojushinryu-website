@@ -13,6 +13,8 @@ import { Settings } from "../models/settings.js";
 import PaypalPayment from "../utils/payment/PaypalPayment.js";
 import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
 import StripePay from "../utils/payment/stripe.js";
+import CourseCoupons from "../models/course_coupon.js";
+import { urlToCloudinaryUrl } from "../Config/cloudinary.js";
 
 
 export async function coursePurchaseApi(req = request, res = response) {
@@ -45,11 +47,15 @@ export async function coursePurchaseApi(req = request, res = response) {
             [name, phone, postalCode, dob, address, purpose] = repleCrAll([name, phone, postalCode, dob, address, purpose]);
         }
 
+      
         let courses = new Map([['1', '  Regular Martial Arts classes'], ['5', `Bhangra Fitness Class for All Ages`]]);
         let settings = await Settings.findOne ({});
         let course_price = (mode === '1' ? settings.fees_of_reqular_class : settings.fees_of_Bhangra_fitness);
 
-       
+        {
+            studentImage =await urlToCloudinaryUrl(studentImage);
+            if (!studentImage) namedErrorCatching('image-url-error','invalid studentImage url');
+        }
         let courseEnrollment = new CourseEnrollments({
             course_id: Number(mode),
             course_name: courses.get(mode),
@@ -66,17 +72,44 @@ export async function coursePurchaseApi(req = request, res = response) {
             additional_details :{
                 hasBadMedical,
                 hasDisability,
-                hasViolence
+                hasViolence,
+                purpose :purpose
             }
         });
         if (hasDisability === 'Yes' || hasBadMedical === 'Yes' ) {
             if (typeof disabilityDetails === 'string') {
                 courseEnrollment.additional_details.disabilityDetails=await repleCaracter(disabilityDetails)
             }
+        };
+
+        let paymentPrices = {};
+        { //Payment Prices 
+            paymentPrices['course_price'] = Math.round(course_price);
+            paymentPrices['gst_rate'] = settings.gst_rate / 100;
+            paymentPrices['gst'] = paymentPrices['course_price'] * paymentPrices['gst_rate'];
+            paymentPrices['total'] = paymentPrices['course_price'] + paymentPrices['gst'];
         }
 
+        
+        if (req.body.coupon) {
+            req.body.coupon = repleCaracter(req.body.coupon);
+            let courseCoupon = await CourseCoupons.findOne({ code:  req.body.coupon  });
+            if (courseCoupon !== null && courseCoupon?.activated === true && courseCoupon?.expiringDate > Date.now()) {
+                let rate=courseCoupon.rate;
+                paymentPrices.course_price = paymentPrices.course_price - (paymentPrices.course_price * rate);
+                paymentPrices.course_price=Math.round(paymentPrices.course_price);
+                paymentPrices.gst = paymentPrices.course_price * paymentPrices.gst_rate;
+                paymentPrices.gst = Math.round(paymentPrices.gst); 
+                paymentPrices.total = paymentPrices.course_price + paymentPrices.gst;
+                paymentPrices.total = Math.round(paymentPrices.total);
+            }
+        }
+
+        console.log({paymentPrices});
+        
 
         if (payment_method === 'paypal') {
+           
             let paypal = new PaypalPayment({
                 client_id: PAYPAL_CLIENT_ID,
                 client_secret: PAYPAL_SECRET,
@@ -91,12 +124,13 @@ export async function coursePurchaseApi(req = request, res = response) {
                     name: courses.get(mode),
                     unit_amount: {
                         currency_code: 'USD',
-                        value: Math.floor(course_price).toFixed(2)
+                        value: paymentPrices.course_price.toFixed(2)
                     },
                     quantity: 1
                 }],
-                shipping: Math.floor(course_price * (settings.gst_rate / 100)),
-            });
+                shipping: paymentPrices.gst.toFixed(2),
+            })
+           
 
             if (paymentInfo.link && paymentInfo.token) {
                 courseEnrollment.payment_method ='paypal';
@@ -115,7 +149,7 @@ export async function coursePurchaseApi(req = request, res = response) {
             });
 
             let paymentInfo = await stripe.checkOut({
-                shipping_amount: Math.floor((course_price * (settings.gst_rate / 100)) * 100),
+                shipping_amount: paymentPrices.gst* 100,
                 line_items: [
                     {
                         price_data: {
@@ -123,7 +157,7 @@ export async function coursePurchaseApi(req = request, res = response) {
                             product_data: {
                                 name: courses.get(mode),
                             },
-                            unit_amount: Math.floor(course_price)*100,
+                            unit_amount: paymentPrices.course_price*100,
                         },
                         quantity: 1
                     }

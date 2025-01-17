@@ -192,7 +192,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                     let id = btn.getAttribute('mcp_id');
                     couponsAsArray = couponsAsArray.filter(el => (el.id != id ? el : undefined));
                     fetch(apiBaseUrl+`?id=${id}`,{method :"DELETE"} );
-                    return organizeTable();
+                    return organizeTable(); 
                 })
             }
         );
@@ -256,6 +256,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
             requesting = false;
             if (response.status === 201) {
                 let data = await response.json();
+                container.querySelectorAll(`[couponName],[couponCode],[couponRate],[expirationDate]`).forEach(el => el.value = null);   
                 return organizeTable(couponsAsArray.push(data));
             }
             if (response.status !== 201) {

@@ -3,7 +3,7 @@
 Insha Allah,  Allah is enough for me
 */
 
-import { log, validate } from "string-player";
+import { log, repleCrAll, validate } from "string-player";
 import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import {request,response} from 'express'
 import CourseCoupons from "../models/course_coupon.js";
@@ -51,6 +51,7 @@ export async function getCourseCouponRates(req = request, res = response) {
     try {
         let code = req.query.code;
         if (!code) namedErrorCatching('parametar error', 'name parameter is not define');
+        [code]=repleCrAll([code]);
         code = code.toUpperCase();
         let coupon = await CourseCoupons.findOne({ code });
         if (coupon === null) namedErrorCatching('database error', 'no coupon exist');
@@ -58,7 +59,7 @@ export async function getCourseCouponRates(req = request, res = response) {
         if (coupon.expiringDate < Date.now()) {
             coupon.activated=false;
             await coupon.save();
-            return res.status(400).json({ error: { type: "coupon expired" } });
+            return res.status(400).json({ error: { message: "coupon expired" } });
         }
         return res.status(200).json({ rate: coupon.rate });
     } catch (error) {

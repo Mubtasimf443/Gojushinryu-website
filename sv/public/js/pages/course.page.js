@@ -122,7 +122,7 @@ document.querySelectorAll('.close-popup').forEach(
     const v = returnV(popup1);
     let requesting = false;
     let paypalbtn = popup1.querySelector('[id="paypal-btn"]'), stripebtn = popup1.querySelector('[id="stripe-btn"]');
-    let coupon='', isValidCoupon=false;
+    let coupon = '', isValidCoupon = false;
   
   
     async function registerCourse(e = new Event('click')) {
@@ -157,7 +157,7 @@ document.querySelectorAll('.close-popup').forEach(
 
             let response = await fetch(window.location.origin + '/api/l-api/course/purchase/', {
                 method: 'POST',
-                body: JSON.stringify({ name, email, phone, dob, address, postalCode, studentImage, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, payment_method, mode }),
+                body: JSON.stringify({ name, email, phone, dob, address, postalCode, studentImage, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, payment_method, mode, coupon: isValidCoupon ? coupon : undefined }),
                 headers: { 'Content-Type': 'application/json' }
             });
             if (response.status === 201) {
@@ -190,12 +190,14 @@ document.querySelectorAll('.close-popup').forEach(
 
     let couponTimeOut=undefined;
     popup1.querySelector('input#coupon').addEventListener('change',function ()  { 
+        if (!popup1.querySelector('input#coupon').value ) return;
+        popup1.querySelector('input#coupon').value =popup1.querySelector('input#coupon').value.toUpperCase();
         coupon = popup1.querySelector('input#coupon').value ;
         if (coupon.trim()) {
             clearTimeout(couponTimeOut);
-            let parameters = (new URLSearchParams({ coupon: coupon.trim() })).toString();
+            let parameters = (new URLSearchParams({ code: coupon.trim() })).toString();
             couponTimeOut = setTimeout(async function () {
-                let response = await fetch(window.location.origin + '/api/api_s/coupons/courses/get-rates?' + parameters);
+                let response = await fetch(window.location.origin + '/api/api_s//coupons/course/rate?' + parameters);
                 if (response.status === 200) {
                     let { rate } = (await response.json());
                     isValidCoupon = true;
