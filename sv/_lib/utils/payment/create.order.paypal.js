@@ -7,23 +7,14 @@ import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_LINK, PAYPAL_SECRET, T_PAYPAL_CLIENT
 
 import { log, Success } from '../smallUtils.js';
 
-export async function createPaypalPayment(
-    {
-        items,
-        total,
-        productToatal,
-        shipping,
-        success_url,
-        cancell_url
-    }     
-    ) {   
+export async function createPaypalPayment({ items, total, productToatal, shipping, success_url, cancell_url }) {   
     try {
         if (items instanceof Array === false) throw new Error("Items is not a array");
         for (let index = 0; index < items.length; index++) {
             const {name ,description ,quantity, unit_amount} =await items[index];
             if (!name ) throw new Error("Name is undefiened");
-            if (!description ) throw new Error("Name is undefiened");
-            if (!quantity ) throw new Error("Name is undefiened");
+            if (!description ) throw new Error("description is undefiened");
+            if (!quantity ) throw new Error("quantity is undefiened");
             if (typeof quantity !== 'number' || Number(quantity).toString==='NaN' ) throw new Error("quantity is not a number");            
             if (typeof unit_amount !== 'object') throw new Error("Unit amount is not a object"); 
             let {currency_code,value} =await unit_amount;
@@ -59,7 +50,7 @@ export async function createPaypalPayment(
                         items,
                         amount: {
                             currency_code: 'USD',
-                            value: total,//'23.00',
+                            value: total,
                             breakdown: {
                                 item_total: {
                                     currency_code: 'USD',
@@ -78,8 +69,6 @@ export async function createPaypalPayment(
                 }
             })
         }) ;
-        // log(response.data)
-        // log({pplink:response.data.links[1]});
         let link= response.data.links.find(link => link.rel === 'approve').href;
         return {success:true,link , paypal_id:response.data.id}
     } catch (error) {
@@ -95,8 +84,7 @@ export async function createPaypalPayment(
 export async function generatePayPalToken() {
     try {
         let response= await axios({
-            url:PAYPAL_LINK +'/v1/oauth2/token'
-            ,
+            url:PAYPAL_LINK +'/v1/oauth2/token',
             method:"POST",
             data: 'grant_type=client_credentials',
             auth:{
@@ -104,11 +92,9 @@ export async function generatePayPalToken() {
                 password:PAYPAL_SECRET
             }
         });
-     //   console.log(response.data);
-        
         return response.data.access_token
     } catch (error) {
-    //    console.error(error);
+
         log('token error')
         throw 'Token Failed To gain'
     }
@@ -156,37 +142,35 @@ export async function OrderSuccessPaypalApi(req,res) {
     })
 }
 
-export async function OrderCancellPaypalApi(req,res) {
-   let {token}=req.query
-   function status(data=token) {
-    if (!token) return false
-     if (data.includes('{')) return false 
-     if (data.includes('}')) return false 
-     if (data.includes('*')) return false 
-     if (data.includes(':')) return false 
-     if (data.includes('[')) return false 
-     if (data.includes(']')) return false 
-     if (data.includes('(')) return false 
-     if (data.includes('(')) return false 
-     if (data.includes('$')) return false 
-     if (data.includes('>')) return false 
-     if (data.includes('<')) return false 
-     return true
-   }
-   status =status();
-   if (!status) return res.redirect('notAllowed');
-   Orders.findOneAndDelete({
-    paypal_order_id :token
-   })
-   .then(e =>
-    {
-     log('order cancelled successful')
-     res.redirect('/')
-    })
-   .catch(e => {
-    log(e)
-    res.redirect('/')
-    })
+export async function OrderCancellPaypalApi(req, res) {
+    let { token } = req.query
+    function status(data = token) {
+        if (!token) return false
+        if (data.includes('{')) return false
+        if (data.includes('}')) return false
+        if (data.includes('*')) return false
+        if (data.includes(':')) return false
+        if (data.includes('[')) return false
+        if (data.includes(']')) return false
+        if (data.includes('(')) return false
+        if (data.includes('(')) return false
+        if (data.includes('$')) return false
+        if (data.includes('>')) return false
+        if (data.includes('<')) return false
+        return true
+    }
+    status = status();
+    if (!status) return res.redirect('notAllowed');
+    Orders.findOneAndDelete({
+        paypal_order_id: token
+    }) .then(function (e) {
+            log('order cancelled successful')
+            res.redirect('/')
+        })
+        .catch(function (e)  {
+            log(e)
+            res.redirect('/')
+        })
 
 
 }

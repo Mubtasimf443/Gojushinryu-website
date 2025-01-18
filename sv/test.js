@@ -12,19 +12,16 @@ import mongoose from 'mongoose';
 import { DATABASE, SDATABASE } from './_lib/utils/env.js';
 import { User } from './_lib/models/user.js';
 import Awaiter from 'awaiter.js';
+import { settingsAsString } from './_lib/model_base_function/Settings.js';
 
 
 await mongoose.connect(SDATABASE);
 
-let array =await User.find();
-for (let index = 0; index < array.length; index++) {
-    const user = array[index];
-    if (user.id ===undefined) {
-        await Awaiter(1000);
-        user.id=Date.now();
-        await user.save();
-        log('user id given')
-    }
+async function name(params) {
+    
+    console.log({gst_rate});
+    throw new Error("error");
+    
 }
-throw new Error("Err");
 
+name()

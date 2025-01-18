@@ -46,16 +46,7 @@ let Membershipschema = new mongoose.Schema({
     membership_name:String,
     membership_company:String,
     membership_type :String,
-    accepted_roles:{
-        role1 :{
-            type :Boolean,
-            default :true
-        },
-        role2 :{
-            type :Boolean,
-            default :true
-        },
-    },
+    accepted_roles: { role1: { type: Boolean, default: true }, role2: { type: Boolean, default: true }, },
     activated:{
         type :Boolean,
         default :false

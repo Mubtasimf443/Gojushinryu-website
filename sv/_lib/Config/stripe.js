@@ -17,7 +17,7 @@ export async function createStripeCheckOut({ success_url, cancel_url, line_items
       cancel_url: BASE_URL + cancel_url + '?session_id={CHECKOUT_SESSION_ID}',
       success_url: BASE_URL + success_url + '?session_id={CHECKOUT_SESSION_ID}',
       line_items: line_items,
-      // [{price_data: {currency: 'usd', product_data: {name: 'Node.js and Express book'},unit_amount: 50 * 100},quantity: 1}],
+      // [{ price_data: { currency: 'usd', product_data: { name: 'Node.js and Express book' }, unit_amount: 50 * 100 }, quantity: 1 }],
       mode: 'payment',
     });
 

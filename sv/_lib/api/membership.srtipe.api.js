@@ -5,11 +5,14 @@ InshaAllah, By his marcy I will Gain Success
 import { createStripeCheckOut } from "../Config/stripe.js";
 import { sendMembershipMails } from "../mail/membership.mail.js";
 import { Memberships } from "../models/Membership.js";
+import MembershipCoupons from "../models/membershipcoupon.js";
 import { Orders } from "../models/Order.js";
+import { Settings } from "../models/settings.js";
 import { User } from "../models/user.js";
 import { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
 import { MakePriceString, makeTimeString } from "../utils/string.manipolation.js";
+import { membershipSuccessPage } from "./MembershipApi.js";
 
 
 
@@ -140,13 +143,11 @@ export async function membershipMidleWareStripe(req, res, next) {
             has_violance_charge,
 
         ];
-        let notFoundIndex = testArray.findIndex(el => !el)
+        let notFoundIndex = testArray.findIndex(el => !el);
         if (notFoundIndex !== -1) throw new Error("Please Complete the form");
         let userInfo = {};
-        log('//nothing is emty')
-        let stripeTotal = 0;
+     
         let stripe_items = [];
-        //checkLavel 1
         if (gender !== 'Male' && gender !== 'Female') throw 'Gender is not correct'
         if (has_violance_charge !== 'Yes' && has_violance_charge !== 'No') throw 'Violance charge is not correct'
         if (has_permanent_injury !== 'Yes' && has_permanent_injury !== 'No') throw 'Violance charge is not correct'
@@ -157,7 +158,7 @@ export async function membershipMidleWareStripe(req, res, next) {
         if (typeof phone !== 'number') throw new Error("phone not correct");
         if (Number(phone).toString().toLowerCase() === 'nan') throw new Error("phone not correct");
         if (Number(postcode).toString().toLowerCase() === 'nan') throw new Error("postcode not correct");
-        log('//checkLavel 1')
+        
 
         //array check
         for (let i = 0; i < membeship_array.length; i++) {
@@ -168,12 +169,9 @@ export async function membershipMidleWareStripe(req, res, next) {
             if (membership !== 'Annual' && membership !== 'LifeTime') throw 'Server error ,line 80'
             company = company === 'gojushinryu' ? 'Goju shin Ryu' : 'School of Traditional Martial Art';
             let membership_object = memberships.find(el => (el.price_data.product_data.name.includes(company) && el.price_data.product_data.name.includes(membership)));
-            console.log({ membership_object });
+         
 
             if (typeof membership_object !== 'object' || !membership_object) throw new Error("membership_object problem");
-
-
-            stripeTotal += (membership_object.price_data.unit_amount / 100);
 
             stripe_items.push(membership_object);
             membeship_array.push({
@@ -182,45 +180,40 @@ export async function membershipMidleWareStripe(req, res, next) {
                 membership_name: membership_object.name
             });
             membership = membeship_array.shift();
-            log('//array check');
+          
         }
+        {
+            //string
+            userInfo.fname = await repleCaracter(fname);
+            userInfo.lname = await repleCaracter(lname);
+            userInfo.email = await repleCaracter(email);
+            userInfo.date_of_birth = await repleCaracter(date_of_birth);
+            userInfo.country = await repleCaracter(country);
+            userInfo.city = await repleCaracter(city);
+            userInfo.district = await repleCaracter(district);
+            userInfo.doju_Name = await repleCaracter(doju_Name);
+            userInfo.instructor = await repleCaracter(instructor);
+            userInfo.current_grade = await repleCaracter(current_grade);
+            userInfo.previous_injury = await repleCaracter(previous_injury);
 
+            //number
+            userInfo.postcode = postcode;
+            userInfo.phone = phone;
 
-        //info
-        //string
-        userInfo.fname = await repleCaracter(fname);
-        userInfo.lname = await repleCaracter(lname);
-        userInfo.email = await repleCaracter(email);
-        userInfo.date_of_birth = await repleCaracter(date_of_birth);
-        userInfo.country = await repleCaracter(country);
-        userInfo.city = await repleCaracter(city);
-        userInfo.district = await repleCaracter(district);
-        userInfo.doju_Name = await repleCaracter(doju_Name);
-        userInfo.instructor = await repleCaracter(instructor);
-        userInfo.current_grade = await repleCaracter(current_grade);
-        userInfo.previous_injury = await repleCaracter(previous_injury);
+            //conditional
+            if (has_permanent_injury === 'Yes') userInfo.permanent_disabillity = await repleCaracter(permanent_disabillity)
+            if (has_violance_charge === 'Yes') userInfo.violance_charge = await repleCaracter(violance_charge);
+            if (is_previous_member === 'Yes') userInfo.membership_expiring_date = await repleCaracter(membership_expiring_date);
 
-        //number
-        userInfo.postcode = postcode;
-        userInfo.phone = phone;
-
-
-        //conditional
-        if (has_permanent_injury === 'Yes') userInfo.permanent_disabillity = await repleCaracter(permanent_disabillity)
-        if (has_violance_charge === 'Yes') userInfo.violance_charge = await repleCaracter(violance_charge);
-        if (is_previous_member === 'Yes') userInfo.membership_expiring_date = await repleCaracter(membership_expiring_date);
-
-        //object
-        userInfo = { ...userInfo, gender, is_previous_member, experience_level, has_violance_charge, has_permanent_injury, membeship_array }
-
+            //object
+            userInfo = { ...userInfo, gender, is_previous_member, experience_level, has_violance_charge, has_permanent_injury, membeship_array }
+        }
 
         //request
 
         req.purified_user_info = userInfo;
-        req.stripeTotal = await MakePriceString(stripeTotal);
         req.stripe_items = stripe_items;
 
-        log('//moving to next')
         return next();
     } catch (error) {
         log({ error });
@@ -231,7 +224,6 @@ export async function membershipMidleWareStripe(req, res, next) {
 export async function stripeMembershipFunction(req, res) {
     try {
         let user_info = req.user_info;
-        let stripeTotal = req.stripeTotal;
         let stripe_items = req.stripe_items;
         let purified_user_info = req.purified_user_info;
         let { membeship_array } = purified_user_info;
@@ -262,7 +254,6 @@ export async function stripeMembershipFunction(req, res) {
 
 
 
-            log('//schema creating')
             let membership = new Memberships({
                 user_id: user_info._id,
                 fname,
@@ -293,28 +284,33 @@ export async function stripeMembershipFunction(req, res) {
             if (has_violance_charge === 'Yes') membership.violance_charge = purified_user_info.violance_charge;
             if (is_previous_member === 'Yes') membership.previous_membership_expiring_date = purified_user_info.membership_expiring_date;
 
-            log('//schema finished')
-            let { membershipData, error } = await membership.save()
-                .then(e => {
-                    log(e)
-                    return {
-                        _id: e._id,
-                        id: e.id,
-                        membershipData: e
-                    }
-                })
-                .catch(e => {
-                    log(e);
-                    return { error: e }
-                })
+            let { membershipData, error } = await membership.save().then((e) => ({ _id: e._id, id: e.id, membershipData: e }));
+               
             if (error) throw 'Can not create membership'
             if (membershipData) membershipDataBaseArray.push(membershipData)
 
         }
 
-        log('//stripe payment creating');
+        
+        //coupon
+        if (typeof req.body.coupon  === 'string') { 
+            let mCoupon=await MembershipCoupons.findOne().where('code').equals(req.body.coupon.trim().toUpperCase());
+            if (mCoupon?.rate) {
+                for (let i = 0; i < stripe_items.length; i++) {
+                    stripe_items[i].price_data.unit_amount -= stripe_items[i].price_data.unit_amount * mCoupon.rate;
+                }
+            }
+        }
 
 
+        { //gst rate 
+            let gst_rate = (await Settings.findOne({})).gst_rate / 100 || 0.05;
+            for (let i = 0; i < stripe_items.length; i++) {
+                stripe_items[i].price_data.unit_amount += stripe_items[i].price_data.unit_amount * gst_rate;
+                stripe_items[i].price_data.unit_amount = Math.floor(stripe_items[i].price_data.unit_amount);
+            }
+        }
+      
         let data = await createStripeCheckOut({
             line_items: stripe_items,
             success_url: '/api/api_s/stripe-membership-success',
@@ -331,10 +327,9 @@ export async function stripeMembershipFunction(req, res) {
             await membership.save();
         }
 
-        log('//stripe payment finish')
         return res.json({ success: true, link: data.url })
-    } catch (e) {
-        log(e);
+    } catch (error) {
+        console.error(error);
         return Alert(error, res)
     }
 }
@@ -366,11 +361,11 @@ export async function stripeMembershipSuccessFunction(req, res) {
             stripe_id: session_id
         });
         sendMembershipMails(memberships[0]);
+        let user = await User.findById(memberships[0].user_id);
 
         for (let i = 0; i < memberships.length; i++) {
             let { _id, id, user_id, membership_type, membership_company, membership_name } = memberships[i];
             await Memberships.findByIdAndUpdate(_id, { activated: true }).then(e => { })
-            let user = await User.findById(user_id);
             if (user) {
                 let length = user.memberShipArray.length;
                 if (!length) {
@@ -404,8 +399,8 @@ export async function stripeMembershipSuccessFunction(req, res) {
 
         }
 
-        res.redirect('/accounts/student');
-
+        res.send(membershipSuccessPage({ student_name: user.name, ids: memberships.map(el => el.id), types: memberships.map(el => el.membership_type) })) 
+        return;
     } catch (error) {
 
         log({ error })

@@ -208,8 +208,14 @@ document.querySelectorAll('.close-popup').forEach(
                     popup1.querySelector(`#total-price`).innerHTML = basePrice + (basePrice * (gst_rate / 100));
                     popup1.querySelector('input#coupon').style.outline = '1px solid green';
                     setTimeout(() => { popup1.querySelector('input#coupon').style.outline = 'none'; }, 1500);
+                    return;
+                } else {
+                    
                 }
             }, 500);
+            return;
+        } else {
+
         }
     })
 

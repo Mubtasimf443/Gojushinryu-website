@@ -90,7 +90,8 @@ export  async function DeleteUserAccount(req,res) {
 };
 export async function FindMember(req,res) {
   try {
-    const Member =await User.find({isMember:true})
+    const Member =await User.find({isMember:true});
+    
     res.json({
       success:true,
       Member 

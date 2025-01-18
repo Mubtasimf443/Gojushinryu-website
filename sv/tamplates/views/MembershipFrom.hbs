@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="/css/membership/Applicant-info-form.css">
     <link rel="stylesheet" href="/css/membership/payment-info-form.css">
     <link rel="stylesheet" href="/css/membership/question-info-form.css">
+
+    <script>
+          let global_gst_rate = Number('{{global_gst_rate}}') ? Number('{{global_gst_rate}}') : 5;
+    </script>
 </head>
 <body>
 {{>Header}}
@@ -70,10 +74,7 @@
  <section id="form-section">
    <div id="form-box">
     
-    <div 
-    {{!-- style="display: none;"  --}}
-    
-    id="Applicant-info-form">
+    <div  {{!-- style="display: none;"  --}} id="Applicant-info-form">
       <h3>Applicant Information </h3>
 
         <div class="input-box">
@@ -132,100 +133,92 @@
         <input value=" 
         Varun jettly" id="inp--Instructor" type="text" placeholder="Varun Jettly">
       </div>
-
-      <div id="membership-box">
-        <label>choose Your Membership</label>
+<div id="membership-box">
+  <label>choose Your Membership</label>
+  <span>
+    <label membershipValue="LifeTime" membershipOrganization="school_of_traditional_martial_art" default-membership="true" id="lifetime-membership-box" class="membership">
+      <div>
+        <b>
+          LifeTime Membership
+        </b>
         <span>
-            <label  membershipValue="LifeTime"
-             membershipOrganization="school_of_traditional_martial_art" 
-             default-membership="false" 
-              id="lifetime-membership-box"   
-               class="membership">
-              <div>
-              <b>
-              LifeTime Membership
-              </b>
-              <span>
-                <sup class="currency">$</sup>
-                250
-              </span>
-             </div>
-             <hr>
-             <p>
-              For the individual joining the association
-             </p>
-
-                 <span>School  
-              of Traditional Martial arts
-            </span>
-            </label>
-    <label 
-    membershipValue="Annual" 
-    membershipOrganization="school_of_traditional_martial_art"
-    default-membership="false" 
-    id="annual-membership-box" 
-    class="membership" >
-
-            <div>
-              <b>
-              Annual Membership
-              </b>
-              <span>
-                <sup class="currency">$</sup>
-              75
-              </span>
-             </div>
-             <hr>
-             <p>
-              Pay annually for the individual joining the association
-            </p>
-            <span>School  
-              of Traditional Martial arts
-            </span>
-    </label>
-  
+          <sup class="currency">$</sup>
+          250
         </span>
-         {{!-- 
-        <span>
-            
-            <label  membershipValue="LifeTime"  membershipOrganization="gojushinryu" default-membership="true" id="lifetime-membership-box"  class="membership">
-
-            <div>
-              <b>
-              LifeTime Membership
-              </b>
-              <span>
-                <sup class="currency">$</sup>
-                250
-              </span>
-             </div>
-             <hr>
-             <p>
-              For the individual joining the association
-             </p>
-            <span>Goju Shin Ryu</span>
-
-            </label>
-            <label  class="membership" membershipOrganization="gojushinryu"  membershipValue="Annual" default-membership="false"  id="annual-membership-box">
-            <div>
-              <b>
-              Annual Membership 
-              </b>
-              <span>
-                <sup class="currency">$</sup>
-              75
-              </span>
-             </div>
-             <hr>
-             <p>
-              Pay annually for the individual joining the association
-            </p>
-            <span>Goju Shin Ryu</span>
-            </label>
-  
-        </span> 
-        --}}
       </div>
+      <hr>
+      <p>
+        For the individual joining the association
+      </p>
+
+      <span>School
+        of Traditional Martial arts
+      </span>
+    </label>
+    <label membershipValue="Annual" membershipOrganization="school_of_traditional_martial_art" default-membership="false" id="annual-membership-box" class="membership">
+
+      <div>
+        <b>
+          Annual Membership
+        </b>
+        <span>
+          <sup class="currency">$</sup>
+          75
+        </span>
+      </div>
+      <hr>
+      <p>
+        Pay annually for the individual joining the association
+      </p>
+      <span>School
+        of Traditional Martial arts
+      </span>
+    </label>
+
+  </span>
+  {{!--
+  <span>
+
+    <label membershipValue="LifeTime" membershipOrganization="gojushinryu" default-membership="true"
+      id="lifetime-membership-box" class="membership">
+
+      <div>
+        <b>
+          LifeTime Membership
+        </b>
+        <span>
+          <sup class="currency">$</sup>
+          250
+        </span>
+      </div>
+      <hr>
+      <p>
+        For the individual joining the association
+      </p>
+      <span>Goju Shin Ryu</span>
+
+    </label>
+    <label class="membership" membershipOrganization="gojushinryu" membershipValue="Annual" default-membership="false"
+      id="annual-membership-box">
+      <div>
+        <b>
+          Annual Membership
+        </b>
+        <span>
+          <sup class="currency">$</sup>
+          75
+        </span>
+      </div>
+      <hr>
+      <p>
+        Pay annually for the individual joining the association
+      </p>
+      <span>Goju Shin Ryu</span>
+    </label>
+
+  </span>
+  --}}
+</div>
  <div id="applicant-form-btn-div">
    <button id="applicant-form-btn">
     Coninue
@@ -234,9 +227,7 @@
     </div>
   
  
- <div 
- {{!-- style="display: flex;" --}}
-  id="question-info-form">
+ <div {{!-- style="display: flex;" --}} id="question-info-form">
   <h2>Please Answer This Qusetion</h2>
   <div class="column_y_n_question">
         <label >Your Gender? 
@@ -392,8 +383,14 @@
       <input  style="font-family:'Roboto',sans-serif;" disabled type="text" payment_membership_total value="75$" >
     </div>
     
+    
+    <div class="payment-box-div">
+      <Label>Enter A coupon (Optional) </Label>
+      <input  style="font-family:'Roboto',sans-serif;" type="text" enter_a_coupon value="" placeholder="Enter A coupon (Optional)" >
+    </div>
 
    
+
 <div class="paymetn-btn-div">
       <button id="payment-back-btn">Back</button>
       <button id="credit-card-payment-Continue-btn">

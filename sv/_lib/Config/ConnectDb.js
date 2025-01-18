@@ -8,11 +8,6 @@ import { log } from "../utils/smallUtils.js";
 import { SDATABASE, TEST_DATABASE } from "../utils/env.js";
 
 
-export const connectDB = async() => {
-    try {
-       await mongoose.connect(SDATABASE);
-       console.log('db connected...');
-    } catch (error) {
-        log(error);
-    }  
+export async function connectDB() {
+    await mongoose.connect(SDATABASE).catch(error => console.error(error));  
 }

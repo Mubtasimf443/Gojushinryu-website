@@ -21,24 +21,14 @@ Insha Allab,  By the marcy of Allah,  I will gain success
                     prod.innerHTML=product.length +prod.innerHTML;
                     
                     for (let i = 0; i < product.length; i++) {
-                        const {thumb,name,selling_style ,cetegory,id} = product[i];
+                        const {thumb,name ,cetegory,id,SizeAndPrice} = product[i];
                         let div = document.createElement('div');
                         div.className='product';
-                        let price =''
-                        
-                        if (selling_style==='per_price') {
-                            price=product[i].price +'.00'
-                        }
-
-                        if (selling_style!=='per_price') {
-                            price =product[i].size_and_price[0].price + '.00';
-                        }
-
                         div.innerHTML=
                         `
                         <img src="${thumb}">
                         <span class="name">${name}</span>
-                        <span class="price">${price}$</span>
+                        <span class="price">${SizeAndPrice[0].price}$</span>
                         <span class="cetegory">
                         ${cetegory}
                         </span>

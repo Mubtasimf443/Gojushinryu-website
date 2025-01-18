@@ -12,6 +12,11 @@ Insha Allah,  By Allahs Marcy,  I willearn success
 {
   /*----------- global scope ----------*/
   var formStatus = 1;
+  let coupon = '', 
+  isValidCoupon = false;
+
+  //variables 
+  let processingPayment = false;
 
   /*----------- heading section ----------*/
   let headingSection = document.querySelector('#heading_section');
@@ -23,21 +28,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   let QboxForm = document.querySelector('#question-info-form');
   let paymentForm = document.querySelector('#payment-info-form');
   let successForm = document.querySelector('#Success-massage-form');
-  let processingPayment = false;
-  /*----------- Button's of Form ----------*/
-
-  //aplicant info
-  let applicationInfoContinueButton = document.querySelector('#applicant-form-btn');
-  //quwstion and Answer
-  let QboxBackBtn = document.querySelector("#q-box-back-btn");
-  let QboxContinueBtn = document.querySelector("#q-box-cn-btn");
-  //payment btn
-  let paymentFormBackBtn = document.querySelector("#payment-back-btn");
-  let paymentFormContinueBtn = document.querySelector("#payment-Continue-btn");
-  //success massage
-  let successGotItBtn = document.querySelector("#successGotItBtn");
-
-
+ 
   //input
   let FnameInput = document.querySelector('#inp--f--name');
   let LnameInput = document.querySelector('#inp--f--name');
@@ -57,7 +48,9 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   var previousInjuryInput = document.querySelector('#inp--previous-injury');
   let policy1Input = document.getElementById('policy-1-inp');
   let policy2Input = document.getElementById('policy-2-inp') ;
-
+  
+  districtInput.value='null';
+  cityInput.value='null';
   var userInfo = {
     fname: '',
     lname: '',
@@ -81,7 +74,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
     has_violance_charge: "No",
     has_permanent_injury: 'No',
     membeship_array: [{
-      company: 'gojushinryu',
+      company: 'school_of_traditional_martial_art',
       membership: "LifeTime"
     }],
     accapted: {
@@ -94,78 +87,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
 
   /*----------- v function  ----------*/
 
-  function log(e) { console.log(e) }
-  function v2(el) {
-    let simbolerror = 'You can not use <,>,{,},[,],",,$' + "`," + '"';
-    if (!el) throw new Error(`can not find using ${htmlElementSelector}`);
-    let value = el.value;
-    if (!value) {
-      el.style.outline = '2px solid red';
-      throw new Error('This feild is emty');
-    }
-    if (value.includes('<')) {
-      el.style.outline = '2px solid red';
-      throw new Error(simbolerror);
-    }
-    if (value.includes('>')) {
-      el.style.outline = '2px solid red';
-      throw new Error(simbolerror);
-    }
-    if (value.includes("'")) {
-      el.style.outline = '2px solid red';
-      throw new Error(simbolerror);
-    }
-    if (value.includes('"')) {
-      el.style.outline = '2px solid red';
-      throw new Error(simbolerror);
-    }
-    if (value.includes('`')) {
-      el.style.outline = '2px solid red';
-      throw new Error(simbolerror);
-    }
-    if (value.includes('{')) {
-      el.style.outline = '2px solid red';
-      throw new Error(simbolerror);
-    }
-    if (value.includes('}')) {
-      el.style.outline = '2px solid red';
-      throw new Error(simbolerror);
-    }
-    if (value.includes('[')) {
-      el.style.outline = '2px solid red';
-      throw new Error(simbolerror);
-    }
-    if (value.includes(']')) {
-      el.style.outline = '2px solid red';
-      throw new Error(simbolerror);
-    }
-    return value
-  }
-  async function v3(el) {
-    let num = el.valueAsNumber;
-    if (!el) {
-      el.style.outline = '2px solid red';
-      throw 'not a number'
-    }
-    if (Number(num).toString().toLowerCase() === 'nan') {
-      el.style.outline = '2px solid red';
-      throw 'not a number'
-    }
-    return num
-  }
-  async function v4(el) {
-    if (!el) throw 'can not find date'
-    let value = el.value;
-    if (!value) {
-      el.style.outline = '2px solid red';
-      throw 'Please give the Date';
-    }
-    return el.valueAsDate.getDate() + '-' + el.valueAsDate.getMonth() + '-' + el.valueAsDate.getFullYear();
-
-  }
-  function setValue(params, value) {
-    document.querySelector(params).setAttribute('value', value)
-  }
+ 
 
   /*-----------  moving To QboxForm  ----------*/
   async function movingToQboxForm(params) {
@@ -189,7 +111,14 @@ Insha Allah,  By Allahs Marcy,  I willearn success
       userInfo.date_of_birth = await v4(DOB_Input);
 
 
-      if (!userInfo.membeship_array.length) return
+      if (userInfo.membeship_array.length ===0) {
+        userInfo.membeship_array[0]={
+          company :  'school_of_traditional_martial_art',
+          membership : 'LifeTime'
+        }
+        document.querySelector(`[membershipValue="LifeTime"]`).setAttribute('default-membership',true);
+        return;
+      }
 
       /*------------------------Form Change -------------------------------*/
       formStatus = formStatus + 1;
@@ -213,7 +142,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
       memberships = memberships + `${i === 0 ? '' : ' + '}${membership} (${company})`;
       cost += membership.toLowerCase() === 'annual' ? 75 : 250;
     }
-    let taxRate = 5 / 100;
+    let taxRate = global_gst_rate / 100;
     let tax = cost * taxRate;
 
     setValue(`[payment_membership_total]`, (cost + tax).toFixed(2) + '$');
@@ -303,9 +232,6 @@ Insha Allah,  By Allahs Marcy,  I willearn success
       target.setAttribute('default-membership', 'true');
       return
     }
-
-
-
   }
   function ChangeYesNoStatenent(target) {
     let yesNoDivFor = target.getAttribute('yes-no-div-for');
@@ -346,9 +272,9 @@ Insha Allah,  By Allahs Marcy,  I willearn success
 
   async function paypalMembershipFunction(e) {
     e.preventDefault();
-    if (processingPayment) return
+    if (processingPayment) return;
     try {
-      let jsonObject = await JSON.stringify(userInfo);
+      let jsonObject = await JSON.stringify({ ...userInfo, coupon: isValidCoupon ? coupon : undefined });
       processingPayment = true;
       document.getElementById('paypal-payment-btn').style.transition = 'all .5s ease';
       document.getElementById('paypal-payment-btn').style.opacity = .7;
@@ -381,10 +307,10 @@ Insha Allah,  By Allahs Marcy,  I willearn success
 
 
   async function stripeMembershipFunction(e) {
-    if (processingPayment) return
+    if (processingPayment) return;
     e.preventDefault();
     try {
-      let jsonObject = JSON.stringify(userInfo);
+      let jsonObject = await JSON.stringify({ ...userInfo, coupon: isValidCoupon ? coupon : undefined });
       // alert('working')
       document.getElementById('credit-card-payment-Continue-btn').style.transition = 'all .5s ease';
       document.getElementById('credit-card-payment-Continue-btn').style.opacity = .7;
@@ -413,7 +339,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   }
 
   /*----------- event delegation and  listener ----------*/
-  document.addEventListener('click', e => {
+  document.addEventListener('click', function (e) {
     {
       //aplicant info continue btn
       if (e.target.id === 'applicant-form-btn') return changeFormLayout(true);
@@ -436,7 +362,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
     if (e.target.className === 'membership') return changeMembership(e.target);
     if (e.target.parentNode.className === 'membership') return changeMembership(e.target.parentNode);
     if (e.target.parentNode.parentNode.className === 'membership') return changeMembership(e.target.parentNode.parentNode);
-  
+
   })
 
   policy1Input.addEventListener('change', e => {
@@ -459,4 +385,140 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   document.getElementById('credit-card-payment-Continue-btn').addEventListener('click', e => stripeMembershipFunction(e))
 
 
+  let couponsTimeOut;
+  // document.querySelector('[enter_a_coupon]').addEventListener('keypress', setCoupon);
+  // document.querySelector('[enter_a_coupon]').addEventListener('change', setCoupon);
+  document.querySelector('[enter_a_coupon]').addEventListener('input', setCoupon);
+
+  async function setCoupon(event) {
+    if (!event.target?.value.trim()) return;
+    coupon =event.target.value.trim();
+    coupon.toUpperCase();
+    event.target.value=coupon.toUpperCase();
+    clearTimeout(couponsTimeOut);
+    couponsTimeOut = setTimeout(async function () {
+      let params = (new URLSearchParams({ code: coupon })).toString();
+      let response = await fetch(window.location.origin + '/api/api_s/coupons/memberships/rate?' + params);
+      if (response.status === 200) {
+        isValidCoupon=true;
+        let rate = (await response.json()).rate;
+        let memberships = '';
+        let cost = 0;
+        if (!userInfo.membeship_array.length) throw 'You do not have any data'
+        for (let i = 0; i < userInfo.membeship_array.length; i++) {
+          let { membership, company } = userInfo.membeship_array[i];
+          memberships = memberships + `${i === 0 ? '' : ' + '}${membership} (${company})`;
+          cost += membership.toLowerCase() === 'annual' ? 75 : 250;
+        }
+        let taxRate = global_gst_rate / 100;
+        cost = cost - (cost * rate);
+        let tax = cost * taxRate;
+        setValue(`[payment_membership_cost]`, cost.toFixed(2) + '$');
+        setValue(`[payment_membership_tax]`, tax.toFixed(2) + '$');
+        setValue(`[payment_membership_type]`, memberships);
+        setValue(`[payment_membership_total]`, (cost + tax).toFixed(2) + '$');
+        document.querySelector('[enter_a_coupon]').style.outline = '2px solid green';
+        setTimeout(() => {
+          document.querySelector('[enter_a_coupon]').style.outline = 'none';
+        }, 2500);
+        return;
+      } else {
+        isValidCoupon=false;
+        let memberships = '';
+        let cost = 0;
+        if (!userInfo.membeship_array.length) throw 'You do not have any data'
+        for (let i = 0; i < userInfo.membeship_array.length; i++) {
+          let { membership, company } = userInfo.membeship_array[i];
+          memberships = memberships + `${i === 0 ? '' : ' + '}${membership} (${company})`;
+          cost += membership.toLowerCase() === 'annual' ? 75 : 250;
+        }
+        let taxRate = global_gst_rate / 100;
+        let tax = cost * taxRate;
+        setValue(`[payment_membership_cost]`, cost.toFixed(2) + '$');
+        setValue(`[payment_membership_tax]`, tax.toFixed(2) + '$');
+        setValue(`[payment_membership_type]`, memberships);
+        setValue(`[payment_membership_total]`, (cost + tax).toFixed(2) + '$');
+        document.querySelector('[enter_a_coupon]').style.outline = '1.3px solid orange';
+        setTimeout(() => {
+          document.querySelector('[enter_a_coupon]').style.outline = 'none';
+        }, 2500);
+        return;
+      }
+    }, 1000);
+
+  }
 }/*----------- form scope finished ----------*/
+
+
+function log(e) { console.log(e) }
+function v2(el) {
+  let simbolerror = 'You can not use <,>,{,},[,],",,$' + "`," + '"';
+  if (!el) throw new Error(`can not find using ${htmlElementSelector}`);
+  let value = el.value;
+  if (!value) {
+    el.style.outline = '2px solid red';
+    throw new Error('This feild is emty');
+  }
+  if (value.includes('<')) {
+    el.style.outline = '2px solid red';
+    throw new Error(simbolerror);
+  }
+  if (value.includes('>')) {
+    el.style.outline = '2px solid red';
+    throw new Error(simbolerror);
+  }
+  if (value.includes("'")) {
+    el.style.outline = '2px solid red';
+    throw new Error(simbolerror);
+  }
+  if (value.includes('"')) {
+    el.style.outline = '2px solid red';
+    throw new Error(simbolerror);
+  }
+  if (value.includes('`')) {
+    el.style.outline = '2px solid red';
+    throw new Error(simbolerror);
+  }
+  if (value.includes('{')) {
+    el.style.outline = '2px solid red';
+    throw new Error(simbolerror);
+  }
+  if (value.includes('}')) {
+    el.style.outline = '2px solid red';
+    throw new Error(simbolerror);
+  }
+  if (value.includes('[')) {
+    el.style.outline = '2px solid red';
+    throw new Error(simbolerror);
+  }
+  if (value.includes(']')) {
+    el.style.outline = '2px solid red';
+    throw new Error(simbolerror);
+  }
+  return value
+}
+async function v3(el) {
+  let num = el.valueAsNumber;
+  if (!el) {
+    el.style.outline = '2px solid red';
+    throw 'not a number'
+  }
+  if (Number(num).toString().toLowerCase() === 'nan') {
+    el.style.outline = '2px solid red';
+    throw 'not a number'
+  }
+  return num
+}
+async function v4(el) {
+  if (!el) throw 'can not find date'
+  let value = el.value;
+  if (!value) {
+    el.style.outline = '2px solid red';
+    throw 'Please give the Date';
+  }
+  return el.valueAsDate.getDate() + '-' + el.valueAsDate.getMonth() + '-' + el.valueAsDate.getFullYear();
+
+}
+function setValue(params, value) {
+  document.querySelector(params).setAttribute('value', value)
+}

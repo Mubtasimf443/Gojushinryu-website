@@ -105,7 +105,6 @@ export async function coursePurchaseApi(req = request, res = response) {
             }
         }
 
-        console.log({paymentPrices});
         
 
         if (payment_method === 'paypal') {

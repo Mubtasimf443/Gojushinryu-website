@@ -91,7 +91,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
             insertionHtml +=(`
                 <tr tr_mcp_id="${id}">
                 <td><input inp_name type="text" value="${name}" maxlength="20" changed="false" minlength="5" disabled>  </td>
-                <td><input inp_code type="text" value="${code}" changed="false" disabled> </td>
+                <td td_inp_code ><input inp_code type="text" value="${code}" changed="false" disabled> </td>
                 <td><input inp_rate type="number" value="${rate*100}"  max="75" min="1" changed="false" disabled> </td>
                 <td><input inp_exp_date type="text" value="${new Date(expiringDate).toLocaleDateString()}"  changed="false" disabled ></td>
                 <td>
@@ -224,7 +224,16 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                 }
             })
         });
+        tbody.querySelectorAll('[td_inp_code]').forEach(function (el) {
+            el.addEventListener('click', function (event = new Event('click')) {
+                navigator.clipboard.writeText(event.target.querySelector('input').value);
+                alert('Copied');
+                return;
+            })
+        });
+
         tbody.querySelectorAll('input').forEach(element => (element.onchange = function (e) { e.target.style.outline = 'none' }));
+    
     }
 
     { //form

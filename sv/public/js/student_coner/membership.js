@@ -14,7 +14,7 @@ InshaAllah, By his Marcy I will Gain Success
                     let strong =document.createElement('strong');
                     strong.innerHTML='You are not a member '
                     containar.appendChild(strong)
-                    return
+                    return;
                 }
                 if (res.status===200) res.json().then(({data})=> {
                     for (let i = 0; i < data.length; i++) {
@@ -27,7 +27,7 @@ InshaAllah, By his Marcy I will Gain Success
                         <td>${type}</td>
                         <td>${date}</td>
                         `;
-                        containar.querySelector('table').appendChild(tr)
+                        containar.querySelector('table').appendChild(tr);
                     }
                 })
             })
