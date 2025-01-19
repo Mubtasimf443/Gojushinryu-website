@@ -3,16 +3,31 @@
 <head>
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title> Membership Application | {{>company_name}} </title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     {{>Links}}
-     <meta name="description" content="Choose between our Annual or Lifetime membership at the School of Traditional Martial Arts International . Enjoy expert training, a supportive community, and lifelong access to master timeless martial arts skills.">
-    <meta name="keywords" content="Annual or Lifetime membership at the School of Traditional Martial Arts International, Annual or Lifetime membership at the Goju Shin Ryu International Martial arts">
-    <link rel='stylesheet' type='text/css' media='screen' href='/css/pages/membership.application.css'>
+    <title> School of Traditional Martial Arts Memberships </title>
+    <meta name="description" content="Join the School of Traditional Martial Arts to master traditional techniques and enhance your skills. Explore annual and monthly membership options today.">
+<meta name="keywords" content="Traditional Martial Arts, Martial Arts Membership, School of Traditional Martial Arts, Annual Membership, Monthly Membership, Martial Arts Training, Edmonton Martial Arts">
+<meta name="robots" content="index, follow">
+
+<!-- Open Graph Meta Tags -->
+<meta property="og:title" content="School of Traditional Martial Arts Memberships">
+<meta property="og:description" content="Flexible annual and monthly memberships available at the School of Traditional Martial Arts. Start your journey to master traditional martial arts.">
+<meta property="og:image" content="/img/IMG-20240907-WA0026.jpg">
+<meta property="og:url" content="https://gojushinryu.com">
+<meta property="og:type" content="website">
+
+<!-- Twitter Meta Tags -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="School of Traditional Martial Arts Memberships">
+<meta name="twitter:description" content="Join the School of Traditional Martial Arts for traditional training. Flexible membership options available to suit your needs.">
+<meta name="twitter:image" content="/img/IMG-20240907-WA0026.jpg">
+
     <script defer src="/js/Membership.page.js"></script>
     <link rel="stylesheet" href="/css/membership/Applicant-info-form.css">
     <link rel="stylesheet" href="/css/membership/payment-info-form.css">
     <link rel="stylesheet" href="/css/membership/question-info-form.css">
+    <link rel='stylesheet' type='text/css' media='screen' href='/css/pages/membership.application.css'>
 
     <script>
           let global_gst_rate = Number('{{global_gst_rate}}') ? Number('{{global_gst_rate}}') : 5;
@@ -121,7 +136,7 @@
       
       <div class="input-box">
         <label for="inp--pcode"> Postal Code</label>
-        <input value="{{postcode}}" id="inp--pcode" type="number" placeholder="5432">
+        <input value="{{postcode}}" id="inp--pcode" type="text" placeholder="X5P Q11 91P" maxlength="15">
       </div>
 
       <div class="input-box">
@@ -151,8 +166,8 @@
         For the individual joining the association
       </p>
 
-      <span>School
-        of Traditional Martial arts
+      <span>
+        School of Traditional Martial arts
       </span>
     </label>
     <label membershipValue="Annual" membershipOrganization="school_of_traditional_martial_art" default-membership="false" id="annual-membership-box" class="membership">
@@ -440,5 +455,14 @@
 
 
 {{>Footer}}
+
+<script>
+    
+  document.querySelectorAll('input').forEach(function (element) {
+    element.addEventListener('input', function (event = new Event('input')) {
+      event.target.style.outline = 'none';
+    })
+  })
+</script>
 </body>
 </html>

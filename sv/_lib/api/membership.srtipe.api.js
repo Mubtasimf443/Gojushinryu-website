@@ -28,16 +28,6 @@ export async function membershipMidleWareStripe(req, res, next) {
                 unit_amount: 75 * 100
             },
             quantity: 1
-
-
-            // name :'Goju shin Ryu Annual Membership',
-            // description :'Goju shin Ryu Annual Membership',
-            // quantity :1,
-            // price :75 ,
-            // unit_amount:{
-            //     currency_code:'USD',
-            //     value  :'75.00'
-            // }
         },
         {
 
@@ -154,10 +144,8 @@ export async function membershipMidleWareStripe(req, res, next) {
         if (is_previous_member !== 'Yes' && is_previous_member !== 'No') throw 'Violance charge is not correct'
         if (experience_level !== 'Senior' && experience_level !== 'Junior') throw 'experience_level is not correct'
 
-        if (typeof postcode !== 'number') throw new Error("postcode not correct");
         if (typeof phone !== 'number') throw new Error("phone not correct");
         if (Number(phone).toString().toLowerCase() === 'nan') throw new Error("phone not correct");
-        if (Number(postcode).toString().toLowerCase() === 'nan') throw new Error("postcode not correct");
         
 
         //array check
@@ -195,9 +183,9 @@ export async function membershipMidleWareStripe(req, res, next) {
             userInfo.instructor = await repleCaracter(instructor);
             userInfo.current_grade = await repleCaracter(current_grade);
             userInfo.previous_injury = await repleCaracter(previous_injury);
+            userInfo.postcode =await repleCaracter(postcode);
 
             //number
-            userInfo.postcode = postcode;
             userInfo.phone = phone;
 
             //conditional

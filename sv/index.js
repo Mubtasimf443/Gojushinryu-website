@@ -83,9 +83,6 @@ app.use(express.json());
 app.use(cookieParser());
 
 
-
-
-
 //routes
 app.use(pageRouter);
 app.use('/api/file', fileRouter);

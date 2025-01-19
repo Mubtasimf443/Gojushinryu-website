@@ -19,6 +19,7 @@ import { customCoursePurchaseApi } from "../_lib/api/custom.course.api.js";
 import { createOrder } from "../_lib/model_base_function/order.js";
 import { coursePurchaseApi } from "../_lib/course/course.Purchase.Api.js";
 import orderPayment from '../_lib/api/orderPayment.js'
+import requestGojushinryuMembership from "../_lib/model_base_function/gojushinryuMembership.js";
 
 const router = Router();
 
@@ -46,6 +47,7 @@ router.post('/custom-membership', userCheck, customMembershipApi)
 router.post('/custom-course', userCheck, customCoursePurchaseApi)
 router.post('/order/create', userCheck, createOrder);
 router.post('/course/purchase', coursePurchaseApi);
+router.post('/request-gojushinryu-membership', userCheck, requestGojushinryuMembership);
 
 
 export default router;

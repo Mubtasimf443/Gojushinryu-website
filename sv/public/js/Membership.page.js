@@ -49,8 +49,6 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   let policy1Input = document.getElementById('policy-1-inp');
   let policy2Input = document.getElementById('policy-2-inp') ;
   
-  districtInput.value='null';
-  cityInput.value='null';
   var userInfo = {
     fname: '',
     lname: '',
@@ -102,10 +100,10 @@ Insha Allah,  By Allahs Marcy,  I willearn success
       userInfo.postcode = await v2(pCodeInput);
       userInfo.instructor = await v2(instructorInput);
       userInfo.doju_Name = await v2(dojuNameInput);
-
+      userInfo.postcode= await v2(pCodeInput);
+     
       //number
       await v3(numInput).then(e => userInfo.phone = e).catch(e => { alert(e); throw new Error("Error"); })
-      await v3(pCodeInput).then(e => userInfo.postcode = e).catch(e => { alert(e); throw new Error("Error"); })
 
       //Date
       userInfo.date_of_birth = await v4(DOB_Input);

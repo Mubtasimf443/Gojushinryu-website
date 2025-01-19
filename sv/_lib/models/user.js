@@ -67,9 +67,10 @@ let schema = new mongoose.Schema({
         type: Boolean,
         default: false
     },
+    isGojushinryuMember: Boolean,
     memberShipArray: [{
         _id: {
-            ref: 'Membership',
+            // ref: 'Membership',
             type: mongoose.SchemaTypes.ObjectId
         },
         id: Number,

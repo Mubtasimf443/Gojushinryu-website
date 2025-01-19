@@ -9,9 +9,10 @@ import mongoose from "mongoose";
 
 
 let Membershipschema = new mongoose.Schema({
-    id:{
-        type:Number,
-        default:Date.now
+    id: {
+        type: Number,
+        default: Date.now,
+        unique:true
     },
     user_id :{
         type:mongoose.SchemaTypes.ObjectId,
@@ -29,7 +30,7 @@ let Membershipschema = new mongoose.Schema({
     country:String,
     city:String,
     district:String,
-    postcode:Number,
+    postcode:String,
     doju_Name:String,
     instructor:String,
     current_grade:String,

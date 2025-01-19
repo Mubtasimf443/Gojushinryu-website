@@ -10,7 +10,7 @@ export const LargeAPIRateLimiter = rateLimit({
     //this for when a user is requesting to large apis
     // what can break the app totally
 	windowMs:10* 1000, 
-	limit: 3, 
+	limit: 5, 
 	standardHeaders: 'draft-7', 
 	legacyHeaders: false, 
     message:async (req,res) => {

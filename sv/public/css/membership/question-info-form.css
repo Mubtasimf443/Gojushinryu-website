@@ -157,8 +157,15 @@ InshaAllah ,  By The Marcy Of Allah ,  I will Gain Success
     justify-content: center;
     align-items: center;
     border-radius:5px ;
-    width: 6em;
+    min-width: 6em;
     height: 2.5em;
     font-weight: 500;
     text-transform: capitalize;
+    transition: opacity .7s ease;
+    padding: 0px 20px;
+    
+  }
+
+  form button{
+    transition: all .7s ease;
   }

@@ -105,7 +105,6 @@ export async function MembershipApidataCheckMidleware(req, res, next) {
             is_previous_member,
             experience_level,
             has_violance_charge,
-
         ];
         let notFoundIndex = testArray.findIndex(el => !el)
         if (notFoundIndex !== -1) throw new Error("Please Complete the form");
@@ -120,10 +119,10 @@ export async function MembershipApidataCheckMidleware(req, res, next) {
         if (has_permanent_injury !== 'Yes' && has_permanent_injury !== 'No') throw 'Violance charge is not correct'
         if (is_previous_member !== 'Yes' && is_previous_member !== 'No') throw 'Violance charge is not correct'
         if (experience_level !== 'Senior' && experience_level !== 'Junior') throw 'experience_level is not correct'
-        if (typeof postcode !== 'number') throw new Error("postcode not correct");
+        // if (typeof postcode !== 'number') throw new Error("postcode not correct");
         if (typeof phone !== 'number') throw new Error("phone not correct");
         if (Number(phone).toString().toLowerCase() === 'nan') throw new Error("phone not correct");
-        if (Number(postcode).toString().toLowerCase() === 'nan') throw new Error("postcode not correct");
+        // if (Number(postcode).toString().toLowerCase() === 'nan') throw new Error("postcode not correct");
 
 
 
@@ -146,7 +145,6 @@ export async function MembershipApidataCheckMidleware(req, res, next) {
                 membership_name: membership_object.name
             });
             membership = membeship_array.shift();
-           
         }
 
 
@@ -164,11 +162,12 @@ export async function MembershipApidataCheckMidleware(req, res, next) {
             userInfo.instructor = await repleCaracter(instructor);
             userInfo.current_grade = await repleCaracter(current_grade);
             userInfo.previous_injury = await repleCaracter(previous_injury);
+            userInfo.postcode = await repleCaracter(postcode);
+
         }
 
 
         //number
-        userInfo.postcode = postcode;
         userInfo.phone = phone;
 
 

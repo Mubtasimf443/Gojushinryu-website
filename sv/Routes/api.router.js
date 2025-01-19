@@ -37,6 +37,7 @@ import { courseEnrollmentPaymentRequestApi } from "../_lib/course/ce.payment.req
 import MonthlyCourseEnrollMentFees from "../_lib/course/MonthlyFeesPage.js";
 import orderPayment from '../_lib/api/orderPayment.js'
 import { activateCourseCoupon, createCourseCoupon, deActivateCourseCoupon, deleteCourseCoupon, getCourseCouponRates, getCourseCoupons, updateCourseCoupon } from "../_lib/model_base_function/courseCoupon.js";
+import { admin_approveGojushinryuMembership, cancelAndDeleteGojushinryuMembership, findGojushinryuMembershipRequest, GojushinryuMembershipRequestSuccessPage, userIdToImage } from "../_lib/model_base_function/gojushinryuMembership.js";
 
 
 
@@ -88,6 +89,9 @@ router.get('/order/payment/paypal/:id/success', orderPayment.OrderPaymentPaypalS
 router.get('/order/payment/stripe/:id/success', orderPayment.OrderPaymentStripeSuccess);
 router.get('/order/payment/paypal/:id/cancel', orderPayment.OrderPaymentPaypalCancel);
 router.get('/order/payment/stripe/:id/cancel', orderPayment.OrderPaymentStripeCancel);
+router.get('/gojusinryu-membership-request-success',GojushinryuMembershipRequestSuccessPage);
+router.get('/gojusinryu-membership-request-list',findGojushinryuMembershipRequest);
+router.get('/user-id-to-image',userIdToImage);
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)
@@ -131,8 +135,8 @@ router.put('/coupons/memberships/deactivate' , deActivateMembershipCoupon);
 router.put('/coupons/course' , updateCourseCoupon);
 router.put('/coupons/course/activate' , activateCourseCoupon);
 router.put('/coupons/course/deactivate' , deActivateCourseCoupon);
-
 router.put('/course/enrollments/payment-request' , courseEnrollmentPaymentRequestApi);
+router.put('/gojusinryu-membership-request-approve' , admin_approveGojushinryuMembership);
 
 //Delete
 router.delete('/delete-product',DeleteProduct)
@@ -145,6 +149,7 @@ router.delete('/order/cancel', cancelOrder)
 router.delete('/coupons/memberships' , deleteMembershipCoupon);
 router.delete('/coupons/course' , deleteCourseCoupon);
 router.delete('/course/enrollments' , deleteCourseEnrollment);
+router.delete('/gojusinryu-membership-request-delete' , cancelAndDeleteGojushinryuMembership);
 
 //payments
 

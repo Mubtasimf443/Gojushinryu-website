@@ -25,7 +25,18 @@ export async function MembershipPageNavigation(req, res) {
             });
         }
         else if (req.params.org === 'goju-shin-ryu') {
-            return res.render('massage_server', { title: 'This page is under construction', body: "We currently preparing this page , so please wait for 1-2 days for having Gojushinryu membership" })
+            return res.render('membership_gojushinryu',{ 
+                name: name,
+                first_name,
+                last_name,
+                email,
+                phone,
+                country,
+                district: district ? district : '',
+                city: city ? city : '',
+                postcode: typeof postCode === 'number' ? postCode : 1000,
+                global_gst_rate
+            })
         } else return res.redirect('/membership-application/school-of-traditional-martial-arts');
         
     } catch (error) {

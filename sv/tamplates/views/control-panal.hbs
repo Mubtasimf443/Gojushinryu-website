@@ -32,6 +32,9 @@
   <link rel="stylesheet" href="/css/control_panal/share.media.css">
   <link rel="stylesheet" href="/css/control_panal/countryrepresentative.css">
   <link rel="stylesheet" href="/css/control_panal/customLinksContainer.css">
+  <link rel="stylesheet" href="/css/control_panal/GojushinryuMembership.css">
+
+  
   <script>
     var global_gst_rate =Number('{{global_gst_rate}}') || 5;
  //   global_gst_rate = global_gst_rate.toString() === 'NaN' ? 5 : global_gst_rate; 
@@ -60,12 +63,13 @@
   <script defer src="/js/control panal/custom.link.js"></script>
   <script defer src="/js/control panal/membershipCouponsSettings.js"></script>
   <script defer src="/js/control panal/courseCouponsSettings.js"></script>
+  <script defer src="/js/control panal/gojushinryu.memberhsip.js"></script>
 
 </head>
 
 <body>
 
-  <!------------------------ product PopUp ------------------------------>
+<!---------------------------- Membership popup ---------------------------->
   <div id="popup_for_membership_data" style="display: none;" class="popup_c">
     <div class="popup_order_action_form">
       <h2>Membership Data</h2>
@@ -209,8 +213,132 @@
 
     </div>
   </div>
+ <!-- -------------------------- Gojushinryu membership request Popup ------------------------------ -->
 
-  {{!-- -------------------------- order PopUp ------------------------------ --}}
+  <div id="Gojushinryu-membership-request-Popup" style="display: none;" class="popup_c">
+    <div class="popup_order_action_form">
+      <h2> Gojushinryu membership request</h2>
+      
+      <div class="input-box">
+        <label>membership type</label>
+        <input disabled value="" placeholder="membership_type" membership_type type="text">
+      </div>
+
+
+      <div class="input-box">
+        <label> Name</label>
+        <input disabled value="" placeholder="name" name type="text">
+      </div>
+
+     
+      <div class="input-box">
+        <label>Email </label>
+        <input disabled value="" placeholder="email" email  type="text">
+      </div>
+
+      <div class="input-box">
+        <label>phone</label>
+        <input disabled value="" placeholder="phone" phone type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Date of Birth</label>
+        <input disabled value="" placeholder="Date of Birth" type="text">
+      </div>
+
+
+      <div class="input-box">
+        <label>Country</label>
+        <input disabled value="" placeholder="country" country type="text">
+      </div>
+
+    
+
+      <div class="input-box">
+        <label>City</label>
+        <input disabled value="" placeholder="City" City type="text">
+      </div>
+
+      <div class="input-box">
+        <label>District</label>
+        <input disabled value="" placeholder="district" district type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Postcode</label>
+        <input disabled value="" placeholder="postcode" postcode type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Gender</label>
+        <input disabled value="" placeholder="gender" gender type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Doju Name</label>
+        <input disabled value="" placeholder="doju_Name" doju_Name type="text">
+      </div>
+
+
+      <div class="input-box">
+        <label>Instructor</label>
+        <input disabled value="" placeholder="instructor" instructor type="text">
+      </div>
+
+
+      <div class="input-box">
+        <label>Current Grade</label>
+        <input disabled value="" placeholder="current_grade" current_grade type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Previous Injury</label>
+        <input disabled value="" placeholder="previous_injury" previous_injury type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Is previous Member</label>
+        <input disabled value="" placeholder="is_previous_member" is_previous_member type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Previous M expiring Date</label>
+        <input disabled value="" placeholder="membership_expiring_date" membership_expiring_date type="text">
+      </div>
+      <div class="input-box">
+        <label>Experience Level</label>
+        <input disabled value="" placeholder="experience_level" experience_level type="text">
+      </div>
+
+      <div class="input-box">
+        <label>has violance charge</label>
+        <input disabled value="" placeholder="has_violance_charge" has_violance_charge type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Violance Charge </label>
+        <input disabled value="" placeholder="violance_charge" violance_charge type="text">
+      </div>
+
+      <div class="input-box">
+        <label>has permanent injury</label>
+        <input disabled value="" placeholder="has_permanent_injury" has_permanent_injury type="text">
+      </div>
+
+      <div class="input-box">
+        <label>Permanent Disabillity</label>
+        <input disabled value="" placeholder="permanent_disabillity" permanent_disabillity type="text">
+      </div>
+
+      <div class="pp_btn_box">
+        <button class="popup-close-btn">Close</button>
+        <button style="background-color: green;border:2px solid green;width:100px;color:white" approve>Approved</button>
+        <button style="background-color: red;border:2px solid red;width:145px;" Delete>Cancel&Delete</button>
+      </div>
+
+    </div>
+  </div>
+  <!-- -------------------------- order PopUp ------------------------------ -->
 
   <div id="popup_order_action" style="display: none;" class="popup_c">
     <div class="popup_order_action_form">
@@ -336,6 +464,11 @@
 
 
   </div>
+
+
+
+ 
+
 
   <!------------------------ product PopUp ------------------------------>
   <div style="display: none;" class="popup_c" id="popup_product_action" >
@@ -553,22 +686,16 @@
           <a id="user_page_href">User's <button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="gm_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="member_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="G_Membership_Request_href">G Membership Request<button><i class="fa-solid fa-angle-right"></i></button></a>
+          
           <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="course_enrolments_href">Course EnrollMents<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="Testimonials_href">Testimonials<button><i class="fa-solid fa-angle-right"></i></button></a>
-          <a id="Country_Representative_href">Country Representative<button><i
-                class="fa-solid fa-angle-right"></i></button></a>
+          <a id="Country_Representative_href">Country Representative<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="customLinks_href">Create custom Offers<button><i class="fa-solid fa-angle-right"></i></button></a>
-
           <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
-          <style>
-            button,
-            a,
-            i {
-              cursor: pointer;
-            }
-          </style>
+         
         </div>
 
       </div>
@@ -789,8 +916,39 @@
           </div>
 
         </div>
+
+
+        <!-----------------------Gojushinryu Membership Request list ----------------------------->
+
+        <div ct_section targetedElement="G_Membership_Request_href"   
+        style="display: none;"   
+        class="Gojushinryu-Membership-Request-container">
+          <table>
+            <thead>
+              <tr>
+                <th>Id</th>
+                <th>Student Image</th>
+                <th>Student Name</th>
+                <th>Requested</th>
+                <th>Approved</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td >#</td>
+                <td width="17%"><img src="/img/spinner.svg" alt="student image"></td>
+                <td>Muhammad Mubtasim</td>
+                <td>20/02/2024</td>
+                <td style="color:orangered;">Yes</td>
+                <td><button>Details</button></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
         <!-----------------------order list ----------------------------->
-        <div ct_section targetedElement="order_href"  {{!-- style="display: none;"  --}} class="order-list-box">
+        
+        <div ct_section targetedElement="order_href"   style="display: none;"   class="order-list-box">
 
           <table>
             <tr>

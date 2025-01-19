@@ -9,11 +9,9 @@ import path from "path";
 import { fileURLToPath } from 'url'
 import { unlink } from "fs/promises";
 import { ImageUrl } from "../models/imageUrl.js";
-import { APP_AUTH_TOKEN, BASE_URL } from "../utils/env.js";
-import { checkOrCreateTempDir } from "../utils/dir.js";
-import fetch from "node-fetch";
-import catchError, { namedErrorCatching } from "../utils/catchError.js";
-import request from "../utils/fetch.js";
+import { BASE_URL } from "../utils/env.js";
+import Awaiter from "awaiter.js";
+import catchError from "../utils/catchError.js";
 
 
 //var
@@ -23,52 +21,109 @@ let dirname = path.dirname(__filename);
 
 export async function UplaodImageApi(req, res) {
     try {
-        log('uploading')
-        checkOrCreateTempDir()
         let DontSuffortMime = false;
         let options = {
-            uploadDir: path.resolve(dirname, '../../temp/images'),
+            uploadDir:
+                path.resolve(dirname, '../../temp/images'),
             maxFiles: 1,
             allowEmptyFiles: false,
-            maxFileSize: 4 * 1024 * 1024,
+            maxFileSize: 10 * 1024 * 1024,
             filter: (file) => {
-                if (file.mimetype === 'image/png'
+                if (
+                    file.mimetype === 'image/png'
                     || file.mimetype === 'image/jpg'
                     || file.mimetype === 'image/jpeg'
                     || file.mimetype === 'image/webp') return true
                 DontSuffortMime = true
                 return false
             },
-            filename: () => Date.now() + '_' + Math.floor(Math.random() * 1000) + '.jpg'
+            filename: () => Date.now() + '_' + Math.floor(Math.random() * 10000) + '.jpg'
         };
+        // await Awaiter(700);
         await formidable(options).parse(req, async (err, feilds, file) => {
-            try {
-                console.log('not uploaded ===== ' + DontSuffortMime);
-                if (DontSuffortMime === true) return res.json({ error: 'We do not suppot this type of file' })
-                if (err) {
-                    log(err);
-                    return res.json({ error: 'Unknown error' });
-                }
-                if (!feilds.caption) namedErrorCatching('perameter_error', 'caption is not found');
-                if (!file.images) namedErrorCatching('perameter_error', 'images is not found');
-                if (typeof feilds.caption[0]!=='string') namedErrorCatching('perameter_error', 'caption is not string');
-                if (!file.images[0].filepath) namedErrorCatching('perameter_error', 'images is not valid file');
-                let  caption=feilds.caption[0];
-                if (caption.length > 1000 || caption.length < 5) namedErrorCatching('perameter_error', 'caption is too big or small');
+            // console.log('not uploaded ===== '+DontSuffortMime);
+            if (DontSuffortMime === true) return res.json({ error: 'We do not suppot this type of file' });
 
-                let images=new Array();
-                for (let i = 0; i < file.images.length; i++) file.images[i].filepath && images.push(file.images[i].newFilename)
-                   
-                
-                
-
-            } catch (error) {
-                console.error(error);
-                catchError(res,error)
+            if (err) {
+                log(err);
+                return res.json({ error: 'Unknown error' });
             }
+
+            log('uploaded')
+
+            if (!file.img) return res.json({ error: 'You can not access To this service' })
+
+            if (file.img.length > 1) {
+                (function () {
+                    file.img.forEach(el => unlink(el.filepath)
+                        .then(() => { })
+                        .catch(e => log(e)))
+                })()
+                return res.json({ error: 'You can not access To this service' })
+            }
+
+            if (file.img[0].size > (1.5 * 1024 * 1024)) {
+                unlink(file.img[0].filepath)
+                    .then(() => { })
+                    .catch(e => log(e))
+                return res.json({ error: 'Image Is to  Big' })
+            }
+
+            let newImageurl = new ImageUrl({
+                url: BASE_URL + '/api/file/temp/' + file.img[0].newFilename,
+                urlpath: file.img[0].filepath,
+                active: false,
+                fileName: file.img[0].newFilename,
+                id: Date.now()
+            });
+
+            if ((await ImageUrl.findOne({ id: newImageurl.id })) !== null) {
+                log('another image with the same id so replacing the id ')
+                newImageurl.id = newImageurl.id * 999 + (newImageurl.id - (Math.floor(Math.random() * 1000)));
+                if ((await ImageUrl.findOne({ id: newImageurl.id })) !== null) {
+                    newImageurl.id = newImageurl.id * 999 + (newImageurl.id - (Math.floor(Math.random() * 1000)));
+                    if ((await ImageUrl.findOne({ id: newImageurl.id })) !== null) {
+                        log("server error , finding lots of image with a same id , that why this error");
+                        return res.status(500).json({ error: "server error , finding lots of image with a same id , that why this error" })
+                    }
+                }
+            }
+
+            let urlpath = await newImageurl.save().then(({ urlpath }) => urlpath).catch(e => { log(e); return null })
+            if (!urlpath) {
+                return res.json({ error: 'Unknown error' });
+            }
+
+            // let SavedImageUrl;
+
+            res.status(201).json({
+                success: true,
+                link: BASE_URL + '/api/file/temp/' + file.img[0].newFilename,
+                image_id: newImageurl.id
+            });
+
+            setTimeout(
+                () => {
+                    ImageUrl.findOne({
+                        urlpath
+                    })
+                        .then(image => {
+                            if (image) {
+                                unlink(urlpath).catch(e => log(e));
+                                if (!image.active) ImageUrl.findOneAndDelete({ urlpath: image.urlpath }).catch(e => log(e))
+                            }
+                        })
+                        .catch(e => {
+                            log(e)
+                        })
+                }, 2700000)
+            //agter 25 minutes ,Image will be delated
         })
     } catch (error) {
-        log({ error })
-
+        try {
+            catchError(res, error)
+        } catch (e) {
+            console.error(e);
+        }
     }
 }

@@ -1,12 +1,21 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+}
+
 
 :root {
     --mob--width-box : 430px;
     --f-massage-bg:rgb(121, 95, 61);
     --main-cl:black;
 }
-* {
-    box-sizing: border-box;
-}
+
 
 header {
     background: #000;
@@ -18,6 +27,10 @@ header {
     padding: 1.7em 4em 1.7em 5em; 
 }
 
+
+button,a,i{
+  cursor: pointer;
+}
 
 
 #ct-corner {
