@@ -177,6 +177,7 @@ InshaAllah, By his Marcy I will Gain Success
     if (e.target.id === 'notification_href') return ChangeSection(0);
     if (e.target.id === 'membership_href') return ChangeSection(5);
     if (e.target.id === 'course_enrollments_href') return ChangeSection(6);
+    if (e.target.id === 'social_media_href') return ChangeSection(7);
     if (e.target.parentNode.parentNode.id === 'massage_href') return ChangeSection(1);
     if (e.target.parentNode.parentNode.id === 'orders_href') return ChangeSection(4);
     if (e.target.parentNode.parentNode.id === 'info_href') return ChangeSection(2);

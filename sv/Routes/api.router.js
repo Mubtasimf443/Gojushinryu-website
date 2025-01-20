@@ -12,7 +12,7 @@ import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEn
 import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery } from '../_lib/model_base_function/Product.js';
-import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, RemoveFromBanedUserFunction } from '../_lib/model_base_function/user.js';
+import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, RemoveFromBanedUserFunction, userSocialMedia } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
 import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/api/MembershipApi.js";
@@ -92,6 +92,8 @@ router.get('/order/payment/stripe/:id/cancel', orderPayment.OrderPaymentStripeCa
 router.get('/gojusinryu-membership-request-success',GojushinryuMembershipRequestSuccessPage);
 router.get('/gojusinryu-membership-request-list',findGojushinryuMembershipRequest);
 router.get('/user-id-to-image',userIdToImage);
+router.get('/user-social-media',userCheck, userSocialMedia.getUserSocialMedia);
+
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)
@@ -137,6 +139,10 @@ router.put('/coupons/course/activate' , activateCourseCoupon);
 router.put('/coupons/course/deactivate' , deActivateCourseCoupon);
 router.put('/course/enrollments/payment-request' , courseEnrollmentPaymentRequestApi);
 router.put('/gojusinryu-membership-request-approve' , admin_approveGojushinryuMembership);
+router.put('/user-social-media/facebook',userCheck, userSocialMedia.upDateSmFacebook);
+router.put('/user-social-media/instagram',userCheck, userSocialMedia.upDateSmInstagram);
+router.put('/user-social-media/linkedin',userCheck, userSocialMedia.upDateSmLinkedin);
+router.put('/user-social-media/twitter',userCheck, userSocialMedia.upDateSmTwitter);
 
 //Delete
 router.delete('/delete-product',DeleteProduct)

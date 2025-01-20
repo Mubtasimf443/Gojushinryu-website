@@ -7,6 +7,8 @@ import { User } from "../models/user.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
 import { CourseEnrollments } from "../models/courseEnrollment.js";
 import { Memberships } from "../models/Membership.js";
+import { request, response } from "express";
+import catchError, { namedErrorCatching } from "../utils/catchError.js";
 
 
 
@@ -181,4 +183,117 @@ export async function getUserEnrolledCourseApi(req,res) {
     console.error({error});
     
   }
+}
+
+
+
+ async function getUserSocialMedia(req = request, res = response) {
+  try {
+    let social_media_details=req.user_info.social_media_details;
+    let user=req.user_info;
+    return res.status(200).json({
+      facebook : user.social_media_details?.facebook?.hasDetails ? decodeURIComponent(user.social_media_details?.facebook?.account) : undefined,
+      linkedin:user.social_media_details?.linkedin?.hasDetails ? decodeURIComponent(user.social_media_details?.linkedin?.account) : undefined,
+      twitter:user.social_media_details?.twitter?.hasDetails ? decodeURIComponent(user.social_media_details?.twitter?.account) : undefined,
+      instagram:user.social_media_details?.instagram?.hasDetails ? decodeURIComponent(user.social_media_details?.instagram?.account) : undefined,
+    });
+  } catch (error) {
+    catchError(res, error)
+  }
+}
+
+ async function upDateSmFacebook(req = request, res = response) {
+  try {
+    let account = req.body.account;
+    if (typeof account !== 'string') namedErrorCatching('parameter error', 'account show be a string');
+    account=account.trim();
+    let user=req.user_info;
+    if (account.length===0) {
+      user.social_media_details.facebook.hasDetails=false;
+      await user.save();
+      return res.sendStatus(202)
+    } else {
+      user.social_media_details.facebook.hasDetails=true;
+      user.social_media_details.facebook.account=encodeURIComponent(account);
+      await user.save();
+      return res.sendStatus(202)
+    }
+  } catch (error) {
+    catchError(res, error)
+
+  }
+}
+
+
+ async function upDateSmLinkedin(req = request, res = response) {
+  try {
+    let account = req.body.account;
+    if (typeof account !== 'string') namedErrorCatching('parameter error', 'account show be a string');
+    account=account.trim();
+    let user=req.user_info;
+    if (account.length===0) {
+      user.social_media_details.linkedin.hasDetails=false;
+      await user.save();
+      return res.sendStatus(202)
+    } else {
+      user.social_media_details.linkedin.hasDetails=true;
+      user.social_media_details.linkedin.account=encodeURIComponent(account);
+      await user.save();
+      return res.sendStatus(202)
+    }
+  } catch (error) {
+    catchError(res, error)
+
+  }
+}
+
+ async function upDateSmTwitter(req = request, res = response) {
+  try {
+    let account = req.body.account;
+    if (typeof account !== 'string') namedErrorCatching('parameter error', 'account show be a string');
+    account=account.trim();
+    let user=req.user_info;
+    if (account.length===0) {
+      user.social_media_details.twitter.hasDetails=false;
+      await user.save();
+      return res.sendStatus(202)
+    } else {
+      user.social_media_details.twitter.hasDetails=true;
+      user.social_media_details.twitter.account=encodeURIComponent(account);
+      await user.save();
+      return res.sendStatus(202)
+    }
+  } catch (error) {
+    catchError(res, error)
+
+  }
+}
+
+ async function upDateSmInstagram(req = request, res = response) {
+  try {
+    let account = req.body.account;
+    if (typeof account !== 'string') namedErrorCatching('parameter error', 'account show be a string');
+    account=account.trim();
+    let user=req.user_info;
+    if (account.length===0) {
+      user.social_media_details.instagram.hasDetails=false;
+      await user.save();
+      return res.sendStatus(202)
+    } else {
+      user.social_media_details.instagram.hasDetails=true;
+      user.social_media_details.instagram.account=encodeURIComponent(account);
+      await user.save();
+      return res.sendStatus(202)
+    }
+  } catch (error) {
+    catchError(res, error)
+  }
+}
+
+export const userSocialMedia = {
+  getUserSocialMedia,
+  upDateSmFacebook,
+  upDateSmInstagram,
+  upDateSmLinkedin,
+  upDateSmTwitter
 }

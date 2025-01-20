@@ -6,64 +6,57 @@ InshaAllah, By his marcy I will Gain Success
 import mongoose, { Mongoose } from "mongoose";
 
 
-let schema = new mongoose.Schema({
-    id: {
-        type :Number,
-        default :Date.now
-    },
-    thumb: String,
+const PrimaryDetails = {
     name: {
         type: String,
-        required: true
-    },
-    bio: {
-        type: String,
-        required: true,
-        default: 'I dream to become black belt in karate and Master Martial Arts'
+        
     },
     date_of_birth: String,
     age: Number,
     gender: {
         type:
             String,
-        required: true,
+
         default: 'male'
     },
     first_name: {
         type: String,
-        required: true
+        
     },
     last_name: {
         type: String,
-        required: true
+        
     },
     email: {
         type: String,
-        required: true,
+
         unique: true
     },
+
     phone: {
         type: Number,
-        required: true,
+
         unique: true
     },
-    password: {
-        type: String,
-        required: true,
-    },
+
     country: {
-        required: true,
+
         type: String
     },
-    joining_date: String,
     district: String,
     city: String,
     street: String,
     postCode: Number,
-    pin: Number,
-    isRegistered: Boolean,
+}
+const additionalDetails = {
+    thumb: String,
+    bio: {
+        type: String,
+
+        default: 'I dream to become black belt in karate and Master Martial Arts'
+    },
     isMember: {
-        required: true,
+
         type: Boolean,
         default: false
     },
@@ -91,22 +84,8 @@ let schema = new mongoose.Schema({
             ref: 'CourseEnrollments',
         }
     }],
-    //For reseting the password
-    resetingThePassword: {
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    resetingThePasswordOTP: {
-        type: Number,
-        required: true,
-        default: 0
-    },
-    banned: {
-        type: Boolean,
-        default: false,
-        required: true,
-    },
+}
+const notificationsAndMsg = {
     notification: [{
         id: {
             type: Number,
@@ -141,6 +120,77 @@ let schema = new mongoose.Schema({
             default: Date.now
         }
     }]
+}
+const auth = {
+    password: {
+        type: String,
+    },
+    joining_date: {
+        default: Date.now,
+        type: Number,
+    },
+    isRegistered: Boolean,
+
+    pin: Number,
+
+    //For reseting the password
+    resetingThePassword: {
+        type: Boolean,
+
+        default: false
+    },
+    resetingThePasswordOTP: {
+        type: Number,
+
+        default: 0
+    },
+    banned: {
+        type: Boolean,
+        default: false,
+
+    },
+
+}
+const social_media_details = {
+    facebook: {
+        hasDetails: {
+            type: Boolean,
+            default: false
+        },
+        account: String,
+    },
+    linkedin: {
+        hasDetails: {
+            type: Boolean,
+            default: false
+        },
+        account: String,
+    },
+    twitter: {
+        hasDetails: {
+            type: Boolean,
+            default: false
+        },
+        account: String,
+    },
+    instagram: {
+        hasDetails: {
+            type: Boolean,
+            default: false
+        },
+        account: String,
+    }
+}
+
+let schema = new mongoose.Schema({
+    id: {
+        type: Number,
+        default: Date.now
+    },
+    ...additionalDetails,
+    ...PrimaryDetails,
+    ...auth,
+    social_media_details
 })
 
 
