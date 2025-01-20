@@ -210,6 +210,8 @@ export async function getUserEnrolledCourseApi(req,res) {
     let user=req.user_info;
     if (account.length===0) {
       user.social_media_details.facebook.hasDetails=false;
+      user.social_media_details.facebook.account=undefined;
+
       await user.save();
       return res.sendStatus(202)
     } else {
@@ -233,6 +235,8 @@ export async function getUserEnrolledCourseApi(req,res) {
     let user=req.user_info;
     if (account.length===0) {
       user.social_media_details.linkedin.hasDetails=false;
+      user.social_media_details.linkedin.account=undefined;
+
       await user.save();
       return res.sendStatus(202)
     } else {
@@ -255,6 +259,8 @@ export async function getUserEnrolledCourseApi(req,res) {
     let user=req.user_info;
     if (account.length===0) {
       user.social_media_details.twitter.hasDetails=false;
+      user.social_media_details.twitter.account=undefined;
+
       await user.save();
       return res.sendStatus(202)
     } else {
@@ -277,6 +283,7 @@ export async function getUserEnrolledCourseApi(req,res) {
     let user=req.user_info;
     if (account.length===0) {
       user.social_media_details.instagram.hasDetails=false;
+      user.social_media_details.instagram.account=undefined;
       await user.save();
       return res.sendStatus(202)
     } else {
@@ -296,4 +303,13 @@ export const userSocialMedia = {
   upDateSmInstagram,
   upDateSmLinkedin,
   upDateSmTwitter
+}
+
+export async function findMemberPageMember(req = request, res = response) {
+  try {
+    res.status(200).json({ members: (await User.find({},'social_media_details name bio thumb country').where('isMember').equals(true)) });
+    return;
+  } catch (error) {
+    catchError(res, error)
+  }
 }

@@ -8,8 +8,7 @@ import mongoose, { Mongoose } from "mongoose";
 
 const PrimaryDetails = {
     name: {
-        type: String,
-        
+        type: String,      
     },
     date_of_birth: String,
     age: Number,
@@ -32,13 +31,11 @@ const PrimaryDetails = {
 
         unique: true
     },
-
     phone: {
         type: Number,
 
         unique: true
     },
-
     country: {
 
         type: String
@@ -49,7 +46,7 @@ const PrimaryDetails = {
     postCode: Number,
 }
 const additionalDetails = {
-    thumb: String,
+    thumb: { type: String, default: 'https://gojushinryu.com/img/avatar.png' },
     bio: {
         type: String,
 
@@ -190,14 +187,11 @@ let schema = new mongoose.Schema({
     ...additionalDetails,
     ...PrimaryDetails,
     ...auth,
-    social_media_details
+    ...notificationsAndMsg,
+    social_media_details,
 })
 
 
-schema.methods.checkDataForSignUp = function () {
 
-}
-
-
-const User = mongoose.model('User', schema);
-export { User }
+export const User = mongoose.model('User', schema);
+export default User;

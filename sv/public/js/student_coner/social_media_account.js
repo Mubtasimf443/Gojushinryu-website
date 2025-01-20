@@ -43,12 +43,14 @@ InshaAllah, By his Marcy I will Gain Success
             if (response.status===202){
                 fb_status.innerHTML='Saved';
                 fb_status.style.color='green';
-                return;
+                return (setTimeout(() => (fb_status.innerHTML=null), 2000));
             } else {
                 fb_status.innerHTML='Failed';
                 fb_status.style.color='red';
-                return;
+                return (setTimeout(() => (fb_status.innerHTML=null), 2000));
             }
+               
+                
         }, 1500);
     });
 
@@ -65,11 +67,11 @@ InshaAllah, By his Marcy I will Gain Success
             if (response.status===202){
                 ln_status.innerHTML='Saved';
                 ln_status.style.color='green';
-                return;
+                return (setTimeout(() => (ln_status.innerHTML=null), 2000));
             } else {
                 ln_status.innerHTML='Failed';
                 ln_status.style.color='red';
-                return;
+                return (setTimeout(() => (ln_status.innerHTML=null), 2000));
             }
         }, 1500);
     });
@@ -87,11 +89,11 @@ InshaAllah, By his Marcy I will Gain Success
             if (response.status===202){
                 tw_status.innerHTML='Saved';
                 tw_status.style.color='green';
-                return;
+                return (setTimeout(() => (tw_status.innerHTML=null), 2000));
             } else {
                 tw_status.innerHTML='Failed';
                 tw_status.style.color='red';
-                return;
+                return (setTimeout(() => (tw_status.innerHTML=null), 2000));
             }
         }, 1500);
     });
@@ -109,11 +111,11 @@ InshaAllah, By his Marcy I will Gain Success
             if (response.status===202){
                 ig_status.innerHTML='Saved';
                 ig_status.style.color='green';
-                return;
+                return (setTimeout(() => (ig_status.innerHTML=null), 2000));
             } else {
                 ig_status.innerHTML='Failed';
                 ig_status.style.color='red';
-                return;
+                return (setTimeout(() => (ig_status.innerHTML=null), 2000));
             }
         }, 1500);
     });

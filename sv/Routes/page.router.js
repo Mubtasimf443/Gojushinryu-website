@@ -80,9 +80,7 @@ pageRouter.get('/courses/date',longCatch24, async (req, res) => {
 });
 
 pageRouter.get('/membership-application/:org',userCheckAndNavigation, MembershipPageNavigation);
-pageRouter.get('/about-us/goju-shin-ryu',dayCatch7 ,(req, res) => res.render('about-us-gsr'))
-pageRouter.get('/about-us/school-of-traditional-martial-arts',dayCatch7, (req, res) => res.render('about-us-smta'))
-pageRouter.get('/about-us/testimonials', longCatch24,(req, res) => res.render('testimonials'))
+
 // pageRouter.get('/dates',(req,res)=>res.render('calender'))
 pageRouter.get('/auth/:name', dayCatch7,(req, res) => {
     if (req.params.name === 'register') {
@@ -159,8 +157,24 @@ pageRouter.get('/custom-links/:type/:unique_id',customLinkPage);
 pageRouter.get('/countries', dayCatch7,(req, res) => res.render('flags'))
 pageRouter.get('/media/:name/:id', (req, res) => {
     if (req.params.name === "post") return givePostDetailsFunction(req, res)
-})
-pageRouter.get('/about-us/organization-charts', longCatch24, (req, res) => res.render('OurOrganaizationChart'))
+});
+
+
+
+pageRouter.get('/about-us/:info',dayCatch7 ,function (req,res) {
+    try {
+        let info=req.params.info;
+        (info) && (info=info.toLowerCase());
+        if (info === 'goju-shin-ryu') return res.render('about-us-gsr');
+        if (info === 'school-of-traditional-martial-arts') return  res.render('about-us-smta');
+        if (info === 'testimonials') return res.render('testimonials');
+        if (info === 'organization-charts') return res.render('OurOrganaizationChart');
+        if (info === 'members') return res.render('Members');
+    } catch (error) {
+        console.error(error);
+    }
+});
+
 pageRouter.get('/alliance',  dayCatch7,(req, res) => res.render('alli'))
 pageRouter.get('/accounts/:name', async (req, res) => {
     if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req, res)

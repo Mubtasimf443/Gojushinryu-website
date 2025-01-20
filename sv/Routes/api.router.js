@@ -12,7 +12,7 @@ import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEn
 import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery } from '../_lib/model_base_function/Product.js';
-import { BaneUserFunction, DeleteUserAccount, FindMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, RemoveFromBanedUserFunction, userSocialMedia } from '../_lib/model_base_function/user.js';
+import { BaneUserFunction, DeleteUserAccount, FindMember, findMemberPageMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, RemoveFromBanedUserFunction, userSocialMedia } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
 import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/api/MembershipApi.js";
@@ -93,6 +93,7 @@ router.get('/gojusinryu-membership-request-success',GojushinryuMembershipRequest
 router.get('/gojusinryu-membership-request-list',findGojushinryuMembershipRequest);
 router.get('/user-id-to-image',userIdToImage);
 router.get('/user-social-media',userCheck, userSocialMedia.getUserSocialMedia);
+router.get('/find-members-of-member-page',findMemberPageMember);
 
 
 //Post Route
@@ -156,6 +157,7 @@ router.delete('/coupons/memberships' , deleteMembershipCoupon);
 router.delete('/coupons/course' , deleteCourseCoupon);
 router.delete('/course/enrollments' , deleteCourseEnrollment);
 router.delete('/gojusinryu-membership-request-delete' , cancelAndDeleteGojushinryuMembership);
+
 
 //payments
 

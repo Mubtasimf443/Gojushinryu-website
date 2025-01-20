@@ -96,16 +96,10 @@ async function requestGojushinryuMembership(req=request, res=response) {
             membershipDataBaseArray[i]= await membershipDataBaseArray[i].save();
             await sendMembershipApplicationReceivedEmail(membershipDataBaseArray[i].email, membershipDataBaseArray[i].lname);
             await sendMembershipRequestNotificationToAdmin(membershipDataBaseArray[i].fname + ' ' + membershipDataBaseArray[i].lname, membershipDataBaseArray[i].email, membershipDataBaseArray[i].phone);
-            req.user_info.memberShipArray.push({
-                _id: membershipDataBaseArray[i]._id,
-                id: membershipDataBaseArray[i].id,
-                membership: membershipDataBaseArray[i].membership_type,
-                Organization: membershipDataBaseArray[i].membership_company,
-                name:membershipDataBaseArray[i].membership_name,
-            });
+        
+           
         }
         
-        await req.user_info.save();
 
         res.status(201).json({
             membership_ids: membershipDataBaseArray.map(el => el.id),
@@ -303,6 +297,19 @@ export async function admin_approveGojushinryuMembership(req = request, res = re
         membership.admin_approved = true; 
         await membership.save();
         await gmembershipAprovedStudent(membership.email, membership.lname);
+        let user =await User.findById(membership.user_id)
+        if (user) {
+            user.memberShipArray.push({
+                _id: membership._id,
+                id: membership.id,
+                membership: membership.membership_type,
+                Organization: 'gojushinryu',
+                name: membership.membership_name,
+            });
+            user.isMember=true;
+            user.isGojushinryuMember=true;
+            await user.save()
+        }
         return res.sendStatus(202);
     } catch (error) {
         catchError(res, error);
