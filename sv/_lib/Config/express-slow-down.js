@@ -3,37 +3,37 @@
 InshaAllah, By his marcy I will Gain Success
  */
 
-import {slowDown} from 'express-slow-down'
+import { slowDown } from 'express-slow-down'
 import { log } from '../utils/smallUtils.js'
 
-let ApidelayAfter =5;
+let ApidelayAfter = 30;
 
 
-export const ApiRateLimter =slowDown({
-    windowMs:5*1000,
-    delayAfter: ApidelayAfter,
-    delayMs:(used) => {
-      log(used);
-      return (used -ApidelayAfter) *500;
-    }
+export const ApiRateLimter = slowDown({
+  windowMs: 5 * 1000,
+  delayAfter: ApidelayAfter,
+  delayMs: (used) => {
+    used > 100 && log(used);
+    return (used - ApidelayAfter) * 200;
+  }
 });
 
-let fileDelayAfter =20;//20 files can not be bigger than 5 mb ,as We have Optimis
-export const fileRateLimter =slowDown({
-    windowMs:5*1000,
-    delayAfter: fileDelayAfter,
-    delayMs:(used) => {
-      log(used);
-      return (used -fileDelayAfter) *500;
-    }
+let fileDelayAfter = 20;//20 files can not be bigger than 5 mb ,as We have Optimis
+export const fileRateLimter = slowDown({
+  windowMs: 5 * 1000,
+  delayAfter: 20,
+  delayMs: (used) => {
+    used > 100 && log(used);
+    return (used - fileDelayAfter) * 200;
+  }
 });
 
 
-export  const fastApiRateLimiter =slowDown({
-  windowMs:30*1000,
+export const fastApiRateLimiter = slowDown({
+  windowMs: 30 * 1000,
   delayAfter: 30,
-  delayMs:(used) => {
+  delayMs: (used) => {
     log(used);
-    return (used -fileDelayAfter) *500;
+    return (used - fileDelayAfter) * 500;
   }
 });

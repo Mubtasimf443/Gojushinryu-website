@@ -170,6 +170,7 @@ pageRouter.get('/about-us/:info',dayCatch7 ,function (req,res) {
         if (info === 'testimonials') return res.render('testimonials');
         if (info === 'organization-charts') return res.render('OurOrganaizationChart');
         if (info === 'members') return res.render('Members');
+        if (info === 'blackbelts') return res.render('blackbelt');
     } catch (error) {
         console.error(error);
     }

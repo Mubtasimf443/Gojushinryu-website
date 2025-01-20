@@ -9,6 +9,7 @@ import { CourseEnrollments } from "../models/courseEnrollment.js";
 import { Memberships } from "../models/Membership.js";
 import { request, response } from "express";
 import catchError, { namedErrorCatching } from "../utils/catchError.js";
+import blackBeltNoticeMail from "../mail/User.notifications.email.js";
 
 
 
@@ -308,6 +309,32 @@ export const userSocialMedia = {
 export async function findMemberPageMember(req = request, res = response) {
   try {
     res.status(200).json({ members: (await User.find({},'social_media_details name bio thumb country').where('isMember').equals(true)) });
+    return;
+  } catch (error) {
+    catchError(res, error)
+  }
+}
+
+export async function makeBlackBeltTotheStudent(req = request, res = response) {
+  try {
+    let id = req.query.id; id = Number(id);
+    if (id.toString() === 'NaN') namedErrorCatching('parametar error', 'id is not a Number');
+    let user = await User.findOne({ id });
+    if (!user) res.sendStatus(401);
+    user.isBlackBelt = true;
+    await blackBeltNoticeMail(user.email, user.name);
+    await user.save();
+    res.sendStatus(202);
+    return;
+  } catch (error) {
+    catchError(res, error);
+  }
+}
+
+
+export async function findBlackBeltPageBb(req = request, res = response) {
+  try {
+    res.status(200).json({ blackBelts: (await User.find({}, 'social_media_details name bio thumb country').where('isBlackBelt').equals(true)) });
     return;
   } catch (error) {
     catchError(res, error)

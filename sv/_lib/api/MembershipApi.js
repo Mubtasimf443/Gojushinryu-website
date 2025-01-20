@@ -266,7 +266,10 @@ export async function paypalMembershipFunction(req, res) {
 
         //coupon
         if (typeof req.body.coupon  === 'string') { 
-            let mCoupon=await MembershipCoupons.findOne().where('code').equals(req.body.coupon.trim().toUpperCase());
+            let mCoupon = await MembershipCoupons.findOne()
+                .where('code').equals(req.body.coupon.trim().toUpperCase())
+                .where('expiringDate').gt(Date.now())
+                .where('activated').equals(true);
             if (mCoupon?.rate) {
                 paypalTotal = 0;
                 for (let i = 0; i < paypalItems.length; i++) {

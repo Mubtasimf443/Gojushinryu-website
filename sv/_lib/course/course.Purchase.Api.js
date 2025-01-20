@@ -93,7 +93,7 @@ export async function coursePurchaseApi(req = request, res = response) {
         
         if (req.body.coupon) {
             req.body.coupon = repleCaracter(req.body.coupon);
-            let courseCoupon = await CourseCoupons.findOne({ code:  req.body.coupon  });
+            let courseCoupon = await CourseCoupons.findOne({ code: req.body.coupon });
             if (courseCoupon !== null && courseCoupon?.activated === true && courseCoupon?.expiringDate > Date.now()) {
                 let rate=courseCoupon.rate;
                 paymentPrices.course_price = paymentPrices.course_price - (paymentPrices.course_price * rate);

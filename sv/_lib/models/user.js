@@ -53,11 +53,17 @@ const additionalDetails = {
         default: 'I dream to become black belt in karate and Master Martial Arts'
     },
     isMember: {
-
         type: Boolean,
         default: false
     },
-    isGojushinryuMember: Boolean,
+    isGojushinryuMember: {
+        type: Boolean,
+        default: false
+    },
+    isBlackBelt:{
+        type: Boolean,
+        default: false
+    },
     memberShipArray: [{
         _id: {
             // ref: 'Membership',

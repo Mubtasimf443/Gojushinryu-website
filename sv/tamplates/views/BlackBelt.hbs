@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meet the Team</title>
+    {{>Links}}
+    <!-- Google Fonts -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* Global Variables */
+        :root {
+            --main-bg: whitesmoke;
+            --accent-color: #ffaa1c;
+            /* Accent Color */
+            --text-color: #333;
+            --card-bg: #ffffff;
+            --font-family: 'Poppins', sans-serif;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+        }
+
+        body {
+            font-family: var(--font-family);
+            background-color: var(--main-bg);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        main {
+            padding: 40px 20px;
+        }
+
+        .team-section {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .team-section h1 {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .team-section p {
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .team-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .team-card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            box-shadow: 0px 4px 12px var(--shadow-color);
+            max-width: 280px;
+            width: 100%;
+            text-align: center;
+            padding: 20px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0px 6px 16px rgba(0, 0, 0, 0.2);
+        }
+
+        .team-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 15px;
+        }
+
+        .team-info h2 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 5px;
+            text-transform: capitalize;
+        }
+
+        .team-info .role {
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--accent-color);
+            text-transform: capitalize;
+            margin-bottom: 15px;
+        }
+
+        .team-info .description {
+            font-size: 0.9rem;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            color: #333;
+        }
+
+        .team-info h2[skeleton] {
+            background: var(--sceliton-color);
+            color: var(--sceliton-color);
+            animation-name: skeleliton_testimonial_image_animation;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+                       animation-duration: 1000ms;
+
+        }
+        .team-info .description.skeleton{
+            background: var(--sceliton-color);
+            color: var(--sceliton-color);
+            animation-name: skeleliton_testimonial_image_animation;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+                     animation-duration: 1000ms;
+
+        }
+
+         .team-info .role.skeleton{
+            background: var(--sceliton-color);
+            color: var(--sceliton-color);
+            animation-name: skeleliton_testimonial_image_animation;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 1000ms;
+            width: min-content;
+            margin-left: 103px;
+        }
+        
+        .team-card img[skeleton]{
+            background: var(--sceliton-color);
+            color: var(--sceliton-color);
+            animation-name: skeleliton_testimonial_image_animation;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 1000ms;
+            min-width: 100px;
+            min-height: 100px;
+        }
+        .social-icons a[skeleton]{
+            background: var(--sceliton-color);
+            color: var(--sceliton-color);
+            animation-name: skeleliton_testimonial_image_animation;
+            animation-timing-function: ease-in-out;
+            animation-iteration-count: infinite;
+            animation-duration: 1000ms;
+            
+        }
+        @keyframes skeleliton_testimonial_image_animation {
+            0% {
+                opacity: .7;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+    </style>
+    <script src="/js/pages/blackbelt.page.js" defer></script>
+</head>
+
+<body>
+    {{>whiteHeader}}
+    <main>
+        <section class="team-section">
+            <h1>Meet Our BlackBelts</h1>
+            <p>These Are our Members Who has Joined Gojushinryu or School of Traditional Martial Arts</p>
+            <div class="team-grid">
+                <div class="team-card">
+                    <img skeleton src=""
+                        alt="Rams Lesli">
+                    <div class="team-info">
+                        <h2 skeleton>Rams Lesli</h2>
+                        <p class="role skeleton">Sales Executive</p>
+                        <p class="description skeleton">I’ve closed valuable deals that have helped grow the company
+                            exponentially.</p>
+                        <div class="social-icons">
+                            <a href="#" skeleton><i class="fab fa-facebook"></i></a>
+                            <a href="#" skeleton><i class="fab fa-instagram"></i></a>
+                            <a href="#" skeleton><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img skeleton src=""
+                        alt="Rams Lesli">
+                    <div class="team-info">
+                        <h2 skeleton>Rams Lesli</h2>
+                        <p class="role skeleton">Sales Executive</p>
+                        <p class="description skeleton">I’ve closed valuable deals that have helped grow the company
+                            exponentially.</p>
+                        <div class="social-icons">
+                            <a href="#" skeleton><i class="fab fa-facebook"></i></a>
+                            <a href="#" skeleton><i class="fab fa-instagram"></i></a>
+                            <a href="#" skeleton><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="team-card">
+                    <img skeleton src=""
+                        alt="Rams Lesli">
+                    <div class="team-info">
+                        <h2 skeleton>Rams Lesli</h2>
+                        <p class="role skeleton">Sales Executive</p>
+                        <p class="description skeleton">I’ve closed valuable deals that have helped grow the company
+                            exponentially.</p>
+                        <div class="social-icons">
+                            <a href="#" skeleton><i class="fab fa-facebook"></i></a>
+                            <a href="#" skeleton><i class="fab fa-instagram"></i></a>
+                            <a href="#" skeleton><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </section>
+    </main>
+
+
+    {{>Footer}}
+</body>
+
+</html>

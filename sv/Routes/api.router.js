@@ -12,7 +12,7 @@ import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEn
 import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery } from '../_lib/model_base_function/Product.js';
-import { BaneUserFunction, DeleteUserAccount, FindMember, findMemberPageMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, RemoveFromBanedUserFunction, userSocialMedia } from '../_lib/model_base_function/user.js';
+import { BaneUserFunction, DeleteUserAccount, findBlackBeltPageBb, FindMember, findMemberPageMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, makeBlackBeltTotheStudent, RemoveFromBanedUserFunction, userSocialMedia } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
 import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/api/MembershipApi.js";
@@ -94,6 +94,7 @@ router.get('/gojusinryu-membership-request-list',findGojushinryuMembershipReques
 router.get('/user-id-to-image',userIdToImage);
 router.get('/user-social-media',userCheck, userSocialMedia.getUserSocialMedia);
 router.get('/find-members-of-member-page',findMemberPageMember);
+router.get('/find-black-belt-of-black-belt-page',findBlackBeltPageBb);
 
 
 //Post Route
@@ -144,6 +145,7 @@ router.put('/user-social-media/facebook',userCheck, userSocialMedia.upDateSmFace
 router.put('/user-social-media/instagram',userCheck, userSocialMedia.upDateSmInstagram);
 router.put('/user-social-media/linkedin',userCheck, userSocialMedia.upDateSmLinkedin);
 router.put('/user-social-media/twitter',userCheck, userSocialMedia.upDateSmTwitter);
+router.put('/user/make-black-belt', makeBlackBeltTotheStudent);
 
 //Delete
 router.delete('/delete-product',DeleteProduct)

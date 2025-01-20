@@ -53,14 +53,12 @@ export async function getMembershipCouponRates(req = request, res = response) {
         if (!code) namedErrorCatching('parametar error', 'name parameter is not define');
         [code]=repleCrAll([code]);
         code = code.toUpperCase();
-        let coupon = await MembershipCoupons.findOne({ code });
+        let coupon = await MembershipCoupons.findOne()
+            .where('code').equals(code)
+            .where('expiringDate').gt(Date.now())
+            .where('activated').equals(true);
         if (coupon === null) namedErrorCatching('database error', 'no coupon exist');
-        if (coupon.activated===false) namedErrorCatching('error', 'coupon is not valid');
-        if (coupon.expiringDate < Date.now()) {
-            coupon.activated=false;
-            await coupon.save();
-            return res.status(400).json({error :{type :"coupon expired "}})
-        }
+        
         return res.status(200).json({ rate: coupon.rate });
     } catch (error) {
         catchError(res, error);
