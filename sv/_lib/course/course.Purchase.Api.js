@@ -11,7 +11,7 @@ import { sendCourseApplicationEmail } from "../mail/courseContact.mail.js";
 import { CourseEnrollments } from "../models/courseEnrollment.js";
 import { Settings } from "../models/settings.js";
 import PaypalPayment from "../utils/payment/PaypalPayment.js";
-import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
+import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
 import StripePay from "../utils/payment/stripe.js";
 import CourseCoupons from "../models/course_coupon.js";
 import { urlToCloudinaryUrl } from "../Config/cloudinary.js";
@@ -19,7 +19,7 @@ import { urlToCloudinaryUrl } from "../Config/cloudinary.js";
 
 export async function coursePurchaseApi(req = request, res = response) {
     try {
-        let { studentImage, name, phone, email, postalCode, dob, address, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, mode, payment_method } = req.body;
+        let { studentImage, student_signature, student_parants_signature, name, phone, email, postalCode, dob, address, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, mode, payment_method } = req.body;
 
         {
             if (validate.isEmty(name)) namedErrorCatching('parameter error', 'name is emty');
@@ -34,7 +34,9 @@ export async function coursePurchaseApi(req = request, res = response) {
             if (validate.isEmty(hasBadMedical)) namedErrorCatching('parameter error', 'hasBadMedical is emty');
             if (validate.isEmty(purpose)) namedErrorCatching('parameter error', 'hasBadMedical is emty');
             if (validate.isEmty(sex)) namedErrorCatching('parameter error', 'hasBadMedical is emty');
-            if (validate.isEmty(hasViolence)) namedErrorCatching('parameter error', 'hasBadMedical is emty');    
+            if (validate.isEmty(hasViolence)) namedErrorCatching('parameter error', 'hasBadMedical is emty');   
+            if (validate.isEmty(student_signature)) namedErrorCatching('parameter error', 'student_signature is emty');   
+            if (validate.isEmty(student_parants_signature)) namedErrorCatching('parameter error', 'student_parants_signature is emty');   
         }
         {
             if (mode !== '1' && mode !== '5') namedErrorCatching('parameter error', 'mode is emty');
@@ -73,7 +75,9 @@ export async function coursePurchaseApi(req = request, res = response) {
                 hasBadMedical,
                 hasDisability,
                 hasViolence,
-                purpose :purpose
+                purpose :purpose,
+                student_signature :encodeURIComponent(student_signature),
+                student_parants_signature :encodeURIComponent(student_parants_signature),
             }
         });
         if (hasDisability === 'Yes' || hasBadMedical === 'Yes' ) {
@@ -112,7 +116,7 @@ export async function coursePurchaseApi(req = request, res = response) {
             let paypal = new PaypalPayment({
                 client_id: PAYPAL_CLIENT_ID,
                 client_secret: PAYPAL_SECRET,
-                mode: 'live',
+                mode: PAYPAL_MODE,
                 success_url: BASE_URL + '/api/api_s/course/purchase/paypal/success/',
                 cancel_url: BASE_URL + '/api/api_s/course/purchase/paypal/cancel/',
                 brand_name: 'School od Traditonal Martial Arts'

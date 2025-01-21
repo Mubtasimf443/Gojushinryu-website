@@ -12,7 +12,7 @@ import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEn
 import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery } from '../_lib/model_base_function/Product.js';
-import { BaneUserFunction, DeleteUserAccount, findBlackBeltPageBb, FindMember, findMemberPageMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, makeBlackBeltTotheStudent, RemoveFromBanedUserFunction, userSocialMedia } from '../_lib/model_base_function/user.js';
+import { BaneUserFunction, DeleteUserAccount, findBlackBeltPageBb, FindMember, findMemberPageMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, makeBlackBeltTotheStudent, RemoveFromBanedUserFunction, UserLogout, userSocialMedia } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
 import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/api/MembershipApi.js";
@@ -38,6 +38,7 @@ import MonthlyCourseEnrollMentFees from "../_lib/course/MonthlyFeesPage.js";
 import orderPayment from '../_lib/api/orderPayment.js'
 import { activateCourseCoupon, createCourseCoupon, deActivateCourseCoupon, deleteCourseCoupon, getCourseCouponRates, getCourseCoupons, updateCourseCoupon } from "../_lib/model_base_function/courseCoupon.js";
 import { admin_approveGojushinryuMembership, cancelAndDeleteGojushinryuMembership, findGojushinryuMembershipRequest, GojushinryuMembershipRequestSuccessPage, userIdToImage } from "../_lib/model_base_function/gojushinryuMembership.js";
+import catchError from "../_lib/utils/catchError.js";
 
 
 
@@ -95,7 +96,7 @@ router.get('/user-id-to-image',userIdToImage);
 router.get('/user-social-media',userCheck, userSocialMedia.getUserSocialMedia);
 router.get('/find-members-of-member-page',findMemberPageMember);
 router.get('/find-black-belt-of-black-belt-page',findBlackBeltPageBb);
-
+router.get('/user-logout', UserLogout);
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)

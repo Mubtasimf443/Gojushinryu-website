@@ -13,7 +13,8 @@ let imgUrlSchema=new mongoose.Schema({
     fileName :String,
     id :{
         type :Number ,
-        default :Date.now
+        default :Date.now,
+        unique:true,
     }
 })
 

@@ -174,12 +174,12 @@ Insha Allab,  By the marcy of Allah,  I will gain success
     <form class="popup-form" id="admissionForm">
       <h2>Admission Form</h2>
       <p class="form-info">Please fill in the details below to complete the admission process.</p>
+      
       <img class="student-image" src="" alt="" style="display: none;">
-
       <label for="studentImage"> Student Image</label>
-      <input type="file" id="studentImage"
-       {{!-- name="studentImage"  --}}
-       accept="image/*" required>
+      <input type="file" id="studentImageInput"   {{!-- name="studentImage"  --}} accept="image/*" required>
+
+
       <label for="name">Name</label>
       <input type="text" id="name" name="name" placeholder="Enter Full Name" required>
       <label for="name">Email Address</label>
@@ -238,6 +238,16 @@ Insha Allab,  By the marcy of Allah,  I will gain success
       <label for="phone">Coupon</label>
       <input type="Text" id="coupon" name="coupon" placeholder="Enter the Coupon To get Discount" required>
       
+
+       
+      <img class="student-signature-image" src="" alt="" style="display: none;">
+      <label for="studentImage"> Student Signature</label>
+      <input type="file" id="studentSignatureInput"   {{!-- name="studentImage"  --}} accept="image/*" required>
+      <img class="student-parent-signature-image" src="" alt="" style="display: none;">
+      <label for="studentImage">Student parent Signature</label>
+      <input type="file" id="studentParentSignatureInput"   {{!-- name="studentImage"  --}} accept="image/*" required>
+
+
       <p class="price-display">
         Price: $<span id="base-price">Loading...</span><br>
         GST (5%): $<span id="gst-amount">Loading...</span><br>

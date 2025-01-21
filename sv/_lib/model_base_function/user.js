@@ -340,3 +340,15 @@ export async function findBlackBeltPageBb(req = request, res = response) {
     catchError(res, error)
   }
 }
+
+export function UserLogout(req,res) {
+  try {
+      if (req.cookies.rft) {
+          res.clearCookie('rft', { sameSite: true, httpOnly: true });
+          res.end();
+          return;
+      }
+  } catch (error) {
+      catchError(res,error)
+  }
+}

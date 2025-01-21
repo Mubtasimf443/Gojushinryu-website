@@ -9,7 +9,8 @@ let
     popup1 = document.querySelector('#popup-type1'),
     popup2 = document.querySelector('#popup-type2'),
     modeMap = new Map([[1, 'Our Regular classes']], [[2, 'Online Martial Art Classes']], [[3, 'Our Seminars']], [[4, 'Our Women Defence Classes']], [[5, 'Bhangra Fitness Class for All Ages']]);
-    let studentImage=undefined;
+    
+let studentImage = undefined, student_signature = undefined, student_parants_signature = undefined;
 
 /******************************* Courses  ******************************/
 { //regular classes
@@ -123,7 +124,10 @@ document.querySelectorAll('.close-popup').forEach(
     let requesting = false;
     let paypalbtn = popup1.querySelector('[id="paypal-btn"]'), stripebtn = popup1.querySelector('[id="stripe-btn"]');
     let coupon = '', isValidCoupon = false;
-  
+    let
+        studentImageInput = popup1.querySelector('#studentImageInput'),
+        studentSignatureInput = popup1.querySelector('#studentSignatureInput'),
+        studentParentSignatureInput = popup1.querySelector('#studentParentSignatureInput');
   
     async function registerCourse(e = new Event('click')) {
         let btn = e.target;
@@ -131,33 +135,46 @@ document.querySelectorAll('.close-popup').forEach(
         btn.style.transition = 'opacity .7s ease';
         try {
             e.preventDefault();
-            
             let payment_method = (e.target.id === 'paypal-btn' ? 'paypal' : 'stripe'), mode = popup1.getAttribute('mode');
             let [name, email, phone, dob, address, postalCode] = [v.t('#name'), v.t('#email'), v.t('#phone'), v.t('#dob'), v.t('#address'), v.t('#postalCode')];
             let [hasDisability, hasBadMedical, sex, hasViolence, purpose] = [v.s('#hasDisability'), v.s('#hasBadMedical'), v.s('#sex'), v.s('#hasViolence'), v.t('#purpose')];
             let disabilityDetails = undefined;
-          
+         
+
             if (hasDisability === 'Yes' || hasBadMedical === 'Yes') {
                 disabilityDetails = v.t('#disabilityDetails');
             }
 
             if (studentImage === undefined) {
-                popup1.querySelector('[type="file"]').style.outline = '2px solid red';
-                popup1.querySelector('[type="file"]').addEventListener('change',
+                studentImageInput.style.outline = '2px solid red';
+                studentImageInput.addEventListener('change',
                     function () {
-                        popup1.querySelector('[type="file"]').style.outline = 'none';
+                        studentImageInput.style.outline = 'none';
                     }
                 );
                 throw new Error("Student Image Is undefined");
             }
-
+            if (student_signature ===undefined) {
+                studentSignatureInput.style.outline = '2px solid red';
+                studentSignatureInput.addEventListener('change', function () {
+                    studentSignatureInput.style.outline = 'none'
+                });
+                throw new Error("Student Image Is undefined");
+            }
+            if (student_parants_signature ===undefined) {
+                studentParentSignatureInput.style.outline = '2px solid red';
+                studentParentSignatureInput.addEventListener('change', function () {
+                    studentParentSignatureInput.style.outline = 'none'
+                });
+                throw new Error("Student Image Is undefined");
+            }
 
             btn.style.opacity = .7;
             requesting = true;
 
             let response = await fetch(window.location.origin + '/api/l-api/course/purchase/', {
                 method: 'POST',
-                body: JSON.stringify({ name, email, phone, dob, address, postalCode, studentImage, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, payment_method, mode, coupon: isValidCoupon ? coupon : undefined }),
+                body: JSON.stringify({ name, email, phone, dob, address, postalCode, studentImage, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, payment_method, mode, student_parants_signature, student_signature, coupon: isValidCoupon ? coupon : undefined, }),
                 headers: { 'Content-Type': 'application/json' }
             });
             if (response.status === 201) {
@@ -219,33 +236,106 @@ document.querySelectorAll('.close-popup').forEach(
         }
     })
 
-    popup1.querySelector('input[type="file"]').addEventListener('change',async function (e) {
-        if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
-            e.target.files[0]=null;
-            popup1.querySelector('.student-image').style.display = 'none';
+    studentImageInput.addEventListener('change',async function c1(e) {
+        let img= popup1.querySelector('.student-image');
+        function failed(params) {
+            img.setAttribute('style', 'display:none');
             let newFileInput=document.createElement('input');
             newFileInput.type='file';
-            popup1.querySelector('input[type="file"]').replaceWith(newFileInput);
+            studentImageInput.replaceWith(newFileInput);
+            studentImage=undefined;
+            newFileInput.addEventListener('change', c1);
+            studentImageInput=newFileInput;
+        }
+
+        if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
+            failed();
             return alert('Please upload an Image');
         }
         // let url =URL.createObjectURL(e.target.files[0]);
-         let img= popup1.querySelector('.student-image');
         img.src='/img/spinner.svg';
         img.setAttribute('style', 'object-fit: contain;object-position: center center;')
         let form =new FormData();
         form.append('img', e.target.files[0]);
-        const response=await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form });
+        const response=await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form }).catch(failed);
         if (response.status ===201) {
             let link=(await response.json()).link;
             img.src=link;
             img.setAttribute('style', 'object-fit: contain;object-position: center center;');
             studentImage=link;
-        } else {
+            return;
+        } else return failed();
+            
+        
+    });
+
+    studentSignatureInput.addEventListener('change',async function c2(e) {
+        let img= popup1.querySelector('.student-signature-image');
+     
+        function failed(params) {
             img.setAttribute('style', 'display:none');
+            let newFileInput=document.createElement('input');
+            newFileInput.type='file';
+            studentSignatureInput.replaceWith(newFileInput);
+            student_signature=undefined;
+            newFileInput.addEventListener('change', c2);
+            studentSignatureInput=newFileInput;
+
+        }
+        
+        if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
+            failed();
+            return alert('Please upload an Image');
+        }
+
+        img.src='/img/spinner.svg';
+        img.setAttribute('style', 'object-fit: contain;object-position: center center;')
+        let form =new FormData();
+        form.append('img', e.target.files[0]);
+        const response=await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form }).catch(failed);
+        if (response.status ===201) {
+            let link=(await response.json()).link;
+            img.src=link;
+            img.setAttribute('style', 'object-fit: contain;object-position: center center;');
+            student_signature=link;
+            return;
+        } else return failed();
+    }); 
+    
+    studentParentSignatureInput.addEventListener('change',async function c3(e) {
+        let img= popup1.querySelector('.student-parent-signature-image');
+        function failed() {
+            img.setAttribute('style', 'display:none');
+            let newFileInput=document.createElement('input');
+            newFileInput.type='file';
+            studentParentSignatureInput.replaceWith(newFileInput);
+            student_parants_signature=undefined;
+            newFileInput.addEventListener('change', c3);
+            studentParentSignatureInput=newFileInput;
+
+        }
+        if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
+            e.target.files[0]=null;
+            failed();
+            return alert('Please upload an Image');
+        }
+        img.src='/img/spinner.svg';
+        img.setAttribute('style', 'object-fit: contain;object-position: center center;')
+        let form =new FormData();
+        form.append('img', e.target.files[0]);
+        const response = await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form }).catch(failed);;
+        if (response.status ===201) {
+            let link=(await response.json()).link;
+            img.src=link;
+            img.setAttribute('style', 'object-fit: contain;object-position: center center;');
+            student_parants_signature=link;
+            return;
+        } else {
+            return failed();
         }
     });
     
-   
+    
 }
 
 

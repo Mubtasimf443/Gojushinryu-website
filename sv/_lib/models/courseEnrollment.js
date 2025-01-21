@@ -35,7 +35,9 @@ let courseEnrollmentSchema = new Schema({
         hasViolence: String,
         hasBadMedical: String,
         disabilityDetails:String,
-        purpose:String
+        purpose:String,
+        student_signature :String, 
+        student_parants_signature :String
     },
 
     Date: { type: Date, default: Date.now },

@@ -16,6 +16,7 @@ dotenv.config()
 export const SDATABASE = process.env.SDATABASE;
 export const DATABASE = process.env.DATABASE;
 export const PAYPAL_LINK = process.env.PAYPAL_LINK;
+export const PAYPAL_MODE = process.env.PAYPAL_MODE;
 export const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID;
 export const PAYPAL_SECRET = process.env.PAYPAL_SECRET;
 export const T_PAYPAL_CLIENT_ID = process.env.T_PAYPAL_CLIENT_ID;
@@ -66,3 +67,4 @@ export const whiteHeader = readFileSync(resolve(__dirname, '../../tamplates/part
 export const Footer = readFileSync(resolve(__dirname, '../../tamplates/partials/Footer.hbs'),'utf-8');
 export const LinksHbs = readFileSync(resolve(__dirname, '../../tamplates/partials/Links.hbs'),'utf-8');
 export const noindex_meta_tags=(`<meta name="robots" content="noindex"><meta name="googlebot" content="noindex"> `);
+

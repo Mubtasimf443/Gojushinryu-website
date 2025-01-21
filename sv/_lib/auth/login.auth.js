@@ -45,11 +45,7 @@ export const loginApiFunc = async (req, res) => {
       //and big cookie can make hacker more confuse
     }, JWT_SECRET_KEY, {});
     // log('cookie done')
-    return res.cookie('rft',
-      rft,
-      { sameSite: true, expires: new Date(Date.now() + (1000 * 60 * 60 * 24 * 30)) })
-      .status(200)
-      .json({ success: true })
+    return res.cookie('rft', rft, { sameSite: true, httpOnly:true, expires: new Date(Date.now() + (1000 * 60 * 60 * 24 * 30)) }).status(200).json({ success: true })
   } catch (e) {
     log(e);
     try {
