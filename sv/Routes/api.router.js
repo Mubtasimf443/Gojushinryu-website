@@ -39,6 +39,7 @@ import orderPayment from '../_lib/api/orderPayment.js'
 import { activateCourseCoupon, createCourseCoupon, deActivateCourseCoupon, deleteCourseCoupon, getCourseCouponRates, getCourseCoupons, updateCourseCoupon } from "../_lib/model_base_function/courseCoupon.js";
 import { admin_approveGojushinryuMembership, cancelAndDeleteGojushinryuMembership, findGojushinryuMembershipRequest, GojushinryuMembershipRequestSuccessPage, userIdToImage } from "../_lib/model_base_function/gojushinryuMembership.js";
 import catchError from "../_lib/utils/catchError.js";
+import { deleteAsset, findAssetsVideoControlPanal, findImageAssetsControlPanal, imagesPageImage, UploadImageAssets, UploadVideoAssets, videosPageVideos } from "../_lib/model_base_function/Assets.js";
 
 
 
@@ -97,6 +98,10 @@ router.get('/user-social-media',userCheck, userSocialMedia.getUserSocialMedia);
 router.get('/find-members-of-member-page',findMemberPageMember);
 router.get('/find-black-belt-of-black-belt-page',findBlackBeltPageBb);
 router.get('/user-logout', UserLogout);
+router.get('/assets/image/control-panal', findImageAssetsControlPanal );
+router.get('/assets/image/page', imagesPageImage );
+router.get('/assets/video/control-panal', findAssetsVideoControlPanal );
+router.get('/assets/video/page', videosPageVideos );
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)
@@ -114,7 +119,8 @@ router.post('/testimonials-second-api', createTestimonialsWithoutImage);
 router.post('/coupons/memberships' , createMembershipCoupon);
 router.post('/coupons/course' , createCourseCoupon);
 router.post('/course/apply/contact', courseContactApi );
-// router.post('/custom-membership', customMembershipApi)
+router.post('/assets/image', UploadImageAssets );
+router.post('/assets/video', UploadVideoAssets );
 
 
 //Update
@@ -160,6 +166,7 @@ router.delete('/coupons/memberships' , deleteMembershipCoupon);
 router.delete('/coupons/course' , deleteCourseCoupon);
 router.delete('/course/enrollments' , deleteCourseEnrollment);
 router.delete('/gojusinryu-membership-request-delete' , cancelAndDeleteGojushinryuMembership);
+router.delete('/assets' , deleteAsset);
 
 
 //payments

@@ -130,3 +130,10 @@ body {
         grid-column: span 2;
     }
 }
+.loading{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin: 0px 0px 80px 0px;
+}

@@ -28,8 +28,8 @@ const PrimaryDetails = {
     },
     email: {
         type: String,
-
-        unique: true
+        unique: true,
+        trim: true,
     },
     phone: {
         type: Number,

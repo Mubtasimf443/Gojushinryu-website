@@ -58,6 +58,7 @@ export async function coursePurchaseApi(req = request, res = response) {
             studentImage =await urlToCloudinaryUrl(studentImage);
             if (!studentImage) namedErrorCatching('image-url-error','invalid studentImage url');
         }
+        
         let courseEnrollment = new CourseEnrollments({
             course_id: Number(mode),
             course_name: courses.get(mode),

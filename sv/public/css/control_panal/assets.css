@@ -1,0 +1,204 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+#assets_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    row-gap: 40px;
+    width: 100%;
+}
+
+#assets_container #assets-images-gallary{
+    width: 100%;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+    padding: 30px 15px 30px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 30px;
+    row-gap: 30px;
+}
+
+#assets_container #assets-images-gallary .image-box{
+    display: flex;
+    position: relative;
+    width: 100px;
+    height: 100px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.096);
+}
+
+#assets_container #assets-images-gallary .images{
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    row-gap: 25px;
+    column-gap: 25px;
+}
+#assets_container #assets-images-gallary .image-box img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center center;
+}
+#assets_container #assets-images-gallary .image-box .remove{
+    position: absolute;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    background-color: rgba(0, 0, 0, 0.575);
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    font-size: 20px;
+    top: 7px;
+    right: 7px;
+    cursor: pointer;
+}
+
+#assets_container #assets-images-gallary .addImage{
+    background-color: black;
+    width: 100px;
+    height: 37px;
+    font-size: 15px;
+    color: white;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+
+
+    /* Global Styles */
+    body {
+        font-family: 'Roboto', sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 0;
+        color: #333;
+      }
+      
+      .video-assets-container {
+        width: 100%;
+        max-width: 100%;
+        margin: 50px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      }
+      
+      /* Header */
+      
+      .video-assets-container .header h2 {
+        margin: 0;
+        font-size: 24px;
+        font-weight: 600;
+        color: #444;
+        border-bottom: 2px solid #e5e5e5;
+        padding-bottom: 10px;
+      }
+      
+      /* Video List */
+      
+      .video-assets-container .video-list {
+        margin-top: 20px;
+        width: 100%;
+      }
+      
+      
+      .video-assets-container .video-row {
+        display: grid;
+        grid-template-columns: 2fr 3fr 3fr 1fr;
+        gap: 15px;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid #e5e5e5;
+      }
+      
+      .video-assets-container .video-row.header {
+        font-weight: bold;
+        color: #666;
+      }
+      
+      .video-assets-container .video-row input {
+        font-size: 14px;
+        padding: 8px 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        outline: none;
+      }
+      
+      /* Buttons */
+      .video-assets-container .icon-btn {
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: #666;
+        font-size: 14px;
+        padding: 5px;
+        transition: color 0.2s ease;
+      }
+      
+      .video-assets-container .icon-btn:hover {
+        color: #222;
+      }
+      
+      .video-assets-container .delete-btn i {
+        color: #d9534f;
+      }
+      
+      .video-assets-container .controls {
+        display: flex;
+        gap: 10px;
+        margin: 20px 0;
+      }
+      
+      .video-assets-container .add-btn {
+        background: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      
+      .video-assets-container .add-btn:hover {
+        background-color: #0056b3;
+      }
+      
+      
+      .video-assets-container .footer {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+      }
+      
+      
+      .video-assets-container .primary-btn {
+        background: #28a745;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      
+      
+        

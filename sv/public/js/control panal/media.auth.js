@@ -138,11 +138,11 @@
         },
         async logout(event){
             event.preventDefault();
-            if (!mediaAuthStatuses.tiktok) return
+            if (!mediaAuthStatuses.facebook) return
             if (this.updating) return
             try {
                 this.updating=true;
-                let { status } = await fetch(window.location.origin + `/api/media-api/facebook/log-out` , {method :'DELETE'});
+                let { status } = await fetch(window.location.origin + `/api/media-api/facebook/log-out`, { method: 'DELETE' });
                 let btn = event.target;
                 if (status === 204) {
                     mediaAuthStatuses={

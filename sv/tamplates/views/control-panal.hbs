@@ -1,4 +1,5 @@
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,8 +12,11 @@
   <link rel="shortcut" href="/img/6060.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:ital,wght@0,100..900;1,100..900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+    integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="/css/root.css">
   <link rel="stylesheet" href="/css/control_panal/massage.css">
   <link rel="stylesheet" href="/css/control_panal/index.css">
@@ -33,11 +37,13 @@
   <link rel="stylesheet" href="/css/control_panal/countryrepresentative.css">
   <link rel="stylesheet" href="/css/control_panal/customLinksContainer.css">
   <link rel="stylesheet" href="/css/control_panal/GojushinryuMembership.css">
+  <link rel="stylesheet" href="/css/control_panal/assets.css">
 
-  
+
+
   <script>
-    var global_gst_rate =Number('{{global_gst_rate}}') || 5;
- //   global_gst_rate = global_gst_rate.toString() === 'NaN' ? 5 : global_gst_rate; 
+    var global_gst_rate = Number('{{global_gst_rate}}') || 5;
+    //   global_gst_rate = global_gst_rate.toString() === 'NaN' ? 5 : global_gst_rate; 
   </script>
   <script defer src="/js/control panal/gm.js"></script>
   <script defer src="/js/control panal/media.auth.js"></script>
@@ -64,12 +70,14 @@
   <script defer src="/js/control panal/membershipCouponsSettings.js"></script>
   <script defer src="/js/control panal/courseCouponsSettings.js"></script>
   <script defer src="/js/control panal/gojushinryu.memberhsip.js"></script>
+  <script defer src="/js/control panal/image.assets.js"></script>
+  <script defer src="/js/control panal/video.assets.js"></script>
 
 </head>
 
 <body>
 
-<!---------------------------- Membership popup ---------------------------->
+  <!---------------------------- Membership popup ---------------------------->
   <div id="popup_for_membership_data" style="display: none;" class="popup_c">
     <div class="popup_order_action_form">
       <h2>Membership Data</h2>
@@ -213,12 +221,12 @@
 
     </div>
   </div>
- <!-- -------------------------- Gojushinryu membership request Popup ------------------------------ -->
+  <!-- -------------------------- Gojushinryu membership request Popup ------------------------------ -->
 
   <div id="Gojushinryu-membership-request-Popup" style="display: none;" class="popup_c">
     <div class="popup_order_action_form">
       <h2> Gojushinryu membership request</h2>
-      
+
       <div class="input-box">
         <label>membership type</label>
         <input disabled value="" placeholder="membership_type" membership_type type="text">
@@ -230,10 +238,10 @@
         <input disabled value="" placeholder="name" name type="text">
       </div>
 
-     
+
       <div class="input-box">
         <label>Email </label>
-        <input disabled value="" placeholder="email" email  type="text">
+        <input disabled value="" placeholder="email" email type="text">
       </div>
 
       <div class="input-box">
@@ -252,7 +260,7 @@
         <input disabled value="" placeholder="country" country type="text">
       </div>
 
-    
+
 
       <div class="input-box">
         <label>City</label>
@@ -467,11 +475,11 @@
 
 
 
- 
+
 
 
   <!------------------------ product PopUp ------------------------------>
-  <div style="display: none;" class="popup_c" id="popup_product_action" >
+  <div style="display: none;" class="popup_c" id="popup_product_action">
 
     <div class="popup_order_action_form">
 
@@ -591,11 +599,12 @@
         <label>ID</label>
         <input disabled>
       </div>
-    
+
 
       <div class="pp_btn_box">
         <button class="popup-close-btn">Close</button>
-        <button make_black_belt style="background-color: orangered;color:white;width:120px;border:2px solid orangered;"> Black Belt</button>
+        <button make_black_belt style="background-color: orangered;color:white;width:120px;border:2px solid orangered;">
+          Black Belt</button>
       </div>
 
     </div>
@@ -680,16 +689,20 @@
           <a id="user_page_href">Student's <button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="gm_href">Grand Master<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="member_href">Members <button><i class="fa-solid fa-angle-right"></i></button></a>
-          <a id="G_Membership_Request_href">G Membership Request<button><i class="fa-solid fa-angle-right"></i></button></a>
-          
+          <a id="G_Membership_Request_href">G Membership Request<button><i
+                class="fa-solid fa-angle-right"></i></button></a>
+
           <a id="product_href">Product <button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="course_enrolments_href">Course EnrollMents<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="Testimonials_href">Testimonials<button><i class="fa-solid fa-angle-right"></i></button></a>
-          <a id="Country_Representative_href">Country Representative<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="Country_Representative_href">Country Representative<button><i
+                class="fa-solid fa-angle-right"></i></button></a>
           <a id="customLinks_href">Create custom Offers<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="assets_href">Assets<button><i class="fa-solid fa-angle-right"></i></button></a>
+
           <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
-         
+
         </div>
 
       </div>
@@ -914,9 +927,8 @@
 
         <!-----------------------Gojushinryu Membership Request list ----------------------------->
 
-        <div ct_section targetedElement="G_Membership_Request_href"   
-        style="display: none;"   
-        class="Gojushinryu-Membership-Request-container">
+        <div ct_section targetedElement="G_Membership_Request_href" style="display: none;"
+          class="Gojushinryu-Membership-Request-container">
           <table>
             <thead>
               <tr>
@@ -930,7 +942,7 @@
             </thead>
             <tbody>
               <tr>
-                <td >#</td>
+                <td>#</td>
                 <td width="17%"><img src="/img/spinner.svg" alt="student image"></td>
                 <td>Muhammad Mubtasim</td>
                 <td>20/02/2024</td>
@@ -941,8 +953,8 @@
           </table>
         </div>
         <!-----------------------order list ----------------------------->
-        
-        <div ct_section targetedElement="order_href"   style="display: none;"   class="order-list-box">
+
+        <div ct_section targetedElement="order_href" style="display: none;" class="order-list-box">
 
           <table>
             <tr>
@@ -1192,9 +1204,10 @@
         </div>
 
         <!---------------------------- course enrollments ----------------------------->
-        <div ct_section style="display: none;" targetedElement="course_enrolments_href" class="courses-enrollment-list-container" id="couses-enrollment-list-container">
-  
-  
+        <div ct_section style="display: none;" targetedElement="course_enrolments_href"
+          class="courses-enrollment-list-container" id="couses-enrollment-list-container">
+
+
           <div class="popup_c">
             <div class="popup_order_action_form">
               <div class="popup_header">
@@ -1214,7 +1227,7 @@
                   <label>Student Email</label>
                   <input disabled value="Student Email" placeholder="Student Email" type="text">
                 </div>
-        
+
                 <div class="input-box">
                   <label>Student Address</label>
                   <input disabled value="Student Address" placeholder="Student Address" type="text">
@@ -1249,7 +1262,7 @@
                   <input disabled value="Student Address" placeholder="Student Address" type="text">
                 </div>
 
-                
+
                 <div class="txt-box">
                   <label>Disability Details</label>
                   <textarea disabled value="Student Address" placeholder="Student Address" type="text"></textarea>
@@ -1262,34 +1275,34 @@
 
 
 
-        
 
-        
+
+
                 <table>
-          
-                    <tr>
-                      <th>Date</th>
-                      <th>Payment Amount</th>
-                      <th>Paid</th>
-                      <th>Payment Date</th>
-                    </tr>
-                    <tr>
-                      <td>January 2024</td>
-                      <td>$100.00</td>
-                      <td>Paid</td>
-                      <td>02/02/2024</td>
-                    </tr>
+
+                  <tr>
+                    <th>Date</th>
+                    <th>Payment Amount</th>
+                    <th>Paid</th>
+                    <th>Payment Date</th>
+                  </tr>
+                  <tr>
+                    <td>January 2024</td>
+                    <td>$100.00</td>
+                    <td>Paid</td>
+                    <td>02/02/2024</td>
+                  </tr>
                 </table>
-        
+
                 <div class="btn-group">
                   <button class="closebtn">Close</button>
-                  <button paymentRequest >Payment Request</button>
+                  <button paymentRequest>Payment Request</button>
                   <Button Delete>Delete</Button>
                 </div>
               </div>
             </div>
           </div>
-        
+
           <table class="main_table">
             <thead>
               <tr>
@@ -1302,179 +1315,185 @@
               </tr>
             </thead>
             <tbody>
-         
-        
-            
+
+
+
             </tbody>
           </table>
-        
+
         </div>
 
 
         <!----------------------- Settings ----------------------------->
 
-<div class="settings-container-main" targetedElement="settings_href" style="display: none;" ct_section>
-  <div id="settings-conatiner"  class="form-section">
-
-    
-    <div class="s-sec-input-box">
-      <label for="s-sec-name-inp"> home video url </label>
-      <input type="Text" placeholder="like http://cloudinary/video/****" value="{{home_video_url}}"
-        id="h-video-url-inp">
-    </div>
-    <strong>Dates of Course</strong>
-
-    <div class="s-sec-input-box">
-      <label for="s-sec-name-inp">Online Classes</label>
-      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}" id="o-class-date">
-    </div>
-
-    <div class="s-sec-input-box">
-      <label for="s-sec-name-inp">Regular Classes</label>
-      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}" id="r-class-date">
-    </div>
+        <div class="settings-container-main" targetedElement="settings_href" style="display: none;" ct_section>
+          <div id="settings-conatiner" class="form-section">
 
 
-    <div class="s-sec-input-box">
-      <label for="s-sec-name-inp">Woments Defence Classes</label>
-      <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_womens_defence_class}}" id="w-class-date">
-    </div>
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp"> home video url </label>
+              <input type="Text" placeholder="like http://cloudinary/video/****" value="{{home_video_url}}"
+                id="h-video-url-inp">
+            </div>
+            <strong>Dates of Course</strong>
 
-    
-    <strong>Fees Of course</strong>
-    <div class="s-sec-input-box">
-      <label for="s-sec-name-inp">Regular Classes</label>
-      <input type="number" placeholder="Fees" value="{{fees_of_reqular_class}}" id="fees_of_reqular_class">
-    </div>
-    
-    <div class="s-sec-input-box">
-      <label for="s-sec-name-inp">Bhangra Fitness Class for All Ages</label>
-      <input type="number" placeholder="Fees" value="{{fees_of_Bhangra_fitness}}" id="fees_of_Bhangra_fitness">
-    </div>
-    
- 
-    <strong>Others</strong>
-    
-    <div class="s-sec-input-box">
-      <label for="s-sec-name-inp">GST RATE (%)</label>
-      <input type="number" placeholder="Fees" value="{{gst_rate}}" id="gst_rate">
-    </div>
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">Online Classes</label>
+              <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}"
+                id="o-class-date">
+            </div>
 
-    <strong>Authenticated Media</strong>
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">Regular Classes</label>
+              <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}"
+                id="r-class-date">
+            </div>
 
-    <div class="auth_div">
-      <div class="icon_div">
-        <img src="/icon/youtube.png" alt="youtube icon">
-        <b>Youtube</b>
-        {{!-- <i yt_status_icon class="fa-solid fa-close"></i> --}}
-      </div>
-      <button auth_btn_youtube style="background-color: black;">Login</button>
-    </div>
 
-    <div class="auth_div">
-      <div class="icon_div">
-        <img src="/icon/linkedin.png" alt="linkedin icon">
-        <b>Linkedin</b>
-        {{!-- <i linkedin_status_icon class="fa-solid fa-check"></i> --}}
-      </div>
-      <button auth_btn_linkedin style="background-color: black;">Login</button>
-    </div>
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">Woments Defence Classes</label>
+              <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6"
+                value="{{date_of_womens_defence_class}}" id="w-class-date">
+            </div>
 
-    <div class="auth_div">
-      <div class="icon_div">
-        <img src="/icon/tiktok.png" alt="tiktok icon">
-        <b>Tiktok</b>
-        {{!-- <i tiktok_status_icon class="fa-solid fa-check"></i> --}}
-      </div>
-      <button auth_btn_tiktok style="background-color: black;">Login</button>
-    </div>
 
-    <div class="auth_div">
-      <div class="icon_div">
-        <img src="/icon/facebook.png" alt="tiktok icon">
-        <b>Facebook</b>
-        {{!-- <i facebook_status_icon class="fa-solid fa-check"></i> --}}
-      </div>
-      <button auth_btn_facebook style="background-color: black;">Login</button>
-    </div>
-    
-   
+            <strong>Fees Of course</strong>
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">Regular Classes</label>
+              <input type="number" placeholder="Fees" value="{{fees_of_reqular_class}}" id="fees_of_reqular_class">
+            </div>
 
-    <div class="s-sec-btn-box">
-      <button save_btn style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
-    </div>
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">Bhangra Fitness Class for All Ages</label>
+              <input type="number" placeholder="Fees" value="{{fees_of_Bhangra_fitness}}" id="fees_of_Bhangra_fitness">
+            </div>
 
-  </div>
 
-  <div id="settings-of-membership-coupons-container" class="settings-of-coupons-container" >
-    <strong>Membership Coupon Details</strong>
-    <table>
-        <thead>
-            <tr>
-                <th>Name</th>
-                <th>Code</th>
-                <th>Rate (%)</th>
-                <th>Expiration Date</th>
-                <th>Actions</th>
-                <th>Status</th>
-            </tr>
-        </thead>
-        <tbody>
-            
-        </tbody>
-    </table>
-    <strong>Create Coupon</strong>
-    <form id="couponForm">
-      {{!-- <label for="couponName">Coupon Name</label> --}}
-      <input type="text" couponName name="couponName" placeholder="coupon name" maxlength="20" minlength="1">
-    
-      {{!-- <label for="couponCode">Coupon Code</label> --}}
-      <input type="text" couponCode  placeholder="coupon code" maxlength="20" minlength="1">
-    
-      {{!-- <label for="couponRate">Rate (%)</label> --}}
-      <input type="number" couponRate placeholder="discount rate" min="0" max="75" value="" >
-    
-      {{!-- <label for="expirationDate">Expiration Date</label> --}}
-      <input type="text" expirationDate  placeholder="Expiration Date" onblur="(this.type='text')" onfocus="(this.type='date')" >
-    
-      <button add_coupon_btn >Add</button>
-    </form>
-  </div><div id="settings-of-course-coupons-container" class="settings-of-coupons-container">
-    <strong>Course Coupon Details</strong>
-    <table>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Code</th>
-          <th>Rate (%)</th>
-          <th>Expiration Date</th>
-          <th>Actions</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-  
-      </tbody>
-    </table>
-    <strong>Create Coupon</strong>
-    <form id="couponForm">
-      {{!-- <label for="couponName">Coupon Name</label> --}}
-      <input type="text" couponName name="couponName" placeholder="coupon name" maxlength="20" minlength="1">
-  
-      {{!-- <label for="couponCode">Coupon Code</label> --}}
-      <input type="text" couponCode placeholder="coupon code" maxlength="20" minlength="1">
-  
-      {{!-- <label for="couponRate">Rate (%)</label> --}}
-      <input type="number" couponRate placeholder="discount rate" min="0" max="75" value="">
-  
-      {{!-- <label for="expirationDate">Expiration Date</label> --}}
-      <input type="text" expirationDate placeholder="Expiration Date" onblur="(this.type='text')"
-        onfocus="(this.type='date')">
-  
-      <button add_coupon_btn>Add</button>
-    </form>
-  </div>
-</div>
+            <strong>Others</strong>
+
+            <div class="s-sec-input-box">
+              <label for="s-sec-name-inp">GST RATE (%)</label>
+              <input type="number" placeholder="Fees" value="{{gst_rate}}" id="gst_rate">
+            </div>
+
+            <strong>Authenticated Media</strong>
+
+            <div class="auth_div">
+              <div class="icon_div">
+                <img src="/icon/youtube.png" alt="youtube icon">
+                <b>Youtube</b>
+                {{!-- <i yt_status_icon class="fa-solid fa-close"></i> --}}
+              </div>
+              <button auth_btn_youtube style="background-color: black;">Login</button>
+            </div>
+
+            <div class="auth_div">
+              <div class="icon_div">
+                <img src="/icon/linkedin.png" alt="linkedin icon">
+                <b>Linkedin</b>
+                {{!-- <i linkedin_status_icon class="fa-solid fa-check"></i> --}}
+              </div>
+              <button auth_btn_linkedin style="background-color: black;">Login</button>
+            </div>
+
+            <div class="auth_div">
+              <div class="icon_div">
+                <img src="/icon/tiktok.png" alt="tiktok icon">
+                <b>Tiktok</b>
+                {{!-- <i tiktok_status_icon class="fa-solid fa-check"></i> --}}
+              </div>
+              <button auth_btn_tiktok style="background-color: black;">Login</button>
+            </div>
+
+            <div class="auth_div">
+              <div class="icon_div">
+                <img src="/icon/facebook.png" alt="tiktok icon">
+                <b>Facebook</b>
+                {{!-- <i facebook_status_icon class="fa-solid fa-check"></i> --}}
+              </div>
+              <button auth_btn_facebook style="background-color: black;">Login</button>
+            </div>
+
+
+
+            <div class="s-sec-btn-box">
+              <button save_btn
+                style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
+            </div>
+
+          </div>
+
+          <div id="settings-of-membership-coupons-container" class="settings-of-coupons-container">
+            <strong>Membership Coupon Details</strong>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Code</th>
+                  <th>Rate (%)</th>
+                  <th>Expiration Date</th>
+                  <th>Actions</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+            <strong>Create Coupon</strong>
+            <form id="couponForm">
+              {{!-- <label for="couponName">Coupon Name</label> --}}
+              <input type="text" couponName name="couponName" placeholder="coupon name" maxlength="20" minlength="1">
+
+              {{!-- <label for="couponCode">Coupon Code</label> --}}
+              <input type="text" couponCode placeholder="coupon code" maxlength="20" minlength="1">
+
+              {{!-- <label for="couponRate">Rate (%)</label> --}}
+              <input type="number" couponRate placeholder="discount rate" min="0" max="75" value="">
+
+              {{!-- <label for="expirationDate">Expiration Date</label> --}}
+              <input type="text" expirationDate placeholder="Expiration Date" onblur="(this.type='text')"
+                onfocus="(this.type='date')">
+
+              <button add_coupon_btn>Add</button>
+            </form>
+          </div>
+          <div id="settings-of-course-coupons-container" class="settings-of-coupons-container">
+            <strong>Course Coupon Details</strong>
+            <table>
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Code</th>
+                  <th>Rate (%)</th>
+                  <th>Expiration Date</th>
+                  <th>Actions</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+
+              </tbody>
+            </table>
+            <strong>Create Coupon</strong>
+            <form id="couponForm">
+              {{!-- <label for="couponName">Coupon Name</label> --}}
+              <input type="text" couponName name="couponName" placeholder="coupon name" maxlength="20" minlength="1">
+
+              {{!-- <label for="couponCode">Coupon Code</label> --}}
+              <input type="text" couponCode placeholder="coupon code" maxlength="20" minlength="1">
+
+              {{!-- <label for="couponRate">Rate (%)</label> --}}
+              <input type="number" couponRate placeholder="discount rate" min="0" max="75" value="">
+
+              {{!-- <label for="expirationDate">Expiration Date</label> --}}
+              <input type="text" expirationDate placeholder="Expiration Date" onblur="(this.type='text')"
+                onfocus="(this.type='date')">
+
+              <button add_coupon_btn>Add</button>
+            </form>
+          </div>
+        </div>
 
         <!-----------------------Upload Event ----------------------------->
 
@@ -1742,6 +1761,48 @@
           </div>
         </div>
 
+        <!-------------------------- Assets ----------------------------->
+        <div id="assets_container" targetedElement="assets_href" style="display: flex;" ct_section>
+          <div id="assets-images-gallary">
+            <div class="images">
+
+            </div>
+            <label class="addImage">Add Image <input type="file" accept="image/*" id="upl-image-as-assets" multiple
+                style="display: none;"></label>
+          </div>
+
+          <div class="video-assets-container">
+            <div class="header">
+              <h2>Video Assets</h2>
+            </div>
+
+            <div class="video-list">
+              <!-- Header Row -->
+              <div class="video-row header">
+                <span>Title</span>
+                <span>Description</span>
+                <span>Embed Code (iframe)</span>
+                <span>Actions</span>
+              </div>
+
+              <!-- Dynamic Content -->
+              <div id="video-container">
+                
+              </div>
+            </div>
+    
+            <!-- Controls -->
+            {{!-- <div class="controls">
+              <button class="add-btn" id="add-video-btn">+ Add Video</button>
+            </div> --}}
+
+            <!-- Footer -->
+            {{!-- <div class="footer">
+              <button class="primary-btn">Save Only</button>
+            </div> --}}
+          </div>
+
+        </div>
         <!-------------------------- Country Representative ----------------------------->
         <div id="Country_Representative_container" targetedElement="Country_Representative_href" style="display: none;"
           ct_section>

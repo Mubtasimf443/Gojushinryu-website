@@ -82,7 +82,7 @@ router.get('/callback', async (req, res) => {
 
 router.delete('/log-out',async function (req, res) {
     try {
-        let set=await getSettings();
+        let set=await Settings.findOne({})
         
         //status
         set.fb_access_token_status =false;

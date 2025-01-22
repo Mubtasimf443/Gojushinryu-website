@@ -3,14 +3,13 @@
 Insha Allah,  By your Marcy Ya Allah
 */
 
-
-#Country_Representative_container{
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: start;
-    row-gap: 40px;
-    width: 100%;
+#Country_Representative_container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  row-gap: 40px;
+  width: 100%;
 }
 
 

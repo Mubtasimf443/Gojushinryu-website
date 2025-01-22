@@ -3,26 +3,26 @@
 InshaAllah, By his marcy I will Gain Success 
 */
 
-import { log } from "string-player";
-import { connectDB } from "./_lib/Config/ConnectDb.js";
-import { User } from "./_lib/models/user.js";
+import { connect } from "mongoose";
+import { SDATABASE } from "./_lib/utils/env.js";
+import Assets from "./_lib/models/Assets.js";
+import Awaiter from "awaiter.js";
 
 
-await connectDB();
-let users=await User.find()
+await connect(SDATABASE);
 
-for (let i = 0; i < users.length; i++) {
-    users[i].social_media_details= {
-        facebook: { hasDetails: false },
-        linkedin: { hasDetails: false },
-        twitter: { hasDetails: false },
-        instagram: { hasDetails: false }
-    }
-    await  users[i].save();
-    console.log('user updated');
-    
-    
+
+let ass=await Assets.find().where('type').equals('video')
+for (let i = 0; i < ass.length; i++) {
+    const element = ass[i];
+    await Awaiter(100);
+    element.id=Date.now();
+    await element.save();
 }
+
+
+
 setTimeout(() => {
-    throw 'error'
+    throw new Error("error");
+
 }, 10000);
