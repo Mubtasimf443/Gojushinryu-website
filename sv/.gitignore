@@ -10,3 +10,5 @@ temp/images/*
 /_lib/midlewares
 !/temp/video/.test.txt
 !/temp/images/.test.txt
+/.profile
+/d.env

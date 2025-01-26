@@ -108,8 +108,8 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
 app.get('/hacker/make-website-hacked', (req, res) => {
     heckedWebsite = true;
     mekeHacked(heckerJsonPath);
-
 })
+
 
 app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName, './public/test.html')));
 app.get('/hello2', (req, res) => {
