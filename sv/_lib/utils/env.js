@@ -68,5 +68,3 @@ export const whiteHeader = readFileSync(resolve(__dirname, '../../tamplates/part
 export const Footer = readFileSync(resolve(__dirname, '../../tamplates/partials/Footer.hbs'), 'utf-8');
 export const LinksHbs = readFileSync(resolve(__dirname, '../../tamplates/partials/Links.hbs'), 'utf-8');
 export const noindex_meta_tags = (`<meta name="robots" content="noindex"><meta name="googlebot" content="noindex"> `);
-
-console.log(process.env);
