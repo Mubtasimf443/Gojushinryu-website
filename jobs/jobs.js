@@ -414,9 +414,7 @@ export async function requestCourseEnrollMentPayment(req=express.request,res=exp
                     let paymentLink = WEBSITE_ORIGIN + '/api/api_s/course/enrollments/payment/this-month?id=' + element.id;
                     await sendPaymentRequest(student, paymentLink, dueDate);
                     element.paymentsData[existIndex].lastPaymentRequestSendDate = Date.now();
-                    element.paymentThisMonth ={
-                        isPaid :false
-                    }
+                    element.paymentThisMonth ={ isPaid :false}
                     await element.save();
                     console.log('this month payment request is done at ' + new Date(Date.now()).toLocaleString());
                     studentData.push({
@@ -524,11 +522,7 @@ export async function notifyAboutNotPaidStudents(req=express.request,res=express
                 console.error('Error sending unpaid fees notification email:', error);
             }
         };
-        
-
-        
         studentData.length !== 0 && await sendUnpaidFeesNotification(studentData);
-        
     } catch (error) {
         console.error(error);
     }

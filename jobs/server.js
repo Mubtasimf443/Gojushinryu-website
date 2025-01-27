@@ -12,9 +12,8 @@ import fetch from 'node-fetch';
 import morgan from 'morgan';
 
 /* 
-git add .; git commit -m 'jobs : production 1 ' ; git push origin main
+git add .; git commit -m 'course enrollment setup by buyer requirement done ' ; git push origin main
 */
-
 const app =express();
 await connectDB();
 app.use(morgan('dev'));
@@ -68,4 +67,5 @@ app.get('/loop', function (req,res) {
 app.get('/delete-image-url-after-24-hours', deleteImageUrlsAfter24Hour);
 app.get('/monthly-payment-request', requestCourseEnrollMentPayment);
 app.get('/notify-about-no-paid-students',notifyAboutNotPaidStudents);
+
 app.listen(3000 ,e => log('thank you Allah') );

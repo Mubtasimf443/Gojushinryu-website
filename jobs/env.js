@@ -4,7 +4,11 @@ InshaAllah, By his marcy I will Gain Success
 */
 
 import {config} from 'dotenv'
-config();
+import path, { resolve } from 'path'
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+config({ path: resolve(__dirname, "./jobs.env") });
 
 export const TEST_DATABASE =process.env.TEST_DATABASE;
 export const DATABASE =process.env.DATABASE;
