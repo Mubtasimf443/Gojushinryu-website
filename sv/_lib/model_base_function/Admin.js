@@ -12,6 +12,7 @@ import { generatePin } from '../utils/generatePin.js'
 import { AdminAuthEmail } from "../mail/Admin.mails.js";
 import { randomBytes } from 'crypto'
 import { Settings } from "../models/settings.js";
+import { bugFromAnErron } from "./Bugs.js";
 
 export const addMinPageRoute = async (req, res) => {
     try {
@@ -27,8 +28,7 @@ export async function adminVaification(req, res) {
     let { otp } = req.body;
     if (!otp) return res.json({ error: 'otp in not defined' });
     if (typeof otp !== 'number') return res.json({ error: 'error ,Otp Has to Be a number' });
-    if (otp < -1 || otp > 1000000) return res.json({ error: 'error ,Otp is 6 digit' });
-
+    if (otp < -1 || otp > 1000000) return res.json({ error: 'error ,Otp is 6 digit' });    
     await Admin.findOne({ email: ADMIN_EMAIL })
         .then(async admin => {
             if (!admin) return res.json({ error: 'Server Error , Admin Not Found' });
@@ -57,40 +57,24 @@ export async function adminVaification(req, res) {
         })
 }
 async function navigateToVarify(req, res) {
-    Admin.findOne({ email: ADMIN_EMAIL })
-        .then(async admin => {
-            let otp = await generatePin(1);
-            log(otp)
-            admin.Otp = otp;
-            admin.save()
-                .then(async sData => {
-                    let mailStatus = await AdminAuthEmail(otp);
-
-                    if (mailStatus) return res.render('cpanal_varification')
-                })
-                .catch(e => {
-                    log(e);
-                    try {
-                        res.render('notAllowed')
-                    } catch (error) {
-                        log(e)
-                    }
-                })
-        })
-        .catch(e => {
-            log(e);
-            try {
-                res.render('notAllowed')
-            } catch (error) {
-                log(e)
-            }
-        })
+    try {
+        let admin = await Admin.findOne({ email: ADMIN_EMAIL });
+        let otp =await generatePin(1);
+        console.log(otp);
+        admin.Otp = otp;
+        admin = await admin.save();
+        let mailStatus = await AdminAuthEmail(otp);
+        if (mailStatus) return res.render('cpanal_varification')
+    } catch (error) {
+        await bugFromAnErron(error,'admin navigate to verify error');
+        res.render('notAllowed')
+    }
 }
 async function navigateToCpanal(req, res) {
     // log('navigateToCpanal');
     jwt.verify(req.cookies.cpat, JWT_SECRET_KEY, (err, data) => {
         if (err) {
-            res.clearCookie('cpat').status(200).render('notAllowed')
+            res.clearCookie('cpat').status(200).render('notAllowed');
             return
         }
         if (data) {

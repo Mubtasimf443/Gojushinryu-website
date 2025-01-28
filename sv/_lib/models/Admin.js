@@ -24,7 +24,6 @@ const Adminschema =new mongoose.Schema({
     required:true
   },
   student_massages:[{
-
     student_id:{
       type:mongoose.SchemaTypes.ObjectId,
       ref:'User'

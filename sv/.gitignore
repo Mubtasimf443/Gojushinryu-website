@@ -12,3 +12,5 @@ temp/images/*
 !/temp/images/.test.txt
 /.profile
 /d.env
+/prod.env
+/node_modules
