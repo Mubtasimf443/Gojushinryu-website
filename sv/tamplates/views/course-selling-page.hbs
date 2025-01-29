@@ -183,7 +183,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
       <label for="name">Name</label>
       <input type="text" id="name" name="name" placeholder="Enter Full Name" required>
       <label for="name">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="Enter Full Name" required>
+      <input type="email" id="email" name="email" placeholder="Enter Email" required>
       
       <label for="phone">Phone Number</label>
       <input type="tel" id="phone" name="phone" placeholder="Enter Phone Number" required>
@@ -236,17 +236,18 @@ Insha Allab,  By the marcy of Allah,  I will gain success
       <label for="purpose">Purpose for Joining Karate</label>
       <textarea id="purpose" name="purpose" rows="3" placeholder="Explain your purpose" required></textarea>
       
+      <label for="phone">Student Signature</label>
+      <input type="Text" id="student_signature" name="coupon" placeholder="Enter Signature" required>
+      
+      <label for="phone">Parent Signature</label>
+      <input type="Text" id="parent_signature" name="coupon" placeholder="Enter Parent Signature" required>
+      
+      
       <label for="phone">Coupon</label>
       <input type="Text" id="coupon" name="coupon" placeholder="Enter the Coupon To get Discount" required>
       
-
-       
-      <img class="student-signature-image" src="" alt="" style="display: none;">
-      <label for="studentImage"> Student Signature</label>
-      <input type="file" id="studentSignatureInput"   {{!-- name="studentImage"  --}} accept="image/*" required>
-      <img class="student-parent-signature-image" src="" alt="" style="display: none;">
-      <label for="studentImage">Student parent Signature</label>
-      <input type="file" id="studentParentSignatureInput"   {{!-- name="studentImage"  --}} accept="image/*" required>
+     
+      
 
 
       <p class="price-display">
@@ -260,7 +261,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         <button type="button" id="paypal-btn" type="submit" >Pay with PayPal</button>
         <button type="button" id="stripe-btn"  type="submit">Pay with Stripe</button>  
       </div>
-      <button type="button" class="close-popup" onclick="closePopup()">Close</button>
+      <button type="button" class="close-popup" onclick="">Close</button>
     </form>
   </div>
 

@@ -52,35 +52,13 @@ export async function coursePurchaseApi(req = request, res = response) {
         let courses = new Map([['1', '  Regular Martial Arts classes'], ['5', `Bhangra Fitness Class for All Ages`]]);
         let settings = await Settings.findOne ({});
         let course_price = (mode === '1' ? settings.fees_of_reqular_class : settings.fees_of_Bhangra_fitness);
-
-
-        function isValidUrl(string = '') {
-            if (!string.includes('http://') && !string.includes('https://')) return false;
-            if (string.at(0) !== 'h' && string.at(1) !== 't' && string.at(2) !== 't' && string.at(3) !== 'p') return false;
-            if (string.at(4) !== 's' && string.at(4) !== ':') return false;
-            if (string.at(4) === 's') {
-                if (string.substring(5, 8) !== '://') return false;
-                if (!string.substring(8).includes('.')) return false;
-            }
-            if (string.at(4) === ':') {
-                if (string.substring(5, 7) !== '//') return false;
-            }
-            return true;
-        }
-        {
-            if (!isValidUrl(studentImage)) namedErrorCatching('image-url-error','invalid studentImage url');
-            if (!isValidUrl(student_signature)) namedErrorCatching('image-url-error','invalid studentImage url');
-            if (!isValidUrl(student_parants_signature)) namedErrorCatching('image-url-error','invalid studentImage url');
-        }
-
+   
+        if (!isValidUrl(studentImage)) namedErrorCatching('image-url-error','invalid studentImage url');
+          
         async function AddImages( courseEnrollment = new CourseEnrollments({})) {
             try {
                 studentImage =await urlToCloudinaryUrl(studentImage);
-                student_signature =await urlToCloudinaryUrl(student_signature);
-                student_parants_signature =await urlToCloudinaryUrl(student_parants_signature);
                 courseEnrollment.student_image =encodeURIComponent(studentImage);
-                courseEnrollment.additional_details.student_signature=encodeURIComponent(student_signature);
-                courseEnrollment.additional_details.student_parants_signature=encodeURIComponent(student_parants_signature);
                 await courseEnrollment.save();
                 console.log('Image added to course enrollment successfully');
             } catch (error) {
@@ -93,7 +71,7 @@ export async function coursePurchaseApi(req = request, res = response) {
             course_name: courses.get(mode),
             course_price: course_price,
             payment_method: payment_method,
-            // student_image :studentImage,
+            student_image :studentImage,
             student_email: email,
             student_name: name,
             student_phone: phone,
@@ -106,13 +84,13 @@ export async function coursePurchaseApi(req = request, res = response) {
                 hasDisability,
                 hasViolence,
                 purpose :purpose,
-                // student_signature :encodeURIComponent(student_signature),
-                // student_parants_signature :encodeURIComponent(student_parants_signature),
+                student_signature,
+                student_parants_signature
             }
         });
         if (hasDisability === 'Yes' || hasBadMedical === 'Yes' ) {
             if (typeof disabilityDetails === 'string') {
-                courseEnrollment.additional_details.disabilityDetails=await repleCaracter(disabilityDetails)
+                courseEnrollment.additional_details.disabilityDetails=await repleCaracter(disabilityDetails);
             }
         };
 
@@ -247,3 +225,17 @@ export async function courseContactApi(req = request, res = response) {
 }
 
 
+
+function isValidUrl(string = '') {
+    if (!string.includes('http://') && !string.includes('https://')) return false;
+    if (string.at(0) !== 'h' && string.at(1) !== 't' && string.at(2) !== 't' && string.at(3) !== 'p') return false;
+    if (string.at(4) !== 's' && string.at(4) !== ':') return false;
+    if (string.at(4) === 's') {
+        if (string.substring(5, 8) !== '://') return false;
+        if (!string.substring(8).includes('.')) return false;
+    }
+    if (string.at(4) === ':') {
+        if (string.substring(5, 7) !== '//') return false;
+    }
+    return true;
+}

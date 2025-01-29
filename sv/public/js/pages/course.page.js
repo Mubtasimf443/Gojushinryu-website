@@ -9,8 +9,8 @@ let
     popup1 = document.querySelector('#popup-type1'),
     popup2 = document.querySelector('#popup-type2'),
     modeMap = new Map([[1, 'Our Regular classes']], [[2, 'Online Martial Art Classes']], [[3, 'Our Seminars']], [[4, 'Our Women Defence Classes']], [[5, 'Bhangra Fitness Class for All Ages']]);
-    
-let studentImage = undefined, student_signature = undefined, student_parants_signature = undefined;
+
+let studentImage = undefined;
 
 /******************************* Courses  ******************************/
 { //regular classes
@@ -26,10 +26,10 @@ let studentImage = undefined, student_signature = undefined, student_parants_sig
         popup1.querySelector(`#total-price`).innerHTML = globlal_fees_of_regular_class + (globlal_fees_of_regular_class * (gst_rate / 100));
     });
 
-    let detailsBtn=course.querySelector('.details-btn');
-    detailsBtn.addEventListener('click', function(event){
+    let detailsBtn = course.querySelector('.details-btn');
+    detailsBtn.addEventListener('click', function (event) {
         event.preventDefault();
-        return setPopupDetails(`[detailspopup1]`,dates_of_regular_class )
+        return setPopupDetails(`[detailspopup1]`, dates_of_regular_class)
     });
 
 }
@@ -42,10 +42,10 @@ let studentImage = undefined, student_signature = undefined, student_parants_sig
         popup2.setAttribute('mode', '2');
     });
 
-    let detailsBtn=course.querySelector('.details-btn');
-    detailsBtn.addEventListener('click', function(event){
+    let detailsBtn = course.querySelector('.details-btn');
+    detailsBtn.addEventListener('click', function (event) {
         event.preventDefault();
-        return setPopupDetails(`[detailspopup2]`,dates_of_online_classes )
+        return setPopupDetails(`[detailspopup2]`, dates_of_online_classes)
     });
 
 }
@@ -68,10 +68,10 @@ let studentImage = undefined, student_signature = undefined, student_parants_sig
         popup2.classList.add('active');
         popup2.setAttribute('mode', '4');
     })
-    let detailsBtn=course.querySelector('.details-btn');
-    detailsBtn.addEventListener('click', function(event){
+    let detailsBtn = course.querySelector('.details-btn');
+    detailsBtn.addEventListener('click', function (event) {
         event.preventDefault();
-        return setPopupDetails(`[detailspopup4]`,dates_of_women_defence_classes );
+        return setPopupDetails(`[detailspopup4]`, dates_of_women_defence_classes);
     });
 
 }
@@ -87,7 +87,7 @@ let studentImage = undefined, student_signature = undefined, student_parants_sig
         popup1.setAttribute('mode', '5');
         popup1.querySelector(`#base-price`).innerHTML = (globlal_fees_of_bhangra_fitness).toFixed(2);
         popup1.querySelector(`#gst-amount`).innerHTML = (globlal_fees_of_bhangra_fitness * (gst_rate / 100)).toFixed(2);
-        popup1.querySelector(`#total-price`).innerHTML =( globlal_fees_of_bhangra_fitness + (globlal_fees_of_bhangra_fitness * (gst_rate / 100))).toFixed(2);
+        popup1.querySelector(`#total-price`).innerHTML = (globlal_fees_of_bhangra_fitness + (globlal_fees_of_bhangra_fitness * (gst_rate / 100))).toFixed(2);
     })
 }
 
@@ -101,14 +101,14 @@ document.querySelectorAll('.close-popup').forEach(
                         element.querySelectorAll('input').forEach(function (input) { input.value = null });
                         element.setAttribute('mode', "");
                         element.classList.remove('active');
-                        let fileInput=element.querySelector('input[type="file"');
-                        let img= element.querySelector('.student-image');
+                        let fileInput = element.querySelector('input[type="file"');
+                        let img = element.querySelector('.student-image');
                         if (img && fileInput) {
-                            img.style.display = 'none'; 
-                            let newFileInput=document.createElement('input');
-                            newFileInput.type='file';
+                            img.style.display = 'none';
+                            let newFileInput = document.createElement('input');
+                            newFileInput.type = 'file';
                             fileInput.replaceWith(newFileInput);
-                            studentImage=undefined;
+                            studentImage = undefined;
                         }
                     }
                 }
@@ -125,21 +125,20 @@ document.querySelectorAll('.close-popup').forEach(
     let paypalbtn = popup1.querySelector('[id="paypal-btn"]'), stripebtn = popup1.querySelector('[id="stripe-btn"]');
     let coupon = '', isValidCoupon = false;
     let
-        studentImageInput = popup1.querySelector('#studentImageInput'),
-        studentSignatureInput = popup1.querySelector('#studentSignatureInput'),
-        studentParentSignatureInput = popup1.querySelector('#studentParentSignatureInput');
-  
+        studentImageInput = popup1.querySelector('#studentImageInput');
+
     async function registerCourse(e = new Event('click')) {
         let btn = e.target;
-        if (requesting) return; 
+        if (requesting) return;
         btn.style.transition = 'opacity .7s ease';
         try {
             e.preventDefault();
             let payment_method = (e.target.id === 'paypal-btn' ? 'paypal' : 'stripe'), mode = popup1.getAttribute('mode');
             let [name, email, phone, dob, address, postalCode] = [v.t('#name'), v.t('#email'), v.t('#phone'), v.t('#dob'), v.t('#address'), v.t('#postalCode')];
             let [hasDisability, hasBadMedical, sex, hasViolence, purpose] = [v.s('#hasDisability'), v.s('#hasBadMedical'), v.s('#sex'), v.s('#hasViolence'), v.t('#purpose')];
+            let [student_signature, student_parants_signature] = [v.t('#student_signature'), v.t('#parent_signature')]
             let disabilityDetails = undefined;
-         
+
 
             if (hasDisability === 'Yes' || hasBadMedical === 'Yes') {
                 disabilityDetails = v.t('#disabilityDetails');
@@ -154,27 +153,14 @@ document.querySelectorAll('.close-popup').forEach(
                 );
                 throw new Error("Student Image Is undefined");
             }
-            if (student_signature ===undefined) {
-                studentSignatureInput.style.outline = '2px solid red';
-                studentSignatureInput.addEventListener('change', function () {
-                    studentSignatureInput.style.outline = 'none'
-                });
-                throw new Error("Student Image Is undefined");
-            }
-            if (student_parants_signature ===undefined) {
-                studentParentSignatureInput.style.outline = '2px solid red';
-                studentParentSignatureInput.addEventListener('change', function () {
-                    studentParentSignatureInput.style.outline = 'none'
-                });
-                throw new Error("Student Image Is undefined");
-            }
+
 
             btn.style.opacity = .7;
             requesting = true;
 
             let response = await fetch(window.location.origin + '/api/l-api/course/purchase/', {
                 method: 'POST',
-                body: JSON.stringify({ name, email, phone, dob, address, postalCode, studentImage, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, payment_method, mode, student_parants_signature, student_signature, coupon: isValidCoupon ? coupon : undefined, }),
+                body: JSON.stringify({ name, email, phone, dob, address, postalCode, studentImage, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, payment_method, mode, student_signature, student_parants_signature, coupon: isValidCoupon ? coupon : undefined, }),
                 headers: { 'Content-Type': 'application/json' }
             });
             if (response.status === 201) {
@@ -205,11 +191,11 @@ document.querySelectorAll('.close-popup').forEach(
     paypalbtn.addEventListener('click', registerCourse);
     stripebtn.addEventListener('click', registerCourse);
 
-    let couponTimeOut=undefined;
-    popup1.querySelector('input#coupon').addEventListener('change',function ()  { 
-        if (!popup1.querySelector('input#coupon').value ) return;
-        popup1.querySelector('input#coupon').value =popup1.querySelector('input#coupon').value.toUpperCase();
-        coupon = popup1.querySelector('input#coupon').value ;
+    let couponTimeOut = undefined;
+    popup1.querySelector('input#coupon').addEventListener('change', function () {
+        if (!popup1.querySelector('input#coupon').value) return;
+        popup1.querySelector('input#coupon').value = popup1.querySelector('input#coupon').value.toUpperCase();
+        coupon = popup1.querySelector('input#coupon').value;
         if (coupon.trim()) {
             clearTimeout(couponTimeOut);
             let parameters = (new URLSearchParams({ code: coupon.trim() })).toString();
@@ -227,7 +213,7 @@ document.querySelectorAll('.close-popup').forEach(
                     setTimeout(() => { popup1.querySelector('input#coupon').style.outline = 'none'; }, 1500);
                     return;
                 } else {
-                    
+
                 }
             }, 500);
             return;
@@ -236,16 +222,16 @@ document.querySelectorAll('.close-popup').forEach(
         }
     })
 
-    studentImageInput.addEventListener('change',async function c1(e) {
-        let img= popup1.querySelector('.student-image');
+    studentImageInput.addEventListener('change', async function c1(e) {
+        let img = popup1.querySelector('.student-image');
         function failed(params) {
             img.setAttribute('style', 'display:none');
-            let newFileInput=document.createElement('input');
-            newFileInput.type='file';
+            let newFileInput = document.createElement('input');
+            newFileInput.type = 'file';
             studentImageInput.replaceWith(newFileInput);
-            studentImage=undefined;
+            studentImage = undefined;
             newFileInput.addEventListener('change', c1);
-            studentImageInput=newFileInput;
+            studentImageInput = newFileInput;
         }
 
         if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
@@ -253,89 +239,25 @@ document.querySelectorAll('.close-popup').forEach(
             return alert('Please upload an Image');
         }
         // let url =URL.createObjectURL(e.target.files[0]);
-        img.src='/img/spinner.svg';
+        img.src = '/img/spinner.svg';
         img.setAttribute('style', 'object-fit: contain;object-position: center center;')
-        let form =new FormData();
+        let form = new FormData();
         form.append('img', e.target.files[0]);
-        const response=await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form }).catch(failed);
-        if (response.status ===201) {
-            let link=(await response.json()).link;
-            img.src=link;
+        const response = await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form }).catch(failed);
+        if (response.status === 201) {
+            let link = (await response.json()).link;
+            img.src = link;
             img.setAttribute('style', 'object-fit: contain;object-position: center center;');
-            studentImage=link;
+            studentImage = link;
             return;
         } else return failed();
-            
-        
+
+
     });
 
-    studentSignatureInput.addEventListener('change',async function c2(e) {
-        let img= popup1.querySelector('.student-signature-image');
-     
-        function failed(params) {
-            img.setAttribute('style', 'display:none');
-            let newFileInput=document.createElement('input');
-            newFileInput.type='file';
-            studentSignatureInput.replaceWith(newFileInput);
-            student_signature=undefined;
-            newFileInput.addEventListener('change', c2);
-            studentSignatureInput=newFileInput;
 
-        }
-        
-        if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
-            failed();
-            return alert('Please upload an Image');
-        }
 
-        img.src='/img/spinner.svg';
-        img.setAttribute('style', 'object-fit: contain;object-position: center center;')
-        let form =new FormData();
-        form.append('img', e.target.files[0]);
-        const response=await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form }).catch(failed);
-        if (response.status ===201) {
-            let link=(await response.json()).link;
-            img.src=link;
-            img.setAttribute('style', 'object-fit: contain;object-position: center center;');
-            student_signature=link;
-            return;
-        } else return failed();
-    }); 
-    
-    studentParentSignatureInput.addEventListener('change',async function c3(e) {
-        let img= popup1.querySelector('.student-parent-signature-image');
-        function failed() {
-            img.setAttribute('style', 'display:none');
-            let newFileInput=document.createElement('input');
-            newFileInput.type='file';
-            studentParentSignatureInput.replaceWith(newFileInput);
-            student_parants_signature=undefined;
-            newFileInput.addEventListener('change', c3);
-            studentParentSignatureInput=newFileInput;
 
-        }
-        if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
-            e.target.files[0]=null;
-            failed();
-            return alert('Please upload an Image');
-        }
-        img.src='/img/spinner.svg';
-        img.setAttribute('style', 'object-fit: contain;object-position: center center;')
-        let form =new FormData();
-        form.append('img', e.target.files[0]);
-        const response = await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form }).catch(failed);;
-        if (response.status ===201) {
-            let link=(await response.json()).link;
-            img.src=link;
-            img.setAttribute('style', 'object-fit: contain;object-position: center center;');
-            student_parants_signature=link;
-            return;
-        } else {
-            return failed();
-        }
-    });
-    
-    
 }
 
 
@@ -446,13 +368,13 @@ function returnV(doc) {
             }
             return val.valueAsNumber;
         }
-        s(select){
-            let s=document.querySelector(select);
+        s(select) {
+            let s = document.querySelector(select);
             if (!s) throw ('select is not a html element');
             if (!s.selectedOptions[0]?.value?.trim()) {
-                s.style.outline='2px solid red';
+                s.style.outline = '2px solid red';
                 function makeredselect() {
-                    s.style.outline='none';
+                    s.style.outline = 'none';
                     s.removeEventListener('change', makeredselect);
                 }
                 s.addEventListener('change', makeredselect);
@@ -465,10 +387,10 @@ function returnV(doc) {
 }
 
 
-function setPopupDetails(query , dateString) {
-    let popup=document.querySelector(query);
+function setPopupDetails(query, dateString) {
+    let popup = document.querySelector(query);
     popup.style.display = 'block';
-    popup.querySelector('#close-detailspopup-btn').addEventListener('click', function (event =new Event('click')) {
+    popup.querySelector('#close-detailspopup-btn').addEventListener('click', function (event = new Event('click')) {
         event.preventDefault();
         popup.style.display = 'none';
     });
@@ -485,7 +407,7 @@ function setPopupDetails(query , dateString) {
     calendarBody.innerHTML = '';
 
     let day = 1; // Start from the first day of the month
-        for (let row = 0; day <= daysInMonth; row++) {
+    for (let row = 0; day <= daysInMonth; row++) {
         const tr = document.createElement('tr');
         for (let col = 0; col < 7; col++) {
             const td = document.createElement('td');

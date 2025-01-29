@@ -53,6 +53,10 @@ let schema = new Schema({
     admin_approved:{
         type: Boolean,
         default: false
+    },
+    isPaidInitialFees :{
+        type: Boolean,
+        default: false
     }
 });
 
