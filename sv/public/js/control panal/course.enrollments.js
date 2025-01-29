@@ -60,6 +60,7 @@ By his marcy,  I will gain success
                 if (course === undefined) return;
                 let inputs = popup.querySelectorAll('input');
                 let textareas = popup.querySelectorAll('textarea');
+
                 inputs[0].value = course.student_name;
                 inputs[1].value = course.student_phone;
                 inputs[2].value = course.student_email;
@@ -72,6 +73,9 @@ By his marcy,  I will gain success
                 textareas[0].value=course.additional_details?.disabilityDetails;
                 textareas[1].value=course.additional_details?.purpose;
 
+                popup.querySelector(`[course_student_image]`).src=decodeURIComponent(course.student_image);
+                popup.querySelector(`[course_student_signature_image]`).src=course.additional_details?.student_signature && decodeURIComponent(course.additional_details?.student_signature);
+                popup.querySelector(`[course_student_parents_signature_image]`).src=course.additional_details?.student_parants_signature && decodeURIComponent(course.additional_details?.student_parants_signature);
                 let insertionHtml = ``;
                 for (let i = 0; i < course.paymentsData.length; i++) {
                     const { payment_date, paidAmount, month, Year, date, paid } = course.paymentsData[i];

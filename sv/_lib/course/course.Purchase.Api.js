@@ -20,7 +20,6 @@ import { urlToCloudinaryUrl } from "../Config/cloudinary.js";
 export async function coursePurchaseApi(req = request, res = response) {
     try {
         let { studentImage, student_signature, student_parants_signature, name, phone, email, postalCode, dob, address, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, mode, payment_method } = req.body;
-
         {
             if (validate.isEmty(name)) namedErrorCatching('parameter error', 'name is emty');
             if (validate.isEmty(phone)) namedErrorCatching('parameter error', 'phone is emty');
@@ -54,17 +53,47 @@ export async function coursePurchaseApi(req = request, res = response) {
         let settings = await Settings.findOne ({});
         let course_price = (mode === '1' ? settings.fees_of_reqular_class : settings.fees_of_Bhangra_fitness);
 
-        {
-            studentImage =await urlToCloudinaryUrl(studentImage);
-            if (!studentImage) namedErrorCatching('image-url-error','invalid studentImage url');
+
+        function isValidUrl(string = '') {
+            if (!string.includes('http://') && !string.includes('https://')) return false;
+            if (string.at(0) !== 'h' && string.at(1) !== 't' && string.at(2) !== 't' && string.at(3) !== 'p') return false;
+            if (string.at(4) !== 's' && string.at(4) !== ':') return false;
+            if (string.at(4) === 's') {
+                if (string.substring(5, 8) !== '://') return false;
+                if (!string.substring(8).includes('.')) return false;
+            }
+            if (string.at(4) === ':') {
+                if (string.substring(5, 7) !== '//') return false;
+            }
+            return true;
         }
-        
+        {
+            if (!isValidUrl(studentImage)) namedErrorCatching('image-url-error','invalid studentImage url');
+            if (!isValidUrl(student_signature)) namedErrorCatching('image-url-error','invalid studentImage url');
+            if (!isValidUrl(student_parants_signature)) namedErrorCatching('image-url-error','invalid studentImage url');
+        }
+
+        async function AddImages( courseEnrollment = new CourseEnrollments({})) {
+            try {
+                studentImage =await urlToCloudinaryUrl(studentImage);
+                student_signature =await urlToCloudinaryUrl(student_signature);
+                student_parants_signature =await urlToCloudinaryUrl(student_parants_signature);
+                courseEnrollment.student_image =encodeURIComponent(studentImage);
+                courseEnrollment.additional_details.student_signature=encodeURIComponent(student_signature);
+                courseEnrollment.additional_details.student_parants_signature=encodeURIComponent(student_parants_signature);
+                await courseEnrollment.save();
+                console.log('Image added to course enrollment successfully');
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
         let courseEnrollment = new CourseEnrollments({
             course_id: Number(mode),
             course_name: courses.get(mode),
             course_price: course_price,
             payment_method: payment_method,
-            student_image :studentImage,
+            // student_image :studentImage,
             student_email: email,
             student_name: name,
             student_phone: phone,
@@ -77,8 +106,8 @@ export async function coursePurchaseApi(req = request, res = response) {
                 hasDisability,
                 hasViolence,
                 purpose :purpose,
-                student_signature :encodeURIComponent(student_signature),
-                student_parants_signature :encodeURIComponent(student_parants_signature),
+                // student_signature :encodeURIComponent(student_signature),
+                // student_parants_signature :encodeURIComponent(student_parants_signature),
             }
         });
         if (hasDisability === 'Yes' || hasBadMedical === 'Yes' ) {
@@ -113,7 +142,6 @@ export async function coursePurchaseApi(req = request, res = response) {
         
 
         if (payment_method === 'paypal') {
-           
             let paypal = new PaypalPayment({
                 client_id: PAYPAL_CLIENT_ID,
                 client_secret: PAYPAL_SECRET,
@@ -141,7 +169,7 @@ export async function coursePurchaseApi(req = request, res = response) {
                 courseEnrollment.paypal_token = paymentInfo.token;
                 await courseEnrollment.save();
                 res.status(201).json({ url: paymentInfo.link });
-                return;
+                return AddImages(courseEnrollment);
             }
             else { throw ({ type: "internal error", massage: "can not create paypal error" }) }
 
@@ -172,7 +200,7 @@ export async function coursePurchaseApi(req = request, res = response) {
             courseEnrollment.stripe_session_id =paymentInfo.id;
             await courseEnrollment.save();
             res.status(201).json({ url: paymentInfo.url });
-            return;
+            return AddImages(courseEnrollment);
         }
     } catch (error) {
         catchError(res, error)
@@ -217,3 +245,5 @@ export async function courseContactApi(req = request, res = response) {
         catchError(res, error)
     }
 }
+
+

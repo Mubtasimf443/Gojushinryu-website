@@ -106,6 +106,14 @@ Insha Allah,  By your Marcy Ya Allah
   width: 100%;
 }
 
+
+#couses-enrollment-list-container .popup_content .couse-enrollment-image{
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  object-position: center center;
+}
+
 #couses-enrollment-list-container .popup_c .popup_content .input-box,
 #couses-enrollment-list-container .popup_c .popup_content .txt-box {
   display: flex;
@@ -202,7 +210,6 @@ Insha Allah,  By your Marcy Ya Allah
 #couses-enrollment-list-container .popup_content .btn-group button:nth-child(3):hover {
   background: darkred;
 }
-
 
 
 
