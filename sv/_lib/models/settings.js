@@ -15,12 +15,16 @@ const settingsSchema =new mongoose.Schema({
     date_of_womens_defence_class:{
         date :String,
     },
+
+    //fees
     fees_of_reqular_class :Number,
     fees_of_Bhangra_fitness:Number,
+    GojushinRyuMembershipFees:Number,
+    
     gst_rate :Number ,
+    
     home_video_url:String,
-    youtube_refresh_token:String,
-    youtube_token:String,
+  
     //meta products
     fb_access_token_enroll_date:Number,
     fb_access_token:String,
@@ -42,6 +46,11 @@ const settingsSchema =new mongoose.Schema({
     tiktok_access_token:String,
     tiktok_refresh_token :String,
     tiktok_access_token_status:Boolean,
+
+    //youtube 
+  
+    youtube_refresh_token:String,
+    youtube_token:String,
     youtube_access_token_status:Boolean,
     //modification dates are use to track jobs are working or not
     last_modification_date:Number,

@@ -29,7 +29,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
     let students = 0;
     let experience = 0;
     const addExperience = () => {
-        if (experience !== 13) {
+        if (experience !== 25) {
             experience = experience + 1;
             experienceCounter.innerText = experience.toString();
             setTimeout(addExperience, 180)

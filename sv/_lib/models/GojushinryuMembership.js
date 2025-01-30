@@ -20,23 +20,61 @@ let schema = new Schema({
         type: Date,
         default: Date.now
     },
-    fname: String,
-    lname: String,
-    email: String,
-    phone: String,
+    fname:{
+        type :String,
+        trim:true,
+    },
+    lname: {
+        type :String,
+        trim:true,
+    },
+    email: {
+        type :String,
+        trim:true,
+        lowercase:true,
+    },
+    phone: {
+        type :String,
+        trim:true,
+    },
     date_of_birth: String,
-    country: String,
-    city: String,
-    district: String,
-    postcode: String,
-    doju_Name: String,
-    instructor: String,
+    country: {
+        type :String,
+        trim:true,
+    },
+    city: {
+        type :String,
+        trim:true,
+    },
+    district: {
+        type :String,
+        trim:true,
+    },
+    postcode: {
+        type :String,
+        trim:true,
+    },
+    doju_Name: {
+        type :String,
+        trim:true,
+    },
+    instructor: {
+        type :String,
+        trim:true,
+    },
     current_grade: String,
     violance_charge: String,
     permanent_disabillity: String,
     previous_membership_expiring_date: String,
     previous_injury: String,
-    gender: String,
+    gender:{
+        type :String,
+        trim:true,
+    },
+    signature: {
+        type :String,
+        trim:true,
+    },
     is_previous_member: String,
     experience_level: String,
     has_violance_charge: String,

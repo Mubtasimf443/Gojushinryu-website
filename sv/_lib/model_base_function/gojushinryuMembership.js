@@ -14,7 +14,7 @@ import { GMembershipNotApprovedEmail, sendMembershipApplicationReceivedEmail, se
 
 async function requestGojushinryuMembership(req=request, res=response) {
     try {
-        let { fname, lname, email, phone, date_of_birth, country, city, district, postcode, doju_Name, instructor } = req.body;
+        let { fname, lname, email, phone, date_of_birth, country, city, district, postcode, doju_Name, instructor, signature } = req.body;
         let { current_grade, violance_charge, permanent_disabillity, membership_expiring_date, previous_injury, membeship_array } = req.body;
         let { experience_level, has_violance_charge, has_permanent_injury, gender, is_previous_member, } = req.body;
        
@@ -32,9 +32,9 @@ async function requestGojushinryuMembership(req=request, res=response) {
             if (validate.isEmty(instructor)) namedErrorCatching('parameter error', 'instructor is emty');
             if (validate.isEmty(current_grade)) namedErrorCatching('parameter error', 'current_grade is emty');
             if (validate.isEmty(gender)) namedErrorCatching('parameter error', 'instructor is emty');
+            if (validate.isEmty(signature)) namedErrorCatching('parameter error', 'signature is emty');
             if (validate.isEmty(!Array.isArray(membeship_array))) namedErrorCatching('parameter error', 'membeship_array is not array');
         }
-       
         { //Yes No gender experience_level Check
             if (gender !== 'Male' && gender !== 'Female') namedErrorCatching('parameter error', 'Gender is not correct');
             if (has_violance_charge !== 'Yes' && has_violance_charge !== 'No') namedErrorCatching('parameter error', 'Violance charge is not correct');
@@ -44,10 +44,9 @@ async function requestGojushinryuMembership(req=request, res=response) {
         }
         
     
-        [fname, lname, postcode, doju_Name, instructor, country, city, district] = repleCrAll([fname, lname, postcode, doju_Name, instructor, country, city, district]);
-        let userInfo = { fname, lname, postcode, email, phone, doju_Name, instructor, country, city, district, date_of_birth };
+        [fname, lname, postcode, doju_Name, instructor, country, city, district, signature] = repleCrAll([fname, lname, postcode, doju_Name, instructor, country, city, district, signature]);
+        let userInfo = { fname, lname, postcode, email, phone, doju_Name, instructor, country, city, district, date_of_birth, signature };
         userInfo = { ...userInfo, experience_level, has_violance_charge, has_permanent_injury, gender, is_previous_member, current_grade }
-        
         {//conditional
             if (has_permanent_injury === 'Yes') userInfo.permanent_disabillity = repleCaracter(permanent_disabillity)
             if (has_violance_charge === 'Yes') userInfo.violance_charge = repleCaracter(violance_charge);

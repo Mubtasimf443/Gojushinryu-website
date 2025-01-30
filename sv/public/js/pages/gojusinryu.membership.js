@@ -33,6 +33,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
     let countryInput = document.querySelector('#inp--Country');
     let cityInput = document.querySelector('#inp--City');
     let districtInput = document.querySelector('#inp--District');
+    let signatureInput=document.querySelector('#inp--signature')
     let pCodeInput = document.querySelector('#inp--pcode');
     let dojuNameInput = document.querySelector('#inp--doju-name');
     let instructorInput = document.querySelector('#inp--Instructor');
@@ -61,21 +62,15 @@ Insha Allah,  By Allahs Marcy,  I willearn success
       violance_charge: "",
       permanent_disabillity: '',
       previous_injury: '',
+      signature:'',
       //defined
       gender: 'Male',
       is_previous_member: 'No',
       experience_level: 'Junior',
       has_violance_charge: "No",
       has_permanent_injury: 'No',
-      membeship_array: [{
-        company: 'gojushinryu',
-        membership: "LifeTime"
-      }],
-      accapted: {
-        role1: false,
-        role2: false,
-      }
-  
+      membeship_array: [{ company: 'gojushinryu', membership: "LifeTime" }],
+      accapted: { role1: false, role2: false, }
     };
   
   
@@ -97,7 +92,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
       userInfo.instructor = await v2(instructorInput);
       userInfo.doju_Name = await v2(dojuNameInput);
       userInfo.postcode=await v2(pCodeInput);
-
+      userInfo.signature=await v2(signatureInput);
       //number
       await v3(numInput).then(e => userInfo.phone = e).catch(e => { alert(e); throw new Error("Error"); })
 
