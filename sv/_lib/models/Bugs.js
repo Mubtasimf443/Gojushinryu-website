@@ -14,14 +14,12 @@ let bugsSchema =new mongoose.Schema(
         },
         issueFoundDate: {
             type: Date,
-            required: [true, 'Issue found date is required'],
+        
             default: Date.now, // Defaults to current date and time
         },
         description: {
             type: String,
-            required: [true, 'Issue description is required'],
             trim: true,
-            minlength: [10, 'Description should be at least 10 characters long'],
         },
         uniqueId: {
             type: Number,

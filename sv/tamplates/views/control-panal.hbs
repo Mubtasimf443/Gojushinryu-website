@@ -933,6 +933,7 @@
                 <th>Requested</th>
                 <th>Approved</th>
                 <th>Details</th>
+                <th>IsPaid?</th>
               </tr>
             </thead>
             <tbody>
@@ -943,9 +944,18 @@
                 <td>20/02/2024</td>
                 <td style="color:orangered;">Yes</td>
                 <td><button>Details</button></td>
+                <td><button>Request</button></td>
               </tr>
             </tbody>
           </table>
+          <div id="feeModal" class="modal">
+            <div class="modal-header">Request Admin for Fees</div>
+            <input type="number" id="feeAmount" placeholder="Enter fee amount">
+            <div class="modal-actions">
+              <button class="model-cancel" >Cancel</button>
+              <button class="model-submit">Submit</button>
+            </div>
+        </div>
         </div>
         <!-----------------------order list ----------------------------->
 
@@ -1363,7 +1373,7 @@
               <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6"
                 value="{{date_of_womens_defence_class}}" id="w-class-date">
             </div>
-
+            
 
             <strong>Fees Of course</strong>
             <div class="s-sec-input-box">

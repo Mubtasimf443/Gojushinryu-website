@@ -14,6 +14,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
     let table = containar.querySelector('table');
     let tbody = containar.querySelector('tbody');
     let thead = containar.querySelector('thead');
+    let feesPop= containar.querySelector('#feeModal');
     let observer=new IntersectionObserver(async function (entries) {
         if (entries[0].isIntersecting && !seen){
             try {
@@ -45,15 +46,23 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                 <td>${$.fname + '&nbsp;'+$.lname}</td>
                 <td>${new Date($.id).toLocaleDateString()}</td>
                 <td style="color:${$.admin_approved ? 'Green' :'orangered'};">${$.admin_approved ? 'Yes' :'No'}</td>
-
-                <td><button membership="${$.id}">Details</button></td>
+                <td><button membership="${$.id}"  class="dt-btn">Details</button></td>
+                <td style="color:${$.payment_info?.paid ? 'Green' : 'initial'}">
+                ${$.payment_info?.paid ? 'Paid' : ($.payment_info?.requested ? ('Requested' ) : ( `<button class="rqt-btn" m-id="${$.id}">Request</button>`))}
+                </td>
                 `);
             tbody.appendChild(tr);
-           
         }
-        tbody.querySelectorAll('button').forEach(function (el) {
+        tbody.querySelectorAll('.dt-btn').forEach(function (el) {
             el.addEventListener('click', showMembershipDetails)
-        })
+        });
+
+        tbody.querySelectorAll('.rqt-btn').forEach(function (el) {
+            el.addEventListener('click', OpenFeesPopup)
+        });
+
+
+
     }
 
 
@@ -164,4 +173,56 @@ Insha Allah,  By the marcy of Allah,  I will gain success
             orgTable();
         }
     }
+
+
+    function OpenFeesPopup(event=new Event('click')){
+        feesPop.classList.add('active');
+        let mid=event.target.getAttribute('m-id');
+        feesPop.setAttribute('mid',mid);
+        let cancelBtn= feesPop.querySelector('.model-cancel');
+        let submitBtn= feesPop.querySelector('.model-submit');
+      
+        function submit(event=new Event('click')) {
+            event.preventDefault();
+            let mid=feesPop.getAttribute('mid');
+            let fees=feesPop.querySelector('input').valueAsNumber;
+            function makeitred(){
+                feesPop.querySelector('input').style.outline='2px solid red';
+                feesPop.querySelector('input').addEventListener('input', function ured(){
+                    feesPop.querySelector('input').style.outline = 'none';
+                    feesPop.querySelector('input').removeEventListener('input', ured);
+                });
+            }
+            if (fees <1) throw makeitred();
+            if (fees.toString()==='NaN') throw makeitred();
+            fees=Math.round(fees);
+            fetch(origin + `/api/api_s/gojusinryu-membership/request-fees?id=${mid}&fees=${fees}`, { method: 'put' });
+            memberhsips=memberhsips.map(function(element){
+                if (element.id==mid) {
+                    if (typeof element.payment_info !== 'object') element.payment_info={};
+                    element.payment_info.requested=true;
+                    return element;
+                } else return element;
+            });
+            orgTable();
+            closePop(event);
+        }
+
+        function closePop(event =new Event('click') ) {
+            cancelBtn.removeEventListener('click', closePop);
+            submitBtn.removeEventListener('click', submit);
+            feesPop.classList.remove('active');
+            feesPop.querySelector('input').style.outline='none';
+
+        }
+
+        submitBtn.addEventListener('click',submit )
+        
+        cancelBtn.addEventListener('click',closePop );
+
+        
+    
+    }
 }
+
+

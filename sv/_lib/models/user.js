@@ -49,8 +49,12 @@ const PrimaryDetails = {
     postCode: Number,
 }
 const additionalDetails = {
-    thumb: { type: String, default: 'https://gojushinryu.com/img/avatar.png' },
+    thumb: { 
+        type: String, 
+        default: 'https://gojushinryu.com/img/avatar.png' 
+    },
     bio: {
+
         type: String,
 
         default: 'I dream to become black belt in karate and Master Martial Arts'
@@ -129,6 +133,7 @@ const notificationsAndMsg = {
 const auth = {
     password: {
         type: String,
+        
     },
     joining_date: {
         default: Date.now,

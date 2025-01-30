@@ -110,7 +110,7 @@ app.get('/hacker/make-website-hacked', (req, res) => {
     mekeHacked(heckerJsonPath);
 })
 
-
+app.get('/favicon.ico' , )
 app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName, './public/test.html')));
 app.get('/hello2', (req, res) => {
     console.log('base url is : '+ req.url);

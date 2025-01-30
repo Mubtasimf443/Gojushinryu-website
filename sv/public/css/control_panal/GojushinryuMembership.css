@@ -73,3 +73,52 @@ Insha Allah,  By your Marcy Ya Allah
     box-sizing: content-box;
     padding: 8px 14px;
 }
+
+.Gojushinryu-Membership-Request-container .modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #ffffff;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 300px;
+}
+.Gojushinryu-Membership-Request-container .modal.active {
+    display: block;
+}
+
+.Gojushinryu-Membership-Request-container .modal.active .modal-header {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+}
+.Gojushinryu-Membership-Request-container .modal.active .modal-actions {
+    margin-top: 10px;
+    text-align: right;
+}
+.Gojushinryu-Membership-Request-container .modal.active input {
+    width: 100%;
+    padding: 8px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+.Gojushinryu-Membership-Request-container .modal.active button {
+    padding: 10px 15px;
+    margin-left: 5px;
+    cursor: pointer;
+    border: none;
+    border-radius: 4px;
+}
+.Gojushinryu-Membership-Request-container .modal.active .btn-cancel {
+    background-color: #ff4d4d;
+    color: white;
+}
+.Gojushinryu-Membership-Request-container .modal.active .btn-submit {
+    background-color: #4CAF50;
+    color: white;
+}

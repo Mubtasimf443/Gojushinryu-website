@@ -95,6 +95,20 @@ let schema = new Schema({
     isPaidInitialFees :{
         type: Boolean,
         default: false
+    },
+
+    payment_info:{
+        paid :{
+            type: Boolean,
+            default: false
+        },
+        payment_date :Date,
+        fees : Number,
+        request_Date: Date,
+        requested :{
+            type: Boolean,
+            default: false
+        },
     }
 });
 

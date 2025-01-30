@@ -41,7 +41,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
     let fees_of_Bhangra_fitness = container.querySelector('input#fees_of_Bhangra_fitness').valueAsNumber;
     let fees_of_reqular_class =  container.querySelector('input#fees_of_reqular_class').valueAsNumber
     let gst_rate = container.querySelector('input#gst_rate').valueAsNumber;
-
+    
     [ fees_of_Bhangra_fitness,fees_of_reqular_class , gst_rate]=[Number(fees_of_Bhangra_fitness) ,Number(fees_of_reqular_class) ,Number(gst_rate)]
     
     if (testDate(date_of_online_class) === false) return makered4000(`[id="o-class-date"]`);

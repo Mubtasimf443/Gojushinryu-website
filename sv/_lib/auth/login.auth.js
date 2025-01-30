@@ -13,13 +13,14 @@ export const loginApiFunc = async (req=request, res=response) => {
  
 
   try {
+    let { password, email } = req.body;
     {
       if (req.cookies.rft) {
         res.clearCookie('rft', { sameSite: true, httpOnly: true })
         res.end(JSON.stringify({ error: 'Please Try again' }));
         return;
       }
-      let { password, email } = req.body;
+     
       if (!password) return res.json({ error: 'password is not define' })
       if (!email) return res.json({ error: 'email is not  define' })
       if (email.trim().length < 5 || email.trim().length > 36) return res.json({ error: 'email is not valid' });
@@ -35,11 +36,12 @@ export const loginApiFunc = async (req=request, res=response) => {
       if (password.toString().includes('{')) return res.json({ error: 'password is not valid' })
       if (password.toString().includes('}')) return res.json({ error: 'password is not valid' })
     }
-    let user = await User.findOne({},'email').where('email').equals(email).where('isRegistered').equals(true)
+  console.log({password});
+  
+    let user = await User.findOne().where('email').equals(email).where('isRegistered').equals(true)
     if (!user) return res.json({ error: 'not user info match ,Please Create an account' });
     let passwordMatch = await bcrypt.compareSync(password, user.password)/* password ===user.password*///testing the password
     if (!passwordMatch) return res.json({ error: 'password not match ,Please Create a give the correct' });
-    log('passwordMatch : ' + passwordMatch);
     const jwtObject = { email, pin: generatePin(67896), };
     let rft = await jwt.sign(jwtObject, JWT_SECRET_KEY, {});
     return res.cookie('rft', rft, { sameSite: true, httpOnly:true, expires: new Date(Date.now() + (1000 * 60 * 60 * 24 * 30)) }).status(200).json({ success: true })
@@ -78,10 +80,8 @@ export const GMLoginApiFunc =async (req, res) => {
    try {
      let user = await GM.findOne({email})
      if (!user) return res.json({error :'not user info match ,Please Create an account'});
-     //console.log('user is found');
      let passwordMatch = await bcrypt.compareSync(password,user.password)/* password ===user.password*///testing the password
      if (!passwordMatch) return res.json({error : 'password not match ,Please Create a give the correct'});
-    //  log('passwordMatch : '+passwordMatch);
      let rft=await jwt.sign({
       email,
       pin: generatePin(67896),
