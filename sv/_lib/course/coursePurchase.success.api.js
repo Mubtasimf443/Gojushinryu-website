@@ -13,6 +13,7 @@ import { mailer } from "../utils/mailer.js";
 import { ADMIN_EMAIL, ADMIN_PHONE, FROM_EMAIL, ORGANIZATION_NAME } from "../utils/env.js";
 import { repleCaracter } from "../utils/replaceCr.js";
 import { settingsAsString } from "../model_base_function/Settings.js";
+import User from "../models/user.js";
 
 
 
@@ -55,7 +56,17 @@ export async function coursePurchaseSuccessPaypal(req = request, res = response)
         }
         courseEnrollment = await courseEnrollment.save();
 
+
+        if (courseEnrollment.student_id) {
+            let st = await User.findOne({ id: courseEnrollment.student_id });
+            if (st) {
+                st.enrolled_course.push({ name: courseEnrollment.course_name, courseEnrollMentID: courseEnrollment._id, id: courseEnrollment.id, paid: true, date: new Date() });
+                await st.save();
+            }
+        }
+
         let gst_rate=await settingsAsString('gst_rate');
+
         if (typeof gst_rate !== 'number') gst_rate=5;
         gst_rate=gst_rate/100;
         let { student_name, student_email, course_name, course_price, apply_date } = courseEnrollment;
@@ -129,6 +140,13 @@ export async function coursePurchaseSuccessStripe(req = request, res = response)
             paidDate :new Date()
         }
         courseEnrollment = await courseEnrollment.save();
+        if (courseEnrollment.student_id) {
+            let st = await User.findOne({ id: courseEnrollment.student_id });
+            if (st) {
+                st.enrolled_course.push({ name: courseEnrollment.course_name, courseEnrollMentID: courseEnrollment._id, id: courseEnrollment.id, paid: true ,date :new Date()});
+                await st.save();
+            }
+        }
 
         let { student_name, student_email, course_name, course_price, apply_date, } = courseEnrollment;
         let gst_rate=await settingsAsString('gst_rate');
@@ -168,16 +186,15 @@ export async function coursePurchaseCancelStripe(req = request, res = response) 
 function successPage(enrollment_id, course_name, paid) {
     return (`
         <!DOCTYPE html>
-<html lang="en">
-
-<head>
-     <meta charset="UTF-8">
-     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-     <link rel="stylesheet" href="/css/root.css">
-     <link rel="icon" href="/img/6060.png" type="image/png">
-      <script defer src="/js/tags.js"> </script>
-     <title>Purchase Successful</title>
-     <style>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <link rel="stylesheet" href="/css/root.css">
+            <link rel="icon" href="/img/6060.png" type="image/png">
+            <script defer src="/js/tags.js"> </script>
+            <title>Purchase Successful</title>
+            <style>
           /* Base Reset */
           * {
                margin: 0;

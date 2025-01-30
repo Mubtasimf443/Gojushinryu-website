@@ -1,19 +1,20 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <meta charset='utf-8'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Students Corner | {{>company_name}} </title>
-    <meta name='viewport' content='width=device-width, initial-scale=1'>
-    {{>Links}}   
-    <link rel='stylesheet' type='text/css' media='screen' href="/css/students-corner/layout.css">
-    <link rel='stylesheet' type='text/css' media='screen' href="/css/students-corner/st-notification.css">
-    <link rel='stylesheet' type='text/css' media='screen' href="/css/students-corner/massage.css">
-    <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/setting.css">
-    <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/order.css">
-    <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/course.css">
-    <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/membership.css">
-    <meta name="keywords" content="
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Students Corner | {{>company_name}} </title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  {{>Links}}
+  <link rel='stylesheet' type='text/css' media='screen' href="/css/students-corner/layout.css">
+  <link rel='stylesheet' type='text/css' media='screen' href="/css/students-corner/st-notification.css">
+  <link rel='stylesheet' type='text/css' media='screen' href="/css/students-corner/massage.css">
+  <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/setting.css">
+  <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/order.css">
+  <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/course.css">
+  <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/membership.css">
+  <meta name="keywords" content="
     Students Corner of Goju Shin Ryu International Martial Arts,
     Students Corner of {{>company_name}},
     ">
@@ -21,257 +22,255 @@
 
 
 <body>
-    {{>whiteHeader}}
-  
-<main>
-<section id="st-corner">
-       <div class="sidebar-div">
+  {{>whiteHeader}}
 
-  
-  <div class="st-bio">
-    <img src="{{thumb}}">
-    <h2>{{ name }}</h2>
-    <p>
-{{bio}}
-    </p>
-    <b class="st-org">
-Goju Shin Ryu
-    </b>
-    <b class="st-org">
-      School Traditional  Of MARTIAL Arts
-    </b>
-
-  </div>
-  <div class="st-nav-main">
-      <h2>options</h2>
-    <a id="notification_href">Notification's<button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="massage_href" >Massages <button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="info_href">Info <button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="orders_href">Orders <button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="membership_href">Meberships <button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="course_enrollments_href">Course EnrollMents <button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="social_media_href">Social Media<button><i class="fa-solid fa-angle-right"></i></button></a>
-    <a id="logout_href">Logout<button><i class="fa-solid fa-angle-right"></i></button></a>
-<style>
-  button,a ,i{
-    cursor: pointer;
-  }
-</style>
-  </div>
-  
-  </div>
+  <main>
+    <section id="st-corner">
+      <div class="sidebar-div">
 
 
-  <div class="st_main">
-  <div st_section style="display: none;" id="st-notification">
-       <h2>Notification's</h2>
-      <div class="Notification-massage-cobtainer">
-        <div>
-        <div class="massage">
-          <b>Varun Jettly</b>
-          <p class="notification-paragrap">
-            Hi , Wellcome and Thanks for joning Goju Shin Ryu
-          </p>
+        <div class="st-bio">
+          <img src="{{thumb}}">
+          <span student_id>#{{ID}}</span>
+          <h2>{{ name }}</h2>
+          <p>{{bio}}</p>
+          <b class="st-org">Goju Shin Ryu </b>
+          <b class="st-org"> School Traditional Of MARTIAL Arts</b>
+
         </div>
-        {{!-- <span class="massage-time"></span> --}}
-      </div>
-      </div>
-      
-    </div>
- <div st_section style="display: none;" class="chat-box-container">
-  <h2>Massages</h2>
-  <div class="chat-box">
-    <div class="chat-massage-cobtainer">
-      <div class="t-massage">
-        <div class="massage">
-          <b class="sender-name">Varun Jettly</b>
-          <p class="sender-p">
-            Sir, Wellcome to Our Website 
-          </p>
-        </div>
-        <span class="massage-time"></span>
-      </div>
-      <div class="f-massage">
-       <div class="massage">
-         <b class="sender-name">You</b>
-           <p class="sender-p">
-            I am making something, and Show you how it will work...
-           </p>
+        <div class="st-nav-main">
+          <h2>options</h2>
+          <a id="notification_href">Notification's<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="massage_href">Massages <button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="info_href">Info <button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="orders_href">Orders <button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="membership_href">Meberships <button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="course_enrollments_href">Course EnrollMents <button><i
+                class="fa-solid fa-angle-right"></i></button></a>
+          <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="social_media_href">Social Media<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="logout_href">Logout<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <style>
+            button,
+            a,
+            i {
+              cursor: pointer;
+            }
+          </style>
         </div>
 
       </div>
-    </div>
-    <div class="send-chat-massage-containar">
-     <textarea placeholder="Write a massage" sendMassageTextArrea name="" id=""></textarea>
-     <button class="send-chat-massage-containar-btn">
-       Send
-     </button>
-    </div>
-  </div>
-  
-  </div>
-
-<div st_section id="info-section" class="form-section">
-  <h2>Info</h2>
-  <div class="img-inp-box">
-    <label for="s-sec-profile-input"
-      style='background:url("{{thumb}}") ; background-size: cover;   background-repeat: no-repeat;    background-position: center center;'>
-      <input accept="image/*" id="s-sec-profile-input" style="display: none" type="file">
-      <b>Change Image</b>
-    </label>
-  </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-name-inp">Name</label>
-     <input type="Text" name="" id="s-sec-name-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-bio-inp">bio</label>
-     <input type="Text" name="" id="s-sec-bio-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-age-inp">Age</label>
-     <input type="number" name="" id="s-sec-age-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-gender-inp">Gender</label>
-     <input type="Text" name="" id="s-sec-gender-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-country-inp">Country</label>
-     <input type="Text" name="" id="s-sec-country-inp">
-   </div>
-   <div class="s-sec-input-box">
-     <label for="s-sec-District-inp">District</label>
-     <input type="Text" name="" id="s-sec-District-inp">
-   </div>
-    <div class="s-sec-input-box">
-     <label for="s-sec-city-yinp">City</label>
-     <input type="Text" name="" id="s-sec-city-inp">
-   </div>
-    <div class="s-sec-input-box">
-     <label for="s-sec-street-yinp">Street / Village</label>
-     <input type="Text" name="" id="s-sec-street-inp">
-   </div>
-     <div class="s-sec-input-box">
-     <label for="s-sec-post-code-yinp">Post Code </label>
-     <input type="number" name="" id="s-sec-post-code-inp">
-   </div>
-   <div class="s-sec-btn-box">
-     <button  >Cancel</button>
-     <button id="update-user-info-btn" > Save</button>
-   </div>
- </div>
-
- 
-<div st_section style="display: none;" id="settings-section" class="form-section">
-   <h2>SETTING'S</h2>
-  
-
-   <h2>Credentials</h2>
-   <div class="s-sec-input-box">
-     <label for="s-sec-country-inp">
-       Password
-     </label>
-     <input type="password" id="s-sec-password-inp">
-   </div>
-   <div class="s-sec-btn-box">
-     {{!-- <button>Cancel</button> --}}
-     <button id="s-sec-change-password-btn">Save</button>
-   </div>
- </div>
-<!------------------------ Orders Container ------------------------->
-<div st_section style="display: none;" class="gm-order-box">
-<h2>Orders</h2>
-<div class="orders">
-  <div class="order">
-    <div class="order-no">No.</div>
-    <div class="order-image">Image</div>
-<div class="order-quantity">Quantity</div>
-    <div class="order-price">Total Price</div>
-    <div class="order-status">
-      Status
-    </div>
-  </div>
-  
-</div>
-
-</div>
-
-<!------------------------ Memberships Container ------------------------->
-<div st_section style="display: none;" class="membership-box">
-<h2>Memberships</h2>
-<table>
-  <tr>
-    <th width="16%">id</th>
-    <th>Name</th>
-    <th>Organization</th>
-    <th width="12%" >Type</th>
-    <th width="13.5%">Date</th>
-  </tr>
-
-</table>
-</div>
 
 
-<!------------------------ Course EnrollMents Container ------------------------->
-<div st_section style="display: none;" class="course-e-box">
-<h2>Course EnrollMents </h2>
-<table>
-  <tr>
-    <th>No</th>
-    <th>Name</th>
-    <th>Date</th>
-    <th>Price</th>
-  </tr>
+      <div class="st_main">
+        <div st_section style="display: none;" id="st-notification">
+          <h2>Notification's</h2>
+          <div class="Notification-massage-cobtainer">
+            <div>
+              <div class="massage">
+                <b>Varun Jettly</b>
+                <p class="notification-paragrap">
+                  Hi , Wellcome and Thanks for joning Goju Shin Ryu
+                </p>
+              </div>
+              {{!-- <span class="massage-time"></span> --}}
+            </div>
+          </div>
 
-</table>
+        </div>
+        <div st_section style="display: none;" class="chat-box-container">
+          <h2>Massages</h2>
+          <div class="chat-box">
+            <div class="chat-massage-cobtainer">
+              <div class="t-massage">
+                <div class="massage">
+                  <b class="sender-name">Varun Jettly</b>
+                  <p class="sender-p">
+                    Sir, Wellcome to Our Website
+                  </p>
+                </div>
+                <span class="massage-time"></span>
+              </div>
+              <div class="f-massage">
+                <div class="massage">
+                  <b class="sender-name">You</b>
+                  <p class="sender-p">
+                    I am making something, and Show you how it will work...
+                  </p>
+                </div>
 
-</div>
+              </div>
+            </div>
+            <div class="send-chat-massage-containar">
+              <textarea placeholder="Write a massage" sendMassageTextArrea name="" id=""></textarea>
+              <button class="send-chat-massage-containar-btn">
+                Send
+              </button>
+            </div>
+          </div>
+
+        </div>
+
+        <div st_section id="info-section" class="form-section">
+          <h2>Info</h2>
+          <div class="img-inp-box">
+            <label for="s-sec-profile-input"
+              style='background:url("{{thumb}}") ; background-size: cover;   background-repeat: no-repeat;    background-position: center center;'>
+              <input accept="image/*" id="s-sec-profile-input" style="display: none" type="file">
+              <b>Change Image</b>
+            </label>
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-name-inp">Name</label>
+            <input type="Text" name="" id="s-sec-name-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-bio-inp">bio</label>
+            <input type="Text" name="" id="s-sec-bio-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-age-inp">Age</label>
+            <input type="number" name="" id="s-sec-age-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-gender-inp">Gender</label>
+            <input type="Text" name="" id="s-sec-gender-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-country-inp">Country</label>
+            <input type="Text" name="" id="s-sec-country-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-District-inp">District</label>
+            <input type="Text" name="" id="s-sec-District-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-city-yinp">City</label>
+            <input type="Text" name="" id="s-sec-city-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-street-yinp">Street / Village</label>
+            <input type="Text" name="" id="s-sec-street-inp">
+          </div>
+          <div class="s-sec-input-box">
+            <label for="s-sec-post-code-yinp">Post Code </label>
+            <input type="number" name="" id="s-sec-post-code-inp">
+          </div>
+          <div class="s-sec-btn-box">
+            <button>Cancel</button>
+            <button id="update-user-info-btn"> Save</button>
+          </div>
+        </div>
 
 
-<!------------------------ Social media ------------------------->
-<div st_section style="display: none;" id="social-media-section" class="form-section">
-   <h2>Accounts</h2>
-   <div class="s-sec-input-box">
-     <label for="">Facebook &nbsp;<span fb_status></span> </label>
-     <input type="text" placeholder="link of account" Facebook>
-   </div>
-   <div class="s-sec-input-box">
-     <label for=""> Linkedin  &nbsp;<span ln_status></span></label>
-     <input type="text" placeholder="link of account" Linkedin>
-   </div>
-   <div class="s-sec-input-box">
-     <label for=""> Twitter  &nbsp;<span tw_status></span></label>
-     <input type="text" placeholder="link of account" Twitter>
-   </div>
-   <div class="s-sec-input-box">
-     <label for=""> Instagram  &nbsp;<span ig_status></span></label>
-     <input type="text" placeholder="link of account" placeholder="" Instagram>
-   </div>
-</div>
+        <div st_section style="display: none;" id="settings-section" class="form-section">
+          <h2>SETTING'S</h2>
 
-</div>
 
-</section>
+          <h2>Credentials</h2>
+          <div class="s-sec-input-box">
+            <label for="s-sec-country-inp">
+              Password
+            </label>
+            <input type="password" id="s-sec-password-inp">
+          </div>
+          <div class="s-sec-btn-box">
+            {{!-- <button>Cancel</button> --}}
+            <button id="s-sec-change-password-btn">Save</button>
+          </div>
+        </div>
+        <!------------------------ Orders Container ------------------------->
+        <div st_section style="display: none;" class="gm-order-box">
+          <h2>Orders</h2>
+          <div class="orders">
+            <div class="order">
+              <div class="order-no">No.</div>
+              <div class="order-image">Image</div>
+              <div class="order-quantity">Quantity</div>
+              <div class="order-price">Total Price</div>
+              <div class="order-status">
+                Status
+              </div>
+            </div>
 
-</main>
+          </div>
+
+        </div>
+
+        <!------------------------ Memberships Container ------------------------->
+        <div st_section style="display: none;" class="membership-box">
+          <h2>Memberships</h2>
+          <table>
+            <tr>
+              <th width="16%">id</th>
+              <th>Name</th>
+              <th>Organization</th>
+              <th width="12%">Type</th>
+              <th width="13.5%">Date</th>
+            </tr>
+
+          </table>
+        </div>
+
+
+        <!------------------------ Course EnrollMents Container ------------------------->
+        <div st_section style="display: none;" class="course-e-box">
+          <h2>Course EnrollMents </h2>
+          <table>
+            <tr>
+              <th>No</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Price</th>
+            </tr>
+
+          </table>
+
+        </div>
+
+
+        <!------------------------ Social media ------------------------->
+        <div st_section style="display: none;" id="social-media-section" class="form-section">
+          <h2>Accounts</h2>
+          <div class="s-sec-input-box">
+            <label for="">Facebook &nbsp;<span fb_status></span> </label>
+            <input type="text" placeholder="link of account" Facebook>
+          </div>
+          <div class="s-sec-input-box">
+            <label for=""> Linkedin &nbsp;<span ln_status></span></label>
+            <input type="text" placeholder="link of account" Linkedin>
+          </div>
+          <div class="s-sec-input-box">
+            <label for=""> Twitter &nbsp;<span tw_status></span></label>
+            <input type="text" placeholder="link of account" Twitter>
+          </div>
+          <div class="s-sec-input-box">
+            <label for=""> Instagram &nbsp;<span ig_status></span></label>
+            <input type="text" placeholder="link of account" placeholder="" Instagram>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
   <script>
-    var needsToUpdataProfileImage='{{thumb}}' === '/img/avatar.png' ? true : false ;
-    var ImageUrlForChangeMaking=undefined;
+    var needsToUpdataProfileImage = '{{thumb}}' === '/img/avatar.png' ? true : false;
+    var ImageUrlForChangeMaking = undefined;
   </script>
 
 
   <script>
-      document.getElementById('s-sec-name-inp').value ='{{name}}';
-     document.getElementById('s-sec-age-inp').valueAsNumber ='{{age}}';
-     document.getElementById('s-sec-bio-inp').value='{{bio}}' ;
-     document.getElementById('s-sec-gender-inp').value ='{{gender}}';
-    document.getElementById('s-sec-country-inp').value='{{country}}' ;
-      document.getElementById('s-sec-District-inp').value ='{{district}}';
-      document.getElementById('s-sec-city-inp').value ='{{city}}';
-     document.getElementById('s-sec-street-inp').value ='{{street}}';
-      document.getElementById('s-sec-post-code-inp').valueAsNumber={{postcode}} ;
+    document.getElementById('s-sec-name-inp').value = '{{name}}';
+    document.getElementById('s-sec-age-inp').valueAsNumber = '{{age}}';
+    document.getElementById('s-sec-bio-inp').value = '{{bio}}';
+    document.getElementById('s-sec-gender-inp').value = '{{gender}}';
+    document.getElementById('s-sec-country-inp').value = '{{country}}';
+    document.getElementById('s-sec-District-inp').value = '{{district}}';
+    document.getElementById('s-sec-city-inp').value = '{{city}}';
+    document.getElementById('s-sec-street-inp').value = '{{street}}';
+    document.getElementById('s-sec-post-code-inp').valueAsNumber = {{ postcode }};
   </script>
   <script src="/js/student_coner/student-corner.js"></script>
   <script src="/js/student_coner/order.js"></script>
@@ -280,6 +279,7 @@ Goju Shin Ryu
   <script src="/js/student_coner/course.js"></script>
   <script src="/js/student_coner/membership.js"></script>
   <script src="/js/student_coner/social_media_account.js"></script>
-    {{>Footer}}
+  {{>Footer}}
 </body>
+
 </html>

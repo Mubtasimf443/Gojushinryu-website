@@ -15,7 +15,7 @@ const Student ={
     student_sex: String,
     student_dob:String,
     student_image :String,
-    student_id :String,
+    student_id :Number,
 }
 let courseEnrollmentSchema = new Schema({
     id: {

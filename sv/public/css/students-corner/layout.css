@@ -53,6 +53,10 @@ a{
     row-gap: 12px;
     padding: 1.4em 1.75em;
   }
+  .st-bio span[student_id]{
+    color: rgb(13, 95, 177);
+    font-size: 13.5px;
+  }
    .st-bio > img {
     width: 140px;
     height:140px;

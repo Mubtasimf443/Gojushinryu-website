@@ -45,7 +45,8 @@ export async function StudentCornerPageRoute(req,res) {
                     country:user.country? user.country :'',
                     postcode:user.postCode? user.postCode :0,
                     street:user.street? user.street :'',
-                    thumb :user.thumb?user.thumb:'/img/avatar.png'
+                    thumb :user.thumb?user.thumb:'/img/avatar.png',
+                    ID :user.id?? 'error-in-id'
                 })      
             })
             .catch(e => {
@@ -156,29 +157,7 @@ export async function getUserMembershipJS(req,res) {
 }
 export async function getUserEnrolledCourseApi(req,res) {
   try {
-    let {enrolled_course}=req.user_info;
-    if (!enrolled_course.length) return res.sendStatus(304);
-    let data=[];
-    for (let i = 0; i < enrolled_course.length; i++) {
-      const {courseEnrollMentID} = enrolled_course[i];
-      let courseEnrollment=await CourseEnrollments.findById(courseEnrollMentID);
-      if (!courseEnrollment) throw 'courseEnrollments'
-      let {id,course_id,course_price}=courseEnrollment;
-      let name =(id => {
-        if (id===1) return 'Regular Martial Art classes'
-        if (id===2) return 'Online Martial Art classes'
-        if (id===3) return 'International Martial Art Seminars'
-        if (id===4) return 'Join Our Women Self Defence classes'
-        if (id===5) return 'Bhangar Fitness Class for all ages'
-      })(course_id)
-      data.push({
-        id,
-        price :course_price,
-        date:courseEnrollment.Date.toDateString(),
-        name
-      })
-    }
-    return res.status(200).json({data})
+    return res.status(200).json(req.user_info.enrolled_course);
   } catch (error) {
     res.sendStatus(400)
     console.error({error});
@@ -188,7 +167,7 @@ export async function getUserEnrolledCourseApi(req,res) {
 
 
 
- async function getUserSocialMedia(req = request, res = response) {
+async function getUserSocialMedia(req = request, res = response) {
   try {
     let social_media_details=req.user_info.social_media_details;
     let user=req.user_info;
@@ -203,7 +182,7 @@ export async function getUserEnrolledCourseApi(req,res) {
   }
 }
 
- async function upDateSmFacebook(req = request, res = response) {
+async function upDateSmFacebook(req = request, res = response) {
   try {
     let account = req.body.account;
     if (typeof account !== 'string') namedErrorCatching('parameter error', 'account show be a string');
@@ -228,7 +207,7 @@ export async function getUserEnrolledCourseApi(req,res) {
 }
 
 
- async function upDateSmLinkedin(req = request, res = response) {
+async function upDateSmLinkedin(req = request, res = response) {
   try {
     let account = req.body.account;
     if (typeof account !== 'string') namedErrorCatching('parameter error', 'account show be a string');

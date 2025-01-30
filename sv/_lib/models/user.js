@@ -7,37 +7,40 @@ import mongoose, { Mongoose } from "mongoose";
 
 
 const PrimaryDetails = {
+    id: {
+        type: Number,
+        default: Date.now
+    },
     name: {
-        type: String,      
+        type: String, 
+        trim: true,    
     },
     date_of_birth: String,
     age: Number,
     gender: {
-        type:
-            String,
-
+        type: String,
         default: 'male'
     },
     first_name: {
         type: String,
-        
+        trim: true,
     },
     last_name: {
         type: String,
-        
+        trim: true,
     },
     email: {
         type: String,
         unique: true,
         trim: true,
+        lowercase: true,
     },
     phone: {
         type: Number,
-
         unique: true
     },
     country: {
-
+        trim: true,
         type: String
     },
     district: String,
@@ -75,17 +78,16 @@ const additionalDetails = {
         name: String,
     }],
     enrolled_course: [{
-        id: {
-            type: Number// type :mongoose.SchemaTypes.ObjectId,
-            // ref :"Course",
-        },
+        id: Number ,
+        name :String,
         paid: {
             type: Boolean,
         },
         courseEnrollMentID: {
             type: mongoose.SchemaTypes.ObjectId,
             ref: 'CourseEnrollments',
-        }
+        },
+        date : Date,
     }],
 }
 const notificationsAndMsg = {
@@ -186,10 +188,7 @@ const social_media_details = {
 }
 
 let schema = new mongoose.Schema({
-    id: {
-        type: Number,
-        default: Date.now
-    },
+    
     ...additionalDetails,
     ...PrimaryDetails,
     ...auth,

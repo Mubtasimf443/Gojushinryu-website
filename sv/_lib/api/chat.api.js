@@ -14,8 +14,8 @@ import { response } from "express";
 
 export async function sendMassageToAdminFromUser(req,res) {
     try {
-        let {thumb, first_name , last_name, _id,id} =req.user_info;
-        let {massage}=req.body;
+        let { thumb, first_name, last_name, _id, id } = req.user_info;
+        let { massage } = req.body;
         // log({massage})
         if (!massage) return res.sendStatus(400)
         massage=await repleCaracter(massage)
@@ -31,41 +31,32 @@ export async function sendMassageToAdminFromUser(req,res) {
             
             });
       
-       
+
         if (checkMassageExistents !== -1) {
-            stMassages= stMassages.map(el => {
-                if (el.student_ID ===id) {
+            stMassages = stMassages.map(el => {
+                if (el.student_ID === id) {
                     el.not_seen_massage.push({
-                        name :first_name+" "+last_name,
-                        massage:massage,
-                        data_as_number:Date.now()
+                        name: first_name + " " + last_name,
+                        massage: massage,
+                        data_as_number: Date.now()
                     })
                     return el
                 }
                 return el
             })
-           // console.log(stMassages);
-        //    log(1)
-
-            admin.student_massages =stMassages;
-            await admin.save().then(e =>log('success'));
+            admin.student_massages = stMassages;
+            await admin.save().then(e => log('success'));
             return res.sendStatus(200)
         }
-        if (checkMassageExistents ===-1 ) {
+        if (checkMassageExistents === -1) {
             admin.student_massages.push({
-                student_ID:id,
-                student_id:_id,
-                student_image:thumb,
-                seen_massage:[],
-                not_seen_massage:[{
-                    name :first_name+" "+last_name,
-                    massage:massage,
-                    data_as_number:Date.now()
-                }]
+                student_ID: id,
+                student_id: _id,
+                student_image: thumb,
+                seen_massage: [],
+                not_seen_massage: [{ name: first_name + " " + last_name, massage: massage, data_as_number: Date.now() }]
             })
             await admin.save()
-            // console.log(2);
-           
             return res.sendStatus(200)
         }
     } catch (error) {
@@ -75,11 +66,11 @@ export async function sendMassageToAdminFromUser(req,res) {
 }
 
 
-export async function sendMassageToUserFromAdmin(req,res) {
+export async function sendMassageToUserFromAdmin(req, res) {
     try {
-        let {massage,student_id}=req.body;
-        if (!massage||!student_id) throw `the user  id is ${student_id} and massage is ${massage} `
-        massage=await repleCaracter(massage)
+        let { massage, student_id } = req.body;
+        if (!massage || !student_id) throw `the user  id is ${student_id} and massage is ${massage} `
+        massage = await repleCaracter(massage)
         //student_id=await repleCaracter(student_id)
         if (typeof student_id !== 'number' || Number(student_id).toString().toLowerCase()==='nan') throw 'error:student is is not a number '+student_id
         let user =await User.findOne({id:student_id})

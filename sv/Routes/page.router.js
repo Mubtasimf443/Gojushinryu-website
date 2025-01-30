@@ -44,7 +44,7 @@ pageRouter.get('/home',longCatch24, async (req, res) => {
 })
 // pageRouter.get('/course', FindCourseApi)
 
-pageRouter.get('/courses',async (req, res) => {
+pageRouter.get('/courses',userCheckAndNavigation,async function (req, res) {
     try {
         let settings=await Settings.findOne({});
         res.render('course-selling-page', {
@@ -65,23 +65,10 @@ pageRouter.get('/courses',async (req, res) => {
     }
 })
 
-pageRouter.get('/courses/date',longCatch24, async (req, res) => {
-    try {
-        let settings = await Settings.findOne({});
-        
-        return res.render('calender', {
-            date_of_womens_defence_class: settings.date_of_womens_defence_class.date ?? '',
-            date_of_regular_class: settings.date_of_regular_class.date ?? '',
-            date_of_online_class: settings.date_of_online_class.date ?? '',
-        });
-    } catch (error) {
-        console.log({ error });
-    }
-});
 
 pageRouter.get('/membership-application/:org',userCheckAndNavigation, MembershipPageNavigation);
 
-// pageRouter.get('/dates',(req,res)=>res.render('calender'))
+
 pageRouter.get('/auth/:name', dayCatch7,(req, res) => {
     if (req.params.name === 'register') {
         let forwardto=req.query.forwardto;
@@ -153,14 +140,10 @@ pageRouter.get('/media/:name', dayCatch7,(req, res) => {
 })
 
 pageRouter.get('/custom-links/:type/:unique_id',customLinkPage);
-
 pageRouter.get('/countries', dayCatch7,(req, res) => res.render('flags'))
 pageRouter.get('/media/:name/:id', (req, res) => {
     if (req.params.name === "post") return givePostDetailsFunction(req, res)
 });
-
-
-
 pageRouter.get('/about-us/:info',dayCatch7 ,function (req,res) {
     try {
         let info=req.params.info;

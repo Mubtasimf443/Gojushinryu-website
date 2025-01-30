@@ -49,7 +49,7 @@ export async function coursePurchaseApi(req = request, res = response) {
         }
 
       
-        let courses = new Map([['1', '  Regular Martial Arts classes'], ['5', `Bhangra Fitness Class for All Ages`]]);
+        let courses = new Map([['1', 'Regular Martial Arts classes'], ['5', `Bhangra Fitness Class for All Ages`]]);
         let settings = await Settings.findOne ({});
         let course_price = (mode === '1' ? settings.fees_of_reqular_class : settings.fees_of_Bhangra_fitness);
    
@@ -79,11 +79,12 @@ export async function coursePurchaseApi(req = request, res = response) {
             student_dob :dob,
             student_postcode : postalCode,
             student_sex :sex,
+            student_id:req.user_info.id,
             additional_details :{
                 hasBadMedical,
                 hasDisability,
                 hasViolence,
-                purpose :purpose,
+                purpose ,
                 student_signature,
                 student_parants_signature
             }

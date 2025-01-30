@@ -42,9 +42,12 @@ const userCheck = async (req, res, next) => {
 export const userCheckAndNavigation = async (req, res, next) => {
     try {
         let { rft } = req.cookies;
+        
         if (!rft) {
-            if ( req.url === `/membership-application/school-of-traditional-martial-arts`) return res.redirect('/auth/sign-up?forwardto=membership_page');
-            if (req.url === "/membership-application/goju-shin-ryu" ) return res.redirect('/auth/sign-up?forwardto=membership_page&membership_type=gojushinryu');
+            log(req.url);
+            if (req.url.includes( `/membership-application/school-of-traditional-martial-arts`)) return res.redirect('/auth/sign-up?forwardto=membership_page');
+            if (req.url.includes("/membership-application/goju-shin-ryu")) return res.redirect('/auth/sign-up?forwardto=membership_page&membership_type=gojushinryu');
+            if (req.url.includes("/courses")) return res.redirect('/auth/sign-up?forwardto=course_page');
             else return res.redirect('/auth/sign-up');
         }
         await jwt.verify(rft, JWT_SECRET_KEY, async (err, data) => {

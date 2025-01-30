@@ -79,7 +79,9 @@ primaryBtn.addEventListener('click', async (e) => {
   primaryBtn.style.opacity = 1;
   primaryBtn.removeAttribute('disabled');
   Joining = false;
-
+  if (typeof error ==='object' && typeof error?.massage === 'string') {
+    return negativeNotice(error?.massage);
+  }
   if (error) return negativeNotice(error);
   if (success === true) {
     if (redirectToMembershipPage === true && membership_type === "gojushinryu") return window.location.assign('/auth/otp-varification?forwardto=membership_page&membership_type=gojushinryu');
