@@ -12,6 +12,8 @@ import { gmembershipAprovedStudent } from "../mail/gmembershipAproved.mail.js";
 import { GMembershipNotApprovedEmail, sendMembershipApplicationReceivedEmail, sendMembershipRequestNotificationToAdmin } from "../mail/gmembership.mail.js";
 import { bugFromAnErron } from "./Bugs.js";
 import { mailer } from "../utils/mailer.js";
+import { isValidUrl } from "../utils/smallUtils.js";
+import { urlToCloudinaryUrl } from "../Config/cloudinary.js";
 
 
 async function requestGojushinryuMembership(req = request, res = response) {
@@ -20,7 +22,8 @@ async function requestGojushinryuMembership(req = request, res = response) {
         let { current_grade, violance_charge, permanent_disabillity, membership_expiring_date, previous_injury, membeship_array } = req.body;
         let { experience_level, has_violance_charge, has_permanent_injury, gender, is_previous_member, } = req.body;
 
-        { //emty check
+        {
+            //emty check
             if (validate.isEmty(fname)) namedErrorCatching('parameter error', 'fname is emty');
             if (validate.isEmty(lname)) namedErrorCatching('parameter error', 'lname is emty');
             if (!validate.isEmail(email)) namedErrorCatching('parameter error', 'email is not a email');
@@ -37,6 +40,7 @@ async function requestGojushinryuMembership(req = request, res = response) {
             if (validate.isEmty(signature)) namedErrorCatching('parameter error', 'signature is emty');
             if (validate.isEmty(!Array.isArray(membeship_array))) namedErrorCatching('parameter error', 'membeship_array is not array');
         }
+
         { //Yes No gender experience_level Check
             if (gender !== 'Male' && gender !== 'Female') namedErrorCatching('parameter error', 'Gender is not correct');
             if (has_violance_charge !== 'Yes' && has_violance_charge !== 'No') namedErrorCatching('parameter error', 'Violance charge is not correct');
@@ -45,11 +49,15 @@ async function requestGojushinryuMembership(req = request, res = response) {
             if (experience_level !== 'Senior' && experience_level !== 'Junior') namedErrorCatching('parameter error', 'experience_level is not correct');
         }
 
-
+        if (!isValidUrl(req.body.memberImage)) return res.status(400).json({error :'MemberImage is not valid'});
+        let member_image=req.body.memberImage;
+        member_image =await urlToCloudinaryUrl(member_image);
+       
         [fname, lname, postcode, doju_Name, instructor, country, city, district, signature] = repleCrAll([fname, lname, postcode, doju_Name, instructor, country, city, district, signature]);
         let userInfo = { fname, lname, postcode, email, phone, doju_Name, instructor, country, city, district, date_of_birth, signature };
-        userInfo = { ...userInfo, experience_level, has_violance_charge, has_permanent_injury, gender, is_previous_member, current_grade }
-        {//conditional
+        userInfo = { ...userInfo, experience_level, has_violance_charge, has_permanent_injury, gender, is_previous_member, current_grade, member_image }
+        {
+            //conditional
             if (has_permanent_injury === 'Yes') userInfo.permanent_disabillity = repleCaracter(permanent_disabillity)
             if (has_violance_charge === 'Yes') userInfo.violance_charge = repleCaracter(violance_charge);
             if (is_previous_member === 'Yes') userInfo.membership_expiring_date = repleCaracter(membership_expiring_date);
@@ -68,47 +76,36 @@ async function requestGojushinryuMembership(req = request, res = response) {
         let existingMemberships = [];
 
         for (let i = 0; i < membeship_array.length; i++) {
-
-            let mb = await GojushinryuMembership.findOne()
-                .where('membership_type').equals(membeship_array[i].membership)
-                .where('user_id').equals(req.user_info?._id);
-
-            if (mb === null) {
-                let membership = new GojushinryuMembership({
-                    ...userInfo,
-                    membership_company: 'gojushinryu',
-                    membership_type: membeship_array[i].membership,
-                    membership_name: 'Gojushinryu International Martial Arts ' + membeship_array[i].membership + ' Membership',
-                    membership_exp_date: Date.now() + (365 * 24 * 60 * 60 * 1000)
-                });
-                membershipDataBaseArray.push(membership);
-            } else existingMemberships.push(mb);
+            let membership = new GojushinryuMembership({
+                ...userInfo,
+                membership_company: 'gojushinryu',
+                membership_type: membeship_array[i].membership,
+                membership_name: 'Gojushinryu International Martial Arts ' + membeship_array[i].membership + ' Membership',
+                membership_exp_date: Date.now() + (365 * 24 * 60 * 60 * 1000)
+            });
+            membershipDataBaseArray.push(membership);
         }
 
-        if (membershipDataBaseArray.length === 0) {
-            existingMemberships.length !== 0 && sendMembershipAlreadySendRequestedEmail(req.user_info?.email, req.user_info?.name, existingMemberships[0].id)
-            res.status(400).json({ error: 'You have already requested membership, please do not request again ' });
-            return;
-        }
+        // if (membershipDataBaseArray.length === 0) {
+        //     existingMemberships.length !== 0 && sendMembershipAlreadySendRequestedEmail(req.user_info?.email, req.user_info?.name, existingMemberships[0].id)
+        //     res.status(400).json({ error: 'You have already requested membership, please do not request again ' });
+        //     return;
+        // }
 
         for (let i = 0; i < membershipDataBaseArray.length; i++) {
-            req.user_info.memberShipArray = Array.isArray(req.user_info.memberShipArray) ? req.user_info.memberShipArray : (new Array());
-            membershipDataBaseArray[i].user_id = req.user_info._id;
+            // req.user_info.memberShipArray = Array.isArray(req.user_info.memberShipArray) || [];
+            // membershipDataBaseArray[i].user_id = req.user_info._id;
             membershipDataBaseArray[i] = await membershipDataBaseArray[i].save();
-            await sendMembershipApplicationReceivedEmail(membershipDataBaseArray[i].email, membershipDataBaseArray[i].lname);
+            await sendMembershipApplicationReceivedEmail(membershipDataBaseArray[i].email.trim(), membershipDataBaseArray[i].lname);
             await sendMembershipRequestNotificationToAdmin(membershipDataBaseArray[i].fname + ' ' + membershipDataBaseArray[i].lname, membershipDataBaseArray[i].email, membershipDataBaseArray[i].phone);
-
-
         }
 
 
         res.status(201).json({
             membership_ids: membershipDataBaseArray.map(el => el.id),
             requestDate: membershipDataBaseArray[0].id,
-            student_name: req.user_info.name
+            student_name: membershipDataBaseArray[0].fname
         });
-
-
 
         return;
     } catch (error) {
@@ -264,8 +261,7 @@ export async function GojushinryuMembershipRequestSuccessPage(req = request, res
 export async function findGojushinryuMembershipRequest(req = request, res = response) {
     try {
         let memberhsips = (await GojushinryuMembership.find());
-        for (let i = 0; i < memberhsips.length; i++) (memberhsips[i].student_image = (await User.findById(memberhsips[i].user_id))?.thumb ?? (BASE_URL + '/img/avatar.png'));
-        return res.status(200).json({ memberhsips });;
+        return res.status(200).json({ memberhsips });
     } catch (error) {
         catchError(res, error)
     }
@@ -298,19 +294,6 @@ export async function admin_approveGojushinryuMembership(req = request, res = re
         membership.admin_approved = true;
         await membership.save();
         await gmembershipAprovedStudent(membership.email, membership.lname);
-        let user = await User.findById(membership.user_id)
-        if (user) {
-            user.memberShipArray.push({
-                _id: membership._id,
-                id: membership.id,
-                membership: membership.membership_type,
-                Organization: 'gojushinryu',
-                name: membership.membership_name,
-            });
-            user.isMember = true;
-            user.isGojushinryuMember = true;
-            await user.save()
-        }
         return res.sendStatus(202);
     } catch (error) {
         catchError(res, error);
@@ -320,7 +303,8 @@ export async function admin_approveGojushinryuMembership(req = request, res = re
 
 export async function cancelAndDeleteGojushinryuMembership(req = request, res = response) {
     try {
-        let id = req.query.id; id = Number(id);
+        let id = req.query.id; 
+        id = Number(id);
         if (id.toString() === 'NaN') namedErrorCatching('parameter error', 'id is not a number');
         let membership = await GojushinryuMembership.findOne({ id });
         if (!membership) namedErrorCatching('parameter error', 'There are no membership in the id of ' + id);

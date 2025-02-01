@@ -51,7 +51,7 @@ const PrimaryDetails = {
 const additionalDetails = {
     thumb: { 
         type: String, 
-        default: 'https://gojushinryu.com/img/avatar.png' 
+        default: '/img/avatar.png' 
     },
     bio: {
 
@@ -59,10 +59,10 @@ const additionalDetails = {
 
         default: 'I dream to become black belt in karate and Master Martial Arts'
     },
-    isMember: {
-        type: Boolean,
-        default: false
-    },
+    // isMember: {
+    //     type: Boolean,
+    //     default: false
+    // },
     isGojushinryuMember: {
         type: Boolean,
         default: false
@@ -71,16 +71,16 @@ const additionalDetails = {
         type: Boolean,
         default: false
     },
-    memberShipArray: [{
-        _id: {
-            // ref: 'Membership',
-            type: mongoose.SchemaTypes.ObjectId
-        },
-        id: Number,
-        membership: String,
-        Organization: String,
-        name: String,
-    }],
+    // memberShipArray: [{
+    //     _id: {
+    //         // ref: 'Membership',
+    //         type: mongoose.SchemaTypes.ObjectId
+    //     },
+    //     id: Number,
+    //     membership: String,
+    //     Organization: String,
+    //     name: String,
+    // }],
     enrolled_course: [{
         id: Number ,
         name :String,
@@ -133,7 +133,7 @@ const notificationsAndMsg = {
 const auth = {
     password: {
         type: String,
-        
+
     },
     joining_date: {
         default: Date.now,

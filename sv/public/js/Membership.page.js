@@ -30,6 +30,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   let successForm = document.querySelector('#Success-massage-form');
  
   //input
+  let imgInput=document.querySelector('#inp--MemberImage');
   let FnameInput = document.querySelector('#inp--f--name');
   let LnameInput = document.querySelector('#inp--f--name');
   let emailInput = document.querySelector('#inp--email');
@@ -50,6 +51,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   let policy2Input = document.getElementById('policy-2-inp') ;
   
   var userInfo = {
+    memberImage:undefined,
     fname: '',
     lname: '',
     email: '',
@@ -91,6 +93,14 @@ Insha Allah,  By Allahs Marcy,  I willearn success
   async function movingToQboxForm(params) {
     try {
       //String
+      if (userInfo.memberImage===undefined) {
+        imgInput.style.outline='2px solid red';
+        imgInput.addEventListener('change', function diguewdgui(event=new Event('change')) {
+          imgInput.style.outline='none';
+          imgInput.removeEventListener('change', diguewdgui);
+        })
+        throw 'error , no Image';
+      }
       userInfo.fname = await v2(FnameInput);
       userInfo.lname = await v2(LnameInput);
       userInfo.email = await v2(emailInput);
@@ -101,13 +111,12 @@ Insha Allah,  By Allahs Marcy,  I willearn success
       userInfo.instructor = await v2(instructorInput);
       userInfo.doju_Name = await v2(dojuNameInput);
       userInfo.postcode= await v2(pCodeInput);
-     
+      
       //number
       await v3(numInput).then(e => userInfo.phone = e).catch(e => { alert(e); throw new Error("Error"); })
 
       //Date
       userInfo.date_of_birth = await v4(DOB_Input);
-
 
       if (userInfo.membeship_array.length ===0) {
         userInfo.membeship_array[0]={
@@ -378,6 +387,41 @@ Insha Allah,  By Allahs Marcy,  I willearn success
     e.target.setAttribute('status', status)
   })
 
+  imgInput.addEventListener('change' ,async function c1(e =new Event('change')) {
+    let img = document.querySelector(`#MemberImage`);
+    let studentImageInput=imgInput;
+    function failed() {
+      img.setAttribute('style', 'display:none');
+      let newFileInput = document.createElement('input');
+      newFileInput.type = 'file';
+      newFileInput.accept='image/*';
+      studentImageInput.replaceWith(newFileInput);
+      userInfo.memberImage = undefined;
+      newFileInput.addEventListener('change', c1);
+    
+    }
+    try {
+      if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
+        failed();
+        return alert('Please upload an Image');
+      }
+      img.src = '/img/spinner.svg';
+      img.setAttribute('style', 'object-fit: contain;object-position: center center;')
+      let form = new FormData();
+      form.append('img', e.target.files[0]);
+      const response = await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form }).catch(failed);
+      if (response.status === 201) {
+        let link = (await response.json()).link;
+        img.src = link;
+        img.setAttribute('style', 'object-fit: contain;object-position: center center;');
+        userInfo.memberImage = link;
+        return;
+      } else return failed();
+
+    } catch (error) {
+      console.error(error);
+    }
+  });
 
   document.getElementById('paypal-payment-btn').addEventListener('click', e => paypalMembershipFunction(e))
   document.getElementById('credit-card-payment-Continue-btn').addEventListener('click', e => stripeMembershipFunction(e))
@@ -515,7 +559,6 @@ async function v4(el) {
     throw 'Please give the Date';
   }
   return el.valueAsDate.getDate() + '-' + el.valueAsDate.getMonth() + '-' + el.valueAsDate.getFullYear();
-
 }
 function setValue(params, value) {
   document.querySelector(params).setAttribute('value', value)

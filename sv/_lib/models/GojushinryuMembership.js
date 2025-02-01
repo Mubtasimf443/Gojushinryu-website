@@ -11,14 +11,18 @@ let schema = new Schema({
         default: Date.now,
         unique:true
     },
-    user_id: {
-        type: mongoose.SchemaTypes.ObjectId,
-        ref: 'User'
-    },
-    student_image :String,
+    // user_id: {
+    //     type: mongoose.SchemaTypes.ObjectId,
+    //     ref: 'User'
+    // },
+    member_image :String,
     date: {
         type: Date,
         default: Date.now
+    },
+    member_image :{
+        type :String,
+        trim:true,
     },
     fname:{
         type :String,
@@ -80,7 +84,16 @@ let schema = new Schema({
     has_violance_charge: String,
     has_permanent_injury: String,
     membership_name: String,
-    membership_company: String,
+    membership_company: {
+        type :String,
+        trim:true,
+        default :"Gojushinryu International Martial Arts"
+    },
+    membership_company_short:{
+        type :String,
+        trim:true,
+        default :"Goju"
+    },
     membership_type: String,
     membership_exp_date: Date,
     accepted_roles: { role1: { type: Boolean, default: true }, role2: { type: Boolean, default: true }, },

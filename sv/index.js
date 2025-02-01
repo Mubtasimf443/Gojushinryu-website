@@ -62,7 +62,7 @@ app.use(helmet({
     contentSecurityPolicy: {
         directives: {
             "script-src": ["'self'", `'unsafe-inline'`, "https://www.googletagmanager.com", 'https://cdn.jsdelivr.net', "https://stackpath.bootstrapcdn.com"],
-            "img-src": ["'self'", "https://res.cloudinary.com", "blob:"],
+            "img-src": ["'self'","https://gojushinryu.com/img/avatar.png" ,"https://res.cloudinary.com", "blob:"],
             "style-src": ["'self'", `'unsafe-inline'`, 'https://cdnjs.cloudflare.com', "https://fonts.googleapis.com", 'https://fonts.gstatic.com', "https://stackpath.bootstrapcdn.com", 'https://cdn.jsdelivr.net'],
             // "font-src":["https://fonts.googleapis.com" ,'https://fonts.gstatic.com', `'unsafe-inline'` ],
             "media-src": ["'self'", "https://res.cloudinary.com", 'https://www.youtube.com'],

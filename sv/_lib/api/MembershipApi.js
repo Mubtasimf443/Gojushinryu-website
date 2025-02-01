@@ -3,19 +3,21 @@
 InshaAllah, By his marcy I will Gain Success 
 */
 
-import { sendMembershipMails } from "../mail/membership.mail.js";
+import { request, response } from "express";
+import { membershipCongratulationsEmail, sendMembershipMails } from "../mail/membership.mail.js";
 import { Memberships } from "../models/Membership.js";
 import MembershipCoupons from "../models/membershipcoupon.js";
 import { Settings } from "../models/settings.js";
 import { User as Users } from "../models/user.js";
-import { Footer, LinksHbs, noindex_meta_tags, T_PAYPAL_SECRET, whiteHeader } from "../utils/env.js";
+import { Footer, LinksHbs, noindex_meta_tags, ORGANIZATION_NAME, T_PAYPAL_SECRET, whiteHeader } from "../utils/env.js";
 import { createPaypalPayment } from "../utils/payment/create.order.paypal.js";
 import { repleCaracter } from "../utils/replaceCr.js";
-import { Alert, log } from "../utils/smallUtils.js";
+import { Alert, isValidUrl, log } from "../utils/smallUtils.js";
 import { MakePriceString } from "../utils/string.manipolation.js";
+import { urlToCloudinaryUrl } from "../Config/cloudinary.js";
 
 
-export async function MembershipApidataCheckMidleware(req, res, next) {
+export async function MembershipApidataCheckMidleware(req=request, res=response, next) {
     let memberships = [
         {
             name: 'Goju shin Ryu Annual Membership',
@@ -82,9 +84,6 @@ export async function MembershipApidataCheckMidleware(req, res, next) {
         has_permanent_injury,
         membeship_array,
     } = req.body;
-
-
-
     try {
         let testArray = [
             fname,
@@ -119,10 +118,8 @@ export async function MembershipApidataCheckMidleware(req, res, next) {
         if (has_permanent_injury !== 'Yes' && has_permanent_injury !== 'No') throw 'Violance charge is not correct'
         if (is_previous_member !== 'Yes' && is_previous_member !== 'No') throw 'Violance charge is not correct'
         if (experience_level !== 'Senior' && experience_level !== 'Junior') throw 'experience_level is not correct'
-        // if (typeof postcode !== 'number') throw new Error("postcode not correct");
         if (typeof phone !== 'number') throw new Error("phone not correct");
         if (Number(phone).toString().toLowerCase() === 'nan') throw new Error("phone not correct");
-        // if (Number(postcode).toString().toLowerCase() === 'nan') throw new Error("postcode not correct");
 
 
 
@@ -148,9 +145,13 @@ export async function MembershipApidataCheckMidleware(req, res, next) {
         }
 
 
+        if (!isValidUrl(req.body.memberImage)) return res.status(400).json({ error: "Member image is emty" });
+        req.body.memberImage=await urlToCloudinaryUrl(req.body.memberImage);
+
         //info
         //string
         {
+            userInfo.member_image =req.body.memberImage;
             userInfo.fname = await repleCaracter(fname);
             userInfo.lname = await repleCaracter(lname);
             userInfo.email = await repleCaracter(email);
@@ -198,7 +199,6 @@ export async function MembershipApidataCheckMidleware(req, res, next) {
 
 export async function paypalMembershipFunction(req, res) {
     try {
-        let user_info = req.user_info;
         let paypalTotal = req.paypalTotal;
         let paypalItems = req.paypalItems;
         let purified_user_info = req.purified_user_info;
@@ -208,6 +208,7 @@ export async function paypalMembershipFunction(req, res) {
         for (let i = 0; i < membeship_array.length; i++) {
             let { membership_name, membership_type, membership_company } = membeship_array[i];
             let {
+                member_image,
                 fname,
                 lname,
                 email,
@@ -229,7 +230,7 @@ export async function paypalMembershipFunction(req, res) {
             } = purified_user_info;
    
             let membership = new Memberships({
-                user_id: user_info._id,
+                member_image,
                 fname,
                 lname,
                 email,
@@ -292,9 +293,6 @@ export async function paypalMembershipFunction(req, res) {
             }
             paypalTotal=paypalTotal.toFixed(2);
         }
-
-
-
         let paypalObject = {
             items: paypalItems,
             total: paypalTotal,
@@ -314,7 +312,6 @@ export async function paypalMembershipFunction(req, res) {
                 await membership.save();
             }
         }
-       
         return res.json({ success, link })
     } catch (e) {
         log(e);
@@ -342,48 +339,15 @@ export async function membershipSuccessPaypalApi(req, res) {
             if (data.includes('<')) return false
             return true
         }
-        status = status(token);
-        if (!status) return res.render('notAllowed');
-
+        if (!status(token)) return res.render('notAllowed');
         let memberships = await Memberships.find({ paypal_token: token })
-        //membership mail
-      
         sendMembershipMails(memberships[0]);
-        let user = await Users.findById(memberships[0].user_id);
-        for (let i = 0; i < memberships.length; i++) {
-            let { _id, id, user_id, membership_type, membership_company, membership_name } = memberships[i];
-            await Memberships.findByIdAndUpdate(_id, { activated: true }).then(e => { })
-            if (user) {
-                if (user.memberShipArray.length ===0) {
-                    user.memberShipArray = [{
-                        membership: membership_type,
-                        _id: _id,
-                        id: id,
-                        name: membership_name,
-                        Organization: membership_company
-                    }];
-                    user.isMember = true;
-                    await user.save();
-                }
-                else if (user.memberShipArray.length) {
-                    user.memberShipArray.push({
-                        membership: membership_type,
-                        _id: _id,
-                        id: id,
-                        name: membership_name,
-                        Organization: membership_company
-                    });
-                    user.isMember = true;
-                    user.city = user.city ? user.city : memberships[i].city;
-                    user.district = user.district ? user.district : memberships[i].district;
-                    user.postCode = user.postCode ? user.postCode : memberships[i].postcode;
-                    await user.save()
-                }
-            }
+       
+        for (let i = 0; i < memberships.length; i++) { 
+            await Memberships.findByIdAndUpdate(memberships[i]._id, { isPaymentCompleted: true });
+            membershipCongratulationsEmail(memberships[i].email.trim(), memberships[i].lname, ORGANIZATION_NAME, memberships[i].membership_type);
         }
-
-
-        return res.send(membershipSuccessPage({ student_name: user.name, types: memberships.map(el => el.membership_type), ids: memberships.map(el => el.id) }));
+        return res.send(membershipSuccessPage({ student_name:memberships[0].lname, types: memberships.map(el => el.membership_type), ids: memberships.map(el => el.id) }));
     } catch (error) {
         log({ error })
     }
@@ -406,20 +370,9 @@ export async function membershipCancellPaypalApi(req, res) {
             if (data.includes('<')) return false
             return true
         }
-        status = status(token);
-        if (!status) return res.redirect('notAllowed');
-
-        let memberships = await Memberships.find({
-            paypal_token: token
-        });
-
-        for (let i = 0; i < memberships.length; i++) {
-            const el = memberships[i];
-            await Memberships.findOneAndDelete({
-                _id: el._id
-            })
-        }
-
+        if (!status(token)) return res.redirect('notAllowed');
+        let memberships = await Memberships.find().where('paypal_token').equals('token');
+        for (let i = 0; i < memberships.length; i++) (await Memberships.findByIdAndDelete(memberships[i]._id))
         return res.redirect('/')
     } catch (error) {
         console.log({ error });
@@ -535,7 +488,7 @@ export function membershipSuccessPage({ student_name, types, ids } = { student_n
             <div><span>Enrollment Date:</span>${new Date().toDateString()}</div>
         </div>
 
-        <a href="/accounts/student" class="btn">Go to Student Corner</a>
+        <a href="/home" class="btn">Go to Home</a>
         <a href="/contact" class="btn" style="margin-left: 10px;">Contact Support</a>
     </div>
     </main>

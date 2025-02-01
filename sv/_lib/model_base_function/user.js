@@ -92,22 +92,7 @@ export  async function DeleteUserAccount(req,res) {
       Alert('Server error' ,res)
     })
 };
-export async function FindMember(req,res) {
-  try {
-    const Member =await User.find({isMember:true});
-    
-    res.json({
-      success:true,
-      Member 
-    })
-  } catch (error) {
-    console.log(error);
-    
-    res.status(500).json({error :'Server error'})
 
-  }
-
-}
 export async function getUserData(req,res) {
   try {
     let id =req.user_info._id;
@@ -285,14 +270,7 @@ export const userSocialMedia = {
   upDateSmTwitter
 }
 
-export async function findMemberPageMember(req = request, res = response) {
-  try {
-    res.status(200).json({ members: (await User.find({},'social_media_details name bio thumb country').where('isMember').equals(true)) });
-    return;
-  } catch (error) {
-    catchError(res, error)
-  }
-}
+
 
 export async function makeBlackBeltTotheStudent(req = request, res = response) {
   try {

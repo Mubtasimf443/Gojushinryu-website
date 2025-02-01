@@ -37,17 +37,15 @@ router.get('/order/payment/stripe/:id', orderPayment.OrderPaymentStripe);
 
 //post
 router.post('/custom-link', createCustomLink)
-router.post('/paypal-membership-purchase', userCheck, MembershipApidataCheckMidleware, paypalMembershipFunction);
-// router.post('/paypal-course-purchase-api', userCheck, courseBuyPaypalApi);
-router.post('/stripe-membership-api', userCheck, membershipMidleWareStripe, stripeMembershipFunction)
-// router.post('/stripe-course-purchase-api', userCheck, stripeCourseBuyAPiJs)
+router.post('/paypal-membership-purchase', MembershipApidataCheckMidleware, paypalMembershipFunction);
+router.post('/stripe-membership-api', membershipMidleWareStripe, stripeMembershipFunction);
 router.post('/uplaod-post', uplaodPostAPiFucntion)
 router.post('/upload-coutntry-representative', uploadCountryRepresentativeApi)
 router.post('/custom-membership', userCheck, customMembershipApi)
 router.post('/custom-course', userCheck, customCoursePurchaseApi)
 router.post('/order/create', userCheck, createOrder);
 router.post('/course/purchase',userCheck, coursePurchaseApi);
-router.post('/request-gojushinryu-membership', userCheck, requestGojushinryuMembership);
+router.post('/request-gojushinryu-membership', requestGojushinryuMembership);
 
 
 export default router;

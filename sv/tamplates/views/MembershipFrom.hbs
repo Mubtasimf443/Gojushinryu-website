@@ -92,6 +92,12 @@
     <div  {{!-- style="display: none;"  --}} id="Applicant-info-form">
       <h3>Applicant Information </h3>
 
+        <div class="imgInputBox">
+          <label for="">Your Image</label>
+          <img src="" alt="MemberImage" style="display:none;" id="MemberImage">
+          <input type="file" accept="image/*" name="MemberImageInput" id="inp--MemberImage">
+        </div>
+        
         <div class="input-box">
           <label for="inp--f--name">First Name</label>
           <input value="{{first_name}}" id="inp--f--name" type="text" placeholder="Jone">
@@ -191,48 +197,7 @@
     </label>
 
   </span>
-  {{!--
-  <span>
-
-    <label membershipValue="LifeTime" membershipOrganization="gojushinryu" default-membership="true"
-      id="lifetime-membership-box" class="membership">
-
-      <div>
-        <b>
-          LifeTime Membership
-        </b>
-        <span>
-          <sup class="currency">$</sup>
-          250
-        </span>
-      </div>
-      <hr>
-      <p>
-        For the individual joining the association
-      </p>
-      <span>Goju Shin Ryu</span>
-
-    </label>
-    <label class="membership" membershipOrganization="gojushinryu" membershipValue="Annual" default-membership="false"
-      id="annual-membership-box">
-      <div>
-        <b>
-          Annual Membership
-        </b>
-        <span>
-          <sup class="currency">$</sup>
-          75
-        </span>
-      </div>
-      <hr>
-      <p>
-        Pay annually for the individual joining the association
-      </p>
-      <span>Goju Shin Ryu</span>
-    </label>
-
-  </span>
-  --}}
+ 
 </div>
  <div id="applicant-form-btn-div">
    <button id="applicant-form-btn">

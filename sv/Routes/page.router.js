@@ -20,6 +20,7 @@ import { dayCatch7, longCatch, longCatch24 } from "../_lib/midlewares/catching.j
 import customLinkPage from "../_lib/model_base_function/customLink.js";
 import { settingsAsArray } from "../_lib/model_base_function/Settings.js";
 import { log } from "string-player";
+import catchError from "../_lib/utils/catchError.js";
 
 let pageRouter = Router();
 
@@ -66,10 +67,20 @@ pageRouter.get('/courses',userCheckAndNavigation,async function (req, res) {
 })
 
 
-pageRouter.get('/membership-application/:org',userCheckAndNavigation, MembershipPageNavigation);
+pageRouter.get('/membership-application/:org',async function(req,res) {
+    try {
+        let global_gst_rate = (await Settings.findOne({})).gst_rate ?? 5;
+        if (req.params.org === 'school-of-traditional-martial-arts') return res.render('MembershipFrom', { global_gst_rate });
+        if (req.params.org === 'goju-shin-ryu') return res.render('membership_gojushinryu', { global_gst_rate });
+        res.redirect('/membership-application/school-of-traditional-martial-arts');
+        return;
+    } catch (error) {
+        catchError(res, error);
+    }
+});
 
 
-pageRouter.get('/auth/:name', dayCatch7,(req, res) => {
+pageRouter.get('/auth/:name',(req, res) => {
     if (req.params.name === 'register') {
         let forwardto=req.query.forwardto;
         if (!forwardto) return res.render('sign-up', { redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: false });
@@ -120,6 +131,8 @@ pageRouter.get('/auth/:name', dayCatch7,(req, res) => {
         });
     }
 })
+
+
 pageRouter.get('/contact', dayCatch7,(req, res) => res.render('contact'))
 pageRouter.get('/shop/equipments/:id', findProductDetails)
 pageRouter.get('/shop/:name', (req, res) => {
@@ -128,6 +141,7 @@ pageRouter.get('/shop/:name', (req, res) => {
     if (name === 'fevorites') return res.render('fevorites');
     if (name === 'checkout') return checkoutPageMidleware(req, res);
 });
+
 
 pageRouter.get('/shop', findProductPageNavigation);
 pageRouter.get('/control-panal', addMinPageRoute);
@@ -153,7 +167,7 @@ pageRouter.get('/about-us/:info',dayCatch7 ,function (req,res) {
         if (info === 'testimonials') return res.render('testimonials');
         if (info === 'organization-charts') return res.render('OurOrganaizationChart');
         if (info === 'members') return res.render('Members');
-        if (info === 'blackbelts') return res.render('blackbelt');
+        if (info === 'blackbelts') return res.render('BlackBelt');
     } catch (error) {
         console.error(error);
     }

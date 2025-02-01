@@ -230,15 +230,17 @@ document.querySelectorAll('.close-popup').forEach(
             newFileInput.type = 'file';
             studentImageInput.replaceWith(newFileInput);
             studentImage = undefined;
+            newFileInput.accept = 'image/*';
+
             newFileInput.addEventListener('change', c1);
             studentImageInput = newFileInput;
+           
         }
 
         if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
             failed();
             return alert('Please upload an Image');
         }
-        // let url =URL.createObjectURL(e.target.files[0]);
         img.src = '/img/spinner.svg';
         img.setAttribute('style', 'object-fit: contain;object-position: center center;')
         let form = new FormData();

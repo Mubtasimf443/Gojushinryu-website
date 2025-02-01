@@ -96,7 +96,11 @@
 
                 <div {{!-- style="display: none;" --}} id="Applicant-info-form">
                     <h3>Applicant Information </h3>
-
+                    <div class="imgInputBox">
+                        <label for="">Your Image</label>
+                        <img src="" alt="MemberImage" style="display:none;" id="MemberImage">
+                        <input type="file" accept="image/*" name="MemberImageInput" id="inp--MemberImage">
+                    </div>
                     <div class="input-box">
                         <label for="inp--f--name">First Name</label>
                         <input value="{{first_name}}" id="inp--f--name" type="text" placeholder="Jone">
@@ -144,7 +148,7 @@
                         <input value="{{postcode}}" id="inp--pcode" type="text" placeholder="5XI 2ZQ 189" maxlength="15">
                     </div>
 
-                    <div class="input-box">
+                    <div class="input-box"> 
                         <label for="inp--dojo-name">Dojo Name</label>
                         <input id="inp--doju-name" value="karate" type="text" placeholder="Karate">
                     </div>

@@ -3,14 +3,14 @@
 InshaAllah, By his marcy I will Gain Success 
 */
 import { createStripeCheckOut } from "../Config/stripe.js";
-import { sendMembershipMails } from "../mail/membership.mail.js";
+import { membershipCongratulationsEmail, sendMembershipMails } from "../mail/membership.mail.js";
 import { Memberships } from "../models/Membership.js";
 import MembershipCoupons from "../models/membershipcoupon.js";
 import { Orders } from "../models/Order.js";
 import { Settings } from "../models/settings.js";
 import { User } from "../models/user.js";
 import { repleCaracter } from "../utils/replaceCr.js";
-import { Alert, log, Success } from "../utils/smallUtils.js";
+import { Alert, isValidUrl, log, Success } from "../utils/smallUtils.js";
 import { MakePriceString, makeTimeString } from "../utils/string.manipolation.js";
 import { membershipSuccessPage } from "./MembershipApi.js";
 
@@ -136,7 +136,7 @@ export async function membershipMidleWareStripe(req, res, next) {
         let notFoundIndex = testArray.findIndex(el => !el);
         if (notFoundIndex !== -1) throw new Error("Please Complete the form");
         let userInfo = {};
-     
+
         let stripe_items = [];
         if (gender !== 'Male' && gender !== 'Female') throw 'Gender is not correct'
         if (has_violance_charge !== 'Yes' && has_violance_charge !== 'No') throw 'Violance charge is not correct'
@@ -146,8 +146,10 @@ export async function membershipMidleWareStripe(req, res, next) {
 
         if (typeof phone !== 'number') throw new Error("phone not correct");
         if (Number(phone).toString().toLowerCase() === 'nan') throw new Error("phone not correct");
-        
 
+        if (!isValidUrl(req.body.memberImage)) return res.status(400).json({ error: "Member image is emty" });
+        req.body.memberImage = await urlToCloudinaryUrl(req.body.memberImage);
+        
         //array check
         for (let i = 0; i < membeship_array.length; i++) {
             let { company, membership } = membeship_array[0];
@@ -157,7 +159,7 @@ export async function membershipMidleWareStripe(req, res, next) {
             if (membership !== 'Annual' && membership !== 'LifeTime') throw 'Server error ,line 80'
             company = company === 'gojushinryu' ? 'Goju shin Ryu' : 'School of Traditional Martial Art';
             let membership_object = memberships.find(el => (el.price_data.product_data.name.includes(company) && el.price_data.product_data.name.includes(membership)));
-         
+
 
             if (typeof membership_object !== 'object' || !membership_object) throw new Error("membership_object problem");
 
@@ -168,10 +170,11 @@ export async function membershipMidleWareStripe(req, res, next) {
                 membership_name: membership_object.name
             });
             membership = membeship_array.shift();
-          
+
         }
         {
             //string
+            userInfo.member_image=req.body.memberImage;
             userInfo.fname = await repleCaracter(fname);
             userInfo.lname = await repleCaracter(lname);
             userInfo.email = await repleCaracter(email);
@@ -183,7 +186,7 @@ export async function membershipMidleWareStripe(req, res, next) {
             userInfo.instructor = await repleCaracter(instructor);
             userInfo.current_grade = await repleCaracter(current_grade);
             userInfo.previous_injury = await repleCaracter(previous_injury);
-            userInfo.postcode =await repleCaracter(postcode);
+            userInfo.postcode = await repleCaracter(postcode);
 
             //number
             userInfo.phone = phone;
@@ -211,7 +214,6 @@ export async function membershipMidleWareStripe(req, res, next) {
 
 export async function stripeMembershipFunction(req, res) {
     try {
-        let user_info = req.user_info;
         let stripe_items = req.stripe_items;
         let purified_user_info = req.purified_user_info;
         let { membeship_array } = purified_user_info;
@@ -220,6 +222,7 @@ export async function stripeMembershipFunction(req, res) {
         for (let i = 0; i < membeship_array.length; i++) {
             let { membership_name, membership_type, membership_company } = membeship_array[i];
             let {
+                member_image,
                 fname,
                 lname,
                 email,
@@ -243,7 +246,7 @@ export async function stripeMembershipFunction(req, res) {
 
 
             let membership = new Memberships({
-                user_id: user_info._id,
+                member_image,
                 fname,
                 lname,
                 email,
@@ -267,22 +270,23 @@ export async function stripeMembershipFunction(req, res) {
                 membership_company,
                 membership_exp_date: new Date(Date.now() + 365 * 24 * 60 * 60 * 60 * 1000)
             });
-            //conditional
+
+
             if (has_permanent_injury === 'Yes') membership.permanent_disabillity = purified_user_info.permanent_disabillity;
             if (has_violance_charge === 'Yes') membership.violance_charge = purified_user_info.violance_charge;
             if (is_previous_member === 'Yes') membership.previous_membership_expiring_date = purified_user_info.membership_expiring_date;
 
             let { membershipData, error } = await membership.save().then((e) => ({ _id: e._id, id: e.id, membershipData: e }));
-               
+
             if (error) throw 'Can not create membership'
             if (membershipData) membershipDataBaseArray.push(membershipData)
 
         }
 
-        
+
         //coupon
-        if (typeof req.body.coupon  === 'string') { 
-            let mCoupon=await MembershipCoupons.findOne().where('code').equals(req.body.coupon.trim().toUpperCase());
+        if (typeof req.body.coupon === 'string') {
+            let mCoupon = await MembershipCoupons.findOne().where('code').equals(req.body.coupon.trim().toUpperCase());
             if (mCoupon?.rate) {
                 for (let i = 0; i < stripe_items.length; i++) {
                     stripe_items[i].price_data.unit_amount -= stripe_items[i].price_data.unit_amount * mCoupon.rate;
@@ -298,7 +302,7 @@ export async function stripeMembershipFunction(req, res) {
                 stripe_items[i].price_data.unit_amount = Math.floor(stripe_items[i].price_data.unit_amount);
             }
         }
-      
+
         let data = await createStripeCheckOut({
             line_items: stripe_items,
             success_url: '/api/api_s/stripe-membership-success',
@@ -349,45 +353,12 @@ export async function stripeMembershipSuccessFunction(req, res) {
             stripe_id: session_id
         });
         sendMembershipMails(memberships[0]);
-        let user = await User.findById(memberships[0].user_id);
-
         for (let i = 0; i < memberships.length; i++) {
-            let { _id, id, user_id, membership_type, membership_company, membership_name } = memberships[i];
-            await Memberships.findByIdAndUpdate(_id, { activated: true }).then(e => { })
-            if (user) {
-                let length = user.memberShipArray.length;
-                if (!length) {
-                    user.memberShipArray = [{
-                        membership: membership_type,
-                        _id: _id,
-                        id: id,
-                        name: membership_name,
-                        Organization: membership_company
-                    }];
-                    user.isMember = true;
-                    await user.save();
-
-                }
-                if (length) {
-                    user.memberShipArray.push({
-                        membership: membership_type,
-                        _id: _id,
-                        id: id,
-                        name: membership_name,
-                        Organization: membership_company
-                    });
-                    user.isMember = true;
-                    user.city = user.city ? user.city : memberships[i].city;
-                    user.district = user.district ? user.district : memberships[i].district;
-                    user.postCode = user.postCode ? user.postCode : memberships[i].postcode;
-                    await user.save()
-                }
-
-            }
-
+            memberships[i].isPaymentCompleted = true;
+            await memberships[i].save();
+            await membershipCongratulationsEmail(memberships[i].email.trim(), memberships[i].lname, ORGANIZATION_NAME, memberships[i].membership_type);
         }
-
-        res.send(membershipSuccessPage({ student_name: user.name, ids: memberships.map(el => el.id), types: memberships.map(el => el.membership_type) })) 
+        res.send(membershipSuccessPage({ student_name: memberships[0].lname, ids: memberships.map(el => el.id), types: memberships.map(el => el.membership_type) }))
         return;
     } catch (error) {
 
@@ -417,18 +388,9 @@ export async function stripeMembershipCancelFunction(req, res) {
             return true
         }
         status = status(session_id);
-        if (!status) return res.redirect('notAllowed');
-        let memberships = await Memberships.find({
-            stripe_id: session_id
-        });
-
-        for (let i = 0; i < memberships.length; i++) {
-            const el = memberships[i];
-            await Memberships.findOneAndDelete({
-                _id: el._id
-            })
-        }
-
+        if (!status) return res.render('notAllowed');
+        let memberships = await Memberships.find({}, '_id').where('stripe_id').equals(session_id);
+        for (let i = 0; i < memberships.length; i++) (await Memberships.findByIdAndDelete(memberships[i]._id))
         return res.redirect('/')
     } catch (error) {
         console.log({ error });

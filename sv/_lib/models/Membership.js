@@ -6,6 +6,7 @@ InshaAllah, By his marcy I will Gain Success
 
 
 import mongoose from "mongoose";
+import { ORGANIZATION_NAME } from "../utils/env.js";
 
 
 let Membershipschema = new mongoose.Schema({
@@ -14,14 +15,11 @@ let Membershipschema = new mongoose.Schema({
         default: Date.now,
         unique:true
     },
-    user_id :{
-        type:mongoose.SchemaTypes.ObjectId,
-        ref:'User'
-    },
     Date:{
         type:Date,
         default:Date.now
     },
+    member_image:String,
     fname:String,
     lname:String,
     email:String,
@@ -45,12 +43,23 @@ let Membershipschema = new mongoose.Schema({
     has_violance_charge:String,
     has_permanent_injury:String,
     membership_name:String,
-    membership_company:String,
+    membership_company: {
+        type :String,
+        trim:true,
+        default :ORGANIZATION_NAME
+    },
+    membership_company_short:{
+        type :String,
+        trim:true,
+        default :"STMA"
+    },
     membership_type :String,
     accepted_roles: { role1: { type: Boolean, default: true }, role2: { type: Boolean, default: true }, },
-    activated:{
+  
+    isPaymentCompleted:{
         type :Boolean,
-        default :false
+        default :false,
+        required :true
     },
     payment_method:String,
     paypal_token :String,

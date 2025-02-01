@@ -10,6 +10,12 @@ import { User } from "../models/user.js";
 import { log, Success } from "../utils/smallUtils.js";
 import jwt from 'jsonwebtoken'
 import bcrypt from 'bcryptjs'
+import catchError, { namedErrorCatching } from "../utils/catchError.js";
+import { bugFromAnErron } from "../model_base_function/Bugs.js";
+import { isnota, tobe } from "string-player";
+import { request, response } from "express";
+
+let genSaltSync=bcrypt.genSaltSync;
 //varible
 let simbolError ='you can not use < , > , * , $ , { , } , [ , ] , (, )';
 
@@ -153,63 +159,19 @@ export async function ChangeuserData(req,res) {
 }
 
 
-export async function changeUserPasswordAPI(req,res) {
-    function alert(params) {
-        return res.json({error :params})
-    }
-    // log('started pass change')
-    let varified=false;//is user varified
-    let email =false;
-    let {rft} =req.cookies;
-    await jwt.verify(rft,JWT_SECRET_KEY,async (err,data) => {
-        if (err) return
-        try {
-            email =data.email;
-            if (!email) return 
-            if (email) {
-            await  User.findOne({email})
-                .then(e => varified =true)
-                .catch(e => log(e))
-            }
-        } catch (error) {
-            console.log(e);          
-        }    
-    })
-    if (!varified || !email) return alert('You Do not Have the access to Change Data');
-    //log('//varified');
-    let {password} =req.body;
-    if (!password) return alert('password is not define')
-    simbolError ='you can not use < , > , * , $ , { , } , [ , ] , (, )';
-    if ( typeof password !== 'string')  return alert('sorry,can not update');
-    if (password.length >30)  return alert('password is to big');
-    if (password.length <6) return alert('password is to small');
-    if (password.includes('['))  return alert(simbolError);
-    if (password.includes(']'))  return alert(simbolError);
-    if (password.includes('{'))  return alert(simbolError);
-    if (password.includes('}'))  return alert(simbolError);
-    if (password.includes('('))  return alert(simbolError);
-    if (password.includes(')'))  return alert(simbolError);
-    if (password.includes('&'))  return alert(simbolError);
-    if (password.includes('`'))  return alert(simbolError);
-    if (password.includes('"'))  return alert(simbolError);
-    if (password.includes("'"))  return alert(simbolError);
-    if (password.includes('|'))  return alert(simbolError);
-    // console.log('//under encription');
-    
-    let salt = await bcrypt.genSalt(12);
-    let newpassword;
+export async function changeUserPasswordAPI(req=request,res=response) {
     try {
-        newpassword =await bcrypt.hash(password,salt); 
+        let user=req.user_info;
+        let password=req.body.password;
+        if (!password || isnota.string(password)) namedErrorCatching('p error', 'password emty or not string');
+        if (!tobe.minMax(password, 6 , 100))  namedErrorCatching('p error', 'password wrong in size');
+        let salt= genSaltSync(12);
+        password = bcrypt.hashSync(password, salt);
+        user.password=password;
+        await user.save().then(e => log('password updated'));
+       
+        return res.status(202).json({ success: true })
     } catch (error) {
-        return alert('server error')
+        catchError(res, error);
     }
-    //log('//under update')
-    User.findOneAndUpdate({email},{password :newpassword})
-    .then(e =>{ //log('password changed');
-        Success(res)})
-    .catch(
-        e => {
-        log(e);
-        alert('server error')
-    })
 }

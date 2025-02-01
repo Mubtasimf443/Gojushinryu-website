@@ -3,7 +3,7 @@
 */
 
 import { User } from "../models/user.js"
-import { ADMIN_EMAIL, FROM_EMAIL } from "../utils/env.js"
+import { ADMIN_EMAIL, ADMIN_PHONE, BASE_URL, FROM_EMAIL, ORGANIZATION_NAME } from "../utils/env.js"
 import { mailer } from "../utils/mailer.js"
 import { log } from "../utils/smallUtils.js"
 import {returnMailh2,  returnMailParagraph, returnMailTD2, returnMailTH2 } from "./components.js"
@@ -70,39 +70,48 @@ export const membership_success_Admin_email = (userInfo) => {
 }
 
 
-export const Membership_success_user_email = (to) => {
+export const membershipCongratulationsEmail = async (userEmail, userName,org, membership_type) => {
   try {
-    mailer.sendMail({
-      from: FROM_EMAIL,
-      to, 
-      subject:  'Congratulations for becoming a Member',
-      html: `
-      <div style="min-width:  fit-content;background-color:white;`+
-       //display: flex;flex-direction: column;justify-content: flex-start;align-items: center;flex-wrap: wrap;
-      ` margin: 0px;padding: 35px 1em;row-gap: 12px;box-sizing: border-box;min-height: fit-content;">
-  
-  
-       `
-  
-       + returnMailh2('Thanks For Becoming a Member')
-       +
-       returnMailParagraph('Wellcome to the family of Our Membership')
-       +
-       
-       `</div>`
-    })
-    .then(e =>console.log('//mail send to user'))
+      const info = await mailer.sendMail({
+          from: FROM_EMAIL, // Sender info
+          to: userEmail, // User's email address
+          subject: `Congratulations! You Are Now a Member of ${org}`, // Subject line
+          html: `
+              <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+                  <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; box-shadow: 2px 2px 10px rgba(0,0,0,0.1); text-align: center;">
+                      <h2 style="color: #ffaa1c;">🎉 Congratulations, ${userName}! 🎉</h2>
+                      <p>We are thrilled to welcome you as an official ${membership_type} member of <strong>${org}</strong></p>
+
+                      <p>This marks the beginning of an incredible journey where you will learn, grow, and become a part of a respected martial arts legacy. Your dedication and passion for martial arts have earned you a place in our global community.</p>
+
+                      <h3 style="color: #ffaa1c;">What's Next?</h3>
+                      <p>✅ Access to exclusive training resources</p>
+                      <p>✅ Learn from experienced masters</p>
+                      <p>✅ Join seminars, tournaments, and special events</p>
+
+                      <p>We encourage you to visit our website and explore opportunities for growth:</p>
+                      <p><a href="${BASE_URL}/about-us/members" style="color: #ffaa1c; font-weight: bold;">Visit Our Website</a></p>
+
+                      <p>If you have any questions or need assistance, feel free to contact us:</p>
+                      <ul style="list-style: none; padding: 0;">
+                          <li>📧 Email: <a href="mailto:${ADMIN_EMAIL}" style="color: #ffaa1c;">${ADMIN_EMAIL}</a></li>
+                          <li>📞 Phone:${ADMIN_PHONE}</li>
+                      </ul>
+
+                      <p>Once again, congratulations! We look forward to seeing you grow and excel in your martial arts journey.</p>
+
+                      <p><strong>Welcome to the family! 🥋</strong></p>
+                      <p>Best regards,<br><strong>${ORGANIZATION_NAME}</strong></p>
+                  </div>
+              </div>
+          `, // HTML body
+      });
+
+      console.log('Membership congratulations email sent:', info.messageId);
   } catch (error) {
-    console.log({
-      error
-    });
-    
+      console.error('Error sending membership congratulations email:', error);
   }
- 
-}
-
-
-
+};
 
 
 export  function sendMembershipMails(user_info) {
@@ -115,8 +124,7 @@ export  function sendMembershipMails(user_info) {
          Membership_success_user_email(user.email)
       }
     })
-    
-   
+
   } catch (error) {
     log(error)
   }

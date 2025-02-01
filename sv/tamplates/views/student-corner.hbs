@@ -43,8 +43,8 @@
           <a id="notification_href">Notification's<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="massage_href">Massages <button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="info_href">Info <button><i class="fa-solid fa-angle-right"></i></button></a>
-          <a id="orders_href">Orders <button><i class="fa-solid fa-angle-right"></i></button></a>
-          <a id="membership_href">Meberships <button><i class="fa-solid fa-angle-right"></i></button></a>
+          {{!-- <a id="orders_href">Orders <button><i class="fa-solid fa-angle-right"></i></button></a> --}}
+          {{!-- <a id="membership_href">Meberships <button><i class="fa-solid fa-angle-right"></i></button></a> --}}
           <a id="course_enrollments_href">Course EnrollMents <button><i
                 class="fa-solid fa-angle-right"></i></button></a>
           <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
@@ -52,8 +52,7 @@
           <a id="logout_href">Logout<button><i class="fa-solid fa-angle-right"></i></button></a>
           <style>
             button,
-            a,
-            i {
+            a,i {
               cursor: pointer;
             }
           </style>
@@ -179,38 +178,7 @@
             <button id="s-sec-change-password-btn">Save</button>
           </div>
         </div>
-        <!------------------------ Orders Container ------------------------->
-        <div st_section style="display: none;" class="gm-order-box">
-          <h2>Orders</h2>
-          <div class="orders">
-            <div class="order">
-              <div class="order-no">No.</div>
-              <div class="order-image">Image</div>
-              <div class="order-quantity">Quantity</div>
-              <div class="order-price">Total Price</div>
-              <div class="order-status">
-                Status
-              </div>
-            </div>
-
-          </div>
-
-        </div>
-
-        <!------------------------ Memberships Container ------------------------->
-        <div st_section style="display: none;" class="membership-box">
-          <h2>Memberships</h2>
-          <table>
-            <tr>
-              <th width="16%">id</th>
-              <th>Name</th>
-              <th>Organization</th>
-              <th width="12%">Type</th>
-              <th width="13.5%">Date</th>
-            </tr>
-
-          </table>
-        </div>
+     
 
 
         <!------------------------ Course EnrollMents Container ------------------------->

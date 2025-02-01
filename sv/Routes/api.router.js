@@ -8,18 +8,18 @@ import { ChangeuserData, changeUserPasswordAPI } from '../_lib/api/Change.userDa
 import { UplaodImageApiIn25Minutes } from '../_lib/api/UplaodImageApiIn25Minutes.js';
 import AdminCheckMidleware from '../_lib/midlewares/AdminCheckMidleware.js';
 import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
-import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEnrollments, giveCourseJsonApi, UpdateCourseDates } from '../_lib/model_base_function/Course.js';
+import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEnrollments } from '../_lib/model_base_function/Course.js';
 import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery } from '../_lib/model_base_function/Product.js';
-import { BaneUserFunction, DeleteUserAccount, findBlackBeltPageBb, FindMember, findMemberPageMember, FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, makeBlackBeltTotheStudent, RemoveFromBanedUserFunction, UserLogout, userSocialMedia } from '../_lib/model_base_function/user.js';
+import { BaneUserFunction, DeleteUserAccount, findBlackBeltPageBb,  FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, makeBlackBeltTotheStudent, RemoveFromBanedUserFunction, UserLogout, userSocialMedia } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
 import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/api/MembershipApi.js";
 import { courseBuyCancellPaypalApi, courseBuySuccessPaypalApi } from "../_lib/api/course.buy.api.js";
 import { notificationApi, notificationMailApi } from "../_lib/api/notification.api.js";
 import { cancelOrder, findOrders, findUserOrder, orderInDelivery, OrderInPaymentNeeded, orderInProcess, orderIsCompleted, updateOrderStatus } from "../_lib/model_base_function/order.js";
-import { findMemberShipdata } from "../_lib/model_base_function/membership.js";
+import { findMemberShipdata, findMembersOfMemberPage } from "../_lib/model_base_function/membership.js";
 import userCheck from "../_lib/midlewares/User.check.js";
 import { removeNotificationFromDatabase } from "../_lib/api/basic.notifiation.api.js";
 import { checkGM } from "../_lib/midlewares/gm.midleware.js";
@@ -59,7 +59,6 @@ router.get('/find-product',FindProduct)
 router.get('/find-product-image',findProductImage)
 router.get('/find-user',FindUser)
 router.get('/find-order',findOrders)
-router.get('/find-member', FindMember)
 router.get('/get_user_orders',userCheck,findUserOrder)
 router.get('/get-user-data',userCheck,getUserData)
 router.get('/get-courses-enrollments-data',findCourseEnrollments)
@@ -95,7 +94,7 @@ router.get('/gojusinryu-membership-request-success',GojushinryuMembershipRequest
 router.get('/gojusinryu-membership-request-list',findGojushinryuMembershipRequest);
 router.get('/user-id-to-image',userIdToImage);
 router.get('/user-social-media',userCheck, userSocialMedia.getUserSocialMedia);
-router.get('/find-members-of-member-page',findMemberPageMember);
+router.get('/find-members-of-member-page',findMembersOfMemberPage);
 router.get('/find-black-belt-of-black-belt-page',findBlackBeltPageBb);
 router.get('/user-logout', UserLogout);
 router.get('/assets/image/control-panal', findImageAssetsControlPanal );
@@ -125,7 +124,7 @@ router.post('/assets/video', UploadVideoAssets );
 
 //Update
 router.put('/Update-User-Data',ChangeuserData);
-router.put('/Update-User-Password',changeUserPasswordAPI);
+router.put('/Update-User-Password',userCheck,changeUserPasswordAPI);
 router.put('/update-grand-master',checkGM ,UpdateGmDataAPI);
 router.put('/bann-user',BaneUserFunction);
 router.put('/remove-from-bann-user', RemoveFromBanedUserFunction);

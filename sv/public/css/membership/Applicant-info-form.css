@@ -58,6 +58,31 @@ InshaAllah ,  By The Marcy Of Allah ,  I will Gain Success
       /* height: 22px; */
     }
   }
+
+  #Applicant-info-form .imgInputBox{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    row-gap: 8px;
+    width: 100%;
+    height: fit-content;
+    padding: 0px;
+    margin: 0px;
+  }
+  #Applicant-info-form >.imgInputBox>input {
+    width: fit-content;
+    background: initial;
+    color: initial;
+    height: fit-content;
+  }
+  #MemberImage {
+    width: 150px;
+    height: 150px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+  }
   #Applicant-info-form > #membership-box{
     display:flex;
     flex-direction: column;
@@ -167,4 +192,6 @@ InshaAllah ,  By The Marcy Of Allah ,  I will Gain Success
     font-weight: 500;
     text-transform: capitalize;
   }
+
+
 
