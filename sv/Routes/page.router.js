@@ -5,7 +5,7 @@ import jwt from 'jsonwebtoken'
 import { JWT_SECRET_KEY } from "../_lib/utils/env.js";
 import { addMinPageRoute } from "../_lib/model_base_function/Admin.js";
 import { GMCornerPageRoute } from "../_lib/model_base_function/gm.js";
-import { StudentCornerPageRoute } from "../_lib/model_base_function/user.js";
+import { AdminApproveUserAfterRegistration, StudentCornerPageRoute } from "../_lib/model_base_function/user.js";
 import { fileRateLimter } from "../_lib/Config/express-slow-down.js";
 import { FindCourseApi } from '../_lib/model_base_function/Course.js'
 import { findProductPageNavigation, findProductDetails } from '../_lib/model_base_function/Product.js'
@@ -177,7 +177,8 @@ pageRouter.get('/alliance',  dayCatch7,(req, res) => res.render('alli'))
 pageRouter.get('/accounts/:name', async (req, res) => {
     if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req, res)
     if (req.params.name === 'student') return StudentCornerPageRoute(req, res)
-})
+});
+pageRouter.get('/accounts/student/not-approve-by-admin',AdminApproveUserAfterRegistration );
 pageRouter.get('/become-a-country-representative', (req, res) => res.render('country-representive'));
 pageRouter.get('/our-country-representatives',longCatch24, (req, res) => res.render('representatives'));
 

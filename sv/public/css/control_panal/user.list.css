@@ -2,94 +2,72 @@
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
 Insha Allah,  By your Marcy Ya Allah
 */
-.user-list-box{
+
+#list-of-user{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: start;
-    width: 100%;
-    row-gap: 23px;
-}
-.user-list-box b {
-    font-weight: 500px;
-    font-size: 16px;
-    text-transform: uppercase;
-}
-.user-list-box > .users {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: start;
+    align-items: center;
     width: 100%;
     height: fit-content;
-    box-shadow: var(--fev-box-shadow);
+    row-gap: 30px;
+    /* overflow: scroll;
+    overflow-block: scroll; */
 }
 
-
-.user-list-box> .users >.user{
-    background-color:white;
-    display: flex;
-    flex-direction: row;
-    justify-content:space-between;
-    align-items: center;
-    flex-wrap: nowrap;
-    width: 100%;
-    cursor: pointer;
-    padding: 12px 19px 24px ;
-    /* buser-bottom:2px solid rgba(0, 0, 0, 0.096) ; */
+#list-of-user table{
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    
+    font-size: 13px;
 }
- .user-list-box > .users > .user:first-child{
 
-
-    background-color: black;
+#list-of-user table th{
+    border: 1px solid #000;
+    text-align: left;
+    padding: 10px 12px; 
+    background-color:black;
     color: white;
-    border: none;
-    padding:16px 19px;
-    width: 100%;
-}
-.user-list-box> .users> .user> img {
-   width: 60px;
-   height: 60px;
-    object-fit: cover;
-    object-position: center center;
-    border-radius: 50%;
-}
-.user-list-box> .users > .user> .name{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: start;
-    row-gap: 5px;
-    width: 260px;
-    text-wrap: wrap;
-    font-size: 17.7px;
-    font-weight: 500;
-    color: black;
+  }
 
-}
-.user-list-box> .users > .user>div> b{
-    color:black;
-    font-weight: 600;
-    font-size: 17.5px;
-    text-transform: capitalize;
+
+  #list-of-user table td {
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 10px 12px;
+    background: inherit;
     text-wrap: wrap;
-}
-.user-list-box> .users > .user> span{
+    background: white;
+  }
+
+
+  #list-of-user table td img {
+    max-width:90% ;
+    object-fit: contain;
+    object-position: top left;
+    max-height:80px ;
+  }
+
+
+  #list-of-user table tr:nth-child(1){
+    background: var(--main-cl);
+  }
+
+
+  #list-of-user table tr{
+    background-color: #ffffff;
+  }
+
+  #list-of-user table button{
+    background: inherit;
+    border: none;
     font-size: 14px;
-    color: #666;
-    font-weight: 500;
-    width: 100px;
-}
-.user-list-box> .users > .user>button{
-    width: 70px;
-    height: 30px;
-    font-size: 14px;
-    font-weight: 500;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
     color: white;
     background: #000;
-    border: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 8px 14px;
 }

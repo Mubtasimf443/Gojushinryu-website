@@ -60,11 +60,11 @@ InshaAllah, By his Marcy I will Gain Success
         vfbTN.style.opacity = 1;
         if (error) return alert(error);
         if (success) {
-          if (redirectToMembershipPage === 'true' && membership_type === 'gojushinryu') return window.location.assign('/membership-application/goju-shin-ryu');
-          if (redirectToMembershipPage === 'true'  ) return window.location.assign('/membership-application/school-of-traditional-martial-arts');
-          if (redirectToCoursePage === 'true') return window.location.assign('/courses');
-          if (redirectToCheckoutPage === 'true') return window.location.assign('/shop/checkout');
-          return window.location.replace('/accounts/student');
+          // if (redirectToMembershipPage === 'true' && membership_type === 'gojushinryu') return window.location.assign('/membership-application/goju-shin-ryu');
+          // if (redirectToMembershipPage === 'true'  ) return window.location.assign('/membership-application/school-of-traditional-martial-arts');
+          // if (redirectToCoursePage === 'true') return window.location.assign('/courses');
+          // if (redirectToCheckoutPage === 'true') return window.location.assign('/shop/checkout');
+          return window.location.replace('/accounts/student/not-approve-by-admin');
         }
       })
       .catch(e => {

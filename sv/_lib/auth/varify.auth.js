@@ -31,11 +31,10 @@ export async function user_varification_api(req,res) {
         user.pin=0;
         user.not_seen_massage = [{ massage: 'Thank You for Joining Our Website', name: 'Sensei Varun Jettly', data_as_number: Date.now() }];
         await user.save();
-        user_sign_up_success_admin_mail().then(() => { }).catch((e) => { log(e) });
-        user_sign_up_success_user_mail({ to: email }).then(() => { }).catch((e) => console.error(e));
-        let admin = await Admin.findOne({}).where('email').equals(ADMIN_EMAIL);
+        await user_sign_up_success_admin_mail({ studentEmail: user.email.trim().toLowerCase(), studentName: user.name })
+        await user_sign_up_success_user_mail({ studentEmail: user.email.trim().toLowerCase(), studentName: user.name });
+        let admin = await Admin.findOne({}).where('email').equals(ADMIN_EMAIL.trim());
         console.log(admin);
-        
         if (admin) {
             admin.student_massages.push({
                 student_id :user._id,
