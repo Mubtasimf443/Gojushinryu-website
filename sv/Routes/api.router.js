@@ -37,7 +37,7 @@ import { courseEnrollmentPaymentRequestApi } from "../_lib/course/ce.payment.req
 import MonthlyCourseEnrollMentFees from "../_lib/course/MonthlyFeesPage.js";
 import orderPayment from '../_lib/api/orderPayment.js'
 import { activateCourseCoupon, createCourseCoupon, deActivateCourseCoupon, deleteCourseCoupon, getCourseCouponRates, getCourseCoupons, updateCourseCoupon } from "../_lib/model_base_function/courseCoupon.js";
-import { admin_approveGojushinryuMembership, cancelAndDeleteGojushinryuMembership, findGojushinryuMembershipRequest, GojushinryuMembershipRequestSuccessPage, userIdToImage } from "../_lib/model_base_function/gojushinryuMembership.js";
+import { admin_approveGojushinryuMembership, cancelAndDeleteGojushinryuMembership, findGojushinryuMembershipRequest, gmembershipPaypalPayment, gmembershipPaypalPaymentCancel, gmembershipPaypalPaymentSuccess, gmembershipStripePayment, gmembershipStripePaymentCancel, gmembershipStripePaymentSuccess, GojushinryuMembershipFeesRequest, GojushinryuMembershipRequestSuccessPage, userIdToImage } from "../_lib/model_base_function/gojushinryuMembership.js";
 import catchError from "../_lib/utils/catchError.js";
 import { deleteAsset, findAssetsVideoControlPanal, findImageAssetsControlPanal, imagesPageImage, UploadImageAssets, UploadVideoAssets, videosPageVideos } from "../_lib/model_base_function/Assets.js";
 
@@ -101,6 +101,14 @@ router.get('/assets/image/control-panal', findImageAssetsControlPanal );
 router.get('/assets/image/page', imagesPageImage );
 router.get('/assets/video/control-panal', findAssetsVideoControlPanal );
 router.get('/assets/video/page', videosPageVideos );
+router.get('/gmembership/fees/paypal', gmembershipPaypalPayment);
+router.get('/gmembership/fees/stripe', gmembershipStripePayment);
+router.get('/gmembership/fees/paypal/success', gmembershipPaypalPaymentSuccess);
+router.get('/gmembership/fees/paypal/cancel', gmembershipPaypalPaymentCancel);
+router.get('/gmembership/fees/stripe/success', gmembershipStripePaymentSuccess);
+router.get('/gmembership/fees/stripe/cancel', gmembershipStripePaymentCancel);
+
+
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)
@@ -152,6 +160,7 @@ router.put('/user-social-media/instagram',userCheck, userSocialMedia.upDateSmIns
 router.put('/user-social-media/linkedin',userCheck, userSocialMedia.upDateSmLinkedin);
 router.put('/user-social-media/twitter',userCheck, userSocialMedia.upDateSmTwitter);
 router.put('/user/make-black-belt', makeBlackBeltTotheStudent);
+router.put('/gojusinryu-membership/request-fees', GojushinryuMembershipFeesRequest)
 
 //Delete
 router.delete('/delete-product',DeleteProduct)

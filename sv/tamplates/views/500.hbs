@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Server Error | School Of Traditional Martial Arts Website </title>
+  <meta name="robots" content="noindex"><meta name="googlebot" content="noindex">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+  {{>Links}}
+  <style>
+    :root {
+      --main-bg: whitesmoke;
+      --card-bg: #ffffff;
+      --accent-color: #ffaa1c;
+      --text-color: #333;
+      --error-color: #ff4c4c;
+      --font-family: 'Libre Franklin', sans-serif;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: var(--font-family);
+      background-color: var(--main-bg);
+      color: var(--text-color);
+      
+    }
+    section{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .error-container {
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+    
+    .error-icon {
+      font-size: 4rem;
+      color: var(--error-color);
+      margin-bottom: 20px;
+    }
+    
+    h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+    }
+    
+    p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+    
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 1rem;
+      color: var(--text-color);
+      background: var(--accent-color);
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+    
+    .btn:hover {
+      background: #e69919;
+    }
+  </style>
+</head>
+<body>
+    {{>Header}}
+    <section>
+        <div class="error-container">
+            <div class="error-icon">✖</div>
+            <h1>Server Error</h1>
+            <p>We are currently experiencing technical difficulties on our end. Please try again later.</p>
+            <a href="https://gojushinryu.com/home" class="btn">Return Home</a>
+          </div>
+    </section>
+     {{>Footer}}
+</body>
+</html>

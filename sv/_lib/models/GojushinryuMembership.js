@@ -122,6 +122,15 @@ let schema = new Schema({
             type: Boolean,
             default: false
         },
+        paypal:{
+            type :String ,
+            trim:true
+        },
+        stripe :{
+            type :String ,
+            trim:true
+        },
+        paymentDateNumber :Number
     }
 });
 

@@ -115,9 +115,7 @@ export default class PaypalPayment {
     }
 
     async checkOutWithShipping(options ={currency_code,shipping , items: [{ name: '',  unit_amount: { currency_code: '', value: '0', }, quantity: '0' }] }) {
-        
         let accessToken=await this.getAccessToken();
-
         let
             productTotal = 0,
             shipping = parseInt(options.shipping);
@@ -129,7 +127,7 @@ export default class PaypalPayment {
             if (validate.isNaN(productTotal)) throw 'items[i].unit_amount.value is not correct in the index '+i;
         }
 
-        let link=await this.createPayment({
+        let link = await this.createPayment({
             accessToken :accessToken,
             items :options.items,
             total :( productTotal +shipping ).toFixed(2),
@@ -139,6 +137,7 @@ export default class PaypalPayment {
             success_url :this.success_url,
             cancel_url :this.cancel_url
         });
+        
         return link;
     }
 

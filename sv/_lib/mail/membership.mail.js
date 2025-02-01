@@ -132,3 +132,145 @@ export  function sendMembershipMails(user_info) {
 
 
 
+
+
+export async function gmembershipFeeRequestMail({studentEmail, studentName, membershipType, membershipFee, paypalLink, stripeLink, dueDate }) {
+  try {
+    let
+      FACEBOOK_URL = 'https://web.facebook.com/stmacanada',
+      X_URL = "https://x.com/gojushinryu",
+      INSTAGRAM_URL = "https://www.instagram.com/gojushinryu",
+      LINKEDIN_URL = "https://www.linkedin.com/company/school-of-traditional-martial-arts";
+    if (!dueDate) dueDate = (new Date((Date.now() + (7 * 24 * 60 * 60 * 1000))).toLocaleString());
+    const info = await mailer.sendMail({
+      from: FROM_EMAIL, // Update sender email as needed
+      to: studentEmail,
+      subject: `Membership Fee Payment Request - ${membershipType}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+            <h2 style="color: #ffaa1c; text-align: center;">Membership Fee Payment Request</h2>
+            <p>Dear ${studentName},</p>
+            <p>Thank you for choosing to be a part of <strong>${ORGANIZATION_NAME}</strong>. We are excited to have you as a member!</p>
+            <p>Your membership fee for the <strong>${membershipType}</strong> is <strong>$${membershipFee.toFixed(2)}</strong> and is due on <strong>${dueDate}</strong>.</p>
+            <p>Please use one of the payment options below to complete your payment:</p>
+            <div style="text-align: center; margin: 20px 0;">
+              <a href="${paypalLink}" style="background-color: #4CAF50; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px; margin-right: 10px;">
+                Pay with PayPal
+              </a>
+              <a href="${stripeLink}" style="background-color: #007BFF; color: #fff; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+                Pay with Stripe
+              </a>
+            </div>
+            <p>If you have any questions, please feel free to contact us:</p>
+            <ul style="list-style: none; padding: 0;">
+              <li>Email: <a href="mailto:${ADMIN_EMAIL}" style="color: #ffaa1c;">${ADMIN_EMAIL}</a></li>
+              <li>Phone: ${ADMIN_PHONE}</li>
+            </ul>
+            <p>Thank you for your prompt attention to this matter. We look forward to a successful journey together.</p>
+            <p>Best regards,<br>The ${ORGANIZATION_NAME} Team</p>
+            <p style="text-align: center;">
+              <a href="${BASE_URL}" style="color: #ffaa1c; text-decoration: none;">Visit our website</a>
+            </p>
+            <hr style="margin: 20px 0; border: none; border-top: 1px solid #ddd;" />
+            <p style="text-align: center;">Follow us on social media:</p>
+            <div style="text-align: center;">
+              <a href="${FACEBOOK_URL}" style="margin: 0 5px; text-decoration: none; color: #3b5998;">Facebook</a> |
+              <a href="${X_URL}" style="margin: 0 5px; text-decoration: none; color: #1da1f2;">X</a> |
+              <a href="${INSTAGRAM_URL}" style="margin: 0 5px; text-decoration: none; color: #e1306c;">Instagram</a> |
+              <a href="${LINKEDIN_URL}" style="margin: 0 5px; text-decoration: none; color: #0077b5;">LinkedIn</a>
+            </div>
+          </div>
+        </div>
+      `
+    });
+
+    console.log('Membership fee payment email sent:', info.messageId);
+  } catch (error) {
+    console.error('Error sending membership fee payment email:', error);
+  }
+};
+
+
+// Email to the Student: Payment Confirmation
+export const membershipPaymentConfirmationToStudent = async ({studentEmail,studentName, membershipType, membershipFee}) => {
+  try {
+    // Format the payment date to a readable format
+    const formattedPaymentDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    let ORGANIZATION_NAME='Gojushinryu International Martial Arts';
+    const info = await mailer.sendMail({
+      from: FROM_EMAIL, // Update sender email as needed
+      to: studentEmail,
+      subject: `Payment Confirmation - ${membershipType}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+              <img src="${BASE_URL + '/img/i2.png'}" alt="${ORGANIZATION_NAME} Icon" style="max-width: 100px;" />
+            </div>
+            <h2 style="color: #ffaa1c; text-align: center;">Payment Confirmation</h2>
+            <p>Dear ${studentName},</p>
+            <p>Thank you for your payment of <strong>$${membershipFee.toFixed(2)}</strong> for the <strong>${membershipType}</strong> membership at <strong>${ORGANIZATION_NAME}</strong>.</p>
+            <p>Your payment was successfully received on <strong>${formattedPaymentDate}</strong>, and your membership is now active.</p>
+            <p>If you have any questions, please feel free to contact us:</p>
+            <ul style="list-style: none; padding: 0;">
+              <li>Email: <a href="mailto:${ADMIN_EMAIL}" style="color: #ffaa1c;">${ADMIN_EMAIL}</a></li>
+              <li>Phone: ${ADMIN_PHONE}</li>
+            </ul>
+            <p style="text-align: center;">
+              <a href="${BASE_URL}" style="color: #ffaa1c; text-decoration: none;">Visit our website</a>
+            </p>
+            <p>Thank you for being a valued member of <strong>${ORGANIZATION_NAME}</strong>.</p>
+            <p>Best regards,<br>The ${ORGANIZATION_NAME} Team</p>
+          </div>
+        </div>
+      `
+    });
+
+    console.log('Membership payment confirmation email sent to student:', info.messageId);
+  } catch (error) {
+    console.error('Error sending membership payment confirmation email to student:', error);
+  }
+};
+
+// Email to the Admin: Payment Notification
+export const membershipPaymentNotificationToAdmin = async ({ studentName, membershipType, membershipFee }) => {
+  try {
+    // Format the payment date to a readable format
+    const formattedPaymentDate = new Date().toLocaleDateString('en-US', {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+    let ORGANIZATION_NAME='Gojushinryu International Martial Arts';
+    const info = await mailer.sendMail({
+      from:FROM_EMAIL,
+      to: ADMIN_EMAIL, // Admin's email address (using ${ADMIN_EMAIL} if same variable)
+      subject: `New Membership Payment Received - ${membershipType}`,
+      html: `
+        <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333;">
+          <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+            <div style="text-align: center; margin-bottom: 20px;">
+              <img src="${BASE_URL + '/img/i2.png'}" alt="${ORGANIZATION_NAME} Icon" style="max-width: 100px;" />
+            </div>
+            <h2 style="color: #ffaa1c; text-align: center;">Payment Received</h2>
+            <p>Dear Admin,</p>
+            <p>This is to notify you that <strong>${studentName}</strong> has successfully paid <strong>$${membershipFee.toFixed(2)}</strong> for the <strong>${membershipType}</strong> membership.</p>
+            <p>Payment was received on <strong>${formattedPaymentDate}</strong>.</p>
+            <p>Please verify the transaction in the system.</p>
+            <p>If further action is needed, kindly follow up with the student.</p>
+            <p>Best regards,<br>The ${ORGANIZATION_NAME} System</p>
+          </div>
+        </div>
+      `
+    });
+
+    console.log('Membership payment notification email sent to admin:', info.messageId);
+  } catch (error) {
+    console.error('Error sending membership payment notification email to admin:', error);
+  }
+};

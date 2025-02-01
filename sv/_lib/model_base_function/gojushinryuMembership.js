@@ -6,7 +6,7 @@ import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import { repleCaracter, repleCrAll, validate, log } from "string-player";
 import GojushinryuMembership from "../models/GojushinryuMembership.js";
 import { sendMembershipAlreadySendRequestedEmail } from "../mail/sendMembershipAlreadySendRequestedEmail.mail.js";
-import { BASE_URL, Footer, LinksHbs, noindex_meta_tags, whiteHeader } from "../utils/env.js";
+import { BASE_URL, Footer, FROM_EMAIL, LinksHbs, noindex_meta_tags, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, whiteHeader } from "../utils/env.js";
 import { User } from "../models/user.js";
 import { gmembershipAprovedStudent } from "../mail/gmembershipAproved.mail.js";
 import { GMembershipNotApprovedEmail, sendMembershipApplicationReceivedEmail, sendMembershipRequestNotificationToAdmin } from "../mail/gmembership.mail.js";
@@ -14,6 +14,10 @@ import { bugFromAnErron } from "./Bugs.js";
 import { mailer } from "../utils/mailer.js";
 import { isValidUrl } from "../utils/smallUtils.js";
 import { urlToCloudinaryUrl } from "../Config/cloudinary.js";
+import { gmembershipFeeRequestMail, membershipPaymentConfirmationToStudent, membershipPaymentNotificationToAdmin } from "../mail/membership.mail.js";
+import { Settings } from "../models/settings.js";
+import PaypalPayment from "../utils/payment/PaypalPayment.js";
+import StripePay from "../utils/payment/stripe.js";
 
 
 async function requestGojushinryuMembership(req = request, res = response) {
@@ -329,67 +333,376 @@ export async function GojushinryuMembershipFeesRequest(req = request, res = resp
         m.payment_info.requested = true;
         m.payment_info.fees = fees;
         await m.save();
-        const nodemailer = require('nodemailer');
-
-        // Configure transporter once
-        const transporter = nodemailer.createTransport({
-            service: 'Gmail',
-            auth: {
-                user: process.env.EMAIL_USER, // Recommended to use environment variables
-                pass: process.env.EMAIL_PASS
-            }
-        });
-
-        async function sendMembershipFeeInquiry(memberName, userEmail) {
-            const accentColor = '#ffaa1c';
-            const textOnAccent = '#ffffff';
-            const defaultLogo = 'https://gojushinryu.com/i1.png';
-
-            const mailOptions = {
-                from: `"${memberName}" <${userEmail}>`,
-                to: 'membership@gojushinryu.com',
-                subject: 'Membership Fee Inquiry - Gojushinryu International Martial Arts',
-                html: `
-      <div style="max-width: 600px; margin: 0 auto; font-family: Arial, sans-serif;">
-        <div style="background-color: ${accentColor}; padding: 20px; text-align: center;">
-          <a href="https://gojushinryu.com/">
-            <img src="${options.logo || defaultLogo}" alt="Gojushinryu Logo" style="height: 60px;">
-            <h1 style="color: ${textOnAccent}; margin: 10px 0 0; font-size: 24px;">Gojushinryu International Martial Arts</h1>
-          </a>
-        </div>
-
-        <div style="padding: 30px 20px; color: #333333; line-height: 1.6;">
-          <p>Dear Membership Coordinator,</p>
-
-          <p>I hope this message finds you well. I am writing to request detailed information regarding the membership fees structure for Gojushinryu International Martial Arts.</p>
-
-          <!-- ... (keep the same content structure as before) ... -->
-
-          <p>Best regards,<br>
-          <strong>${memberName}</strong><br>
-          <span style="color: ${accentColor};">${options.memberId || '[Membership ID]'}</span></p>
-        </div>
-
-        <div style="background-color: #f8f8f8; padding: 20px; text-align: center; font-size: 12px; color: #666666;">
-          <p>Gojushinryu International Martial Arts<br>
-          <a href="https://gojushinryu.com" style="color: ${accentColor};">www.gojushinryu.com</a></p>
-        </div>
-      </div>
-    `,
-            };
-
-            try {
-                const info = await mailer.sendMail(mailOptions);
-                console.log(`Email sent to ${memberName}: ${info.messageId}`);
-                return info;
-            } catch (error) {
-                console.error(`Error sending email to ${memberName}:`, error);
-                throw error;
-            }
-        }
-
+        await gmembershipFeeRequestMail({
+            studentEmail : m.email.trim(),
+            studentName : m.lname,
+            membershipFee :  m.payment_info.fees,
+            membershipType :m.membership_type,
+            paypalLink : BASE_URL +'/api/api_s/gmembership/fees/paypal?id='+m.id,
+            stripeLink :  BASE_URL +'/api/api_s/gmembership/fees/stripe?id='+m.id,
+        })
+        res.sendStatus(202);
+        return;
     } catch (error) {
         catchError(res, error);
         bugFromAnErron(error, 'GojushinryuMembershipFeesRequest')
     }
+}
+
+
+export async function gmembershipPaypalPayment(req = request, res = response) {
+    try {
+        let id = req.query.id;
+        id = Number(id);
+        if (id.toString() === 'NaN') return res.render('notAllowed');
+        let m = await GojushinryuMembership.findOne().where('id').equals(id);
+        if (m === null) return res.render('notAllowed');
+        if (m.payment_info.requested === false || m.payment_info.paid === true) return res.render('notAllowed');
+        let gstRate = (await Settings.findOne({}, 'gst_rate')).gst_rate || 5;
+        gstRate = gstRate / 100;
+        let paypal=new PaypalPayment({
+            client_id :PAYPAL_CLIENT_ID ,
+            client_secret :PAYPAL_SECRET ,
+            mode :PAYPAL_MODE,
+            success_url :BASE_URL+'/api/api_s/gmembership/fees/paypal/success',
+            cancel_url : BASE_URL+'/api/api_s/gmembership/fees/paypal/cancel'
+        });
+        let { link , token } = await paypal.checkOutWithShipping({
+            shipping: m.payment_info.fees * gstRate,
+            items: [{
+                name: 'Gojushinryu International Marial Art membership',
+                quantity: 1,
+                unit_amount: {
+                    currency_code: 'USD',
+                    value: m.payment_info.fees.toFixed(2)
+                }
+            }]
+        });
+        m.payment_info.paypal=token;
+        await m.save();
+        return res.redirect(link);
+    } catch (error) {
+        console.error(error);
+        res.render('500');
+        return;
+    }
+}
+
+
+
+
+
+export async function gmembershipStripePayment(req = request, res = response) {
+    try {
+        let id = req.query.id;
+        id = Number(id);
+        if (id.toString() === 'NaN') return res.render('notAllowed');
+        let m = await GojushinryuMembership.findOne().where('id').equals(id);
+        if (m === null) return res.render('notAllowed');
+        if (m.payment_info.requested === false || m.payment_info.paid === true) return res.render('notAllowed');
+        let gstRate = (await Settings.findOne({}, 'gst_rate')).gst_rate || 5;
+        gstRate = gstRate / 100;
+        let S = new StripePay({
+            success_url: BASE_URL + '/api/api_s/gmembership/fees/stripe/success?session_id={CHECKOUT_SESSION_ID}',
+            cancel_url: BASE_URL + '/api/api_s/gmembership/fees/stripe/cancel?session_id={CHECKOUT_SESSION_ID}',
+        });
+
+        let checkoutData = await S.checkOut({
+            line_items: [
+                {
+                    price_data: {
+                        currency: 'usd',
+                        product_data: { name: 'Gojushinryu International Marial Art membership' },
+                        unit_amount: m.payment_info.fees * 100
+                    },
+                    quantity: 1
+                }
+            ],
+            shipping_amount: (m.payment_info.fees * gstRate) * 100,
+        })
+        m.payment_info.stripe = checkoutData.id;
+        await m.save();
+        return res.redirect(checkoutData.url);
+    } catch (error) {
+        console.error(error);
+        res.render('500');
+        return;
+    }
+}
+
+
+export async function gmembershipPaypalPaymentSuccess(req = request, res = response) {
+    try {
+        let token = req.query.token;
+        if (!token) throw 'Token is not valid';
+        let m = await GojushinryuMembership.findOne().where('payment_info.paypal').equals(token);
+        if (m === null || m?.payment_info?.paid ===true) throw 'No membership found done by you';
+        m.payment_info.paid =true;
+        m.payment_info.payment_date =new Date();
+        m.payment_info.paymentDateNumber=Date.now();
+        m.payment_info.paypal =undefined;
+        await m.save();
+        await membershipPaymentConfirmationToStudent({
+            studentEmail:m.email.trim() ,
+            studentName :m.lname,
+            membershipFee:m.payment_info.fees , 
+            membershipType:m.membership_type
+        });
+        await membershipPaymentNotificationToAdmin({
+            studentName :  m.fname +' '+m.lname ,
+            membershipFee : m.payment_info.fees ,
+            membershipType : m.membership_type
+        });
+        let successPage=feesPaidPage({
+            memberName : m.fname +' '+m.lname ,
+            memberType :m.membership_type ,
+            mDate :m.payment_info.paymentDateNumber,
+            paid :m.payment_info.fees.toFixed(2)
+        });
+        return res.send(successPage);
+      
+    } catch (error) {
+        console.error(error);
+        res.render('500');
+        return;
+    }
+}
+
+
+
+export async function gmembershipPaypalPaymentCancel(req = request, res = response) {
+    try {
+        let token = req.query.token;
+        if (!token) throw 'Token is not valid';
+        let m = await GojushinryuMembership.findOne().where('payment_info.paypal').equals(token);
+        if (m === null || m?.payment_info?.paid === true) throw 'No membership found done by you';
+        m.payment_info.paypal =undefined;
+        await m.save();
+        return res.redirect('/home');
+    } catch (error) {
+        console.error(error);
+        res.render('500');
+        return;
+    }
+}
+
+
+export async function gmembershipStripePaymentSuccess(req = request, res = response) {
+    try {
+        let id =req.query.session_id ;
+        function status(data) {
+            if (!data) return false
+            if (data.includes('{')) return false
+            if (data.includes('}')) return false
+            if (data.includes('*')) return false
+            if (data.includes(':')) return false
+            if (data.includes('[')) return false
+            if (data.includes(']')) return false
+            if (data.includes('(')) return false
+            if (data.includes('(')) return false
+            if (data.includes('$')) return false
+            if (data.includes('>')) return false
+            if (data.includes('<')) return false
+            return true
+        }
+
+        if (status(id)) {
+            let m = await GojushinryuMembership.findOne().where('payment_info.stripe').equals(id);
+            if (m === null || m?.payment_info?.paid === true) throw 'No membership found done by you';
+            m.payment_info.paid =true;
+            m.payment_info.stripe=undefined;
+            m.payment_info.payment_date =new Date();
+            m.payment_info.paymentDateNumber=Date.now();
+            await m.save();
+            await membershipPaymentConfirmationToStudent({
+                studentEmail:m.email.trim() ,
+                studentName :m.lname,
+                membershipFee:m.payment_info.fees , 
+                membershipType:m.membership_type
+            });
+            await membershipPaymentNotificationToAdmin({
+                studentName :  m.fname +' '+m.lname ,
+                membershipFee : m.payment_info.fees ,
+                membershipType : m.membership_type
+            });
+            let successPage=feesPaidPage({
+                memberName : m.fname +' '+m.lname ,
+                memberType :m.membership_type ,
+                mDate :m.payment_info.paymentDateNumber,
+                paid :m.payment_info.fees.toFixed(2)
+            });
+            return res.send(successPage);
+        } else {
+            throw 'invalid session id'
+        }
+    } catch (error) {
+        console.error(error);
+        res.render('500');
+        return;
+    }
+}
+
+
+
+export async function gmembershipStripePaymentCancel(req = request, res = response) {
+    try {
+        let id =req.query.session_id ;
+        function status(data) {
+            if (!data) return false
+            if (data.includes('{')) return false
+            if (data.includes('}')) return false
+            if (data.includes('*')) return false
+            if (data.includes(':')) return false
+            if (data.includes('[')) return false
+            if (data.includes(']')) return false
+            if (data.includes('(')) return false
+            if (data.includes('(')) return false
+            if (data.includes('$')) return false
+            if (data.includes('>')) return false
+            if (data.includes('<')) return false
+            return true
+        }
+
+        if (status(id)) {
+            let m = await GojushinryuMembership.findOne().where('payment_info.stripe').equals(id);
+            if (m === null || m?.payment_info?.paid ===true) throw 'No membership found done by you';
+            m.payment_info.stripe =undefined;
+            await m.save();
+            return res.redirect('/home');
+        } else {
+            throw 'invalid session id'
+        }
+    } catch (error) {
+        console.error(error);
+        res.render('500');
+        return;
+    }
+}
+
+
+function feesPaidPage({memberName  ,memberType ,mDate,paid}) {
+    let style =(` <style>
+    :root {
+      --main-bg: whitesmoke;
+      --card-bg: white;
+      --accent-color: #ffaa1c;
+      --text-color: black;
+      --font-family: 'Libre Franklin', sans-serif;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-family);
+      background: var(--main-bg);
+      color: var(--text-color);
+      
+      
+    }
+
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+    .success-container {
+      background: var(--card-bg);
+      border-radius: 10px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+      padding: 40px;
+      text-align: center;
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .success-container .icon {
+      font-size: 4rem;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+    }
+
+    .success-container h1 {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--accent-color);
+      margin-bottom: 20px;
+    }
+
+    .success-container p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+    }
+
+    .details {
+      text-align: left;
+      background: var(--main-bg);
+      padding: 20px;
+      border-radius: 8px;
+      margin-bottom: 30px;
+    }
+
+    .details div {
+      margin-bottom: 10px;
+      font-size: 1rem;
+    }
+
+    .details div span {
+      font-weight: 600;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 12px 25px;
+      font-size: 1rem;
+      color: var(--text-color);
+      background: var(--accent-color);
+      text-decoration: none;
+      border-radius: 5px;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
+
+    .btn:hover {
+      background: #e69919;
+    }
+  </style>
+    `)
+    let html =(`
+        <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Membership Fees Paid</title>
+  ${noindex_meta_tags + LinksHbs +style}
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+ ${whiteHeader}
+  <section>
+  <div class="success-container">
+    <div class="icon">✔</div>
+    <h1>Membership Fees Paid</h1>
+    <p>Thank you for your payment. Your membership fees have been successfully processed.</p>
+    <div class="details">
+      <div><span>Member Name:</span>${memberName}</div>
+      <div><span>Membership Type:</span> ${memberType}</div>
+      <div><span>Payment Date:</span> ${new Date(mDate).toDateString()}</div>
+      <div><span>Total Paid:</span> ${paid}$</div>
+    </div>
+    <a href="/home" class="btn">Go to Home</a>
+  </div>
+  </section>
+  ${Footer}
+</body>
+</html>
+
+        `)
+    return html;
 }
