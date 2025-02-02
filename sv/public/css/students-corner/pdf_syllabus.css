@@ -1,0 +1,58 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+InshaAllah, By Allah's Will,  I will earn success
+*/
+.pdf_syllabus {
+    width: 100%;
+    max-width: 700px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+}
+
+.pdf_syllabus #pdf-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+
+.pdf_syllabus .pdf-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.pdf_syllabus .pdf-title {
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.pdf_syllabus .pdf-wrapper iframe {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.pdf_syllabus .pdf-download {
+    display: inline-block;
+    padding: 8px 12px;
+    background: #007bff;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+.pdf_syllabus .pdf-download:hover {
+    background: #0056b3;
+}

@@ -66,7 +66,7 @@ app.use(helmet({
             "style-src": ["'self'", `'unsafe-inline'`, 'https://cdnjs.cloudflare.com', "https://fonts.googleapis.com", 'https://fonts.gstatic.com', "https://stackpath.bootstrapcdn.com", 'https://cdn.jsdelivr.net'],
             // "font-src":["https://fonts.googleapis.com" ,'https://fonts.gstatic.com', `'unsafe-inline'` ],
             "media-src": ["'self'", "https://res.cloudinary.com", 'https://www.youtube.com'],
-            "frame-src": ["https://www.youtube.com", 'https://www.weebly.com', 'https://www.editmysite.com'],
+            "frame-src": [`'self'`,"https://res.cloudinary.com","https://www.youtube.com", 'https://www.weebly.com', 'https://www.editmysite.com'],
             "connect-src": [`'self'`, `https://www.google-analytics.com`],
             "script-src-attr": ["'unsafe-inline'"]
         },
@@ -117,7 +117,7 @@ app.get('/hello2', (req, res) => {
     res.send(req.url)
 });
 
-
+app.get('/pdf', (req, res) => res.sendFile(path.resolve(dirName, './file-example_PDF_500_kB.pdf')))
 app.get('/', async (req, res) => res.redirect('/home'))
 
 app.get('*', (req, res) => res.status(404).render('404'))

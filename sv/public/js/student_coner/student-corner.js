@@ -180,6 +180,7 @@ InshaAllah, By his Marcy I will Gain Success
     if (e.target.id === 'course_enrollments_href') return ChangeSection(4);
     if (e.target.id === 'social_media_href') return ChangeSection(5);
     if (e.target.id === 'VideoSyllabushref') return ChangeSection(6);
+    if (e.target.id === 'pdf_sylabus_href') return ChangeSection(7);
     if (e.target.id === 'logout_href') return logout();
 
    
