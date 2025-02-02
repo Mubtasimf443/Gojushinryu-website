@@ -13,6 +13,7 @@
   <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/setting.css">
   <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/order.css">
   <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/course.css">
+  <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/video_sylabus.css">
   <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/membership.css">
   <meta name="keywords" content="
     Students Corner of Goju Shin Ryu International Martial Arts,
@@ -49,6 +50,8 @@
                 class="fa-solid fa-angle-right"></i></button></a>
           <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="social_media_href">Social Media<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="VideoSyllabushref">Video Syllabus<button><i class="fa-solid fa-angle-right"></i></button></a>
+          
           <a id="logout_href">Logout<button><i class="fa-solid fa-angle-right"></i></button></a>
           <style>
             button,
@@ -218,6 +221,13 @@
           </div>
         </div>
 
+        <!------------------------ Video Sylabus ------------------------->
+        <div st_section style="display: none;" id="video-sylabus" class="video_sylabus">
+          <h2>Video Syllabus</h2>
+          <div id="video-container">
+          </div>
+        
+        </div>
       </div>
 
     </section>
@@ -247,6 +257,7 @@
   <script src="/js/student_coner/course.js"></script>
   <script src="/js/student_coner/membership.js"></script>
   <script src="/js/student_coner/social_media_account.js"></script>
+  <script src="/js/student_coner/video_sylabus.js" ></script>
   {{>Footer}}
 </body>
 

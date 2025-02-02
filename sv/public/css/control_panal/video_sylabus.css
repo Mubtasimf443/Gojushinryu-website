@@ -1,0 +1,142 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+#v_sylabus {
+  width: 100%;
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  row-gap: 30px;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+
+
+
+#v_sylabus > table{
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 100%;
+  background: white;
+}
+
+#v_sylabus table th{
+  border: 1px solid #000;
+  text-align: left;
+  padding: 10px 12px; 
+  color: white;
+}
+
+
+#v_sylabus table td {
+  border: 1px solid #ccc;
+  text-align: left;
+  padding: 10px 12px;
+  background: white;
+  text-wrap: wrap;
+}
+
+
+#v_sylabus table td img {
+  max-width:90% ;
+  object-fit: contain;
+  object-position: top left;
+  max-height:80px ;
+}
+
+
+
+#v_sylabus table tbody{
+  background: white;
+}
+
+#v_sylabus table thead{
+  background: black;
+}
+
+#v_sylabus >table>tbody> tr{
+  background-color: white;
+}
+
+#v_sylabus table button{
+  background: inherit;
+  border: none;
+  font-size: 14px;
+  color: white;
+  background: #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-sizing: content-box;
+  padding: 8px 14px;
+}
+
+#v_sylabus>table>tbody>tr>td:last-child{
+   display:flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center; 
+  column-gap: 10px;
+  background: white;
+  height: inherit;
+ 
+}
+
+#v_sylabus table textarea {
+  width: 60%;
+   height:35px;
+   background-color: rgb(234, 237, 240);
+   border: none;
+   outline: none;
+   padding: 4px 10px;
+   resize: vertical;
+   padding: 8px 8px;
+   width: 97%;
+}
+
+#v_sylabus form {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: start;
+  column-gap: 10px;
+  width: 100%;
+}
+
+
+#v_sylabus form input,textarea{
+ 
+   height:35px;
+   background-color: rgb(234, 237, 240);
+   border: none;
+   outline: none;
+   padding: 4px 10px;
+   resize: vertical;
+   padding: 8px 8px;
+   width:37%;
+}
+
+#v_sylabus form button,input,textarea {
+  min-height: 38px;
+  min-width: 10%;
+}
+
+#v_sylabus form .add-btn{
+  background: green;
+  border: none;
+  color: white;
+  font-weight: 500;
+}
+
+#v_sylabus form button:last-child{
+  background-color: darkblue;
+  color: white;
+  font-weight: 500;
+  border: none;
+}

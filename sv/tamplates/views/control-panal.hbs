@@ -38,6 +38,7 @@
   <link rel="stylesheet" href="/css/control_panal/customLinksContainer.css">
   <link rel="stylesheet" href="/css/control_panal/GojushinryuMembership.css">
   <link rel="stylesheet" href="/css/control_panal/assets.css">
+  <link rel="stylesheet" href="/css/control_panal/video_sylabus.css">
 
 
 
@@ -72,6 +73,7 @@
   <script defer src="/js/control panal/gojushinryu.memberhsip.js"></script>
   <script defer src="/js/control panal/image.assets.js"></script>
   <script defer src="/js/control panal/video.assets.js"></script>
+  <script defer src="/js/control panal/video_sylabus.js"></script>
 
 </head>
 
@@ -694,6 +696,7 @@
                 class="fa-solid fa-angle-right"></i></button></a>
           {{!-- <a id="customLinks_href">Create custom Offers<button><i class="fa-solid fa-angle-right"></i></button></a> --}}
           <a id="assets_href">Assets<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="v_sylabus_href">Video Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
 
           <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
@@ -980,8 +983,6 @@
             </tr>
 
           </table>
-
-
         </div>
         <!----------------------- User list ----------------------------->
 
@@ -1007,6 +1008,27 @@
 
         </div>
 
+        <!----------------------- Video Sylabus ----------------------------->
+        <div ct_section  style="display: flex;" id="v_sylabus" targetedElement="v_sylabus_href" >
+          <table>
+            <thead>
+              <tr>
+                <th>Title</th>
+                <th>Code</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              
+            </tbody>
+          </table>
+          <form action="">
+            <input type="text" placeholder="Title">
+            <textarea placeholder="Code"></textarea>
+            <button class="add-btn">Add</button>
+            <button class="clr-btn">Clear</button>
+          </form>
+        </div>
 
         <!----------------------- Member List list ----------------------------->
 
@@ -1461,16 +1483,15 @@
             </table>
             <strong>Create Coupon</strong>
             <form id="couponForm">
-              {{!-- <label for="couponName">Coupon Name</label> --}}
+            
               <input type="text" couponName name="couponName" placeholder="coupon name" maxlength="20" minlength="1">
 
-              {{!-- <label for="couponCode">Coupon Code</label> --}}
+          
               <input type="text" couponCode placeholder="coupon code" maxlength="20" minlength="1">
 
-              {{!-- <label for="couponRate">Rate (%)</label> --}}
               <input type="number" couponRate placeholder="discount rate" min="0" max="75" value="">
 
-              {{!-- <label for="expirationDate">Expiration Date</label> --}}
+            
               <input type="text" expirationDate placeholder="Expiration Date" onblur="(this.type='text')"
                 onfocus="(this.type='date')">
 

@@ -6,9 +6,8 @@ Insha Allab,  By the marcy of Allah,  I will gain success
 let grid=document.querySelector('.team-grid');
 
 
-setTimeout(() => {
-    LoadWindow();
-}, 1000); 
+ LoadWindow();
+
 
 async function LoadWindow() {
     try {

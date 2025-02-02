@@ -40,6 +40,7 @@ import { activateCourseCoupon, createCourseCoupon, deActivateCourseCoupon, delet
 import { admin_approveGojushinryuMembership, cancelAndDeleteGojushinryuMembership, findGojushinryuMembershipRequest, gmembershipPaypalPayment, gmembershipPaypalPaymentCancel, gmembershipPaypalPaymentSuccess, gmembershipStripePayment, gmembershipStripePaymentCancel, gmembershipStripePaymentSuccess, GojushinryuMembershipFeesRequest, GojushinryuMembershipRequestSuccessPage, userIdToImage } from "../_lib/model_base_function/gojushinryuMembership.js";
 import catchError from "../_lib/utils/catchError.js";
 import { deleteAsset, findAssetsVideoControlPanal, findImageAssetsControlPanal, imagesPageImage, UploadImageAssets, UploadVideoAssets, videosPageVideos } from "../_lib/model_base_function/Assets.js";
+import SyllabusAssetRouter from "../_lib/model_base_function/sylabus.js";
 
 
 
@@ -51,8 +52,7 @@ let router =Router()
 //midlewares
 router.use(morgan('dev'))
 router.use(noCache)
-
-
+router.use(SyllabusAssetRouter);
 //get
 router.get('/find-grand-master', FindGMApi)
 router.get('/find-product',FindProduct)

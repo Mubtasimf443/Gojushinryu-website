@@ -71,9 +71,10 @@ Insha Allah,  By the marcy of Allah,  I will gain success
     
     function deactivateExpiredCoupon() {
         couponsAsArray.forEach(function(el,i) {
-            if (el.expiringDate <= Date.now()) {
+            if (el.expiringDate <= Date.now() && el.activated) {
                 fetch(apiBaseUrl +`/deactivate?id=${el.id}` ,{method:'PUT'});
                 couponsAsArray[i].activated=false;
+
                 const tm = setTimeout(function () {
                     organizeTable();
                     clearTimeout(tm);
@@ -258,9 +259,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                     rate: (rate / 100),
                     expiringDate
                 }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
+                headers: { 'Content-Type': 'application/json'}
             });
             requesting = false;
             if (response.status === 201) {

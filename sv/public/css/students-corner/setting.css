@@ -22,14 +22,10 @@ InshaAllah, By Allah's Will,  I will earn success
 }
 @media screen and (max-width :750px){
   .form-section{
-    width: 650px;
+    width:90%;
   }
 }
-@media screen and (max-width :600px){
-  .form-section{
-    width: 480px;
-  }
-}
+
   .form-section > h2 {
     font-size: 20px;
     font-size: 20px;

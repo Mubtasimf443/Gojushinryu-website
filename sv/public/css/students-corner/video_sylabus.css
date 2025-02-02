@@ -1,0 +1,60 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+.video_sylabus {
+    width: 100%;
+    max-width: 700px; /* Keep within the desired width */
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    row-gap: 20px;
+    height: max-content;
+}
+
+#video-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 15px;
+}
+
+.video-wrapper {
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%; /* Maintain 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+    background: #000;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .video_sylabus {
+        padding: 20px 10px;
+        width: 90vw;
+    }
+    
+    .video-wrapper {
+        padding-bottom: 62.5%; /* Adjust aspect ratio for smaller screens */
+    }
+    iframe {
+        width: 95%;
+    }
+
+}
