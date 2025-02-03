@@ -40,6 +40,7 @@
   <link rel="stylesheet" href="/css/control_panal/assets.css">
   <link rel="stylesheet" href="/css/control_panal/video_sylabus.css">
   <link rel="stylesheet" href="/css/control_panal/pdf_sylabus.css">
+  <link rel="stylesheet" href="/css/control_panal/image_sylabus.css">
 
 
 
@@ -75,6 +76,8 @@
   <script defer src="/js/control panal/image.assets.js"></script>
   <script defer src="/js/control panal/video.assets.js"></script>
   <script defer src="/js/control panal/pdf_sylabus.js"></script>
+  <script defer src="/js/control panal/image_sylabus.js"></script>
+  <script defer src="/js/control panal/video_sylabus.js"></script>
 
 </head>
 
@@ -699,6 +702,7 @@
           <a id="assets_href">Assets<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="v_sylabus_href">Video Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="pdf_sylabus_href">PDF Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="Image_sylabus_href">Image Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
 
           <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
@@ -1024,7 +1028,7 @@
               
             </tbody>
           </table>
-          <form action="">
+          <form>
             <input type="text" placeholder="Title">
             <textarea placeholder="Code"></textarea>
             <button class="add-btn">Add</button>
@@ -1947,7 +1951,7 @@
         </section>
 
             <!----------------------- Pdf Sylabus ----------------------------->
-        <div ct_section  style="display: flex;" id="pdf_sylabus" targetedElement="pdf_sylabus_href" >
+        <div ct_section  style="display: none;" id="pdf_sylabus" targetedElement="pdf_sylabus_href" >
           <table>
             <thead>
               <tr>
@@ -1967,6 +1971,18 @@
           </form>
         </div>
 
+            <!----------------------- Image Sylabus ----------------------------->
+        <div ct_section  style="display: flex;" id="Image_sylabus" targetedElement="Image_sylabus_href" >
+          <div id="image-container" class="image-grid">
+
+          </div>
+          <form>
+            <input type="text" placeholder="Title">
+            <input type="file" placeholder="Pdf File"  accept="image/*">
+            <button class="add-btn">Add</button>
+            <button class="clr-btn">Clear</button>
+          </form>
+        </div>
       </div>
     </section>
 

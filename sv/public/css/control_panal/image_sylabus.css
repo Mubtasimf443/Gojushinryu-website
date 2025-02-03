@@ -1,0 +1,165 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+
+#Image_sylabus {
+    width: 100%;
+    background: white;
+    color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    row-gap: 30px;
+    padding: 20px 10px;
+    box-sizing: border-box;
+  }
+
+  
+#Image_sylabus .image-grid {
+  display: grid;
+  grid-template-columns: repeat(3, auto);
+  gap: 15px;
+  width: 100%;
+}
+
+#Image_sylabus .image-card {
+  background: #f9f9f9;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease-in-out;
+  width: 200px;
+
+ 
+}
+
+
+#Image_sylabus .image-card:hover {
+  transform: scale(1.05);
+}
+
+/* Title Styling */
+#Image_sylabus .image-title {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #333;
+}
+
+/* Image Wrapper */
+#Image_sylabus .image-wrapper {
+  position: relative;
+  display: inline-block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Image Styling */
+#Image_sylabus .syllabus-image {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+  transition: opacity 0.3s ease-in-out;
+  object-fit: cover;
+  object-position: center center;
+  width: 100%;
+  height: 175px;
+}
+
+/* Download Button (Hidden by Default) */
+#Image_sylabus .delete-btn {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: darkred;
+  color: white;
+  padding: 8px 12px;
+  font-size: 14px;
+  text-decoration: none;
+  border-radius: 5px;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+  border: none;
+}
+
+/* Show Download Button on Hover */
+#Image_sylabus .image-wrapper:hover .delete-btn {
+  opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  #Image_sylabus .image-grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+
+  #Image_sylabus {
+      padding: 20px 10px;
+  }
+
+  #Image_sylabus .image-title {
+      font-size: 14px;
+  }
+}
+
+
+
+@media (max-width: 480px) {
+  #Image_sylabus .image-grid {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  }
+
+  #Image_sylabus .delete-btn {
+      font-size: 12px;
+      padding: 6px 10px;
+  }
+}
+
+
+#Image_sylabus form {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: start;
+    column-gap: 10px;
+    width: 100%;
+  }
+  
+  
+  #Image_sylabus form input,textarea{
+   
+     height:35px;
+     background-color: rgb(234, 237, 240);
+     border: none;
+     outline: none;
+     padding: 4px 10px;
+     resize: vertical;
+     padding: 8px 8px;
+     width:37%;
+  }
+  
+  #Image_sylabus form button,input,textarea {
+    min-height: 38px;
+    min-width: 10%;
+  }
+  
+  #Image_sylabus form .add-btn{
+    background: green;
+    border: none;
+    color: white;
+    font-weight: 500;
+  }
+  
+  #Image_sylabus form button:last-child{
+    background-color: darkblue;
+    color: white;
+    font-weight: 500;
+    border: none;
+  }

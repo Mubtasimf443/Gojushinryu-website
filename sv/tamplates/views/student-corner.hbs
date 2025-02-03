@@ -16,7 +16,8 @@
   <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/video_sylabus.css">
   <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/membership.css">
   <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/pdf_syllabus.css">
-  
+  <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/image_syllabus.css">
+
   <meta name="keywords" content="
     Students Corner of Goju Shin Ryu International Martial Arts,
     Students Corner of {{>company_name}},
@@ -54,10 +55,14 @@
           <a id="social_media_href">Social Media<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="VideoSyllabushref">Video Syllabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="pdf_sylabus_href">PDF Syllabus<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="image_sylabus_href">Image Syllabus<button><i class="fa-solid fa-angle-right"></i></button></a>
+         
           <a id="logout_href">Logout<button><i class="fa-solid fa-angle-right"></i></button></a>
+          
           <style>
             button,
-            a,i {
+            a,
+            i {
               cursor: pointer;
             }
           </style>
@@ -183,7 +188,7 @@
             <button id="s-sec-change-password-btn">Save</button>
           </div>
         </div>
-     
+
 
 
         <!------------------------ Course EnrollMents Container ------------------------->
@@ -228,14 +233,20 @@
           <h2>Video Syllabus</h2>
           <div id="video-container">
           </div>
-        
+
         </div>
 
         <div st_section style="display: none;" id="pdf-syllabus" class="pdf_syllabus">
           <h2>PDF Syllabus</h2>
           <div id="pdf-container"></div>
-          </div>
+        </div>
 
+        <div st_section style="display: none;" id="image-syllabus" class="image_syllabus">
+          <h2>Image Syllabus</h2>
+          <div id="image-container" class="image-grid">
+            
+          </div>
+        </div>
       </div>
 
     </section>
@@ -265,10 +276,11 @@
   <script src="/js/student_coner/course.js"></script>
   <script src="/js/student_coner/membership.js"></script>
   <script src="/js/student_coner/social_media_account.js"></script>
-  <script src="/js/student_coner/video_sylabus.js" ></script>
-  <script src="/js/student_coner/pdf_syllabus.js" ></script>
+  <script src="/js/student_coner/video_sylabus.js"></script>
+  <script src="/js/student_coner/pdf_syllabus.js"></script>
+  <script src="/js/student_coner/image_syllabus.js"></script>
 
-  
+
   {{>Footer}}
 </body>
 

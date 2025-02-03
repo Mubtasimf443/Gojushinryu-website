@@ -17,7 +17,7 @@ import { isnota, tobe, validate } from "string-player";
 
 export async function findImageAssetsControlPanal(req = request, res = response) {
     try {
-        return res.status(200).json((await Assets.find({}, 'url id').where('type').equals('image')).map(el => ({ url: el.url, id: el.id })));
+        return res.status(200).json((await Assets.find({}, 'url id').where('type').equals('image').sort({ id: -1 })).map(el => ({ url: el.url, id: el.id })));
     } catch (error) {
         catchError(res,error);
     }

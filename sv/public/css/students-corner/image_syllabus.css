@@ -1,0 +1,122 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+
+
+
+.image_syllabus {
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+}
+
+/* Grid Layout */
+.image_syllabus .image-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 0fr);
+    gap: 15px;
+    width: 100%;
+}
+
+/* Image Card */
+.image_syllabus .image-card {
+    background: #f9f9f9;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease-in-out;
+    width: 300px;
+  
+   
+}
+
+.image_syllabus .image-card:hover {
+    transform: scale(1.05);
+}
+
+/* Title Styling */
+.image_syllabus .image-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* Image Wrapper */
+.image_syllabus .image-wrapper {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+/* Image Styling */
+.image_syllabus .syllabus-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    transition: opacity 0.3s ease-in-out;
+    object-fit: cover;
+    object-position: center center;
+    width: 100%;
+    height: 300px;
+}
+
+/* Download Button (Hidden by Default) */
+.image_syllabus .download-btn {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 123, 255, 0.9);
+    color: white;
+    padding: 8px 12px;
+    font-size: 14px;
+    text-decoration: none;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Show Download Button on Hover */
+.image_syllabus .image-wrapper:hover .download-btn {
+    opacity: 1;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .image_syllabus .image-grid {
+        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    }
+
+    .image_syllabus {
+        padding: 20px 10px;
+    }
+
+    .image_syllabus .image-title {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .image_syllabus .image-grid {
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    }
+
+    .image_syllabus .download-btn {
+        font-size: 12px;
+        padding: 6px 10px;
+    }
+}

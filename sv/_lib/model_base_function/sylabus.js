@@ -2,10 +2,10 @@
 /* Insha Allah,  Allah loves s enough for me */
 
 import { request, response, Router } from "express";
-import catchError from "../utils/catchError.js";
+import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import { SyllabusAsset } from "../models/studentSylabus.js";
 import { isnota, repleCaracter, tobe } from "string-player";
-import { UploadPDFFile } from "../api/formidable.file.post.api.js";
+import { UploadImgFile, UploadPDFFile } from "../api/formidable.file.post.api.js";
 import { Cloudinary } from "../Config/cloudinary.js";
 
 let router=Router();
@@ -18,6 +18,9 @@ router.get('/sylabus/assets/pdf', findPdf);
 router.post('/sylabus/assets/pdf', postPdf);
 router.put('/sylabus/assets/pdf', putPdf);
 router.delete('/sylabus/assets/pdf', deletePDF);
+router.get('/sylabus/assets/image', findImages);
+router.post('/sylabus/assets/image', postImages);
+router.delete('/sylabus/assets/image', deleteImages);
 
 
 async function findVideoAsset(req=request, res=response) {
@@ -90,8 +93,6 @@ async function findPdf(req = request, res = response) {
         catchError(res,error)
     }
 }
-
-
 async function postPdf(req = request, res = response) {
     try {
         let [pdfPath,feilds] = await UploadPDFFile(req);
@@ -101,18 +102,18 @@ async function postPdf(req = request, res = response) {
         title =title[0]?.trim();
         if (!title)throw 'Missing Title of The Pdf';
         if (title.length >200)throw 'Missing Title of The Pdf';
-        let info = await Cloudinary.uploader.upload(pdfPath, { public_id: Date.now().toString()});
+        let info = await Cloudinary.uploader.upload(pdfPath, { public_id: Date.now().toString(),format :'pdf' });
         let pdfAsset=await SyllabusAsset.create({
             assetType :'pdf',
             content :info.url ,
             title :title ,
+            
         });
         return res.status(200).json(pdfAsset);
     } catch (error) {
         catchError(res,error)
     }
 }
-
 async function putPdf(req = request, res = response) {
     try {
         
@@ -120,7 +121,6 @@ async function putPdf(req = request, res = response) {
         catchError(res,error)
     }
 }
-
 async function deletePDF(req = request, res = response) {
     try {
         let  id = req.query.id;
@@ -135,7 +135,45 @@ async function deletePDF(req = request, res = response) {
         catchError(res,error)
     }
 }
+async function findImages(req = request, res = response) {
+    try {
+        let images = (await SyllabusAsset.find({}).where('assetType').equals('image'));
+        return res.status(200).json(images);
+    } catch (error) {
+        catchError(res,error);
+    }
+}
+async function postImages(req = request, res = response) {
+    try {
+        let [imagePath, feilds] = await UploadImgFile(req);
+        let title = feilds.title;
+        if (Array.isArray(title) ===false || title[0].trim().length===0) namedErrorCatching('p error', 'title is invalid');
+        let info = await Cloudinary.uploader.upload(imagePath, { public_id: Date.now().toString(), resource_type: 'image', format: 'jpg' });
+        if (info.url ) {
+            let pdfAsset=await SyllabusAsset.create({
+                assetType :'image',
+                content :info.url ,
+                title :title[0].trim() ,
+            });
+            return res.status(201).json(pdfAsset);
+        } else throw 'CLoudinary Error , There is no url of cloudinary';
+    } catch (error) {
+        catchError(res,error);
+    }
+}
+async function deleteImages(req = request, res = response) {
+    try {
+        let id = req.query.id;
+        if (!id) throw 'id is missing';
+        id = Number(id);
+        if (id === 0 || id.toString() === 'NaN') throw 'id is not a Number';
+        await SyllabusAsset.findOneAndDelete()
+            .where('id').equals(id)
+            .where('assetType').equals('image');
 
-
-
+        return res.sendStatus(204);
+    } catch (error) {
+        catchError(res, error);
+    }
+}
 export default router;
