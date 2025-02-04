@@ -9,6 +9,10 @@ Insha Allah,  By your Marcy Ya Allah
 * {
     box-sizing: border-box;
 }
+
+button,a,i{
+    cursor: pointer;
+}
 #st-corner {
     display: flex;
     flex-direction: row;

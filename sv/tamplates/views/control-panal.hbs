@@ -41,6 +41,7 @@
   <link rel="stylesheet" href="/css/control_panal/video_sylabus.css">
   <link rel="stylesheet" href="/css/control_panal/pdf_sylabus.css">
   <link rel="stylesheet" href="/css/control_panal/image_sylabus.css">
+  <link rel="stylesheet" href="/css/control_panal/txt_sylabus.css">
 
 
 
@@ -78,6 +79,7 @@
   <script defer src="/js/control panal/pdf_sylabus.js"></script>
   <script defer src="/js/control panal/image_sylabus.js"></script>
   <script defer src="/js/control panal/video_sylabus.js"></script>
+  <script defer src="/js/control panal/txt_sylabus.js"></script>
 
 </head>
 
@@ -700,6 +702,8 @@
                 class="fa-solid fa-angle-right"></i></button></a>
           {{!-- <a id="customLinks_href">Create custom Offers<button><i class="fa-solid fa-angle-right"></i></button></a> --}}
           <a id="assets_href">Assets<button><i class="fa-solid fa-angle-right"></i></button></a>
+          
+          <a id="text_sylabus_href">Notes Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="v_sylabus_href">Video Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="pdf_sylabus_href">PDF Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="Image_sylabus_href">Image Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
@@ -1950,7 +1954,7 @@
           </form>
         </section>
 
-            <!----------------------- Pdf Sylabus ----------------------------->
+        <!----------------------- Pdf Sylabus ----------------------------->
         <div ct_section  style="display: none;" id="pdf_sylabus" targetedElement="pdf_sylabus_href" >
           <table>
             <thead>
@@ -1971,8 +1975,8 @@
           </form>
         </div>
 
-            <!----------------------- Image Sylabus ----------------------------->
-        <div ct_section  style="display: flex;" id="Image_sylabus" targetedElement="Image_sylabus_href" >
+        <!----------------------- Image Sylabus ----------------------------->
+        <div ct_section  style="display: none;" id="Image_sylabus" targetedElement="Image_sylabus_href" >
           <div id="image-container" class="image-grid">
 
           </div>
@@ -1983,6 +1987,38 @@
             <button class="clr-btn">Clear</button>
           </form>
         </div>
+
+          <!----------------------- Text Sylabus ----------------------------->
+        <div ct_section style="display: none;" id="text_sylabus" targetedElement="text_sylabus_href">
+          
+          <div class="notes-grid">
+           
+          </div>
+
+          <form>
+            <input type="text" placeholder="Title" minlength="1" maxlength="90">
+            <textarea name="" id="" placeholder="Content" maxlength="20000" minlength="50"></textarea>
+            <button class="add-btn">Add</button>
+            <button class="clr-btn">Clear</button>
+          </form>
+
+          <div class="modal-overlay">
+            <div class="note-modal">
+              <button class="btn-close">&times;</button>
+              <input type="text" class="modal-title" placeholder="Title">
+              <div class="modal-content">
+                <textarea class="modal-description" placeholder="Take a note..." maxlength="20000" minlength="50"></textarea>
+                <div class="character-count"><span class="char-count">0</span>/20000</div>
+              </div>
+              <div class="modal-actions">
+                <button class="btn btn-delete">Delete</button>
+                <button class="btn btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </section>
 

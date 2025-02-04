@@ -1,0 +1,169 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+.notes_syllabus {
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.07);
+    padding: 30px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    row-gap: 20px;
+    display: none;
+}
+.notes_syllabus .note-content{
+    color: gray;
+    font-size: 15px
+}
+.notes_syllabus .notes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, fit-content);
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.notes_syllabus .note-card {
+    background: white;
+    border-radius: 8px;
+    padding: 1.5rem;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    min-height: 140px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.notes_syllabus .note-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.notes_syllabus .note-title {
+    font-weight: 500;
+    font-size: 1.1rem;
+    margin-bottom: 0.75rem;
+    color: #202124;
+  }
+.notes_syllabus  .note-description {
+    color: #5f6368;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical;
+  }
+  
+.notes_syllabus .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(3px);
+    z-index: 1000;
+    
+  }
+  
+  .notes_syllabus .note-modal {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    max-width: 600px;
+    width: 90%;
+    position: relative;
+    animation: modalEnter 0.3s ease;
+    height: 95vh;
+  }
+  
+  @keyframes modalEnter {
+    from { transform: scale(0.95); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+  }
+  
+  .notes_syllabus .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .notes_syllabus .modal-title {
+    font-size: 20px;
+    font-weight: 500;
+    color: #202124;
+    border: none;
+    width: 100%;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+  }
+  
+  .notes_syllabus .modal-title:focus {
+    outline: none;
+    border-bottom: 2px solid #1a73e8;
+  }
+  
+  .notes_syllabus .modal-content {
+    position: relative;
+  }
+  
+  .notes_syllabus .modal-description {
+    width: 100%;
+    border: none;
+    resize: none;
+    height: 65vh;
+    max-height: 75vh;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #5f6368;
+    padding: 0.5rem;
+    resize: vertical;
+  }
+  
+  .notes_syllabus .modal-description:focus {
+    outline: none;
+  }
+  
+  .notes_syllabus .modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+
+  .modal-overlay .btn-close{
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 50%;
+    transition: background 0.2s;
+  }
+  .modal-overlay .btn-close:hover{
+    background: rgba(0,0,0,0.1);
+  }
+  .modal-overlay .character-count{
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    color: #5f6368;
+    font-size: 0.85rem;
+    background: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+  }
+
+  

@@ -1,0 +1,248 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+#text_sylabus {
+  width: 100%;
+  background: white;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: start;
+  row-gap: 30px;
+  padding: 20px 10px;
+  box-sizing: border-box;
+}
+
+
+#text_sylabus .notes-grid {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  column-gap: 20px;
+  row-gap: 25px;
+  padding: 0px 13px;
+}
+
+
+#text_sylabus .note-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  min-height: 140px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 240px;
+}
+
+#text_sylabus .note-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+#text_sylabus .note-title {
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-bottom: 0.75rem;
+  color: #202124;
+}
+
+#text_sylabus .note-description {
+  color: #5f6368;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+}
+
+#text_sylabus form {
+  display: flex;
+  flex-direction: row;
+  justify-content: left;
+  align-items: start;
+  column-gap: 10px;
+  width: 100%;
+}
+
+
+#text_sylabus form input,textarea {
+
+  height: 35px;
+  background-color: rgb(234, 237, 240);
+  border: none;
+  outline: none;
+  padding: 4px 10px;
+  resize: vertical;
+  padding: 8px 8px;
+  width: 37%;
+}
+
+#text_sylabus form button,input,textarea {
+  min-height: 38px;
+  min-width: 10%;
+}
+
+#text_sylabus form .add-btn {
+  background: green;
+  border: none;
+  color: white;
+  font-weight: 500;
+}
+
+#text_sylabus form button:last-child {
+  background-color: darkblue;
+  color: white;
+  font-weight: 500;
+  border: none;
+}
+
+
+
+#text_sylabus .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(3px);
+  z-index: 1000;
+}
+
+#text_sylabus .note-modal {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 600px;
+  width: 90%;
+  position: relative;
+  animation: modalEnter 0.3s ease;
+}
+
+@keyframes modalEnter {
+  from { transform: scale(0.95); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+#text_sylabus .modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+}
+
+#text_sylabus .modal-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #202124;
+  border: none;
+  width: 100%;
+  padding: 0.5rem 0;
+  margin-bottom: 1rem;
+}
+
+#text_sylabus .modal-title:focus {
+  outline: none;
+  border-bottom: 2px solid #1a73e8;
+}
+
+#text_sylabus .modal-content {
+  position: relative;
+}
+
+#text_sylabus .modal-description {
+  width: 100%;
+  border: none;
+  resize: none;
+  min-height: 150px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #5f6368;
+  padding: 0.5rem;
+}
+
+#text_sylabus .modal-description:focus {
+  outline: none;
+}
+
+#text_sylabus .modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+#text_sylabus .btn {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+#text_sylabus .btn-primary {
+  background: #1a73e8;
+  color: white;
+}
+
+#text_sylabus .btn-primary:hover {
+  background: #1557b0;
+}
+
+#text_sylabus .btn-delete {
+  background: #dc3545;
+  color: white;
+}
+
+#text_sylabus .btn-delete:hover {
+  background: #bb2d3b;
+}
+
+#text_sylabus .btn-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  transition: background 0.2s;
+}
+
+#text_sylabus .btn-close:hover {
+  background: rgba(0,0,0,0.1);
+}
+
+#text_sylabus .character-count {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  color: #5f6368;
+  font-size: 0.85rem;
+  background: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+}

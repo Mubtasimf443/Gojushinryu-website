@@ -4,12 +4,15 @@
 import { request, response, Router } from "express";
 import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import { SyllabusAsset } from "../models/studentSylabus.js";
-import { isnota, repleCaracter, tobe } from "string-player";
+import { isnota, repleCaracter, repleCrAll, tobe } from "string-player";
 import { UploadImgFile, UploadPDFFile } from "../api/formidable.file.post.api.js";
 import { Cloudinary } from "../Config/cloudinary.js";
 
 let router=Router();
-
+router.get('/sylabus/assets/text',findText );
+router.post('/sylabus/assets/text',postText );
+router.put('/sylabus/assets/text',putText );
+router.delete('/sylabus/assets/text', deleteText);
 router.get('/sylabus/assets/video',findVideoAsset );
 router.post('/sylabus/assets/video',postVideoAsset );
 router.put('/sylabus/assets/video',putVideoAsset );
@@ -22,6 +25,63 @@ router.get('/sylabus/assets/image', findImages);
 router.post('/sylabus/assets/image', postImages);
 router.delete('/sylabus/assets/image', deleteImages);
 
+
+async function findText(req=request, res=response) {
+    try {
+        let notes = await SyllabusAsset.find({}, 'id title content').where('assetType').equals( 'text');
+        notes = notes.map((Element) => ({ title: decodeURI(Element.title), content: decodeURI(Element.content), id: Element.id }))
+        return res.status(200).json(notes);
+    } catch (error) {
+        catchError(res,error)
+    }
+}
+
+async function postText(req=request, res=response) {
+    try {
+        let title =req.query.title , content =req.query.content;
+        if (!title || !content) namedErrorCatching('p error', 'missing title or content');
+        [title , content] =[title.trim(), content.trim()];
+        if (!tobe.minMax(title, 1, 200, true)) namedErrorCatching('p error', 'title is too big or too short');
+        if (!tobe.minMax(content, 50, 20000, true)) namedErrorCatching('p error', 'content is too big or too short');
+        [title, content] = [encodeURI(title), encodeURI(content)];
+        let notes = await SyllabusAsset.insertMany([{ title, content, assetType: 'text' }]);
+        notes[0].content=decodeURI(notes[0].content);
+        return res.status(201).json(notes[0]);
+    } catch (error) {
+        catchError(res,error)
+    }
+}
+
+
+async function putText(req=request, res=response) {
+    try {
+        let title = req.query.title, content = req.query.content, id = req.query.id;
+        id = Number(id);
+        if (id === 0 || id.toString() === 'NaN') throw 'id is not a NaN';
+        if (!title || !content) namedErrorCatching('p error', 'missing title or content');
+        [title , content] =[title.trim(), content.trim()];
+        if (!tobe.minMax(title, 1, 200, true)) namedErrorCatching('p error', 'title is too big or too short');
+        if (!tobe.minMax(content, 50, 20000, true)) namedErrorCatching('p error', 'content is too big or too short');
+        [title, content] = [encodeURI(title), encodeURI(content)];
+        await SyllabusAsset.updateOne({ id }, { title, content });
+        return res.sendStatus(202);
+    } catch (error) {
+        catchError(res,error)
+    }
+}
+
+async function deleteText(req=request, res=response) {
+    try {
+        let id = req.query.id;
+        id = Number(id);
+        if (id === 0 || id.toString() === 'NaN') throw 'id is not a NaN';
+        if (Date.now() < id) namedErrorCatching('p error', 'id is not correct');
+        await SyllabusAsset.deleteOne({id});
+        return res.sendStatus(204);
+    } catch (error) {
+        catchError(res,error);
+    }
+}
 
 async function findVideoAsset(req=request, res=response) {
     try {
