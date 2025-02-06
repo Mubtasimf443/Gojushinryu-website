@@ -121,7 +121,6 @@ export default requestGojushinryuMembership;
 
 export async function GojushinryuMembershipRequestSuccessPage(req = request, res = response) {
     try {
-
         let { student_name, membership_ids, requestDate } = req.query;
         if (typeof membership_ids === 'string' && membership_ids?.trim()) {
             membership_ids = [membership_ids];
@@ -435,6 +434,22 @@ export async function gmembershipPaypalPaymentSuccess(req = request, res = respo
     try {
         let token = req.query.token;
         if (!token) throw 'Token is not valid';
+        function status(data) {
+            if (!data) return false
+            if (data.includes('{')) return false
+            if (data.includes('}')) return false
+            if (data.includes('*')) return false
+            if (data.includes(':')) return false
+            if (data.includes('[')) return false
+            if (data.includes(']')) return false
+            if (data.includes('(')) return false
+            if (data.includes('(')) return false
+            if (data.includes('$')) return false
+            if (data.includes('>')) return false
+            if (data.includes('<')) return false
+            return true
+        }
+        if (status(token) === false) return res.render('500');
         let m = await GojushinryuMembership.findOne().where('payment_info.paypal').equals(token);
         if (m === null || m?.payment_info?.paid ===true) throw 'No membership found done by you';
         m.payment_info.paid =true;

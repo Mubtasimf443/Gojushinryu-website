@@ -40,7 +40,7 @@ router.post('/custom-link', createCustomLink)
 router.post('/paypal-membership-purchase', MembershipApidataCheckMidleware, paypalMembershipFunction);
 router.post('/stripe-membership-api', membershipMidleWareStripe, stripeMembershipFunction);
 router.post('/uplaod-post', uplaodPostAPiFucntion)
-router.post('/upload-coutntry-representative', uploadCountryRepresentativeApi)
+router.post('/upload-coutntry-representative',morgan('dev'), uploadCountryRepresentativeApi)
 router.post('/custom-membership', userCheck, customMembershipApi)
 router.post('/custom-course', userCheck, customCoursePurchaseApi)
 router.post('/order/create', userCheck, createOrder);

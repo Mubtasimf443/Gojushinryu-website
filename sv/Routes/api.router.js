@@ -27,7 +27,7 @@ import { courseBuyCancellStripeApi, courseBuySuccessStripeApi, stripeCourseBuyAP
 import { stripeMembershipCancelFunction, stripeMembershipSuccessFunction } from "../_lib/api/membership.srtipe.api.js";
 import { changeSettingsAPI } from "../_lib/api/change.settings.api.js";
 import { createTestimonials, getTestimonials, deleteTestimonials, testinmonialsForHomePage, createTestimonialsWithoutImage } from "../_lib/model_base_function/Testimonials.js";
-import { allowRepresentative, disAllowRepresentative, getCountryRepresentatives, getCountryRepresentativesForAdmin } from "../_lib/model_base_function/CountryRepresentatives.js";
+import crPaymentApis, { allowRepresentative, disAllowRepresentative, getCountryRepresentatives, getCountryRepresentativesForAdmin } from "../_lib/model_base_function/CountryRepresentatives.js";
 import { deleteCustomLink, disableCustomLink, enableCustomLink, findCustomLinks } from "../_lib/model_base_function/customLink.js";
 import { activateMembershipCoupon, createMembershipCoupon, deActivateMembershipCoupon, deleteMembershipCoupon, getMembershipCouponRates, getMembershipCoupons, updateMembershipCoupon } from "../_lib/model_base_function/membershipcoupon.js";
 import { courseContactApi } from "../_lib/course/course.Purchase.Api.js";
@@ -107,8 +107,13 @@ router.get('/gmembership/fees/paypal/success', gmembershipPaypalPaymentSuccess);
 router.get('/gmembership/fees/paypal/cancel', gmembershipPaypalPaymentCancel);
 router.get('/gmembership/fees/stripe/success', gmembershipStripePaymentSuccess);
 router.get('/gmembership/fees/stripe/cancel', gmembershipStripePaymentCancel);
-
-
+router.get('/country-representative/fees/paypal', crPaymentApis.paypalPayment);
+router.get('/country-representative/fees/paypal/success', crPaymentApis.paypalPaySuccess);
+router.get('/country-representative/fees/paypal/cancel', crPaymentApis.paypalPayCancel);
+router.get('/country-representative/fees/stripe', crPaymentApis.stripePayment);
+router.get('/country-representative/fees/stripe/success', crPaymentApis.stripePaySuccess);
+router.get('/country-representative/fees/stripe/cancel', crPaymentApis.stripePayCancel);
+router.get('/country-representative/form-submited-successfully', crPaymentApis.countryRepresentativeFormSubmitedPage);
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)
@@ -128,6 +133,7 @@ router.post('/coupons/course' , createCourseCoupon);
 router.post('/course/apply/contact', courseContactApi );
 router.post('/assets/image', UploadImageAssets );
 router.post('/assets/video', UploadVideoAssets );
+router.post('/country-representative/payment/request', crPaymentApis.requestPayment)
 
 
 //Update

@@ -957,13 +957,13 @@
             <div class="modal-header">Request Admin for Fees</div>
             <input type="number" id="feeAmount" placeholder="Enter fee amount">
             <div class="modal-actions">
-              <button class="model-cancel" >Cancel</button>
+              <button class="model-cancel">Cancel</button>
               <button class="model-submit">Submit</button>
             </div>
+          </div>
         </div>
-        </div>
-        <!-----------------------order list ----------------------------->
 
+        <!-----------------------order list ----------------------------->
         <div ct_section targetedElement="order_href" style="display: none;" class="order-list-box">
 
           <table>
@@ -994,8 +994,8 @@
 
           </table>
         </div>
-        <!----------------------- User list ----------------------------->
 
+        <!----------------------- User list ----------------------------->
         <div ct_section style="display: none;" id="list-of-user" targetedElement="user_page_href" class="user-list-box">
 
            <table> 
@@ -1041,7 +1041,6 @@
         </div>
 
         <!----------------------- Member List list ----------------------------->
-
         <div ct_section style="display: none;" id="list-of-member" targetedElement="member_href"
           class="member-list-box">
           <table>
@@ -1061,7 +1060,6 @@
 
 
         <!----------------------- Grand Master list ----------------------------->
-
         <div ct_section style="display: none;" targetedElement="gm_href" id="list-of-gm" class="gm-list-box">
           <table>
 
@@ -1118,7 +1116,6 @@
 
 
         <!----------------------- product list ----------------------------->
-
         <div ct_section style="display: none;" targetedElement="product_href" class="product-list-box">
           <div class="products">
             <div class="product">
@@ -1133,7 +1130,6 @@
 
 
         <!-------------------------- course list -------------------------->
-
         <div ct_section style="display: none;" targetedElement="course_href" id="couses-list-and-uplaod-container">
 
 
@@ -1376,7 +1372,6 @@
 
 
         <!----------------------- Settings ----------------------------->
-
         <div class="settings-container-main" targetedElement="settings_href" style="display: none;" ct_section>
           <div id="settings-conatiner" class="form-section">
 
@@ -1546,7 +1541,6 @@
         </div>
 
         <!-----------------------Upload Event ----------------------------->
-
         <div id="upload-event-conatiner" targetedElement="uplaod_event_href" style="display: none;" ct_section
           class="form-section">
 
@@ -1603,10 +1597,7 @@
           </div>
         </div>
 
-
         <!----------------------- share to social media ----------------------------->
-
-
         <div style="display: none;" ct_section id="share-media-conatiner" targetedElement="share_media_href">
           <div share_video_container class="form-section">
             <strong>Uplaod Video</strong>
@@ -1854,23 +1845,34 @@
 
         </div>
         <!-------------------------- Country Representative ----------------------------->
-        <div id="Country_Representative_container" targetedElement="Country_Representative_href" style="display: none;"
+        <div id="Country_Representative_container" targetedElement="Country_Representative_href" style="display: flex;"
           ct_section>
 
           <table>
-            <tr>
-              <th width="5%">No</th>
-              <th width="10%">Image</th>
-              <th width="16%">Name</th>
-              <th width="10%">Country</th>
-              <th width="40%">description</th>
-              <th width="10%">Active</th>
-            </tr>
-            <tr>
-
-            </tr>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Country</th>
+                <th>Status</th>
+                <th>Payment </th>
+                <th>Active</th>
+              </tr>
+            </thead>
+           <tbody>
+            
+           </tbody>
+          
           </table>
-
+          
+          <div id="crFeesModal" class="crFeesModal">
+            <div class="modal-header">Request Country R. For Fees </div>
+            <input type="number" id="feeAmount" placeholder="Enter fee amount, Gst will be added automatically">
+            <div class="modal-actions">
+              <button class="model-cancel">Cancel</button>
+              <button class="model-submit">Submit</button>
+            </div>
+          </div>
 
         </div>
         <!--------------------------  Custom Link container ----------------------------->

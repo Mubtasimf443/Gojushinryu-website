@@ -133,28 +133,29 @@ function formSubmit(event) {
         form.append('phone',phone.value);
         form.append('dob',dob.value);
         form.append('image', img)
-        let requestUrl=window.location.origin+'/api/l-api/upload-coutntry-representative';
+       
         notRequesting=false;
         button.style.opacity=.65;
-        fetch(requestUrl, {
+        fetch(window.location.origin+'/api/l-api/upload-coutntry-representative', {
             method :'POST',
             body:form
-        })
-        .then(function (response) {
+        }).then(async function (response) {
             if (response.status ===201) {
                 document.querySelector('[success_status]').innerHTML='Thank You , Your Application was successfully recieved';
                 document.querySelector('[success_status]').style.color='green';
                 setTimeout(() => {
-                     window.location.replace('/')
+                    window.location.replace(window.location.origin+'/api/api_s/country-representative/form-submited-successfully')
                 }, 3000);
                 return;
             }
-            if (response.status !==201) {
+            else if (response.status === 500) {
+                let massage = (await response.json().catch(e => ({})))?.error?.massage;
+                if (massage) return alert(massage);
+            }
+            else if (response.status !==201) {
                 document.querySelector('[success_status]').innerHTML='Sorry , But failed to Submit application ,Please Try again';
                 document.querySelector('[success_status]').style.color='red';
-                setTimeout(() => {
-                     window.location.reload()
-                }, 3000);
+                setTimeout(() => window.location.reload(), 5000);
                 return;
             }
         })

