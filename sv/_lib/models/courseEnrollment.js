@@ -16,6 +16,7 @@ const Student ={
     student_dob:String,
     student_image :String,
     student_id :Number,
+    student_media_permision_signature: String
 }
 let courseEnrollmentSchema = new Schema({
     id: {

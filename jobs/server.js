@@ -5,15 +5,14 @@ InshaAllah, By his marcy I will Gain Success
 
 
 import express from 'express'
-import Main, { deleteImageUrlsAfter24Hour, notifyAboutNotPaidStudents, requestCourseEnrollMentPayment } from './jobs.js';
+import Main, { deleteImageUrlsAfter24Hour,  } from './jobs.js';
 import { log } from 'string-player';
 import { connectDB } from './controllars/ConnectDb.js';
 import fetch from 'node-fetch';
 import morgan from 'morgan';
+import { notifyAboutNotPaidStudents, requestCourseEnrollMentPayment } from './controllars/model_base_function/course.enrolment.js';
 
-/* 
-git add .; git commit -m 'course enrollment setup by buyer requirement done ' ; git push origin main
-*/
+/* git add .; git commit -m 'course enrollment setup by buyer requirement done ' ; git push origin main */
 const app =express();
 await connectDB();
 app.use(morgan('dev'));
@@ -61,11 +60,10 @@ app.get('/loop', function (req,res) {
    for (let i = 0; i < 1000; i++) {
        fetch('http://localhost:3000/keep-live').catch(e => console.error(e));
    }
-   res.send('looping......')
 });
 
 app.get('/delete-image-url-after-24-hours', deleteImageUrlsAfter24Hour);
-app.get('/monthly-payment-request', requestCourseEnrollMentPayment);
+app.get('/monthly-payment-request',requestCourseEnrollMentPayment);
 app.get('/notify-about-no-paid-students',notifyAboutNotPaidStudents);
 
 app.listen(3000 ,e => log('thank you Allah') );

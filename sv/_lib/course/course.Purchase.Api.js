@@ -19,7 +19,7 @@ import { urlToCloudinaryUrl } from "../Config/cloudinary.js";
 
 export async function coursePurchaseApi(req = request, res = response) {
     try {
-        let { studentImage, student_signature, student_parants_signature, name, phone, email, postalCode, dob, address, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, mode, payment_method } = req.body;
+        let { studentImage, student_signature, student_parants_signature, name, phone, email, postalCode, dob, address, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, mode, payment_method, student_media_permision_signature } = req.body;
         {
             if (validate.isEmty(name)) namedErrorCatching('parameter error', 'name is emty');
             if (validate.isEmty(phone)) namedErrorCatching('parameter error', 'phone is emty');
@@ -35,6 +35,7 @@ export async function coursePurchaseApi(req = request, res = response) {
             if (validate.isEmty(hasViolence)) namedErrorCatching('parameter error', 'hasBadMedical is emty');   
             if (validate.isEmty(student_signature)) namedErrorCatching('parameter error', 'student_signature is emty');   
             if (validate.isEmty(student_parants_signature)) namedErrorCatching('parameter error', 'student_parants_signature is emty');   
+            if (validate.isEmty(student_media_permision_signature)) namedErrorCatching('parameter error', 'student_parants_signature is emty');   
         }
         {
             if (mode !== '1' && mode !== '5') namedErrorCatching('parameter error', 'mode is emty');
@@ -78,6 +79,7 @@ export async function coursePurchaseApi(req = request, res = response) {
             student_dob :dob,
             student_postcode : postalCode,
             student_sex :sex,
+            student_media_permision_signature :student_media_permision_signature,
             additional_details :{
                 hasBadMedical,
                 hasDisability,

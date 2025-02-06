@@ -12,7 +12,7 @@ import { CourseEnrollments } from "../models/courseEnrollment.js";
 import { validate } from "string-player";
 import { Settings } from "../models/settings.js";
 import PaypalPayment from "../utils/payment/PaypalPayment.js";
-import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
+import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
 import StripePay from "../utils/payment/stripe.js";
 let __dirname =path.dirname(fileURLToPath(import.meta.url));
 
@@ -29,19 +29,14 @@ export async function MonthlyFeesRequestPage(req=request, res=response) {
         let existIndex = enrollment.paymentsData.findIndex(function name(element) {
             if (element.id === id2) return element;
         });
-        // if (existIndex === -1) {
-        //     return res.status(400).send('Before 1 of month , requesting is not allowed');
-        // }
-        // if (enrollment.paymentsData[existIndex].paid === true){ 
-        //     return res.status(400).send('You Have Paid the fees of this month , so you do  no need to pay again ...')
-        // }
+     
         let GST = (await Settings.findOne({}))?.gst_rate ?? 5;
         let html =(`
             <!DOCTYPE html>
-<html lang="en">
+            <html lang="en">
 
-<head>
-    <meta name="robots" content="noindex">
+            <head>
+            <meta name="robots" content="noindex">
     <link rel="stylesheet" href="/css/root.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -289,7 +284,7 @@ export async function MonthlyFeesRequestPayPal(req=request, res=response) {
         let payment =new PaypalPayment({
             client_id :PAYPAL_CLIENT_ID,
             client_secret :PAYPAL_SECRET,
-            mode :'live',
+            mode :PAYPAL_MODE,
             success_url :BASE_URL+'/api/api_s/course/enrollments/payment/this-month/pay/paypal/success',
             cancel_url : BASE_URL+'/api/api_s/course/enrollments/payment/this-month/pay/paypal/cancel'
         });

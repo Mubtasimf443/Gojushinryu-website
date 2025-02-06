@@ -107,6 +107,7 @@ document.querySelectorAll('.close-popup').forEach(
                             img.style.display = 'none';
                             let newFileInput = document.createElement('input');
                             newFileInput.type = 'file';
+                            newFileInput.accept='image/*';
                             newFileInput.addEventListener('change', c1);
                             fileInput.replaceWith(newFileInput);
                             fileInput = newFileInput;
@@ -138,7 +139,8 @@ document.querySelectorAll('.close-popup').forEach(
             let payment_method = (e.target.id === 'paypal-btn' ? 'paypal' : 'stripe'), mode = popup1.getAttribute('mode');
             let [name, email, phone, dob, address, postalCode] = [v.t('#name'), v.t('#email'), v.t('#phone'), v.t('#dob'), v.t('#address'), v.t('#postalCode')];
             let [hasDisability, hasBadMedical, sex, hasViolence, purpose] = [v.s('#hasDisability'), v.s('#hasBadMedical'), v.s('#sex'), v.s('#hasViolence'), v.t('#purpose')];
-            let [student_signature, student_parants_signature] = [v.t('#student_signature'), v.t('#parent_signature')]
+            let [student_signature, student_parants_signature, student_media_permision_signature] = [v.t('#student_signature'), v.t('#parent_signature'), v.t('#student_media_permision_signature')];
+            
             let disabilityDetails = undefined;
 
 
@@ -162,9 +164,10 @@ document.querySelectorAll('.close-popup').forEach(
 
             let response = await fetch(window.location.origin + '/api/l-api/course/purchase/', {
                 method: 'POST',
-                body: JSON.stringify({ name, email, phone, dob, address, postalCode, studentImage, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, payment_method, mode, student_signature, student_parants_signature, coupon: isValidCoupon ? coupon : undefined, }),
+                body: JSON.stringify({ name, email, phone, dob, address, postalCode, studentImage, hasDisability, hasBadMedical, sex, hasViolence, disabilityDetails, purpose, payment_method, mode, student_signature, student_parants_signature, coupon: isValidCoupon ? coupon : undefined, student_media_permision_signature }),
                 headers: { 'Content-Type': 'application/json' }
             });
+
             if (response.status === 201) {
                 let url = (await response.json()).url;
                 window.location.assign(url);
@@ -365,7 +368,6 @@ async function c1(e) {
         studentImageInput.replaceWith(newFileInput);
         studentImage = undefined;
         newFileInput.accept = 'image/*';
-
         newFileInput.addEventListener('change', c1);
         studentImageInput = newFileInput;
 

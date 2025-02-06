@@ -270,6 +270,14 @@ body {
   line-height: 1.5;
 }
 
+.popup .course-info-text {
+  font-size: 0.9rem;
+  color: #666;
+  
+  text-align: left;
+  line-height: 1.5;
+}
+
 /* Form Layout */
 .popup-form {
   display: flex;
