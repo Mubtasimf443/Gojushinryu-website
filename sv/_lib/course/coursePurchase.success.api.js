@@ -50,20 +50,13 @@ export async function coursePurchaseSuccessPaypal(req = request, res = response)
             payment_date : Date.now(),
             paidAmount : courseEnrollment.course_price.toFixed(2)
         });
+
         courseEnrollment.paymentThisMonth={
             isPaid :true,
             paidDate :new Date()
         }
+
         courseEnrollment = await courseEnrollment.save();
-
-
-        if (courseEnrollment.student_id) {
-            let st = await User.findOne({ id: courseEnrollment.student_id });
-            if (st) {
-                st.enrolled_course.push({ name: courseEnrollment.course_name, courseEnrollMentID: courseEnrollment._id, id: courseEnrollment.id, paid: true, date: new Date() });
-                await st.save();
-            }
-        }
 
         let gst_rate=await settingsAsString('gst_rate');
 
@@ -73,6 +66,7 @@ export async function coursePurchaseSuccessPaypal(req = request, res = response)
         await sendCoursePurchaseEmailToStudent(student_email, student_name, course_name, Number(course_price), new Date(apply_date), courseEnrollment.id);
         await sendCoursePurchaseEmailToAdmin(student_name, student_email, course_name, Number(course_price), new Date(apply_date));
         return res.send(successPage(`#${courseEnrollment.id}`, course_name, (course_price + (course_price * gst_rate))));
+
     } catch (error) {
         console.error(error);
         if (validate.isObject(error)) {
@@ -84,7 +78,9 @@ export async function coursePurchaseSuccessPaypal(req = request, res = response)
 }
 export async function coursePurchaseCancelPaypal(req = request, res = response) {
     try {
+
         let paypal_token = req.query.token;
+        
         if (!paypal_token || isnota.string(paypal_token)) namedErrorCatching('parameter error', 'token is emty');
         if (!tobe.max(paypal_token, 300)) namedErrorCatching('parameter error', 'token is too large');
         paypal_token = await repleCaracter(paypal_token);
@@ -140,13 +136,6 @@ export async function coursePurchaseSuccessStripe(req = request, res = response)
             paidDate :new Date()
         }
         courseEnrollment = await courseEnrollment.save();
-        if (courseEnrollment.student_id) {
-            let st = await User.findOne({ id: courseEnrollment.student_id });
-            if (st) {
-                st.enrolled_course.push({ name: courseEnrollment.course_name, courseEnrollMentID: courseEnrollment._id, id: courseEnrollment.id, paid: true ,date :new Date()});
-                await st.save();
-            }
-        }
 
         let { student_name, student_email, course_name, course_price, apply_date, } = courseEnrollment;
         let gst_rate=await settingsAsString('gst_rate');
@@ -164,6 +153,7 @@ export async function coursePurchaseSuccessStripe(req = request, res = response)
         else return res.status(400).render('massage_server', 'failed to purchase a course');
     }
 }
+
 export async function coursePurchaseCancelStripe(req = request, res = response) {
     try {
         let stripe_session_id = req.query.session_id;

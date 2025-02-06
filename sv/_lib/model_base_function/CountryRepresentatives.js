@@ -219,8 +219,6 @@ export async function getCountryRepresentativesForAdmin(req, res) {
         return res.sendStatus(500)
     }
 }
-
-
 export async function allowRepresentative(req, res) {
     try {
         let { id } = req.body;
@@ -246,9 +244,6 @@ export async function allowRepresentative(req, res) {
         return res.sendStatus(500)
     }
 }
-
-
-
 export async function disAllowRepresentative(req, res) {
     try {
         let { id } = req.body;
@@ -264,8 +259,6 @@ export async function disAllowRepresentative(req, res) {
         return res.sendStatus(500)
     }
 }
-
-
 async function requestPayment(req = request, res = response) {
     try {
         let id = req.query.id;
@@ -298,8 +291,6 @@ async function requestPayment(req = request, res = response) {
         catchError(res, error);
     }
 }
-
-
 async function paypalPayment(req = request, res = response) {
     try {
         let id = req.query.id;
@@ -513,7 +504,6 @@ async function stripePaySuccess(req = request, res = response) {
     }
 }
 
-
 async function stripePayCancel(req = request, res = response) {
     try {
         let id =req.query.session_id ;
@@ -549,7 +539,6 @@ async function stripePayCancel(req = request, res = response) {
         } catch (error) { console.error(error) }
     }
 }
-
 function PaymentSuccessPage(res = response) {
     let style = (` 
         <style>

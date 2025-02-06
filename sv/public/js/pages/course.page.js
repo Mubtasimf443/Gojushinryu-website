@@ -31,8 +31,8 @@ let studentImage = undefined;
         event.preventDefault();
         return setPopupDetails(`[detailspopup1]`, dates_of_regular_class)
     });
-
 }
+
 { //our online classes
     let course = document.querySelector(`[id="Our-Online-Martial-Art-Classes"]`);
     let contactBtn = course.querySelector('.enroll-btn');
@@ -107,7 +107,9 @@ document.querySelectorAll('.close-popup').forEach(
                             img.style.display = 'none';
                             let newFileInput = document.createElement('input');
                             newFileInput.type = 'file';
+                            newFileInput.addEventListener('change', c1);
                             fileInput.replaceWith(newFileInput);
+                            fileInput = newFileInput;
                             studentImage = undefined;
                         }
                     }
@@ -222,40 +224,7 @@ document.querySelectorAll('.close-popup').forEach(
         }
     })
 
-    studentImageInput.addEventListener('change', async function c1(e) {
-        let img = popup1.querySelector('.student-image');
-        function failed(params) {
-            img.setAttribute('style', 'display:none');
-            let newFileInput = document.createElement('input');
-            newFileInput.type = 'file';
-            studentImageInput.replaceWith(newFileInput);
-            studentImage = undefined;
-            newFileInput.accept = 'image/*';
-
-            newFileInput.addEventListener('change', c1);
-            studentImageInput = newFileInput;
-           
-        }
-
-        if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
-            failed();
-            return alert('Please upload an Image');
-        }
-        img.src = '/img/spinner.svg';
-        img.setAttribute('style', 'object-fit: contain;object-position: center center;')
-        let form = new FormData();
-        form.append('img', e.target.files[0]);
-        const response = await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form }).catch(failed);
-        if (response.status === 201) {
-            let link = (await response.json()).link;
-            img.src = link;
-            img.setAttribute('style', 'object-fit: contain;object-position: center center;');
-            studentImage = link;
-            return;
-        } else return failed();
-
-
-    });
+    studentImageInput.addEventListener('change', c1);
 
 
 
@@ -387,7 +356,40 @@ function returnV(doc) {
     }
     return (new V(doc));
 }
+async function c1(e) {
+    let img = popup1.querySelector('.student-image');
+    function failed(params) {
+        img.setAttribute('style', 'display:none');
+        let newFileInput = document.createElement('input');
+        newFileInput.type = 'file';
+        studentImageInput.replaceWith(newFileInput);
+        studentImage = undefined;
+        newFileInput.accept = 'image/*';
 
+        newFileInput.addEventListener('change', c1);
+        studentImageInput = newFileInput;
+
+    }
+
+    if (e.target.files[0].type !== 'image/png' && e.target.files[0].type !== 'image/jpg' && e.target.files[0].type !== 'image/jpeg' && e.target.files[0].type !== 'image/webp') {
+        failed();
+        return alert('Please upload an Image');
+    }
+    img.src = '/img/spinner.svg';
+    img.setAttribute('style', 'object-fit: contain;object-position: center center;')
+    let form = new FormData();
+    form.append('img', e.target.files[0]);
+    const response = await fetch(window.location.origin + '/api/api_s/upload-image-for-25-minutes', { method: 'POST', body: form }).catch(failed);
+    if (response.status === 201) {
+        let link = (await response.json()).link;
+        img.src = link;
+        img.setAttribute('style', 'object-fit: contain;object-position: center center;');
+        studentImage = link;
+        return;
+    } else return failed();
+
+
+}
 
 function setPopupDetails(query, dateString) {
     let popup = document.querySelector(query);

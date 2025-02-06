@@ -45,7 +45,7 @@ pageRouter.get('/home',longCatch24, async (req, res) => {
 })
 // pageRouter.get('/course', FindCourseApi)
 
-pageRouter.get('/courses',userCheckAndNavigation,async function (req, res) {
+pageRouter.get('/courses',async function (req, res) {
     try {
         let settings=await Settings.findOne({});
         res.render('course-selling-page', {

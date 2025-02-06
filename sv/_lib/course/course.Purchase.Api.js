@@ -29,7 +29,6 @@ export async function coursePurchaseApi(req = request, res = response) {
             if (validate.isEmty(dob)) namedErrorCatching('parameter error', 'dob is emty');
             if (validate.isEmty(address)) namedErrorCatching('parameter error', 'address is emty');
             if (validate.isEmty(hasDisability)) namedErrorCatching('parameter error', 'hasDisability is emty');
-            // if (validate.isEmty(disabilityDetails)) namedErrorCatching('parameter error', 'disabilityDetails is emty');
             if (validate.isEmty(hasBadMedical)) namedErrorCatching('parameter error', 'hasBadMedical is emty');
             if (validate.isEmty(purpose)) namedErrorCatching('parameter error', 'hasBadMedical is emty');
             if (validate.isEmty(sex)) namedErrorCatching('parameter error', 'hasBadMedical is emty');
@@ -54,7 +53,7 @@ export async function coursePurchaseApi(req = request, res = response) {
         let course_price = (mode === '1' ? settings.fees_of_reqular_class : settings.fees_of_Bhangra_fitness);
    
         if (!isValidUrl(studentImage)) namedErrorCatching('image-url-error','invalid studentImage url');
-          
+      
         async function AddImages( courseEnrollment = new CourseEnrollments({})) {
             try {
                 studentImage =await urlToCloudinaryUrl(studentImage);
@@ -79,7 +78,6 @@ export async function coursePurchaseApi(req = request, res = response) {
             student_dob :dob,
             student_postcode : postalCode,
             student_sex :sex,
-            student_id:req.user_info.id,
             additional_details :{
                 hasBadMedical,
                 hasDisability,
@@ -89,6 +87,7 @@ export async function coursePurchaseApi(req = request, res = response) {
                 student_parants_signature
             }
         });
+
         if (hasDisability === 'Yes' || hasBadMedical === 'Yes' ) {
             if (typeof disabilityDetails === 'string') {
                 courseEnrollment.additional_details.disabilityDetails=await repleCaracter(disabilityDetails);
@@ -96,7 +95,7 @@ export async function coursePurchaseApi(req = request, res = response) {
         };
 
         let paymentPrices = {};
-        { //Payment Prices 
+        {
             paymentPrices['course_price'] = Math.round(course_price);
             paymentPrices['gst_rate'] = settings.gst_rate / 100;
             paymentPrices['gst'] = paymentPrices['course_price'] * paymentPrices['gst_rate'];
@@ -201,11 +200,8 @@ export async function courseContactApi(req = request, res = response) {
         if (validate.isEmty(district)) namedErrorCatching('parameter error', 'district is emty');
         if (validate.isEmty(road_no)) namedErrorCatching('parameter error', 'road_no is emty');
         if (validate.isNaN(zipcode)) namedErrorCatching('parameter error', 'zipcode is emty or not a number');
-
         if (mode !== '2' && mode !== '3' && mode !== '4') namedErrorCatching('parameter error', 'mode is emty');
-
         if (!validate.isEmail(email)) namedErrorCatching('parameter error', 'email is not a email');
-
         if (!tobe.minMax(name, 3, 30)) namedErrorCatching('parameter error', 'name is too short or too big');
         if (!tobe.minMax(country, 3, 30)) namedErrorCatching('parameter error', 'country is too short or too big');
         if (!tobe.minMax(city, 3, 30)) namedErrorCatching('parameter error', 'city is too short or too big');
@@ -214,7 +210,6 @@ export async function courseContactApi(req = request, res = response) {
         if (zipcode < 30 || zipcode > 1000000) namedErrorCatching('parameter error', 'zipcode is too short or too big');
 
         let courses = new Map([['2', '~Online Martial Art Classes~'], ['3', `~Our Seminars~`], ['4', `~Women Defence Classes~`]]);
-
 
         let isSend = await sendCourseApplicationEmail({ student: { name, phone, email, country, city, district, zipcode, road_no }, courseName: courses.get(mode) });
 

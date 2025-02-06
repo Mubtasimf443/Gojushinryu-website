@@ -18,8 +18,9 @@ export async function courseEnrollmentPaymentRequestApi(req=request , res = resp
         if (id.toString().toLowerCase()=== 'nan') namedErrorCatching('parameter error', 'id is not a number');
         let enrollment = await CourseEnrollments.findOne({ id });
         if (validate.isNull(enrollment)) throw ('there is no such enrollment in  this id :' + id);
-
+        
         let id2 = (new Date().getMonth() < 9 ? "0" + (new Date().getMonth() + 1) : (new Date().getMonth() + 1)) + "-" + new Date().getFullYear();
+        
         let existIndex = enrollment.paymentsData.findIndex(function name(element) {
             if (element.id === id2) return element;
         });
@@ -27,9 +28,11 @@ export async function courseEnrollmentPaymentRequestApi(req=request , res = resp
         if (existIndex === -1) {
             return res.status(400).json({message :'Before 1 of month , requesting is not allowed'});
         }
+       
         if (enrollment.paymentsData[existIndex].paid === true){ 
             return res.status(400).json({ message: "Student Has Paid the fees" });
         }
+       
         if ((Date.now() - enrollment.paymentsData[existIndex].lastPaymentRequestSendDate) < (24 * 60 * 60 * 1000)) {
             return res.status(400).json({ message: "You can not request for fees 2 times in a Day" });
         }
@@ -44,7 +47,6 @@ export async function courseEnrollmentPaymentRequestApi(req=request , res = resp
         let dueDate=new Date(current.getFullYear(), current.getMonth() , 10).toDateString();
         let paymentLink = BASE_URL + '/api/api_s/course/enrollments/payment/this-month?id=' + enrollment.id;
         
-
         await sendPaymentRequest(student, paymentLink , dueDate);
 
         return  res.sendStatus(202);
@@ -52,7 +54,6 @@ export async function courseEnrollmentPaymentRequestApi(req=request , res = resp
         catchError(res,error)
     }
 }
-
 
 
 async function sendPaymentRequest(student = { email: undefined, name: undefined }, paymentLink , dueDate) {

@@ -41,10 +41,9 @@ router.post('/paypal-membership-purchase', MembershipApidataCheckMidleware, payp
 router.post('/stripe-membership-api', membershipMidleWareStripe, stripeMembershipFunction);
 router.post('/uplaod-post', uplaodPostAPiFucntion)
 router.post('/upload-coutntry-representative',morgan('dev'), uploadCountryRepresentativeApi)
-router.post('/custom-membership', userCheck, customMembershipApi)
-router.post('/custom-course', userCheck, customCoursePurchaseApi)
+
 router.post('/order/create', userCheck, createOrder);
-router.post('/course/purchase',userCheck, coursePurchaseApi);
+router.post('/course/purchase', coursePurchaseApi);
 router.post('/request-gojushinryu-membership', requestGojushinryuMembership);
 
 
