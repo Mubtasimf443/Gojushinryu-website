@@ -17,33 +17,6 @@ const app =express();
 await connectDB();
 app.use(morgan('dev'));
 
-app.get('/keep-live', async (req, res) => {
-    try {
-        res.status(202).send('suceess fully updating');
-        let startingTime=(new Date().toTimeString().substring(0,8));
-        let a= await (async function (params) {
-            let awaitingtimeout ;
-
-            await new Promise((resolve, reject) => {
-                let time = 1000 * 60 * 5;
-                awaitingtimeout = setTimeout(() => {
-                    clearInterval()
-                    resolve(true);
-                }, time);
-            });
-            clearTimeout(awaitingtimeout);
-            return ('ending is '+ (new Date().toTimeString().substring(0,8)));
-        })();
-        
-        log(`starting is ${startingTime} and`+ a);
-        return;
-    } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: "server error" })
-    }
-})
-
-
 app.get('/main',async function (req,res) {
     try {
         res.status(200).send('success fully tokens are being updated Alhamdulillah');
@@ -53,13 +26,6 @@ app.get('/main',async function (req,res) {
         console.error(error);
         res.status(500).json({error :"server error"})
     }
-});
-
-
-app.get('/loop', function (req,res) {
-   for (let i = 0; i < 1000; i++) {
-       fetch('http://localhost:3000/keep-live').catch(e => console.error(e));
-   }
 });
 
 app.get('/delete-image-url-after-24-hours', deleteImageUrlsAfter24Hour);

@@ -42,7 +42,7 @@ async function sendPaymentRequest(student = { email: undefined, name: undefined 
                     </div>
                 `, // HTML body
         });
-        // console.log('Monthly fee request email sent:', info.messageId);
+        console.log('Monthly fee request email sent:', info.messageId);
     } catch (error) {
         console.error('Error sending monthly fee request email:');
         console.error(error);

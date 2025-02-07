@@ -7,6 +7,7 @@ import Mail from "nodemailer/lib/mailer/index.js";
 import { CourseEnrollments } from "../courseEnrollment.js";
 import Mails from "../mails/course.mails.js";
 import Settings from "../settings.js";
+import { WEBSITE_ORIGIN } from "../../env.js";
 
 
 /* Course Enrollment jobs */

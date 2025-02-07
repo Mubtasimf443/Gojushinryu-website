@@ -1,5 +1,6 @@
-readonly Name="Mubtasim"
-cd "C:\git\Client Project\gojushinryo\sv";
+# بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
+# InshaAllah, By his marcy I will Gain Success 
+cd ..;
 git add .;
 echo "Give the name of commit"
 read -p "commit message : " commit_name;
