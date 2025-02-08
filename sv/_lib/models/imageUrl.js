@@ -14,8 +14,9 @@ let imgUrlSchema=new mongoose.Schema({
     id :{
         type :Number ,
         default :Date.now,
-        unique:true,
-    }
+        unique:true
+    },
+ 
 })
 
 

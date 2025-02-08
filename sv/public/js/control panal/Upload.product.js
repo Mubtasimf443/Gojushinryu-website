@@ -166,6 +166,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         
         uploadTheProductBtn.style.opacity = .7;
         uploadingStatus = true;
+        uploadTheProductBtn.innerHTML ='Uploading';
         let url = window.location.origin + '/api/api_s/upload-product';
 
         fetch(url, {
@@ -207,6 +208,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
             .finally(e => {
                 uploadTheProductBtn.style.opacity = 1;
                 uploadingStatus = false;
+                uploadTheProductBtn.innerHTML ='Upload';
             })
     })
 

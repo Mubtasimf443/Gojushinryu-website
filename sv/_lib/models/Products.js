@@ -15,21 +15,35 @@ const productschema = new mongoose.Schema({
   },
   name: {
     type: String,
+    trim: true,
   },
   description: {
     type: String,
+    trim: true,
   },
   cetegory: {
     type: String,
+    trim: true,
+    lowercase: true
   },
   thumb: {
     type: String,
+    trim: true,
   },
-  sizeDetails: String,
+  sizeDetails: {
+    type: String,
+    trim: true,
+  },
   images: [String],
   SizeAndPrice: [{
-    size: String,
-    price: Number
+    size: {
+      type: String,
+      trim: true,
+      lowercase: true
+    },
+    price: {
+      type: Number
+    }
   }]
 });
 
