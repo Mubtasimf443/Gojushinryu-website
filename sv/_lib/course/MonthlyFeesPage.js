@@ -14,6 +14,8 @@ import { Settings } from "../models/settings.js";
 import PaypalPayment from "../utils/payment/PaypalPayment.js";
 import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
 import StripePay from "../utils/payment/stripe.js";
+import MonthlyCourseEnrollmentFeesMails from "../mail/course.monthlyFeesMail.js";
+import { v4 as uuid} from "uuid";
 let __dirname =path.dirname(fileURLToPath(import.meta.url));
 
 
@@ -392,24 +394,46 @@ export async function MonthlyFeesRequestSuccessPaypal(req=request, res=response)
         }
 
         let GST = (await Settings.findOne({}))?.gst_rate ?? 5;
-
+        let uniquePaymentId = uuid();
         enrollment[existIndex].paymentsData= enrollment[existIndex].paymentsData.map(function(el){
-            if (el.paypal_token ===token) {
-                el.paid=true;
-                el.payment_date=new Date();
-                el.paidAmount =(enrollment[existIndex].course_price + enrollment[existIndex].course_price *(GST/100)).toFixed(2);
+            if (el.paypal_token === token) {
+                el.paid = true;
+                el.payment_date = new Date();
+                el.paidAmount = (enrollment[existIndex].course_price + enrollment[existIndex].course_price * (GST / 100)).toFixed(2);
+                el.payment_id = uniquePaymentId;
                 return el;
             } else return el;
         });
 
         enrollment[existIndex].paymentThisMonth = { isPaid: true, paidDate: new Date() };
         await enrollment[existIndex].save();
-        return res.status(202).send(MonthlyFeesSuccessPage({
+        res.status(202).send(MonthlyFeesSuccessPage({
             student : enrollment[existIndex].student_name ,
             total : (enrollment[existIndex].course_price + enrollment[existIndex].course_price * (GST / 100)).toFixed(2),
             id :  enrollment[existIndex].id,
             course :enrollment[existIndex].course_name
         }));
+        await MonthlyCourseEnrollmentFeesMails.confirmation.student({
+            course_fees : enrollment[existIndex].course_price.toFixed(2),
+            course_name : enrollment[existIndex].course_name,
+            email : enrollment[existIndex].student_email.trim().toLowerCase(),
+            student_name : enrollment[existIndex].student_name,
+            payment_id:uniquePaymentId,
+            gst : (enrollment[existIndex].course_price * (GST / 100)).toFixed(2),
+            total : (enrollment[existIndex].course_price + (enrollment[existIndex].course_price * (GST / 100)) ).toFixed(2),
+        }).catch(error => console.error(error));
+        
+        await MonthlyCourseEnrollmentFeesMails.confirmation.notifyAdmin({
+            course_fees : enrollment[existIndex].course_price.toFixed(2),
+            course_name : enrollment[existIndex].course_name,
+            // email : enrollment[existIndex].student_email.trim().toLowerCase(),
+            student_name : enrollment[existIndex].student_name,
+            payment_id:uniquePaymentId,
+            gst : (enrollment[existIndex].course_price * (GST / 100)).toFixed(2),
+            total : (enrollment[existIndex].course_price + (enrollment[existIndex].course_price * (GST / 100)) ).toFixed(2),
+        }).catch(error => console.error(error));
+
+        return;
     } catch (error) {
         console.error(error);
         res.status(500).send('Because of a error of the website , your request failed ....');
@@ -441,26 +465,47 @@ export async function MonthlyFeesRequestSuccessStripe(req = request, res = respo
             return;
         }
         let GST = (await Settings.findOne({}))?.gst_rate ?? 5;
-
+        let uniquePaymentId = uuid();
         enrollment[existIndex].paymentsData = enrollment[existIndex].paymentsData.map(function (el) {
             if (el.stripe_session_id === session_id) {
                 el.paid = true;
                 el.payment_date = new Date();
                 el.paidAmount = (enrollment[existIndex].course_price + enrollment[existIndex].course_price * (GST / 100)).toFixed(2);
+                el.payment_id =uniquePaymentId;
                 return el;
             } else return el;
         });
         enrollment[existIndex].paymentThisMonth = { isPaid: true, paidDate: new Date() };
         await enrollment[existIndex].save();
 
-
-        
-        return res.status(202).send(MonthlyFeesSuccessPage({
+        res.status(202).send(MonthlyFeesSuccessPage({
             student : enrollment[existIndex].student_name ,
             total : (enrollment[existIndex].course_price + enrollment[existIndex].course_price * (GST / 100)).toFixed(2),
             id :  enrollment[existIndex].id,
             course :enrollment[existIndex].course_name
         }));
+        
+        await MonthlyCourseEnrollmentFeesMails.confirmation.student({
+            course_fees : enrollment[existIndex].course_price.toFixed(2),
+            course_name : enrollment[existIndex].course_name,
+            email : enrollment[existIndex].student_email.trim().toLowerCase(),
+            student_name : enrollment[existIndex].student_name,
+            payment_id:uniquePaymentId,
+            gst : (enrollment[existIndex].course_price * (GST / 100)).toFixed(2),
+            total : (enrollment[existIndex].course_price + (enrollment[existIndex].course_price * (GST / 100)) ).toFixed(2),
+        }).catch(error => console.error(error));
+        
+        await MonthlyCourseEnrollmentFeesMails.confirmation.notifyAdmin({
+            course_fees : enrollment[existIndex].course_price.toFixed(2),
+            course_name : enrollment[existIndex].course_name,
+            // email : enrollment[existIndex].student_email.trim().toLowerCase(),
+            student_name : enrollment[existIndex].student_name,
+            payment_id:uniquePaymentId,
+            gst : (enrollment[existIndex].course_price * (GST / 100)).toFixed(2),
+            total : (enrollment[existIndex].course_price + (enrollment[existIndex].course_price * (GST / 100)) ).toFixed(2),
+        }).catch(error => console.error(error));
+        
+        return
     } catch (error) {
         console.error(error);
         res.status(500).send('Because of a error of the website , your request failed ....');

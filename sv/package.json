@@ -26,7 +26,8 @@
     "nodemon": "^3.1.4",
     "request": "^2.88.2",
     "string-player": "^1.1.8",
-    "stripe": "^17.2.0"
+    "stripe": "^17.2.0",
+    "uuid": "^11.0.5"
   },
   "name": "gojushinryu.com-website",
   "version": "1.0.0",
