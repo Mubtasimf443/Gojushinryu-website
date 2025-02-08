@@ -1,5 +1,6 @@
 readonly Name="Mubtasim"
-cd "C:\git\Client Project\gojushinryo\sv";
+cd ..;
+pwd;
 git add .;
 echo "Give the name of commit"
 read -p "commit message : " commit_name;

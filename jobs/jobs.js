@@ -44,11 +44,10 @@ export default  async function Main() {
 async function updateYoutube() {
     try {
         let [status, token, refresh_token]=await settingsAsArray(['youtube_access_token_status', 'youtube_token' , 'youtube_refresh_token']);
-
-        if (!status) throw 'their is no permision to post on youtube';
-        
+        if (!status) {
+            throw 'their is no permision to post on youtube';
+        }
         let googleclient=new google.auth.OAuth2(YOUTUBE_KEY,YOUTUBE_SECRET,YOUTUBE_REDIRECT_URI);
-
         googleclient.setCredentials({
             access_token :token,
             refresh_token :refresh_token
