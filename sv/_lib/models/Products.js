@@ -29,12 +29,22 @@ const productschema = new mongoose.Schema({
   thumb: {
     type: String,
     trim: true,
+    set : (thumb) => encodeURIComponent(thumb),
+    get : (thumb) => decodeURIComponent(thumb)
   },
   sizeDetails: {
     type: String,
     trim: true,
   },
-  images: [String],
+  images: {
+    type :Array,
+    of :  { 
+      type: String, 
+      trim: true ,
+      set : (thumb) => encodeURIComponent(thumb),
+      get : (thumb) => decodeURIComponent(thumb)
+    }
+  },
   SizeAndPrice: [{
     size: {
       type: String,
