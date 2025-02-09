@@ -14,6 +14,7 @@ import fetch from "node-fetch";
 import { FV_PAGE_ACCESS_TOKEN } from "../utils/env.js";
 import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import request from "../utils/fetch.js";
+import SocialMediaMail from "../mail/social.media.email.js";
 
 
 
@@ -37,27 +38,28 @@ export async function uploadVideoToMultimediaApi(req, res) {
             },
             filename: () => Date.now() + '_' + Math.floor(Math.random() * 1000) + '.mp4'
         }
-        await formidable(options).parse(req, async (err, feilds, files) => {
+        formidable(options).parse(req, async (err, feilds, files) => {
             try {
                 if (err) {
                     console.log({ err });
                     return res.sendStatus(400);
                 }
                 if (DontSuffortMime) return res.sendStatus(400)
+            
                 let { description, title, tags } = feilds;
                 let video = files.video ? files.video[0] : undefined;
                 if (!video) namedErrorCatching('file_upload_error','their is no video file')
-
+            
 
                 if (!description || !tags || !video || !title) throw 'error , !massage || !video || title is not define'
                 description=description[0];
                 title=title[0];
-
+             
                 if (!(title && description)) namedErrorCatching('perameter_error', 'title or description is emty');
                 if (title.length > 130 || title.length < 5) namedErrorCatching('perameter_error', 'title is too short or long');
                 if (description.length > 1000 || description.length < 5) namedErrorCatching('perameter_error', 'description is too short or long');
                 if (tags.length > 20 || tags.length < 1) namedErrorCatching('perameter_error', 'tags are too short');
-            
+                res.sendStatus(201)
                 let statusObject = {
                     facebook: false,
                     integram: false,
@@ -70,14 +72,12 @@ export async function uploadVideoToMultimediaApi(req, res) {
                 statusObject.facebook = await uploadToFacebook(video.newFilename, description);
                 statusObject.linkedin = await uploadToLinkedin(description, video.newFilename);
                 statusObject.integram = await uploadToInstagram(BASE_URL + `/api/file/temp-video/` + video.newFilename, description)
-                statusObject.tiktok=await uploadToTiktok(BASE_URL+`/api/file/temp-video/`+ video.newFilename  )
-                
-                log(statusObject);
-                
-                return res.sendStatus(201)
+                statusObject.tiktok = await uploadToTiktok(BASE_URL + `/api/file/temp-video/` + video.newFilename)
+
+                await SocialMediaMail.reports.videos(title, statusObject)
+                return;
             } catch (error) {
                 console.log(error);
-                return res.sendStatus(400)
             }
         })
     } catch (error) {

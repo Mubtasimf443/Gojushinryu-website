@@ -383,15 +383,203 @@ async function notifyTikTokNotConnected() {
   }
 }
 
+async function sendImageUploadReport(postTitle = '', status) {
+  try {
+    const uploadedPlatforms = [];
+    const failedPlatforms = [];
+
+    // Checking the status and categorizing platforms
+    if (status.facebook) uploadedPlatforms.push("Facebook");
+    else failedPlatforms.push("Facebook");
+
+    if (status.linkedin) uploadedPlatforms.push("LinkedIn");
+    else failedPlatforms.push("LinkedIn");
+
+    if (status.instegram) uploadedPlatforms.push("Instagram");
+    else failedPlatforms.push("Instagram");
+
+    if (status.tiktok) uploadedPlatforms.push("TikTok");
+    else failedPlatforms.push("TikTok");
+
+
+
+    // Formatting the report
+    const uploadedList = uploadedPlatforms.length !== 0
+      ? (`<ul>${uploadedPlatforms.map(p => `<li style="color: green;">✅ ${p}</li>`).join("")}</ul>`)
+      : ("<p style='color: red;'>❌ No images were uploaded successfully.</p>");
+
+    const failedList = failedPlatforms.length !== 0
+      ? (`<ul>${failedPlatforms.map((p) => (`<li style="color: red;">❌ ${p}</li>`)).join("")}</ul>`)
+      : ("<p style='color: green;'>✅ No failures reported.</p>");
+
+    // Email HTML content
+    const emailHtml = `
+     <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+       <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+         <h2 style="color: #ffaa1c; text-align: center;">📢 Image Upload Report</h2>
+         <p>Dear Admin,</p>
+         <p>The image post titled <strong>"${postTitle}"</strong> has been processed for social media posting.</p>
+
+         <h3 style="color: green;">✅ Uploaded Successfully:</h3>
+         ${uploadedList}
+         <h3 style="color: red;">❌ Upload Failed:</h3>
+         ${failedList}
+
+         <p>Please check your <a href="${BASE_URL}/control-panal" style="color: #ffaa1c;">Control Panel</a> to retry failed uploads.</p>
+         <p>Best regards,<br><strong>${ORGANIZATION_NAME} Team</strong></p>
+       </div>
+     </div>`;
+
+    // Sending email
+    const info = await mailer.sendMail({
+      from: FROM_EMAIL,
+      to: ADMIN_EMAIL,
+      subject: `📢 Image Upload Report for "${postTitle.length > 25 ? postTitle.substring(0, 25) + '...' : postTitle}"`,
+      html: emailHtml
+    });
+
+    console.log("Image Upload Report Email Sent:", info.messageId);
+  } catch (error) {
+    console.error("Error sending Image Upload Report Email:", error);
+  }
+}
+async function sendVideoUploadReport(postTitle, status) {
+  try {
+    const uploadedPlatforms = [];
+    const failedPlatforms = [];
+
+    // Checking the status and categorizing platforms
+    if (status.facebook) uploadedPlatforms.push("Facebook");
+    else failedPlatforms.push("Facebook");
+
+    if (status.linkedin) uploadedPlatforms.push("LinkedIn");
+    else failedPlatforms.push("LinkedIn");
+
+    if (status.integram) uploadedPlatforms.push("Instagram");
+    else failedPlatforms.push("Instagram");
+
+    if (status.tiktok) uploadedPlatforms.push("TikTok");
+    else failedPlatforms.push("TikTok");
+
+    if (status.youtube) uploadedPlatforms.push("YouTube");
+    else failedPlatforms.push("YouTube");
+
+    // if (status.twitter) uploadedPlatforms.push("X (Twitter)");
+    // else failedPlatforms.push("X (Twitter)");
+
+    // Formatting the report
+    const uploadedList = uploadedPlatforms.length !== 0
+      ? (`<ul>${uploadedPlatforms.map(p => `<li style="color: green;">✅ ${p}</li>`).join("")}</ul>`)
+      : ("<p style='color: red;'>❌ No videos were uploaded successfully.</p>");
+
+    const failedList = failedPlatforms.length !== 0
+      ? (`<ul>${failedPlatforms.map(p => `<li style="color: red;">❌ ${p}</li>`).join("")}</ul>`)
+      : ("<p style='color: green;'>✅ No failures reported.</p>");
+
+    // Email HTML content
+    const emailHtml = `
+     <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+       <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+         <h2 style="color: #ffaa1c; text-align: center;">🎥 Video Upload Report</h2>
+         <p>Dear Admin,</p>
+         <p>The video post titled <strong>"${postTitle}"</strong> has been processed for social media posting.</p>
+
+         <h3 style="color: green;">✅ Uploaded Successfully:</h3>
+         ${uploadedList}
+
+         <h3 style="color: red;">❌ Upload Failed:</h3>
+         ${failedList}
+
+         <p>Please check your <a href="${BASE_URL}/control-panal" style="color: #ffaa1c;">Control Panel</a> to retry failed uploads.</p>
+         <p>Best regards,<br><strong>${ORGANIZATION_NAME} Team</strong></p>
+       </div>
+     </div>`;
+
+    // Sending email
+    const info = await mailer.sendMail({
+      from: FROM_EMAIL,
+      to: ADMIN_EMAIL,
+      subject: `🎥 Video Upload Report for "${postTitle.length > 25 ? postTitle.substring(0, 25) + '...' : postTitle}"`,
+      html: emailHtml
+    });
+
+    console.log("Video Upload Report Email Sent:", info.messageId);
+  } catch (error) {
+    console.error("Error sending Video Upload Report Email:", error);
+  }
+}
+async function sendTextPostUploadReport(postTitle, status) {
+  try {
+    const uploadedPlatforms = [];
+    const failedPlatforms = [];
+
+    // Checking the status and categorizing platforms
+    if (status.facebook) uploadedPlatforms.push("Facebook");
+    else failedPlatforms.push("Facebook");
+
+    if (status.linkedin) uploadedPlatforms.push("LinkedIn");
+    else failedPlatforms.push("LinkedIn");
+
+    if (status.twitter) uploadedPlatforms.push("X (Twitter)");
+    else failedPlatforms.push("X (Twitter)");
+
+    // Formatting the report
+    const uploadedList = uploadedPlatforms.length
+      ? `<ul>${uploadedPlatforms.map(p => `<li style="color: green;">✅ ${p}</li>`).join("")}</ul>`
+      : "<p style='color: red;'>❌ No text posts were uploaded successfully.</p>";
+
+    const failedList = failedPlatforms.length
+      ? `<ul>${failedPlatforms.map(p => `<li style="color: red;">❌ ${p}</li>`).join("")}</ul>`
+      : "<p style='color: green;'>✅ No failures reported.</p>";
+
+    // Email HTML content
+    const emailHtml = `
+     <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+       <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
+         <h2 style="color: #ffaa1c; text-align: center;">📝 Text Post Upload Report</h2>
+         <p>Dear Admin,</p>
+         <p>The text post titled <strong>"${postTitle}"</strong> has been processed for social media posting.</p>
+
+         <h3 style="color: green;">✅ Uploaded Successfully:</h3>
+         ${uploadedList}
+
+         <h3 style="color: red;">❌ Upload Failed:</h3>
+         ${failedList}
+
+         <p>Please check your <a href="${BASE_URL}/control-panal" style="color: #ffaa1c;">Control Panel</a> to retry failed uploads.</p>
+         <p>Best regards,<br><strong>${ORGANIZATION_NAME} Team</strong></p>
+       </div>
+     </div>`;
+
+    // Sending email
+    const info = await mailer.sendMail({
+      from: FROM_EMAIL,
+      to: ADMIN_EMAIL,
+      subject: `📝 Text Post Upload Report for "${postTitle.length > 25 ? postTitle.substring(0, 25) + '...' : postTitle}"`,
+      html: emailHtml
+    });
+
+    console.log("Text Post Upload Report Email Sent:", info.messageId);
+  } catch (error) {
+    console.error("Error sending Text Post Upload Report Email:", error);
+  }
+}
+
+
 const SocialMediaMail = {
-    notConnected: {
-        youtube : notifyYouTubeNotConnected,
-        facebook :notifyFacebookNotConnected,
-        Instagram :notifyInstagramNotConnected,
-        X_Twitter: notifyXNotConnected,
-        LinkedIn: notifyLinkedInNotConnected,
-        titkok: notifyTikTokNotConnected
-    }
+  notConnected: {
+    youtube: notifyYouTubeNotConnected,
+    facebook: notifyFacebookNotConnected,
+    Instagram: notifyInstagramNotConnected,
+    X_Twitter: notifyXNotConnected,
+    LinkedIn: notifyLinkedInNotConnected,
+    titkok: notifyTikTokNotConnected
+  },
+  reports: {
+    images: sendImageUploadReport,
+    videos: sendVideoUploadReport,
+    texts: sendTextPostUploadReport
+  }
 }
 
 

@@ -10,18 +10,29 @@ import fs from 'fs'
 import { fileURLToPath } from "url";
 import { log } from "console";
 import { createRequire } from "module";
+import SocialMediaMail from "./_lib/mail/social.media.email.js";
 
-const require = createRequire(import.meta.url);
-await connectDB();
+// await SocialMediaMail.reports.images("My Training Session" , { 
+//     facebook: true,
+//     linkedin: false,
+//     instagram: true,
+//     tiktok: false,
+//     youtube: true,
+//     twitter: false
+// });
 
-// const prods = require('./products.json');
+// await SocialMediaMail.reports.videos("Karate Training Session", {
+//     facebook: true,
+//     linkedin: false,
+//     instagram: true,
+//     tiktok: true,
+//     youtube: true,
+//     twitter: false
+//  });
 
-// for (let i = 0; i < prods.length; i++) {
-//     const element = prods[i];
-//     delete prods[i]._id;
-//     await Product.create(element);
-//     console.log('created');
-// }
-
-
+await SocialMediaMail.reports.texts("Motivational Quote", {
+   facebook: true,
+   linkedin: true,
+   twitter: false
+});
 process.exit()
