@@ -1,6 +1,7 @@
 # بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ  
 # InshaAllah, By his marcy I will Gain Success 
 cd ..;
+pwd;
 git add .;
 echo "Give the name of commit"
 read -p "commit message : " commit_name;

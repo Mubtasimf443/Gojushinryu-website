@@ -59,6 +59,40 @@ const settingsSchema =new mongoose.Schema({
     last_modification_date_as_Day:String,
     last_modification_date_as_Hour:String,
     last_modification_date_as_minute:String,
+
+
+    noticeData :{
+        social_media : {
+            not_connected :{
+                mails :{
+                    youtube :{
+                        date :Date,
+                        dateNum:Number,
+                    },
+                    facebook :{
+                        date :Date,
+                        dateNum:Number,
+                    },
+                    x_twitter :{
+                        date :Date,
+                        dateNum:Number,
+                    } ,
+                    instagram :{
+                        date :Date,
+                        dateNum:Number,
+                    } ,
+                    linkedin :{
+                        date :Date,
+                        dateNum:Number,
+                    },
+                    tiktok :{
+                        date :Date,
+                        dateNum:Number,
+                    }
+                }
+            }
+        }
+    }
 });
 
 

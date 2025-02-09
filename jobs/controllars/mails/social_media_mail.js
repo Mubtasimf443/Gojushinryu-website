@@ -4,8 +4,8 @@ InshaAllah, By his marcy I will Gain Success
 */
 
 import { log } from "string-player";
-import { Settings } from "../models/settings.js";
-import { ADMIN_EMAIL, FROM_EMAIL, BASE_URL, ORGANIZATION_NAME } from "../utils/env.js";
+import { ADMIN_EMAIL, FROM_EMAIL, ORGANIZATION_NAME, WEBSITE_ORIGIN as BASE_URL } from "../../env.js";
+import Settings from "../settings.js";
 import { mailer } from "../utils/mailer.js";
 
 
@@ -384,15 +384,13 @@ async function notifyTikTokNotConnected() {
 }
 
 const SocialMediaMail = {
-    notConnected: {
-        youtube : notifyYouTubeNotConnected,
-        facebook :notifyFacebookNotConnected,
-        Instagram :notifyInstagramNotConnected,
-        X_Twitter: notifyXNotConnected,
-        LinkedIn: notifyLinkedInNotConnected,
-        titkok: notifyTikTokNotConnected
-    }
+  notConnected: {
+    youtube: notifyYouTubeNotConnected,
+    facebook: notifyFacebookNotConnected,
+    Instagram: notifyInstagramNotConnected,
+    X_Twitter: notifyXNotConnected,
+    LinkedIn: notifyLinkedInNotConnected,
+    titkok: notifyTikTokNotConnected
+  }
 }
-
-
 export default SocialMediaMail;
