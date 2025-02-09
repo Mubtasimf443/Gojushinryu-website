@@ -183,7 +183,7 @@
         if (youtube) {
             // container.querySelector(`[yt_status_icon]`).className = 'fa-solid fa-check';
             let btn = container.querySelector(`[auth_btn_youtube]`);
-            btn.innerHTML = 'Logout <i class="fa-solid fa-right-from-bracket" style="color:white" ></i>';
+            btn.innerHTML = 'Disconnect <i class="fa-solid fa-right-from-bracket" style="color:white" ></i>';
             btn.style.background = 'darkgrey';
             btn.addEventListener('click', youtubeApis.logout)
         }
@@ -191,14 +191,14 @@
             // container.querySelector(`[yt_status_icon]`).className = 'fa-solid fa-close';
             let btn = container.querySelector(`[auth_btn_youtube]`);
             btn.style.background = 'black';
-            btn.innerHTML = 'Login';
+            btn.innerHTML = 'Connect';
             btn.addEventListener('click', youtubeApis.login)
         }
         if (linkedin) {
             // container.querySelector(`[linkedin_status_icon]`).className ='fa-solid fa-check';
             // container.querySelector(`[linkedin_status_icon]`).style.color='green'
             let btn = container.querySelector(`[auth_btn_linkedin]`);
-            btn.innerHTML = 'Logout <i class="fa-solid fa-right-from-bracket" style="color:white" ></i>';
+            btn.innerHTML = 'Disconnect <i class="fa-solid fa-right-from-bracket" style="color:white" ></i>';
             btn.style.background = 'darkgrey';
             btn.addEventListener('click',linkedinApis.logout)
         }
@@ -206,34 +206,34 @@
             // container.querySelector(`[linkedin_status_icon]`).className = 'fa-solid fa-close';
             let btn = container.querySelector(`[auth_btn_linkedin]`);
             btn.style.background = 'black';
-            btn.innerHTML = 'Login';
+            btn.innerHTML = 'Connect';
             btn.addEventListener('click', linkedinApis.login);
         }
         if (tiktok) {
             // container.querySelector(`[tiktok_status_icon]`).className = 'fa-solid fa-check';
             let btn = container.querySelector(`[auth_btn_tiktok]`);
-            btn.innerHTML = 'Logout <i class="fa-solid fa-right-from-bracket" style="color:white" ></i>';
+            btn.innerHTML = 'Disconnect <i class="fa-solid fa-right-from-bracket" style="color:white" ></i>';
             btn.style.background = 'darkgrey';
             btn.addEventListener('click',tiktokApis.logout);
         }
         if (!tiktok) {
             // container.querySelector(`[tiktok_status_icon]`).className = 'fa-solid fa-close';
             let btn = container.querySelector(`[auth_btn_tiktok]`);
-            btn.innerHTML = 'Login';
+            btn.innerHTML = 'Connect';
             btn.style.background = '#000';
             btn.addEventListener('click',tiktokApis.login);
         }
         if (facebook) {
             // container.querySelector(`[facebook_status_icon]`).className = 'fa-solid fa-check';
             let btn = container.querySelector(`[auth_btn_facebook]`);
-            btn.innerHTML = 'Logout <i class="fa-solid fa-right-from-bracket" style="color:white" ></i>';
+            btn.innerHTML = 'Disconnect <i class="fa-solid fa-right-from-bracket" style="color:white" ></i>';
             btn.style.background = 'darkgrey';
             btn.addEventListener('click',facebookApis.logout);
         }
         if (!facebook) {
             // container.querySelector(`[facebook_status_icon]`).className = 'fa-solid fa-close';
             let btn = container.querySelector(`[auth_btn_facebook]`);
-            btn.innerHTML = 'Login';
+            btn.innerHTML = 'Connect';
             btn.style.background = '#000';
             btn.addEventListener('click',facebookApis.login);
         }

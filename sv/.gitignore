@@ -16,3 +16,4 @@ temp/images/*
 /node_modules
 /temp/pdfs/*
 !/temp/pdfs/a.txt
+/public/css/pages/saminar.css

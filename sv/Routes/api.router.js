@@ -41,6 +41,7 @@ import { admin_approveGojushinryuMembership, cancelAndDeleteGojushinryuMembershi
 import catchError from "../_lib/utils/catchError.js";
 import { deleteAsset, findAssetsVideoControlPanal, findImageAssetsControlPanal, imagesPageImage, UploadImageAssets, UploadVideoAssets, videosPageVideos } from "../_lib/model_base_function/Assets.js";
 import SyllabusAssetRouter from "../_lib/model_base_function/sylabus.js";
+import SaminarRouter from "../_lib/model_base_function/saminar.js";
 
 
 
@@ -53,6 +54,7 @@ let router =Router()
 router.use(morgan('dev'))
 router.use(noCache)
 router.use(SyllabusAssetRouter);
+router.use('/saminars', SaminarRouter )
 //get
 router.get('/find-grand-master', FindGMApi)
 router.get('/find-product',FindProduct)

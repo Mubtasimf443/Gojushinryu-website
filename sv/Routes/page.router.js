@@ -151,6 +151,7 @@ pageRouter.get('/media/:name', dayCatch7,(req, res) => {
     if (req.params.name === "events") return eventPageNavigation(req, res)
     if (req.params.name === "post") return postPageNavigation(req, res)
     if (req.params.name === "images") return res.render('images');
+    if (req.params.name === "saminars") return res.render('saminars');
 })
 
 pageRouter.get('/custom-links/:type/:unique_id',customLinkPage);

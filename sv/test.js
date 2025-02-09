@@ -11,28 +11,12 @@ import { fileURLToPath } from "url";
 import { log } from "console";
 import { createRequire } from "module";
 import SocialMediaMail from "./_lib/mail/social.media.email.js";
+import mongoose from "mongoose";
+import Saminars from "./_lib/models/Saminar.js";
 
-// await SocialMediaMail.reports.images("My Training Session" , { 
-//     facebook: true,
-//     linkedin: false,
-//     instagram: true,
-//     tiktok: false,
-//     youtube: true,
-//     twitter: false
-// });
 
-// await SocialMediaMail.reports.videos("Karate Training Session", {
-//     facebook: true,
-//     linkedin: false,
-//     instagram: true,
-//     tiktok: true,
-//     youtube: true,
-//     twitter: false
-//  });
-
-await SocialMediaMail.reports.texts("Motivational Quote", {
-   facebook: true,
-   linkedin: true,
-   twitter: false
-});
+await connectDB();
+await Saminars.findOneAndUpdate({}, {
+    title : 'Shihan Varun Jettly is excited to announce a fantastic opportunity for the Griesbach community! Join us for a *free self-defense seminar* on *February 15, 2025, from'
+})
 process.exit()

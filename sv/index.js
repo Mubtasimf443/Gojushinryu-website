@@ -122,10 +122,7 @@ app.get('/hacker/make-website-hacked', (req, res) => {
     mekeHacked(heckerJsonPath);
 })
 
-app.get('/favicon.ico', (req, res) => {
-    console.log('/Favicon');
-    res.sendFile(path.resolve(dirName, './public/img/i1.png'))
-});
+app.get('/favicon.ico', (req, res) => res.sendFile(path.resolve(dirName, './public/img/6060.png')));
 app.get('/hello', (req, res) => res.sendFile(path.resolve(dirName, './public/test.html')));
 app.get('/hello2', (req, res) => {
     console.log('base url is : '+ req.url);
