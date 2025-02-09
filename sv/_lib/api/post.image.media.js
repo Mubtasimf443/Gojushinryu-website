@@ -92,9 +92,7 @@ async function uploadToTiktok(images, caption) {
         let img = images.shift();
         images.push(BASE_URL + '/api/file/temp/' + img);
     }
-    let response = await request.post(
-        (BASE_URL + `/api/media-api/tiktok/images`),
-        {
+    let response = await request.post(BASE_URL + `/api/media-api/tiktok/images`,{
             images,
             caption
         },

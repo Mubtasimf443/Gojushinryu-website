@@ -10,6 +10,8 @@ import Instagram from "../instegram.js";
 import { settingsAsArray } from "../../model_base_function/Settings.js";
 import { log } from "string-player";
 import { APP_AUTH_TOKEN } from "../../utils/env.js";
+import { Settings } from "../../models/settings.js";
+import SocialMediaMail from "../../mail/social.media.email.js";
 
 let router=Router();
  
@@ -96,11 +98,23 @@ router.post('/upload/video', async function (req,res) {
 
 
 async function getInstagram() {
-    let [status, id,accessToken]=await settingsAsArray(['instagram_access_token_status','instagram_user_id','fb_access_token']);
-    if (!status) namedErrorCatching('auth_error','Instagram access token not found');
-    if (!id) namedErrorCatching('auth_error','Instagram user id not found');
-    if (!accessToken) namedErrorCatching('auth_error','Instagram access token id token not found');
-    return new Instagram({accessToken,id});
+    let [status, id, accessToken] = await settingsAsArray(['instagram_access_token_status', 'instagram_user_id', 'fb_access_token']);
+    if (!status) {
+        await Settings.findOneAndUpdate({}, { instagram_access_token_status: false, instagram_token: null, instagram_user_id: null });
+        SocialMediaMail.notConnected.Instagram();
+        namedErrorCatching('auth_error', 'Instagram access token not found');
+    }
+    if (!id) { 
+        await Settings.findOneAndUpdate({}, { instagram_access_token_status: false, instagram_token: null, instagram_user_id: null });
+        SocialMediaMail.notConnected.Instagram();
+        namedErrorCatching('auth_error', 'Instagram user id not found');
+    }
+    if (!accessToken) {
+        await Settings.findOneAndUpdate({}, { instagram_access_token_status: false, instagram_token: null, instagram_user_id: null });
+        SocialMediaMail.notConnected.Instagram();
+        namedErrorCatching('auth_error', 'Instagram access token id token not found');
+    }
+    return new Instagram({ accessToken, id });
 }
 
 

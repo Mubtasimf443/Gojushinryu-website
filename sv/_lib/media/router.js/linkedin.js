@@ -15,6 +15,7 @@ import { fileURLToPath } from "url";
 import { log } from "string-player";
 import { LINKEDIN_KEY,LINKEDIN_SECRET , LINKEDIN_REDIRECT_URI, APP_AUTH_TOKEN } from "../../utils/env.js";
 import { Settings } from "../../models/settings.js";
+import SocialMediaMail from "../../mail/social.media.email.js";
 
 
 const __dirname=dirname(fileURLToPath(import.meta.url));
@@ -60,7 +61,7 @@ router.get('/auth-callback',async function(req, res) {
         if (!Array.isArray(pages)) throw 'can not get page access token'
     } catch (error) {
         console.error(error);
-        catchError(res,error)
+        catchError(res,error);
     }
 } )
  
@@ -96,7 +97,11 @@ router.post('/uplaod/images', async function uploadImages(req, res) {
         if (images.length === 0) namedErrorCatching('perameter-error', 'images is a emty array');
 
         let [accessToken, accessTokenStatus, organization] = await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status", "linkedin_organization"]);
-        if (!accessTokenStatus || !accessToken || !organization) return res.sendStatus(401);
+        if (!accessTokenStatus || !accessToken || !organization) {
+            SocialMediaMail.notConnected.LinkedIn();
+            await Settings.findOneAndUpdate({}, { linkedin_access_token: null, linkedin_access_token_status: false, linkedin_refresh_token: null });
+            return res.sendStatus(401);
+        }
         
         for (let i = 0; i < images.length; i++) {
             let name=images.shift();
@@ -133,7 +138,11 @@ router.post('/upload/video', async function (req, res) {
             title = (typeof req.body.title === 'string' ? req.body.title : ''),
             video = (typeof req.body.video === 'string' ? req.body.video : ''),
             [accessToken, accessTokenStatus, organization] = await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status", "linkedin_organization"]);
-        if (!accessTokenStatus || !accessToken || !organization) return res.sendStatus(401);
+        if (!accessTokenStatus || !accessToken || !organization)  {
+            SocialMediaMail.notConnected.LinkedIn();
+            await Settings.findOneAndUpdate({}, { linkedin_access_token: null, linkedin_access_token_status: false, linkedin_refresh_token: null });
+            return res.sendStatus(401);
+        }
         if (!title) namedErrorCatching('perameter-error', 'title is emty');
         if (!video) namedErrorCatching('perameter-error', 'video is emty');
         video = path.resolve(__dirname, `../../../temp/video/${video}`);
@@ -172,11 +181,12 @@ router.post('/upload/feed',async function (req,res) {
 
 async function getLinkedinData() {
     let [accessToken, accessTokenStatus, organization] = await settingsAsArray(["linkedin_access_token", "linkedin_access_token_status", "linkedin_organization"]);
-    if (!accessTokenStatus || !accessToken || !organization) namedErrorCatching('auth_error', 'linkedin is not authenticated');
-    return {
-        organization,
-        accessToken
+    if (!accessTokenStatus || !accessToken || !organization) {
+        SocialMediaMail.notConnected.LinkedIn();
+        await Settings.findOneAndUpdate({}, { linkedin_access_token: null, linkedin_access_token_status: false, linkedin_refresh_token: null });
+        namedErrorCatching('auth_error', 'linkedin is not authenticated');
     }
+    return ({ organization,accessToken});
 }
 
 

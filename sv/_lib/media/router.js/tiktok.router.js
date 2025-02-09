@@ -9,6 +9,8 @@ import { TIKTOK_CLIENT_KEY, TIKTOK_CLIENT_SECRET, TIKTOK_REDIRECT_URI } from "..
 import catchError, { namedErrorCatching } from "../../utils/catchError.js";
 import { getSettings, settingsAsArray } from "../../model_base_function/Settings.js";
 import { log } from "string-player";
+import { Settings } from "../../models/settings.js";
+import SocialMediaMail from "../../mail/social.media.email.js";
 
 const router =Router();
 
@@ -68,7 +70,7 @@ router.post('/tiktok',async function(req,res) {
         if ( req.body.video_url.length > 300 || req.body.video_url.length < 15 ) namedErrorCatching('perameter_missing', 'video_url is to small or too large');
         
         let [status,access_token]=await settingsAsArray(['tiktok_access_token_status', 'tiktok_access_token']);
-        if (!status) namedErrorCatching('auth_error', 'user not authenticated');
+        if (!status || !access_token) await disconnectTiktok();
         let user=new tiktok.Account(access_token);
         let response=await user.initVideoOnInbox(req.body.video_url);
         
@@ -87,7 +89,7 @@ router.post('/images', async function (req,res) {
         if (!Array.isArray(images) || images?.length === 0) namedErrorCatching('perameter error', 'images is not a Array');
         if (typeof caption!=='string' || caption?.length <5 || caption?.length > 1000) namedErrorCatching('perameter error', 'caption is not a string,or too big or too small');
         let [status,access_token]=await settingsAsArray(['tiktok_access_token_status', 'tiktok_access_token']);
-        if (!status) namedErrorCatching('auth_error', 'user not authenticated');
+        if (!status || !access_token) await disconnectTiktok();
         let user=new tiktok.Account(access_token);
         let post_id=await user.uploadImages({
             images,
@@ -99,5 +101,11 @@ router.post('/images', async function (req,res) {
         return catchError(res,error);
     }
 }) ;
+async function disconnectTiktok() {
+    SocialMediaMail.notConnected.titkok();
+    await Settings.findOneAndUpdate({}, { tiktok_access_token_status: false, tiktok_access_token: null, tiktok_refresh_token: null });
+    throw new Error('Authentication error');
+}
+
 
 export default router;

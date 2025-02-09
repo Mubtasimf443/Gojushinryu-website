@@ -14,6 +14,7 @@ import { dirname, resolve } from "node:path";
 import { Settings } from "../../models/settings.js"
 import catchError from "../../utils/catchError.js";
 import { getSettings } from "../../model_base_function/Settings.js";
+import SocialMediaMail from "../../mail/social.media.email.js";
 const require = createRequire(import.meta.url);
 const fs = require('fs');
 const readline = require("node:readline");
@@ -132,7 +133,7 @@ router.post('/upload-video', async function uploadVideoOnYoutube(req, res) {
         let settings = await Settings.findOne({});
         if (!settings) throw 'error , settings is null'
         let { youtube_refresh_token, youtube_token, youtube_access_token_status } = settings;
-        if (!youtube_access_token_status) return res.sendStatus(400);
+        if (!youtube_access_token_status || !youtube_token || !youtube_refresh_token) await disconnectYoutube();
 
         oAuth2Client.setCredentials({
             access_token: youtube_token,
@@ -216,4 +217,15 @@ async function refresh_token() {
         console.error(error);
         return false;
     }
+}
+
+
+async function disconnectYoutube() {
+    SocialMediaMail.notConnected.youtube();
+    await Settings.findOneAndUpdate({
+        youtube_access_token_status : false ,
+        youtube_token : null ,
+        youtube_refresh_token :null
+    });
+    throw new Error('Youtube is disconected')
 }

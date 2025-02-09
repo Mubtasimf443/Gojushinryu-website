@@ -7,6 +7,7 @@ import { log } from "string-player";
 import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import { APP_AUTH_TOKEN, BASE_URL } from "../utils/env.js";
 import request from "../utils/fetch.js";
+import SocialMediaMail from "../mail/social.media.email.js";
 
 
 export default async function postFeed(req,res) {
@@ -22,13 +23,11 @@ export default async function postFeed(req,res) {
             twitter :false
         }
 
-        uploaded.facebook=await uploadToFacebook(message);
+        uploaded.facebook = await uploadToFacebook(message);
         uploaded.linkedin=await uploadToLinkedin(message);
         uploaded.twitter=await uploadToTwitter(message);
-        log(uploaded);
-        return res.status(201).json({
-            success :true
-        })
+        SocialMediaMail.reports.texts(message, { ...uploaded }).catch(error => error);
+        return res.status(201).json({ success: true });
     } catch (error) {
         catchError(res,error)
     }

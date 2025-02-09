@@ -141,41 +141,42 @@ Insha Allah,  By the marcy of Allah,  I will gain success
             if (typeof text !=='string') throw 'text is not a string';
             if (text?.length < 5 || text?.length > 1000) return alert('caption is too big or too short');
             if (img.length === 0) {
-                alert('only text will be shared');
-                async function uploadText(message) {
-                    try {
-                        btn.style.transition = 'all .6s ease';
-                        btn.style.opacity = .65;
-                        uploading = true;
-                        let res = await fetch(window.location.origin + '/api/media-api/upload/text', {
-                            headers: {
-                                'Content-Type': 'application/json'
-                            },
-                            method: 'POST',
-                            body: JSON.stringify({
-                                message
-                            })
-                        });
-                        if (res.status === 201) {
-                            btn.style.background = 'green';
-                            btn.style.borderColor = 'green';
-                            btn.innerHTML = 'Complete';
-                            setTimeout(() => window.location.reload(), 2000);
-
-                        } else {
-                            throw (await res.json().catch(e => ('failed to parse json')));
+                if (confirm('Do You Only want to post Text to your social Media Accounts ?')) {
+                    async function uploadText(message) {
+                        try {
+                            btn.style.transition = 'all .6s ease';
+                            btn.style.opacity = .65;
+                            uploading = true;
+                            let res = await fetch(window.location.origin + '/api/media-api/upload/text', {
+                                headers: {
+                                    'Content-Type': 'application/json'
+                                },
+                                method: 'POST',
+                                body: JSON.stringify({
+                                    message
+                                })
+                            });
+                            if (res.status === 201) {
+                                btn.style.background = 'green';
+                                btn.style.borderColor = 'green';
+                                btn.innerHTML = 'Complete';
+                                setTimeout(() => window.location.reload(), 2000);
+    
+                            } else {
+                                throw (await res.json().catch(e => ('failed to parse json')));
+                            }
+                        } catch (error) {
+                            console.log(error);
+                            btn.style.background = 'red';
+                            btn.innerHTML = 'Failed';
+                            btn.style.borderColor = 'red';
+                        } finally {
+                            btn.style.opacity = 1;
+                            uploading = false;
                         }
-                    } catch (error) {
-                        console.log(error);
-                        btn.style.background = 'red';
-                        btn.innerHTML = 'Failed';
-                        btn.style.borderColor = 'red';
-                    } finally {
-                        btn.style.opacity = 1;
-                        uploading = false;
                     }
-                }
-                return uploadText(text);
+                    return uploadText(text);
+                } else return;
             }
             let form = new FormData();
             for (let i = 0; i < img.length; i++) form.append('images', img[i]);
@@ -193,7 +194,6 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                     btn.style.borderColor = 'green';
                     btn.innerHTML = 'Complete';
                     setTimeout(() => window.location.reload(), 2000);
-
                 }
                 if (res.status !== 201) {
                     throw 'Error in creating a post'
