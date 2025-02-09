@@ -382,7 +382,6 @@ async function notifyTikTokNotConnected() {
     console.error("Error sending TikTok connection email:", error);
   }
 }
-
 const SocialMediaMail = {
   notConnected: {
     youtube: notifyYouTubeNotConnected,
