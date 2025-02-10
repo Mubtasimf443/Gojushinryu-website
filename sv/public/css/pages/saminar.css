@@ -1,0 +1,183 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+InshaAllah, By his Marcy I will Gain Success 
+*/ 
+
+/* Global Styles */
+:root {
+    --bg-color: whitesmoke;
+    --card-bg: #ffffff;
+    --accent-color: #ffaa1c;
+    --text-color: #333;
+    --font-primary: 'Libre Franklin', sans-serif;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: var(--font-primary);
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    /* padding: 20px; */
+  }
+  
+  main{
+    padding-top: 50px;
+  }
+  /* Header */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .page-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    color: var(--accent-color);
+    margin-bottom: 8px;
+  }
+  
+  .page-header p {
+    font-size: 1.2rem;
+
+  }
+  
+  /* Seminars Grid */
+  .seminars-grid {
+   display: flex;
+   flex-direction: row;
+   flex-wrap: wrap;
+    padding: 20px 0px 70px 0px ;
+  }
+  
+  /* Seminar Card */
+  .seminar-card {
+    background: var(--card-bg);
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    width: 420px;
+    min-height: 530px;
+    max-height: 530px;
+  }
+  
+  .seminar-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .seminar-card img {
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+  }
+  
+  .seminar-info {
+    padding: 20px;
+  }
+  
+  .seminar-info h3 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+  }
+  
+  .seminar-info p {
+    font-size: 15.3px;
+    line-height: 1.6;
+    
+  }
+  
+  .contact-btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background: var(--accent-color);
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .contact-btn:hover {
+    background: #e69919;
+  }
+  
+  /* Popup Form */
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    width: 400px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+  
+  .popup.active {
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .popup-content {
+    position: relative;
+  }
+  
+  .close-popup {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  
+  .popup h2 {
+    margin-bottom: 20px;
+  }
+  
+  .popup form input,
+  .popup form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
+  
+  .apply-btn {
+    width: 100%;
+    padding: 10px;
+    background: var(--accent-color);
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+  }
+  
+  .apply-btn:hover {
+    background: #e69919;
+  }
+  

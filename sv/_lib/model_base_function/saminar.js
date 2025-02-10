@@ -7,7 +7,10 @@ import mongoose, { isValidObjectId } from "mongoose";
 import { Mongoose } from "mongoose";
 import { mailer } from "../utils/mailer.js";
 import { ADMIN_EMAIL, FROM_EMAIL } from "../utils/env.js";
-const router = Router()
+import catchError, { namedErrorCatching } from "../utils/catchError.js";
+import { UploadImgFile } from "../api/formidable.file.post.api.js";
+import { Cloudinary } from "../Config/cloudinary.js";
+const router = Router();
 
 
 
@@ -44,28 +47,54 @@ router.get('/:id', getSeminar, (req, res) => {
 
 // ✅ POST - Create a new seminar
 router.post('/', async (req, res) => {
-    const { title, description, imageUrl, location, instructor, date } = req.body;
-    [title, description, imageUrl, location, instructor, date] = [title, description, imageUrl, location, instructor, date].map(el => (typeof el === 'string' ? el.trim() : el))
-    // Validation
-    if (!title || !description || !imageUrl || !location || !instructor || !date) {
+  try {
+      let [filePath , feilds] =await UploadImgFile(req);
+      let {title, description, location, date, time }=feilds;
+      [title, description, location, date, time] = [title, description, location, date, time].map(function (el, i) {
+        if (Array.isArray(el) === false) {
+          throw new Error('All fields are required and feild id ' + (i + 1));
+        }
+        if (!el[0]?.trim()) {
+          throw new Error('All fields are required and feild id ' + (i + 1));
+        }
+        return el[0].trim();
+      });
+      let imageUrl = (await Cloudinary.uploader.upload(filePath, { public_id:  Date.now(), resource_type: 'image' })).url;
+      await Saminars.create({ imageUrl, title, location, date, time, description });
+      return res.sendStatus(201);
+    
+  } catch (error) {
+    catchError(res,error)
+  }
+});
+
+// ✅ PUT - Update an existing seminar
+router.put('/:id', async function (req,res) {
+  try {
+    if (!isValidObjectId(req.params.id) ) {
+      namedErrorCatching('p-error', 'id is not corect')
+    }
+    if (req.headers['content-type'] === 'application/json') {
+      const { title, description, location, date, time } = req.body;
+      if (!title || !description || !location || time.length !== 5 || !date) {
         return res.status(400).json({ success: false, message: 'All fields are required' });
+      }
+      await Saminars.findByIdAndUpdate(req.params.id, { title, location, date, time, description });
+      return res.sendStatus(202)
     }
-
-    const seminar = new Saminars({
-        title,
-        description,
-        imageUrl,
-        location,
-        instructor,
-        date,
+    let [filePath, feilds] = await UploadImgFile(req);
+    let { title, description, location, date, time } = feilds;
+    [title, description, location, date, time] = [title, description, location, date, time].map(function (el, i) {
+      if (Array.isArray(el) === false) throw new Error('All fields are required and feild id ' + (i + 1));
+      if (!el[0]?.trim()) throw new Error('All fields are required and feild id ' + (i + 1));
+      return el[0].trim();
     });
-
-    try {
-        const newSeminar = await seminar.save();
-        res.status(201).json({ success: true, message: 'Seminar created successfully', data: newSeminar });
-    } catch (err) {
-        res.status(400).json({ success: false, message: 'Failed to create seminar', error: err.message });
-    }
+    let imageUrl = (await Cloudinary.uploader.upload(filePath, { public_id: type ? type : Date.now(), resource_type: 'image' })).url;
+    await Saminars.findByIdAndUpdate(req.params.id, { imageUrl, title, location, date, time, description });
+    return res.sendStatus(202);
+  } catch (error) {
+    catchError(res,error);
+  }
 });
 
 router.post('/apply', async function applyForSeminar(req, res) {
@@ -127,31 +156,11 @@ router.post('/apply', async function applyForSeminar(req, res) {
   }
 })
 
-// ✅ PUT - Update an existing seminar
-router.put('/:id', getSeminar, async (req, res) => {
-  const { title, description, imageUrl, location, instructor, date } = req.body;
-
-  // Update only provided fields
-  if (title) res.seminar.title = title;
-  if (description) res.seminar.description = description;
-  if (imageUrl) res.seminar.imageUrl = imageUrl;
-  if (location) res.seminar.location = location;
-  if (instructor) res.seminar.instructor = instructor;
-  if (date) res.seminar.date = date;
-
-  try {
-    const updatedSeminar = await res.seminar.save();
-    res.json({ success: true, message: 'Seminar updated successfully', data: updatedSeminar });
-  } catch (err) {
-    res.status(400).json({ success: false, message: 'Failed to update seminar', error: err.message });
-  }
-});
-
 // ✅ DELETE - Remove a seminar
 router.delete('/:id', getSeminar, async (req, res) => {
   try {
     await res.seminar.deleteOne();
-    res.json({ success: true, message: 'Seminar deleted successfully' });
+    res.status(204).json({ success: true, message: 'Seminar deleted successfully' });
   } catch (err) {
     res.status(500).json({ success: false, message: 'Failed to delete seminar', error: err.message });
   }

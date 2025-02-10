@@ -1,0 +1,173 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+Insha Allah,  By your Marcy Ya Allah
+*/
+
+
+#Saminar_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: start;
+    width: 100%;
+    height: fit-content;
+    row-gap: 30px;
+
+}
+
+#Saminar_container table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 13px;
+}
+
+#Saminar_container table th {
+    border: 1px solid #000;
+    text-align: left;
+    padding: 10px 12px;
+    background-color: black;
+    color: white;
+}
+
+
+#Saminar_container table td{
+    border: 1px solid #ccc;
+    text-align: left;
+    padding: 10px 12px;
+    background: inherit;
+    text-wrap: wrap;
+    background: white;
+    min-height: 90px;
+    max-height: 90px;
+}
+
+
+#Saminar_container table td img {
+    max-width: 90%;
+    object-fit: contain;
+    object-position: top left;
+    max-height: 80px;
+}
+/* 
+
+#Saminar_container table tr:nth-child(1) {
+     background: var(--main-cl); 
+} */
+
+
+#Saminar_container table tr {
+    background-color: #ffffff;
+}
+
+#Saminar_container table button {
+    background: inherit;
+    border: none;
+    font-size: 12px;
+    color: white;
+    background: #000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 6px 10px;
+    max-height: 38px;
+}
+#Saminar_container table .del-btn{
+    background: red;
+}
+#Saminar_container table .btns{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+#Saminar_container .add-btn{
+    background: inherit;
+    border: none;
+    font-size: 14px;
+    color: white;
+    background: #000;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    box-sizing: content-box;
+    padding: 8px 14px;
+}
+
+
+/* Popup Form */
+#Saminar_container .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    width: 550px;
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+#Saminar_container .popup.active {
+    visibility: visible;
+    opacity: 1;
+}
+
+#Saminar_container .popup-content {
+    position: relative;
+}
+
+#Saminar_container .close-popup {
+    position: absolute; 
+    top: 10px;
+    right: 10px;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+
+#Saminar_container .popup form{
+    text-align: left;
+    height: fit-content;
+    box-sizing: border-box;
+}
+
+#Saminar_container .popup form input,
+#Saminar_container .popup form textarea{
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+#Saminar_container .popup form textarea{
+    resize: vertical;
+    min-height: 80px;
+    max-height: 250px;
+}
+#Saminar_container .popup label{
+    /* margin: 0px 0px 7.5 0px; */
+    width: 100%;
+}
+#Saminar_container .popup-btn {
+    width: 100%;
+    padding: 10px;
+    background: black;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s;
+    margin-top: 8px;
+}

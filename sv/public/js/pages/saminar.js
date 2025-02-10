@@ -15,10 +15,8 @@ async function fetchSeminars() {
     grid.innerHTML = '';
 
     seminars.forEach(seminar => {
-      const date = new Date(seminar.date);
-      const formattedDate = date.toLocaleDateString();
-      const formattedTime = date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
-
+       
+      
       const card = document.createElement('div');
       card.classList.add('seminar-card');
       card.innerHTML = `
@@ -28,8 +26,8 @@ async function fetchSeminars() {
               <p>${seminar.description}</p>
               <div class="seminar-meta">
                 <span><i class="fas fa-map-marker-alt"></i> ${seminar.location}</span>
-                <span><i class="fas fa-calendar"></i> ${formattedDate}</span>
-                <span><i class="fas fa-clock"></i> ${formattedTime}</span>
+                <span><i class="fas fa-calendar"></i> ${seminar.date}</span>
+                <span><i class="fas fa-clock"></i> ${seminar.time}</span>
               </div>
               <button class="contact-btn" onclick="openPopup('${seminar._id}')" >Apply Now</button>
             </div>

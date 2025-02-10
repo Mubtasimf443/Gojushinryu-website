@@ -42,6 +42,7 @@
   <link rel="stylesheet" href="/css/control_panal/pdf_sylabus.css">
   <link rel="stylesheet" href="/css/control_panal/image_sylabus.css">
   <link rel="stylesheet" href="/css/control_panal/txt_sylabus.css">
+  <link rel="stylesheet" href="/css/control_panal/saminar.css">
 
 
 
@@ -80,6 +81,7 @@
   <script defer src="/js/control panal/image_sylabus.js"></script>
   <script defer src="/js/control panal/video_sylabus.js"></script>
   <script defer src="/js/control panal/txt_sylabus.js"></script>
+  <script defer src="/js/control panal/saminar.js"></script>
 
 </head>
 
@@ -707,6 +709,7 @@
           <a id="v_sylabus_href">Video Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="pdf_sylabus_href">PDF Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="Image_sylabus_href">Image Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="Saminar_container_href">Saminars<button><i class="fa-solid fa-angle-right"></i></button></a>
 
           <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
@@ -1858,7 +1861,7 @@
 
         </div>
         <!-------------------------- Country Representative ----------------------------->
-        <div id="Country_Representative_container" targetedElement="Country_Representative_href" style="display: flex;"
+        <div id="Country_Representative_container" targetedElement="Country_Representative_href" style="display: none;"
           ct_section>
 
           <table>
@@ -2033,10 +2036,43 @@
           </div>
         </div>
 
-
+          <!----------------------- Saminars ----------------------------->
+        <div ct_section style="display: flex;" id="Saminar_container" targetedElement="Saminar_container_href">
+          <table>
+            <thead>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Date</th>
+              <th>Time</th>
+              <th>Actions</th>
+            </thead>
+            <tbody>
+             
+            </tbody>
+          </table>
+          <div class="btns">
+            <button class="add-btn" id="add-saminar-button">Create</button>
+          </div>
+          <!-- Popup Form for Seminar Application -->
+          <div id="popup" class="popup hidden" >
+            <div class="popup-content">
+              <button class="close-popup" >&times;</button>
+              <h2>Seminar</h2>
+              <form id="saminarForm" mode="create">
+                <label for="saminar_image">Image</label>
+                <input type="file" id="saminar_image" accept="image/*">
+                <input type="text" id="saminar_name" placeholder="Seminar Name" minlength="10" maxlength="70" required>
+                <textarea id="saminar_info"  placeholder="Seminar Info" required minlength="50" maxlength="135" autocomplete="off"></textarea>
+                <input id="saminar_location"  placeholder="Seminar Location" required minlength="6" maxlength="50" autocomplete="off">
+                <input type="text" onblur="(this.type='text')" onclick="(this.type='Date')" id="saminar_date" placeholder="Seminar Date" required>
+                <input type="text" onblur="(this.type='text')" onclick="(this.type='time')" id="saminar_time" placeholder="Seminar Time" required>
+                <button class="popup-btn" type="submit">Create</button>
+              </form>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
-
 
   </main>
 

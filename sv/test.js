@@ -13,10 +13,8 @@ import { createRequire } from "module";
 import SocialMediaMail from "./_lib/mail/social.media.email.js";
 import mongoose from "mongoose";
 import Saminars from "./_lib/models/Saminar.js";
-
-
+const require=createRequire(import.meta.url);
 await connectDB();
-await Saminars.findOneAndUpdate({}, {
-    title : 'Shihan Varun Jettly is excited to announce a fantastic opportunity for the Griesbach community! Join us for a *free self-defense seminar* on *February 15, 2025, from'
-})
+await Saminars.create(require('./s.json'))
+
 process.exit()
