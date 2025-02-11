@@ -129,7 +129,7 @@ app.get('/hello2', (req, res) => {
     res.send(req.url)
 });
 
-app.get('/v',(req, res) => res.status(404).render('varification'))
+
 app.get('/pdf', (req, res) => res.sendFile(path.resolve(dirName, './file-example_PDF_500_kB.pdf')))
 app.get('/', async (req, res) => res.redirect('/home'))
 
