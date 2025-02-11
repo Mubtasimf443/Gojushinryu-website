@@ -511,15 +511,35 @@ export async function makeBlackBeltTotheStudent(req = request, res = response) {
     if (id.toString() === 'NaN') namedErrorCatching('parametar error', 'id is not a Number');
     let user = await User.findOne({ id });
     if (!user) res.sendStatus(401);
-    user.isBlackBelt = true;
-    await blackBeltNoticeMail(user.email, user.name);
-    await user.save();
+    if (!user.isBlackBelt) {
+      user.isBlackBelt = true;
+      await blackBeltNoticeMail(user.email, user.name);
+      await user.save();
+    }
     res.sendStatus(202);
     return;
   } catch (error) {
     catchError(res, error);
   }
 }
+
+export async function unBlackBeltStudent(req = request, res = response) {
+  try {
+    let id = req.query.id; id = Number(id);
+    if (id.toString() === 'NaN') namedErrorCatching('parametar error', 'id is not a Number');
+    let user = await User.findOne({ id });
+    if (!user) res.sendStatus(401);
+    if (user.isBlackBelt) {
+      user.isBlackBelt = false;
+      await user.save();
+    }
+    res.sendStatus(202);
+    return;
+  } catch (error) {
+    catchError(res, error);
+  }
+}
+
 
 
 export async function findBlackBeltPageBb(req = request, res = response) {

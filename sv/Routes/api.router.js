@@ -12,7 +12,7 @@ import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEn
 import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
 import { DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery } from '../_lib/model_base_function/Product.js';
-import { approveStudent, BaneUserFunction, DeleteUserAccount, findBlackBeltPageBb,  FindUser, getUserData, getUserEnrolledCourseApi, getUserMembershipJS, makeBlackBeltTotheStudent, RemoveFromBanedUserFunction, UserLogout, userSocialMedia } from '../_lib/model_base_function/user.js';
+import { approveStudent, BaneUserFunction, DeleteUserAccount, findBlackBeltPageBb,  FindUser, getUserData, getUserEnrolledCourseApi, unBlackBeltStudent , getUserMembershipJS, makeBlackBeltTotheStudent, RemoveFromBanedUserFunction, UserLogout, userSocialMedia } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
 import { membershipCancellPaypalApi, membershipSuccessPaypalApi } from "../_lib/api/MembershipApi.js";
@@ -168,6 +168,7 @@ router.put('/user-social-media/instagram',userCheck, userSocialMedia.upDateSmIns
 router.put('/user-social-media/linkedin',userCheck, userSocialMedia.upDateSmLinkedin);
 router.put('/user-social-media/twitter',userCheck, userSocialMedia.upDateSmTwitter);
 router.put('/user/make-black-belt', makeBlackBeltTotheStudent);
+router.put('/user/unblackbelt', unBlackBeltStudent);
 router.put('/user/approve-user', approveStudent);
 router.put('/gojusinryu-membership/request-fees', GojushinryuMembershipFeesRequest)
 

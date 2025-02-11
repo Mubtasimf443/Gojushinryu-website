@@ -33,17 +33,20 @@ Insha Allab,  By the marcy of Allah,  I will gain success
                 <td>${s.email}</td>
                 <td>${s.phone}</td>
                 ${/*<td>${s.country}</td>*/''}
-                <td>${s.isBlackBelt ? 'Yes' :('<button class="user-bb-btn" uid="'+s.id +'" > Make </button>')}</td>
+                <td><button class="${s.isBlackBelt ? 'user-un-bb-btn' : 'user-bb-btn'}" uid="${s.id}"  > ${s.isBlackBelt ? 'UnMake'  :'Make' }  </button></td>
                 <td>${s.admin_approved ? 'Approved' : ('<button class="user-approve-btn" uid="'+s.id +'" > Approve </button>')}</td>
                 <td ><button class="delete-u" uid="${s.id}">Del</button></td>
               </tr>
             `);
             table.querySelector('tbody').innerHTML+=tr;
         }
+
         table.querySelectorAll('.user-bb-btn').forEach(function (element) {
             element.addEventListener('click',makeBlackBelt )
         });
-
+        table.querySelectorAll('.user-un-bb-btn').forEach(function (element) {
+            element.addEventListener('click', unMakeBlackBelt)
+        });
         table.querySelectorAll('.user-approve-btn').forEach(function (element) {
             element.addEventListener('click',makeStudentApprove );
         });
@@ -59,6 +62,16 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         fetch(window.location.origin + '/api/api_s/user/make-black-belt?' + (new URLSearchParams({ id })).toString(), { method: 'PUT' });
         for (let i = 0; i < users.length; i++) {
             if (users[i].id ==id) users[i].isBlackBelt=true;
+        }
+        orgTable();
+    }
+    
+    async function unMakeBlackBelt(event = new Event('click')) {
+        event.preventDefault();
+        let id = event.target.getAttribute('uid');
+        fetch(window.location.origin + '/api/api_s/user/unblackbelt?' + (new URLSearchParams({ id })).toString(), { method: 'PUT' });
+        for (let i = 0; i < users.length; i++) {
+            if (users[i].id == id) users[i].isBlackBelt = false;
         }
         orgTable();
     }
