@@ -49,8 +49,7 @@ async function LoadProducs(params) {
                             <img src="${thumb}" alt="Martial Art Equiment  no ${index}" class="product_img">
                             <h5>${name?.length > 55 ?name.substring(0, 55):name }</h5>
                             <p>${description.length > 70 ? description.substring(0,70) : description}</p>
-
-                            <div class="price">${currency}${df_price}</div>
+                            <div class="price">${currency}${Number(df_price).toFixed(2)}</div>
                             <div class="btns">
                                 <button df-size="${df_size}" df-price="${df_price}" prod-id="${id}" class="add-to-cart">Add to Cart</button>
                                 <select class="product-size-and-prize-select ">
@@ -71,7 +70,7 @@ async function LoadProducs(params) {
                                 let price = e.target.selectedOptions[0].getAttribute('product-price');
                                 e.target.parentNode.querySelector('button').setAttribute('df-size',size);
                                 e.target.parentNode.querySelector('button').setAttribute('df-price',price);
-                                
+                                e.target.parentNode.parentNode.querySelector('.price').innerHTML = currency + Number(price).toFixed(2);
                             })
                         }
                     );
