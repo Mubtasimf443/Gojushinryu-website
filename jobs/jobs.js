@@ -45,7 +45,7 @@ export default async function Main() {
 async function updateYoutube() {
     try {
         let [status, token, refresh_token] = await settingsAsArray(['youtube_access_token_status', 'youtube_token', 'youtube_refresh_token']);
-        if (status === undefined || token === undefined || refress_token === undefined) {
+        if (status === undefined || token === undefined || refresh_token === undefined) {
             throw new Error("Server Error :Youtube status or token or refresh token is undefined");
         }
         if (!status) {
