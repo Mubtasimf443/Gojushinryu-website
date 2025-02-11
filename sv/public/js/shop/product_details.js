@@ -26,7 +26,7 @@ selectEl.addEventListener("change", (e) => {
     let option = e.target.selectedOptions[0];
     df_size = option.value;
     df_price = option.getAttribute('price');
-    priceEl.innerHTML = '$' + df_price + '<sup>' + df_size + '</sup>';
+    priceEl.innerHTML = '$' + Number(df_price).toFixed(2) + '<sup>' + df_size + '</sup>';
 })
 
 
@@ -61,8 +61,8 @@ window.addEventListener('load', async function () {
 function LoadUi() {
     descriptionElment.innerHTML = description;
     sizeDetailsElement.innerHTML= sizeDetails;
-    priceEl.innerHTML = '$' + df_price;
-    priceEl.innerHTML = '$' + size_and_price[0].price;
+    // priceEl.innerHTML = '$' + df_price;
+    priceEl.innerHTML = '$' + Number(size_and_price[0].price).toFixed(2) + '<sup>' + size_and_price[0].size + '</sup>';
     size_and_price.forEach(function (el) {
         selectEl.innerHTML += `<option value="${el.size}" price="${el.price}" >${el.size}</option>`;
     });
