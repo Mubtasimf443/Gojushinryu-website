@@ -12,24 +12,30 @@ import { BASE_URL } from "../utils/env.js";
 let schema = new mongoose.Schema({
     image:{
         type :String,
-        default:'https://gojushinryu.com/img/avatar.png'      
+        default:'/img/avatar.png' ,
+        trim:true     
     },
     first_name:{
+        trim:true,
         type :String,
         required :false
     },
     last_name:{
         type :String,
+        trim:true,
         required :false
     },
     name:{
         type :String,
-        required :false
+        required :false,
+        trim:true
     },
     email:{
         type :String,
         required:true,
-        unique:true
+        unique:true,
+        lowercase :true,
+        trim:true
     },
     phone:{
         type :Number,
@@ -41,20 +47,25 @@ let schema = new mongoose.Schema({
     },
     password :{
         type:String,
-        required:true,
+        required:true, 
+        trim:true
     },
     username :{
         type:String,
         required:true,
+        lowercase :true,
+        trim:true
     },
     organization :{
         type:String,
         required:true,
+        trim:true
     },
     
     bio: {
+        trim:true,
         type:String,
-        default :'I am happy to become invited as a grand master in Goju Shin Ryu International'
+        default :'I am happy to become invited as a grand master in SCHOOL OF TRADITIONAL MARTIAL ARTS INTERNATIONAL'
     }
 })
 

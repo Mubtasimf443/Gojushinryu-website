@@ -6,7 +6,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
 
 {
     window.onload = function (event) {
-        fetch(window.location.origin + '/api/api_s/events/home')
+        fetch(window.location.origin + '/api/api_s/events/home', { headers: { 'Cache-Control': 'no-cache' } })
             .then(function (response) {
                 return response.json()
             })
@@ -17,13 +17,10 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                 for (let i = 0; i < data.length; i++) {
                     const {
                         thumb,
-                        month,
-                        date,
                         title,
                         description,
                         organizerCountry,
-                        participatingCountry,
-                        participatingAtletes
+                        eventDate,
                     } = data[i];
                     insertionHtml += `
                 <div class="event_box">
@@ -34,15 +31,15 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                 <span>In ${organizerCountry}</span>
                 </div>
                 <div>
-                <span>${month}</span>
-                <b>${date}</b>
+                <span>${new Date(eventDate).toLocaleString(undefined, { month: 'short' })}</span>
+                <b>${new Date(eventDate).getDate()}</b>
                 </div>
                 </div>
                 <p>${description}</p>
                 <hr>
                 <div class="div2">
-                <span>${participatingCountry} countries</span>
-                <span>${participatingAtletes} Athlete</span>                       
+                <span>Join Now</span>
+                <span> <a href="/contact">Contact Us</a></span>
                 </div>
                 </div>
                 `;

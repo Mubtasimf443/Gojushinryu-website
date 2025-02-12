@@ -8,7 +8,7 @@ By his marcy,  I will gain success
 import mongoose from 'mongoose';
 
 
-const schema = mongoose.Schema({
+const schema =new mongoose.Schema({
   title : {
     type : String,  
     required :true
@@ -48,8 +48,6 @@ const schema = mongoose.Schema({
     type :String 
   },
   organizerCountry:String,
-  participatingCountry:Number,
-  participatingAtletes:Number
 })
 
 

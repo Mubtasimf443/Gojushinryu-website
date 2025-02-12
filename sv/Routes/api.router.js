@@ -119,7 +119,7 @@ router.get('/country-representative/form-submited-successfully', crPaymentApis.c
 
 //Post Route
 router.post('/contact' , Contact_us_api_Function)
-router.post('/upload-product',AdminCheckMidleware,UploadProductApi);
+router.post('/upload-product',UploadProductApi);
 router.post('/upload-image-for-10-minutes',UplaodImageApi)
 router.post('/upload-image-for-25-minutes',UplaodImageApiIn25Minutes);
 router.post('/upload-event-api',UploadEventApi)

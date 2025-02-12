@@ -31,7 +31,8 @@ const pSchema =new mongoose.Schema({
   dateAsNumber:{
     type: Number,
     default: Date.now,
-  }
+  },
+  link:String
 })
 
 

@@ -45,9 +45,7 @@ function heckerMidleware(request, response, next) {
     if (heckedWebsite === true) response.send('<h2> Your Website is hacked </h2>');
     if (heckedWebsite === false) next();
 }
-app.use(cors({
-    origin: '*'
-}));
+
 
 app.get('/video-for-download', (req, res) => {
     res.type('video/mp4');

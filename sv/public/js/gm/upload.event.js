@@ -72,51 +72,36 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         if (!images.length) return
 
 
-        let title = v(`[placeholder="Write the event Title"]`)
+        let title = v(`[placeholder="Write the event Title"]`);
         let description = v(`[placeholder="Write the event Description"]`);
         let eventDate = eventUploadSection.querySelector(`[placeholder="Write the event Date"]`).valueAsNumber;
-        let organizerCountry = v(`[placeholder="Organizing Country"]`)
-        let participatingCountry = vn(`[placeholder="Particapating Country"]`);
-        let participatingAtletes = vn(`[placeholder="Organizing Atletes"]`)
-        if (!eventDate) throw 'event date is null '
+        let organizerCountry = v(`[placeholder="Organizing Country"]`);
+     
+        if (!eventDate) throw 'event date is null ';
 
 
         let formData = new FormData();
         formData.append('title', title);
         formData.append('description', description);
         formData.append('thumb', thumb);
-        formData.append('author', gmName)
-        formData.append('gm_id', gmID)
+        formData.append('author', gmName);
+        formData.append('gm_id', gmID);
         formData.append('eventDate', eventDate)
-        formData.append('organizerCountry', organizerCountry)
-        formData.append('participatingCountry', participatingCountry)
-        formData.append('participatingAtletes', participatingAtletes)
-
-
+        formData.append('organizerCountry', organizerCountry);
         for (let i = 0; i < images.length; i++) formData.append(`images`, images[i]);
         
         try {
-
             notUplaoding = false;
             e.target.style.opacity = .7;
-
             let res = await fetch(window.location.origin + '/api/api_s/upload-event-api', {
                 method: 'POST',
                 body: formData
             });
-
             if (res.status === 201) {
-                btn.style.background='green';
-                btn.innerHTML='Success';
-                setTimeout(() => {
-                    window.location.reload();
-                }, 2000);
+                alert('Event Uploaded SuccessFully')
+                window.location.reload();
             }
-
-            if (res.status !== 201) {
-                btn.style.background='red';
-                btn.innerHTML='Failed';
-            }
+            if (res.status !== 201) alert('Failed To Upload Event , PleasE try again');
         } catch (error) {
             console.error({ error });
         } finally {

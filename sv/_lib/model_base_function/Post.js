@@ -19,21 +19,17 @@ let dirname = path.dirname(__filename);
 
 export async function postPageNavigation(req,res) {
     try {
-        let posts=await Posts.find({});
-        
-        for (let i = 0; i < posts.length; i++) {
-            const {title,description,thumb,dateAsNumber,date} = posts[i];
-            posts.push({
-                title :(title.length >100 ? title.substring(0,100) :title),
-                description :(description.length >140 ? description.substring(0,140)  : description),
-                date :new Date(date).toDateString() ,
-                link :BASE_URL +'/media/post/'+dateAsNumber,
-                thumb,
-            });
-            posts.shift()
-        }
-        
-        return res.render('post',{posts})
+        let posts = await Posts.find().sort({ date: -1 });
+        posts = posts.map(function (element) {
+            return ({
+                title: (element.title.length > 100 ? element.title.substring(0, 100) : element.title),
+                description: element.description.length > 140 ? element.description.substring(0, 140) : element.description,
+                date: new Date(element.date).toLocaleDateString(),
+                link: BASE_URL + '/media/post/' + element.dateAsNumber,
+                thumb: element.thumb
+            })
+        });
+        return res.render('post', { posts })
     } catch (error) {
         console.log({error});
         

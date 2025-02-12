@@ -64,45 +64,43 @@ Insha Allah,  By the marcy of Allah,  I will gain success
             let description = v(`[placeholder="Write the description of the event"]`);
             let
                 eventDate = container.querySelector(`[placeholder="Event Date"]`).valueAsNumber,
-                organizerCountry = v(`[placeholder="Organizing Country"]`),
-                participatingCountry = Number(v(`[placeholder="Particapating Country"]`)),
-                participatingAtletes = Number(v(`[placeholder="Particapating Atletes"]`));
+                organizerCountry = v(`[placeholder="Organizing Country"]`);
+                // participatingCountry = Number(v(`[placeholder="Particapating Country"]`)),
+                // participatingAtletes = Number(v(`[placeholder="Particapating Atletes"]`));
 
             if (!eventDate) throw new Error("Event Date is undefined");
 
-            console.log({
-                eventDate, title, description, thumb, images
-            });
-
+            console.log({ eventDate, title, description, thumb, images });
 
             let formData = new FormData();
             formData.append('title', title);
             formData.append('description', description);
             formData.append('organizerCountry', organizerCountry);
-            formData.append('participatingCountry', participatingCountry);
-            formData.append('participatingAtletes', participatingAtletes);
             formData.append('thumb', thumb);
             formData.append('eventDate', eventDate)
+            
             for (let i = 0; i < images.length; i++) formData.append(`images`, images[i]);
 
             uploadEventButton.style.opacity = .6;
+            
             let res = await fetch(window.location.origin + '/api/api_s/admin-event-upload-api', {
                 method: 'POST',
                 body: formData
             });
             
             if (res.status === 201) {
-                uploadEventButton.style.background = 'green';
-                uploadEventButton.innerHTML = 'Success';
-                setTimeout(() => {
-                    window.location.reload();
-                }, 2000);
+                alert('Event Uploaded SuccessFully')
+                window.location.reload();
             }
+
+            if (res.status === 401) {
+                window.location.reload();
+            }
+
             if (res.status !== 201) {
-                uploadEventButton.style.background = 'red';
-                uploadEventButton.innerHTML = 'Failed';
+                alert('Event Upload Failed Because of Unknown reason, Try Again or Contact Developer');
             }
-            // setTimeout(() => window.location.reload(), 3000);
+            
         } catch (error) {
             console.log({ error });
         } finally {

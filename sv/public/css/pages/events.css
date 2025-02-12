@@ -145,17 +145,7 @@ height: 465px;
 .event >.div2 > span {
     font-size: .95em;
     font-weight: 500;
-    color: var(--main-cl);
-}
-
-.event >.div2 > span:nth-child(1)::after {
-    content: 'Countries';
-    color:  black;
-}
-
-.event >.div2 > span:nth-child(2)::after {
-    content: 'Athletes';
-    color:  black;
+    color: black;
 }
 
 

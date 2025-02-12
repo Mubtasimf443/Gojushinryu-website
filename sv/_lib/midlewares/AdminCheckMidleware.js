@@ -9,33 +9,32 @@ import { log } from '../utils/smallUtils.js';
 import { JWT_SECRET_KEY } from '../utils/env.js';
 import { validate } from 'string-player';
 import catchError, { namedErrorCatching } from '../utils/catchError.js';
+import { request, response } from 'express';
 
-const AdminCheckMidleware = async (req, res, next) => {
+export default async function AdminCheckMidleware(req = request, res = response, next) {
     try {
-        let { cpat } = req.cookies;
-        if (validate.isUndefined(cpat)) namedErrorCatching('auth error', 'we can not recognise you as you do no have cookie')
-        jwt.verify(cpat, JWT_SECRET_KEY, async (err, data) => {
-            try {
-                if (err) {
-                    log(err)
-                    return Alert('Access denied', res);
+        let { email } = await new Promise(function (resolve, reject) {
+            jwt.verify(req.cookies.cpat, JWT_SECRET_KEY, async (err, data) => {
+                if (error) {
+                    console.error(error)
+                    reject(error)
                 }
                 if (data) {
-                    let { key } = data;
-                    if (!key) return res.clearCookie('cpat').status(401).json({ error: 'You can not access this feature' })
-                    let admin = await Admin.findOne({ Secret_Key: key });
-                    if (!admin) return Alert('You can not access this feature', res);
-                    if (admin) next();
+                    if (!data.email) throw 'email is undefined';
+                    resolve({ email: data.email })
                 }
-            } catch (error) {
-                return catchError(res,error);
-            }
-        })
+            });
+        });
+        let admin = await Admin.findOne({ email: email });
+        if (!admin) return Alert('You can not access this feature', res);
+        if (admin) next();
+
     } catch (error) {
         console.error(error);
         return res.sendStatus(401);
     }
-
 }
 
-export default AdminCheckMidleware
+
+
+
