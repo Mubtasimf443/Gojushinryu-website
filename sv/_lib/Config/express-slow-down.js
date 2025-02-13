@@ -5,6 +5,8 @@ InshaAllah, By his marcy I will Gain Success
 
 import { slowDown } from 'express-slow-down'
 import { log } from '../utils/smallUtils.js'
+import {rateLimit} from 'express-rate-limit'
+import { request } from 'express';
 
 let ApidelayAfter = 30;
 
@@ -36,4 +38,15 @@ export const fastApiRateLimiter = slowDown({
     log(used);
     return (used - fileDelayAfter) * 500;
   }
+});
+
+
+export const largeApiRateLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  limit: 20,
+  legacyHeaders: true,
+  message:function (req=request, res) {
+    console.log('Attacker Ip is '+ req.ip);
+    return 'You can only Request 30 in 1 Minutes';
+  } 
 });

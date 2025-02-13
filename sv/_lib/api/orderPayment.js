@@ -207,7 +207,8 @@ function successPage({ order_id, name, total, items} = { items: [{ name: undefin
     total = typeof total === 'number' ? total.toFixed(2) : total;
     const header = readFileSync(resolve(__dirname, '../../tamplates/partials/whiteHeader.hbs'), 'utf-8');
     const footer = readFileSync(resolve(__dirname, '../../tamplates/partials/Footer.hbs'), 'utf-8');
-    let style = (`  <style>
+    let style = (`
+    <style>
         :root {
             --main-bg: whitesmoke;
             --card-bg: white;
@@ -296,9 +297,10 @@ function successPage({ order_id, name, total, items} = { items: [{ name: undefin
             color: var(--success-color);
             margin-bottom: 20px;
         }
-    </style>`);
+    </style>
+    `);
     let html =(`
-        <!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -352,7 +354,6 @@ function successPage({ order_id, name, total, items} = { items: [{ name: undefin
 </html>
     `);
     return html;
-
 }
 function cancelPage({order_id, name, total, items}= { items: [{ name: undefined }] }) {
     total = typeof total === 'number' ? total.toFixed(2) : total;
@@ -482,4 +483,6 @@ ${whiteHeader}
 </html>
 `);
 }
+
+
 export default ({ OrderPaymentPaypal, OrderPaymentStripe, OrderPaymentPaypalSuccess, OrderPaymentStripeSuccess, OrderPaymentPaypalCancel, OrderPaymentStripeCancel });

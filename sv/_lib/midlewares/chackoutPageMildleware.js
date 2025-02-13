@@ -6,10 +6,8 @@ InshaAllah, By his marcy I will Gain Success
 
 import jwt from 'jsonwebtoken' ;
 import { User } from '../models/user.js'
-import { Alert, log } from '../utils/smallUtils.js';
+import {  log } from '../utils/smallUtils.js';
 import { JWT_SECRET_KEY } from '../utils/env.js';
-
-
 
 export const checkoutPageMidleware = async (req, res, next) => {
     try {

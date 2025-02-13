@@ -82,7 +82,7 @@ const
     district: String,
     city: String,
     road_no: String,
-    zipcode: Number,
+    zipcode: String,
   },
   amountData = {
     total: {

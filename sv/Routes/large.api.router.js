@@ -20,16 +20,12 @@ import { createOrder } from "../_lib/model_base_function/order.js";
 import { coursePurchaseApi } from "../_lib/course/course.Purchase.Api.js";
 import orderPayment from '../_lib/api/orderPayment.js'
 import requestGojushinryuMembership from "../_lib/model_base_function/gojushinryuMembership.js";
+import { largeApiRateLimiter } from "../_lib/Config/express-slow-down.js";
 
 const router = Router();
 
-
-// Outer.use(LargeAPIRateLimiter);//this will stop attackers form giving a huge request in this large api's
-router.use(function(req,res,next){
-    log(req.baseUrl);next()
-})
+router.use(largeApiRateLimiter)
 router.use(morgan('dev'))
-
 //get 
 router.get('/order/payment/paypal/:id', orderPayment.OrderPaymentPaypal);
 router.get('/order/payment/stripe/:id', orderPayment.OrderPaymentStripe);
@@ -42,7 +38,7 @@ router.post('/stripe-membership-api', membershipMidleWareStripe, stripeMembershi
 router.post('/uplaod-post', uplaodPostAPiFucntion)
 router.post('/upload-coutntry-representative',morgan('dev'), uploadCountryRepresentativeApi)
 
-router.post('/order/create', userCheck, createOrder);
+router.post('/order/create', createOrder);
 router.post('/course/purchase', coursePurchaseApi);
 router.post('/request-gojushinryu-membership', requestGojushinryuMembership);
 

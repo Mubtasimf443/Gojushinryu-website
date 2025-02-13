@@ -1,10 +1,7 @@
 /*
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ   
 Insha Allab,  By the marcy of Allah,  I will gain success
- */
-
-
-
+*/
 let descriptionElment = document.querySelector(`[class="product-description"]`).querySelector('p');
 let sizeDetailsElement=document.querySelector(`[class="product-size-details"]`).querySelector('p');
 let selectEl = document.querySelector('#size');
@@ -34,7 +31,11 @@ window.addEventListener('load', async function () {
     try {
         let res= await fetch(window.location.origin + `/api/api_s/get-product-from-query?id=${id}`)
         let response=await res.json();
-        let error = response.error, prod = response.product;
+        console.log({response});
+        
+        let
+            error = response.error,
+            prod = response.product;
         if (error) {
             console.log('error' + error);
             return;
@@ -61,7 +62,6 @@ window.addEventListener('load', async function () {
 function LoadUi() {
     descriptionElment.innerHTML = description;
     sizeDetailsElement.innerHTML= sizeDetails;
-    // priceEl.innerHTML = '$' + df_price;
     priceEl.innerHTML = '$' + Number(size_and_price[0].price).toFixed(2) + '<sup>' + size_and_price[0].size + '</sup>';
     size_and_price.forEach(function (el) {
         selectEl.innerHTML += `<option value="${el.size}" price="${el.price}" >${el.size}</option>`;

@@ -15,7 +15,6 @@ const currency = `<span style="font-family:"Roboto"sans-serif;" class="currency"
 
 
 async function LoadProducs(params) {
-
     await fetch(window.location.origin + '/api/api_s/find-product')
         .then(res => res.json())
         .then(
@@ -53,9 +52,11 @@ async function LoadProducs(params) {
                             <div class="btns">
                                 <button df-size="${df_size}" df-price="${df_price}" prod-id="${id}" class="add-to-cart">Add to Cart</button>
                                 <select class="product-size-and-prize-select ">
-                                    ${SizeAndPrice.map(function ({ size, price }) {
-                                        return (`<option product-price="${price}" product-size="${size}"}">${size.length >= 32 ? size.substring(0, 32) + '...' : size}</option>`);
-                                    })}
+                                    ${
+                                        SizeAndPrice.map(function ({ size, price }) {
+                                            return (`<option product-price="${price}" product-size="${size}"}">${size.length >= 32 ? size.substring(0, 32) + '...' : size}</option>`);
+                                        })
+                                    }
                                 </select>
                             </div>
                         </a>`;

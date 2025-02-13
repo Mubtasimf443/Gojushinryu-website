@@ -19,7 +19,7 @@ export async function findOrders(req, res) {
             .where('isCancelled').equals(false)
             .where("order_status").ne('Cancelled')
             .sort({id:-1})
-            .limit(10);
+            .limit(77);
         if (orders) return res.status(200).json({ success: true, data: orders })
     } catch (error) {
         console.error(error);
@@ -31,20 +31,20 @@ export async function findOrders(req, res) {
 
 export async function updateOrderStatus(req, res) {
     try {
-        console.log(req.body);
-        let { id, c_reason, status } = req.body;
-        if (!id || c_reason === undefined) throw 'data are emty {id :' + id + ', c_reason :' + c_reason + ' }'
-        if (status !== 'pending' && status !== 'processing' &&
-            status !== 'completed' && status !== 'cancelled'
-        ) throw 'status is not corect // { status : "' + status + '"}'
-        id = await repleCaracter(id);
-        let order = await Orders.findById(id);
-        order.order_status = status;
-        if (c_reason !== '' && status === 'cancelled') {
-            c_reason = await repleCaracter(c_reason);
-            order.cancelReason = c_reason;
-        }
-        await order.save()
+        // console.log(req.body);
+        // let { id, c_reason, status } = req.body;
+        // if (!id || c_reason === undefined) throw 'data are emty {id :' + id + ', c_reason :' + c_reason + ' }'
+        // if (status !== 'pending' && status !== 'processing' &&
+        //     status !== 'completed' && status !== 'cancelled'
+        // ) throw 'status is not corect // { status : "' + status + '"}'
+        // id = await repleCaracter(id);
+        // let order = await Orders.findById(id);
+        // order.order_status = status;
+        // if (c_reason !== '' && status === 'cancelled') {
+        //     c_reason = await repleCaracter(c_reason);
+        //     order.cancelReason = c_reason;
+        // }
+        // await order.save()
         return res.sendStatus(200);
 
     } catch (error) {
@@ -185,21 +185,21 @@ export async function orderIsCompleted(req, res) {
 
 export async function findUserOrder(req, res) {
     try {
-        let data = await Orders.find().where('buyer.id').equals(req.user_info._id);
-        if (data.length===0 ) return res.sendStatus(204);
-        data=data.map(
-            function(el) {
-                let quantity=0;
-                for (let i = 0; i < el.shiping_items.length; i++) quantity += el.shiping_items[i].quantity;
-                return ({ 
-                    quantity, 
-                    thumb: el.shiping_items[0].thumb, 
-                    total: el.adminApproved.status ? el.amountData.total : el.amountData.total_product_price, 
-                    status: el.order_status 
-                });
-            }
-        )
-        return res.status(200).json({ data })
+        // let data = await Orders.find().where('buyer.id').equals(req.user_info._id);
+        // if (data.length===0 ) return res.sendStatus(204);
+        // data=data.map(
+        //     function(el) {
+        //         let quantity=0;
+        //         for (let i = 0; i < el.shiping_items.length; i++) quantity += el.shiping_items[i].quantity;
+        //         return ({ 
+        //             quantity, 
+        //             thumb: el.shiping_items[0].thumb, 
+        //             total: el.adminApproved.status ? el.amountData.total : el.amountData.total_product_price, 
+        //             status: el.order_status 
+        //         });
+        //     }
+        // )
+        return res.status(200).json({ data :[]})
     } catch (e) {
        catchError(res,e);
     }
@@ -211,7 +211,6 @@ export async function createOrder(req, res) {
             constructor(req = express.request) {
                 this.req = req;
                 this.total_product_price = 0;
-                this.buyer_email='';
                 this.reciver_email = '';
             }
             getLocation() {
@@ -222,9 +221,9 @@ export async function createOrder(req, res) {
                 if (validate.isEmty(country) || isnota.string(country)) namedErrorCatching('parameter error', 'country is emty');
                 if (validate.isEmty(district) || isnota.string(district)) namedErrorCatching('parameter error', 'district is emty');
                 if (validate.isEmty(road_no) || isnota.string(road_no)) namedErrorCatching('parameter error', 'road_no is emty');
-                if (validate.isNaN(Number(zipcode))) namedErrorCatching('parameter error', 'road_no is emty');
+                if (validate.isEmty(zipcode)) namedErrorCatching('parameter error', 'road_no is emty');
                 [city, country, district, road_no] = repleCrAll([city, country, district, road_no]);
-                return ({ city, country, district, road_no, zipcode: Number(zipcode) });
+                return ({ city, country, district, road_no,  zipcode });
             }
             getReciverData() {
                 let reciver = this.req.body.reciver;
@@ -278,14 +277,6 @@ export async function createOrder(req, res) {
                 this.total_product_price = total_product_price;
                 return ItemAsProd;
             }
-            getBuyer() {
-                let
-                    id = this.req.user_info._id,
-                    email = this.req.user_info.email,
-                    phone = this.req.user_info.phone;
-                this.buyer_email=this.req.user_info.email;
-                return ({ id, email, phone });
-            }
             getProductTotal() {
                 return (this.total_product_price);
             }
@@ -294,23 +285,17 @@ export async function createOrder(req, res) {
         let _o = new CreateOrder(req);
         let
             reciever = _o.getReciverData(),
-            buyer = _o.getBuyer(),
             reciever_address = _o.getLocation(),
             shiping_items = await _o.getItems(),
             total_product_price = _o.getProductTotal(),
             reciever_notes = _o.getNotes();
-
-
         let order = new Orders({
             reciever: reciever,
-            buyer: buyer,
             shiping_items: shiping_items,
             amountData: { total_product_price: total_product_price },
             reciever_address: reciever_address,
             reciever_notes: reciever_notes
         });
-
-
         order =await order.save();
         res.sendStatus(201);
         sendOrderConfirmationEmail(order.reciever.email, order.shiping_items.map(el => el.name), order.id , order.amountData.total_product_price ).catch(e => console.error(e));
@@ -321,4 +306,3 @@ export async function createOrder(req, res) {
         catchError(res, error)
     }
 }
-

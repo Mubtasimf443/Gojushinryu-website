@@ -40,39 +40,39 @@ const setUpTable= async e => {
        let { prod ,quantity ,id, df_size, df_price}=el;
        let {name,selling_style,thumb}=prod;
        
-       TotalProductAmount+=quantity*df_price;
-       totalProductQuantity+=quantity;
-       if (TotalProductAmount.toString()==='NaN') {
-           addedProduct=addedProduct.filter((el,i) => {
-               if (i!==index) return el
+       TotalProductAmount += quantity * df_price;
+       totalProductQuantity += quantity;
+       if (TotalProductAmount.toString() === 'NaN') {
+           addedProduct = addedProduct.filter((el, i) => {
+               if (i !== index) return el
                return false
            });
            setTimeout(() => {
-             window.location.reload();
+               window.location.reload();
            }, 2000);
            return
        }
        let tr = document.createElement('tr');
        tr.className='data_storer'
-       tr.innerHTML=
-       `
-       <td>${index+1}</td>
-       <td> <img src="${thumb}" alt="add to cart product Image"> </td>
-       <td>${name}</td>
-       <td>${df_price}</td>
-       <td>${df_size}</td>
-       <td class="row-center">
-       <button prod-id="${id}" class="plus"><i class="fa-solid fa-plus"></i></button>
-       &nbsp; ${quantity} &nbsp;
-       <button prod-id="${id}" class="minus"><i class="fa-solid fa-minus"></i></button>
-       </td>
-       <td>$${TotalProductAmount}.00</td>
-       `;
+       tr.innerHTML=(`
+          <td>${index+1}</td>
+          <td> <img src="${thumb}" alt="add to cart product Image"> </td>
+          <td>${name}</td>
+          <td>${df_size}</td>
+          <td class="row-center">
+          <button prod-id="${id}" class="plus"><i class="fa-solid fa-plus"></i></button>
+          &nbsp; ${quantity} &nbsp;
+          <button prod-id="${id}" class="minus"><i class="fa-solid fa-minus"></i></button>
+          </td>
+          <td>${df_price}</td>
+
+          <td>$${(TotalProductAmount).toFixed(2)}</td>
+          `);
        table.appendChild(tr)
    });
 
 
-   document.querySelector('#total-price').innerHTML=TotalProductAmount;//total Price
+   document.querySelector('#total-price').innerHTML=(TotalProductAmount).toFixed(2);//total Price
    document.querySelector('#total-items').innerHTML=totalProductQuantity;//total Quantity
 
    await document.querySelectorAll('.plus').forEach(el => {

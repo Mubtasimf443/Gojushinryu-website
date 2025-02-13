@@ -380,11 +380,6 @@
 
 
       <div class="input-box">
-        <label>Buyer Email</label>
-        <input disabled value="Buyer Email" placeholder="Buyer Email" type="text">
-      </div>
-
-      <div class="input-box">
         <label>Shipping Country</label>
         <input disabled value="India" placeholder="country" type="text">
       </div>
@@ -421,11 +416,11 @@
 
       <div class="input-box">
         <label>Total Product Price</label>
-        <input value="" placeholder="TotalProductPrice" type="text" disabled>
+        <input value="" placeholder="TotalProductPrice" type="number" disabled>
       </div>
       <div class="input-box">
         <label>Shipping</label>
-        <input value="" placeholder="total shipping" type="number">
+        <input value="0" placeholder="total shipping" type="number">
       </div>
       <div class="input-box">
         <label>Tax</label>
@@ -433,7 +428,7 @@
       </div>
       <div class="input-box">
         <label>Total Price</label>
-        <input value="0" placeholder="total" type="number" disabled>
+        <input value="0" placeholder="total" type="text" disabled>
       </div>
       <table>
         <tr>
@@ -980,7 +975,7 @@
         </div>
 
         <!-----------------------order list ----------------------------->
-        <div ct_section targetedElement="order_href" style="display: none;" class="order-list-box">
+        <div ct_section targetedElement="order_href" style="display:flex;" class="order-list-box">
 
           <table>
             <tr>

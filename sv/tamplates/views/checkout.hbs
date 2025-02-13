@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CheckOut | {{company_name}}</title>
+    <title>CheckOut | {{>shopname}}</title>
     {{>Links}}
     <link rel="stylesheet" href="/css/shop/checkout.css">
     <script defer src="/js/shop/checkout.js"></script>
@@ -245,7 +245,7 @@
                         <input type="text" value="{{district}}" placeholder="District" required>
                         <input type="text" value="{{city}}" placeholder="City" required>
                         <input type="text" placeholder="Road No / Village / Street" required value="{{street}}">
-                        <input type="number" value="{{postcode}}" placeholder="Zip Code" required>
+                        <input type="text" value="{{postcode}}" placeholder="zipcode/postcode" maxlength="16" required>
 
                         <textarea id="" placeholder="Notes">Nothing in Notes</textarea>
 

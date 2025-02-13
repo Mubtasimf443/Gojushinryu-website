@@ -139,7 +139,7 @@ pageRouter.get('/shop/:name', (req, res) => {
     let { name, cetegory, id } = req.params
     if (name === 'cart') return res.render('cart');
     if (name === 'fevorites') return res.render('fevorites');
-    if (name === 'checkout') return checkoutPageMidleware(req, res);
+    if (name === 'checkout') return res.render('checkout')
 });
 
 
@@ -183,29 +183,4 @@ pageRouter.get('/accounts/student/not-approve-by-admin',AdminApproveUserAfterReg
 pageRouter.get('/become-a-country-representative', (req, res) => res.render('country-representive'));
 pageRouter.get('/our-country-representatives',longCatch24, (req, res) => res.render('representatives'));
 
-// pageRouter.get('/course/:name',longCatch24, async (req, res) => {
-//     try {
-//         let settings = await Settings.findOne({})
-//         let name = req.params.name;
-//         let date = '';
-//         if (name.toLowerCase() === 'regular-classes') {
-//             date = settings.date_of_regular_class.date;
-//             return res.render('course__regular__class', { date })
-//         }
-//         if (name.toLowerCase() === 'online-classes') {
-//             date = settings.date_of_online_class.date;
-//             return res.render('course__online__class', { date })
-//         }
-//         if (name.toLowerCase() === 'women-fitness-classes') {
-//             date = settings.date_of_womens_defence_class.date;
-//             return res.render('course__womens_seminars', { date })
-//         }
-//         if (name.toLowerCase() === 'our-seminars') return res.render('course_our_seminar')
-//         if (name.toLowerCase() === 'bhangar-fitness-classes-for-all-ages') return res.render('course__banghar__fitness__class');
-        
-//     } catch (error) {
-//         console.log({ error });
-//     }
-
-// });
 export { pageRouter }

@@ -30,13 +30,14 @@ export async function findProductPageNavigation(req, res) {
 
 export const FindProduct = async (req, res) => {
   try {
-    let productArray = await Product.find({});
-    let arr = new Array();
-    for (let i = 0; i < productArray.length; i++) {
-      const { id, _id, thumb, name, description, sizeDetails, SizeAndPrice, images, cetegory } = productArray[i];
-      arr.push({ id, thumb, _id ,  name, description, sizeDetails, SizeAndPrice, images, cetegory })
-    }
-    res.status(200).json({ success: true, product: arr });
+    let product = await Product.find({}, 'id _id thumb name description sizeDetails SizeAndPrice images cetegory');
+    product = product.map(function (element) {
+      element = element.toObject();
+      element.thumb = decodeURIComponent(element.thumb);
+      for (let i = 0; i < element.images.length; i++) element.images[i] = decodeURIComponent(element.images[i]);
+      return element;
+    });
+    res.status(200).json({ success: true, product: product });
     return;
   } catch (e) {
     res.status(500).json({ error: 'Failed to Give you the products' })
@@ -56,27 +57,19 @@ export async function findProductDetails(req, res) {
     console.error(error)
     return res.status(400).render('massage_server', { title: 'Can not find the product', body: 'there is no such product Matching This Name ' });
   }
-
 }
 
 export async function productDetailsFormQuery(req, res) {
   try {
-    if (validate.isUndefined(req.query.id)) throw 'Give a corect product id, not a Undefined';
-    if (validate.isNaN(Number(req.query.id))) throw 'Give a corect product id, not a NaN';
+    if (Number(req.query.id) === 0 || validate.isNaN(Number(req.query.id))) throw 'Give a corect product id, not a NaN';
     let prod = await Product.findOne({ id: req.query.id });
-    if (validate.isNull(prod)) throw `their is no product of id : ${req.query.id}`;
-    
-    return res.status(200).json({ product: {
-      _id :prod._id,  
-      id:prod.name, 
-      thumb:prod.thumb, 
-      name:prod.name, 
-      description:prod.description, 
-      sizeDetails:prod.sizeDetails, 
-      SizeAndPrice:prod.SizeAndPrice, 
-      images:prod.images, 
-      cetegory:prod.cetegory
-    } });
+    if (prod === null) throw `their is no product of id : ${req.query.id}`;
+    prod=prod.toObject();
+    prod.thumb = decodeURIComponent(prod.thumb);
+    for (let i = 0; i < prod.images.length; i++) {
+      prod.images[i] = decodeURIComponent(prod.images[i]);
+    }
+    return res.json({ product: prod })
   } catch (error) {
     catchError(res, error);
   }
