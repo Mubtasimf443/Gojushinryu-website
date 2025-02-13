@@ -115,7 +115,8 @@ export async function OrderInPaymentNeeded(req, res) {
         order.isShippingAndTaxAdded=true;
         if (validate.isNaN(Number(order.amountData.total))) throw namedErrorCatching('internal error', `order.amountData.total is a NaN`);
 
-        order.amountData.shipping_cost
+        order.amountData.shipping_cost;
+
         await sendPaymentRequestEmail({
             buyerEmail : order.reciever.email,
             amountData :order.amountData,
@@ -124,8 +125,8 @@ export async function OrderInPaymentNeeded(req, res) {
             paypalLink :BASE_URL +'/api/l-api/order/payment/paypal/'+order.id,
             stripeLink :BASE_URL +'/api/l-api/order/payment/stripe/'+order.id
         });
-
         await order.save();
+
 
         return res.sendStatus(200);
     } catch (error) {
