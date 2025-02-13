@@ -182,5 +182,7 @@ pageRouter.get('/accounts/:name', async (req, res) => {
 pageRouter.get('/accounts/student/not-approve-by-admin',AdminApproveUserAfterRegistration );
 pageRouter.get('/become-a-country-representative', (req, res) => res.render('country-representive'));
 pageRouter.get('/our-country-representatives',longCatch24, (req, res) => res.render('representatives'));
-
+pageRouter.get('/saminar-form', function (req,res) {
+   res.render('saminar_form'); 
+});
 export { pageRouter }

@@ -29,7 +29,7 @@ async function fetchSeminars() {
                 <span><i class="fas fa-calendar"></i> ${seminar.date}</span>
                 <span><i class="fas fa-clock"></i> ${seminar.time}</span>
               </div>
-              <button class="contact-btn" onclick="openPopup('${seminar._id}')" >Apply Now</button>
+              <button class="contact-btn" onclick="saminarForm()" >Apply Now</button>
             </div>
           `;
       grid.appendChild(card);
@@ -38,6 +38,11 @@ async function fetchSeminars() {
     console.error('Error fetching seminars:', error);
   }
 }
+
+function saminarForm() {
+  window.location.replace('/saminar-form')
+}
+
 let currentSeminarId = null;
 // Open popup form
 function openPopup(seminarId) {

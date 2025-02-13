@@ -41,11 +41,7 @@ async function OrderPaymentPaypal(req = request, res = response) {
         })
         let items = order.shiping_items.map(({ name, quantity, price }) => ({ name: name.length < 80? name : name.substring(0, 80), unit_amount: { currency_code: 'USD', value: price.toFixed(2) }, quantity }))
         
-        let { token, link } = await paypal.checkOutWithShipping({
-            shipping: (shipping_cost + tax).toFixed(2),
-            items 
-            //[{ name: "", unit_amount: { currency_code: 'USD', value: (0).toFixed(2) }, quantity: 1 }]
-        });
+        let { token, link } = await paypal.checkOutWithShipping({ shipping: (shipping_cost + tax).toFixed(2), items });
 
         if (link && token) {
             order.paymentInfo.payment_method = 'paypal';
