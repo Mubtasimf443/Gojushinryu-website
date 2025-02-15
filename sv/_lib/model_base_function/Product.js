@@ -1,12 +1,14 @@
 /*بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ*/
 /* Insha Allah,  Allah loves s enough for me */
 
-import { validate } from "string-player";
+import { repleCaracter, validate } from "string-player";
 import { Product } from "../models/Products.js";
 import catchError from "../utils/catchError.js";
-import { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
-
+import { request, response } from 'express'
+import { UploadImgFile } from "../api/formidable.file.post.api.js";
+import { Cloudinary } from "../Config/cloudinary.js";
+import { isValidObjectId } from "mongoose";
 
 export async function findProductPageNavigation(req, res) {
   try {
@@ -26,8 +28,6 @@ export async function findProductPageNavigation(req, res) {
     })
   }
 };
-
-
 export const FindProduct = async (req, res) => {
   try {
     let product = await Product.find({}, 'id _id thumb name description sizeDetails SizeAndPrice images cetegory');
@@ -43,8 +43,6 @@ export const FindProduct = async (req, res) => {
     res.status(500).json({ error: 'Failed to Give you the products' })
   }
 }
-
-
 export async function findProductDetails(req, res) {
   try {
     if (Number(req.params.id).toString() === 'NaN') return res.render('massage_server', { title: 'Can not find the product', body: 'there is no such product Matching This Name ' });
@@ -58,7 +56,6 @@ export async function findProductDetails(req, res) {
     return res.status(400).render('massage_server', { title: 'Can not find the product', body: 'there is no such product Matching This Name ' });
   }
 }
-
 export async function productDetailsFormQuery(req, res) {
   try {
     if (Number(req.query.id) === 0 || validate.isNaN(Number(req.query.id))) throw 'Give a corect product id, not a NaN';
@@ -74,8 +71,6 @@ export async function productDetailsFormQuery(req, res) {
     catchError(res, error);
   }
 }
-
-
 export async function giveProductDetails(req, res) {
   try {
     let { id } = req.body;
@@ -104,7 +99,6 @@ export async function giveProductDetails(req, res) {
   }
 
 }
-
 export async function DeleteProduct(req, res) {
   let { id } = req.body;
   if (!id) return Alert('Please Give The Correct User InfoCan not Bann User ', res);
@@ -117,14 +111,11 @@ export async function DeleteProduct(req, res) {
       Alert('Server error')
     })
 };
-
 export async function findProductImage(req, res) {
   try {
     let id = req.query.id;
     if (!id) return res.sendStatus(304)
-
-    id = await repleCaracter(id);
-
+    if (isValidObjectId(id) === false) throw `ObjectId [${id}] is not valid`;
     let image = await Product.findById(id);
     if (!image) return res.sendStatus(304)
     image = image.thumb;
@@ -136,4 +127,111 @@ export async function findProductImage(req, res) {
     return res.sendStatus(304)
   }
 
+}
+export async function addProductImage(req = request, res = response) {
+  try {
+    let id =req.query.id;
+    if (id ===undefined || isNaN(id)){
+      throw 'Id Is not a Number'
+    }
+    let product = await Product.findOne().where('id').equals(Number(id));
+    if (product === null) {
+      throw  new Error('There is No Product From this id : '+id);
+    }
+    if (product.images.length >=10) {
+      throw  new Error('Only 10 Image are allowed');
+    }
+    let [imgPath, fields] =await UploadImgFile(req);
+    if (!imgPath) throw new Error("Server error , Can not Upload Image");
+    let url = (await Cloudinary.uploader.upload(imgPath, { public_id: Date.now(), resource_type: 'image' })).url;
+    if (url) {
+      product.images.push(url);
+      await product.save()
+    }
+    return res.status(200).send(url);
+  } catch (error) {
+    catchError(res,error);
+  }
+}
+export async function removeProductImage(req = request, res = response) {
+  try {
+    let image = req.query.image || req.body.image;
+    let id = req.query.id;
+   
+    if (id === undefined || isNaN(id)) {
+      throw 'Id Is not a Number';
+    }
+    if (!image) {
+      throw 'Image Is Not Present';
+    }
+    let product = await Product.findOne().where('id').equals(Number(id));
+    if (product === null) {
+      throw  new Error('There is No Product From this id : '+id);
+    }
+    if (product.images.length === 1 ) {
+      throw ('can not remove last image from product');
+    }
+
+    let images = product.images;
+    let imageDoesNotExist = images.findIndex(el => el === image) === -1;
+    if (imageDoesNotExist) throw ("Image Does not exist");
+
+    images = images.filter(el => el !== image);
+    await Product.findOneAndUpdate({ id: Number(id) }, { images: images });
+    
+    return res.sendStatus(204);
+  } catch (error) {
+    catchError(res,error);
+  }
+}
+export async function changeProductTumb(req = request, res = response) {
+  try {
+    let id =req.query.id;
+    if (id ===undefined || isNaN(id)){
+      throw 'Id Is not a Number'
+    }
+    let product = await Product.findOne({} , 'id').where('id').equals(Number(id));
+    if (product === null) {
+      throw  new Error('There is No Product From this id : '+id);
+    }
+    let [imgPath, fields] =await UploadImgFile(req);
+    if (!imgPath) throw new Error("Server error , Can not Upload Image");
+    let url = (await Cloudinary.uploader.upload(imgPath, { public_id: Date.now(), resource_type: 'image' })).url;
+    
+    await Product.findOneAndUpdate({ id: Number(id) }, { thumb: url });
+    return res.status(200).send(url);
+  } catch (error) {
+    catchError(res,error);
+  }
+}
+export async function UpdateProduct(req = request, res = response) {
+  try {
+    let id =req.query.id;
+    if (id ===undefined || isNaN(id)){
+      throw 'Id Is not a Number'
+    }
+    let product = await Product.findOne({}).where('id').equals(Number(id));
+    if (product === null) {
+      throw  new Error('There is No Product From this id : '+id);
+    }
+    let { name, description, cetegory, sizeDetails, SizeAndPrice } = await req.body;
+    (name) && (product.name = repleCaracter(name));
+    (description) && (product.description = repleCaracter(description));
+    (cetegory) && (product.cetegory = repleCaracter(cetegory));
+    (sizeDetails) && (product.sizeDetails = repleCaracter(sizeDetails));
+    if (Array.isArray(SizeAndPrice) && SizeAndPrice.length >= 1 && SizeAndPrice.length <= 10) {
+      for (let i = 0; i < SizeAndPrice.length; i++) {
+        const {price , size} = SizeAndPrice[i];
+        if (isNaN(price)) throw 'Price is not correct';
+        if (size.trim().length=== 0 || size.trim().length >= 100 ) throw ' size is not correct';
+        SizeAndPrice[i].price =Number(price);
+        SizeAndPrice[i].size =repleCaracter(size);
+      }
+      product.SizeAndPrice = SizeAndPrice;
+    }
+    await product.save();
+    return res.sendStatus(200);
+  } catch (error) {
+    catchError(res,error);
+  }
 }

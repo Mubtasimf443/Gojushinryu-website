@@ -145,6 +145,7 @@ Insha Allah,  By your Marcy Ya Allah
                 }
                 if (files[0].type.includes('image/')) {
                     try {
+                        event.target.style.opacity =.6;
                         let f = new FormData();
                         f.append('img', files[0]);
                         f.append('title', title);
@@ -152,10 +153,14 @@ Insha Allah,  By your Marcy Ya Allah
                         f.append('date', date);
                         f.append('time', time);
                         f.append('location', location);
-                        fetch(api, { method: 'POST', body: f })
+                        let response = await fetch(api, { method: 'POST', body: f });
+                        if (response.status === 201) {
+                            alert('saminar created successfully');
+                        }
                     } catch (error) {
                         console.log(error);
                     } finally {
+                        event.target.style.opacity =1;
                         closePopup();
                         return;
                     }

@@ -130,4 +130,3 @@ document.querySelector(`[id="applicationForm"]`).addEventListener('submit', asyn
   }
  
 })
-

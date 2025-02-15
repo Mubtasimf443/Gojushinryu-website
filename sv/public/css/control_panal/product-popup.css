@@ -1,0 +1,116 @@
+/*
+بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
+InshaAllah, Allah is Marcyfull and He will gove me success 
+*/
+
+
+#popup_product_action .thumb-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+#popup_product_action .thumb-box label:nth-child(1){
+    color: black;
+}
+#popup_product_action .thumb-box label:nth-child(2){
+    font-weight: 500;
+    margin-bottom: 10px;
+    height: 100px;
+    width: 100px;
+    background-image: url('');
+    background-position: center center transparent;
+    background-repeat: no-repeat;
+    background-size: cover;
+    color: white;
+}
+
+#popup_product_action .img-box{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+#popup_product_action .img-box .imgs{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+    row-gap: 8px;
+    column-gap: 8px;
+    width: 100%;
+    height: fit-content;
+    padding: 10px 0px;
+}
+#popup_product_action .img-box .imgs div{
+    display: flex !important;
+    flex-direction: row;
+    justify-content: left;
+    align-items: start;
+    gap: 10px;
+    flex-wrap: wrap;
+    position: relative;
+    width: 100px;
+    height: 100px;
+}
+#popup_product_action .img-box .imgs div img{
+    width: 100% ;
+    height:100%;
+    object-fit: cover;
+    object-position: center;
+}
+
+#popup_product_action .img-box .imgs div .remove {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    cursor: pointer;
+    background-color: rgba(0, 0, 0, 0.5);
+    color:white;
+    padding: 8px 10px;
+    border-radius: 50%;
+    border: none;
+}
+#popup_product_action .img-box .imgs div .remove::before{
+    content: "×";
+    font-size: 18px;
+    line-height: 1;
+}
+#popup_product_action .img-box label[for="product-popup-image-input"]{
+    background: #000;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size:smaller;
+}
+
+#popup_product_action form{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: top;
+    height: auto;
+}
+
+#popup_product_action form input{
+    width: 40%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+#popup_product_action form button{
+    width: 130px;
+    padding: 10px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}

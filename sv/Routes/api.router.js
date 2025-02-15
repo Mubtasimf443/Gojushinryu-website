@@ -11,7 +11,7 @@ import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
 import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEnrollments } from '../_lib/model_base_function/Course.js';
 import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
 import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
-import { DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery } from '../_lib/model_base_function/Product.js';
+import { addProductImage, changeProductTumb, DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery, removeProductImage, UpdateProduct } from '../_lib/model_base_function/Product.js';
 import { approveStudent, BaneUserFunction, DeleteUserAccount, findBlackBeltPageBb,  FindUser, getUserData, getUserEnrolledCourseApi, unBlackBeltStudent , getUserMembershipJS, makeBlackBeltTotheStudent, RemoveFromBanedUserFunction, UserLogout, userSocialMedia } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
 import { log } from "../_lib/utils/smallUtils.js";
@@ -136,6 +136,7 @@ router.post('/course/apply/contact', courseContactApi );
 router.post('/assets/image', UploadImageAssets );
 router.post('/assets/video', UploadVideoAssets );
 router.post('/country-representative/payment/request', crPaymentApis.requestPayment)
+router.post('/product/image', addProductImage);
 
 
 //Update
@@ -171,6 +172,8 @@ router.put('/user/make-black-belt', makeBlackBeltTotheStudent);
 router.put('/user/unblackbelt', unBlackBeltStudent);
 router.put('/user/approve-user', approveStudent);
 router.put('/gojusinryu-membership/request-fees', GojushinryuMembershipFeesRequest)
+router.put('/product/thumb', changeProductTumb);
+router.put('/product', UpdateProduct);
 
 //Delete
 router.delete('/delete-product',DeleteProduct)
@@ -185,6 +188,7 @@ router.delete('/coupons/course' , deleteCourseCoupon);
 router.delete('/course/enrollments' , deleteCourseEnrollment);
 router.delete('/gojusinryu-membership-request-delete' , cancelAndDeleteGojushinryuMembership);
 router.delete('/assets' , deleteAsset);
+router.delete('/product/image', removeProductImage);
 
 
 //payments

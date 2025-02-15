@@ -66,11 +66,6 @@ export async function UploadProductApi(req, res) {
         if (err) return alert('Please Do not use corrupted image');
 
 
-
-
-        // log({newImageArray}) ;
-
-
         await Product.create({
             id: Date.now(),
             name,

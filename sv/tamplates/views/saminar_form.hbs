@@ -12,7 +12,7 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Arial', sans-serif;
+            font-family: "Libre Franklin",Arial, sans-serif;
         }
 
         body {
@@ -75,6 +75,19 @@
 
         .form-group {
             margin-bottom: 20px;
+        }
+
+        .form-group label {
+            font-size: 11pt;
+            line-height: 15pt;
+            letter-spacing: 0;
+            font-family: "Libre Franklin", Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            letter-spacing: .2px;
+            line-height: 20px;
+            color: rgb(32, 33, 36);
+            margin-top: 12px;
         }
 
         label {
@@ -236,15 +249,15 @@
                 <!-- Additional Questions -->
                 <div class="form-group">
                     <label class="required">From where did you hear about us?</label>
-                    <textarea name="source" rows="2" maxlength="300" minlength="10" required></textarea>
+                    <textarea name="source" rows="2" maxlength="1200" minlength="10" required></textarea>
                 </div>
                 <div class="form-group">
                     <label class="required">Why do you want to join?</label>
-                    <textarea name="reason" rows="3" maxlength="300" minlength="10" required></textarea>
+                    <textarea name="reason" rows="3" maxlength="1200" minlength="10" required></textarea>
                 </div>
                 <div class="form-group">
                     <label>Any medical condition we should know about?</label>
-                    <textarea name="medical" rows="2" maxlength="300" minlength="10" required></textarea>
+                    <textarea name="medical" rows="2" maxlength="1200" minlength="10" required></textarea>
                 </div>
 
                 <!-- Signature and Consent -->
@@ -255,10 +268,34 @@
                 <div class="form-group">
                     <label>
                         <input type="checkbox" name="consent" required>
-                        I hereby consent to participating of me/my child (For Parents)
+                        I agree and understand that the Goju Shin Ryu and School of traditional Martial Arts Centre
+                        (“organizers”)
+                        and its officers, and directors are not responsible for any loss, damage, personal injury, and
+                        death suffered by me, out of, or in connection with participation in this course and/or any
+                        activity
+                        associated with this course, whatsoever and howsoever caused, including negligence on the
+                        part of the organizers. In consideration of my acceptance at the Martial Arts & Self-Defense
+                        Program, I agree on behalf of myself, my dependants, heirs, assigns and representatives to
+                        release, discharge and hold completely harmless organizers, it’s owners, officers, and directors
+                        from any and all actions, claims, demands, liabilities, losses, damages, and expenses to my
+                        person or property, arising in relation to participation in this project.
                     </label>
                 </div>
-
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="role2" required>
+                        I am registering in the Martial Arts & Self-Defense Course, held by the School of traditional
+                        martial arts and Goju Shin Ryu Martial Arts Centre. I understand that this will be a hands-on
+                        program
+                        involving interaction between participants. Although great intentions have been placed on
+                        safety, injuries do occur.
+                        I agree to hold harmless all School of traditional martial arts and Goju Shin Ryu Martial Arts
+                        Centre staff and the RCD,
+                        including officers and directors, from any liability resulting from my participation in the
+                        registered
+                        activity.
+                    </label>
+                </div>
                 <!-- Submit Button -->
                 <button type="submit">Submit Application</button>
             </form>
@@ -266,16 +303,25 @@
         <script>
             let isRequesting = false;
             // Form Submission
-            document.getElementById('enrollmentForm').addEventListener('submit', async function(e)  {
+            document.getElementById('enrollmentForm').addEventListener('submit', async function (e) {
                 try {
                     e.preventDefault();
-                    if (isRequesting) return alert('Requesting To the server Please wait till request Completed'); 
+                    if (isRequesting) return alert('Requesting To the server Please wait till request Completed');
                     isRequesting = true;
-                    e.target.style.opacity=.6;
+                    e.target.style.opacity = .6;
                     const formData = new FormData(document.getElementById('enrollmentForm'));
                     const data = Object.fromEntries(formData.entries());
-                    let params=new URLSearchParams(data).toString();
-                    const response = await fetch(window.location.origin+'/api/api_s/saminars/apply', {
+                    let params = new URLSearchParams(data).toString();
+                    if (countWords(`[name="source"]`) < 10) {
+                        return alert("Please enter more than 10 words in the question : From where did you hear about us?");
+                    }
+                    if (countWords(`[name="medical"]`) < 8) {
+                        return alert("Please enter more than 8 words in the question : Any medical condition we should know about?");
+                    }
+                    if (countWords(`[name="reason"]`) < 8) {
+                        return alert("Please enter more than 8 words in the question : Why do you want to join?");
+                    }
+                    const response = await fetch(window.location.origin + '/api/api_s/saminars/apply', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -284,18 +330,24 @@
                     });
                     if (response.ok) {
                         alert('Application submitted successfully!');
-                        window.location.replace(window.location.origin+'/api/api_s/saminars/application/recieved');
+                        window.location.replace(window.location.origin + '/api/api_s/saminars/application/recieved');
                     } else {
                         alert('Submission failed. Please try again.');
                     }
                 } catch (error) {
                     console.error('Error:', error);
                     alert('An error occurred. Please try again later.');
-                } finally{
-                    isRequesting=false;
-                    e.target.style.opacity=1;
+                } finally {
+                    isRequesting = false;
+                    e.target.style.opacity = 1;
                 }
             });
+
+            function countWords(q) {
+                let input = document.querySelector('q');
+                let words = input.value.trim().split(' ').map(el => el.trim());
+                return words.length;
+            }
         </script>
     </main>
     {{>Footer}}

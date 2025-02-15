@@ -29,8 +29,8 @@ const productschema = new mongoose.Schema({
   thumb: {
     type: String,
     trim: true,
-    set : (thumb) => encodeURIComponent(thumb),
-    get : (thumb) => decodeURIComponent(thumb)
+    get: function (el) { return decodeURIComponent(el) },
+
   },
   sizeDetails: {
     type: String,
@@ -41,8 +41,7 @@ const productschema = new mongoose.Schema({
     of :  { 
       type: String, 
       trim: true ,
-      set : (thumb) => encodeURIComponent(thumb),
-      get : (thumb) => decodeURIComponent(thumb)
+      get: function (el) { return decodeURIComponent(el) },
     }
   },
   SizeAndPrice: [{

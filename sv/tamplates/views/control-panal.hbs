@@ -43,6 +43,7 @@
   <link rel="stylesheet" href="/css/control_panal/image_sylabus.css">
   <link rel="stylesheet" href="/css/control_panal/txt_sylabus.css">
   <link rel="stylesheet" href="/css/control_panal/saminar.css">
+  <link rel="stylesheet" href="/css/control_panal/product-popup.css">
 
 
 
@@ -482,49 +483,78 @@
   <div style="display: none;" class="popup_c" id="popup_product_action">
 
     <div class="popup_order_action_form">
-
-      <h2>
-        Product Action
-      </h2>
-
+      <h2>Product</h2>
+      <div class="thumb-box">
+        <label for="product-popup-thumb-image-input">Change Image</label>
+        <label for="product-popup-thumb-image-input" class="thumb-label">
+          <input type="file" accept="image/*" style="display: none;" id="product-popup-thumb-image-input"> 
+        </label>
+      </div>
+      <div class="img-box">
+        <label for="">Images</label>
+        <div class="imgs">
+          
+        </div>
+        <label for="product-popup-image-input">Add Image
+          <input type="file" accept="image/*" style="display: none;" id="product-popup-image-input">
+        </label>
+      </div>
       <div class="input-box">
         <label>Name</label>
-        <input value="Martial Art Cloths" type="text">
+        <input name="name" placeholder="name" type="text" minlength="5">
       </div>
-
-      <div class="input-box">
-        <label>Stock</label>
-        <input value="7" type="text">
-      </div>
-
-      <div class="input-box">
-        <label> Price</label>
-        <input value="93$" type="text">
-      </div>
-
       <div class="txt-box">
-        <label>Description</label>
-        <textarea value="Under Contruction"></textarea>
+        <label>Details</label>
+        <textarea placeholder="Details" minlength="5"></textarea>
       </div>
-
       <div class="input-box">
-        <label for="">Cetegory </label>
-        <select name="" id="">
-          <option value="">Cloth</option>
-          <option value="">weapons</option>
+        <label for="Cetegory">Cetegory</label>
+        <select name="Cetegory" id="Cetegory">
+          <option value="Weapons">Weapons</option>
+          <option value="Cloth">Cloth</option>
+          <option value="Equipment">Equipment</option>
+          <option value="Uniforms">Uniforms & Gis</option>
+          <option value="Belts">Belts & Ranks</option>
+          <option value="Protective-Gear">Protective Gear</option>
+          <option value="Training-Equipment">Training Equipment</option>
+          <option value="Weapons">Martial Arts Weapons</option>
+          <option value="Footwear">Footwear</option>
+          <option value="Accessories">Accessories</option>
+          <option value="Fitness-Gear">Fitness & Conditioning Gear</option>
+          <option value="Books-DVDs">Books & DVDs</option>
+          <option value="Apparel">Martial Arts Apparel</option>
         </select>
       </div>
-
-
+       <div class="txt-box">
+        <label> Size Details</label>
+        <textarea name="sizeDatails" placeholder="Size Details" minlength="5"></textarea>
+      </div>
+      <table>
+        <thead>
+          <tr>
+            <th>Size</th>
+            <th>Price </th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+      
+        </tbody>
+        
+      </table>
+      <form>
+        <input type="text" id="size-input" placeholder="size" name="size" maxlength="120" minlength="1">
+        <input type="number" id="price-input" placeholder="price" name="price" min="1" max="10000">
+        <button type="submit"> Add Size </button>
+      </form>
       <div class="pp_btn_box">
         <button class="popup-close-btn">
           Close
         </button>
-        <button class="popup-close-btn">
-          Save
+        <button class="popup-Update-btn">
+          Update
         </button>
       </div>
-
     </div>
   </div>
 
@@ -610,61 +640,7 @@
     </div>
   </div>
 
-  <!------------------------ create product size PopUp ------------------------------>
-  <div id="edit_product_size_popup" style="display: none;" class="popup_c">
-    <div class="popup_order_action_form">
-      <h2>
-        Size Action
-      </h2>
-      <div class="input-box">
-        <label>Size Name</label>
-        <input value="m" placeholder="M size" type="text">
-      </div>
-      <div class="input-box">
-        <label> Price</label>
-        <input value="23" placeholder="20 USD" type="number">
-      </div>
 
-
-
-      <div class="pp_btn_box">
-        <button class="popup-close-btn">
-          Close
-        </button>
-        <button class="popup-save-btn">
-          Save
-        </button>
-      </div>
-
-    </div>
-  </div>
-
-  <!------------------------update product size PopUp ------------------------------>
-  <div id="edit_product_size_popup_for_updating" style="display: none;" class="popup_c" targetedDIV="">
-    <div class="popup_order_action_form">
-      <h2>
-        Size Action
-      </h2>
-      <div class="input-box">
-        <label>Size Name</label>
-        <input value="0" placeholder="M size" type="text">
-      </div>
-      <div class="input-box">
-        <label> Price</label>
-        <input value="0" placeholder="30 DOLAR" type="number">
-      </div>
-
-
-
-      <div class="pp_btn_box">
-
-        <button class="popup-save-btn">
-          Save
-        </button>
-      </div>
-
-    </div>
-  </div>
 
   <!------------------------ Start The Page ------------------------------>
   <Header>
@@ -828,7 +804,7 @@
                 Thumbnail
               </b>
             </label>
-            <input multiple="false" style="display: none" type="file"
+            <input multiple="false" style="display: none" type="file" accept="image/*"
               id="upload_sec_event_tumb_img_inp_for_uploading_the_products">
           </div>
           <div id="product_upload_container_product_images_contaioner" class="upload_sec_env_img_inp_box">
@@ -838,7 +814,7 @@
             </label>
 
 
-            <input style="display: none" type="file" id="upload_sec_product_image_inp_for_uploading_the_products">
+            <input style="display: none" type="file" accept="image/*" id="upload_sec_product_image_inp_for_uploading_the_products">
 
           </div>
           <div class="s-sec-input-box">
@@ -975,7 +951,7 @@
         </div>
 
         <!-----------------------order list ----------------------------->
-        <div ct_section targetedElement="order_href" style="display:flex;" class="order-list-box">
+        <div ct_section targetedElement="order_href" style="display:none;" class="order-list-box">
 
           <table>
             <tr>
@@ -1096,7 +1072,6 @@
               <label for="s-sec-name-inp">Name</label>
               <input type="Text" placeholder="name">
             </div>
-
 
             <div class="s-sec-input-box">
               <label>email</label>
