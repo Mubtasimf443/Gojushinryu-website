@@ -7,7 +7,7 @@ Insha Allah,  By the marcy of Allah,  I will gain success
 
   let gmListContainer = document.querySelector('#list-of-gm');
   let table = gmListContainer.querySelector('table')
-
+  let grandMasters=[];
   let GmIsSeen = false;
   let Observer = new IntersectionObserver(entry => {
 
@@ -22,18 +22,20 @@ Insha Allah,  By the marcy of Allah,  I will gain success
             if (error) return alert('Failed To load Grand Master Data')
 
             if (success) {
+              grandMasters =gm;
               for (let i = 0; i < gm.length; i++) {
                 let { name, organization, image, id,username } = gm[i];
 
                 let tr = document.createElement('tr');
                 tr.innerHTML = ( `
-                        <td width="16%">
+                        <td >
                         <img src="${image}">
                         </td>
-                        <td width="28%" >${name}</td>
-                        <td width="40%" >${organization}</td>
+                        <td >${name}</td>
+                        <td>${organization}</td>
                         <td>${username}</td>
-                        <td width="16%"><button gm_id="${id}" >Remove</button></td>
+                        <td ><button gm_id="${id}" update>UPDATE</button></td>
+                        <td ><button gm_id="${id}" remove>Remove</button></td>
                         `);
                 table.appendChild(tr)
 
@@ -57,8 +59,8 @@ Insha Allah,  By the marcy of Allah,  I will gain success
                   table.querySelector(`[gm_id="${id}"]`).parentElement.parentElement.remove();
                 }
 
-                tr.querySelector('button').addEventListener('click', e => removeProduct(e))
-
+                tr.querySelector('[remove]').addEventListener('click', e => removeProduct(e))
+                tr.querySelector('[update]').addEventListener('click', OpenUpdatePopup);
               }
             }
           })
@@ -75,8 +77,67 @@ Insha Allah,  By the marcy of Allah,  I will gain success
 
 
 
+  {
+    let updatePopup = document.querySelector('#edit-grand-master-popup');
+    let form =updatePopup.querySelector('form') ;
+    let isUpdating=false;
+    form.addEventListener('submit',async function (event) {
+      try {
+        event.preventDefault();
+        if (isUpdating) {
+          return alert('Please wait as Grand Master is Updating');
+        }
+        isUpdating =true;
+        let name =  updatePopup.querySelector(`[name="name"]`).value;
+        let email = updatePopup.querySelector(`[name="email"]`).value;
+        let organization= updatePopup.querySelector('[name="organization"]').value;
+        let username = updatePopup.querySelector(`[name="username"]`).value;
+        let password =  updatePopup.querySelector(`[name="password"]`).value;
+        form.style.opacity = .65;
+        let response =await fetch(window.location.origin +'/api/api_s/update-grand-master-from-control-panal' , {
+          method :"PUT",
+          headers:{
+            'Content-Type':'application/json',
+          },
+          body :JSON.stringify({ name , email , password , username , organization})
+        });
+        if (response.ok) {
+          alert('successfully updated the grand master');
+        } else {
+          alert('Failed to update the grand master');
+        }
+      } catch (error) {
+        console.log(error);
+      } finally {
+        form.style.opacity = 1;
+        updatePopup.style.display = 'none';
+        isUpdating =false;
+      }
 
+    });
+  }
 
+  function OpenUpdatePopup(event = new CustomEvent('click')) {
+    try {
+      event.preventDefault();
+      let updatePopup = document.querySelector('#edit-grand-master-popup');
+      console.log({grandMasters});
+      
+      let { name, email, organization, username } = grandMasters.find(function (element) {
+        if (element.id == event.target.getAttribute('gm_id')) {
+          return element;
+        }
+      });
+      updatePopup.querySelector(`[name="name"]`).value= name;
+      updatePopup.querySelector(`[name="email"]`).value= email;
+      updatePopup.querySelector(`[name="organization"]`).value= organization;
+      updatePopup.querySelector(`[name="username"]`).value= username;
+      updatePopup.querySelector('form').setAttribute('gm-id', event.target.getAttribute('gm_id'));
+      updatePopup.style.display='flex';
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
 
   gmListContainer.querySelector(`[upload_gm_btn]`).addEventListener('click', async function (event = new Event('click')) {

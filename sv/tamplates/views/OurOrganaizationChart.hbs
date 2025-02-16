@@ -1,134 +1,324 @@
 <!DOCTYPE html>
 <!-- 
 بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ
-Insha Allah,  By your Marcy Ya Allah
+Insha Allah, By Your Mercy Ya Allah
 -->
-<html>
+<html lang="en">
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>
-    Organisation Chart | {{>company_name}}
-  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Organization Chart | {{>company_name}}</title>
   {{>Links}}
-    <link rel="stylesheet" href="/css/pages/OurOrganaizationChart.css">
-    <meta name="description" content="View the organizational information by  Organisation Chart of  {{>company_name}}">
-    <meta name="keyword" content="Organisation Chart of  {{>company_name}}">
+
+  <meta name="description"
+    content="View the organizational structure through the Organization Chart of {{>company_name}}">
+  <meta name="keywords" content="Organization Chart, {{>company_name}} structure, company hierarchy">
+  <style>
+    /* بِسْمِ اللهِ الرَّحْمٰنِ الرَّحِيْمِ  ﷺ */
+    :root {
+
+      --gap-sm: 1rem;
+      --gap-md: 2rem;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #f8f9fa;
+      font-family: 'Segoe UI', sans-serif;
+      line-height: 1.6;
+    }
+
+    main {
+      padding: 1rem;
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 1rem;
+      color: black;
+    }
+
+    h2 {
+      font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+      margin: 1.5rem 0;
+      color: black;
+    }
+
+    /* Section 1 Styles */
+    #org-chart-sec-1 {
+      display: flex;
+      flex-direction: column;
+      gap: var(--gap-md);
+      padding: 2rem 0;
+    }
+
+    #org-chart-sec-1-img-div {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    #org-chart-sec-1-img-div>img {
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #org-chart-sec-1-info-action-div {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    #org-chart-sec-1-info-action-div p {
+      color: #4a5568;
+      margin-bottom: 1.5rem;
+    }
+
+    #org-chart-sec-2 {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: center;
+    }
+
+    /* Section 2 Styles */
+    #org-chart-sec-2-chart-list-div {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      row-gap: 25px;
+      column-gap: 25px;
+    }
+
+    .chart-list-img {
+      width: 350px;
+      height: 225px;
+      object-fit: cover;
+      border-radius: 6px;
+      cursor: pointer;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease;
+    }
+
+    .chart-list-img:hover {
+      transform: scale(1.03);
+    }
+
+    /* Section 3 Styles */
+    #org-chart-sec-3 {
+      display: none;
+      flex-direction: column;
+      gap: 2rem;
+      padding: 2rem 0;
+    }
+
+    #org-chart-sec-3 img {
+      width: 100%;
+      height: auto;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: 8px;
+    }
+
+    /* Button Styles */
+    .cta-button {
+      background: var(--main-cl);
+      color: white;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: opacity 0.3s ease;
+    }
+
+    .cta-button:hover {
+      opacity: 0.9;
+    }
+
+    @media (min-width: 950px) {
+      #org-chart-sec-2-chart-list-div {
+        justify-content: left;
+      }
+    }
+
+    /* Responsive Design */
+    @media (min-width: 768px) {
+      #org-chart-sec-1 {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+
+      #org-chart-sec-1-img-div {
+        flex: 1;
+      }
+
+      #org-chart-sec-1-info-action-div {
+        flex: 1;
+        padding-left: 2rem;
+      }
+
+      #org-chart-sec-2-chart-list-div {
+        justify-content: center;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .chart-list-img {
+        height: 150px;
+      }
+
+      #org-chart-sec-2-chart-list-div {
+        justify-content: center;
+      }
+    }
+
+    /* Popup Styles */
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+    }
+
+    .popup-content {
+      position: relative;
+      max-width: 90%;
+      max-height: 90%;
+      background: #fff;
+      border-radius: 10px;
+      overflow-y: scroll;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    .popup-content img {
+      width: 100%;
+      height: fit-content;
+      display: block;
+
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      color: #fff;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      transition: background 0.3s ease;
+    }
+
+    .close-btn:hover {
+      background: rgba(0, 0, 0, 0.8);
+    }
+
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .popup-content {
+        max-width: 95%;
+        max-height: 95%;
+      }
+
+      .close-btn {
+        top: 5px;
+        right: 10px;
+        font-size: 20px;
+        width: 35px;
+        height: 35px;
+      }
+    }
+  </style>
 </head>
+
+
 <body>
 
-{{>whiteHeader}}
+  <!-- Popup -->
+  <div class="popup" id="imagePopup">
+    <div class="popup-content">
+      <span class="close-btn" id="closePopup">&times;</span>
+      <img id="popupImage" src="" alt="Popup Image">
+    </div>
+  </div>
+  {{>whiteHeader}}
+
+  <main style="padding-bottom: 40px;">
+    <section id="org-chart-sec-1">
+      <div id="org-chart-sec-1-img-div">
+        <img id="---main--chart-img" src="/img/chart1.jpg" alt="Main organization chart">
+      </div>
+      <div id="org-chart-sec-1-info-action-div">
+        <h1>Our Organization Structure</h1>
+        <p>
+          Explore our organizational hierarchy and interdepartmental relationships through our detailed charts and
+          diagrams.
+        </p>
+        <div id="org-chart-sec-1-action-div-list-div">
+          <div class="icon-box">
+            <i class="fa-solid fa-chart"></i>
+            <b>7 Detailed Organizational Charts</b>
+          </div>
+          <div class="icon-box" style="margin-bottom: 10px;">
+            <i class="fa-solid fa-network-wired"></i>
+            <b>Inter-Organizational Relationships</b>
+          </div>
+        </div>
+        <button class="cta-button" id="view-add-the-charts-btn">
+          <a href="#org-chart-sec-2">View All Charts</a>
+        </button>
+      </div>
+    </section>
+
+    <section id="org-chart-sec-2">
+      <h2>Featured Charts</h2>
+      <div id="org-chart-sec-2-chart-list-div">
+        {{!-- <img class="chart-list-img" src="/img/chart1.jpg" alt="Chart preview 1">
+        <img class="chart-list-img" src="/img/chart2.jpg" alt="Chart preview 2">
+        <img class="chart-list-img" src="/img/chart1.jpg" alt="Chart preview 3">
+        <img class="chart-list-img" src="/img/chart2.jpg" alt="Chart preview 4">
+        <img class="chart-list-img" src="/img/chart1.jpg" alt="Detailed chart 1">
+        <img class="chart-list-img" src="/img/chart2.jpg" alt="Detailed chart 2">
+        <img class="chart-list-img" src="/img/chart1.jpg" alt="Detailed chart 3">
+        <img class="chart-list-img" src="/img/chart2.jpg" alt="Detailed chart 4"> --}}
+      </div>
+    </section>
 
 
- <main>
-   <section id="org-chart-sec-1">
-     <div id="org-chart-sec-1-img-div">
-       <img id="---main--chart-img" src="/img/chart1.jpg" alt="">
-     </div>
-     <div id="org-chart-sec-1-info-action-div">
-       <h1>
-         Our Organisation Charts and Graphs
-       </h1>
-       <p>
-Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem quod praesentium eveniet, laborum recusandae libero quam quas architecto voluptatibus et commodi cumque, inventore cum sit temporibus dolore labore perspiciatis similique.
-       </p>
-       <div id="org-chart-sec-1-action-div-list-div">
-         <div class="icon-box ">
-           <i class="fa-solid fa-chart"></i>&nbsp;
-           <b>7 Charts of Our Organisation</b>
-         </div>
-         <div class="icon-box ">
-           <i class="fa-solid fa-chart"></i>&nbsp;
-           <b>Relation With lots of Organisation</b>
-         </div>
-       </div>       
-       <button id="view-add-the-charts-btn">
-         <a href="#org-chart-sec-3">
+    <!-- Popup -->
+    <div class="popup" id="imagePopup" style="display: none;">
+      <div class="popup-content">
+        <span class="close-btn" id="closePopup">&times;</span>
+        <img id="popupImage" src="" alt="Popup Image">
+      </div>
+    </div>
 
- View All the Charts
-     
-         </a>
-        
-       </button>
-
-     </div>
-   </section>
-   <section id="org-chart-sec-2">
-   <h2>Our Charts</h2>
-   <div id="org-chart-sec-2-chart-list-div">
-     <img class="chart-list-img" 
-     src="/img/chart1.jpg" alt="chart Image" />
-      <img class="chart-list-img" 
-     src="/img/chart2.jpg" alt="chart Image" />
-      <img class="chart-list-img" 
-     src="/img/chart1.jpg" alt="chart image" />
-      <img class="chart-list-img" 
-     src="/img/chart2.jpg" alt="chart Image" />
-      <img class="chart-list-img" 
-     src="/img/chart1.jpg" alt="chart Image" />
-      <img class="chart-list-img" 
-     src="/img/chart2.jpg" alt="chart Image" />
-   </div>
-   <div id="dots_div">
-     <div class="dots"></div>
-       <div class="dots"></div>
-        <div class="dots"></div>
-        <div class="dots"></div>
-       <div class="dots"></div>
-        <div class="dots"></div>
-      
-   </div>
-   </section>
-   <section id="org-chart-sec-3">
-    <h2>
-      All Charts 
-    </h2>
-    <img 
-    src="/img/chart1.jpg" 
-    alt="chart Image" />
-    <img 
-    src="/img/chart2.jpg"
-    alt="chart Image" />
-    <img 
-    src="/img/chart1.jpg" 
-    alt="chart Image" />
-    <img 
-    src="/img/chart2.jpg"
-    alt="chart Image" />
-    <img 
-    src="/img/chart1.jpg" 
-    alt="chart Image" />
-    <img 
-    src="/img/chart2.jpg"
-    alt="chart Image" />
-   </section>
- </main>
-
- {{>Footer}}
- 
-<script>
-
-  let btn= document.querySelector('#view-add-the-charts-btn');
-  btn.addEventListener('click', function Open(e) {
-    try {
-    let section= document.getElementById("org-chart-sec-3");
-    section.setAttribute('style','display :flex');
-    console.log(section)
-      } catch (error) {
-        alert('eror');
-      }
-      }) ;
-
-
-  document.querySelectorAll('.chart-list-img').forEach(e => {
-    e.addEventListener('click',()=>{
-      document.getElementById('---main--chart-img').src = e.src;
-    })
-  })
+  </main>
+  <script src="/js/pages/organization.chart.js" async></script>
   
-</script>
+  {{>Footer}}
+
 </body>
 
 </html>

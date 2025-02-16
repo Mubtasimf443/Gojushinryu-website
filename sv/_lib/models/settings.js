@@ -60,7 +60,10 @@ const settingsSchema =new mongoose.Schema({
     last_modification_date_as_Hour:String,
     last_modification_date_as_minute:String,
 
-
+    organization_charts :[ {
+        url:String,
+        id :String
+    }],
     noticeData :{
         social_media : {
             not_connected :{

@@ -23,6 +23,7 @@ export async function user_varification_api(req,res) {
                 return resolve(decoded.email);
             });
         })
+        
         let user = await User.findOne().where('email').equals(email);
         if (!user) return res.status(400).json({error:'Time out! please signup again '});
         if (user.pin === 0) return res.status(400).json({error:'You already have account,Please sign In'});

@@ -3,7 +3,11 @@
 
 import { log } from 'console';
 import {Settings} from '../models/settings.js'
-import { namedErrorCatching } from '../utils/catchError.js';
+import catchError, { namedErrorCatching } from '../utils/catchError.js';
+import { request, response, Router } from 'express';
+import { UploadImgFile } from '../api/formidable.file.post.api.js';
+import { Cloudinary } from '../Config/cloudinary.js';
+import { v4 as uuid } from 'uuid';
 
 export async function settingsAsString(params) {
     let settings=await Settings.findOne({});
@@ -78,3 +82,48 @@ export async function setSettingsAsArray({keys,values}){
         }
     );
 }
+
+const organizationChartsRouter = Router();
+
+organizationChartsRouter.route('/')
+    .get(getOrganizationChart)
+    .post(postOrganizationChart)
+    .delete(deleteOrganizationChart);
+async function postOrganizationChart(req = request, res = response) {
+    try {
+        let [path, fileds] = await UploadImgFile(req);
+        let url = (await Cloudinary.uploader.upload(path, { public_id: uuid(), resource_type: 'image' })).url;
+        let settings = await Settings.findOne({});
+        if (!settings) throw new Error("settings is null");
+        settings.organization_charts.push({ url, id: uuid() });
+        await settings.save();
+        return res.status(200).send({ url, id: settings.organization_charts[settings.organization_charts.length - 1].id });
+    } catch (error) {
+        catchError(res, error);
+    }
+}
+async function deleteOrganizationChart(req = request, res = response) {
+    try {
+        let id = req.query.id;
+        if (!id.trim()) throw 'Organization chart id is required';
+        let settings = await Settings.findOne({});
+        if (!settings) throw new Error("settings is null");
+        settings.organization_charts = settings.organization_charts.filter(function (element) {
+            if (element.id !== id) return element;
+        });
+        await settings.save();
+        res.sendStatus(204);
+        return;
+    } catch (error) {
+        catchError(res, error);
+    }
+}
+async function getOrganizationChart(req = request, res = response) {
+    try {
+        let { organization_charts } = await Settings.findOne({}, 'organization_charts');
+        return res.status(200).json(organization_charts);
+    } catch (error) {
+        catchError(res, error);
+    }
+}
+export { organizationChartsRouter }

@@ -10,7 +10,7 @@ import AdminCheckMidleware from '../_lib/midlewares/AdminCheckMidleware.js';
 import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
 import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEnrollments } from '../_lib/model_base_function/Course.js';
 import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
-import { CreateGMApi, DeleteGMAccount, FindGMApi, UpdateGmDataAPI } from '../_lib/model_base_function/gm.js';
+import { CreateGMApi, DeleteGMAccount, FindGMApi, grandMasterImageChange, UpdateGmDataAPI, updateGmFromControlPanal } from '../_lib/model_base_function/gm.js';
 import { addProductImage, changeProductTumb, DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery, removeProductImage, UpdateProduct } from '../_lib/model_base_function/Product.js';
 import { approveStudent, BaneUserFunction, DeleteUserAccount, findBlackBeltPageBb,  FindUser, getUserData, getUserEnrolledCourseApi, unBlackBeltStudent , getUserMembershipJS, makeBlackBeltTotheStudent, RemoveFromBanedUserFunction, UserLogout, userSocialMedia } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
@@ -42,6 +42,7 @@ import catchError from "../_lib/utils/catchError.js";
 import { deleteAsset, findAssetsVideoControlPanal, findImageAssetsControlPanal, imagesPageImage, UploadImageAssets, UploadVideoAssets, videosPageVideos } from "../_lib/model_base_function/Assets.js";
 import SyllabusAssetRouter from "../_lib/model_base_function/sylabus.js";
 import SaminarRouter from "../_lib/model_base_function/saminar.js";
+import { organizationChartsRouter } from "../_lib/model_base_function/Settings.js";
 
 
 
@@ -54,6 +55,8 @@ let router =Router()
 router.use(morgan('dev'))
 router.use(noCache)
 router.use(SyllabusAssetRouter);
+router.use('/organization-chart', organizationChartsRouter)
+
 router.use('/saminars', SaminarRouter )
 //get
 router.get('/find-grand-master', FindGMApi)
@@ -174,6 +177,8 @@ router.put('/user/approve-user', approveStudent);
 router.put('/gojusinryu-membership/request-fees', GojushinryuMembershipFeesRequest)
 router.put('/product/thumb', changeProductTumb);
 router.put('/product', UpdateProduct);
+router.put('/update-grand-master-from-control-panal', updateGmFromControlPanal);
+router.put('/grand-master-image-change', grandMasterImageChange);
 
 //Delete
 router.delete('/delete-product',DeleteProduct)

@@ -83,7 +83,7 @@
   <script defer src="/js/control panal/video_sylabus.js"></script>
   <script defer src="/js/control panal/txt_sylabus.js"></script>
   <script defer src="/js/control panal/saminar.js"></script>
-
+  <script defer src="/js/control panal/organization.charts.js"></script>
 </head>
 
 <body>
@@ -480,6 +480,35 @@
   </div>
 
   <!------------------------ product PopUp ------------------------------>
+  <div style="display: none;" class="popup_c" id="edit-grand-master-popup">
+    <form class="popup_order_action_form">
+      <div class="input-box">
+        <label>Name</label>
+        <input name="name" placeholder="name" type="text" minlength="5" maxlength="100" required>
+      </div>
+      <div class="input-box">
+        <label>Email</label>
+        <input name="email" placeholder="email" type="email" minlength="5" maxlength="100" required>
+      </div>
+      <div class="input-box">
+        <label>Organization</label>
+        <input name="organization" placeholder="Organization" type="text" minlength="5" maxlength="200" required>
+      </div>
+      <div class="input-box">
+        <label>Username</label>
+        <input name="username" placeholder="username" type="text" minlength="5" maxlength="200"  required>
+      </div>
+      <div class="input-box">
+        <label>Password</label>
+        <input name="password" placeholder="Password" type="password" minlength="5" maxlength="200"  required>
+      </div>
+      <div class="pp_btn_box">
+        <button class="popup-close-btn"> Close </button>
+        <button type="submit">Update</button>
+      </div>
+    </form>
+  </div>
+  <!------------------------ product PopUp ------------------------------>
   <div style="display: none;" class="popup_c" id="popup_product_action">
 
     <div class="popup_order_action_form">
@@ -490,6 +519,7 @@
           <input type="file" accept="image/*" style="display: none;" id="product-popup-thumb-image-input"> 
         </label>
       </div>
+
       <div class="img-box">
         <label for="">Images</label>
         <div class="imgs">
@@ -1051,11 +1081,12 @@
           <table>
 
             <tr>
-              <th width="16%">Image</th>
-              <th width="28%">Name</th>
+              <th >Image</th>
+              <th >Name</th>
               <th>UserName</th>
-              <th width="40%">Organization</th>
-              <th width="16%">Action</th>
+              <th >Organization</th>
+              <th >Update</th>
+              <th >Delete</th>
             </tr>
 
 
@@ -1361,56 +1392,56 @@
         <!----------------------- Settings ----------------------------->
         <div class="settings-container-main" targetedElement="settings_href" style="display: none;" ct_section>
           <div id="settings-conatiner" class="form-section">
-
-
+        
+        
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp"> home video url </label>
               <input type="Text" placeholder="like http://cloudinary/video/****" value="{{home_video_url}}"
                 id="h-video-url-inp">
             </div>
             <strong>Dates of Course</strong>
-
+        
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">Online Classes</label>
               <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}"
                 id="o-class-date">
             </div>
-
+        
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">Regular Classes</label>
               <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}"
                 id="r-class-date">
             </div>
-
-
+        
+        
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">Woments Defence Classes</label>
-              <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6"
-                value="{{date_of_womens_defence_class}}" id="w-class-date">
+              <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_womens_defence_class}}"
+                id="w-class-date">
             </div>
-            
-
+        
+        
             <strong>Fees Of course</strong>
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">Regular Classes</label>
               <input type="number" placeholder="Fees" value="{{fees_of_reqular_class}}" id="fees_of_reqular_class">
             </div>
-
+        
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">Bhangra Fitness Class for All Ages</label>
               <input type="number" placeholder="Fees" value="{{fees_of_Bhangra_fitness}}" id="fees_of_Bhangra_fitness">
             </div>
-
-
+        
+        
             <strong>Others</strong>
-
+        
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">GST RATE (%)</label>
               <input type="number" placeholder="Fees" value="{{gst_rate}}" id="gst_rate">
             </div>
-
+        
             <strong>Authenticated Media</strong>
-
+        
             <div class="auth_div">
               <div class="icon_div">
                 <img src="/icon/youtube.png" alt="youtube icon">
@@ -1419,7 +1450,7 @@
               </div>
               <button auth_btn_youtube style="background-color: black;">Login</button>
             </div>
-
+        
             <div class="auth_div">
               <div class="icon_div">
                 <img src="/icon/linkedin.png" alt="linkedin icon">
@@ -1428,7 +1459,7 @@
               </div>
               <button auth_btn_linkedin style="background-color: black;">Login</button>
             </div>
-
+        
             <div class="auth_div">
               <div class="icon_div">
                 <img src="/icon/tiktok.png" alt="tiktok icon">
@@ -1437,7 +1468,7 @@
               </div>
               <button auth_btn_tiktok style="background-color: black;">Login</button>
             </div>
-
+        
             <div class="auth_div">
               <div class="icon_div">
                 <img src="/icon/facebook.png" alt="tiktok icon">
@@ -1446,16 +1477,15 @@
               </div>
               <button auth_btn_facebook style="background-color: black;">Login</button>
             </div>
-
-
-
+        
+        
+        
             <div class="s-sec-btn-box">
-              <button save_btn
-                style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
+              <button save_btn style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
             </div>
-
+        
           </div>
-
+        
           <div id="settings-of-membership-coupons-container" class="settings-of-coupons-container">
             <strong>Membership Coupon Details</strong>
             <table>
@@ -1470,26 +1500,27 @@
                 </tr>
               </thead>
               <tbody>
-
+        
               </tbody>
             </table>
             <strong>Create Coupon</strong>
             <form id="couponForm">
-            
+        
               <input type="text" couponName name="couponName" placeholder="coupon name" maxlength="20" minlength="1">
-
-          
+        
+        
               <input type="text" couponCode placeholder="coupon code" maxlength="20" minlength="1">
-
+        
               <input type="number" couponRate placeholder="discount rate" min="0" max="75" value="">
-
-            
+        
+        
               <input type="text" expirationDate placeholder="Expiration Date" onblur="(this.type='text')"
                 onfocus="(this.type='date')">
-
+        
               <button add_coupon_btn>Add</button>
             </form>
           </div>
+        
           <div id="settings-of-course-coupons-container" class="settings-of-coupons-container">
             <strong>Course Coupon Details</strong>
             <table>
@@ -1504,27 +1535,47 @@
                 </tr>
               </thead>
               <tbody>
-
+        
               </tbody>
             </table>
             <strong>Create Coupon</strong>
             <form id="couponForm">
               {{!-- <label for="couponName">Coupon Name</label> --}}
               <input type="text" couponName name="couponName" placeholder="coupon name" maxlength="20" minlength="1">
-
+        
               {{!-- <label for="couponCode">Coupon Code</label> --}}
               <input type="text" couponCode placeholder="coupon code" maxlength="20" minlength="1">
-
+        
               {{!-- <label for="couponRate">Rate (%)</label> --}}
               <input type="number" couponRate placeholder="discount rate" min="0" max="75" value="">
-
+        
               {{!-- <label for="expirationDate">Expiration Date</label> --}}
               <input type="text" expirationDate placeholder="Expiration Date" onblur="(this.type='text')"
                 onfocus="(this.type='date')">
-
+        
               <button add_coupon_btn>Add</button>
             </form>
           </div>
+        
+          <div id="assets-organizaition-charts-gallary">
+            <strong>Organization Charts</strong>
+            <div class="images">
+        
+            </div>
+            <label class="addCharts">Add Charts
+              <input type="file" accept="image/*" id="input-organization-charts" style="display: none;" multiple>
+            </label>
+          </div>
+        
+          <!-- Popup -->
+          <div class="popup" id="imagePopup" style="display: none;">
+            <div class="popup-content">
+              <span class="close-btn" id="closePopup">&times;</span>
+              <img id="popupImage" src="" alt="Popup Image">
+            </div>
+          </div>
+
+          
         </div>
 
         <!-----------------------Upload Event ----------------------------->
@@ -1819,15 +1870,7 @@
               </div>
             </div>
     
-            <!-- Controls -->
-            {{!-- <div class="controls">
-              <button class="add-btn" id="add-video-btn">+ Add Video</button>
-            </div> --}}
-
-            <!-- Footer -->
-            {{!-- <div class="footer">
-              <button class="primary-btn">Save Only</button>
-            </div> --}}
+  
           </div>
 
         </div>

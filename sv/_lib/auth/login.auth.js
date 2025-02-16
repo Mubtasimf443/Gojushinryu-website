@@ -10,8 +10,6 @@ import { GM } from '../models/GM.js';
 
 
 export const loginApiFunc = async (req=request, res=response) => {
- 
-
   try {
     let { password, email } = req.body;
     {
@@ -55,8 +53,6 @@ export const loginApiFunc = async (req=request, res=response) => {
     }
   }
 }
-
-
 export const GMLoginApiFunc =async (req, res) => {
    // log('sign in started')
    //  if (req.cookies.rft) return res.json({error:'You have Login Before'})

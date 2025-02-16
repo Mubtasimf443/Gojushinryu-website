@@ -16,7 +16,7 @@ Insha Allah,  By your Marcy Ya Allah
     z-index: 29;
     background: rgba(0, 0, 0, 0.4);
 }
-.popup_c >div {
+.popup_c >div,form {
     background: white;
     color: black;
    border-radius:7px ;

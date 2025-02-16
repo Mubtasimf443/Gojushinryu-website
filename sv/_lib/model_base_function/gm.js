@@ -6,10 +6,12 @@ import { JWT_SECRET_KEY } from "../utils/env.js";
 import { GM } from "../models/GM.js";
 import { Alert, log, Success } from "../utils/smallUtils.js";
 import bcrypt from 'bcryptjs'
-import { validate } from "string-player";
-
-
-
+import { tobe, validate } from "string-player";
+import { request, response } from "express";
+import catchError, { namedErrorCatching } from "../utils/catchError.js";
+import { UploadImgFile } from "../api/formidable.file.post.api.js";
+import { Cloudinary } from "../Config/cloudinary.js";
+import {  v4 as uuid } from "uuid";
 
 export async function GMCornerPageRoute(req, res) {
   try {
@@ -35,9 +37,6 @@ export async function GMCornerPageRoute(req, res) {
   }
 }
 
-
-
-
 export async function FindGMApi(req, res) {
   let GmArray = GM.find({})
     .then(data => res.json({ success: true, gm: data }))
@@ -48,9 +47,6 @@ export async function FindGMApi(req, res) {
       })
     })
 };
-
-
-
 
 export async function UpdateGmDataAPI(req, res) {
   try {
@@ -75,13 +71,12 @@ export async function UpdateGmDataAPI(req, res) {
       .catch(e => {
         Alert('failed to update data ', res)
       })
+
+
   } catch (error) {
     console.error({ error });
   }
 };
-
-
-
 
 export async function CreateGMApi(req, res) {
   try {
@@ -92,8 +87,8 @@ export async function CreateGMApi(req, res) {
     if (!validate.isEmail(email)) return Alert('Email is NOT Valid', res);
     let salt = await bcrypt.genSalt(8);
     password = await bcrypt.hash(password, salt);
-    let isGmExistFromEmail = (await GM.findOne({ email: email.toLowerCase().trim() })) !== null ;
-    let isGmExistFromUsername = (await GM.findOne({ username: username.toLowerCase().trim() })) !== null  ;
+    let isGmExistFromEmail = (await GM.findOne({ email: email.toLowerCase().trim() })) !== null;
+    let isGmExistFromUsername = (await GM.findOne({ username: username.toLowerCase().trim() })) !== null;
     if (isGmExistFromEmail) return Alert('A Grand master Account Exist Form this email', res);
     if (isGmExistFromUsername) return Alert('A Grand master Account Exist Form this Username', res);
     await GM.create({ name, organization, email, password, username });
@@ -103,9 +98,6 @@ export async function CreateGMApi(req, res) {
     return Alert('Server error', res)
   }
 }
-
-
-
 
 export async function DeleteGMAccount(req, res) {
   try {
@@ -121,4 +113,60 @@ export async function DeleteGMAccount(req, res) {
 };
 
 
+export async function updateGmFromControlPanal(req = request, res = response) {
+  try {
+    let { name, email, organization, username, password } = req.body;
+    [name, email, organization, username, password] = [name, email, organization, username, password].map(function (element) {
+      return element?.trim()
+    })
+    if (!name || !tobe.minMax(name, 5, 200)) namedErrorCatching('parameter error', 'name is not correct');
+    if (validate.isEmail(email) === false) namedErrorCatching('parameter error', 'email is not correct');
+    if (!organization || !tobe.minMax(organization, 5, 200)) namedErrorCatching('parameter error', 'organization is not correct');
+    if (!username || !tobe.minMax(username, 5, 200)) namedErrorCatching('parameter error', 'username is not correct');
+    if (!password || !tobe.minMax(password, 5, 200)) namedErrorCatching('parameter error', 'password is not correct');
 
+    let salt = await bcrypt.genSalt(10);
+    password = await bcrypt.hash(password, salt);
+
+    let gm = await GM.findOne({ email })
+    if (gm === null) throw 'No gm exist from this email :' + email;
+
+    gm.name = name;
+    gm.email = email;
+    gm.organization = organization;
+    gm.username = username;
+    gm.password = password;
+
+    await gm.save();
+    return res.sendStatus(200)
+  } catch (error) {
+    catchError(res, error);
+  }
+}
+
+
+export async function grandMasterImageChange(req = request, res = response) {
+  try {
+    let email = await getGmEmailFromCookies(req.cookies.gm_cat);
+    let gm = await GM.findOne({ email })
+    if (gm === null) throw 'No gm exist from this email :' + email;
+    let [path, feilds] = await UploadImgFile(req, 'image');
+    let url = (await Cloudinary.uploader.upload(path, { public_id: uuid(), resource_type:'image'})).url;
+    gm.image = url;
+    await gm.save();
+    return res.status(200).send(url);
+  } catch (error) {
+    catchError(res, error);
+  }
+}
+
+function getGmEmailFromCookies(cookie='') {
+  return new Promise((resolve, reject) => {
+    jwt.verify(cookie, JWT_SECRET_KEY,function(error , decoded) {
+      if (error) return reject(error);
+      if (decoded?.email ) return resolve(decoded?.email);
+      else throw 'grand master cookie is not valid';
+    })
+  })
+  
+}
