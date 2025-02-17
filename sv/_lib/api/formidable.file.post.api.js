@@ -18,7 +18,7 @@ export function UploadPDFFile(req = request ) {
             uploadDir: path.resolve(dirname, '../../temp/pdfs'),
             maxFiles: 1,
             allowEmptyFiles: false,
-            maxFileSize: 10 * 1024 * 1024,
+            maxFileSize: 50 * 1024 * 1024,
             filter(file) {
                 if (file.mimetype === 'application/pdf') return true
                 DontSuffortMime = true
