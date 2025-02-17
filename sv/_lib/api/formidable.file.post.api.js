@@ -33,7 +33,7 @@ export function UploadPDFFile(req = request ) {
             }
             if (!files.pdf) throw 'Pdf file is available';
             if (!files.pdf.length === 0) throw 'Pdf file is available';
-            return resolve([files.pdf[0].filepath, feilds]);
+            return resolve([files.pdf[0].filepath, feilds, files.pdf[0].newFilename]);
         })
     })
 }

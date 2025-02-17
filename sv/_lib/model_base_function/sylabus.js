@@ -155,19 +155,19 @@ async function findPdf(req = request, res = response) {
 }
 async function postPdf(req = request, res = response) {
     try {
-        let [pdfPath,feilds] = await UploadPDFFile(req);
+        let [pdfPath,feilds,filename] = await UploadPDFFile(req);
         
         let { title } =feilds;
         if (!title || isnota.array(title)) throw 'Missing Title of The Pdf';
         title =title[0]?.trim();
         if (!title)throw 'Missing Title of The Pdf';
         if (title.length >200)throw 'Missing Title of The Pdf';
-        let info = await Cloudinary.uploader.upload(pdfPath, { public_id: Date.now().toString(),format :'pdf' });
+        let backupAssetLink = (await Cloudinary.uploader.upload(pdfPath, { public_id: Date.now().toString(),format :'pdf' })).url;
         let pdfAsset=await SyllabusAsset.create({
             assetType :'pdf',
-            content :info.url ,
+            content :'/api/file/temp-pdf/'+ filename,
             title :title ,
-            
+            backupAssetLink
         });
         return res.status(200).json(pdfAsset);
     } catch (error) {

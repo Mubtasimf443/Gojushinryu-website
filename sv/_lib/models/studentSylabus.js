@@ -40,7 +40,10 @@ const syllabusAssetSchema = new mongoose.Schema({
         default: Date.now,
         required: true, 
     },
-
+    backupAssetLink: {
+        type: String,
+        default :'null'
+    }
 });
 
 // Create a model based on the schema

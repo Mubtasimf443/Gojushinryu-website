@@ -63,4 +63,16 @@ fileRouter.get('/temp-video/:name',lSlowdown, async(req, res) => {
         return res.sendStatus(204)
     }
 })
+
+
+fileRouter.get('/temp-pdf/:name', lSlowdown, async(req, res) => {
+    try {
+        let location=path.resolve(dirName,  '../temp/pdfs/' + req.params.name);
+        if (existsSync(location)) return res.status(200).sendFile(location);
+        if (!existsSync(location)) return res.sendStatus(204);
+    } catch (error) {
+        console.error(error);
+        return res.sendStatus(204)
+    }
+})
 export {fileRouter}
