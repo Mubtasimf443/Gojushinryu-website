@@ -162,7 +162,7 @@ async function postPdf(req = request, res = response) {
         title =title[0]?.trim();
         if (!title)throw 'Missing Title of The Pdf';
         if (title.length >200)throw 'Missing Title of The Pdf';
-        let backupAssetLink = (await Cloudinary.uploader.upload(pdfPath, { public_id: Date.now().toString(),format :'pdf' })).url;
+        let backupAssetLink = (await Cloudinary.uploader.upload(pdfPath, { folder: 'pdfs' , use_filename: true, format: 'pdf', })).url;
         let pdfAsset=await SyllabusAsset.create({
             assetType :'pdf',
             content :'/api/file/temp-pdf/'+ filename,
