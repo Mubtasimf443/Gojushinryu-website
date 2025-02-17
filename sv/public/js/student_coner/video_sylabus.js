@@ -24,6 +24,14 @@ InshaAllah, By his Marcy I will Gain Success
         let videoContainer =container.querySelector(`[id="video-container"]`);
         videoContainer.innerHTML=null;
         for (let i = 0; i < videos.length; i++) (videoContainer.innerHTML += videos[i].code);
+        videoContainer.querySelectorAll('iframe').forEach(function (element) {
+           
+            if (window.screen.availWidth < 968 ) element.setAttribute('height','350');
+            if (window.screen.availWidth < 768 ) element.setAttribute('height','300');
+            if (window.screen.availWidth < 500 ) element.setAttribute('height','250');
+            if (window.screen.availWidth > 768 ) element.setAttribute('height','400');
+            element.removeAttribute('width');
+        })
     }
     observer.observe(container);
 }
