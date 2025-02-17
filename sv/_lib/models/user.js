@@ -46,7 +46,7 @@ const PrimaryDetails = {
     district: String,
     city: String,
     street: String,
-    postCode: Number,
+    postCode: String,
 }
 const additionalDetails = {
     thumb: { 

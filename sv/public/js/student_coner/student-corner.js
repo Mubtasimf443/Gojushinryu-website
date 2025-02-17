@@ -20,7 +20,7 @@ InshaAllah, By his Marcy I will Gain Success
     let District = document.getElementById('s-sec-District-inp').value;
     let city = document.getElementById('s-sec-city-inp').value;
     let street = document.getElementById('s-sec-street-inp').value;
-    let postcode = document.getElementById('s-sec-post-code-inp').valueAsNumber;
+    let postcode = document.getElementById('s-sec-post-code-inp').value;
     if (!name) return alert('name is not define');
     if (!age) return alert('age is not define');
     if (!bio) return alert('bio is not define');
@@ -29,8 +29,7 @@ InshaAllah, By his Marcy I will Gain Success
     if (!District) return alert('district is not define');
     if (!city) return alert('city is not define');
     if (!street) return alert('street is not define');
-    if (!postcode) return alert('postcode is not define or 0');
-    if (typeof postcode !== 'number') return alert('post code Should Be a number');
+    if (!postcode?.trim()) return alert('postcode is not define');
     if (typeof age !== 'number') return alert('age Should Be a number');
     if (name.length > 30) return alert('name is to big');
     if (bio.length > 120) return alert('bio is to big');
@@ -44,8 +43,8 @@ InshaAllah, By his Marcy I will Gain Success
     if (District.length < 4) return alert('district is to short');
     if (city.length < 4) return alert('city is to short');
     if (street.length < 8) return alert('street is to short');
-    if (postcode > 10000) return alert('post code should be under 10000');
-    if (postcode < 600) return alert('post code should be greater than 600');
+    // if (postcode > 10000) return alert('post code should be under 10000');
+    // if (postcode < 600) return alert('post code should be greater than 600');
     if (gender.toLowerCase() !== 'male' && gender.toLowerCase() !== 'female') return alert('male and female should be use in gender');
     if (name.includes('<')) return alert(simbolError);
     if (bio.includes('<')) return alert(simbolError);

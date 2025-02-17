@@ -204,7 +204,6 @@ export async function DeleteUserAccount(req = request, res = response) {
     catchError(res,error)
   }
 };
-
 export async function getUserData(req = request, res = response) {
   try {
     let id = req.user_info._id;
@@ -399,7 +398,6 @@ async function getUserSocialMedia(req = request, res = response) {
     catchError(res, error)
   }
 }
-
 async function upDateSmFacebook(req = request, res = response) {
   try {
     let account = req.body.account;
@@ -423,8 +421,6 @@ async function upDateSmFacebook(req = request, res = response) {
 
   }
 }
-
-
 async function upDateSmLinkedin(req = request, res = response) {
   try {
     let account = req.body.account;
@@ -448,7 +444,6 @@ async function upDateSmLinkedin(req = request, res = response) {
 
   }
 }
-
 async function upDateSmTwitter(req = request, res = response) {
   try {
     let account = req.body.account;
@@ -472,7 +467,6 @@ async function upDateSmTwitter(req = request, res = response) {
 
   }
 }
-
 async function upDateSmInstagram(req = request, res = response) {
   try {
     let account = req.body.account;
@@ -494,7 +488,6 @@ async function upDateSmInstagram(req = request, res = response) {
     catchError(res, error)
   }
 }
-
 export const userSocialMedia = {
   getUserSocialMedia,
   upDateSmFacebook,
@@ -502,9 +495,6 @@ export const userSocialMedia = {
   upDateSmLinkedin,
   upDateSmTwitter
 }
-
-
-
 export async function makeBlackBeltTotheStudent(req = request, res = response) {
   try {
     let id = req.query.id; id = Number(id);
@@ -522,7 +512,6 @@ export async function makeBlackBeltTotheStudent(req = request, res = response) {
     catchError(res, error);
   }
 }
-
 export async function unBlackBeltStudent(req = request, res = response) {
   try {
     let id = req.query.id; id = Number(id);
@@ -539,9 +528,6 @@ export async function unBlackBeltStudent(req = request, res = response) {
     catchError(res, error);
   }
 }
-
-
-
 export async function findBlackBeltPageBb(req = request, res = response) {
   try {
     res.status(200).json({ blackBelts: (await User.find({}, 'social_media_details name bio thumb country').where('isBlackBelt').equals(true)) });
@@ -550,7 +536,6 @@ export async function findBlackBeltPageBb(req = request, res = response) {
     catchError(res, error)
   }
 }
-
 export function UserLogout(req, res) {
   try {
     if (req.cookies.rft) {

@@ -53,8 +53,7 @@ export async function ChangeuserData(req,res) {
   if (!District)  return alert('district is not define');
   if (!city)  return alert('city is not define');
   if (!street)  return alert('street is not define');
-  if (!postcode)  return alert('postcode is not define');
-  if (typeof postcode !== 'number') return alert('post code Should Be a number');
+  if (!postcode?.trim())  return alert('postcode is not define');
   if (typeof age !== 'number') return alert('age Should Be a number');
   if (name.length >30)  return alert('name is to big');
   if (bio.length >120)  return alert('bio is to big');
@@ -68,8 +67,6 @@ export async function ChangeuserData(req,res) {
   if (District.length <4)  return alert('district is to short');
   if (city.length <4)  return alert('city is to short');
   if (street.length <8)  return alert('street is to short');
-  if (postcode >10000) return alert('post code should be under 10000')
-  if (postcode <600) return alert('post code should be greater than 600')
   if (gender.toLowerCase() !== 'male' && gender.toLowerCase() !== 'female')  return alert('male and female should be use in gender');
   if (name.includes('<'))  return alert(simbolError);
   if (bio.includes('<'))  return alert(simbolError);
@@ -124,7 +121,7 @@ export async function ChangeuserData(req,res) {
     if (!ImageUrlForChangeMaking.includes('.jpg'))  return alert(simbolError);//our provided url contains .jpg
     if (!ImageUrlForChangeMaking.includes('http'))  return alert(simbolError);
     if (!ImageUrlForChangeMaking.includes('/temp/') && !ImageUrlForChangeMaking.includes('/img/') )  return alert(simbolError);
-    console.log(postcode);
+   
     
     let image =undefined;
     let err =undefined;
