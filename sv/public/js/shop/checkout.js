@@ -164,9 +164,9 @@ Insha Allab,  By the marcy of Allah,  I will gain success
                 location: {
                     city: v(`[placeholder="City"]`),
                     country: selectElValue(`[id="countrySelect"]`),
-                    district: v(`[placeholder="District"]`),
+                    district: v(`[placeholder="province/state/district"]`),
                     road_no: v(`[placeholder="Road No / Village / Street"]`),
-                    zipcode: v(`[placeholder="zipcode/postcode"]`)
+                    zipcode: v(`[placeholder="postal code/zipcode/pincode"]`)
                 },
                 notes: v(`[placeholder="Notes"]`),
                 items: addedProduct.map(

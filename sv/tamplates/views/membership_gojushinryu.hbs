@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
+
     <meta name="description"
         content="Join GojushinRyu International Martial Arts Organization and enhance your martial arts skills. Explore flexible membership options: annual and monthly plans.">
     <meta name="keywords"
@@ -27,7 +27,7 @@
         content="Annual and monthly memberships available. Join GojushinRyu International Martial Arts Organization for traditional martial arts training.">
     <meta name="twitter:image" content="/img/IMG-20240907-WA0026.jpg">
 
-     {{>Links}}
+    {{>Links}}
     <link rel="stylesheet" href="/css/membership/Applicant-info-form.css">
     <link rel="stylesheet" href="/css/membership/payment-info-form.css">
     <link rel="stylesheet" href="/css/membership/question-info-form.css">
@@ -51,7 +51,8 @@
             <div class="div1">
                 <h1>Become a Member</h1>
                 <p>
-                  Join GojushinRyu International Martial Arts Organization and enhance your martial arts skills. Explore flexible membership options: annual and monthly plans.
+                    Join GojushinRyu International Martial Arts Organization and enhance your martial arts skills.
+                    Explore flexible membership options: annual and monthly plans.
                 </p>
                 <button>
                     <a href="#form-section">
@@ -126,26 +127,28 @@
 
                     <div class="input-box">
                         <label for="inp--Country">Present Address - Country</label>
-                        <input value="{{country}}" id="inp--Country" type="text" placeholder="India">
+                        <input value="{{country}}" id="inp--Country" type="text" placeholder="Country">
                     </div>
 
                     <div class="input-box">
-                        <label for="inp--City">Present Address - City</label>
-                        <input value="{{city}}" id="inp--City" type="text" placeholder="London">
+                        <label for="inp--City">Present Address - City/Town/Region</label>
+                        <input value="{{city}}" id="inp--City" type="text" placeholder="City/Town/Region">
                     </div>
 
                     <div class="input-box">
-                        <label for="inp--District">Present Address - Province</label>
-                        <input value="{{district}}" id="inp--District" type="text" placeholder="Chittagong">
+                        <label for="inp--District">Present Address - Province/State/District</label>
+                        <input value="{{district}}" id="inp--District" type="text"
+                            placeholder="Province/State/District">
                     </div>
 
 
                     <div class="input-box">
-                        <label for="inp--pcode"> Postal Code</label>
-                        <input value="{{postcode}}" id="inp--pcode" type="text" placeholder="5XI 2ZQ 189" maxlength="15">
+                        <label for="inp--pcode"> Postal Code/Zipcode/Pincode</label>
+                        <input value="{{postcode}}" id="inp--pcode" type="text" placeholder="PostalCode/Zipcode/Pincode"
+                            maxlength="15">
                     </div>
 
-                    <div class="input-box"> 
+                    <div class="input-box">
                         <label for="inp--dojo-name">Dojo Name</label>
                         <input id="inp--doju-name" value="karate" type="text" placeholder="Karate">
                     </div>
@@ -155,8 +158,10 @@
                     </div>
 
                     <span class="roles">
-                        Goju Shin Ryu International has my Permission to take my Photograph/video publicly to promote the practice. I
-                        understand that images/video may be used in the print brochure, website, and social media. I understand that no
+                        Goju Shin Ryu International has my Permission to take my Photograph/video publicly to promote
+                        the practice. I
+                        understand that images/video may be used in the print brochure, website, and social media. I
+                        understand that no
                         Royalty, fee, or other compensation shall become payable to me by reason of such use.
                     </span>
                     <div class="input-box">
@@ -184,7 +189,7 @@
                                 </p>
 
                                 <span>
-                                 GojushinRyu International Martial Arts
+                                    GojushinRyu International Martial Arts
                                 </span>
                             </label>
                             <label membershipValue="Annual" membershipOrganization="gojushinryu"
@@ -209,7 +214,7 @@
                             </label>
 
                         </span>
-                     
+
                     </div>
                     <div id="applicant-form-btn-div">
                         <button id="applicant-form-btn">
@@ -333,7 +338,7 @@
                         <label for="exp-date-inp">Describe your Injury or Disability?<sup>(if you Have)</sup> </label>
                         <input type="text" placeholder="Tell your disabillity if you have" id="inp--pr--disabillity">
                     </div>
-                   
+
                     <div class="question-text-div">
                         <label for="exp-date-inp">Previous Injury or Disabilty? </label>
                         <input type="text" placeholder="Cancer / HIV / Heart Disorder or else..."
@@ -363,7 +368,7 @@
                 </div>
 
 
-        
+
                 {{!-- <div class="Success-massage-form" id="Success-massage-form">
                     <h3>Thanks for your Order</h3>
                     <p>
@@ -378,14 +383,14 @@
     </main>
 
     {{>Footer}}
-<script>
-    
-  document.querySelectorAll('input').forEach(function (element) {
-    element.addEventListener('input', function (event = new Event('input')) {
-      event.target.style.outline = 'none';
-    })
-  })
-</script>
+    <script>
+
+        document.querySelectorAll('input').forEach(function (element) {
+            element.addEventListener('input', function (event = new Event('input')) {
+                event.target.style.outline = 'none';
+            })
+        })
+    </script>
 </body>
 
 </html>
