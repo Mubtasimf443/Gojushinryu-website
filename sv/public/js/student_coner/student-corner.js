@@ -43,8 +43,6 @@ InshaAllah, By his Marcy I will Gain Success
     if (District.length < 4) return alert('district is to short');
     if (city.length < 4) return alert('city is to short');
     if (street.length < 8) return alert('street is to short');
-    // if (postcode > 10000) return alert('post code should be under 10000');
-    // if (postcode < 600) return alert('post code should be greater than 600');
     if (gender.toLowerCase() !== 'male' && gender.toLowerCase() !== 'female') return alert('male and female should be use in gender');
     if (name.includes('<')) return alert(simbolError);
     if (bio.includes('<')) return alert(simbolError);
@@ -168,7 +166,6 @@ InshaAllah, By his Marcy I will Gain Success
           busy = false
         })
   }
-
   document.addEventListener('click', e => {
     if (e.target.id === 'update-user-info-btn') { e.preventDefault(); return ChangeUserDataRequest(); }
     if (e.target.tagName === 'A' && e.target.parentNode.className === 'st-nav-main') e.preventDefault()
@@ -241,13 +238,10 @@ InshaAllah, By his Marcy I will Gain Success
 
       })
   });
-
-
   async function logout() {
     await fetch(window.location.origin+'/api/api_s/user-logout');
     window.location.replace('/auth/login');
   }
-
 }
 
 
