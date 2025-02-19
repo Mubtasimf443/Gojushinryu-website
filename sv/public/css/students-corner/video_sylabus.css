@@ -15,7 +15,26 @@ Insha Allah,  By your Marcy Ya Allah
     row-gap: 20px;
     height: max-content;
 }
-
+.video-sylabus-heading {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 8px;
+    width: 100%;
+}
+.video-sylabus-heading select{
+    display: block;
+    font-family: "Open Sans", "Helvetica Neue", "Segoe UI", "Calibri", "Arial", sans-serif;
+    font-size: 18px;
+    color: #60666d;
+    background-color: #fff;
+    border: none;
+    box-shadow: 6px 6px 10px #00000018;
+    height: 40px;
+    width: 100px;
+    outline: none;
+}
 #video-container {
     display: flex;
     flex-direction: column;

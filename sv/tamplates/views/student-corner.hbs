@@ -226,7 +226,12 @@
 
         <!------------------------ Video Sylabus ------------------------->
         <div st_section style="display: none;" id="video-sylabus" class="video_sylabus">
-          <h2>Video Syllabus</h2>
+          <div class="video-sylabus-heading">
+            <h2>Video Syllabus</h2>
+            <Select>
+              <Option value="1" >Page 1</Option>
+            </Select>
+          </div>
           <div id="video-container">
           </div>
 
@@ -287,7 +292,7 @@
     document.getElementById('s-sec-District-inp').value = '{{district}}';
     document.getElementById('s-sec-city-inp').value = '{{city}}';
     document.getElementById('s-sec-street-inp').value = '{{street}}';
-    document.getElementById('s-sec-post-code-inp').valueAsNumber = {{ postcode }};
+    document.getElementById('s-sec-post-code-inp').value = '{{postcode}}';
   </script>
   <script src="/js/student_coner/student-corner.js"></script>
   <script src="/js/student_coner/order.js"></script>
