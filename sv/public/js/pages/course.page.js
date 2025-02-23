@@ -243,7 +243,7 @@ document.querySelectorAll('.close-popup').forEach(
             event.preventDefault();
             if (requesting) return;
             let v = returnV(popup2);
-            let [name, phone, email, country, city, district, zipcode, road_no] = [v.t('[placeholder="Your Name"]'), v.t('[placeholder="Your Phone Number"]'), v.t('[placeholder="Your Email"]'), v.t('[placeholder="Country"]'), v.t('[placeholder="City"]'), v.t('[placeholder="District"]'), v.n('[placeholder="Post-code"]'), v.t('[placeholder="Road No/ Village"')];
+            let [name, phone, email, country, city, district, zipcode, road_no] = [v.t('[placeholder="Your Name"]'), v.t('[placeholder="Your Phone Number"]'), v.t('[placeholder="Your Email"]'), v.t('[placeholder="Country"]'), v.t('[placeholder="City"]'), v.t('[placeholder="District"]'), v.n('[id="contact-zipcode"]'), v.t('[placeholder="Road No/ Village"')];
             let mode = popup2.getAttribute('mode');
             contactBtn.style.opacity = .75;
             requesting = true;
