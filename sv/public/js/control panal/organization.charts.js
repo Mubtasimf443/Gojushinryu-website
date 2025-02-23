@@ -35,7 +35,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         images.innerHTML = null;
         for (let i = 0; i < imagesArr.length; i++) {
             const el = imagesArr[i];
-            images.innerHTML += (`<div class="image-box" image-box-id="${el.id}"><img src="${el.url}" alt="spinner"  ><div class="remove" remove-id="${el.id}">&times;</div></div> `);
+            images.innerHTML += (`<div class="image-box" image-box-id="${el.id}"><img src="${el.url}" alt="spinner"  ><div class="remove" title="delete chart" remove-id="${el.id}">&times;</div></div> `);
         }
         images.querySelectorAll('img').forEach(function (img) {
             img.addEventListener('click', function (e) {

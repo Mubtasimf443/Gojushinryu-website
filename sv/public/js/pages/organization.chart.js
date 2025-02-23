@@ -14,7 +14,7 @@ async function load() {
     let chartData = await data.json();
     document.querySelector(`[id="org-chart-sec-2-chart-list-div"]`).innerHTML = '';
     let i = 0;
-    document.querySelector(`[ id="---main--chart-img"]`).src=chartData[0].url
+    // document.querySelector(`[ id="---main--chart-img"]`).src=chartData[0].url
     while (i < chartData.length) {
       const chartLink = chartData[i].url;
       const chartid = chartData[i].id;
