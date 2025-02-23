@@ -42,7 +42,7 @@ InshaAllah, By his Marcy I will Gain Success
         const pdfWrapper = document.createElement('div');
         pdfContainer.innerHTML = '';
         pdfs.forEach(pdf => {
-           
+
             pdfWrapper.classList.add('pdf-wrapper');
 
             // Create title element
@@ -72,6 +72,8 @@ InshaAllah, By his Marcy I will Gain Success
     }
 
     container.querySelector('select').addEventListener('select', function (event) {
-        // currentPage = 
+        currentPage=container.querySelector('select').selectedOptions[0].value;
+        currentPage = Number(currentPage);
+        addPdfs(getCurrentPdfs())
     })
 }

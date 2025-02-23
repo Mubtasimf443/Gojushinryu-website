@@ -7,14 +7,44 @@ InshaAllah, By his Marcy I will Gain Success
     let container =document.querySelector(`#text-sylabus`);
     let seen =false;
     let notes =[];
- 
+    let currentNotesPage=1;
+    let notesPerPage=25;
     async function LoadTextSylabus(){
         try {
             let response=await fetch(window.location.origin+'/api/api_s/sylabus/assets/text');
             if (response.status===200) {
                 notes = (await response.json()) || [];
             }
-            container.querySelector('.notes-grid').innerHTML=``;
+            addNotes(getCurrentPage());
+            container.querySelector('select').innerHTML = null;
+            let pages = Math.round(notes.length / notesPerPage);
+            for (let i = 0; i <= pages; i += 1) {
+                let option = document.createElement('option');
+                option.value = i+1;
+                option.innerText = `Page ${i+1}`;
+                container.querySelector('select').appendChild(option);
+            }
+            container.querySelector('select').addEventListener('change', function (event) {
+                event.preventDefault();
+                currentNotesPage = container.querySelector('select').selectedOptions[0].value;
+                currentNotesPage = Number(currentNotesPage);
+                addNotes(getCurrentPage());
+            })
+        } catch (error) {
+            console.log(error);
+        }
+    }
+    function getCurrentPage() {
+        let starting = (currentNotesPage - 1) * notesPerPage ;
+        let ending = currentNotesPage * notesPerPage;
+        let note = [];
+        for (let i = starting - 1; i < ending -1; i++) {
+            if (!!notes[i]) note.push(notes[i]);
+        }
+        return note;
+    }
+    function addNotes(notes=[]) {
+        container.querySelector('.notes-grid').innerHTML=``;
             notes.forEach(function (note,index) {
                 let noteCard=document.createElement('div');
                 let title=document.createElement('h3');
@@ -47,9 +77,6 @@ InshaAllah, By his Marcy I will Gain Success
                 container.querySelector('.notes-grid').appendChild(noteCard);
                 
             });
-        } catch (error) {
-            console.log(error);
-        }
     }
     let observer = new IntersectionObserver(async function (entry) {
         try {
