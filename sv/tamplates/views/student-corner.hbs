@@ -5,6 +5,8 @@
   <meta charset='utf-8'>
   <meta http-equiv='X-UA-Compatible' content='IE=edge'>
   <title>Students Corner | {{>company_name}} </title>
+  <meta name="robots" content="noindex">
+  <meta name="googlebot" content="noindex">
   <meta name='viewport' content='width=device-width, initial-scale=1'>
   {{>Links}}
   <link rel='stylesheet' type='text/css' media='screen' href="/css/students-corner/layout.css">
@@ -18,11 +20,9 @@
   <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/pdf_syllabus.css">
   <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/image_syllabus.css">
   <link rel="stylesheet" type='text/css' media='screen' href="/css/students-corner/txt_syllabus.css">
-
-  <meta name="keywords" content="
-    Students Corner of Goju Shin Ryu International Martial Arts,
-    Students Corner of {{>company_name}},
-    ">
+  <link rel="shortcut" href="/img/6060.png">
+  <link rel="icon" href="/img/6060.png">
+ 
 </head>
 
 
@@ -238,7 +238,13 @@
         </div>
         <!------------------------ PDF Sylabus ------------------------->
         <div st_section style="display: none;" id="pdf-syllabus" class="pdf_syllabus">
-          <h2>PDF Syllabus</h2>
+          
+          <div class="pdf-heading">
+            <h2>PDF Syllabus</h2>
+            <select>
+              <option value="1">Page 1</option>
+            </select>
+          </div>
           <div id="pdf-container"></div>
         </div>
         <!------------------------ Image Sylabus ------------------------->

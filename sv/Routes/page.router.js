@@ -176,7 +176,7 @@ pageRouter.get('/about-us/:info',dayCatch7 ,function (req,res) {
 
 pageRouter.get('/alliance',  dayCatch7,(req, res) => res.render('alli'))
 pageRouter.get('/accounts/:name', async (req, res) => {
-    if (req.params.name === 'grand-master-counchil') return GMCornerPageRoute(req, res)
+    if (req.params.name === 'grand-master-council') return GMCornerPageRoute(req, res)
     if (req.params.name === 'student') return StudentCornerPageRoute(req, res)
 });
 pageRouter.get('/accounts/student/not-approve-by-admin',AdminApproveUserAfterRegistration );

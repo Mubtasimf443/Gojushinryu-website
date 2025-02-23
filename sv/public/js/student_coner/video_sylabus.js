@@ -36,18 +36,10 @@ InshaAllah, By his Marcy I will Gain Success
     }
     observer.observe(container);
     function displayVideos(){
-        let isVideoLess = page * 10 > videos.length;
         let displayingVideos=[];
-        if (isVideoLess) {
-            let existVideo =( page * 10 ) - (page - 1) * 10 ;
-            for (let i = (page - 1) * 10; i <= existVideo; i++) {
-                 displayingVideos.push(videos[i]) ;
-            }
-        } 
-        if (!isVideoLess) {
-            for (let i = (page - 1) * 10; i < page * 10 ; i++) {
-                displayingVideos.push(videos[i]) ;
-            }
+        for (let i = (page - 1) * 10; i < page * 10; i++) {
+            const element = videos[i];
+            if (!!element) displayingVideos.push(element);
         }
         let videoContainer =container.querySelector(`[id="video-container"]`);
         videoContainer.innerHTML=null;
@@ -62,15 +54,14 @@ InshaAllah, By his Marcy I will Gain Success
             if (window.screen.availWidth > 768 ) element.setAttribute('height','400');
             element.removeAttribute('width');
         }
-  
-        if (page === 1) {
-            container.querySelector('select').innerHTML =null;
-            let p = 1;
-            for (let i = 0; i < videos.length; i = i+ 10 ) {
-                container.querySelector('select').innerHTML += `<Option value="${p}" >Page ${p}</Option>`;
-                p++;
+
+        if (page === 1 ) {
+            container.querySelector('select').innerHTML = null;
+            let loopFor = videos.length / 10 + 1;
+            for (let i = 1; i < loopFor; i += 1) {
+                container.querySelector('select').innerHTML += `<Option value="${i}" >Page ${i}</Option>`;
             }
-        } 
+        }
     }
 
     container.querySelector('select').addEventListener('change', function (event) {
