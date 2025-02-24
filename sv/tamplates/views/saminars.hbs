@@ -84,6 +84,7 @@ main {
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     max-width: 500px;
+    min-height: 500px;
 }
 
 .seminar-card:hover {
@@ -93,7 +94,9 @@ main {
 
 .seminar-card img {
     width: 100%;
-    height: 200px;
+    min-height: 200px;
+    height: fit-content;
+    max-height:400px;
     object-fit: cover;
 }
 
