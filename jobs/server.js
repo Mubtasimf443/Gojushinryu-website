@@ -32,5 +32,5 @@ app.get('/main',async function (req,res) {
 app.get('/delete-image-url-after-24-hours', deleteImageUrlsAfter24Hour);
 app.get('/monthly-payment-request',requestCourseEnrollMentPayment);
 app.get('/notify-about-no-paid-students',notifyAboutNotPaidStudents);
-app.get('/delete-all-spam-orders', deleteSpamOrders)
+app.delete('/delete-all-spam-orders', deleteSpamOrders)
 app.listen(3000 ,e => log('thank you Allah') );
