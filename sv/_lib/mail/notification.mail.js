@@ -19,8 +19,7 @@ export async function notifyMail( {title,massage,to}) {
             from:FROM_EMAIL,
             to, 
             subject:'Notification : '+title,
-            html :
-           ` <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
+            html : ` <div style="font-family: Arial, sans-serif; color: #333; line-height: 1.6;">
                        <div style="max-width: 600px; margin: auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px;">
                           <h2 style="color: #ffaa1c; text-align: center;">${title}</h2>
                           <p>
@@ -32,7 +31,7 @@ export async function notifyMail( {title,massage,to}) {
                           <p>Best regards,<br>The ${ORGANIZATION_NAME} Team</p>
                        </div>
                     </div>
-                    `
+                `
         })
         return true
     } catch (error) {

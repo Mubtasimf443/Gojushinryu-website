@@ -6,7 +6,7 @@ import { Orders } from "../models/Order.js";
 import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import replaceCarecter, { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, Success, log } from "../utils/smallUtils.js";
-import express from "express";
+import express, { request, response } from "express";
 import { Product } from "../models/Products.js";
 import { sendAdminOrderNotification, sendOrderCancellationEmail, sendOrderConfirmationEmail, sendPaymentRequestEmail, sendShippingNotificationEmail } from "../mail/order.mail.js";
 import { BASE_URL, FROM_EMAIL,ADMIN_EMAIL, ADMIN_PHONE } from "../utils/env.js";
@@ -306,4 +306,8 @@ export async function createOrder(req, res) {
     } catch (error) {
         catchError(res, error)
     }
+}
+
+export async function deleteSpamOrders(req=request , res=response) {
+    
 }
