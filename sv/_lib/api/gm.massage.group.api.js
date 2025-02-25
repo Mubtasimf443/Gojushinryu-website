@@ -33,12 +33,7 @@ export async function checkNewGmGroupMassage(req,res) {
             })
         };
 
-        if (massages.length ===100 ) {
-            for (let i = 0; i < 25; i++) massages.shift();
-            console.log('massage deleted successfully');
-            massage.massages=massages;
-            await massage.save().then(e => log('//10 massages are deleted')).catch(e=> console.error(e))
-        }
+        
 
     } catch (error) {
         console.log({error:'server error : '+error});

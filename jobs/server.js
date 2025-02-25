@@ -12,6 +12,7 @@ import fetch from 'node-fetch';
 import morgan from 'morgan';
 import { notifyAboutNotPaidStudents, requestCourseEnrollMentPayment } from './controllars/model_base_function/course.enrolment.js';
 import { deleteSpamOrders } from './controllars/model_base_function/order.js';
+import { deleteOldGrandMasterChats } from './controllars/api/deleteOldGrandMasterMessage.js';
 
 /* git add .; git commit -m 'course enrollment setup by buyer requirement done ' ; git push origin main */
 const app =express();
@@ -33,4 +34,5 @@ app.get('/delete-image-url-after-24-hours', deleteImageUrlsAfter24Hour);
 app.get('/monthly-payment-request',requestCourseEnrollMentPayment);
 app.get('/notify-about-no-paid-students',notifyAboutNotPaidStudents);
 app.delete('/delete-all-spam-orders', deleteSpamOrders)
+app.route('/delete/old/gm-chats').delete(deleteOldGrandMasterChats);
 app.listen(3000 ,e => log('thank you Allah') );
