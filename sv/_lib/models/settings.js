@@ -95,7 +95,8 @@ const settingsSchema =new mongoose.Schema({
                 }
             }
         }
-    }
+    },
+    service_worker_private_key: String
 });
 
 

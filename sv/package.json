@@ -27,14 +27,15 @@
     "request": "^2.88.2",
     "string-player": "^1.1.8",
     "stripe": "^17.2.0",
-    "uuid": "^11.0.5"
+    "uuid": "^11.0.5",
+    "web-push": "^3.6.7"
   },
   "name": "gojushinryu.com-website",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
     "test": "nodemon test.js",
-    "sv": "nodemon index.js --ignore public/ --ignore _lib/",
+    "dev": "nodemon index.js --ignore public/ --ignore _lib/ --ignore test.js",
     "nv": "nodemon s.js --ignore public/ --ignore _lib/"
   },
   "keywords": [],

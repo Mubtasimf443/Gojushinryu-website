@@ -19,7 +19,9 @@ let massageSchema =new mongoose.Schema({
     id :{
         type :Number,
         default :Date.now()
-    }
+    },
+
+    
 })
 
 export let Grand_Master_Group_Massages=mongoose.model('Grand_Master_Group_Massages',massageSchema);

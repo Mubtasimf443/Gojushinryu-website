@@ -10,7 +10,7 @@ import AdminCheckMidleware from '../_lib/midlewares/AdminCheckMidleware.js';
 import { UploadProductApi } from '../_lib/api/uplaod.product.api.js';
 import { CreateACourseApi, deleteCourseApi, deleteCourseEnrollment, findCourseEnrollments } from '../_lib/model_base_function/Course.js';
 import { adminEventUplaodAPI, deleteEvent, eventsHome, getGmEvents, UploadEventApi } from '../_lib/model_base_function/Event.js';
-import { CreateGMApi, DeleteGMAccount, FindGMApi, grandMasterImageChange, UpdateGmDataAPI, updateGmFromControlPanal } from '../_lib/model_base_function/gm.js';
+import { CreateGMApi, DeleteGMAccount, FindGMApi, gmSWSubscribe, grandMasterImageChange, UpdateGmDataAPI, updateGmFromControlPanal } from '../_lib/model_base_function/gm.js';
 import { addProductImage, changeProductTumb, DeleteProduct, FindProduct, findProductImage, giveProductDetails, productDetailsFormQuery, removeProductImage, UpdateProduct } from '../_lib/model_base_function/Product.js';
 import { approveStudent, BaneUserFunction, DeleteUserAccount, findBlackBeltPageBb,  FindUser, getUserData, getUserEnrolledCourseApi, unBlackBeltStudent , getUserMembershipJS, makeBlackBeltTotheStudent, RemoveFromBanedUserFunction, UserLogout, userSocialMedia } from '../_lib/model_base_function/user.js';
 import morgan from 'morgan';
@@ -179,6 +179,7 @@ router.put('/product/thumb', changeProductTumb);
 router.put('/product', UpdateProduct);
 router.put('/update-grand-master-from-control-panal', updateGmFromControlPanal);
 router.put('/grand-master-image-change', grandMasterImageChange);
+router.put('/grand-master/sw/subscribe', gmSWSubscribe);
 
 //Delete
 router.delete('/delete-product',DeleteProduct)

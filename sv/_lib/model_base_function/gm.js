@@ -4,7 +4,7 @@
 import jwt from "jsonwebtoken";
 import { JWT_SECRET_KEY } from "../utils/env.js";
 import { GM } from "../models/GM.js";
-import { Alert, log, Success } from "../utils/smallUtils.js";
+import { Alert, isValidUrl, log, Success } from "../utils/smallUtils.js";
 import bcrypt from 'bcryptjs'
 import { tobe, validate } from "string-player";
 import { request, response } from "express";
@@ -12,11 +12,10 @@ import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import { UploadImgFile } from "../api/formidable.file.post.api.js";
 import { Cloudinary } from "../Config/cloudinary.js";
 import {  v4 as uuid } from "uuid";
+import { makePushNotification } from "../Config/webPush.js";
 
 export async function GMCornerPageRoute(req, res) {
   try {
-
-
     //  using undefined ,A lot of things to know
     if (req.cookies.gm_cat === undefined) return res.render('login_gm_counchil');
     // grand master counchil access token
@@ -164,9 +163,39 @@ function getGmEmailFromCookies(cookie='') {
   return new Promise((resolve, reject) => {
     jwt.verify(cookie, JWT_SECRET_KEY,function(error , decoded) {
       if (error) return reject(error);
-      if (decoded?.email ) return resolve(decoded?.email);
+      if (!!decoded?.email) return resolve(decoded.email);
       else throw 'grand master cookie is not valid';
     })
   })
-  
+}
+
+
+export async function gmSWSubscribe(req = request, res = response) {
+  try {
+    let { endpoint, expirationTime } = req.body;
+    let { p256dh, auth }=req.body.keys;
+    if (!!expirationTime) expirationTime = String(expirationTime);
+    else expirationTime = null;
+    [endpoint, p256dh, auth]=[endpoint, p256dh, auth].map(function (element, index) {
+      element = element.trim();
+      if (!element) throw new Error(`element id :#${index + 1 } is not a valid` );
+      if (typeof element !== 'string') throw new Error(`element id :#${index + 1 } is not a string` );
+      return element;
+    })
+    if (isValidUrl(endpoint) === false) {
+      throw new Error('EndPoint is not a valid Url');
+    }
+    let email = await getGmEmailFromCookies(req.cookies.gm_cat);
+    let gm = await GM.findOne({ email })
+    if (gm === null) throw 'No gm exist from this email :' + email;
+    gm.service_worker_subscription.endpoint = endpoint;
+    gm.service_worker_subscription.expirationTime = expirationTime;
+    gm.service_worker_subscription.keys.p256dh = p256dh;
+    gm.service_worker_subscription.keys.auth = auth;
+    await gm.save();
+    res.sendStatus(200);
+    return;
+  } catch (error) {
+    catchError(res,error)
+  }
 }

@@ -22,7 +22,10 @@ import {
 
 
 let chateRouter = Router();
-// chateRouter.use(morgan('dev'))
+chateRouter.use(function (req, res, next) {
+    if (req.method === 'GET') return next();
+    else return (morgan('dev'))(req, res , next);
+})
 
 
 //POST REQUEST
@@ -30,11 +33,11 @@ chateRouter.post('/send-massage-to-admin-from-student',userCheck,sendMassageToAd
 chateRouter.post('/send-massage-to-student-from-admin',sendMassageToUserFromAdmin);
 chateRouter.post('/check-user-has-send-massage-or-not',checkUserHasSendMassageOrNotTotheAdmin);
 chateRouter.post('/add-grand-master-group-massage', addGmMassageApi)
-chateRouter.post('/check-grand-master-group-massage', checkNewGmGroupMassage)
 
 
 
 //GET REQUEST
+chateRouter.get('/check-grand-master-group-massage', checkNewGmGroupMassage)
 chateRouter.get('/get-admin-massage-status-and-massage',userCheck,getAdminMassageStatusAndNewMassaseForUser);
 chateRouter.get('/get-user-massage-list',getUserMassageListForAdmin)
 chateRouter.get('/get-admin-massage-what-is-seen',userCheck,getAdminMassageWhatIsSeen)
