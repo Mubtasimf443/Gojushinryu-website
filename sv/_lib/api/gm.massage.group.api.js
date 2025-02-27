@@ -8,9 +8,7 @@ import { GM } from "../models/GM.js";
 import { Grand_Master_Group_Massages } from "../models/Grandmaster.group.massage.js";
 import { GRAND_MASTER_GROUP_MASSAGE_ID, JWT_SECRET_KEY } from "../utils/env.js";
 import { repleCaracter } from "../utils/replaceCr.js";
-import { log } from "../utils/smallUtils.js";
-import jwt from 'jsonwebtoken'
- 
+import jwt from 'jsonwebtoken';
 
 export async function checkNewGmGroupMassage(req,res) {
     try {

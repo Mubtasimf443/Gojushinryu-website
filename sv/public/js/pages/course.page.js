@@ -107,7 +107,7 @@ document.querySelectorAll('.close-popup').forEach(
                             img.style.display = 'none';
                             let newFileInput = document.createElement('input');
                             newFileInput.type = 'file';
-                            newFileInput.accept='image/*';
+                            newFileInput.accept = 'image/*';
                             newFileInput.addEventListener('change', c1);
                             fileInput.replaceWith(newFileInput);
                             fileInput = newFileInput;
@@ -126,9 +126,10 @@ document.querySelectorAll('.close-popup').forEach(
     const v = returnV(popup1);
     let requesting = false;
     let paypalbtn = popup1.querySelector('[id="paypal-btn"]'), stripebtn = popup1.querySelector('[id="stripe-btn"]');
-    let coupon = '', isValidCoupon = false;
     let
-        studentImageInput = popup1.querySelector('#studentImageInput');
+        coupon = '',
+        isValidCoupon = false;
+    let studentImageInput = popup1.querySelector('#studentImageInput');
 
     async function registerCourse(e = new Event('click')) {
         let btn = e.target;
@@ -136,11 +137,12 @@ document.querySelectorAll('.close-popup').forEach(
         btn.style.transition = 'opacity .7s ease';
         try {
             e.preventDefault();
-            let payment_method = (e.target.id === 'paypal-btn' ? 'paypal' : 'stripe'), mode = popup1.getAttribute('mode');
+            let payment_method = (e.target.id === 'paypal-btn' ? 'paypal' : 'stripe'), 
+            mode = popup1.getAttribute('mode');
             let [name, email, phone, dob, address, postalCode] = [v.t('#name'), v.t('#email'), v.t('#phone'), v.t('#dob'), v.t('#address'), v.t('#postalCode')];
             let [hasDisability, hasBadMedical, sex, hasViolence, purpose] = [v.s('#hasDisability'), v.s('#hasBadMedical'), v.s('#sex'), v.s('#hasViolence'), v.t('#purpose')];
             let [student_signature, student_parants_signature, student_media_permision_signature] = [v.t('#student_signature'), v.t('#parent_signature'), v.t('#student_media_permision_signature')];
-            
+
             let disabilityDetails = undefined;
 
 
@@ -197,7 +199,7 @@ document.querySelectorAll('.close-popup').forEach(
     stripebtn.addEventListener('click', registerCourse);
 
     let couponTimeOut = undefined;
-    popup1.querySelector('input#coupon').addEventListener('change', function () {
+    popup1.querySelector('input#coupon').addEventListener('input', function () {
         if (!popup1.querySelector('input#coupon').value) return;
         popup1.querySelector('input#coupon').value = popup1.querySelector('input#coupon').value.toUpperCase();
         coupon = popup1.querySelector('input#coupon').value;
@@ -209,18 +211,30 @@ document.querySelectorAll('.close-popup').forEach(
                 if (response.status === 200) {
                     let { rate } = (await response.json());
                     isValidCoupon = true;
-                    let basePrice = Number(globlal_fees_of_regular_class);
+                    let basePrice =  popup1.getAttribute('mode') == 1 ? globlal_fees_of_regular_class : globlal_fees_of_bhangra_fitness;
+                    basePrice = Number(basePrice);
                     basePrice = basePrice - (basePrice * rate);
                     popup1.querySelector(`#base-price`).innerHTML = basePrice.toFixed(2);
                     popup1.querySelector(`#gst-amount`).innerHTML = (basePrice * (gst_rate / 100)).toFixed(2);
                     popup1.querySelector(`#total-price`).innerHTML = basePrice + (basePrice * (gst_rate / 100));
-                    popup1.querySelector('input#coupon').style.outline = '1px solid green';
-                    setTimeout(() => { popup1.querySelector('input#coupon').style.outline = 'none'; }, 1500);
+                    // popup1.querySelector('input#coupon').style.outline = '1px solid green';
+                    // setTimeout(() => { popup1.querySelector('input#coupon').style.outline = 'none'; }, 1500);
+                    alert('Coupon added successFully');
                     return;
                 } else {
-
+                    isValidCoupon = false;
+                    coupon='';
+                    let basePrice =  popup1.getAttribute('mode') == 1 ? globlal_fees_of_regular_class : globlal_fees_of_bhangra_fitness;
+                    basePrice = Number(basePrice);
+                    alert('Coupon was removed');
+                    popup1.querySelector(`#base-price`).innerHTML = basePrice.toFixed(2);
+                    popup1.querySelector(`#gst-amount`).innerHTML = (basePrice * (gst_rate / 100)).toFixed(2);
+                    popup1.querySelector(`#total-price`).innerHTML = basePrice + (basePrice * (gst_rate / 100));
+                    popup1.querySelector('input#coupon').style.outline = '1px solid red';
+                    setTimeout(() => { popup1.querySelector('input#coupon').style.outline = 'none'; }, 1500);
+                    
                 }
-            }, 500);
+            }, 350);
             return;
         } else {
 
