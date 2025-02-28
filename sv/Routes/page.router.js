@@ -21,15 +21,16 @@ import customLinkPage from "../_lib/model_base_function/customLink.js";
 import { settingsAsArray } from "../_lib/model_base_function/Settings.js";
 import { log } from "string-player";
 import catchError from "../_lib/utils/catchError.js";
+import AllienceGrandMaster from "../_lib/models/allienceGrandMaster.js";
 
-let pageRouter = Router();
+let router = Router();
 
 
-pageRouter.use(fileRateLimter)
-// pageRouter.use(
+router.use(fileRateLimter)
+// router.use(
 // })
 
-pageRouter.get('/home',longCatch24, async (req, res) => {
+router.get('/home',longCatch24, async (req, res) => {
     try {
         let settings = await Settings.findOne({});
         if (!settings) throw 'error !settings'
@@ -43,9 +44,9 @@ pageRouter.get('/home',longCatch24, async (req, res) => {
         res.render('home')
     }
 })
-// pageRouter.get('/course', FindCourseApi)
+// router.get('/course', FindCourseApi)
 
-pageRouter.get('/courses',async function (req, res) {
+router.get('/courses',async function (req, res) {
     try {
         let settings=await Settings.findOne({});
         res.render('course-selling-page', {
@@ -67,7 +68,7 @@ pageRouter.get('/courses',async function (req, res) {
 })
 
 
-pageRouter.get('/membership-application/:org',async function(req,res) {
+router.get('/membership-application/:org',async function(req,res) {
     try {
         let global_gst_rate = (await Settings.findOne({})).gst_rate ?? 5;
         if (req.params.org === 'school-of-traditional-martial-arts') return res.render('MembershipFrom', { global_gst_rate });
@@ -80,7 +81,7 @@ pageRouter.get('/membership-application/:org',async function(req,res) {
 });
 
 
-pageRouter.get('/auth/:name',(req, res) => {
+router.get('/auth/:name',(req, res) => {
     if (req.params.name === 'register') {
         let forwardto=req.query.forwardto;
         if (!forwardto) return res.render('sign-up', { redirectToMembershipPage: false, redirectToCoursePage: false, redirectToCheckoutPage: false });
@@ -133,9 +134,9 @@ pageRouter.get('/auth/:name',(req, res) => {
 })
 
 
-pageRouter.get('/contact', dayCatch7,(req, res) => res.render('contact'))
-pageRouter.get('/shop/equipments/:id', findProductDetails)
-pageRouter.get('/shop/:name', (req, res) => {
+router.get('/contact', dayCatch7,(req, res) => res.render('contact'))
+router.get('/shop/equipments/:id', findProductDetails)
+router.get('/shop/:name', (req, res) => {
     let { name, cetegory, id } = req.params
     if (name === 'cart') return res.render('cart');
     if (name === 'fevorites') return res.render('fevorites');
@@ -143,9 +144,9 @@ pageRouter.get('/shop/:name', (req, res) => {
 });
 
 
-pageRouter.get('/shop', findProductPageNavigation);
-pageRouter.get('/control-panal', addMinPageRoute);
-pageRouter.get('/media/:name', dayCatch7,(req, res) => {
+router.get('/shop', findProductPageNavigation);
+router.get('/control-panal', addMinPageRoute);
+router.get('/media/:name', dayCatch7,(req, res) => {
     if (req.params.name === 'videos') return res.render('video');
     if (req.params.name === 'video') return res.render('video');
     if (req.params.name === "events") return eventPageNavigation(req, res)
@@ -154,12 +155,12 @@ pageRouter.get('/media/:name', dayCatch7,(req, res) => {
     if (req.params.name === "saminars") return res.render('saminars');
 })
 
-pageRouter.get('/custom-links/:type/:unique_id',customLinkPage);
-pageRouter.get('/countries', dayCatch7,(req, res) => res.render('flags'))
-pageRouter.get('/media/:name/:id', (req, res) => {
+router.get('/custom-links/:type/:unique_id',customLinkPage);
+router.get('/countries', dayCatch7,(req, res) => res.render('flags'))
+router.get('/media/:name/:id', (req, res) => {
     if (req.params.name === "post") return givePostDetailsFunction(req, res)
 });
-pageRouter.get('/about-us/:info',dayCatch7 ,function (req,res) {
+router.get('/about-us/:info',dayCatch7 ,function (req,res) {
     try {
         let info=req.params.info;
         (info) && (info=info.toLowerCase());
@@ -174,15 +175,40 @@ pageRouter.get('/about-us/:info',dayCatch7 ,function (req,res) {
     }
 });
 
-pageRouter.get('/alliance',  dayCatch7,(req, res) => res.render('alli'))
-pageRouter.get('/accounts/:name', async (req, res) => {
+router.get('/alliance',(req, res) => res.render('alli'))
+router.get('/accounts/:name', async (req, res) => {
     if (req.params.name === 'grand-master-council') return GMCornerPageRoute(req, res)
     if (req.params.name === 'student') return StudentCornerPageRoute(req, res)
 });
-pageRouter.get('/accounts/student/not-approve-by-admin',AdminApproveUserAfterRegistration );
-pageRouter.get('/become-a-country-representative', (req, res) => res.render('country-representive'));
-pageRouter.get('/our-country-representatives',longCatch24, (req, res) => res.render('representatives'));
-pageRouter.get('/saminar-form', function (req,res) {
+router.get('/accounts/student/not-approve-by-admin',AdminApproveUserAfterRegistration );
+router.get('/become-a-country-representative', (req, res) => res.render('country-representive'));
+router.get('/our-country-representatives',longCatch24, (req, res) => res.render('representatives'));
+router.get('/saminar-form', function (req,res) {
    res.render('saminar_form'); 
 });
-export { pageRouter }
+
+router.get('/grand-master-info/:id',async function (req, res) {
+    try {
+        if (isNaN(req.params.id)) return res.status(404).send('Page Not Found');
+        let master = await AllienceGrandMaster.findOne({}).where('createdAt').equals(Number(req.params.id));
+        if (!!master) {
+            res.status(200).render('grand-master-info', {
+                name :master.name ,
+                title : master.title,
+                metaDescription: master.info.length <= 120 ? master.info : master.info.slice(0, 120),
+                image : master.image,
+                organizationLogo : master.organizationLogo,
+                OrganizationLink :master.OrganizationLink,
+                info :master.infoHtml
+            });
+            return ;
+        } else {
+            return res.status(404).send('Page Not Found');
+        }
+    } catch (error) {
+        console.error(error);
+        try { res.render('500') } catch (error) { console.error(error); }
+    }
+});
+
+export { router as pageRouter }

@@ -65,7 +65,7 @@ export function UploadImgFile(req = request,fileName='img') {
            
             if (!files[fileName]) throw 'Image not is available';
             if (!files[fileName].length === 0) throw 'Image not is available';
-            return resolve([files[fileName][0].filepath, feilds]);
+            return resolve([files[fileName][0].filepath, feilds, files[fileName][0].newFilename]);
         })
     })
 }

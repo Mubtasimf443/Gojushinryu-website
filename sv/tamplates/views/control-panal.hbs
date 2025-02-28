@@ -44,6 +44,7 @@
   <link rel="stylesheet" href="/css/control_panal/txt_sylabus.css">
   <link rel="stylesheet" href="/css/control_panal/saminar.css">
   <link rel="stylesheet" href="/css/control_panal/product-popup.css">
+  <link rel="stylesheet" href="/css/control_panal/Allient-grand-master-container.css">
 
 
 
@@ -84,6 +85,7 @@
   <script defer src="/js/control panal/txt_sylabus.js"></script>
   <script defer src="/js/control panal/saminar.js"></script>
   <script defer src="/js/control panal/organization.charts.js"></script>
+  <script defer src="/js/control panal/Allient-grand-master-container.js"></script>
 </head>
 
 <body>
@@ -496,11 +498,11 @@
       </div>
       <div class="input-box">
         <label>Username</label>
-        <input name="username" placeholder="username" type="text" minlength="5" maxlength="200"  required>
+        <input name="username" placeholder="username" type="text" minlength="5" maxlength="200" required>
       </div>
       <div class="input-box">
         <label>Password</label>
-        <input name="password" placeholder="Password" type="password" minlength="5" maxlength="200"  required>
+        <input name="password" placeholder="Password" type="password" minlength="5" maxlength="200" required>
       </div>
       <div class="pp_btn_box">
         <button class="popup-close-btn"> Close </button>
@@ -516,14 +518,14 @@
       <div class="thumb-box">
         <label for="product-popup-thumb-image-input">Change Image</label>
         <label for="product-popup-thumb-image-input" class="thumb-label">
-          <input type="file" accept="image/*" style="display: none;" id="product-popup-thumb-image-input"> 
+          <input type="file" accept="image/*" style="display: none;" id="product-popup-thumb-image-input">
         </label>
       </div>
 
       <div class="img-box">
         <label for="">Images</label>
         <div class="imgs">
-          
+
         </div>
         <label for="product-popup-image-input">Add Image
           <input type="file" accept="image/*" style="display: none;" id="product-popup-image-input">
@@ -555,7 +557,7 @@
           <option value="Apparel">Martial Arts Apparel</option>
         </select>
       </div>
-       <div class="txt-box">
+      <div class="txt-box">
         <label> Size Details</label>
         <textarea name="sizeDatails" placeholder="Size Details" minlength="5"></textarea>
       </div>
@@ -568,9 +570,9 @@
           </tr>
         </thead>
         <tbody>
-      
+
         </tbody>
-        
+
       </table>
       <form>
         <input type="text" id="size-input" placeholder="size" name="size" maxlength="120" minlength="1">
@@ -703,14 +705,16 @@
           <a id="Testimonials_href">Testimonials<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="Country_Representative_href">Country Representative<button><i
                 class="fa-solid fa-angle-right"></i></button></a>
-          {{!-- <a id="customLinks_href">Create custom Offers<button><i class="fa-solid fa-angle-right"></i></button></a> --}}
+          {{!-- <a id="customLinks_href">Create custom Offers<button><i
+                class="fa-solid fa-angle-right"></i></button></a> --}}
           <a id="assets_href">Assets<button><i class="fa-solid fa-angle-right"></i></button></a>
-          
+
           <a id="text_sylabus_href">Notes Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="v_sylabus_href">Video Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="pdf_sylabus_href">PDF Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="Image_sylabus_href">Image Sylabus<button><i class="fa-solid fa-angle-right"></i></button></a>
           <a id="Saminar_container_href">Saminars<button><i class="fa-solid fa-angle-right"></i></button></a>
+          <a id="Allience_container_href">Allience<button><i class="fa-solid fa-angle-right"></i></button></a>
 
           <a id="settings_href">Settings<button><i class="fa-solid fa-angle-right"></i></button></a>
 
@@ -844,7 +848,8 @@
             </label>
 
 
-            <input style="display: none" type="file" accept="image/*" id="upload_sec_product_image_inp_for_uploading_the_products">
+            <input style="display: none" type="file" accept="image/*"
+              id="upload_sec_product_image_inp_for_uploading_the_products">
 
           </div>
           <div class="s-sec-input-box">
@@ -876,7 +881,7 @@
               <option value="Fitness-Gear">Fitness & Conditioning Gear</option>
               <option value="Books-DVDs">Books & DVDs</option>
               <option value="Apparel">Martial Arts Apparel</option>
-              
+
             </Select>
           </div>
           <div class="size_price_container">
@@ -967,7 +972,7 @@
               </tr>
             </thead>
             <tbody>
-            
+
             </tbody>
           </table>
           <div id="feeModal" class="modal">
@@ -1015,7 +1020,7 @@
         <!----------------------- User list ----------------------------->
         <div ct_section style="display: none;" id="list-of-user" targetedElement="user_page_href" class="user-list-box">
 
-           <table> 
+          <table>
             <thead>
               <tr>
                 {{!-- <th>Image</th> --}}
@@ -1029,14 +1034,14 @@
               </tr>
             </thead>
             <tbody>
-            
+
             </tbody>
-           </table>
+          </table>
 
         </div>
 
         <!----------------------- Video Sylabus ----------------------------->
-        <div ct_section  style="display: none;" id="v_sylabus" targetedElement="v_sylabus_href" >
+        <div ct_section style="display: none;" id="v_sylabus" targetedElement="v_sylabus_href">
           <table>
             <thead>
               <tr>
@@ -1046,7 +1051,7 @@
               </tr>
             </thead>
             <tbody>
-              
+
             </tbody>
           </table>
           <form>
@@ -1081,12 +1086,12 @@
           <table>
 
             <tr>
-              <th >Image</th>
-              <th >Name</th>
+              <th>Image</th>
+              <th>Name</th>
               <th>UserName</th>
-              <th >Organization</th>
-              <th >Update</th>
-              <th >Delete</th>
+              <th>Organization</th>
+              <th>Update</th>
+              <th>Delete</th>
             </tr>
 
 
@@ -1270,7 +1275,7 @@
               <div class="popup_content">
                 <label for="">Student Image</label>
                 <img src="" class="couse-enrollment-image" course_student_image alt="">
-                
+
                 <div class="input-box">
                   <label>Student ID</label>
                   <input disabled value="Student Number" placeholder="Student id" type="text">
@@ -1279,7 +1284,7 @@
                   <label>Student Name</label>
                   <input disabled value="Student Name" placeholder="Student Name" type="text">
                 </div>
-                
+
                 <div class="input-box">
                   <label>Student Number</label>
                   <input disabled value="Student Number" placeholder="Student Number" type="text">
@@ -1333,12 +1338,12 @@
                   <label>Purpose for Joining Karate</label>
                   <textarea disabled value="Student Address" placeholder="Student Address" type="text"></textarea>
                 </div>
-              
+
                 <div class="input-box">
                   <label>Student Signature</label>
                   <input disabled value="Student Signature" placeholder="Student Signature" type="text">
                 </div>
-                
+
                 <div class="input-box">
                   <label>Parent Signature</label>
                   <input disabled value="Student Signature" placeholder="Parent Signature" type="text">
@@ -1392,56 +1397,56 @@
         <!----------------------- Settings ----------------------------->
         <div class="settings-container-main" targetedElement="settings_href" style="display: none;" ct_section>
           <div id="settings-conatiner" class="form-section">
-        
-        
+
+
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp"> home video url </label>
               <input type="Text" placeholder="like http://cloudinary/video/****" value="{{home_video_url}}"
                 id="h-video-url-inp">
             </div>
             <strong>Dates of Course</strong>
-        
+
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">Online Classes</label>
               <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_online_class}}"
                 id="o-class-date">
             </div>
-        
+
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">Regular Classes</label>
               <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_regular_class}}"
                 id="r-class-date">
             </div>
-        
-        
+
+
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">Woments Defence Classes</label>
-              <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6" value="{{date_of_womens_defence_class}}"
-                id="w-class-date">
+              <input type="Text" placeholder="please give date as 0,1,2,3,4,5,6"
+                value="{{date_of_womens_defence_class}}" id="w-class-date">
             </div>
-        
-        
+
+
             <strong>Fees Of course</strong>
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">Regular Classes</label>
               <input type="number" placeholder="Fees" value="{{fees_of_reqular_class}}" id="fees_of_reqular_class">
             </div>
-        
+
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">Bhangra Fitness Class for All Ages</label>
               <input type="number" placeholder="Fees" value="{{fees_of_Bhangra_fitness}}" id="fees_of_Bhangra_fitness">
             </div>
-        
-        
+
+
             <strong>Others</strong>
-        
+
             <div class="s-sec-input-box">
               <label for="s-sec-name-inp">GST RATE (%)</label>
               <input type="number" placeholder="Fees" value="{{gst_rate}}" id="gst_rate">
             </div>
-        
+
             <strong>Authenticated Media</strong>
-        
+
             <div class="auth_div">
               <div class="icon_div">
                 <img src="/icon/youtube.png" alt="youtube icon">
@@ -1450,7 +1455,7 @@
               </div>
               <button auth_btn_youtube style="background-color: black;">Login</button>
             </div>
-        
+
             <div class="auth_div">
               <div class="icon_div">
                 <img src="/icon/linkedin.png" alt="linkedin icon">
@@ -1459,7 +1464,7 @@
               </div>
               <button auth_btn_linkedin style="background-color: black;">Login</button>
             </div>
-        
+
             <div class="auth_div">
               <div class="icon_div">
                 <img src="/icon/tiktok.png" alt="tiktok icon">
@@ -1468,7 +1473,7 @@
               </div>
               <button auth_btn_tiktok style="background-color: black;">Login</button>
             </div>
-        
+
             <div class="auth_div">
               <div class="icon_div">
                 <img src="/icon/facebook.png" alt="tiktok icon">
@@ -1477,15 +1482,16 @@
               </div>
               <button auth_btn_facebook style="background-color: black;">Login</button>
             </div>
-        
-        
-        
+
+
+
             <div class="s-sec-btn-box">
-              <button save_btn style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
+              <button save_btn
+                style="transition: all .5s ease;background-color:black;color:white;opacity :0.6;">Save</button>
             </div>
-        
+
           </div>
-        
+
           <div id="settings-of-membership-coupons-container" class="settings-of-coupons-container">
             <strong>Membership Coupon Details</strong>
             <table>
@@ -1500,27 +1506,27 @@
                 </tr>
               </thead>
               <tbody>
-        
+
               </tbody>
             </table>
             <strong>Create Coupon</strong>
             <form id="couponForm">
-        
+
               <input type="text" couponName name="couponName" placeholder="coupon name" maxlength="20" minlength="1">
-        
-        
+
+
               <input type="text" couponCode placeholder="coupon code" maxlength="20" minlength="1">
-        
+
               <input type="number" couponRate placeholder="discount rate" min="0" max="75" value="">
-        
-        
+
+
               <input type="text" expirationDate placeholder="Expiration Date" onblur="(this.type='text')"
                 onfocus="(this.type='date')">
-        
+
               <button add_coupon_btn>Add</button>
             </form>
           </div>
-        
+
           <div id="settings-of-course-coupons-container" class="settings-of-coupons-container">
             <strong>Course Coupon Details</strong>
             <table>
@@ -1535,38 +1541,38 @@
                 </tr>
               </thead>
               <tbody>
-        
+
               </tbody>
             </table>
             <strong>Create Coupon</strong>
             <form id="couponForm">
               {{!-- <label for="couponName">Coupon Name</label> --}}
               <input type="text" couponName name="couponName" placeholder="coupon name" maxlength="20" minlength="1">
-        
+
               {{!-- <label for="couponCode">Coupon Code</label> --}}
               <input type="text" couponCode placeholder="coupon code" maxlength="20" minlength="1">
-        
+
               {{!-- <label for="couponRate">Rate (%)</label> --}}
               <input type="number" couponRate placeholder="discount rate" min="0" max="75" value="">
-        
+
               {{!-- <label for="expirationDate">Expiration Date</label> --}}
               <input type="text" expirationDate placeholder="Expiration Date" onblur="(this.type='text')"
                 onfocus="(this.type='date')">
-        
+
               <button add_coupon_btn>Add</button>
             </form>
           </div>
-        
+
           <div id="assets-organizaition-charts-gallary">
             <strong>Organization Charts</strong>
             <div class="images">
-        
+
             </div>
             <label class="addCharts">Add Charts
               <input type="file" accept="image/*" id="input-organization-charts" style="display: none;" multiple>
             </label>
           </div>
-        
+
           <!-- Popup -->
           <div class="popup" id="imagePopup" style="display: none;">
             <div class="popup-content">
@@ -1575,7 +1581,7 @@
             </div>
           </div>
 
-          
+
         </div>
 
         <!-----------------------Upload Event ----------------------------->
@@ -1866,11 +1872,11 @@
 
               <!-- Dynamic Content -->
               <div id="video-container">
-                
+
               </div>
             </div>
-    
-  
+
+
           </div>
 
         </div>
@@ -1889,12 +1895,12 @@
                 <th>Active</th>
               </tr>
             </thead>
-           <tbody>
-            
-           </tbody>
-          
+            <tbody>
+
+            </tbody>
+
           </table>
-          
+
           <div id="crFeesModal" class="crFeesModal">
             <div class="modal-header">Request Country R. For Fees </div>
             <input type="number" id="feeAmount" placeholder="Enter fee amount, Gst will be added automatically">
@@ -1987,7 +1993,7 @@
         </section>
 
         <!----------------------- Pdf Sylabus ----------------------------->
-        <div ct_section  style="display: none;" id="pdf_sylabus" targetedElement="pdf_sylabus_href" >
+        <div ct_section style="display: none;" id="pdf_sylabus" targetedElement="pdf_sylabus_href">
           <table>
             <thead>
               <tr>
@@ -1996,35 +2002,35 @@
               </tr>
             </thead>
             <tbody>
-              
+
             </tbody>
           </table>
           <form action="">
             <input type="text" placeholder="Title">
-            <input type="file" placeholder="Pdf File"  accept="application/pdf">
+            <input type="file" placeholder="Pdf File" accept="application/pdf">
             <button class="add-btn">Add</button>
             <button class="clr-btn">Clear</button>
           </form>
         </div>
 
         <!----------------------- Image Sylabus ----------------------------->
-        <div ct_section  style="display: none;" id="Image_sylabus" targetedElement="Image_sylabus_href" >
+        <div ct_section style="display: none;" id="Image_sylabus" targetedElement="Image_sylabus_href">
           <div id="image-container" class="image-grid">
 
           </div>
           <form>
             <input type="text" placeholder="Title">
-            <input type="file" placeholder="Pdf File"  accept="image/*">
+            <input type="file" placeholder="Pdf File" accept="image/*">
             <button class="add-btn">Add</button>
             <button class="clr-btn">Clear</button>
           </form>
         </div>
 
-          <!----------------------- Text Sylabus ----------------------------->
+        <!----------------------- Text Sylabus ----------------------------->
         <div ct_section style="display: none;" id="text_sylabus" targetedElement="text_sylabus_href">
-          
+
           <div class="notes-grid">
-           
+
           </div>
 
           <form>
@@ -2039,7 +2045,8 @@
               <button class="btn-close">&times;</button>
               <input type="text" class="modal-title" placeholder="Title">
               <div class="modal-content">
-                <textarea class="modal-description" placeholder="Take a note..." maxlength="20000" minlength="50"></textarea>
+                <textarea class="modal-description" placeholder="Take a note..." maxlength="20000"
+                  minlength="50"></textarea>
                 <div class="character-count"><span class="char-count">0</span>/20000</div>
               </div>
               <div class="modal-actions">
@@ -2050,7 +2057,7 @@
           </div>
         </div>
 
-          <!----------------------- Saminars ----------------------------->
+        <!----------------------- Saminars ----------------------------->
         <div ct_section style="display: none;" id="Saminar_container" targetedElement="Saminar_container_href">
           <table>
             <thead>
@@ -2061,30 +2068,154 @@
               <th>Actions</th>
             </thead>
             <tbody>
-             
+
             </tbody>
           </table>
           <div class="btns">
             <button class="add-btn" id="add-saminar-button">Create</button>
           </div>
           <!-- Popup Form for Seminar Application -->
-          <div id="popup" class="popup hidden" >
+          <div id="popup" class="popup hidden">
             <div class="popup-content">
-              <button class="close-popup" >&times;</button>
+              <button class="close-popup">&times;</button>
               <h2>Seminar</h2>
               <form id="saminarForm" mode="create">
                 <label for="saminar_image">Image</label>
                 <input type="file" id="saminar_image" accept="image/*">
                 <input type="text" id="saminar_name" placeholder="Seminar Name" minlength="10" maxlength="70" required>
-                <textarea id="saminar_info"  placeholder="Seminar Info" required minlength="50" maxlength="135" autocomplete="off"></textarea>
-                <input id="saminar_location"  placeholder="Seminar Location" required minlength="6" maxlength="50" autocomplete="off">
-                <input type="text" onblur="(this.type='text')" onclick="(this.type='Date')" id="saminar_date" placeholder="Seminar Date" required>
-                <input type="text" onblur="(this.type='text')" onclick="(this.type='time')" id="saminar_time" placeholder="Seminar Time" required>
+                <textarea id="saminar_info" placeholder="Seminar Info" required minlength="50" maxlength="135"
+                  autocomplete="off"></textarea>
+                <input id="saminar_location" placeholder="Seminar Location" required minlength="6" maxlength="50"
+                  autocomplete="off">
+                <input type="text" onblur="(this.type='text')" onclick="(this.type='Date')" id="saminar_date"
+                  placeholder="Seminar Date" required>
+                <input type="text" onblur="(this.type='text')" onclick="(this.type='time')" id="saminar_time"
+                  placeholder="Seminar Time" required>
                 <button class="popup-btn" type="submit">Create</button>
               </form>
             </div>
           </div>
         </div>
+        <div id="Allient-grand-master-container" targetedElement="Allience_container_href" style="display: none;">
+
+          <table>
+            <thead>
+              <tr>
+                <th>Image</th>
+                <th>Name</th>
+                <th>Organization Logo</th>
+                <th>Update</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody id="grandMasterTableBody">
+
+            </tbody>
+          </table>
+
+          <button class="btn btn-add" id="btnAddGrandMaster">Add GrandMaster</button>
+
+
+          <div id="addGrandMasterModal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="modalClose">&times;</span>
+              <h2>Add GrandMaster</h2>
+              <form id="addGrandMasterForm">
+              
+                <div class="form-group">
+                  <label for="allient-grand-master-name">Name</label>
+                  <input type="text" id="allient-grand-master-name" name="name" minlength="5" maxlength="50" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="allient-grand-master-title">Organization</label>
+                  <input type="text" id="allient-grand-master-title"  minlength="10" maxlength="120" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="allient-grand-master-Image">
+                    <span>Image</span>
+                    <img src="/img/avatar.png" title="click to add Image">
+                  </label>
+                  <input type="file" id="allient-grand-master-Image" name="image" accept="image/*" style="display: none;">
+                  <input type="url"  id="grand-master-Image-url" style="display: none;" value="" minlength="10" maxlength="300" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="allient-grand-master-orgLogo">
+                    <span>Organization Logo</span>
+                    <img src="/img/org.png">
+                  </label>
+                  <input type="file" id="allient-grand-master-orgLogo" accept="image/*" name="organizationLogo" style="display: none;">
+                  <input type="url" id="orgLogoUrl" style="display: none;" minlength="10" maxlength="300" value="" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="orgLink">Organization Link</label>
+                  <input type="url" id="orgLink" minlength="7" maxlength="300" name="organizationLink" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="grandMasterInfo">Info</label>
+                  <textarea id="grandMasterInfo" name="info" rows="4" minlength="50" maxlength="20000" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-add">Submit</button>
+              </form>
+            </div>
+          </div>
+          <div id="updateGrandMasterModal" class="modal">
+            <div class="modal-content">
+              <span class="close" id="modalClose">&times;</span>
+              <h2>Update GrandMaster</h2>
+              <form id="addGrandMasterForm">
+              
+                <div class="form-group">
+                  <label for="allient-grand-master-name">Name</label>
+                  <input type="text" id="allient-grand-master-name" name="name" minlength="5" maxlength="50" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="allient-grand-master-title">Organization</label>
+                  <input type="text" id="allient-grand-master-title"  minlength="10" maxlength="120" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="update-allient-grand-master-Image">
+                    <span>Image</span>
+                    <img src="/img/avatar.png" title="click to add Image">
+                  </label>
+                  <input type="file" id="update-allient-grand-master-Image" name="image" accept="image/*" style="display: none;">
+                  <input type="url"  id="grand-master-Image-url" style="display: none;" value="" minlength="10" maxlength="300" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="update-allient-grand-master-orgLogo">
+                    <span>Organization Logo</span>
+                    <img src="/img/org.png">
+                  </label>
+                  <input type="file" id="update-allient-grand-master-orgLogo" accept="image/*" name="organizationLogo" style="display: none;">
+                  <input type="url" name="updateAllienceGrandMasterOrgLogo" id="orgLogoUrl" style="display: none;" minlength="10" maxlength="300" value="" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="orgLink">Organization Link</label>
+                  <input type="url" id="orgLink" minlength="7" maxlength="300" name="organizationLink" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="grandMasterInfo">Info</label>
+                  <textarea id="grandMasterInfo" name="info" rows="4" minlength="50" maxlength="20000" required></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-add">Update</button>
+              </form>
+            </div>
+          </div>
+
+
+        </div>
+
       </div>
     </section>
 

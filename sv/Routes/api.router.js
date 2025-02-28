@@ -43,6 +43,7 @@ import { deleteAsset, findAssetsVideoControlPanal, findImageAssetsControlPanal, 
 import SyllabusAssetRouter from "../_lib/model_base_function/sylabus.js";
 import SaminarRouter from "../_lib/model_base_function/saminar.js";
 import { organizationChartsRouter } from "../_lib/model_base_function/Settings.js";
+import { AllienceGrandMasterRouter } from "../_lib/model_base_function/AllienceGrandMaster.js";
 
 
 
@@ -56,7 +57,7 @@ router.use(morgan('dev'))
 router.use(noCache)
 router.use(SyllabusAssetRouter);
 router.use('/organization-chart', organizationChartsRouter)
-
+router.use('/allience-grand-master', AllienceGrandMasterRouter)
 router.use('/saminars', SaminarRouter )
 //get
 router.get('/find-grand-master', FindGMApi)

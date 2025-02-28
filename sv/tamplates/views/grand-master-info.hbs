@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{name}} | {{title}}</title>
+    <meta name="description" content="{{metaDescription}}">
+    <meta name="keywords"
+        content="{{name}}, {{title}}, Grand Master Of {{title}}, Grand Master {{name}},{{title}} Grand Master">
+
+    <!-- Open Graph Tags -->
+    <meta property="og:title" content="Karate Grand Master {{name}}">
+    <meta property="og:description" content="{{metaDescription}}">
+    <meta property="og:type" content="profile">
+    <meta property="og:url" content="/">
+    <meta property="og:image" content="{{image}}">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Karate Grand Master {{name}}">
+    <meta name="twitter:description" content="{{metaDescription}}">
+    <meta name="twitter:image" content="{{image}}">
+
+    {{>Links}}
+    <style>
+        :root {
+            --accent-color: #ffaa1c;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: white;
+            color: #333;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .profile-card {
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .profile-header {
+            position: relative;
+            height: 200px;
+            background: linear-gradient(135deg, var(--accent-color) 0%, #ffd280 100%);
+        }
+
+        .profile-content {
+            display: flex;
+            flex-direction: row;
+            padding: 0;
+        }
+
+        .profile-image-container {
+            width: 200px;
+            margin-top: -100px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            border: 5px solid white;
+            object-fit: cover;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            alt: "Grand Master Masahiro Tanaka, 10th Dan Karate Master in traditional gi";
+        }
+
+        .profile-details {
+            flex: 1;
+            padding: 30px 20px 20px;
+        }
+
+        .master-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 5px 0;
+            color: #222;
+        }
+
+        .master-title {
+            font-size: 1.2rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin: 0 0 15px 0;
+        }
+
+        .organization {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .org-logo {
+            width: 80px;
+            height: 80px;
+            margin-right: 15px;
+            object-fit: contain;
+            alt: "International Traditional Karate Association official logo";
+        }
+
+        .org-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+        }
+
+        .divider {
+            height: 3px;
+            background-color: var(--accent-color);
+            width: 100px;
+            margin: 20px 0;
+        }
+
+        .bio-section h2 {
+            font-size: 1.5rem;
+            color: #222;
+            margin-bottom: 15px;
+        }
+
+        .bio-content {
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .achievements {
+            margin-top: 20px;
+        }
+
+        .achievements h3 {
+            font-size: 1.2rem;
+            color: #333;
+        }
+
+        .achievement-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .achievement-badge {
+            background-color: #f5f5f5;
+            border-left: 4px solid var(--accent-color);
+            padding: 8px 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        }
+
+        .contact-info {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .contact-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #222;
+        }
+
+        .contact-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-label {
+            font-weight: 600;
+            margin-right: 8px;
+            color: #555;
+        }
+
+        /* Structured data styling */
+        .structured-data {
+            display: none;
+        }
+
+        /* Additional SEO specific styling */
+        .teaching-philosophy {
+            margin-top: 25px;
+        }
+
+        .teaching-philosophy h3 {
+            font-size: 1.2rem;
+            color: #333;
+            margin-bottom: 12px;
+        }
+
+        .testimonials {
+            margin-top: 25px;
+            border-top: 1px solid #eee;
+            padding-top: 20px;
+        }
+
+        .testimonial-item {
+            font-style: italic;
+            position: relative;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-author {
+            font-style: normal;
+            font-weight: 600;
+            margin-top: 8px;
+            text-align: right;
+            color: #555;
+        }
+
+        @media (max-width: 768px) {
+            .profile-content {
+                flex-direction: column;
+            }
+
+            .profile-image-container {
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                margin-top: -80px;
+                padding: 0;
+            }
+
+            .profile-image {
+                width: 160px;
+                height: 160px;
+            }
+
+            .profile-details {
+                padding: 20px;
+            }
+
+            .master-name {
+                font-size: 2rem;
+                text-align: center;
+            }
+
+            .master-title {
+                text-align: center;
+            }
+
+            .organization {
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+
+            .org-logo {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .divider {
+                margin: 20px auto;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "{{name}}",
+      "jobTitle": "Karate Grand Master",
+      "honorificPrefix": "Grand Master",
+      "url": "/",
+      "image": "{{image}}",
+      "description": "Grand Master Tanaka has dedicated over 50 years to the study and teaching of traditional Shotokan Karate, trained directly under Master Nakayama.",
+      "worksFor": {
+        "@type": "Organization",
+        "name": "{{title}}",
+        "url": "{{OrganizationLink}}"
+      },
+     
+      "knowsAbout": [ "Karate", "Traditional Martial Arts", "Karate Philosophy", "Kata", "Kumite"]
+      
+    }
+    </script>
+    {{>whiteHeader}}
+    <main>
+        <div class="container">
+            <div class="profile-card">
+                <div class="profile-header" role="presentation" aria-hidden="true"></div>
+                <div class="profile-content">
+                    <div class="profile-image-container">
+                        <img src="{{image}}" alt="Grand Master {{name}}" class="profile-image">
+                    </div>
+                    <div class="profile-details">
+                        <h1 class="master-name">{{name}}</h1>
+                        <p class="master-title">Karate Grand Master </p>
+
+                        <div class="organization">
+                            <img src="{{organizationLogo}}" alt="{{title}}" class="org-logo">
+                            <div class="org-name">{{title}}</div>
+                        </div>
+
+                        <div class="divider" role="presentation" aria-hidden="true"></div>
+
+                        <div class="bio-section">
+                            <h2>About Grand Master </h2>
+                            <div class="bio-content">
+                                <p id="grand-master-bio-paragraph">
+                                    {{info}}
+                                </p>
+                                <script>
+                                    let p = document.querySelector('#grand-master-bio-paragraph');
+                                    let html = p.innerHTML;
+                                    while (html.includes('&lt;')) {
+                                        html = html.replaceAll('&lt;', '<');
+                                    }
+                                    while (html.includes('&gt;')) {
+                                       html =html.replaceAll(`&gt;` , '>');
+                                    }
+                                        p.innerHTML =html;
+                                        
+                               
+                                </script>
+                            </div>
+                        </div>
+
+                        <!-- <div class="teaching-philosophy">
+                        <h3>Teaching Philosophy</h3>
+                        <p>"True karate is not just about physical technique, but about developing character through discipline, respect, and perseverance. The ultimate goal is not to win competitions, but to perfect oneself as a human being." - Grand Master Tanaka</p>
+                    </div> -->
+
+                        <!-- <div class="achievements">
+                        <h3>Achievements & Recognition</h3>
+                        <div class="achievement-list">
+                            <div class="achievement-badge">All-Japan Karate Champion (1978-1980)</div>
+                            <div class="achievement-badge">World Karate Federation Hall of Fame</div>
+                            <div class="achievement-badge">Author of "The Way of Karate-Do"</div>
+                            <div class="achievement-badge">International Technical Director</div>
+                        </div>
+                    </div> -->
+
+                        <!-- <div class="testimonials">
+                        <h3>Student Testimonials</h3>
+                        <div class="testimonial-item">
+                            "Training under Grand Master Tanaka has transformed not just my karate skills, but my entire approach to life. His teachings go far beyond the dojo walls."
+                            <div class="testimonial-author">- James Chen, 5th Dan Black Belt</div>
+                        </div>
+                    </div> -->
+
+                        <!-- <div class="contact-info">
+                        <h3 class="contact-title">Training Information</h3>
+                        <div class="contact-list">
+                            <div class="contact-item">
+                                <span class="contact-label">Location:</span>
+                                <span>Tanaka Traditional Karate Center, Tokyo</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">International Seminars:</span>
+                                <span>Available for booking worldwide</span>
+                            </div>
+                            <div class="contact-item">
+                                <span class="contact-label">Training Programs:</span>
+                                <span>Traditional Shotokan Karate, Kata Specialization, Instructor Certification</span>
+                            </div>
+                        </div>
+                    </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    {{>Footer}}
+</body>
+
+</html>
