@@ -21,7 +21,7 @@ import customLinkPage from "../_lib/model_base_function/customLink.js";
 import { settingsAsArray } from "../_lib/model_base_function/Settings.js";
 import { log } from "string-player";
 import catchError from "../_lib/utils/catchError.js";
-import { AllienceGrandMaster } from "../_lib/models/allienceGrandMaster.js";
+import { allienceGrandMasterInfo } from "../_lib/model_base_function/AllienceGrandMaster.js";
 
 let router = Router();
 
@@ -187,28 +187,6 @@ router.get('/saminar-form', function (req,res) {
    res.render('saminar_form'); 
 });
 
-router.get('/grand-master-info/:id',async function (req, res) {
-    try {
-        if (isNaN(req.params.id)) return res.status(404).send('Page Not Found');
-        let master = await AllienceGrandMaster.findOne({}).where('createdAt').equals(Number(req.params.id));
-        if (!!master) {
-            res.status(200).render('grand-master-info', {
-                name :master.name ,
-                title : master.title,
-                metaDescription: master.info.length <= 120 ? master.info : master.info.slice(0, 120),
-                image : master.image,
-                organizationLogo : master.organizationLogo,
-                OrganizationLink :master.OrganizationLink,
-                info :master.infoHtml
-            });
-            return ;
-        } else {
-            return res.status(404).send('Page Not Found');
-        }
-    } catch (error) {
-        console.error(error);
-        try { res.render('500') } catch (error) { console.error(error); }
-    }
-});
+router.get('/grand-master-info/:id',allienceGrandMasterInfo);
 
 export { router as pageRouter }
