@@ -3,7 +3,7 @@
 By his marcy,  I will gain success
 */
 
-import mongoose, { model, Schema } from 'mongoose';
+import { model, Schema } from 'mongoose';
 
 let allienceSchema = new Schema({
     name: {
@@ -41,4 +41,4 @@ let allienceSchema = new Schema({
 })
 
 export const AllienceGrandMaster = model('AllienceGrandMaster', allienceSchema);
-export default AllienceGrandMaster;
+// export default AllienceGrandMaster;

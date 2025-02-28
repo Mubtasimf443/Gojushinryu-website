@@ -4,7 +4,7 @@ Insha Allah,  Allah is enough for me
 */
 
 import { request, Router } from "express";
-import AllienceGrandMaster from "../models/allienceGrandMaster.js";
+import {AllienceGrandMaster} from "../models/allienceGrandMaster.js";
 import { response } from "express";
 import catchError from "../utils/catchError.js";
 import { Cloudinary } from "../Config/cloudinary.js";
