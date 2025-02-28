@@ -21,7 +21,7 @@ import customLinkPage from "../_lib/model_base_function/customLink.js";
 import { settingsAsArray } from "../_lib/model_base_function/Settings.js";
 import { log } from "string-player";
 import catchError from "../_lib/utils/catchError.js";
-import AllienceGrandMaster from "../_lib/models/allienceGrandMaster.js";
+import {AllienceGrandMaster} from "../_lib/models/allienceGrandMaster.js";
 
 let router = Router();
 
