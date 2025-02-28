@@ -82,6 +82,7 @@ app.use(cookieParser());
 
 
 //routes
+app.set('trust proxy', 'loopback');
 app.use(pageRouter);
 app.use('/api/file', fileRouter);
 app.use('/api/l-api', LargeApiRouter);
