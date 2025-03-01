@@ -83,7 +83,7 @@ export async function CreateGMApi(req, res) {
     let testArray = [name, organization, email, password, username];
     let FoundEmtyIndex = await testArray.findIndex(el => !el);
     if (FoundEmtyIndex > -1) return Alert('You Can not Use Emty Feild To Update', res);
-    if (!validate.isEmail(email)) return Alert('Email is NOT Valid', res);
+    if (!email?.trim()) return Alert('Email is NOT Valid', res);
     let salt = await bcrypt.genSalt(8);
     password = await bcrypt.hash(password, salt);
     let isGmExistFromEmail = (await GM.findOne({ email: email.toLowerCase().trim() })) !== null;
