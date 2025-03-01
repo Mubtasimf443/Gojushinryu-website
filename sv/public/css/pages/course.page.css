@@ -235,7 +235,7 @@ body {
   background: #fff;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-  padding: 30px;
+  /* padding: 30px; */
   z-index: 1000;
   width: 90%;
   max-width: 500px;
@@ -246,6 +246,7 @@ body {
   scrollbar-width: none;
   scroll-behavior: smooth;
   scrollbar-color: #ccc;
+  height: 97vh;
 }
 
 .popup.active {
@@ -283,9 +284,11 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  overflow: scroll;
+  overflow-y: scroll;
   height: 90vh;
-  scrollbar-width: none;
+  /* scrollbar-width: none; */
+  padding: 30px;
+  transition: all .7s ease;
 }
 
 .popup-form img {

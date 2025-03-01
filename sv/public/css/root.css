@@ -13,7 +13,9 @@ html{
     row-gap: 0px;
     box-sizing: border-box;
 }
-
+body{
+    overflow-x: hidden;
+}
 
 :root {
     --main-cl :#ffaa1c; /* my- #ca8401 */ /*client #ffaa1c*/

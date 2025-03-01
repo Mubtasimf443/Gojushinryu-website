@@ -186,9 +186,11 @@ document.querySelectorAll('.close-popup').forEach(
                     }
                     element.addEventListener('change', removeRedInfo);
                 });
+                popup1.querySelector('form').scrollTop=0;
             }
         } catch (error) {
             console.log({ error });
+            popup1.querySelector('form').scrollTop=0;
         } finally {
             requesting = false;
             btn.style.opacity = 1;
