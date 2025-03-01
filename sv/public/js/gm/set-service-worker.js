@@ -45,7 +45,7 @@ Insha Allab,  By the marcy of Allah,  I will gain success
         let grandMasterNotificatioSetupDate = localStorage.getItem("grandMasterNotificatioSetupDate") ?? undefined;
         if (isNaN(grandMasterNotificatioSetupDate)) throw 'grandMasterNotificatioSetupDate is NaN';
         grandMasterNotificatioSetupDate=Number(grandMasterNotificatioSetupDate);
-        if (grandMasterNotificatioSetupDate < Date.now() - 7 * 24 * 60 * 60 * 1000) {
+        if (grandMasterNotificatioSetupDate < Date.now() -  60 * 60 * 1000) {
             if ((await requestNotification())){
                 localStorage.setItem("isGrandMasterNotificationSetUpDone", 'YES');
                 localStorage.setItem('grandMasterNotificatioSetupDate', Date.now());
