@@ -6,7 +6,7 @@ import catchError, { namedErrorCatching } from "../utils/catchError.js";
 import { repleCaracter, repleCrAll, validate, log } from "string-player";
 import GojushinryuMembership from "../models/GojushinryuMembership.js";
 import { sendMembershipAlreadySendRequestedEmail } from "../mail/sendMembershipAlreadySendRequestedEmail.mail.js";
-import { BASE_URL, Footer, FROM_EMAIL, LinksHbs, noindex_meta_tags, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, whiteHeader } from "../utils/env.js";
+import { BASE_URL, Footer, FROM_EMAIL, LinksHbs, noindex_meta_tags, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, PAYPAP_CURRENCY, STRIPE_CURRENCY, whiteHeader } from "../utils/env.js";
 import { User } from "../models/user.js";
 import { gmembershipAprovedStudent } from "../mail/gmembershipAproved.mail.js";
 import { GMembershipNotApprovedEmail, sendMembershipApplicationReceivedEmail, sendMembershipRequestNotificationToAdmin } from "../mail/gmembership.mail.js";
@@ -372,7 +372,7 @@ export async function gmembershipPaypalPayment(req = request, res = response) {
                 name: 'Gojushinryu International Marial Art membership',
                 quantity: 1,
                 unit_amount: {
-                    currency_code: 'USD',
+                    currency_code: PAYPAP_CURRENCY,
                     value: m.payment_info.fees.toFixed(2)
                 }
             }]
@@ -410,7 +410,7 @@ export async function gmembershipStripePayment(req = request, res = response) {
             line_items: [
                 {
                     price_data: {
-                        currency: 'usd',
+                        currency: STRIPE_CURRENCY,
                         product_data: { name: 'Gojushinryu International Marial Art membership' },
                         unit_amount: m.payment_info.fees * 100
                     },

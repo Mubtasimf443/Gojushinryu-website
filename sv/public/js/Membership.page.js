@@ -174,7 +174,7 @@ Insha Allah,  By Allahs Marcy,  I willearn success
       calculateTotal()
       return changeHeadingSectionLayout()
     } catch (error) {
-      log(error)
+      log(error);
     }
   }
 

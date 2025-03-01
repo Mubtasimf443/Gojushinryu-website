@@ -9,6 +9,7 @@ import MembershipCoupons from "../models/membershipcoupon.js";
 import { Orders } from "../models/Order.js";
 import { Settings } from "../models/settings.js";
 import { User } from "../models/user.js";
+import { STRIPE_CURRENCY } from "../utils/env.js";
 import { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, isValidUrl, log, Success } from "../utils/smallUtils.js";
 import { MakePriceString, makeTimeString } from "../utils/string.manipolation.js";
@@ -20,8 +21,9 @@ import { membershipSuccessPage } from "./MembershipApi.js";
 export async function membershipMidleWareStripe(req, res, next) {
     let memberships = [
         {
+            
             price_data: {
-                currency: 'usd',
+                currency: STRIPE_CURRENCY,
                 product_data: {
                     name: 'Goju shin Ryu Annual Membership'
                 },
@@ -32,7 +34,7 @@ export async function membershipMidleWareStripe(req, res, next) {
         {
 
             price_data: {
-                currency: 'usd',
+                currency: STRIPE_CURRENCY,
                 product_data: {
                     name: 'Goju shin Ryu LifeTime Membership'
                 },
@@ -45,13 +47,13 @@ export async function membershipMidleWareStripe(req, res, next) {
             // quantity :1,
             // price :150,
             // unit_amount:{
-            //     currency_code:'USD',
+            //     currency_code:STRIPE_CURRENCY,
             //     value :'150.00'
             // }
         },
         {
             price_data: {
-                currency: 'usd',
+                currency: STRIPE_CURRENCY,
                 product_data: {
                     name: 'School of Traditional Martial Art Annual Membership'
                 },
@@ -63,13 +65,13 @@ export async function membershipMidleWareStripe(req, res, next) {
             // quantity :1,
             // price :75,
             // unit_amount:{
-            //     currency_code:'USD',
+            //     currency_code:STRIPE_CURRENCY,
             //     value  :'75.00'
             // }
         },
         {
             price_data: {
-                currency: 'usd',
+                currency: STRIPE_CURRENCY,
                 product_data: {
                     name: 'School of Traditional Martial Art LifeTime Membership'
                 },
@@ -81,7 +83,7 @@ export async function membershipMidleWareStripe(req, res, next) {
             // quantity :1,
             // price :150,
             // unit_amount:{
-            //     currency_code:'USD',
+            //     currency_code:STRIPE_CURRENCY,
             //     value :'150.00'
             // }
         }

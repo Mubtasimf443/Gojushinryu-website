@@ -68,4 +68,6 @@ export const whiteHeader = readFileSync(resolve(__dirname, '../../tamplates/part
 export const Footer = readFileSync(resolve(__dirname, '../../tamplates/partials/Footer.hbs'), 'utf-8');
 export const LinksHbs = readFileSync(resolve(__dirname, '../../tamplates/partials/Links.hbs'), 'utf-8');
 export const noindex_meta_tags = (`<meta name="robots" content="noindex"><meta name="googlebot" content="noindex"> `);
-export const SERVICE_WORKER_PUBLIC_KEY='BBQwXL2fe9F7G3tzL3t1gPx5QhmDBSqs-v_MY1UyvqODVOvuWv8KinOar4jkWsqVSjWJsk0k_XdY_eae4un4DJc'
+export const SERVICE_WORKER_PUBLIC_KEY='BBQwXL2fe9F7G3tzL3t1gPx5QhmDBSqs-v_MY1UyvqODVOvuWv8KinOar4jkWsqVSjWJsk0k_XdY_eae4un4DJc';
+export const PAYPAP_CURRENCY='CAD';
+export const STRIPE_CURRENCY='cad';

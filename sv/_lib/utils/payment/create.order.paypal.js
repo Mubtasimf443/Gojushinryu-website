@@ -3,7 +3,7 @@
 */ 
 
 import axios from 'axios'
-import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_LINK, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from '../env.js';
+import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_LINK, PAYPAL_SECRET, PAYPAP_CURRENCY, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from '../env.js';
 
 import { log, Success } from '../smallUtils.js';
 
@@ -22,7 +22,8 @@ export async function createPaypalPayment({ items, total, productToatal, shippin
                 log({currency_code,value});
                 throw new Error("check currency_code,value"); 
             }
-            if (currency_code !=='USD') throw new Error("currency_code is not USD"); 
+            
+            if (currency_code !==PAYPAP_CURRENCY) throw new Error("currency_code is not USD"); 
             if (typeof value !== 'string') throw new Error("value is not string"); 
         }
         
@@ -49,11 +50,11 @@ export async function createPaypalPayment({ items, total, productToatal, shippin
                     {
                         items,
                         amount: {
-                            currency_code: 'USD',
+                            currency_code: PAYPAP_CURRENCY,
                             value: total,
                             breakdown: {
                                 item_total: {
-                                    currency_code: 'USD',
+                                    currency_code: PAYPAP_CURRENCY,
                                     value:productToatal
                                 }
                             }

@@ -17,7 +17,7 @@ import { repleCaracter } from "string-player";
 import Mails from "../mail/country-representatives.mail.js";
 import { UploadImgFile } from "../api/formidable.file.post.api.js";
 import { Settings } from "../models/settings.js";
-import { BASE_URL, Footer, LinksHbs, noindex_meta_tags, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET, whiteHeader } from "../utils/env.js";
+import { BASE_URL, Footer, LinksHbs, noindex_meta_tags, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, PAYPAP_CURRENCY, STRIPE_CURRENCY, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET, whiteHeader } from "../utils/env.js";
 import PaypalPayment from "../utils/payment/PaypalPayment.js";
 import StripePay from "../utils/payment/stripe.js";
 
@@ -312,7 +312,7 @@ async function paypalPayment(req = request, res = response) {
                 name: 'Gojushinryu Country Representative Fees',
                 quantity: 1,
                 unit_amount: {
-                    currency_code: 'USD',
+                    currency_code: PAYPAP_CURRENCY,
                     value: cr.payment_data.paymentAmount.toFixed(2)
                 }
             }]
@@ -346,7 +346,7 @@ async function stripePayment(req = request, res = response) {
             line_items: [
                 {
                     price_data: {
-                        currency: 'usd',
+                        currency: STRIPE_CURRENCY,
                         product_data: {
                             name: 'Gojushinryu Country Representative Fees'
                         },

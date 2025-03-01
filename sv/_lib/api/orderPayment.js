@@ -8,7 +8,7 @@ import catchError from "../utils/catchError.js";
 import Orders from "../models/Order.js";
 import { log, validate } from "string-player";
 import PaypalPayment from "../utils/payment/PaypalPayment.js";
-import { BASE_URL, Footer, LinksHbs, noindex_meta_tags, PAYPAL_SECRET, PAYPAL_CLIENT_ID,PAYPAL_MODE, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET, whiteHeader } from "../utils/env.js";
+import { BASE_URL, Footer, LinksHbs, noindex_meta_tags, PAYPAL_SECRET, PAYPAL_CLIENT_ID,PAYPAL_MODE, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET, whiteHeader, STRIPE_CURRENCY, PAYPAP_CURRENCY } from "../utils/env.js";
 import StripePay from "../utils/payment/stripe.js";
 import path, { resolve } from 'path'
 import {readFileSync, rmSync} from 'fs'
@@ -39,7 +39,7 @@ async function OrderPaymentPaypal(req = request, res = response) {
             success_url: BASE_URL + `/api/api_s/order/payment/paypal/${order.id}/success`,
             cancel_url: BASE_URL + `/api/api_s/order/payment/paypal/${order.id}/cancel`
         })
-        let items = order.shiping_items.map(({ name, quantity, price }) => ({ name: name.length < 80? name : name.substring(0, 80), unit_amount: { currency_code: 'USD', value: price.toFixed(2) }, quantity }))
+        let items = order.shiping_items.map(({ name, quantity, price }) => ({ name: name.length < 80? name : name.substring(0, 80), unit_amount: { currency_code: PAYPAP_CURRENCY, value: price.toFixed(2) }, quantity }))
         
         let { token, link } = await paypal.checkOutWithShipping({ shipping: (shipping_cost + tax).toFixed(2), items });
 
@@ -55,7 +55,6 @@ async function OrderPaymentPaypal(req = request, res = response) {
     } catch (error) {
         console.error(error);
         console.error(error?.paypalError?.links);
-        
         res.status(500).send('<h4 style="color:red"> sorry failed to execute your request because of a server error</h4>')
     }
 }
@@ -83,7 +82,7 @@ async function OrderPaymentStripe(req = request, res = response) {
 
         let session = await stripe.checkOut({
             shipping_amount: (shipping_cost + tax) * 100,
-            line_items: order.shiping_items.map(({ name, price, quantity }) => ({ price_data: { currency: 'usd', product_data: { name: name.length < 100 ? name : name.substring(0, 100), }, unit_amount: (100 * price) }, quantity }))
+            line_items: order.shiping_items.map(({ name, price, quantity }) => ({ price_data: { currency: STRIPE_CURRENCY, product_data: { name: name.length < 100 ? name : name.substring(0, 100), }, unit_amount: (100 * price) }, quantity }))
             // [{ price_data: { currency: 'usd', product_data: { name: undefined }, unit_amount: 1 * 100 }, quantity: 0 }]
         })
         if (session.url && session.id) {

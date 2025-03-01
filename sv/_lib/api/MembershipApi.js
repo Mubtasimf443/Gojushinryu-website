@@ -9,7 +9,7 @@ import { Memberships } from "../models/Membership.js";
 import MembershipCoupons from "../models/membershipcoupon.js";
 import { Settings } from "../models/settings.js";
 import { User as Users } from "../models/user.js";
-import { Footer, LinksHbs, noindex_meta_tags, ORGANIZATION_NAME, T_PAYPAL_SECRET, whiteHeader } from "../utils/env.js";
+import { Footer, LinksHbs, noindex_meta_tags, ORGANIZATION_NAME, PAYPAP_CURRENCY, T_PAYPAL_SECRET, whiteHeader } from "../utils/env.js";
 import { createPaypalPayment } from "../utils/payment/create.order.paypal.js";
 import { repleCaracter } from "../utils/replaceCr.js";
 import { Alert, isValidUrl, log } from "../utils/smallUtils.js";
@@ -25,7 +25,7 @@ export async function MembershipApidataCheckMidleware(req=request, res=response,
             quantity: 1,
             price: 75,
             unit_amount: {
-                currency_code: 'USD',
+                currency_code:PAYPAP_CURRENCY,
                 value: '75.00'
             }
         },
@@ -35,7 +35,7 @@ export async function MembershipApidataCheckMidleware(req=request, res=response,
             quantity: 1,
             price: 250,
             unit_amount: {
-                currency_code: 'USD',
+                currency_code: PAYPAP_CURRENCY,
                 value: '250.00'
             }
         },
@@ -45,7 +45,7 @@ export async function MembershipApidataCheckMidleware(req=request, res=response,
             quantity: 1,
             price: 75,
             unit_amount: {
-                currency_code: 'USD',
+                currency_code: PAYPAP_CURRENCY,
                 value: '75.00'
             }
         },
@@ -55,7 +55,7 @@ export async function MembershipApidataCheckMidleware(req=request, res=response,
             quantity: 1,
             price: 250,
             unit_amount: {
-                currency_code: 'USD',
+                currency_code: PAYPAP_CURRENCY,
                 value: '250.00'
             }
         },

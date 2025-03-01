@@ -12,7 +12,7 @@ import { CourseEnrollments } from "../models/courseEnrollment.js";
 import { validate } from "string-player";
 import { Settings } from "../models/settings.js";
 import PaypalPayment from "../utils/payment/PaypalPayment.js";
-import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
+import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, PAYPAP_CURRENCY, STRIPE_CURRENCY, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
 import StripePay from "../utils/payment/stripe.js";
 import MonthlyCourseEnrollmentFeesMails from "../mail/course.monthlyFeesMail.js";
 import { v4 as uuid} from "uuid";
@@ -296,7 +296,7 @@ export async function MonthlyFeesRequestPayPal(req=request, res=response) {
             items :[{
                 name :enrollment.course_name ,
                 unit_amount : {
-                    currency_code :'USD',
+                    currency_code :PAYPAP_CURRENCY,
                     value :enrollment.course_price.toFixed(2)
                 },
                 quantity:1
@@ -346,7 +346,7 @@ export async function MonthlyFeesRequestStripe(req=request, res=response) {
             line_items :[
                 {
                     price_data: {
-                        currency: 'usd', 
+                        currency: STRIPE_CURRENCY, 
                         product_data: {
                             name: enrollment.course_name
                         },

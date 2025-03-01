@@ -6,6 +6,7 @@ InshaAllah, By his marcy I will Gain Success
 import axios from 'axios';
 import fetch from 'node-fetch';
 import { isnota, MakePriceStringSync, validate } from 'string-player';
+import { PAYPAP_CURRENCY } from '../env.js';
 
 
 export default class PaypalPayment {
@@ -58,14 +59,14 @@ export default class PaypalPayment {
             cancel_url = options.cancel_url || this.cancel_url;
         let 
             items = options.items,
-            currency_code = options.currency_code || this.currency_code || 'USD';
+            currency_code =  PAYPAP_CURRENCY;
         try {
             for (let i = 0; i < items.length; i++) {
                 let { name, quantity, unit_amount } = items.shift();
                 if (!name || isnota.string(name)) throw `items[${i}].name is emty or not a string`;
                 if (quantity <= 0 || isnota.num(quantity)) throw `items[${i}].quantity is not a number or NaN`;
                 if (!unit_amount?.value || isnota.string(unit_amount?.value)) throw `items[${i}].unit_amount.value is emty or not a string`;
-                unit_amount.currency_code = unit_amount.currency_code ?? 'USD';
+                unit_amount.currency_code = unit_amount.currency_code ?? PAYPAP_CURRENCY;
                 items.push({ name, quantity, unit_amount })
             }
         } catch (error) { this.paypalError("Items_checking_error", error) }
@@ -82,15 +83,15 @@ export default class PaypalPayment {
                 purchase_units: [{
                     items: items,
                     amount: {
-                        currency_code: currency_code,
+                        currency_code: PAYPAP_CURRENCY,
                         value: options.total,
                         breakdown: {
                             item_total: {
-                                currency_code: 'USD',
+                                currency_code:PAYPAP_CURRENCY,
                                 value: options.productToatal, // Cost of items
                             },
                             shipping: {
-                                currency_code: 'USD',
+                                currency_code: PAYPAP_CURRENCY,
                                 value: options.shipping, // Shipping cost
                             }
                         }

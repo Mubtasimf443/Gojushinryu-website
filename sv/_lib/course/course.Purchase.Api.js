@@ -11,7 +11,7 @@ import { sendCourseApplicationEmail } from "../mail/courseContact.mail.js";
 import { CourseEnrollments } from "../models/courseEnrollment.js";
 import { Settings } from "../models/settings.js";
 import PaypalPayment from "../utils/payment/PaypalPayment.js";
-import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
+import { BASE_URL, PAYPAL_CLIENT_ID, PAYPAL_MODE, PAYPAL_SECRET, PAYPAP_CURRENCY, STRIPE_CURRENCY, T_PAYPAL_CLIENT_ID, T_PAYPAL_SECRET } from "../utils/env.js";
 import StripePay from "../utils/payment/stripe.js";
 import CourseCoupons from "../models/course_coupon.js";
 import { urlToCloudinaryUrl } from "../Config/cloudinary.js";
@@ -135,7 +135,7 @@ export async function coursePurchaseApi(req = request, res = response) {
                 items: [{
                     name: courses.get(mode),
                     unit_amount: {
-                        currency_code: 'USD',
+                        currency_code: PAYPAP_CURRENCY,
                         value: paymentPrices.course_price.toFixed(2)
                     },
                     quantity: 1
@@ -165,7 +165,7 @@ export async function coursePurchaseApi(req = request, res = response) {
                 line_items: [
                     {
                         price_data: {
-                            currency: 'usd',
+                            currency:STRIPE_CURRENCY,
                             product_data: {
                                 name: courses.get(mode),
                             },
