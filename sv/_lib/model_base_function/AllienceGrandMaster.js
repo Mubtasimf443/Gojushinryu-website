@@ -129,8 +129,11 @@ async function uploadAllienceGrandMasterRelatedImage(req = request, res = respon
         catchError(res, error)
     }
 }
-export async function allienceGrandMasterInfo(req, res) {
+export async function allienceGrandMasterInfo(req=request, res=response) {
     try {
+        if (req.params.id?.toLowerCase() === 'shihan-varun-jettly') {
+            return res.status(200).render('shihan-varun-jettly');
+        }
         if (isNaN(req.params.id)) return res.status(404).send('Page Not Found');
         let master = await AllienceGrandMaster.findOne({}).where('createdAt').equals(Number(req.params.id));
         if (!!master) {
