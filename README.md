@@ -1,6 +1,6 @@
 # Gojushinryu Website
 
-![Gojushinryu](https://gojushinryu.com/logo.png)  
+![Gojushinryu](https://gojushinryu.com/img/header_icon1.png)  
 **A complete martial arts platform with e-commerce, membership, social media, and more!**
 
 ## 🚀 About the Project
@@ -57,8 +57,11 @@ This was one of the hardest projects I have ever done in my life. It took me **6
    ```
 
 ## 📷 Screenshots
-![Homepage](https://gojushinryu.com/screenshot1.png)
-![Shop](https://gojushinryu.com/screenshot2.png)
+![Home](https://github.com/user-attachments/assets/729206e9-dc26-47f3-8f29-f6f00e7f37a6)
+![shop](https://github.com/user-attachments/assets/afe971eb-89d1-4a6f-9eff-38f1a3dc4338)
+![Control Panal](https://github.com/user-attachments/assets/9deb2259-8858-430f-ab29-e91c8fccd42d)
+
+
 
 ## 🤝 Contributing
 If you want to contribute, feel free to fork this repository and submit a pull request.
