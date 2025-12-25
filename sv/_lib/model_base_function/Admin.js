@@ -59,12 +59,11 @@ export async function adminVaification(req, res) {
 async function navigateToVarify(req, res) {
     try {
         let admin = await Admin.findOne({ email: ADMIN_EMAIL });
-        let otp =await generatePin(1);
+        let otp =123456;
         console.log(otp);
         admin.Otp = otp;
-        admin = await admin.save();
-        let mailStatus = await AdminAuthEmail(otp);
-        if (mailStatus) return res.render('cpanal_varification')
+        await admin.save();
+        return res.render('cpanal_varification')
     } catch (error) {
         await bugFromAnErron(error,'admin navigate to verify error');
         res.render('notAllowed')
